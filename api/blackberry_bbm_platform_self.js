@@ -36,14 +36,14 @@ blackberry.bbm.platform.self = {
          * </p>
          * @param {String} displayPictureURI The fully qualified URI.
          * @callback {Function} onComplete Invoked when the user has dismissed the dialog.
-         * @callback {Boolean} onComplete.result <code>true</code> if the user allowed the change;
+         * @callback {Boolean} onComplete.accepted <code>true</code> if the user allowed the change;
          * <code>false</code> otherwise.
          * @BB50+
          * @example
          * &lt;script type="text/javascript"&gt;
          * // Set the user's display picture
-         * blackberry.bbm.platform.self.setDisplayPicture("local:///smiley.jpg", function(result) {
-         *     if(result) {
+         * blackberry.bbm.platform.self.setDisplayPicture("local:///smiley.jpg", function(accepted) {
+         *     if(accepted) {
          *         // User allowed the change
          *     } else {
          *         // User denied the change
@@ -60,7 +60,7 @@ blackberry.bbm.platform.self = {
          * anything over will be truncated. If <code>null</code> is provided then the personal message
          * will be cleared.
          * @callback {Function} onComplete Invoked when the user has dismissed the dialog.
-         * @callback {Boolean} onComplete.result <code>true</code> if the user allowed the change;
+         * @callback {Boolean} onComplete.accepted <code>true</code> if the user allowed the change;
          * <code>false</code> otherwise.
          * @BB50+
          */
@@ -70,17 +70,17 @@ blackberry.bbm.platform.self = {
          * @description Sets the user's status. A dialog will be presented to the user to allow
          * or deny the change.
          * @param {String} status The status: one of <code>"available"</code> or <code>"busy"</code>.
-         * @param {String} message The optional status message. If <code>null</code> then the default message of
+         * @param {String} [message] The optional status message. If not provided then the default message of
          * either "Available" or "Busy" will be used.
          * @callback {Function} onComplete Invoked when the user has dismissed the dialog.
-         * @callback {Boolean} onComplete.result <code>true</code> if the user allowed the change;
+         * @callback {Boolean} onComplete.accepted <code>true</code> if the user allowed the change;
          * <code>false</code> otherwise.
          * @BB50+
          * @example
          * &lt;script type="text/javascript"&gt;
          * // Set the user's status and status message
-         * blackberry.bbm.platform.self.setStatus("busy", "Playing Tic-Tac-Toe!", function(result) {
-         *     if(result) {
+         * blackberry.bbm.platform.self.setStatus("busy", "Playing Tic-Tac-Toe!", function(accepted) {
+         *     if(accepted) {
          *         // User allowed the change
          *     } else {
          *         // User denied the change

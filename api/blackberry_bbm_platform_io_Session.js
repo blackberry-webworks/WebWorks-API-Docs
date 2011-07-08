@@ -42,7 +42,7 @@ blackberry.bbm.platform.io.Session = function() {
      * removed and {@link pendingUsers} will be set to <code>0</code>.
      * <p>{@link onSessionEnded} will be called for all users currently in the connection.
      * <p>The connection will become inactive for the current user, and should not be used afterwards.
-     * @throws IllegalStateException if the current user has already ended the connection.
+     * @throws {IllegalStateException} if the current user has already ended the connection.
      * @BB50+
      */
     this.end = function() { };
@@ -51,7 +51,7 @@ blackberry.bbm.platform.io.Session = function() {
      * Removes the current user from the connection, but leaves it active for all other participants.
      * <p>{@link onUserLeft} will be called for all other users currently in the connection.
      * <p>The connection will become inactive for the current user, and should not be used afterwards.
-     * @throws IllegalStateException if the current user has already left the connection.
+     * @throws {IllegalStateException} if the current user has already left the connection.
      * @BB50+
      */
     this.leave = function() { };

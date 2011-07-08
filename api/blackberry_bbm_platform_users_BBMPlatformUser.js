@@ -16,7 +16,7 @@
 
 /**
  * @featureID blackberry.bbm.platform
- * @class A platform user.
+ * @class A platform user. Provides access to user properties defined in their BBM user profile.
  * @BB50+
  */
 blackberry.bbm.platform.users.BBMPlatformUser = function() {
@@ -27,17 +27,9 @@ blackberry.bbm.platform.users.BBMPlatformUser = function() {
      * @BB50+
      * @example
      * &lt;script type="text/javascript"&gt;
-     * // Show a contact's display picture
-     * var user = blackberry.bbm.platform.users.contactsWithApp[0];
-     * var displayPicImg = document.getElementById("displayPicture");
-     * displayPicImg.src = user.displayPicture;
-     * &lt;/script&gt;
-     * 
-     * @example
-     * &lt;script type="text/javascript"&gt;
      * // Show the current user's display picture
      * var user = blackberry.bbm.platform.self;
-     * var displayPicImg = document.getElementById("displayPicture");
+     * var displayPicImg = document.getElementById("displayPicture"); // Must have img tag with id='displayPicture'
      * displayPicImg.src = user.displayPicture;
      * &lt;/script&gt;
      * </pre>
@@ -61,7 +53,7 @@ blackberry.bbm.platform.users.BBMPlatformUser = function() {
     this.personalMessage = "";
 
     /**
-     * @description The status. One of <code>"available"</code> or <code>"busy"</code>.
+     * @description One of <code>"available"</code> or <code>"busy"</code>.
      * @type String
      * @readOnly
      * @BB50+
@@ -77,8 +69,7 @@ blackberry.bbm.platform.users.BBMPlatformUser = function() {
     this.statusMessage = "";
     
     /**
-     * @description The user's unique ID. This will be <b>different</b> for multiple instances of the
-     * user (BlackBerry, PlayBook, etc.)
+     * @description A unique ID representing the user on a specific device. This will be <code>different</code> for the same user on different devices (BlackBerry smartphone, BlackBerry PlayBook, etc.)
      * @type String
      * @readOnly
      * @BB50+
@@ -86,8 +77,7 @@ blackberry.bbm.platform.users.BBMPlatformUser = function() {
     this.handle = 0;
     
     /**
-     * @description The user's unique ID. This will be <b>the same</b> for multiple instances of the
-     * user (BlackBerry, PlayBook, etc.)
+     * @description A unique ID representing the user on all devices. This will be <code>the same</code> for the same user on all devices (BlackBerry smartphone, BlackBerry PlayBook, etc.)
      * @type String
      * @readOnly
      * @BB50+

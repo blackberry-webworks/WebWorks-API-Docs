@@ -50,13 +50,12 @@ blackberry.bbm.platform.ui.menu = {
     MAX_LENGTH_MENU_ITEM_MESSAGE : 0,
         
     /**
-     * @description Adds a invitation menu item to the BBM contact list screen. If a menu item with
+     * @description Adds an invitation menu item to the BBM contact list screen. If a menu item with
      * the same <code>menuItemId</code> already exists for the application then it will be overwritten.
      * <p>When the menu item is invoked, an invitation will be sent to the selected contact. On the
      * inviter's side, {@link blackberry.bbm.platform.io.onConnectionCreated} will be invoked with
      * the <code>event="BBMmenuinvite"</code> and <code>param=menuItemId</code>. If the application
-     * is not running then it will be launched. The invocation of
-     * {@link blackberry.bbm.platform.io.onConnectionCreated} will not occur until the callback is assigned.</p>
+     * is not running then it will be launched.</p>
      * @param {Object} options Options.
      * @param {Number} options.menuItemId Unique menu item ID.
      * @param {String} options.label The menu item label.

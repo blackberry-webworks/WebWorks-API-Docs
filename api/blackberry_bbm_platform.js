@@ -21,7 +21,7 @@
  * 
  * <h1>Required BBM Version</h1>
  * 
- * BBM Social Platform APIs come with BBM6 and later.
+ * BBM Social Platform APIs come with BBM6 and later. BBM6 is supported on BlackBerry OS 5, 6, and 7.
  * 
  * <h1>Authorization</h1>
  * 
@@ -137,7 +137,7 @@ blackberry.bbm.platform = {
      *     if(reason == "profilebox") {
      *         var boxItem = param;
      *         var achievementID = boxItem.cookie;
-     *         challenge(achievementID);
+     *         // Take action based on profile box item...
      *     }
      * };
      * 

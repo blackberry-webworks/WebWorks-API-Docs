@@ -240,6 +240,7 @@ blackberry.bbm.platform.io.Connection = function() {
     
     /**
      * <code>true</code> if the user is hosting on this connection; <code>false</code> otherwise.
+     * @type Boolean
      * @BB50+
      */
     this.hosting = false;
