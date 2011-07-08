@@ -98,7 +98,7 @@ blackberry.bbm.platform.self.profilebox = {
      * @param {Number} iconID The icon ID.
      * @param {String} iconURI The fully qualified URI.
      * @throws {IllegalArgumentException} If <code>iconId < 0</code>.
-     * @throws {UserProfileBoxAccessException} If the device is in mass storage mode.
+     * @throws {UserProfileBoxAccessException} If the profile box is inaccessible.
      * @example
      * &lt;script type="text/javascript"&gt;
      * // Register all profile box icons
@@ -130,7 +130,7 @@ blackberry.bbm.platform.self.profilebox = {
      * @param {Number} iconID The icon ID.
      * @returns {String} The base64 encoded image string if the icon is registered;
      * <code>null</code> otherwise.
-     * @throws {UserProfileBoxAccessException} If the device is in mass storage mode.
+     * @throws {UserProfileBoxAccessException} If the user profile box is inaccessible.
      * @BB50+
      */
     getIcon : function(iconID) {
@@ -140,7 +140,7 @@ blackberry.bbm.platform.self.profilebox = {
      * Returns whether an icon is registered for an icon ID.
      * @param {Number} iconID The icon ID.
      * @returns <code>true</code> if an icon is registered for <code>iconID</code>; <code>false</code> otherwise.
-     * @throws {UserProfileBoxAccessException} If the device is in mass storage mode.
+     * @throws {UserProfileBoxAccessException} If the profile box is inaccessible.
      * @BB50+
      */
     hasIcon : function(iconID) {
@@ -154,7 +154,7 @@ blackberry.bbm.platform.self.profilebox = {
      * then no icon will be used.
      * @param {String} [options.cookie] <i>Optional</i> The customizable cookie.
      * @returns {blackberry.bbm.platform.self.profilebox.ProfileBoxItem} the new item.
-     * @throws {UserProfileBoxAccessException} If the device is in mass storage mode.
+     * @throws {UserProfileBoxAccessException} If the profile box is inaccessible.
      * @example
      * &lt;script type="text/javascript"&gt;
      * // Add an item with icon, text, and a cookie
@@ -176,7 +176,7 @@ blackberry.bbm.platform.self.profilebox = {
     /**
      * Removes an item.
      * @param {blackberry.bbm.platform.self.profilebox.ProfileBoxItem} item The item to remove.
-     * @throws {UserProfileBoxAccessException} If the device is in mass storage mode.
+     * @throws {UserProfileBoxAccessException} If the profile box is inaccessible.
      * @BB50+
      */
     removeItem: function(item) {  
@@ -184,7 +184,7 @@ blackberry.bbm.platform.self.profilebox = {
     
     /**
      * Removes all items.
-     * @throws {UserProfileBoxAccessException} If the device is in mass storage mode.
+     * @throws {UserProfileBoxAccessException} If the profile box is inaccessible.
      * @BB50+
      */
     clearItems: function() {
