@@ -64,6 +64,7 @@
  *     }
  * };
  * &lt;/script&gt; 
+ * @beta
  * @BB50+
  */
 blackberry.bbm.platform.self.profilebox = {

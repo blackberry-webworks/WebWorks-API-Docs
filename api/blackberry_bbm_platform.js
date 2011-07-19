@@ -36,6 +36,9 @@
  * <li><b>Authorization may be revoked by the user or server at any time.</b></li>
  * </ul>
  * @BB50+
+ * @learns {Download BBM SDK Resources} http://us.blackberry.com/developers/blackberrymessenger/ Download the resources required to use the BBM SDK for WebWorks [BlackBerry].
+ * @learns {Getting Started Guide} http://supportforums.blackberry.com/t5/Web-and-WebWorks-Development/Getting-Started-BlackBerry-WebWorks-Development-for-Smartphones/ta-p/1185353 A walkthrough of the steps necessary to get started using the sample application distributed as part of the BBM SDK for WebWorks. [BlackBerry Developer Resource Center].
+ * @beta
  */
 blackberry.bbm.platform = {
 

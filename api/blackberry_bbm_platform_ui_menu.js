@@ -18,6 +18,7 @@
  * @toc {BBM} Menu
  * @featureID blackberry.bbm.platform
  * @namespace Provides the ability to add menu items within BBM. Menu items persist across device resets.
+ * @beta
  * @BB50+
  */
 blackberry.bbm.platform.ui.menu = {

@@ -28,6 +28,7 @@
  * Once a user has joined they can send data to anyone in the session.
  * @featureID blackberry.bbm.platform
  * @extends blackberry.bbm.platform.io.Connection
+ * @beta
  * @BB50+
  */
 blackberry.bbm.platform.io.Session = function() {

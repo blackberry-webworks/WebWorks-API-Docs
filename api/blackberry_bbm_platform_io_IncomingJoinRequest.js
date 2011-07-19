@@ -18,6 +18,7 @@
  * @featureID blackberry.bbm.platform
  * @class A request to join received on the host's side.
  * @extends blackberry.bbm.platform.io.JoinRequest
+ * @beta
  * @BB50+
  */
 blackberry.bbm.platform.io.IncomingJoinRequest = function() {

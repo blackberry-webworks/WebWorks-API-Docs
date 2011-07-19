@@ -18,6 +18,7 @@
  * @featureID blackberry.bbm.platform
  * @class A request to join sent from the peer's side.
  * @extends blackberry.bbm.platform.io.JoinRequest
+ * @beta
  * @BB50+
  */
 blackberry.bbm.platform.io.OutgoingJoinRequest = function() {

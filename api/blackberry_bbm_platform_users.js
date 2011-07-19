@@ -19,6 +19,7 @@
  * @featureID blackberry.bbm.platform
  * @namespace Provides access to user information. The current user can be accessed from
  * {@link blackberry.bbm.platform.self}.
+ * @beta
  * @BB50+
  */
 blackberry.bbm.platform.users = {

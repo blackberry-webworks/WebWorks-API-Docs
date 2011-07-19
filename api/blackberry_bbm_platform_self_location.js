@@ -32,6 +32,7 @@
  *     // Location is not enabled by user
  * }
  * &lt;/script&gt;
+ * @beta
  */
 blackberry.bbm.platform.self.location = {
 

@@ -25,6 +25,7 @@
  * join, user A can send data to B, C, and D, but B, C, and D can only send data to A.
  * @featureID blackberry.bbm.platform
  * @extends blackberry.bbm.platform.io.Connection
+ * @beta
  * @BB50+
  */
 blackberry.bbm.platform.io.Channel = function() {

@@ -106,6 +106,7 @@
  * <p>At this point the request is in the <code>"pending"</code> state. In this state the peer can {@link blackberry.bbm.platform.io.OutgoingJoinRequest#cancel} the request, and the host can {@link blackberry.bbm.platform.io.IncomingJoinRequest#accept} or {@link blackberry.bbm.platform.io.IncomingJoinRequest#decline}.</p>
  * <br>{@image /images/bbm/hosting.png}<br>
  * </p>
+ * @beta
  * @BB50+
  */
 blackberry.bbm.platform.io = {

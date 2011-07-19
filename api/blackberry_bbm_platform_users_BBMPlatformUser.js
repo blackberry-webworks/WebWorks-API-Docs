@@ -17,6 +17,7 @@
 /**
  * @featureID blackberry.bbm.platform
  * @class A platform user. Provides access to user properties defined in their BBM user profile.
+ * @beta
  * @BB50+
  */
 blackberry.bbm.platform.users.BBMPlatformUser = function() {

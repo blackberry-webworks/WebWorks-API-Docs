@@ -20,6 +20,7 @@
  * @param {String} PIN The user's PIN.
  * @param {String} name The user's name.
  * @constructor
+ * @beta
  * @BB50+
  */
 blackberry.bbm.platform.users.ContactInvitation = function(PIN, name) {
