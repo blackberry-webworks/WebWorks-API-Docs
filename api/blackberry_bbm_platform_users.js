@@ -95,6 +95,60 @@ blackberry.bbm.platform.users = {
      */    
     startBBMChat: function(onComplete, message, users) {
     },
+
+    /**
+     * @description Sends a file to a contact. The user will be prompted to edit the comment and
+     * choose to send or cancel the file transfer.
+     * <p>If <code>contact</code> is not provided then the Contact Picker dialog be shown first,
+     * allowing the user to pick someone in their contact list whom to send the file. Otherwise,
+     * the Contact Picker dialog will not be shown.</p>
+     * <p>If the contact cannot receive the specific file type, the file will not be sent.</p>
+     * <p>The application is notified of any errors that occur through the <code>onFailure(reason)</code>
+     * callback. The reasons are:</p>
+     * <table border="1" width="100%">
+     * <thead>
+     * <tr>
+     * <th>Reason</th>
+     * <th>Description</th>
+     * </tr>
+     * </thead>
+     * <tbody>
+     * <tr>
+     * <td>filenotfound</td>
+     * <td>The file transfer failed because the file does not exist.</td>
+     * </tr>
+     * <tr>
+     * <td>filetoolarge</td>
+     * <td>The file transfer failed because the file size exceeds the limit permitted by BBM.</td>
+     * </tr>
+     * <tr>
+     * <td>fileforwardlocked</td>
+     * <td>The file transfer failed because the file is forward-locked.</td>
+     * </tr>
+     * <tr>
+     * <td>filebadtype</td>
+     * <td>The file transfer failed because the recipient is not permitted to receive files of the file type.</td>
+     * </tr>
+     * <tr>
+     * <td>usercanceled</td>
+     * <td>The file transfer failed because the current user canceled the file transfer.</td>
+     * </tr>
+     * <tr>
+     * <td>noncontact</td>
+     * <td>The file transfer failed because the recipient is not a BBM contact of the user.</td>
+     * </tr>
+     * </tbody>
+     * </table>
+     * @param {String} fileURI The fully qualified path of the file to send.
+     * @param {String} comment The default comment on the file. The user may edit this comment before sending.
+     * @callback {Function} onFailure Invoked if the file transfer fails.
+     * @callback {String} onFailure.reason The reason why the transfer failed.
+     * @param {blackberry.bbm.platform.users.BBMPlatformUser} [contact] The recipient of the file. The recipient
+     * must be in the current user's contact list.
+     * @BB50+
+     */
+    sendFile : function(fileURI, comment, onFailure, contact) {
+    },
     
     /**
      * @propertyCB onUpdate Invoked when a user's information is updated. Assign a function to receive user updates.
@@ -167,6 +221,18 @@ blackberry.bbm.platform.users = {
      * @BB50+
      */
     onUpdate : function(user, event) {
+    },
+
+    /**
+     * @description Allows the user to invite contacts to download the application. A Contact Picker
+     * dialog will appear allowing the user to select contacts to invite. Only contacts without the
+     * application will be shown in the Contact Picker.
+     * @callback {Function} onComplete Invoked when the user is complete.
+     * @callback {String} onComplete.result <code>"limitreached"</code> if the download invitation limit has been reached;<code>undefined</code> otherwise. A 
+     * maximum of 10 download invitations per minute is allowed.
+     * @BB50+
+     */
+    inviteToDownload : function(onComplete) {
     },
     
     /**
