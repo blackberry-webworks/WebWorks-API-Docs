@@ -20,23 +20,41 @@
  * @class The Banner object is an advertising banner object that will automatically get inserted into a div in your html.
  * @constructor
  * @description Creates a new Banner Object with the given properties and automatically inserts it into the div with the specified id.
- * @param {Number} appID The Application ID given to the developer by the BBAS on registration.
- * @param {String} divID The id attribute of the div tag to which the banner will be inserted.
+ * @param {Number} zoneId The Zone Id given to the developer by the BlackBerry Advertising Service on registration.
+ * @param {String} divId The id attribute of the div tag to which the banner will be inserted.
  * @param {JSON} [properties] A set of options to further customize the advertising banner.
- * @param {Boolean} [properties.bannerTransitions] Sets the {@link blackberry.advertising#bannerTransitions} property.
- * @param {String} [properties.focusBorderColor] Sets the {@link blackberry.advertising#focusBorderColor} property.
- * @param {String} [properties.focusBorderWidth] Sets the {@link blackberry.advertising#focusBorderWidth} property.
- * @param {JSON} [properties.metadata] Sets the {@link blackberry.advertising#metadata} property.
- * @param {String} [properties.mmaSize] Sets the {@link blackberry.advertising#mmaSize} property.
- * @param {String} [properties.placeholder] Sets the {@link blackberry.advertising#placeholder} property.
- * @param {Number} [properties.refreshRate] Sets the {@link blackberry.advertising#refreshRate} property.
+ * @param {Boolean} [properties.bannerTransitions] Sets the {@link blackberry.advertising.Banner#bannerTransitions} property.
+ * @param {String} [properties.focusBorderColor] Sets the {@link blackberry.advertising.Banner#focusBorderColor} property.
+ * @param {String} [properties.focusBorderWidth] Sets the {@link blackberry.advertising.Banner#focusBorderWidth} property.
+ * @param {JSON} [properties.metadata] Sets the {@link blackberry.advertising.Banner#metadata} property.
+ * @param {String} [properties.mmaSize] Sets the {@link blackberry.advertising.Banner#mmaSize} property.
+ * @param {String} [properties.placeholder] Sets the {@link blackberry.advertising.Banner#placeholder} property.
+ * @param {Number} [properties.refreshRate] Sets the {@link blackberry.advertising.Banner#refreshRate} property.
  * @BB60+
  * @example
+ * STEP 1: Set access to "blackberry.advertising" and "www.blackberry.com" in the app config.xml 
+ *
+ * &lt;xml version="1.0" encoding="UTF-8" ?&gt;
+ * &lt;widget xmlns="http://www.w3.org/ns/widgets" xmlns:rim="http://www.blackberry.com/ns/widgets" version="2.0" rim:header="RIM-Widget: rim/widget"&gt;
+ * &lt;name&gt;App Name&lt;/name&gt;
+ * &lt;access subdomains="true" uri="http://www.blackberry.com/"&gt;
+ * &lt;feature id="blackberry.advertising" required="true" version="1.0.0" /&gt;
+ * &lt;/access&gt;
+ * &lt;access subdomains="false" uri="*" /&gt;
+ * &lt;content src="index.html" /&gt;
+ * &lt;rim:loadingScreen foregroundImage="loader.gif" onRemotePageLoad="true" onLocalPageLoad="true" onFirstLaunch="true" /&gt;
+ * &lt;/widget&gt;
+ *
+ * STEP 2: Include Advertising SDK JavaScript in the html pages
+ * &lt;script type="text/javascript" src="http://www.blackberry.com/app_includes/asdk/adBanner.js"&gt;&lt;/script&gt;
+ *
+ * STEP 3: Sample code to be included in the html pages of the App
+ * 
  * &lt;center&gt; &lt;div id='bannerDiv'&gt;     &lt;/div&gt; &lt;/center&gt;
  * &lt;script type="text/javascript"&gt;
  * 
  *  //Adding Banner with default Banner properties
- *  var banner1 = banner(16126, "bannerDiv");   
+ *  var banner1 = new blackberry.advertising.Banner(16126, "bannerDiv");   
  * 
  *  //Adding Banner with custom Banner properties
  *  var banner1 = new blackberry.advertising.Banner(16126, "bannerDiv", {"bannerTransitions" : true,
@@ -52,7 +70,7 @@
  *  
  * &lt;/script&gt;
  */
-blackberry.advertising ={};
+blackberry.advertising.Banner ={};
 
 /**
  * @field
@@ -61,7 +79,7 @@ blackberry.advertising ={};
  * @default false
  * @BB60+
  */
-blackberry.advertising.prototype.bannerTransitions = undefined;
+blackberry.advertising.Banner.prototype.bannerTransitions = undefined;
 
 /**
  * @field
@@ -70,7 +88,7 @@ blackberry.advertising.prototype.bannerTransitions = undefined;
  * @default 'blue'
  * @BB60+
  */
-blackberry.advertising.prototype.focusBorderColor = undefined;
+blackberry.advertising.Banner.prototype.focusBorderColor = undefined;
 
 /**
  * @field
@@ -79,7 +97,7 @@ blackberry.advertising.prototype.focusBorderColor = undefined;
  * @default '2px'
  * @BB60+
  */
-blackberry.advertising.prototype.focusBorderWidth = undefined;
+blackberry.advertising.Banner.prototype.focusBorderWidth = undefined;
 
 /**
  * @field
@@ -87,7 +105,7 @@ blackberry.advertising.prototype.focusBorderWidth = undefined;
  * @type JSON
  * @BB60+
  */
-blackberry.advertising.prototype.metadata = undefined;
+blackberry.advertising.Banner.prototype.metadata = undefined;
 
 /**
  * @field
@@ -105,7 +123,7 @@ blackberry.advertising.prototype.metadata = undefined;
  * @default "MMA_SIZE_AUTO_SIZE"
  * @BB60+
  */
-blackberry.advertising.prototype.mmaSize = undefined;
+blackberry.advertising.Banner.prototype.mmaSize = undefined;
 
 /**
  * @field
@@ -113,7 +131,7 @@ blackberry.advertising.prototype.mmaSize = undefined;
  * @type String
  * @BB60+
  */
-blackberry.advertising.prototype.placeholder = undefined;
+blackberry.advertising.Banner.prototype.placeholder = undefined;
 
 /**
  * @field
@@ -122,4 +140,4 @@ blackberry.advertising.prototype.placeholder = undefined;
  * @default 60000
  * @BB60+
  */
-blackberry.advertising.prototype.refreshRate = undefined;
+blackberry.advertising.Banner.prototype.refreshRate = undefined;
