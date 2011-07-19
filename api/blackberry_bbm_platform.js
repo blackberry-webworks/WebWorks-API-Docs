@@ -84,7 +84,7 @@ blackberry.bbm.platform = {
     },
 
     /**
-     * @propertyCB onAccessChanged Invoked when the access status changes.
+     * Invoked when the access status changes.
      * @param {Boolean} accessible <code>true</code> if access is allowed;
      * <code>false</code> otherwise.
      * @param {String} status The access status.
@@ -122,13 +122,14 @@ blackberry.bbm.platform = {
      * </tr>
      * <tr>
      * </table>
+     * @event
      * @BB50+
      */
-    onAccessChanged : function(accessible, status) {
+    onaccesschanged : function(accessible, status) {
     },
     
     /**
-     * @propertyCB onAppInvoked Called in certain cases when the application is invoked from within BBM.
+     * Called in certain cases when the application is invoked from within BBM.
      * @param {String} reason The reason that the application was invoked. If <code>"profilebox"</code> then
      * <code>param</code> is a {@link blackberry.bbm.platform.self.profilebox.ProfileBoxItem}.
      * @param {blackberry.bbm.platform.self.profilebox.ProfileBoxItem} param The parameter associated with <code>reason</code>.
@@ -145,9 +146,10 @@ blackberry.bbm.platform = {
      * };
      * 
      * &lt;/script&gt; 
+     * @event
      * @BB50+
      */
-    onAppInvoked : function(reason, param) {
+    onappinvoked : function(reason, param) {
     },
     
     /**
