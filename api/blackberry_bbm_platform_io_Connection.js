@@ -158,33 +158,36 @@ blackberry.bbm.platform.io.Connection = function() {
     //////////////////////
 
     /**
-     * @propertyCB onData Invoked when data is received from a user.
+     * Invoked when data is received from a user.
      * @param {blackberry.bbm.platform.users.BBMPlatformUser} sender User that sent the data.
      * @param {String} data Data received.
+     * @event
      * @BB50+
      */
-    this.onData = function(sender, data) {  
+    this.ondata = function(sender, data) {  
     };
     
     /**
-     * @propertyCB onUsersInvited Invoked when the user invites others to join the connection. This will not be
+     * Invoked when the user invites others to join the connection. This will not be
      * called if the user invites others to download the application.
      * @param {blackberry.bbm.platform.io.BBMPlatformUser} users the users who were invited
+     * @event
      * @BB50+
      */
-    this.onUsersInvited = function(users) {
+    this.onusersinvited = function(users) {
     };
     
     /**
-     * @propertyCB onUserDeclined Invoked when a user declines an invitation.
+     * Invoked when a user declines an invitation.
      * @param {blackberry.bbm.platform.users.BBMPlatformUser} user User who declined.
+     * @event
      * @BB50+
      */
-    this.onUserDeclined = function(user) {
+    this.onuserdeclined = function(user) {
     };
     
     /**
-     * @propertyCB onUsersJoined Invoked when users join the connection by accepting an invitation.
+     * Invoked when users join the connection by accepting an invitation.
      * <table border="1" width="100%">
      * <tr>
      * <th>Type</th>
@@ -203,17 +206,19 @@ blackberry.bbm.platform.io.Connection = function() {
      * @param {String} type The type of join.
      * @param {String} cookie The cookie that was sent with the invitation. <code>undefined</code>
      * if no cookie was sent.
+     * @event
      * @BB50+
      */
-    this.onUsersJoined = function(users, type, cookie) {
+    this.onusersjoined = function(users, type, cookie) {
     };
     
     /**
-     * @propertyCB onUserLeft Invoked when a user leaves the connection.
+     * Invoked when a user leaves the connection.
      * @param {blackberry.bbm.platform.users.BBMPlatformUser} user User who left.
+     * @event
      * @BB50+
      */
-    this.onUserLeft = function(user) {
+    this.onuserleft = function(user) {
     };
     
     ////////////////////////////////////
@@ -256,14 +261,15 @@ blackberry.bbm.platform.io.Connection = function() {
     this.incomingJoinRequests = [];
     
     /**
-     * @propertyCB onJoinRequestReceived Invoked when the user, who is hosting on this connection, receives a join request from a peer.
+     * Invoked when the user, who is hosting on this connection, receives a join request from a peer.
      * @param {blackberry.bbm.platform.io.IncomingJoinRequest} request The received request.
+     * @event
      * @BB50+
      */
-    this.onJoinRequestReceived = function(request) { };
+    this.onjoinrequestreceived = function(request) { };
     
     /**
-     * @propertyCB onJoinRequestCanceled Invoked when a peer cancels a join request, which was sent to the host on this connection.
+     * Invoked when a peer cancels a join request, which was sent to the host on this connection.
      * <table border="1" width="100%">
      * <thead>
      * <tr>
@@ -284,7 +290,8 @@ blackberry.bbm.platform.io.Connection = function() {
      * </table>
      * @param {blackberry.bbm.platform.io.IncomingJoinRequest} request The canceled request.
      * @param {String} reason The reason the request was canceled.
+     * @event
      * @BB50+
      */
-    this.onJoinRequestCanceled = function(request, reason) { };
+    this.onjoinrequestcanceled = function(request, reason) { };
 };

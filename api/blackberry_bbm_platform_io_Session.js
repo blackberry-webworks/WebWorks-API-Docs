@@ -69,25 +69,28 @@ blackberry.bbm.platform.io.Session = function() {
     /////////////////////////////
     
     /**
-     * @propertyCB onData Invoked when broadcast data is received from a user.
+     * Invoked when broadcast data is received from a user.
      * @param {blackberry.bbm.platform.users.BBMPlatformUser} sender User that sent the data.
      * @param {String} data Data received.
+     * @event
      * @BB50+
      */
-    this.onBroadcastData = function(sender, data) { };
+    this.onbroadcastdata = function(sender, data) { };
     
     /**
-     * @propertyCB onUsersRemoved Invoked when users are removed.
+     * Invoked when users are removed.
      * @param {blackberry.bbm.platform.users.BBMPlatformUser} remover The user who removed <code>users</code>.
      * @param {blackberry.bbm.platform.users.BBMPlatformUser[]}users The removed users.
+     * @event
      * @BB50+
      */
-    this.onUsersRemoved = function(remover, users) { };
+    this.onusersremoved = function(remover, users) { };
     
     /**
-     * @propertyCB onEnded Invoked when the connection is ended by another user.
+     * Invoked when the connection is ended by another user.
      * @param {blackberry.bbm.platform.users.BBMPlatformUser} user The user who ended the connection.
+     * @event
      * @BB50+
      */
-    this.onEnded = function(user) { };
+    this.onended = function(user) { };
 };
