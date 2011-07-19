@@ -82,15 +82,6 @@ blackberry.bbm.platform.users = {
      * }, "Did you see the game?");
      * 
      * &lt;/script&gt;
-     * @example
-     * &lt;script type="text/javascript"&gt;
-     * 
-     * // Start chat without Contact Picker dialog
-     * blackberry.bbm.platform.users.startBBMChat(function() {
-     *     // Continue with application...
-     * }, "I won by 500 points!", [player1, player2, player3]);
-     * 
-     * &lt;/script&gt;
      * @BB50+
      */    
     startBBMChat: function(onComplete, message, users) {
@@ -198,23 +189,15 @@ blackberry.bbm.platform.users = {
      * &lt;script type="text/javascript"&gt;
      * 
      * blackberry.bbm.platform.users.onUpdate = function(user, event) {
-     *     if (event == "displaypicture") {
-     *         // Get the img element for the user
-     *         var displayPicId;
-     *         var userHandle = user.handle;
-     *         if (userHandle == blackberry.platform.self.handle) {
-     *             displayPicId = "myPicture";
-     *         } else if (userHandle == p2Handle) {
-     *             displayPicId = "p2Picture";
-     *         } else if (userHandle == p3Handle) {
-     *             displayPicId = "p3Picture";
-     *         } else {
-     *             return; // Do not care about other users -- exit
+     *     // Handle events for the current user
+     *     if(user.handle == blackberry.platform.self.handle) {
+     *         if (event == "displaypicture") {
+     *             var displayPicImg = document.getElementById("myPicture"); // Must have img element with id="myPicture"
+     *             displayPicImg.src = user.displayPicture;
      *         }
-     *             
-     *         var displayPicImg = document.getElementById(displayPicId);
-     *         displayPicImg.src = user.displayPicture;
+     *         // Handle other events for the current user...
      *     }
+     *     // Handle events for other users...
      * };
      * 
      * &lt;/script&gt;
