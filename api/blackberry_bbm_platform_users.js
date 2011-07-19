@@ -143,7 +143,7 @@ blackberry.bbm.platform.users = {
     },
     
     /**
-     * @propertyCB onUpdate Invoked when a user's information is updated. Assign a function to receive user updates.
+     * Invoked when a user's information is updated. Assign a function to receive user updates.
      * <p>User updates can be captured such as profile information and application installation changes.
      * Updates can be received from the current user, contacts who have the application, and non-contacts
      * who have joined in an application connection with the current user.</p>
@@ -189,7 +189,7 @@ blackberry.bbm.platform.users = {
      * @example
      * &lt;script type="text/javascript"&gt;
      * 
-     * blackberry.bbm.platform.users.onUpdate = function(user, event) {
+     * blackberry.bbm.platform.users.onupdate = function(user, event) {
      *     // Handle events for the current user
      *     if(user.handle == blackberry.platform.self.handle) {
      *         if (event == "displaypicture") {
@@ -202,9 +202,10 @@ blackberry.bbm.platform.users = {
      * };
      * 
      * &lt;/script&gt;
+     * @event
      * @BB50+
      */
-    onUpdate : function(user, event) {
+    onupdate : function(user, event) {
     },
 
     /**
