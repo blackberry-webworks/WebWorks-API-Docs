@@ -61,7 +61,7 @@ blackberry.bbm.platform = {
      * &lt;script type="text/javascript"&gt;
      * 
      * // Create callback invoked when access changes
-     * blackberry.bbm.platform.onAccessChanged = function(accessible, status) {
+     * blackberry.bbm.platform.onaccesschanged = function(accessible, status) {
      *     if (status == "allowed") {
      *         // Access allowed
      *     } else if (status == "user") {
@@ -137,7 +137,7 @@ blackberry.bbm.platform = {
      * &lt;script type="text/javascript"&gt;
      * 
      * // Trigger an action in the application when a profile box item is selected
-     * blackberry.bbm.platform.onAppInvoked = function(reason, param) {
+     * blackberry.bbm.platform.onappinvoked = function(reason, param) {
      *     if(reason == "profilebox") {
      *         var boxItem = param;
      *         var achievementID = boxItem.cookie;
