@@ -17,27 +17,32 @@
 /**
  * @toc {BBM IO} IO
  * @featureID blackberry.bbm.platform
- * @namespace Provides connection creation services.
+ * @namespace Provides services to create, accept, and manage connections.
  * <h3>Connections</h3>
- * <p>Connections can be created using {@link blackberry.bbm.platform.io.createConnection}. Applications should listen for incoming connections by assigning a callback to {@link blackberry.bbm.platform.io.onConnectionCreated}. When a connection is created or received, the application should assign callbacks to it in order to be notified of various events.</p>
  * <h4>Connection types</h4>
- * The two connection types are channel and session. See
+ * The BBM Platform supports the following types of connections:
  * <br/>{@link blackberry.bbm.platform.io.Channel}
  * <br/>{@link blackberry.bbm.platform.io.Session}
  * 
- * <h4>Creating a connection</h4>
+ * <h4>Creating a connections</h4>
+ * <p>Connections can be created using {@link blackberry.bbm.platform.io.createConnection}.
+ * When a connection is created, the application should assign callbacks to it in order to be notified
+ * of various events.</p>
+ * 
  * <pre>
  * var type = ... // One of "channel" or "session"
  * var conn = blackberry.bbm.platform.io.createConnection(type);
  * setConnectionListeners(conn, type);
  * </pre>
  * 
- * <h4>Connections created by the BBM Platform</h4>
- * Connections are created by the BBM Platform in different events. See {@link blackberry.bbm.platform.io.onConnectionCreated} for more details. 
+ * <h4>Accepting incoming connections</h4>
+ * When the current user accepts an invitation within BBM, {@link blackberry.bbm.platform.io.event:onconnectionaccepted}
+ * will be invoked with the connection on which the invitation was accepted. The application should
+ * assign callbacks to the connection within this method.
  * <pre>
  * var conn;
  * 
- * blackberry.bbm.platform.io.onConnectionCreated = function(event, type, connection, param) {
+ * blackberry.bbm.platform.io.onconnectionaccepted = function(type, connection, cookie) {
  *     // Save the connection and set the callbacks
  *     conn = connection;
  *     setConnectionListeners(conn, type);
@@ -49,33 +54,32 @@
  * <pre>
  * function setConnectionListeners(conn, type) {
  *     // Channel/Session callbacks
- *     conn.onUsersInvited = function(users) {
+ *     conn.onusersinvited = function(users) {
  *         // ...
  *     };
- *     conn.onUsersJoined = function(users, type, cookie) {
+ *     conn.onusersjoined = function(users, type, cookie) {
  *         // ...
  *     };
- *     conn.onUserDeclined = function(user) {
+ *     conn.onuserdeclined = function(user) {
  *         // ...
  *     };
- *     conn.onUserLeft = function(user) {
+ *     conn.onuserleft = function(user) {
  *         // ...
  *     };
- *     conn.onData = function(user, data) {
+ *     conn.ondata = function(user, data) {
  *         // ...
  *     };
  *     
  *     // Session callbacks
  *     if(type == "session") {
- *         conn.onBroadcastData = function(user, data) {
- *             log(connStr + "onBroadcastData(" + user.displayName + ", " + data + ")");
+ *         conn.onbroadcastdata = function(user, data) {
+ *             // ...
  *         };
- *         conn.onUsersRemoved = function(user, users) {
- *             var usersStr = getUsersString(users);
- *             log(connStr + "onUsersRemoved(" + user.displayName + ", " + usersStr + ")");
+ *         conn.onusersremoved = function(user, users) {
+ *             // ...
  *         };
- *         conn.onEnded = function(user) {
- *             log(connStr + "onEnded(" + user.displayName + ")");
+ *         conn.onended = function(user) {
+ *             // ...
  *         };
  *     }
  * };
@@ -89,18 +93,18 @@
  * <h4>1. Inviting contacts to join</h4>
  * <p>An application user can invite contacts to join a connection.</p>
  * <p>When the application calls {@link blackberry.bbm.platform.io.Connection#inviteContacts} a Contact Picker dialog will be shown containing contacts that have the application installed.
- * If the user invites contacts then the {@link blackberry.bbm.platform.io.Connection#onUsersInvited} callback will be invoked on the inviter's side.</p>
+ * If the user invites contacts then the {@link blackberry.bbm.platform.io.Connection#event:onusersinvited} callback will be invoked on the inviter's side.</p>
  * <p>Invitees receive the invitations within BBM.</p>
  * <ul>
- * <li>If they accept the invitation, {@link blackberry.bbm.platform.io.Connection#onUsersJoined} is invoked on the inviter's side, and {@link blackberry.bbm.platform.io.onConnectionCreated} is invoked on the invitee's side with the connection they just joined. 
- * <li>If they decline the invitation, {@link blackberry.bbm.platform.io.Connection#onUserDeclined} is invoked on the inviter's side.
+ * <li>If they accept the invitation, {@link blackberry.bbm.platform.io.Connection#event:onusersjoined} is invoked on the inviter's side, and {@link blackberry.bbm.platform.io.event:onconnectionaccepted} is invoked on the invitee's side with the connection they just joined. 
+ * <li>If they decline the invitation, {@link blackberry.bbm.platform.io.Connection#event:onuserdeclined} is invoked on the inviter's side.
  * </ul>
  * <br>{@image /images/bbm/invite_to_join.png}<br>
  * 
  * <h4>2. Hosting a public connection for non-contacts to join</h4>
  * <p>An application user can also host an event within a public connection to let all application users join.</p>
- * <p>The host should assign the following additional callbacks to their connection: {@link blackberry.bbm.platform.io.Connection#onJoinRequestReceived} and {@link blackberry.bbm.platform.io.Connection#onJoinRequestCanceled}.
- * <p>Peers should assign the following additional callbacks: {@link blackberry.bbm.platform.io.onJoinRequestAccepted} and {@link blackberry.bbm.platform.io.onJoinRequestDeclined}.
+ * <p>The host should assign the following additional callbacks to their connection: {@link blackberry.bbm.platform.io.Connection#event:onjoinrequestreceived} and {@link blackberry.bbm.platform.io.Connection#event:onjoinrequestcanceled}.
+ * <p>Peers should assign the following additional callbacks: {@link blackberry.bbm.platform.io.event:onjoinrequestaccepted} and {@link blackberry.bbm.platform.io.event:onjoinrequestdeclined}.
  * <p>When the application calls {@link blackberry.bbm.platform.io.Connection#enableHosting} a dialog will be shown for the user to allow or deny the decision. If the user allows, the application should then post the host's PIN and PPID to its discovery service. <b>The BBM platform does not provide a discovery service. This must be provided by the application developer.</b>
  * <p>Peers should download host information from the discovery service and then call {@link blackberry.bbm.platform.io.requestToJoin}. The peer will also be presented with a dialog to allow or deny the decision.
  * <p>At this point the request is in the <code>"pending"</code> state. In this state the peer can {@link blackberry.bbm.platform.io.OutgoingJoinRequest#cancel} the request, and the host can {@link blackberry.bbm.platform.io.IncomingJoinRequest#accept} or {@link blackberry.bbm.platform.io.IncomingJoinRequest#decline}.</p>
@@ -113,46 +117,42 @@ blackberry.bbm.platform.io = {
         
     /**
      * @description Creates a connection.
+     * <p><b>The application should assign callbacks to the connection after creating it.</b></p>
      * @param {String} type The type of connection to create: <code>"channel"</code> or <code>"session"</code>.
      * @returns {blackberry.bbm.platform.io.Channel|blackberry.bbm.platform.io.Session} The connection created.
      * @BB50+
      */
     createConnection: function(type) {
     },
-        
+    
     /**
-     * @propertyCB onConnectionCreated Invoked when a channel is created by BBM. <b>This is not invoked following {@link blackberry.bbm.platform.io.createConnection}.</b>
-     * <p>If the application chooses to keep this connection open, it should assign callbacks to it in this method.</p>
-     * 
-     * <p>
-     * <table border="1px solid">
-     * <thead>
-     * <tr>
-     * <th>Event</th>
-     * <th>Description</th>
-     * <th>Parameter</th>
-     * </tr>
-     * </thead>
-     * <tbody>
-     * <tr>
-     * <td><code>"selfaccepted"</code></td>
-     * <td>The user accepted an invitation in BBM. The connection was created to accept the invitation.</td>
-     * <td><code>cookie</code> sent with the invitation</td>
-     * </tr>
-     * <tr>
-     * <td><code>"BBMmenuinvite"</code></td>
-     * <td>The user sent an invitation via a menu item in BBM. The connection was created to send the invitation.</td>
-     * <td>ID of the menu item which was used to invite</td>
-     * </tr>
-     * </tbody>
-     * </table>
-     * @param {String} event The event causing the connection to be created.
-     * @param {String} connectionType The type of connection created: <code>"channel"</code> or <code>"session"</code>.
-     * @param {blackberry.bbm.platform.io.Channel|blackberry.bbm.platform.io.Session} connection The new connection.
-     * @param {void} param The parameter associated with the event.
+     * Invoked when the current user invites another using a menu item in BBM. The connection was
+     * created by the BBM Platform in order to send the invitation.
+     * <p><b>The application should assign callbacks to the connection in this method.</b></p>
+     * <p>See {@link blackberry.bbm.platform.ui.menu} for further details on invitation menu items.</p>
+     * @param {blackberry.bbm.platform.io.Channel} channel The channel used to send the invitation.
+     * @param {Number} menuItemId The ID of the menu item used to send the invitation. This is
+     * assigned by the application in {@link blackberry.bbm.platform.ui.addMenuItem}.
+     * @event
      * @BB50+
      */
-    onConnectionCreated: function(event, connectionType, connection, param) {
+    onbbmmenuinvite: function(channel, menuItemId) {
+    },
+    
+    /**
+     * Invoked when an incoming connection is accepted. There are two cases when this may happen:
+     * <ul>
+     * <li>When an invitation is accepted in the BBM chat window.
+     * <li>When a host accepts a join request, following {@link blackberry.bbm.platform.io.onjoinrequestaccepted}.
+     * </ul>
+     * <p><b>The application should assign callbacks to the connection in this method.</b></p>
+     * @param {String} connectionType The type of connection: <code>"channel"</code> or <code>"session"</code>.
+     * @param {blackberry.bbm.platform.io.Channel|blackberry.bbm.platform.io.Session} connection The connection.
+     * @param {String} cookie The cookie sent with the invitation. May be <code>null</code>.
+     * @event
+     * @BB50+
+     */
+    onconnectionaccepted: function(connectionType, connection, cookie) {
     },
     
     ////////////////////////////////////
@@ -189,16 +189,17 @@ blackberry.bbm.platform.io = {
     outgoingJoinRequests: 0,
     
     /**
-     * @propertyCB onJoinRequestAccepted Invoked when an outgoing join request is accepted by the host.
+     * Invoked when an outgoing join request is accepted by the host.
      * @param {blackberry.bbm.platform.io.OutgoingJoinRequest} request The accepted request.
      * @param {String} cookie The cookie sent with the join request in {@link requestToJoin}. <code>undefined</code>
      * if no cookie was provided.
+     * @event
      * @BB50+
      */
-    onJoinRequestAccepted: function(request, cookie) { },
+    onjoinrequestaccepted: function(request, cookie) { },
     
     /**
-     * @propertyCB onJoinRequestDeclined Invoked when an outgoing join request is declined by the host.
+     * Invoked when an outgoing join request is declined by the host.
      * <table border="1" width="100%">
      * <thead>
      * <tr>
@@ -231,26 +232,29 @@ blackberry.bbm.platform.io = {
      * </table>
      * @param {blackberry.bbm.platform.io.OutgoingJoinRequest} request The declined request.
      * @param {String} reason The reason that the request was declined. 
+     * @event
      * @BB50+
      */
-    onJoinRequestDeclined: function(request, reason) { },
+    onjoinrequestdeclined: function(request, reason) { },
     
     /////////////////////////////////
     // CONTACT UNREACHABLE SUPPORT //
     /////////////////////////////////
     
     /**
-     * @propertyCB onUserReachable Invoked when a contact has become reachable after a ContactUnreachableException was thrown.
+     * Invoked when a contact has become reachable after a ContactUnreachableException was thrown.
      * @param {blackberry.bbm.platform.users.BBMPlatformUser} user The user who has become reachable.
+     * @event
      * @BB50+
      */
-    onUserReachable: function(user) { },
+    onuserreachable: function(user) { },
     
     /**
-     * @propertyCB onDataExpired Invoked when pending data for an unreachable user has expired.
+     * Invoked when pending data for an unreachable user has expired.
      * @param {blackberry.bbm.platform.users.BBMPlatformUser} user The unreachable user.
      * @param {String[]} data The data messages which expired.
+     * @event
      * @BB50+
      */
-    onDataExpired: function(user, data) { }
+    ondataexpired: function(user, data) { }
 };
