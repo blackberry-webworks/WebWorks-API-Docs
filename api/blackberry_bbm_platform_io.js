@@ -134,6 +134,7 @@ blackberry.bbm.platform.io = {
      * @param {Number} menuItemId The ID of the menu item used to send the invitation. This is
      * assigned by the application in {@link blackberry.bbm.platform.ui.addMenuItem}.
      * @event
+     * @deprecated This API is being reworked and will be reintroduced in a later release.
      * @BB50+
      */
     onbbmmenuinvite: function(channel, menuItemId) {

@@ -19,6 +19,7 @@
  * @featureID blackberry.bbm.platform
  * @namespace Provides the ability to add menu items within BBM. Menu items persist across device resets.
  * @beta
+ * @deprecated This API is being reworked and will be reintroduced in a later release.
  * @BB50+
  */
 blackberry.bbm.platform.ui.menu = {
@@ -28,6 +29,7 @@ blackberry.bbm.platform.ui.menu = {
      * @type Number
      * @constant
      * @default 10
+     * @deprecated This API is being reworked and will be reintroduced in a later release.
      * @BB50+
      */
     MAX_MENU_ITEMS : 0,
@@ -37,6 +39,7 @@ blackberry.bbm.platform.ui.menu = {
      * @type Number
      * @constant
      * @default 50
+     * @deprecated This API is being reworked and will be reintroduced in a later release.
      * @BB50+
      */
     MAX_LENGTH_MENU_ITEM_LABEL : 0,
@@ -46,6 +49,7 @@ blackberry.bbm.platform.ui.menu = {
      * @type Number
      * @constant
      * @default 128
+     * @deprecated This API is being reworked and will be reintroduced in a later release.
      * @BB50+
      */
     MAX_LENGTH_MENU_ITEM_MESSAGE : 0,
@@ -65,6 +69,7 @@ blackberry.bbm.platform.ui.menu = {
      * @throws {IllegalArgumentException} if <code>options.label</code> is not provided or <code>options.label.length > MAX_LENGTH_MENU_ITEM_LABEL</code>.
      * @throws {IllegalArgumentException} if <code>options.invitationMessage</code> is not provided or <code>options.invitationMessage.length > MAX_LENGTH_MENU_ITEM_MESSAGE</code>.
      * @throws {IllegalArgumentException} if <code>MAX_MENU_ITEMS</code> has been reached.
+     * @deprecated This API is being reworked and will be reintroduced in a later release.
      * @BB50+
      */
     addInvitationMenuItem : function(options) {
@@ -75,6 +80,7 @@ blackberry.bbm.platform.ui.menu = {
      * Returns <code>true</code> if the application has already added the menu item; <code>false</code> otherwise.
      * @param {Number} menuItemId The ID of the menu item to check.
      * @returns <code>true</code> if the application has already added the menu item; <code>false</code> otherwise.
+     * @deprecated This API is being reworked and will be reintroduced in a later release.
      * @BB50+
      */
     hasMenuItem : function(menuItemId) {
@@ -84,6 +90,7 @@ blackberry.bbm.platform.ui.menu = {
     /**
      * Removes a menu item for the application. If the menu item does not exist then nothing is removed.
      * @param {Number} menuItemId The ID of the menu item to remove.
+     * @deprecated This API is being reworked and will be reintroduced in a later release.
      * @BB50+
      */
     removeMenuItem : function(menuItemId) {
@@ -92,6 +99,7 @@ blackberry.bbm.platform.ui.menu = {
     
     /**
      * Removes all menu items for the application.
+     * @deprecated This API is being reworked and will be reintroduced in a later release.
      * @BB50+
      */
     clearMenuItems : function() {
