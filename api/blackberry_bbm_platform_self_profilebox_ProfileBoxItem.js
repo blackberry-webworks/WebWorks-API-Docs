@@ -27,15 +27,15 @@ blackberry.bbm.platform.self.profilebox.ProfileBoxItem = function() {
      * @readOnly
      * @BB50+
      */
-    this.itemID = 0;
+    this.id = 0;
     
     /**
-     * The icon ID. <code>undefined</code> if this item has no icon.
-     * @type Number
+     * The item icon as a base64 encoded image string. This is <code>undefined</code> if the item has no icon.
+     * @type String
      * @readOnly
      * @BB50+
      */
-    this.iconID = 0;
+    this.icon = 0;
     
     /**
      * The item text.
@@ -46,7 +46,7 @@ blackberry.bbm.platform.self.profilebox.ProfileBoxItem = function() {
     this.text = "";
     
     /**
-     * The customizable cookie. <code>undefined</code> if this item has no cookie.
+     * The customizable cookie. This is <code>undefined</code> if this item has no cookie.
      * @type String
      * @readOnly
      * @BB50+
