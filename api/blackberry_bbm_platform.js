@@ -44,9 +44,9 @@ blackberry.bbm.platform = {
 
     /**
      * @description Registers for access to BBM Platform.
-     * <p>The application must assign a callback to {@link blackberry.bbm.platform.onAccessChanged}
+     * <p>The application must assign a callback to {@link blackberry.bbm.platform.event:onaccesschanged}
      * before registering. During registration, a dialog will be shown to guide the user through the registration process.
-     * The application should wait until <code>platform.onAccessChanged</code> is invoked before continuing.</p>
+     * The application should wait until {@link blackberry.bbm.platform.event:onaccesschanged} is invoked before continuing.</p>
      * <h4>Application in Test Environment</h4>
      * Applications must provide a UUID used to identify the application in the test
      * environment. If the application is in App World then the UUID will not be used. The same
@@ -55,7 +55,7 @@ blackberry.bbm.platform = {
      * Any UUID generator can be used.
      * @param {Object} options Options.
      * @param {String} options.uuid ID used to identify the application in the test environment.
-     * @throws {IllegalStateException} If <code>blackberry.bbm.platform.onAccessChanged</code> is not assigned.
+     * @throws {IllegalStateException} If <code>blackberry.bbm.platform.onaccesschanged</code> is not assigned.
      * @throws {IllegalArgumentException} If <code>UUID</code> is not a valid 36-character UUID.
      * @example
      * &lt;script type="text/javascript"&gt;

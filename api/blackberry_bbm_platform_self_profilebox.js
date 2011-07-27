@@ -37,7 +37,7 @@
  * <p>The user can invoke an application through its profile box items in their profile or a
  * contact's profile. The application will be brought to the foreground and/or launched if not yet
  * running. The invoking profile box item can be obtained by assigning a callback to
- * {@link blackberry.bbm.platform.onappinvoked}.
+ * {@link blackberry.bbm.platform.event:onappinvoked}.
  * 
  * @example
  * &lt;script type="text/javascript"&gt;
