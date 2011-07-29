@@ -121,6 +121,11 @@ blackberry.bbm.platform = {
      * {@link blackberry.bbm.platform.register} in 30 minutes, or the next time the application starts.</td>
      * </tr>
      * <tr>
+     * <td><code>"nonuiapp"</code></td>
+     * <td>Access is blocked because {@link blackberry.bbm.platform.register} was called from a non-UI application.
+     * <p>The application must initially register from a UI application because user interaction is required. The application may register from a background application only after the application has been connected in a UI application at least once.</td> 
+     * </tr>
+     * <tr>
      * </table>
      * @event
      * @BB50+

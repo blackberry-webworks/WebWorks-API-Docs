@@ -114,6 +114,10 @@ blackberry.bbm.platform.users = {
      * <td>The file transfer failed because the file size exceeds the limit permitted by BBM.</td>
      * </tr>
      * <tr>
+     * <td>fileempty</td>
+     * <td>The file transfer failed because the file is empty.</td>
+     * </tr>
+     * <tr>
      * <td>fileforwardlocked</td>
      * <td>The file transfer failed because the file is forward-locked.</td>
      * </tr>
