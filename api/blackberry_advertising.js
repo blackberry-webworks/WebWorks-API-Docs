@@ -15,9 +15,21 @@
 */
 
 /**
+ * @beta
  * @toc {Advertising} Banner
  * @featureID blackberry.advertising
- * @class The Banner object is an advertising banner object that will automatically get inserted into a div in your html.
+ * @class The Banner object is an advertising banner that will be created and automatically added into a specified div in your html.
+ * @notice {Please Note:}
+ * Set access to "blackberry.advertising" and "www.blackberry.com" in the app config.xml 
+ * <br> <br>
+ * <code>
+ * &lt;xml version="1.0" encoding="UTF-8" ?&gt; <br>
+ * &lt;widget xmlns="http://www.w3.org/ns/widgets" xmlns:rim="http://www.blackberry.com/ns/widgets" version="2.0" rim:header="RIM-Widget: rim/widget"&gt; <br>
+ *   &nbsp;&nbsp;&nbsp;&lt;access subdomains="true" uri="http://www.blackberry.com/"&gt; <br>
+ *     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;feature id="blackberry.advertising" required="true" version="1.0.0" /&gt; <br>
+ *   &nbsp;&nbsp;&nbsp;&lt;/access&gt; <br>
+ * &lt;/widget&gt; <br>
+ * </code>
  * @constructor
  * @description Creates a new Banner Object with the given properties and automatically inserts it into the div with the specified id.
  * @param {Number} zoneId The Zone Id given to the developer by the BlackBerry Advertising Service on registration.
@@ -32,27 +44,13 @@
  * @param {Number} [properties.refreshRate] Sets the {@link blackberry.advertising.Banner#refreshRate} property.
  * @BB60+
  * @example
- * STEP 1: Set access to "blackberry.advertising" and "www.blackberry.com" in the app config.xml 
- *
- * &lt;xml version="1.0" encoding="UTF-8" ?&gt;
- * &lt;widget xmlns="http://www.w3.org/ns/widgets" xmlns:rim="http://www.blackberry.com/ns/widgets" version="2.0" rim:header="RIM-Widget: rim/widget"&gt;
- * &lt;name&gt;App Name&lt;/name&gt;
- * &lt;access subdomains="true" uri="http://www.blackberry.com/"&gt;
- * &lt;feature id="blackberry.advertising" required="true" version="1.0.0" /&gt;
- * &lt;/access&gt;
- * &lt;access subdomains="false" uri="*" /&gt;
- * &lt;content src="index.html" /&gt;
- * &lt;rim:loadingScreen foregroundImage="loader.gif" onRemotePageLoad="true" onLocalPageLoad="true" onFirstLaunch="true" /&gt;
- * &lt;/widget&gt;
- *
- * STEP 2: Include Advertising SDK JavaScript in the html pages
+ * Include Advertising SDK JavaScript and API code into all the HTML pages as shown below:
+ * <code>
  * &lt;script type="text/javascript" src="http://www.blackberry.com/app_includes/asdk/adBanner.js"&gt;&lt;/script&gt;
- *
- * STEP 3: Sample code to be included in the html pages of the App
- * 
+ *  
  * &lt;center&gt; &lt;div id='bannerDiv'&gt;     &lt;/div&gt; &lt;/center&gt;
+ *
  * &lt;script type="text/javascript"&gt;
- * 
  *  //Adding Banner with default Banner properties
  *  var banner1 = new blackberry.advertising.Banner(16126, "bannerDiv");   
  * 
@@ -67,8 +65,8 @@
  *                                                                              "gender" : "male",
  *                                                                              "city" : "SanFrancisco"}
  *                                                                };
- *  
  * &lt;/script&gt;
+ * </code>
  */
 blackberry.advertising.Banner ={};
 
