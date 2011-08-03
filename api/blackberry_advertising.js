@@ -15,7 +15,8 @@
 */
 
 /**
- * @beta
+ * @beta <a href="https://adservices.blackberry.com/register">Sign up</a> for the BlackBerry&reg; Advertising Service <br>
+ * <a href="#placeholder"> Development Guide - Advertising Service for BlackBerry WebWorks </a>
  * @toc {Advertising} Banner
  * @featureID blackberry.advertising
  * @class The Banner object is an advertising banner that will be created and automatically added into a specified div in your html.
@@ -29,6 +30,7 @@
  *   &nbsp;&nbsp;&nbsp;&lt;access subdomains="true" uri="http://www.blackberry.com/"&gt; <br>
  *     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;feature id="blackberry.advertising" required="true" version="1.0.0" /&gt; <br>
  *   &nbsp;&nbsp;&nbsp;&lt;/access&gt; <br>
+ *   &nbsp;&nbsp;&nbsp;&lt;accesss subdomains="true" uri="*" /&gt; <br>
  * &lt;/widget&gt; <br>
  * </code>
  * @constructor
@@ -46,15 +48,23 @@
  * @BB60+
  * @example
  * Include Advertising SDK JavaScript and API code into all the HTML pages as shown below:
- * <code>
+ * Example 1:
+ *
  * &lt;script type="text/javascript" src="http://www.blackberry.com/app_includes/asdk/adBanner.js"&gt;&lt;/script&gt;
  *  
  * &lt;center&gt; &lt;div id='bannerDiv'&gt;     &lt;/div&gt; &lt;/center&gt;
  *
  * &lt;script type="text/javascript"&gt;
- *  //Adding Banner with default Banner properties
+ *   //Adding Banner with default Banner properties
  *  var banner1 = new blackberry.advertising.Banner(16126, "bannerDiv");   
- * 
+ * &lt;/script&gt;
+ * @example
+ * Example 2: 
+ * &lt;script type="text/javascript" src="http://www.blackberry.com/app_includes/asdk/adBanner.js"&gt;&lt;/script&gt;
+ *  
+ * &lt;center&gt; &lt;div id='bannerDiv'&gt;     &lt;/div&gt; &lt;/center&gt;
+ *
+ * &lt;script type="text/javascript"&gt;
  *  //Adding Banner with custom Banner properties
  *  var banner1 = new blackberry.advertising.Banner(16126, "bannerDiv", {"bannerTransitions" : true,
  *                                                                 "mmaSize" : "extralarge",
@@ -67,7 +77,6 @@
  *                                                                              "city" : "SanFrancisco"}
  *                                                                };
  * &lt;/script&gt;
- * </code>
  */
 blackberry.advertising.Banner ={};
 
