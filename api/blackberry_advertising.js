@@ -20,11 +20,12 @@
  * @featureID blackberry.advertising
  * @class The Banner object is an advertising banner that will be created and automatically added into a specified div in your html.
  * @notice {Please Note:}
- * Set access to "blackberry.advertising" and "www.blackberry.com" in the app config.xml 
+ * Minimum requirement is BlackBerry&reg; WebWorks SDK 2.1.<br>
+ * Set access to "blackberry.advertising" and "www.blackberry.com" in the app config.xml
  * <br> <br>
  * <code>
  * &lt;xml version="1.0" encoding="UTF-8" ?&gt; <br>
- * &lt;widget xmlns="http://www.w3.org/ns/widgets" xmlns:rim="http://www.blackberry.com/ns/widgets" version="2.0" rim:header="RIM-Widget: rim/widget"&gt; <br>
+ * &lt;widget xmlns="http://www.w3.org/ns/widgets" xmlns:rim="http://www.blackberry.com/ns/widgets" version="2.1" rim:header="RIM-Widget: rim/widget"&gt; <br>
  *   &nbsp;&nbsp;&nbsp;&lt;access subdomains="true" uri="http://www.blackberry.com/"&gt; <br>
  *     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;feature id="blackberry.advertising" required="true" version="1.0.0" /&gt; <br>
  *   &nbsp;&nbsp;&nbsp;&lt;/access&gt; <br>
