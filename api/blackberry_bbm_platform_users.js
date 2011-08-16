@@ -33,30 +33,30 @@ blackberry.bbm.platform.users = {
     contactsWithApp : [],
 
     /**
-     * @description Shows Contact Picker dialog allowing the user to select contacts.
+     * @description Shows Contact Picker dialog allowing the user to select users.
      * @param {Object} options Object containing contact picker options.
      * @param {String} [options.title] Title of the contact picker dialog.
      * @param {String} [options.type] Type of users to include in the dialog. May be "contactswithapp".
      * @param {blackberry.bbm.platform.users.BBMPlatformUser[]} [options.users] Users shown in the
      * dialog.
      * @param {Boolean} [options.multiSelect=false] <code>true</code> to allow the user to select
-     * multiple contacts; <code>false</code> to only allow 1. 
+     * multiple users; <code>false</code> to only allow 1. 
      * @param {Boolean} [options.showSelectAll=false] <code>true</code> to show Select All option;
      * <code>false</code> otherwise. Ignored if <code>options.multiSelect == false</code>.
      * @callback {Function} onComplete Function called when user is finished.
-     * @callback {blackberry.bbm.platform.users.BBMPlatformUser[]} onComplete.contacts The picked
-     * contacts. <code>contacts.length == 0</code> if no contacts were selected.
+     * @callback {blackberry.bbm.platform.users.BBMPlatformUser[]} onComplete.users The picked
+     * users. <code>users.length == 0</code> if no users were selected.
      * @example
      * &lt;script type="text/javascript"&gt;
      * 
-     * blackberry.bbm.platform.contacts.pickUsers( {
+     * blackberry.bbm.platform.users.pickUsers( {
      *     title : "Who would you like to chat with?",
      *     type : "contactswithapp"
-     * }, function(contacts) {
-     *     if (contacts.length == 0) {
-     *         // No contacts picked
+     * }, function(users) {
+     *     if (users.length == 0) {
+     *         // No users picked
      *     } else {
-     *         // One or more contacts picked
+     *         // One or more users picked
      *     }
      * });
      * 
