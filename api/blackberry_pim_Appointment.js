@@ -16,44 +16,44 @@
 
 
 /**
-* <div><p>
-*       This Appointment object can be used for manipulating calendar appointments. The Appointment object is an instance object, where if a new instance is desired, it must be created using the new keyword.
-*     </p></div>
-* @toc {PIM} Appointment 
-* @BB50+
-* @class The Appointment object represents an appointment in your calendar.
-* @featureID blackberry.pim.Appointment
-* @featureID blackberry.pim.Attendee
-* @featureID blackberry.pim.Recurrence
-* @featureID blackberry.pim.Reminder
-* @featureID blackberry.find
-* @constructor Constructor for a new Appointment object. 
-* @param {Service} [service] Optional parameter specifying which service to create this appointment for.  If not provided, the default device service is used.
-* @example
-* &lt;script type=&quot;text&sol;javascript&quot;&gt;
-*   &sol;&sol;Create our Event
-*   var newAppt = new blackberry.pim.Appointment();
-*   newAppt.location = &quot;Your office&quot;;
-*   newAppt.summary = &quot;Talk about new project&quot;;
-*   newAppt.freeBusy = blackberry.pim.Appointment.FREE;
-* 
-*   &sol;&sol; Create our hour time slot
-*   var start = new Date();
-*   newAppt.start = start;
-*   var end = start.setHours(start.getHours() + 1);
-*   newAppt.end = end;
-* 
-*   &sol;&sol; Create Attendee
-*   var attendees = [];
-*   var onlyAttendee = new blackberry.pim.Attendee();
-*   onlyAttendee.address = &quot;john@foo.com&quot;;
-*   onlyAttendee.type = blackberry.pim.Attendee.INVITED;
-*   attendees.push(onlyAttendee);
-* 
-*   newAppt.attendees = attendees;
-*   newAppt.save();
-* &lt;&sol;script&gt;
-*/
+ * <div><p>
+ *       This Appointment object can be used for manipulating calendar appointments. The Appointment object is an instance object, where if a new instance is desired, it must be created using the new keyword.
+ *     </p></div>
+ * @toc {PIM} Appointment 
+ * @BB50+
+ * @class The Appointment object represents an appointment in your calendar.
+ * @featureID blackberry.pim.Appointment
+ * @featureID blackberry.pim.Attendee
+ * @featureID blackberry.pim.Recurrence
+ * @featureID blackberry.pim.Reminder
+ * @featureID blackberry.find
+ * @constructor Constructor for a new Appointment object. 
+ * @param {Service} [service] Optional parameter specifying which service to create this appointment for.  If not provided, the default device service is used.
+ * @example
+ * &lt;script type=&quot;text&sol;javascript&quot;&gt;
+ *   &sol;&sol;Create our Event
+ *   var newAppt = new blackberry.pim.Appointment();
+ *   newAppt.location = &quot;Your office&quot;;
+ *   newAppt.summary = &quot;Talk about new project&quot;;
+ *   newAppt.freeBusy = blackberry.pim.Appointment.FREE;
+ * 
+ *   &sol;&sol; Create our hour time slot
+ *   var start = new Date();
+ *   newAppt.start = start;
+ *   var end = start.setHours(start.getHours() + 1);
+ *   newAppt.end = end;
+ * 
+ *   &sol;&sol; Create Attendee
+ *   var attendees = [];
+ *   var onlyAttendee = new blackberry.pim.Attendee();
+ *   onlyAttendee.address = &quot;john@foo.com&quot;;
+ *   onlyAttendee.type = blackberry.pim.Attendee.INVITED;
+ *   attendees.push(onlyAttendee);
+ * 
+ *   newAppt.attendees = attendees;
+ *   newAppt.save();
+ * &lt;&sol;script&gt;
+ */
 blackberry.pim.Appointment = function(service) { };
 
 /**
@@ -89,16 +89,78 @@ blackberry.pim.Appointment.BUSY = 2;
 blackberry.pim.Appointment.OUT_OF_OFFICE = 3;
 
 /**
-* Looks up the appointments that match the regular expression provided. 
-* @param {FilterExpression} [filter] optional parameter that defines the search criteria for the find.  If no value is provided, the method will return all the appointments on the device.
-* @param {String} [orderBy] optional &apos;orderBy&apos; parameter specifying the field which the results will be sorted by. If &apos;isAscending&apos; is not supplied or &apos;isAscending&apos; is true, the sort results will be in an ascending order. If &apos;isAscending&apos; is false, the sort results will be in a descending order.
-* @param {Number} [maxReturn] optional integer parameter specifying the maximum number of results to return from the find.  If not supplied or set to -1, it will return all results found.
-* @param {Service} [service] optional parameter to define which service you wish to search for your appointments. If not provided the default service for appointments will be used.
-* @param {Boolean} [isAscending] optional &apos;isAscending&apos; parameter specifying whether the sort order is ascending or descending. If not supplied or set to true, the results sorted by the field specified by &apos;orderBy&apos; will be in an ascending order. If set to false, the sort results will be in a descending order. If no &apos;orderBy&apos; value is specified, &apos;isAscending&apos; is neglected.
-* @returns {Appointment[]}
-* @BB50+
-*/
+ * @name blackberry.pim.Appointment.find^2
+ * @description Looks up the appointments that match the regular expression provided. 
+ * @param {FilterExpression} [filter] optional parameter that defines the search criteria for the find.  If no value is provided, the method will return all the appointments on the device.
+ * @param {String} [orderBy] optional &apos;orderBy&apos; parameter specifying the field which the results will be sorted by. If &apos;isAscending&apos; is not supplied or &apos;isAscending&apos; is true, the sort results will be in an ascending order. If &apos;isAscending&apos; is false, the sort results will be in a descending order.
+ * @param {Number} [maxReturn] optional integer parameter specifying the maximum number of results to return from the find.  If not supplied or set to -1, it will return all results found.
+ * @param {Service} [service] optional parameter to define which service you wish to search for your appointments. If not provided the default service for appointments will be used.
+ * @param {Boolean} [isAscending] optional &apos;isAscending&apos; parameter specifying whether the sort order is ascending or descending. If not supplied or set to true, the results sorted by the field specified by &apos;orderBy&apos; will be in an ascending order. If set to false, the sort results will be in a descending order. If no &apos;orderBy&apos; value is specified, &apos;isAscending&apos; is neglected.
+ * @returns {Appointment[]}
+ * @BB50+
+ * @function
+ */
+/**
+ * @name blackberry.pim.Appointment.find
+ * @description Looks up the appointments that match the regular expression provided. 
+ * @param {String} [filter] optional FilterExpression that defines the search criteria for the find, specified in JSON.  If no value is provided, the method will return all the appointments on the device.
+ * @param {String} [orderBy] optional &apos;orderBy&apos; parameter specifying the field which the results will be sorted by. If &apos;isAscending&apos; is not supplied or &apos;isAscending&apos; is true, the sort results will be in an ascending order. If &apos;isAscending&apos; is false, the sort results will be in a descending order.
+ * @param {Number} [maxReturn] optional integer parameter specifying the maximum number of results to return from the find.  If not supplied or set to -1, it will return all results found.
+ * @param {String} [service] optional parameter to define which service you wish to search for your appointments. If not provided the default service for appointments will be used.
+ * @param {Boolean} [isAscending] optional &apos;isAscending&apos; parameter specifying whether the sort order is ascending or descending. If not supplied or set to true, the results sorted by the field specified by &apos;orderBy&apos; will be in an ascending order. If set to false, the sort results will be in a descending order. If no &apos;orderBy&apos; value is specified, &apos;isAscending&apos; is neglected.
+ * @returns {Object Literal}
+ * {
+ *   "data" : {
+ *     "filter" : "&lt;FilterExpression JSON that was passed&gt;",
+ *     "orderBy" : "&lt;field name that was passed&gt;",
+ *     "maxReturn" : &lt;maximum number of results that was passed&gt;,
+ *     "service" : "&lt;service name that was passed&gt;",
+ *     "isAscending" : &lt;isAscending flag that was passed&gt;,
+ *     "items" : &lt;array of Appointment objects that satisfy the search criteria&gt;
+ *   }
+ * }
+ * @BB50+
+ * @uri
+ * @function
+ */
 blackberry.pim.Appointment.find = function(filter,orderBy,maxReturn,service,isAscending) { };
+
+
+/**
+ * Saves an appointment
+ * @param {String} appointment The appointment object to be saved in JSON
+ * @param {String} [service] Optional parameter specifying which service this appointment is for. If not provided, the default device service is used.
+ * @param {String} [uid] If the appointment is being saved for the first time, the uid can be left empty; otherwise, the uid should be specified
+ * @returns {Object Literal}
+ * {
+ *   "data" : {
+ *     "appointment" : "&lt;appointment JSON that was passed&gt;",
+ *     "service" : "&lt;service name that was passed&gt;",
+ *     "uid" : "&lt;uid that was passed&gt;"
+ *   }
+ * }
+ * @BB50+
+ * @uri
+ * @function
+ */
+blackberry.pim.Appointment.save = function(appointment, service, uid) {};
+
+/**
+ * Removes an appointment
+ * @param {String} uid The uid of the appointment to be removed
+ * @param {String} [service] Optional parameter specifying which service this appointment is for. If not provided, the default device service is used.
+ * @returns {Object Literal}
+ * {
+ *   "data" : {
+ *     "uid" : "&lt;uid that was passed&gt;",
+ *     "service" : "&lt;service name that was passed&gt;"
+ *   }
+ * }
+ * @BB50+
+ * @uri
+ * @function
+ */
+blackberry.pim.Appointment.remove = function(uid, service) {};
 
 /**
 * Saves the changes made to the Appointment object. 

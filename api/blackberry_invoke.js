@@ -36,16 +36,265 @@
  * &lt;/script&gt;
  */
 blackberry.invoke = {
-                
+		
 		/**
-
-		 * @description Invokes another application on the BlackBerry Playbook.
+		 * @name blackberry.invoke.invoke^9
+		 * @function
+		 * @description Invokes an application.
 		 * @param {Number} appType an integer value representing the type of application to launch. Must be one of the 'APP_*' constants.
 		 * @param {Object} [args] An arguments object specifying information for the application being invoked.
 		 * @throws {Exception} If values supplied are not correct. 
 		 * @BB50+
 		 * @PB10
 		 */
+		 /**
+		 * @name blackberry.invoke.invoke^8
+		 * @description Invokes the Phone application on the BlackBerry.
+		 * @param {String} appType is a string value that represents the type of application to launch. Must be 'phone' for Bluetooth Phone.
+		 * @param {String} [args.dailString] Optional parameter specifying the Number to dial; this may contain special dialing characters in addition to the components of a traditional phone number. 
+		 * @param {String} [args.smartDailing] Optional parameter. If true, smart dialing will be enabled. Smart dialing is ignored if a line id is specified. 
+		 * @param {String} [args.lineId] Optional ID of the line to use for the call. If not specified the default line is used. Line ID cannot be specified when VIEW_VOICEMAIL is used. This will cause the invocation to throw an IllegalArgumentException. 
+		 * @param {String} view Value that specifies what kind of view you want to open in the Phone application. 
+		 * @BB50+
+		 * @uri
+		 * @function
+		 * @example 
+		 * &lt;html&gt;
+		 * &lt;head&gt;
+		 *     &lt;script type="text/javascript" src="js/jquery-1.4.2.js" &gt;&lt;/script&gt; 
+		 *     &lt;script type="text/javascript"&gt;
+		 *          function invokePhone(){
+		 *              $.ajax({
+		 *                  type: "post",
+		 *                  url: "http://webworks/blackberry/invoke/invoke?appType=phone&args.dailstring=555-555-5555&args.smartdailing=true&args.view=0"
+		 *               });
+		 *           }
+		 *      &lt;/script&gt;    
+		 *&lt;/head&gt;
+		 *&lt;body&gt;
+		 *    &lt;input type="button" onclick="invokePhone();" value="Invoke Phone"/&gt; 		 
+		 *&lt;/body&gt;
+		 *&lt;/html&gt;
+		 *
+		 */
+		 /**
+		 * @name blackberry.invoke.invoke^7	
+		 * @description Invokes the Bluetooth Config application on the BlackBerry.
+		 * @param {String} appType is a string value that represents the type of application to launch. Must be 'bluetoothconfig' for Bluetooth Config.
+		 * @BB50+
+		 * @uri
+		 * @function
+		 * @example 
+		 * &lt;html&gt;
+		 * &lt;head&gt;
+		 *     &lt;script type="text/javascript" src="js/jquery-1.4.2.js" &gt;&lt;/script&gt; 
+		 *     &lt;script type="text/javascript"&gt;
+		 *          function invokeBlue(){
+		 *              $.ajax({
+		 *                  type: "post",
+		 *                  url: "http://webworks/blackberry/invoke/invoke?appType=bluetoothconfig"
+		 *               });
+		 *           }
+		 *      &lt;/script&gt;    
+		 *&lt;/head&gt;
+		 *&lt;body&gt;
+		 *    &lt;input type="button" onclick="invokeBlue();" value="Invoke Bluetooth"/&gt; 		 
+		 *&lt;/body&gt;
+		 *&lt;/html&gt;
+		 *
+		 */ 
+		 /**
+		 * @name blackberry.invoke.invoke^6	
+		 * @description Invokes the Calculator application on the BlackBerry.
+		 * @param {String} appType is a string value that represents the type of application to launch. Must be 'calculator' for Calculator
+		 * @BB50+
+		 * @uri
+		 * @function
+		 * @example 
+		 * &lt;html&gt;
+		 * &lt;head&gt;
+		 *     &lt;script type="text/javascript" src="js/jquery-1.4.2.js" &gt;&lt;/script&gt; 
+		 *     &lt;script type="text/javascript"&gt;
+		 *          function invokeCalc(){
+		 *              $.ajax({
+		 *                  type: "post",
+		 *                  url: "http://webworks/blackberry/invoke/invoke?appType=calculator"
+		 *               });
+		 *           }
+		 *      &lt;/script&gt;    
+		 *&lt;/head&gt;
+		 *&lt;body&gt;
+		 *    &lt;input type="button" onclick="invokeCalc();" value="Invoke Calculator"/&gt; 		 
+		 *&lt;/body&gt;
+		 *&lt;/html&gt;
+		 *
+		 */ 
+		 /**
+		 * @name blackberry.invoke.invoke^5	
+		 * @description Invokes the Browser application on the BlackBerry.
+		 * @param {String} appType is a string value that represents the type of application to launch. For browser, the appType is the URL that needs to be invoked
+		 * @param {String} [args.transport.uid] an optional parameter for BB5.0+ only representing the transport type that the browser should use. If no parameter is specified the default browser configured for the device will be used.
+		 * @BB50+
+		 * @uri
+		 * @function
+		 * @example 
+		 * &lt;html&gt;
+		 * &lt;head&gt;
+		 *     &lt;script type="text/javascript" src="js/jquery-1.4.2.js" &gt;&lt;/script&gt; 
+		 *     &lt;script type="text/javascript"&gt;
+		 *          function invokeBrowser(){
+		 *              $.ajax({
+		 *                  type: "post",
+		 *                  url: "http://webworks/blackberry/invoke/invoke?appType=http://www.blackberry.com"
+		 *               });
+		 *           }
+		 *      &lt;/script&gt;    
+		 *&lt;/head&gt;
+		 *&lt;body&gt;
+		 *    &lt;input type="button" onclick="invokebBrowser();" value="Invoke Browser"/&gt; 		 
+		 *&lt;/body&gt;
+		 *&lt;/html&gt;
+		 *
+		 */ 
+		 /**
+		 * @name blackberry.invoke.invoke^4	
+		 * @description Invokes the Message application on the BlackBerry.
+		 * @param {String} appType is a string value that represents the type of application to launch. Must be 'message' for Message.
+		 * @param {String} view Value that specifies what kind of view you want to view in Messages application. If MessageArguments object is created with a Message object or 'to','subject','body' values, the view is 'VIEW_NEW' regardless if any other value is assigned. 
+		 * @param {String} [args.to] The recipient's email address 
+		 * @param {String} [args.subject] The message's subject line 
+		 * @param {String} [args.body] The contents of the message 
+		 * @param {String} [args.message] Stringified blackberry.message.Message JSON Object
+		 * @BB50+
+		 * @uri
+		 * @function
+		 * @example 
+		 * &lt;html&gt;
+		 * &lt;head&gt;
+		 *     &lt;script type="text/javascript" src="js/jquery-1.4.2.js" &gt;&lt;/script&gt; 
+		 *     &lt;script type="text/javascript"&gt;
+		 *          function invokeCamera(){
+		 *              $.ajax({
+		 *                  type: "post",
+		 *                  url: "http://webworks/blackberry/invoke/invoke?appType=messages&args.view=0&args.to=foo@domain.com&args.subject=hello&args.body=world"
+		 *               });
+		 *           }
+		 *      &lt;/script&gt;    
+		 *&lt;/head&gt;
+		 *&lt;body&gt;
+		 *    &lt;input type="button" onclick="invokeCamera();" value="Invoke Camera"/&gt; 		 
+		 *&lt;/body&gt;
+		 *&lt;/html&gt;
+		 *
+		 */ 
+		 /**
+		 * @name blackberry.invoke.invoke^3	
+		 * @description Invokes the Camera application on the BlackBerry.
+		 * @param {String} appType is a string value that represents the type of application to launch. Must be 'camera' for Camera.
+		 * @BB50+
+		 * @uri
+		 * @function
+		 * @example 
+		 * &lt;html&gt;
+		 * &lt;head&gt;
+		 *     &lt;script type="text/javascript" src="js/jquery-1.4.2.js" &gt;&lt;/script&gt; 
+		 *     &lt;script type="text/javascript"&gt;
+		 *          function invokeCamera(){
+		 *              $.ajax({
+		 *                  type: "post",
+		 *                  url: "http://webworks/blackberry/invoke/invoke?appType=camera"
+		 *               });
+		 *           }
+		 *      &lt;/script&gt;    
+		 *&lt;/head&gt;
+		 *&lt;body&gt;
+		 *    &lt;input type="button" onclick="invokeCamera();" value="Invoke Camera"/&gt; 		 
+		 *&lt;/body&gt;
+		 *&lt;/html&gt;
+		 *
+		 */ 
+		/**
+		 * @name blackberry.invoke.invoke^2	
+		 * @description Invokes the Search application on the BlackBerry.
+		 * @param {String} appType is a string value that represents the type of application to launch. Must be 'search' for Search.
+		 * @param {String} [args.text] The text string to pass to the Search application 
+		 * @param {String} [args.name] The name string to pass to the Search application 
+		 * @BB50+
+		 * @uri
+		 * @function
+		 * @example 
+		 * &lt;html&gt;
+		 * &lt;head&gt;
+		 *     &lt;script type="text/javascript" src="js/jquery-1.4.2.js" &gt;&lt;/script&gt; 
+		 *     &lt;script type="text/javascript"&gt;
+		 *          function invokeSearch(){
+		 *              $.ajax({
+		 *                  type: "post",
+		 *                  url: "http://webworks/blackberry/invoke/invoke?appType=search&args.text=build&args.name=Tim"
+		 *               });
+		 *           }
+		 *      &lt;/script&gt;    
+		 *&lt;/head&gt;
+		 *&lt;body&gt;
+		 *    &lt;input type="button" onclick="invokeSearch();" value="Invoke Search"/&gt; 		 
+		 *&lt;/body&gt;
+		 *&lt;/html&gt;
+		 *
+		 */ 
+		 		/**
+		 * @name blackberry.invoke.invoke^1	
+		 * @description Invokes the Video Camera application on the BlackBerry.
+		 * @param {String} appType is a string value that represents the type of application to launch. Must be 'camera' for Camera.
+		 * @BB50+
+		 * @uri
+		 * @function
+		 * @example 
+		 * &lt;html&gt;
+		 * &lt;head&gt;
+		 *     &lt;script type="text/javascript" src="js/jquery-1.4.2.js" &gt;&lt;/script&gt; 
+		 *     &lt;script type="text/javascript"&gt;
+		 *          function invokeVideoCamera(){
+		 *              $.ajax({
+		 *                  type: "post",
+		 *                  url: "http://webworks/blackberry/invoke/invoke?appType=videocamera"
+		 *               });
+		 *           }
+		 *      &lt;/script&gt;    
+		 *&lt;/head&gt;
+		 *&lt;body&gt;
+		 *    &lt;input type="button" onclick="invokeVideoCamera();" value="Invoke Video Camera"/&gt; 		 
+		 *&lt;/body&gt;
+		 *&lt;/html&gt;
+		 *
+		 */ 
+		 /**
+		 * @name blackberry.invoke.invoke
+		 * @description Invokes a Java application on the BlackBerry Playbook.
+		 * @param {String} appType is a string value that represents the type of application to launch. Must be 'java' for Java Applications.
+		 * @param {String} args.uri URL which can be in any form and is passed in the arguments to main. The uri can be in the format: 'appName', 'appName.entryPoint' or 'appName[.entryPoint]?arg1=val&arg2=val'.
+		 * @param {String} [args.params] String array that contains additional parameters. Each entry in the params array should be in a name value pair such as 'arg1=val1'.
+		 * @BB50+
+		 * @uri
+		 * @function
+		 * @example 
+		 * &lt;html&gt;
+		 * &lt;head&gt;
+		 *     &lt;script type="text/javascript" src="js/jquery-1.4.2.js" &gt;&lt;/script&gt; 
+		 *     &lt;script type="text/javascript"&gt;
+		 *          function invokeJava(){
+		 *              $.ajax({
+		 *                  type: "post",
+		 *                  url: "http://webworks/blackberry/invoke/invoke?appType=java&args.uri=net_rim_bb_memo_app"
+		 *               });
+		 *           }
+		 *      &lt;/script&gt;    
+		 *&lt;/head&gt;
+		 *&lt;body&gt;
+		 *    &lt;input type="button" onclick="invokeJava();" value="Invoke Java App"/&gt; 		 
+		 *&lt;/body&gt;
+		 *&lt;/html&gt;
+		 *
+		 */ 
 		invoke : function(appType, args){},
 		
 		/**
@@ -196,4 +445,6 @@ blackberry.invoke = {
 		 * @description App World Application.
 		 */
 		APP_APPWORLD : 16
+		
 }
+

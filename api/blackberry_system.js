@@ -95,6 +95,7 @@ blackberry.system ={
 		/**
 		 * @uri 
 		 * @PB10
+         * @BB50+
 		 * @description The objects in hasPermission will always be ALLOW (0). They will correspond to all the entries in the whitelist. If they are not whitelisted, they are omitted from the list. Similarly, all of the objects in hasCapability will be true, otherwise they will be omitted.
 		 * @returns {JSON of all the properties}
 		 * {
@@ -134,7 +135,7 @@ blackberry.system ={
 		 *          function getSystemData(){
 		 *              $.ajax({
 		 *                  type: "get",
-		 *                  url: "webworks://blackberry/system/get",
+		 *                  url: "http://webworks/blackberry/system/get",
 		 *                  success: function(msg){
 		 *                      $('#mySystemDiv').populate(JSON.parse(msg).data);
 		 *                  }

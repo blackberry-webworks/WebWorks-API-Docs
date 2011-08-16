@@ -52,4 +52,10 @@ blackberry.identity.Transport.prototype.name = { };
 */
 blackberry.identity.Transport.prototype.type = { };
 
-
+/**
+* Specifies the uid of the Transport.
+* @type String
+* @readOnly
+* @BB50+
+*/
+blackberry.identity.Transport.prototype.uid = { };
