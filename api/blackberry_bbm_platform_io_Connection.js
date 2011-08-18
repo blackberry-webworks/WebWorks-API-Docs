@@ -87,8 +87,28 @@ blackberry.bbm.platform.io.Connection = function() {
     
     /**
      * @description Removes a user from the connection.
-     * @param {blackberry.bbm.platform.users.BBMPlatformUser}
-     * user User to remove from the connection.
+     * @param {blackberry.bbm.platform.users.BBMPlatformUser | blackberry.bbm.platform.users.BBMPlatformUser[]}
+     * user Single user, or array of users, to remove from the connection.
+     * @example
+     * &lt;script type="text/javascript"&gt;
+     * 
+     * // Remove the first user in a connection
+     * var users = conn.joinedUsers;
+     * if(users.length > 0) {
+     *     conn.remove(conn.joinedUsers[0])
+     * }
+     * 
+     * &lt;/script&gt;
+     * @example
+     * &lt;script type="text/javascript"&gt;
+     * 
+     * // Remove all users in a connection
+     * var users = conn.joinedUsers;
+     * if(users.length > 0) {
+     *     conn.remove(conn.joinedUsers)
+     * }
+     * 
+     * &lt;/script&gt;
      * @BB50+
      */
     this.remove = function(user) {

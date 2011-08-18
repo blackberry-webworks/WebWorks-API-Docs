@@ -17,8 +17,34 @@
 /**
  * @toc {BBM Users} Other Users
  * @featureID blackberry.bbm.platform
- * @namespace Provides access to user information. The current user can be accessed from
+ * @namespace Provides access to and interaction with other users. For the current user see
  * {@link blackberry.bbm.platform.self}.
+ * <p>The current user can send files, start a chat in BBM, and invite others to download the
+ * application using the following methods:
+ * <ul>
+ * <li>{@link blackberry.bbm.platform.users.sendFile}
+ * <li>{@link blackberry.bbm.platform.users.startBBMChat}
+ * <li>{@link blackberry.bbm.platform.users.inviteToDownload}
+ * </ul>
+ * </p>
+ * 
+ * <p>The application can display a contact picker to the user with {@link blackberry.bbm.platform.users.pickUsers}.
+ * This is generally part of a larger use case. For example, <code>pickUsers()</code> might be used
+ * so that the current user can select players to remove from a connection.
+ * 
+ * <p>Inviting users to the current user's contact list is also supported. You can invite anonymous
+ * users by PIN using {@link blackberry.bbm.platform.users.inviteToBBM}. Alternatively you can invite
+ * users from open connection(s) using {@link blackberry.bbm.platform.users.inviteToBBMFromConnections}.
+ * 
+ * <p>Applications can also obtain access to the user's social graph.
+ * {@link blackberry.bbm.platform.users.contactsWithApp} is a complete list of the current user's BBM
+ * contacts who have the application installed.
+ * 
+ * <p>Applications can also listen for changes in the social graph by assigning a callback to
+ * {@link blackberry.bbm.platform.users.event:onupdate}. Events are fired for both the current user
+ * and their contacts who have the application installed. You can listen for user profile property
+ * changes, such as display name and display picture, and also when a user installs/uninstalls your
+ * application.
  * @beta
  * @BB50+
  */
@@ -141,6 +167,36 @@ blackberry.bbm.platform.users = {
      * @callback {String} onFailure.reason The reason why the transfer failed.
      * @param {blackberry.bbm.platform.users.BBMPlatformUser} [contact] The recipient of the file. The recipient
      * must be in the current user's contact list.
+     * @example
+     * &lt;script type="text/javascript"&gt;
+     * 
+     * var onFailure = function(reason) {
+     *     var message = getFileFailureString(reason);
+     *     if(message) {
+     *         alert(message);
+     *     }
+     * };    
+     * blackberry.bbm.platform.users.sendFile("file:///SDCard/smiley.jpg", "Check out this file.", onFailure);
+     * 
+     * function getFileFailureString(reason) {
+     *     if(reason == "filenotfound") {
+     *         return "The file does not exist.";
+     *     } else if(reason == "filetoolarge") {
+     *         return "The file is too large.";
+     *     } else if(reason == "fileforwardlocked") {
+     *         return "The file is DRM protected.";
+     *     } else if(reason == "filebadtype") {
+     *         return "The user is unable to receive files of this type.";
+     *     } else if(reason == "fileempty") {
+     *         return "The file is empty and cannot be sent.";
+     *     } else if(reason == "usercanceled") {
+     *         return "You canceled the file transfer.";
+     *     } else if(reason == "noncontact") {
+     *         return "You may only send files to your BBM contacts.";
+     *     }
+     * };
+     * 
+     * &lt;/script&gt;
      * @BB50+
      */
     sendFile : function(fileURI, comment, onFailure, contact) {
@@ -219,6 +275,14 @@ blackberry.bbm.platform.users = {
      * @callback {Function} onComplete Invoked when the user is complete.
      * @callback {String} onComplete.result <code>"limitreached"</code> if the download invitation limit has been reached;<code>undefined</code> otherwise. A 
      * maximum of 10 download invitations per minute is allowed.
+     * @example
+     * blackberry.bbm.platform.users.inviteToDownload(function(result) {
+     *     if(result == "limitreached") {
+     *         // Download invitation limit reached
+     *     } else {
+     *         // User is finished inviting
+     *     }
+     * });
      * @BB50+
      */
     inviteToDownload : function(onComplete) {

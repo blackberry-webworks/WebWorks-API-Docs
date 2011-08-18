@@ -16,7 +16,18 @@
 
 /**
  * @featureID blackberry.bbm.platform
- * @class A platform user. Provides access to user properties defined in their BBM user profile.
+ * @class <p>Provides read-only access to a BBM platform user's information as defined in their BBM profile.
+ * <p><i>Instances of this object are not created, but obtained from the BBM platform.</i>
+ * <h3>Current User</h3>
+ * The current user's BBMPlatformUser instance is {@link blackberry.bbm.platform.self}. It also provides the ability to set properties of the current user.
+ * <h3>Other Users</h3>
+ * You can obtain other users from the following functions/callbacks:
+ * <ul>
+ * <li>{@link blackberry.bbm.platform.users.contactsWithApp}
+ * <li>{@link blackberry.bbm.platform.users.pickUsers}
+ * <li>{@link blackberry.bbm.platform.users.event:onupdate}
+ * </ul>
+ * {@link blackberry.bbm.platform.io.Channel} and {@link blackberry.bbm.platform.io.Session} also use BBMPlatformUser extensively.
  * @beta
  * @BB50+
  */
@@ -70,7 +81,7 @@ blackberry.bbm.platform.users.BBMPlatformUser = function() {
     this.statusMessage = "";
     
     /**
-     * @description A unique ID representing the user on a specific device. This will be <code>different</code> for the same user on different devices (BlackBerry smartphone, BlackBerry PlayBook, etc.)
+     * @description A unique ID representing the user on a specific device. This will be <b>different</b> for the same user on different devices (BlackBerry smartphone, BlackBerry PlayBook, etc.)
      * @type String
      * @readOnly
      * @BB50+
@@ -78,7 +89,7 @@ blackberry.bbm.platform.users.BBMPlatformUser = function() {
     this.handle = 0;
     
     /**
-     * @description A unique ID representing the user on all devices. This will be <code>the same</code> for the same user on all devices (BlackBerry smartphone, BlackBerry PlayBook, etc.)
+     * @description A unique ID representing the user on all devices. This will be <b>the same</b> for the same user on all devices (BlackBerry smartphone, BlackBerry PlayBook, etc.)
      * @type String
      * @readOnly
      * @BB50+
