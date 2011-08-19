@@ -82,6 +82,34 @@ blackberry.bbm.platform = {
      */
     register : function(options) {
     },
+    
+    /**
+     * @description Shows a dialog prompting the user to connect this application to BBM. This will
+     * only work if the application is blocked by the user (i.e. access status is <code>"user"</code>).
+     * <p>If the user decides to connect then the application should call {@link blackberry.bbm.platform.register}
+     * to complete connecting this application to BBM.
+     * @param {Function} onComplete Called when the user has finished connecting this application to BBM.
+     * @param {Boolean} connected <code>true</code> if the user connected the application to BBM;
+     * <code>false</code> otherwise.
+     * @example
+     * &lt;script type="text/javascript"&gt;
+     * 
+     * // Prompt the user to connect to BBM, and call register() if they do
+     * blackberry.bbm.platform.requestUserPermission(function(allowed) {
+     *     if(allowed) {
+     *         // Register with the platform
+     *         blackberry.bbm.platform.register({
+     *             uuid: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" // Randomly generated UUID
+     *         });
+     *     }
+     * });
+     * 
+     * &lt;/script&gt;
+     * @BB50+
+     */
+    requestUserPermission : function(onComplete) {
+        
+    }
 
     /**
      * Invoked when the access status changes.
