@@ -140,17 +140,37 @@ blackberry.bbm.platform.io.Connection = function() {
      * @example
      * &lt;script type="text/javascript"&gt;
      * 
-     * // Broadcast high score to all users in connection
-     * connection1.send({
-     *     id: "highscore",
+     * // Send message to all users
+     * var replyText = ""; // Obtain reply text from user...
+     * var msgObj = {
+     *     id:'msg',
+     *     value:replyText
+     * };
+     * connnection1.send(JSON.stringify(msgObj));
+     *
+     * &lt;/script&gt;
+     *
+     * @example
+     * &lt;script type="text/javascript"&gt;
+     *
+     * // Ping all users
+     * var pingObj = { id:'ping' };
+     * connection1.send(JSON.stringify(pingObj));
+     *
+     * &lt;/script&gt;
+     *
+     * @example
+     * &lt;script type="text/javascript"&gt;
+     *
+     * // Send high score to all users
+     * var highScoreObj = {
+     *     id: 'highscore',
      *     score: 9000,
      *     hits: 130,
      *     misses: 40
-     * });
-     *     
-     * // Send welcome to subset of users in connection
-     * connection4.send({message: "welcome"}, [player2, player4]);
-     * 
+     * };
+     * connection1.send(JSON.stringify(highScoreObj));
+     *
      * &lt;/script&gt;
      * @BB50+
      */
@@ -182,6 +202,24 @@ blackberry.bbm.platform.io.Connection = function() {
      * @param {blackberry.bbm.platform.users.BBMPlatformUser} sender User that sent the data.
      * @param {String} data Data received.
      * @event
+     * @example
+     * &lt;script type="text/javascript"&gt;
+     *
+     * connection1.ondata = function(user, data) {
+     *     var dataObj = JSON.parse(data);
+     *     var dataID = dataObj.id;
+     *
+     *     // Handle application-defined data types
+     *     if(dataID == "msg") {
+     *         // Handle msg type
+     *     } else if(dataID == "ping") {
+     *         // Handle ping type
+     *     } else if(dataID == "highscore") {
+     *         // Handle highscore type
+     *     }
+     * };
+     * 
+     * &lt;/script&gt;
      * @BB50+
      */
     this.ondata = function(sender, data) {  
