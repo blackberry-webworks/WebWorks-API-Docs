@@ -15,7 +15,7 @@
  */
 
 /**
- * @toc {BBM Users} Other Users
+ * @toc {BBM} 5 Other Users
  * @featureID blackberry.bbm.platform
  * @namespace Provides access to and interaction with other users. For the current user see
  * {@link blackberry.bbm.platform.self}.

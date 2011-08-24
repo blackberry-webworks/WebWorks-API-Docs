@@ -15,7 +15,7 @@
  */
 
 /**
- * @toc {BBM IO} IO
+ * @toc {BBM} 6 IO
  * @featureID blackberry.bbm.platform
  * @namespace Provides services to create, accept, and manage connections.
  * <h3>Connections</h3>
