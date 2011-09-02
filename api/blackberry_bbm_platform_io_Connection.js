@@ -29,7 +29,7 @@ blackberry.bbm.platform.io.Connection = function() {
      * and will not allow more users to join.
      * @type Number
      * @constant
-     * @default 24
+     * @default 24 users
      * @BB50+
      */
     this.MAX_USERS = 0;
@@ -38,7 +38,7 @@ blackberry.bbm.platform.io.Connection = function() {
      * @description The maximum length of an invitation cookie.
      * @type Number
      * @constant
-     * @default 128
+     * @default 128 characters
      * @BB50+
      */
     this.MAX_COOKIE_LENGTH = 0;
@@ -47,7 +47,7 @@ blackberry.bbm.platform.io.Connection = function() {
      * @description The maximum length of an invitation message.
      * @type Number
      * @constant
-     * @default 128
+     * @default 128 characters
      * @BB50+
      */
     this.MAX_INVITE_MSG_LENGTH = 0;
@@ -56,7 +56,7 @@ blackberry.bbm.platform.io.Connection = function() {
      * @description The maximum length of a data payload .
      * @type Number
      * @constant
-     * @default 61440
+     * @default 61440 characters
      * @BB50+
      */
     this.MAX_DATA_LENGTH = 0;
