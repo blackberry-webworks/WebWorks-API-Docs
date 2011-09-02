@@ -113,7 +113,8 @@ blackberry.bbm.platform = {
     }
 
     /**
-     * Invoked when the access status changes.
+     * Called when the access status changes.
+     * <p>This callback is mandatory and must be assigned <b>before</b> the call to {@link blackberry.bbm.platform.register}.
      * @param {Boolean} accessible <code>true</code> if access is allowed;
      * <code>false</code> otherwise.
      * @param {String} status The access status.
@@ -163,7 +164,15 @@ blackberry.bbm.platform = {
     },
     
     /**
-     * Called in certain cases when the application is invoked from within BBM.
+     * Called in certain cases when the application is invoked from within BBM. At the moment this
+     * event is only triggered by profile box items.
+     * <p>This callback should be assigned <b>before</b> the call to {@link blackberry.bbm.platform.register}. If the application is not yet running then it will be launched. This callback will only be invoked once access to the platform is allowed.
+     * <p>This callback is optional. Applications are not required to handle this type of event. 
+     * <h3>ProfileBoxItem Invocations</h3>
+     * The user can launch the application via profile box items (see {@link blackberry.bbm.platform.self.profilebox}).
+     * This callback will be invoked with the reason <code>"profilebox"</code> and a
+     * {@link blackberry.bbm.platform.self.profilebox.ProfileBoxItem} param -- the profile box item
+     * which was clicked.
      * @param {String} reason The reason that the application was invoked. If <code>"profilebox"</code> then
      * <code>param</code> is a {@link blackberry.bbm.platform.self.profilebox.ProfileBoxItem}.
      * @param {blackberry.bbm.platform.self.profilebox.ProfileBoxItem} param The parameter associated with <code>reason</code>.
@@ -174,7 +183,6 @@ blackberry.bbm.platform = {
      * blackberry.bbm.platform.onappinvoked = function(reason, param) {
      *     if(reason == "profilebox") {
      *         var boxItem = param;
-     *         var achievementID = boxItem.cookie;
      *         // Take action based on profile box item...
      *     }
      * };

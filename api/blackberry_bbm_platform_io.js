@@ -129,8 +129,9 @@ blackberry.bbm.platform.io = {
      * Invoked when an incoming connection is accepted. There are two cases when this may happen:
      * <ul>
      * <li>When an invitation is accepted in the BBM chat window.
-     * <li>When a host accepts a join request, following {@link blackberry.bbm.platform.io.onjoinrequestaccepted}.
+     * <li>When a host accepts a join request, following {@link blackberry.bbm.platform.io.event:onjoinrequestaccepted}.
      * </ul>
+     * <p>This callback is required when using either invitation framework. It must be assigned <b>before</b> the call to {@link blackberry.bbm.platform.register}. 
      * <p><b>The application should assign callbacks to the connection in this method.</b></p>
      * @param {String} connectionType The type of connection: <code>"channel"</code> or <code>"session"</code>.
      * @param {blackberry.bbm.platform.io.Channel|blackberry.bbm.platform.io.Session} connection The connection.
