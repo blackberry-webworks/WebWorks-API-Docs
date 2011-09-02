@@ -126,21 +126,6 @@ blackberry.bbm.platform.io = {
     },
     
     /**
-     * Invoked when the current user invites another using a menu item in BBM. The connection was
-     * created by the BBM Platform in order to send the invitation.
-     * <p><b>The application should assign callbacks to the connection in this method.</b></p>
-     * <p>See {@link blackberry.bbm.platform.ui.menu} for further details on invitation menu items.</p>
-     * @param {blackberry.bbm.platform.io.Channel} channel The channel used to send the invitation.
-     * @param {Number} menuItemId The ID of the menu item used to send the invitation. This is
-     * assigned by the application in {@link blackberry.bbm.platform.ui.addMenuItem}.
-     * @event
-     * @deprecated This API is being reworked and will be reintroduced in a later release.
-     * @BB50+
-     */
-    onbbmmenuinvite: function(channel, menuItemId) {
-    },
-    
-    /**
      * Invoked when an incoming connection is accepted. There are two cases when this may happen:
      * <ul>
      * <li>When an invitation is accepted in the BBM chat window.
