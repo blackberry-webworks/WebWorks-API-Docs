@@ -40,7 +40,7 @@ blackberry.bbm.platform.io.Session = function() {
      * Ends the connection for all participants.
      * <p>All participants will be removed from {@link joinedUsers}. All pending invitations will be
      * removed and {@link pendingUsers} will be set to <code>0</code>.
-     * <p>{@link onSessionEnded} will be called for all users currently in the connection.
+     * <p>{@link blackberry.bbm.platform.io.Session#event:onended} will be called for all users currently in the connection.
      * <p>The connection will become inactive for the current user, and should not be used afterwards.
      * @throws {IllegalStateException} if the current user has already ended the connection.
      * @BB50+
