@@ -15,7 +15,7 @@
  */
 
 /**
- * @toc {BBM} 1 Registering with BBM
+ * @toc {BBM} BBM Platform
  * @featureID blackberry.bbm.platform
  * @namespace Provides access to the BBM Social Platform.
  * 

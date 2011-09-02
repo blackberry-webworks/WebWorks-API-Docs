@@ -15,7 +15,7 @@
  */
 
 /**
- * @toc {BBM} 2 Current User's Profile
+ * @toc {BBM} Current User
  * @featureID blackberry.bbm.platform
  * @namespace Provides access to the current user's information.
  * @base blackberry.bbm.platform.users.BBMPlatformUser

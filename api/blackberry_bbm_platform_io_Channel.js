@@ -15,7 +15,6 @@
  */
 
 /**
- * @toc {BBM} 8 Channel
  * @class A connection to communicate with one or more peers, where <b>the peers are not aware of
  * each other</b>. Each peer can only communicate with the current user.
  * <p>For example, a channel connection could be used when a user wants to have a private chat with

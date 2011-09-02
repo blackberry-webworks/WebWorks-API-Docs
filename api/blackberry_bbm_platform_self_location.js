@@ -15,7 +15,6 @@
  */
 
 /**
- * @toc {BBM} 3 Current User's Location
  * @featureID blackberry.bbm.platform
  * @namespace Provides access to the current user's location information.
  * <p><b>This namespace is <code>undefined</code> if the user has disabled this feature on their profile.</b>

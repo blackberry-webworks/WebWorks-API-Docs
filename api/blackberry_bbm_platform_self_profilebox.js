@@ -15,7 +15,7 @@
  */
 
 /**
- * @toc {BBM} 4 Current User's Profile Box
+ * @toc {BBM} Profile Box
  * @featureID blackberry.bbm.platform
  * @namespace Provides access to the current user's profile box.
  * <p>A box for this application that appears in the current user's profile. Each box contains a

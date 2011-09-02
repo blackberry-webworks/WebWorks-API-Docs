@@ -15,7 +15,6 @@
  */
 
 /**
- * @toc {BBM} 7 Session
  * @class A connection to communicate with one or more peers, where <b>the peers are aware of each other</b>.
  * <p>Peers may in turn invite other users, who are also visible to everyone in the session, whether or not they are contacts of the session originator.</p>
  * <p>For example, a session connection could be used for a multi-player game application such as a poker game. When all the users in the session want to see the poker table, and game data is sent to each player in the game as it occurs.</p>
