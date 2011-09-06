@@ -293,7 +293,7 @@ blackberry.bbm.platform.users = {
      * user to select users to invite. Users already in the current user's contact list will not be
      * included in the dialog.
      * @param {Function} onComplete Invoked when the user has finished selecting contacts to invite.
-     * @param {blackberry.bbm.platform.users.ContactInvitation[]} invitations The users to invite to BBM.
+     * @param {Object[]} invitations The pin-name pairs of the users to invite to BBM.
      * @throws {IllegalArgumentException} If <code>PIN</code> is invalid for any invitation.
      * @throws {IllegalArgumentException} If <code>name</code> is null or empty for any invitation.
      * @throws {IllegalArgumentException} If <code>invitations.length > 24</code>.
@@ -306,15 +306,15 @@ blackberry.bbm.platform.users = {
      * }
      * var users = blackberry.bbm.platform.users;
      * var invitations = [
-     *         new users.ContactInvitation("2100000A", "John Doe"),
-     *         new users.ContactInvitation("2100000B", "Jane Doe"),
+     *         { pin:"2100000A", name:"John Doe" },
+     *         { pin:"2100000B", name:"Jane Doe" }
      * ];
      * blackberry.bbm.platform.users.inviteToBBM(onComplete, invitations);
      * 
      * &lt;/script&gt;
      * @BB50+
      */
-    inviteToBBM: function(invitations) {
+    inviteToBBM: function(onComplete, invitations) {
     },
     
     /**
