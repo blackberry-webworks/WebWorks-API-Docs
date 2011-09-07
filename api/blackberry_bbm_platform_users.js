@@ -19,6 +19,17 @@
  * @featureID blackberry.bbm.platform
  * @namespace Provides access to and interaction with other users. For the current user see
  * {@link blackberry.bbm.platform.self}.
+ * 
+ * <h3>Picking Users</h3>
+ * <p>The application can display a Contact Picker to the user with {@link blackberry.bbm.platform.users.pickUsers}.
+ * This is generally part of a larger use case. For example, <code>pickUsers()</code> might be used
+ * so that the current user can select players to remove from a connection.
+ * 
+ * <p><b>The Contact Picker will be displayed for all methods in this namespace.</b> The Contact Picker can be
+ * avoided in {@link blackberry.bbm.platform.users.sendFile} and {@link blackberry.bbm.platform.users.startBBMChat}
+ * by providing a {@link blackberry.bbm.platform.users.BBMPlatformUser} in the method call.
+ * 
+ * <h3>File Transfer, Invite to Download, and Starting a BBM Chat</h3>
  * <p>The current user can send files, start a chat in BBM, and invite others to download the
  * application using the following methods:
  * <ul>
@@ -28,14 +39,12 @@
  * </ul>
  * </p>
  * 
- * <p>The application can display a contact picker to the user with {@link blackberry.bbm.platform.users.pickUsers}.
- * This is generally part of a larger use case. For example, <code>pickUsers()</code> might be used
- * so that the current user can select players to remove from a connection.
- * 
+ * <h3>Inviting users to BBM contact list</h3>
  * <p>Inviting users to the current user's contact list is also supported. You can invite anonymous
  * users by PIN using {@link blackberry.bbm.platform.users.inviteToBBM}. Alternatively you can invite
  * users from open connection(s) using {@link blackberry.bbm.platform.users.inviteToBBMFromConnections}.
  * 
+ * <h3>BBM Social Graph</h3>
  * <p>Applications can also obtain access to the user's social graph.
  * {@link blackberry.bbm.platform.users.contactsWithApp} is a complete list of the current user's BBM
  * contacts who have the application installed.
@@ -60,8 +69,8 @@ blackberry.bbm.platform.users = {
 
     /**
      * @description Shows Contact Picker dialog allowing the user to select users.
-     * @param {Object} options Object containing contact picker options.
-     * @param {String} [options.title] Title of the contact picker dialog.
+     * @param {Object} options Object containing Contact Picker options.
+     * @param {String} [options.title] Title of the Contact Picker dialog.
      * @param {String} [options.type] Type of users to include in the dialog. May be "contactswithapp".
      * @param {blackberry.bbm.platform.users.BBMPlatformUser[]} [options.users] Users shown in the
      * dialog.
@@ -94,8 +103,10 @@ blackberry.bbm.platform.users = {
 
     /**
      * @description Starts a chat within BBM, bringing the chat screen to the foreground and entering
-     * a message in the reply field. If <code>users</code> is provided, the chat screen is opened
-     * immediately; otherwise a Contact Picker dialog is displayed beforehand.
+     * a message in the reply field.
+     * <p>If <code>users</code> is provided, the chat screen is opened immediately; otherwise a Contact
+     * Picker dialog is displayed beforehand.
+     * <p><b>Chats can be started with any contact.</b>
      * @param {Function} onComplete Invoked when the chat has been started or canceled.
      * @param {String} message The initial message in the reply field of the chat screen.
      * @param {blackberry.bbm.platform.users.BBMPlatformUser[]} [users] The users with whom to chat.
@@ -123,6 +134,7 @@ blackberry.bbm.platform.users = {
      * <p>If the contact cannot receive the specific file type, the file will not be sent.</p>
      * <p>The application is notified of any errors that occur through the <code>onFailure(reason)</code>
      * callback. The reasons are:</p>
+     * <p><b>Files can be sent to any contact.</b>
      * <table border="1" width="100%">
      * <thead>
      * <tr>
@@ -270,8 +282,8 @@ blackberry.bbm.platform.users = {
 
     /**
      * @description Allows the user to invite contacts to download the application. A Contact Picker
-     * dialog will appear allowing the user to select contacts to invite. Only contacts without the
-     * application will be shown in the Contact Picker.
+     * dialog will appear allowing the user to select contacts to invite.
+     * <p><b>Only contacts without the application can be invited to download.</b>
      * @callback {Function} onComplete Invoked when the user is complete.
      * @callback {String} onComplete.result <code>"limitreached"</code> if the download invitation limit has been reached;<code>undefined</code> otherwise. A 
      * maximum of 10 download invitations per minute is allowed.
