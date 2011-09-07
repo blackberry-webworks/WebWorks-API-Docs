@@ -103,10 +103,8 @@
  * 
  * <h4>2. Hosting a public connection for non-contacts to join</h4>
  * <p>An application user can also host an event within a public connection to let all application users join.</p>
- * <p>The host should assign the following additional callbacks to their connection: {@link blackberry.bbm.platform.io.Connection#event:onjoinrequestreceived} and {@link blackberry.bbm.platform.io.Connection#event:onjoinrequestcanceled}.
- * <p>Peers should assign the following additional callbacks: {@link blackberry.bbm.platform.io.event:onjoinrequestaccepted} and {@link blackberry.bbm.platform.io.event:onjoinrequestdeclined}.
- * <p>When the application calls {@link blackberry.bbm.platform.io.Connection#enableHosting} a dialog will be shown for the user to allow or deny the decision. If the user allows, the application should then post the host's PIN and PPID to its discovery service. <b>The BBM platform does not provide a discovery service. This must be provided by the application developer.</b>
- * <p>Peers should download host information from the discovery service and then call {@link blackberry.bbm.platform.io.requestToJoin}. The peer will also be presented with a dialog to allow or deny the decision.
+ * <p>When the application calls {@link blackberry.bbm.platform.io.host} a dialog will be shown for the user to allow or deny the decision. If the user allows, the application should then post the host's PIN and PPID to its discovery service. <b>The BBM platform does not provide a discovery service. This must be provided by the application developer.</b>
+ * <p>Peers should download host information from the discovery service and then call {@link blackberry.bbm.platform.io.joinHost}. The peer will also be presented with a dialog to allow or deny the decision.
  * <p>At this point the request is in the <code>"pending"</code> state. In this state the peer can {@link blackberry.bbm.platform.io.OutgoingJoinRequest#cancel} the request, and the host can {@link blackberry.bbm.platform.io.IncomingJoinRequest#accept} or {@link blackberry.bbm.platform.io.IncomingJoinRequest#decline}.</p>
  * <br>{@image /images/bbm/hosting.png}<br>
  * </p>
@@ -129,7 +127,7 @@ blackberry.bbm.platform.io = {
      * Invoked when an incoming connection is accepted. There are two cases when this may happen:
      * <ul>
      * <li>When an invitation is accepted in the BBM chat window.
-     * <li>When a host accepts a join request, following {@link blackberry.bbm.platform.io.event:onjoinrequestaccepted}.
+     * <li>When a host accepts a join request.
      * </ul>
      * <p>This callback is required when using either invitation framework. It must be assigned <b>before</b> the call to {@link blackberry.bbm.platform.register}. 
      * <p><b>The application should assign callbacks to the connection in this method.</b></p>
@@ -149,44 +147,7 @@ blackberry.bbm.platform.io = {
     /**
      * @description Sends a join request to a user hosting a public connection for others to join.
      * <p>The host does not need to be a contact of the current user.
-     * @param {String} hostPIN The host PIN. Can be obtained by <code>blackberry.identity.PIN</code>
-     * @param {String} hostPPID The host PPID. Can be obtained by <code>blackberry.bbm.platform.self.ppid</code>.
-     * @callback {Function} onComplete Invoked when the user finishes approving the join request.
-     * @callback {blackberry.bbm.platform.io.BBMPlatformOutgoingJoinRequest} onComplete.request The
-     * request sent to the host; <code>undefined</code> if the user aborted the join request.
-     * @param {String} [cookie] A custom parameter provided by the application.
-     * e.g. Their current game level. Max length of 128 characters.
-     * @throws {IllegalStateException} If the current user has connected with the host in a connection
-     * but still attempts to send another join request to the host.
-     * @throws {IllegalArgumentException} If <code>hostPIN</code> is invalid.
-     * @throws {IllegalArgumentException} If <code>hostPPID</code> is invalid.
-     * @throws {IllegalArgumentException} If <code>cookie</code> is longer than 128 characters.
-     * @BB50+
-     */
-    requestToJoin: function(pin, ppid, onComplete, cookie) { },
-    
-    /**
-     * @description The pending join requests the user has sent but has not been accepted or declined
-     * by the hosts.
-     * <p>The user can cancel a pending request as long as it has not been accepted or declined by the host.
-     * The request will be removed from this list once either the user cancels, or the host accepts or declines.
-     * @type blackberry.bbm.platform.io.OutgoingJoinRequest[]
-     * @BB50+
-     */
-    outgoingJoinRequests: 0,
-    
-    /**
-     * Invoked when an outgoing join request is accepted by the host.
-     * @param {blackberry.bbm.platform.io.OutgoingJoinRequest} request The accepted request.
-     * @param {String} cookie The cookie sent with the join request in {@link requestToJoin}. <code>undefined</code>
-     * if no cookie was provided.
-     * @event
-     * @BB50+
-     */
-    onjoinrequestaccepted: function(request, cookie) { },
-    
-    /**
-     * Invoked when an outgoing join request is declined by the host.
+     * <h3>Reasons why a request is declined</h3>
      * <table border="1" width="100%">
      * <thead>
      * <tr>
@@ -217,12 +178,99 @@ blackberry.bbm.platform.io = {
      * </tr>
      * </tbody>
      * </table>
-     * @param {blackberry.bbm.platform.io.OutgoingJoinRequest} request The declined request.
-     * @param {String} reason The reason that the request was declined. 
-     * @event
+     * @param {String} hostPIN The host PIN. Can be obtained by <code>blackberry.identity.PIN</code>
+     * @param {String} hostPPID The host PPID. Can be obtained by <code>blackberry.bbm.platform.self.ppid</code>.
+     * @callback {Function} onComplete Invoked when the user finishes approving the join request.
+     * @callback {blackberry.bbm.platform.io.BBMPlatformOutgoingJoinRequest} onComplete.request The
+     * request sent to the host; <code>undefined</code> if the user aborted the join request.
+     * @callback {Function} onHostAccepted Invoked when the join request is accepted by the host.
+     * @callback {blackberry.bbm.platform.io.BBMPlatformOutgoingJoinRequest} onHostAccepted.request The accepted request.
+     * @callback {String} onHostAccepted.cookie The cookie sent when the host accepted the join request in {@link blackberry.bbm.platform.io.IncomingJoinRequest#accept}. <code>undefined</code>
+     * if no cookie was provided.
+     * @callback {Function} onHostDeclined Invoked when the join request is declined by the host.
+     * @callback {blackberry.bbm.platform.io.BBMPlatformOutgoingJoinRequest} onHostDeclined.request The declined request.
+     * @callback {String} onHostDeclined.reason The reason that the request was declined. 
+     * @param {String} [cookie] A custom parameter provided by the application.
+     * e.g. Their current game level. Max length of 128 characters.
+     * @throws {IllegalStateException} If the current user has connected with the host in a connection
+     * but still attempts to send another join request to the host.
+     * @throws {IllegalArgumentException} If <code>hostPIN</code> is invalid.
+     * @throws {IllegalArgumentException} If <code>hostPPID</code> is invalid.
+     * @throws {IllegalArgumentException} If <code>cookie</code> is longer than 128 characters.
      * @BB50+
      */
-    onjoinrequestdeclined: function(request, reason) { },
+    joinHost: function(pin, ppid, onComplete, onHostAccepted, onHostDeclined, cookie) { },
+    
+    /**
+     * Requests that the current user (peer) has sent to hosts using {@link blackberry.bbm.platform.io.joinHost}.
+     * <p>Requests in this list are in the pending state. New requests will be added to this list
+     * automatically. Requests that are accepted, denied, or canceled will be removed from this
+     * list automatically.
+     * <p>The user can cancel a request using {@link blackberry.bbm.platform.io.OutgoingJoinRequest#cancel}.
+     * @type blackberry.bbm.platform.io.OutgoingJoinRequest[]
+     * @readOnly
+     * @BB50+
+     */
+    joinHostRequests: [],
+    
+    /**
+     * Enables hosting on this connection. The user will be prompted with a dialog to allow or deny hosting.
+     * <p>To stop hosting, call <code>blackberry.bbm.platform.io.host()</code>.</p>
+     * <p>The user may only host on one connection in the application.</p>
+     * <h3>Reasons why a request is canceled</h3>
+     * <table border="1" width="100%">
+     * <thead>
+     * <tr>
+     * <th>Reason</th>
+     * <th>Description</th>
+     * </tr>
+     * </thead>
+     * <tbody>
+     * <tr>
+     * <td>peercanceled</td>
+     * <td>The peer canceled the request without a specific reason.</td>
+     * </tr>
+     * <tr>
+     * <td>peerleft</td>
+     * <td>The peer exited the application.</td>
+     * </tr>
+     * </tbody>
+     * </table>
+     * @param    {blackberry.bbm.platform.io.Connection} connection The connection on which to host.
+     * @callback {Function} onComplete Invoked when the user finishes approving/denying hosting.
+     * @callback {Boolean} onComplete.hosting <code>true</code> if the user decided to start hosting;
+     * <code>false</code> otherwise.
+     * @callback {Function} onJoinRequestReceived Invoked when the host receives a join request from a peer.
+     * @callback {blackberry.bbm.platform.io.IncomingJoinRequest} onJoinRequestReceived.request The received request.
+     * @callback {Function} onJoinRequestCanceled Invoked when a peer cancels a join request.
+     * @callback {blackberry.bbm.platform.io.IncomingJoinRequest} onJoinRequestCanceled.request The canceled request.
+     * @throws {IllegalStateException} if this application is already hosting a public connection.
+     * @BB50+
+     */
+    host: function(connection, onComplete, onJoinRequestReceived, onJoinRequestCanceled) {
+    },
+    
+    /**
+     * The connection being hosted. <code>undefined</code> if no connection is being hosted.
+     * <p>Use {@link blackberry.bbm.platform.io.host} to host an existing connection.
+     * @type blackberry.bbm.platform.io.Connection
+     * @readOnly
+     * @BB50+
+     */
+    hostedConnection: undefined,
+    
+    /**
+     * Requests that the current user (host) has received on {@link blackberry.bbm.platform.io.hostedConnection}.
+     * <p>Requests in this list are in the pending state. New requests will be added to this list
+     * automatically. Requests that are accepted, denied, or canceled will be removed from this
+     * list automatically.
+     * <p>The host can accept or decline a request using {@link blackberry.bbm.platform.io.IncomingJoinRequest#accept}
+     * and {@link blackberry.bbm.platform.io.IncomingJoinRequest#decline}.
+     * @type blackberry.bbm.platform.io.IncomingJoinRequest[]
+     * @readOnly
+     * @BB50+
+     */
+    hostRequests: [],
     
     /////////////////////////////////
     // CONTACT UNREACHABLE SUPPORT //

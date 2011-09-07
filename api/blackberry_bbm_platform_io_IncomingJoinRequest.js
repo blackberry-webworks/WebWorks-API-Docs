@@ -39,7 +39,8 @@ blackberry.bbm.platform.io.IncomingJoinRequest = function() {
     
     /**
      * Accepts the join request from a peer. This can be called from the host's side.
-     * <p>{@link blackberry.bbm.platform.io.onJoinRequestAccepted} will be invoked on the peer's side. 
+     * <p><code>onHostAccepted</code> supplied to {@link blackberry.bbm.platform.io.joinHost} will
+     * be invoked on the peer's side. 
      * @param {String} [cookie] A custom parameter provided by the third party application. This
      * parameter will be sent to the joining peer.
      * @throws {IllegalArgumentException} If <code>cookie</code> is longer than 128 characters.
@@ -49,7 +50,8 @@ blackberry.bbm.platform.io.IncomingJoinRequest = function() {
     
     /**
      * Declines the join request from a peer. This can be called from the host's side.
-     * <p>{@link blackberry.bbm.platform.io.onJoinRequestDeclined} will be invoked on the peer's
+     * <p><code>onHostDeclined</code> supplied to {@link blackberry.bbm.platform.io.joinHost} will
+     * be invoked on the peer's
      * side, with the reason <code>"declinedbyhost"</code>.
      * @BB50+
      */
