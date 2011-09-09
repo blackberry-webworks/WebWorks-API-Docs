@@ -56,7 +56,7 @@
  *
  * &lt;script type="text/javascript"&gt;
  *   //Adding Banner with default Banner properties
- *  var banner1 = new blackberry.advertising.Banner(16126, "bannerDiv");   
+ *  var banner1 = new blackberry.advertising.Banner(31848, "bannerDiv");   
  * &lt;/script&gt;
  * @example
  * Example 2: 
@@ -66,7 +66,7 @@
  *
  * &lt;script type="text/javascript"&gt;
  *  //Adding Banner with custom Banner properties
- *  var banner1 = new blackberry.advertising.Banner(16126, "bannerDiv", {"bannerTransitions" : true,
+ *  var banner1 = new blackberry.advertising.Banner(31848, "bannerDiv", {"bannerTransitions" : true,
  *                                                                 "mmaSize" : "extralarge",
  *                                                                 "focusBorderColor" : "blue",
  *                                                                 "focusBorderWidth" : "2px",
