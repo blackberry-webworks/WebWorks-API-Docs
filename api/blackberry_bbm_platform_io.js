@@ -216,7 +216,10 @@ blackberry.bbm.platform.io = {
     /**
      * Enables hosting on this connection. The user will be prompted with a dialog to allow or deny hosting.
      * <p>To stop hosting, call <code>blackberry.bbm.platform.io.host()</code>.</p>
-     * <p>The user may only host on one connection in the application.</p>
+     * <p>The user may only host on one connection in the application. If this application is already
+     * hosting a public connection and this method is invoked on a different connection, then hosting
+     * will stop on the old connection and begin on the new one. The user will again be prompted with
+     * a dialog to allow or deny hosting.</p>
      * <h3>Reasons why a request is canceled</h3>
      * <table border="1" width="100%">
      * <thead>
@@ -244,7 +247,6 @@ blackberry.bbm.platform.io = {
      * @callback {blackberry.bbm.platform.io.IncomingJoinRequest} onJoinRequestReceived.request The received request.
      * @callback {Function} onJoinRequestCanceled Invoked when a peer cancels a join request.
      * @callback {blackberry.bbm.platform.io.IncomingJoinRequest} onJoinRequestCanceled.request The canceled request.
-     * @throws {IllegalStateException} if this application is already hosting a public connection.
      * @BB50+
      */
     host: function(connection, onComplete, onJoinRequestReceived, onJoinRequestCanceled) {
