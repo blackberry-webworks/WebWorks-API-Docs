@@ -30,9 +30,11 @@
 blackberry.bbm.platform.io.Channel = function() {
     
     /**
-     * Closes the connection. Removes all users from the connection cancels all pending invitations the user sent.
+     * Removes the current user from the connection, but leaves it active for all other participants.
+     * <p>{@link onUserLeft} will be called for all other users currently in the connection.
+     * <p>The connection will become inactive for the current user, and should not be used afterwards.
+     * @throws {IllegalStateException} if the current user has already left the connection.
      * @BB50+
      */
-    this.close = function() {
-    };
+    this.leave = function() { };
 };
