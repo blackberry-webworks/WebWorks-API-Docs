@@ -89,6 +89,9 @@ blackberry.bbm.platform.io.Connection = function() {
      * @description Removes a user from the connection.
      * @param {blackberry.bbm.platform.users.BBMPlatformUser | blackberry.bbm.platform.users.BBMPlatformUser[]}
      * user Single user, or array of users, to remove from the connection.
+     * @throws {NullPointerException} If <code>user</code> is null.
+     * @throws {IllegalArgumentException} If of of the users being removed does not belong to the connection.
+     * @throws {PersistentContentException} If Content Protection is enabled and device is locked.
      * @example
      * &lt;script type="text/javascript"&gt;
      * 
@@ -116,6 +119,7 @@ blackberry.bbm.platform.io.Connection = function() {
     
     /**
      * @description Removes all users from the connection.
+     * @throws {PersistentContentException} If Content Protection is enabled and device is locked.
      * @BB50+
      */
     this.removeAll = function() {
@@ -125,7 +129,9 @@ blackberry.bbm.platform.io.Connection = function() {
      * @description Adds a user, who has already joined a connection in this application, to this connection.
      * @param {blackberry.bbm.platform.user.BBMPlatformUser} user The user to be added.
      * @param {String} [cookie] A custom parameter provided by the third party application.
+     * @throws {NullPointerException} If <code>user</code> is null.
      * @throws {IllegalArgumentException} If <code>user</code> is not connected with the current user in any existing connections in this application.
+     * @throws {PersistentContentException} If Content Protection is enabled and device is locked.
      * @BB50+
      */
     this.add = function(user, cookie) {
@@ -137,6 +143,14 @@ blackberry.bbm.platform.io.Connection = function() {
      * @param {String} data Object to be sent.
      * @param {blackberry.bbm.platform.users.BBMPlatformUser[]} [users] Data recipients. 
      * If not provided, data will be sent to all users on this connection.
+     * @throws {ContactUnreachableException} If a user is unreachable, up to 50 packets will be queued. This will be thrown on the 51st call.
+     * @throws {DataOverflowException} If the rate of data sent by the application exceeds that which the BBM Platform allows.
+     * @throws {NullPointerException} If <code>data</code> is null or empty.
+     * @throws {IllegalArgumentException} If <code>data.length</code> is larger than {@link blackberry.bbm.platform.io.Connection.MAX_DATA_LENGTH}.
+     * @throws {IllegalArgumentException} If <code>users</code> contains a user who has not joined this connection.
+     * @throws {IllegalArgumentException} If <code>users.length > 24</code>.
+     * @throws {PersistentContentException} If Content Protection is enabled and device is locked.
+     * 
      * @example
      * &lt;script type="text/javascript"&gt;
      * 
@@ -146,7 +160,11 @@ blackberry.bbm.platform.io.Connection = function() {
      *     id:'msg',
      *     value:replyText
      * };
-     * connnection1.send(JSON.stringify(msgObj));
+     * try {
+     *     connnection1.send(JSON.stringify(msgObj));
+     * } catch(e) {
+     *     // Error occurred while sending data
+     * }
      *
      * &lt;/script&gt;
      *
@@ -155,7 +173,11 @@ blackberry.bbm.platform.io.Connection = function() {
      *
      * // Ping all users
      * var pingObj = { id:'ping' };
-     * connection1.send(JSON.stringify(pingObj));
+     * try {
+     *     connection1.send(JSON.stringify(pingObj));
+     * } catch(e) {
+     *     // Error occurred while sending data
+     * }
      *
      * &lt;/script&gt;
      *
@@ -169,7 +191,11 @@ blackberry.bbm.platform.io.Connection = function() {
      *     hits: 130,
      *     misses: 40
      * };
-     * connection1.send(JSON.stringify(highScoreObj));
+     * try {
+     *     connection1.send(JSON.stringify(highScoreObj));
+     * } catch(e) {
+     *     // Error occurred while sending data
+     * }
      *
      * &lt;/script&gt;
      * @BB50+
@@ -187,7 +213,11 @@ blackberry.bbm.platform.io.Connection = function() {
      * or <code><= 0</code>, then invitation will never expire.
      * @param {String} [options.cookie] A custom parameter provided by the third party application. 
      * e.g. The current game level. Max length of 128 characters.
-     * @param {blackberry.bbm.platform.users.BBMPlatformUser[]} [options.contacts] The contacts that will be shown.
+     * @param {blackberry.bbm.platform.users.BBMPlatformUser[]} [options.contacts] The contacts that
+     * will be shown.
+     * @throws {IllegalStateException} If the connection is full.
+     * @throws {IllegalStateException} If the connection is inactive, which can happen if the user
+     * ends or leaves the connection.
      * @BB50+
      */
     this.inviteContacts = function(inviteMessage, options) {

@@ -58,6 +58,11 @@ blackberry.bbm.platform.io.Session = function() {
     
     /**
      * Sends data to all users.
+     * @throws {ContactUnreachableException} If a user is unreachable, up to 50 packets will be queued. This will be thrown on the 51st call.
+     * @throws {DataOverflowException} If the rate of data sent by the application exceeds that which the BBM Platform allows.
+     * @throws {NullPointerException} If <code>data</code> is null or empty.
+     * @throws {IllegalArgumentException} If <code>data.length</code> is larger than {@link blackberry.bbm.platform.io.Connection.MAX_DATA_LENGTH}.
+     * @throws {PersistentContentException} If Content Protection is enabled and device is locked.
      * @param {String} data Object to be sent.
      * @BB50+
      */
