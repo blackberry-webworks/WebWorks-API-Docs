@@ -215,7 +215,7 @@ blackberry.bbm.platform.io = {
      * @callback {String} onRequestCanceled.reason The reason that the request was canceled.
      * @BB50+
      */
-    host: function(connection, onComplete, onJoinRequestReceived, onJoinRequestCanceled) {
+    host: function(connection, onComplete, onRequestReceived, onRequestCanceled) {
     },
     
     /**
