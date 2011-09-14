@@ -192,7 +192,9 @@ blackberry.bbm.platform.io = {
     
     /**
      * Enables hosting on this connection. The user will be prompted with a dialog to allow or deny hosting.
-     * <p>To stop hosting, call <code>blackberry.bbm.platform.io.host()</code>.</p>
+     * <p>To stop hosting, call <code>blackberry.bbm.platform.io.host()</code>. Stopping hosting will not
+     * remove users from the connection who have already joined, it will only disallow others from joining.
+     * {@link blackberry.bbm.platform.io.hostRequests} will be emptied.</p>
      * <p>The user may only host on one connection in the application. If this application is already
      * hosting a public connection and this method is invoked on a different connection, then hosting
      * will stop on the old connection and begin on the new one. The user will again be prompted with
