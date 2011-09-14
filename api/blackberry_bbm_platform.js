@@ -118,45 +118,18 @@ blackberry.bbm.platform = {
      * @param {Boolean} accessible <code>true</code> if access is allowed;
      * <code>false</code> otherwise.
      * @param {String} status The access status.
-     * 
-     * <table border="1" width="100%">
-     * <tr>
-     * <th>Access Status</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td><code>"allowed"</code></td>
-     * <td>Access is allowed.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"user"</code></td>
-     * <td>Access is blocked by the user.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"rim"</code></td>
-     * <td>Access is blocked by RIM (the application has most likely violated the terms of use).</td>
-     * </tr>
-     * <tr>
-     * <td><code>"resetrequired"</code></td>
-     * <td>Access is blocked because a device reset is required to use the BBM Social Platform.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"nodata"</code></td>
-     * <td>Access is blocked because the device is out of data coverage. A data connection is required
-     * to register the application.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"temperror"</code></td>
-     * <td>Access is blocked because of a temporary error. The application should try to call
-     * {@link blackberry.bbm.platform.register} in 30 minutes, or the next time the application starts.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"nonuiapp"</code></td>
-     * <td>Access is blocked because {@link blackberry.bbm.platform.register} was called from a non-UI application.
-     * <p>The application must initially register from a UI application because user interaction is required. The application may register from a background application only after the application has been connected in a UI application at least once.</td> 
-     * </tr>
-     * <tr>
-     * </table>
+     * <ul>
+     * <li><code>"allowed"</code>: Access is allowed.
+     * <li><code>"user"</code>: Access is blocked by the user.
+     * <li><code>"rim"</code>: Access is blocked by RIM (the application has most likely violated the terms of use).
+     * <li><code>"resetrequired"</code>: Access is blocked because a device reset is required to use the BBM Social Platform.
+     * <li><code>"nodata"</code>: Access is blocked because the device is out of data coverage. A data connection is required
+     * to register the application.
+     * <li><code>"temperror"</code>: Access is blocked because of a temporary error. The application should try to call
+     * {@link blackberry.bbm.platform.register} in 30 minutes, or the next time the application starts.
+     * <li><code>"nonuiapp"</code>: Access is blocked because {@link blackberry.bbm.platform.register} was called from a non-UI application.
+     * <p>The application must initially register from a UI application because user interaction is required. The application may register from a background application only after the application has been connected in a UI application at least once.</li> 
+     * </ul>
      * @event
      * @BB50+
      */
@@ -196,24 +169,10 @@ blackberry.bbm.platform = {
     
     /**
      * The application environment.
-     * <table border="1" width="100%">
-     * <tr>
-     * <th>Environment</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td><code>"appworld"</code></td>
-     * <td>The application exists in App World.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"test"</code></td>
-     * <td>The application does not exist in App World.</td>
-     * </tr>
-     * <tr>
-     * <td><code>undefined</code></td>
-     * <td>The environment is undefined because registration has not yet completed.</td>
-     * </tr>
-     * </table>
+     * <ul>
+     * <li><code>"appworld"</code>: The application exists in App World.
+     * <li><code>"test"</code>: The application does not exist in App World.
+     * </ul>
      * @type String
      * @readOnly
      * @BB50+

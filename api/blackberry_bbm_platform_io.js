@@ -32,7 +32,7 @@
  * <pre>
  * var type = ... // One of "channel" or "session"
  * var conn = blackberry.bbm.platform.io.createConnection(type);
- * setConnectionListeners(conn, type);
+ * setConnectionCallbacks(conn, type);
  * </pre>
  * 
  * <h4>Accepting incoming connections</h4>
@@ -45,14 +45,14 @@
  * blackberry.bbm.platform.io.onconnectionaccepted = function(type, connection, cookie) {
  *     // Save the connection and set the callbacks
  *     conn = connection;
- *     setConnectionListeners(conn, type);
+ *     setConnectionCallbacks(conn, type);
  * };
  * </pre>
  * 
  * <h4>Connection events</h4>
  * A generic function can be used to assign callbacks to connections.
  * <pre>
- * function setConnectionListeners(conn, type) {
+ * function setConnectionCallbacks(conn, type) {
  *     // Channel/Session callbacks
  *     conn.onusersinvited = function(users) {
  *         // ...
@@ -104,7 +104,7 @@
  * <h4>2. Hosting a public connection for non-contacts to join</h4>
  * <p>An application user can also host an event within a public connection to let all application users join.</p>
  * <p>When the application calls {@link blackberry.bbm.platform.io.host} a dialog will be shown for the user to allow or deny the decision. If the user allows, the application should then post the host's PIN and PPID to its discovery service. <b>The BBM platform does not provide a discovery service. This must be provided by the application developer.</b>
- * <p>Peers should download host information from the discovery service and then call {@link blackberry.bbm.platform.io.joinHost}. The peer will also be presented with a dialog to allow or deny the decision.
+ * <p>Peers should download host information (PIN and PPID) from the discovery service and then call {@link blackberry.bbm.platform.io.joinHost}. The peer will also be presented with a dialog to allow or deny the decision.
  * <p>At this point the request is in the <code>"pending"</code> state. In this state the peer can {@link blackberry.bbm.platform.io.OutgoingJoinRequest#cancel} the request, and the host can {@link blackberry.bbm.platform.io.IncomingJoinRequest#accept} or {@link blackberry.bbm.platform.io.IncomingJoinRequest#decline}.</p>
  * <br>{@image /images/bbm/hosting.png}<br>
  * </p>
@@ -148,36 +148,13 @@ blackberry.bbm.platform.io = {
      * @description Sends a join request to a user hosting a public connection for others to join.
      * <p>The host does not need to be a contact of the current user.
      * <h3>Reasons why a request is declined</h3>
-     * <table border="1" width="100%">
-     * <thead>
-     * <tr>
-     * <th>Reason</th>
-     * <th>Description</th>
-     * </tr>
-     * </thead>
-     * <tbody>
-     * <tr>
-     * <td>hostdeclined</td>
-     * <td>The host declined without a specific reason.</td>
-     * </tr>
-     * <tr>
-     * <td>hostppidinvalid</td>
-     * <td>The host PPID is invalid.</td>
-     * </tr>
-     * <tr>
-     * <td>appnotrunning</td>
-     * <td>The host's application was not running when they received the request.</td>
-     * </tr>
-     * <tr>
-     * <td>connectionnotfound</td>
-     * <td>The host is not hosting on any connection.</td>
-     * </tr>
-     * <tr>
-     * <td>connectionfull</td>
-     * <td>The host's hosted connection is full.</td>
-     * </tr>
-     * </tbody>
-     * </table>
+     * <ul>
+     * <li><code>"hostdeclined"</code>: The host declined without a specific reason.
+     * <li><code>"hostppidinvalid"</code>: The host PPID is invalid.
+     * <li><code>"appnotrunning"</code>: The host's application was not running when they received the request.
+     * <li><code>"connectionnotfound"</code>: The host is not hosting on any connection, or stopped hosting on the connection while the request was pending.
+     * <li><code>"connectionfull"</code>: The host's hosted connection is full.
+     * </ul>
      * @param {String} hostPIN The host PIN. Can be obtained by <code>blackberry.identity.PIN</code>
      * @param {String} hostPPID The host PPID. Can be obtained by <code>blackberry.bbm.platform.self.ppid</code>.
      * @callback {Function} onComplete Invoked when the user finishes approving the join request.
@@ -221,24 +198,10 @@ blackberry.bbm.platform.io = {
      * will stop on the old connection and begin on the new one. The user will again be prompted with
      * a dialog to allow or deny hosting.</p>
      * <h3>Reasons why a request is canceled</h3>
-     * <table border="1" width="100%">
-     * <thead>
-     * <tr>
-     * <th>Reason</th>
-     * <th>Description</th>
-     * </tr>
-     * </thead>
-     * <tbody>
-     * <tr>
-     * <td>peercanceled</td>
-     * <td>The peer canceled the request without a specific reason.</td>
-     * </tr>
-     * <tr>
-     * <td>peerleft</td>
-     * <td>The peer exited the application.</td>
-     * </tr>
-     * </tbody>
-     * </table>
+     * <ul>
+     * <li><code>"peercanceled"</code>: The peer canceled the request without a specific reason.
+     * <li><code>"peerleft"</code>: The peer exited the application.
+     * </ul>
      * @param    {blackberry.bbm.platform.io.Connection} connection The connection on which to host.
      * @callback {Function} onComplete Invoked when the user finishes approving/denying hosting.
      * @callback {Boolean} onComplete.hosting <code>true</code> if the user decided to start hosting;
@@ -247,6 +210,7 @@ blackberry.bbm.platform.io = {
      * @callback {blackberry.bbm.platform.io.IncomingJoinRequest} onJoinRequestReceived.request The received request.
      * @callback {Function} onJoinRequestCanceled Invoked when a peer cancels a join request.
      * @callback {blackberry.bbm.platform.io.IncomingJoinRequest} onJoinRequestCanceled.request The canceled request.
+     * @callback {String} onJoinRequestCanceled.reason The reason that the request was canceled.
      * @BB50+
      */
     host: function(connection, onComplete, onJoinRequestReceived, onJoinRequestCanceled) {

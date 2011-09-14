@@ -30,29 +30,12 @@ blackberry.bbm.platform.io.JoinRequest = function() {
     
     /**
      * @description The status.
-     * <table border="1" width="100%">
-     * <tr>
-     * <th>Type</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td><code>"pending"</code></td>
-     * <td>The request has not been accepted or denied by the host, or canceled by the peer. The peer
-     * can only cancel the request in this state.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"accepted"</code></td>
-     * <td>The request has been accepted by the host.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"declined"</code></td>
-     * <td>The request has been declined by the host.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"canceled"</code></td>
-     * <td>The request has been canceled by the peer.</td>
-     * </tr>
-     * </table>
+     * <ul>
+     * <li><code>"pending"</code>: The request has not been accepted or denied by the host, or canceled by the peer.
+     * <li><code>"accepted"</code>: The request has been accepted by the host.
+     * <li><code>"declined"</code>: The request has been declined by the host.
+     * <li><code>"canceled"</code>: The request has been canceled by the peer.
+     * </ul>
      * @type String
      * @BB50+
      */

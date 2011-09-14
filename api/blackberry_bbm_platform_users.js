@@ -131,48 +131,19 @@ blackberry.bbm.platform.users = {
      * <p>If <code>contact</code> is not provided then the Contact Picker dialog be shown first,
      * allowing the user to pick someone in their contact list whom to send the file. Otherwise,
      * the Contact Picker dialog will not be shown.</p>
+     * <p><b>Files can be sent to any contact.</b>
      * <p>If the contact cannot receive the specific file type, the file will not be sent.</p>
      * <p>The application is notified of any errors that occur through the <code>onFailure(reason)</code>
      * callback. The reasons are:</p>
-     * <p><b>Files can be sent to any contact.</b>
-     * <table border="1" width="100%">
-     * <thead>
-     * <tr>
-     * <th>Reason</th>
-     * <th>Description</th>
-     * </tr>
-     * </thead>
-     * <tbody>
-     * <tr>
-     * <td>filenotfound</td>
-     * <td>The file transfer failed because the file does not exist.</td>
-     * </tr>
-     * <tr>
-     * <td>filetoolarge</td>
-     * <td>The file transfer failed because the file size exceeds the limit permitted by BBM.</td>
-     * </tr>
-     * <tr>
-     * <td>fileempty</td>
-     * <td>The file transfer failed because the file is empty.</td>
-     * </tr>
-     * <tr>
-     * <td>fileforwardlocked</td>
-     * <td>The file transfer failed because the file is forward-locked.</td>
-     * </tr>
-     * <tr>
-     * <td>filebadtype</td>
-     * <td>The file transfer failed because the recipient is not permitted to receive files of the file type.</td>
-     * </tr>
-     * <tr>
-     * <td>usercanceled</td>
-     * <td>The file transfer failed because the current user canceled the file transfer.</td>
-     * </tr>
-     * <tr>
-     * <td>noncontact</td>
-     * <td>The file transfer failed because the recipient is not a BBM contact of the user.</td>
-     * </tr>
-     * </tbody>
-     * </table>
+     * <ul>
+     * <li><code>"filenotfound"</code>: The file transfer failed because the file does not exist.
+     * <li><code>"filetoolarge"</code>: The file transfer failed because the file size exceeds the limit permitted by BBM.
+     * <li><code>"fileempty"</code>: The file transfer failed because the file is empty.
+     * <li><code>"fileforwardlocked"</code>: The file transfer failed because the file is forward-locked.
+     * <li><code>"filebadtype"</code>: The file transfer failed because the recipient is not permitted to receive files of the file type.
+     * <li><code>"usercanceled"</code>: The file transfer failed because the current user canceled the file transfer.
+     * <li><code>"noncontact"</code>: The file transfer failed because the recipient is not a BBM contact of the user.
+     * </ul>
      * @param {String} fileURI The fully qualified path of the file to send.
      * @param {String} comment The default comment on the file. The user may edit this comment before sending.
      * @callback {Function} onFailure Invoked if the file transfer fails.
@@ -219,43 +190,15 @@ blackberry.bbm.platform.users = {
      * <p>User updates can be captured such as profile information and application installation changes.
      * Updates can be received from the current user, contacts who have the application, and non-contacts
      * who have joined in an application connection with the current user.</p>
-     * <table border="1" width="100%">
-     * <tr>
-     * <th>Event</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td><code>"displayname"</code></td>
-     * <td>Display name update.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"displaypicture"</code></td>
-     * <td>Display picture update.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"personalmessage"</code></td>
-     * <td>Personal message update.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"status"</code></td>
-     * <td>Status and/or status message update.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"install"</code></td>
-     * <td>User installed or unblocked application.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"uninstall"</code></td>
-     * <td>User uninstalled or blocked application.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"invited"</code></td>
-     * <td>
-     * User received an invitation to join this application in BBM.<br/>
-     * <i>This only applies to the current user.</i>
-     * </td>
-     * </tr>
-     * </table>
+     * <ul>
+     * <li><code>"displayname"</code>: Display name update.
+     * <li><code>"displaypicture"</code>: Display picture update.
+     * <li><code>"personalmessage"</code>: Personal message update.
+     * <li><code>"status"</code>: Status and/or status message update.
+     * <li><code>"install"</code>: User installed or unblocked application.
+     * <li><code>"uninstall"</code> User uninstalled or blocked application.
+     * <li><code>"invited"</code>: The current user received an invitation to join this application in BBM. <i>This only applies to the current user.</i>
+     * </ul>
      * @param {blackberry.bbm.platform.users.BBMPlatformUser} user The user whose information updated.
      * @param {String} event The type of update.
      * @example

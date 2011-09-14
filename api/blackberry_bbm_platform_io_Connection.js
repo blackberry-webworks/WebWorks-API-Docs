@@ -276,22 +276,12 @@ blackberry.bbm.platform.io.Connection = function() {
     
     /**
      * Invoked when users join the connection by accepting an invitation.
-     * <table border="1" width="100%">
-     * <tr>
-     * <th>Type</th>
-     * <th>Description</th>
-     * </tr>
-     * <tr>
-     * <td><code>"invitedbyme"</code></td>
-     * <td>The joining users were invited by the current user.</td>
-     * </tr>
-     * <tr>
-     * <td><code>"acceptedbyme"</code></td>
-     * <td>The current user is joining the connection.</td>
-     * </tr>
-     * </table>
      * @param {blackberry.bbm.platform.users.BBMPlatformUser[]} users The users who joined.
      * @param {String} type The type of join.
+     * <ul>
+     * <li><code>"invitedbyme"</code>: The joining users were invited by the current user.
+     * <li><code>"acceptedbyme"</code>: The current user is joining the connection.
+     * </ul>
      * @param {String} cookie The cookie that was sent with the invitation. <code>undefined</code>
      * if no cookie was sent.
      * @event
