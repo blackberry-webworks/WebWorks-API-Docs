@@ -206,11 +206,11 @@ blackberry.bbm.platform.io = {
      * @callback {Function} onComplete Invoked when the user finishes approving/denying hosting.
      * @callback {Boolean} onComplete.hosting <code>true</code> if the user decided to start hosting;
      * <code>false</code> otherwise.
-     * @callback {Function} onJoinRequestReceived Invoked when the host receives a join request from a peer.
-     * @callback {blackberry.bbm.platform.io.IncomingJoinRequest} onJoinRequestReceived.request The received request.
-     * @callback {Function} onJoinRequestCanceled Invoked when a peer cancels a join request.
-     * @callback {blackberry.bbm.platform.io.IncomingJoinRequest} onJoinRequestCanceled.request The canceled request.
-     * @callback {String} onJoinRequestCanceled.reason The reason that the request was canceled.
+     * @callback {Function} onRequestReceived Invoked when the host receives a join request from a peer.
+     * @callback {blackberry.bbm.platform.io.IncomingJoinRequest} onRequestReceived.request The received request.
+     * @callback {Function} onRequestCanceled Invoked when a peer cancels a join request.
+     * @callback {blackberry.bbm.platform.io.IncomingJoinRequest} onRequestCanceled.request The canceled request.
+     * @callback {String} onRequestCanceled.reason The reason that the request was canceled.
      * @BB50+
      */
     host: function(connection, onComplete, onJoinRequestReceived, onJoinRequestCanceled) {

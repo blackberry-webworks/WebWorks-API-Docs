@@ -32,8 +32,7 @@ blackberry.bbm.platform.io.OutgoingJoinRequest = function() {
     
     /**
      * Cancels the request. The request can only be canceled if its <code>status == "pending"</code>; otherwise, this will do nothing.
-     * <p>A canceled request will be removed from {@link blackberry.bbm.platform.io.outgoingJoinRequests} on the sender's side, and
-     * {@link blackberry.bbm.platform.io.Channel.incomingJoinRequests} on the host's side.
+     * <p><code>onRequestCanceled</code> supplied to {@link blackberry.bbm.platform.io.host} will be invoked on the host's side. 
      * @BB50+
      */
     this.cancel = function() { };
