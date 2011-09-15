@@ -173,21 +173,4 @@ blackberry.media.microphone = {
         * @BB50+
         */
         stop : function() {}
-        
-        /**
-        * Return the mime types that the record method supports<br/><br/>
-        * Sample values: &quot;audio/amr&quot;, &quot;audio/wav&quot;
-        * @returns {String[]}
-        * @BB50+
-        * @example
-        * function printSupportedTypes() {
-        *         var types = blackberry.media.microphone.getSupportedMediaTypes();
-        *         var alertMsg = "";
-        *         for(var i = 0; i < types.length; i++) {
-        *             alertMsg += types[i] + " ";
-        *         }
-        *         alert(alertMsg);
-        * }
-        */
-        getSupportedMediaTypes : function() {}
 };
