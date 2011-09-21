@@ -28,7 +28,6 @@
  * <li>{@link blackberry.bbm.platform.users.event:onupdate}
  * </ul>
  * {@link blackberry.bbm.platform.io.Channel} and {@link blackberry.bbm.platform.io.Session} also use BBMPlatformUser extensively.
- * @beta
  * @BB50+
  */
 blackberry.bbm.platform.users.BBMPlatformUser = function() {

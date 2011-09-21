@@ -18,7 +18,6 @@
  * @featureID blackberry.bbm.platform
  * @class The base interface for all connections. See {@link blackberry.bbm.platform.io.Channel} and
  * {@link blackberry.bbm.platform.io.Session} for more information on the respective connection types.
- * @beta
  * @BB50+
  */
 blackberry.bbm.platform.io.Connection = function() {

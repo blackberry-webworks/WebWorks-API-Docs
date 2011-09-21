@@ -17,7 +17,6 @@
 /**
  * @featureID blackberry.bbm.platform
  * @class Provides basic request functionality including a request ID and status.
- * @beta
  * @BB50+
  */
 blackberry.bbm.platform.io.JoinRequest = function() {

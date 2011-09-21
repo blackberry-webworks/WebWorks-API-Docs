@@ -17,7 +17,6 @@
 /**
  * @featureID blackberry.bbm.platform
  * @class A profile box item. Consists of text and possibly an icon.
- * @beta
  * @BB50+
  */
 blackberry.bbm.platform.self.profilebox.ProfileBoxItem = function() {

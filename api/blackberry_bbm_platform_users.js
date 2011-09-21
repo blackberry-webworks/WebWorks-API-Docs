@@ -54,7 +54,6 @@
  * and their contacts who have the application installed. You can listen for user profile property
  * changes, such as display name and display picture, and also when a user installs/uninstalls your
  * application.
- * @beta
  * @BB50+
  */
 blackberry.bbm.platform.users = {
