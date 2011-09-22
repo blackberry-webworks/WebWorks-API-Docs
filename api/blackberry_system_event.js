@@ -56,7 +56,7 @@
  *
  * function asyncCall(method, args, callback) {
  *   $.ajax({
- *      url : "http://webworks/blackberry/system/event/" + method,
+ *      url : "http://localhost:8472/blackberry/system/event/" + method,
  *      data : args,
  *      type : "GET",
  *      success : callback,
