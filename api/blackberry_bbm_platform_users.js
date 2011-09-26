@@ -285,21 +285,19 @@ blackberry.bbm.platform.users = {
      * &lt;script type="text/javascript"&gt;
      * 
      * // Invite to BBM from a specific connection
-     * var onComplete = function() {
+     * blackberry.bbm.platform.users.inviteToBBMFromConnections(function () {
      *     // Continue...
-     * }
-     * blackberry.bbm.platform.users.inviteToBBMFromConnections(onComplete, connection);
+     * }, connection);
      * 
      * &lt;/script&gt;
      * 
      * @example
      * &lt;script type="text/javascript"&gt;
      * 
-     * // Invite to BBM from any open connection in the application
-     * var onComplete = function() {
+     * // Invite to BBM from all open connections in the application
+     * blackberry.bbm.platform.users.inviteToBBMFromConnections(function () {
      *     // Continue...
-     * }
-     * blackberry.bbm.platform.users.inviteToBBMFromConnections(onComplete);
+     * });
      * 
      * &lt;/script&gt;
      * @BB50+
