@@ -199,7 +199,7 @@ blackberry.push = {
 	* @callback {function} onSimChange The callback that is invoked when SIM card is changed. When this happens, pushes to this application are automatically stopped, and it is recommended to close the push listener, unregister the user from the content provider, and advise the potential new user to re-register
 	* @BB50+
 	* @PB20
-	* @BB10
+	* @BB10X
 	* @example
 	* &lt;script type=&quot;text/javascript&quot;&gt;
 	*   var port = 153;
