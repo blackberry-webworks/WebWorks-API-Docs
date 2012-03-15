@@ -18,8 +18,8 @@
 /**
  * @toc {Push} Push 
  * @BB50+
- * @PB20+
- * @BB10 
+ * @PB20
+ * @BB10X 
  * @RIPPLE
  * @namespace The Push object allows you to leverage the BlackBerry push architecture to receive push data in your application.
  * <br/><br/>
@@ -102,8 +102,8 @@ blackberry.push = {
 	* @callback {function} [onUnregister] onUnregister The callback that is invoked when the result of the unregister is received. <p> NOTE: onUnregister is only supported for BlackBerry 10 and PlayBook.
 	* @callback {Number} onUnregister.result The unegister result. These include: 0: success, 1: network error, 2: rejected by server, 3: invalid parameters, -1: general error.  
 	* @BB50+
-	* @PB20+
-	* @BB10
+	* @PB20
+	* @BB10X
     * @RIPPLE
 	* @example
 	* &lt;script type=&quot;text/javascript&quot;&gt;
@@ -198,7 +198,7 @@ blackberry.push = {
 	* @callback {Number} onRegister.token Optional parameter. If present, this token must be communicated back to the content provider. This token is used as the address destination when initiating a push from the content provider. A token will only be present if the registration succeeded as determined by having a result code of 0. <p> NOTE: token is only returned for BlackBerry 10 and PlayBook.
 	* @callback {function} onSimChange The callback that is invoked when SIM card is changed. When this happens, pushes to this application are automatically stopped, and it is recommended to close the push listener, unregister the user from the content provider, and advise the potential new user to re-register
 	* @BB50+
-	* @PB20+
+	* @PB20
 	* @BB10
 	* @example
 	* &lt;script type=&quot;text/javascript&quot;&gt;

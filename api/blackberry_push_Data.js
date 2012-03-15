@@ -20,8 +20,8 @@
 *     </p></div>
 * @toc {Push} Data 
 * @BB50+
-* @PB20+
-* @BB10
+* @PB20
+* @BB10X
 * @RIPPLE
 * @namespace The Push Data object provides access to the data that has arrived as the result of a push.
 * @featureID blackberry.push
@@ -35,8 +35,8 @@ blackberry.push.Data = {
 	* @param {Object} field This parameter is either the Integer index or a String name of the header to retrieve.
 	* @returns {String} Returns the value of a header field.
 	* @BB50+
-	* @PB20+
-	* @BB10	
+	* @PB20
+	* @BB10X	
     * @RIPPLE
 	*/
 	getHeaderField : function(field) { },
@@ -76,8 +76,8 @@ blackberry.push.Data.prototype.isChannelEncrypted = undefined;
  * @type Blob
  * @readOnly
  * @BB50+
- * @PB20+ 
- * @BB10 
+ * @PB20 
+ * @BB10X 
  * @RIPPLE
 */
 blackberry.push.Data.prototype.payload = undefined;
@@ -87,8 +87,8 @@ blackberry.push.Data.prototype.payload = undefined;
 * @type Number
 * @constant
 * @default 0
-* @PB20+
-* @BB10
+* @PB20
+* @BB10X
 * @RIPPLE
 */
 blackberry.push.Data.ACCEPT = 0;
@@ -98,8 +98,8 @@ blackberry.push.Data.ACCEPT = 0;
 * @type Number
 * @constant
 * @default 1
-* @PB20+
-* @BB10
+* @PB20
+* @BB10X
 * @RIPPLE
 */
 blackberry.push.Data.REJECT = 1;
