@@ -188,14 +188,14 @@ blackberry.push = {
 	* @param {Object} options The Object literal that allows the user to specify the port, appId, server URL, wakeUpPage and maximum queue size.
 	* @param {Number} [options.port] The port on the device to listen for pushes on. <p> NOTE: options.port is not required for BlackBerry 10 or PlayBook.
 	* @param {String} options.appId The application id provided to you for your push application after signing up to use the BlackBerry Push Service.
-	* @param {String} options.serverUrl The URL of the push server. Examples of this URL include: http://<cpid>.pushapi.eval.blackberry.com if using the eval environment of the BlackBerry Push Service or http://<cpid>.pushapi.na.blackberry.com if using the production environment of the BlackBerry Push Service.  
+	* @param {String} options.serverUrl The URL of the push server. Examples of this URL include: http://&lt;cpid&gt;.pushapi.eval.blackberry.com if using the eval environment of the BlackBerry Push Service or http://<cpid>.pushapi.na.blackberry.com if using the production environment of the BlackBerry Push Service.  
 	* @param {String} options.wakeUpPage The page that wlll be displayed when application is closed and a new push message arrives. <p> NOTE: Application wake up feature is currently not available for BlackBerry 10 or PlayBook.
 	* @param {Number} [options.maxQueueCap] Optional parameter that specifies how many messages the app should queue if the listener was not closed, but a function handler was lost (for example, during a page transition). If the parameter is not specified, no limit will be imposed. 
 	* @callback {function} onData The callback that is invoked when a new push has been received. If the content provider requested an acknowledgement receipt of the payload, the callback must explicitly return 0 indicating that the push message has been accepted. Returning any other value (including not returning anything at all) in the callback would indicate that the message has been rejected/declined.
 	* @callback {blackberry.push.Data} onData.data Object that contains the data that was just received.
 	* @callback {function} onRegister The callback that is invoked when the result of the registration is received.  
 	* @callback {Number} onRegister.result The registration result. These include: 0: success, 1: network error, 2: rejected by server, 3: invalid parameters, -1: general error.  
-	* @callback {Number} onRegister.token The token that must be communicated back to the content provider. This token is used as the address destination when initiating a push. A token will only be present if the registration succeeded as determined by having a result code of 0. <p> NOTE: token is only returned for BlackBerry 10 and PlayBook.
+	* @callback {Number} onRegister.token Optional parameter. If present, this token must be communicated back to the content provider. This token is used as the address destination when initiating a push from the content provider. A token will only be present if the registration succeeded as determined by having a result code of 0. <p> NOTE: token is only returned for BlackBerry 10 and PlayBook.
 	* @callback {function} onSimChange The callback that is invoked when SIM card is changed. When this happens, pushes to this application are automatically stopped, and it is recommended to close the push listener, unregister the user from the content provider, and advise the potential new user to re-register
 	* @BB50+
 	* @PB20+
@@ -203,7 +203,7 @@ blackberry.push = {
 	* @example
 	* &lt;script type=&quot;text/javascript&quot;&gt;
 	*   var port = 153;
-	*   var serverUrl = "http://<cpid>.pushapi.eval.blackberry.com";
+	*   var serverUrl = "http://&lt;cpid&gt;.pushapi.eval.blackberry.com";
 	*   var appId = "my application id";
 	*   var max = 100;
 	*   var wakeUpPage = "push.htm";
