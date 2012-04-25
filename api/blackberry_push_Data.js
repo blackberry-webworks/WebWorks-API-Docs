@@ -20,35 +20,41 @@
 *     </p></div>
 * @toc {Push} Data 
 * @BB50+
+* @PB20
+* @BB10X
 * @RIPPLE
 * @namespace The Push Data object provides access to the data that has arrived as the result of a push.
 * @featureID blackberry.push
 */
 blackberry.push.Data = { 
 
-	/**
+   /**
 	* Requests the value of a specified header field. This method expires and will throw an exception if called 
-	* outside of the push callback function.
+	* outside of the push callback function. 
 	* @function
 	* @param {Object} field This parameter is either the Integer index or a String name of the header to retrieve.
 	* @returns {String} Returns the value of a header field.
 	* @BB50+
+	* @PB20
+	* @BB10X	
     * @RIPPLE
 	*/
 	getHeaderField : function(field) { },
 
 	/**
 	* Retrieves the source for this push stream.  String form of the source of this push; it could be a UID for a connection, IPv4 address, or SMSC. 
-	* This method expires and will throw an exception if called outside of the push callback function.
-	* @returns {String} Returns the source of the push request.
+	* This method expires and will throw an exception if called outside of the push callback function. 
+	* <p> NOTE: Not available for BlackBerry 10 or PlayBook
+	* @returns {String} Returns the source of the push request. 
 	* @BB50+
     * @RIPPLE
 	*/
 	getSource : function() { },
 
 	/**
-	* Request the URI of the push request. This method expires and will throw an exception if called outside of the push callback function.
-	* @returns {String} Returns the URI of the push request.
+	* Requests the URI of the push request. This method expires and will throw an exception if called outside of the push callback function.
+	* <p> NOTE: Not available for BlackBerry 10 or PlayBook
+	* @returns {String} Returns the URI of the push request. 
 	* @BB50+
     * @RIPPLE
 	*/
@@ -57,6 +63,7 @@ blackberry.push.Data = {
 
 /**
  * True if this channel is encrypted; otherwise, false. 
+ * <p> NOTE: Not available for BlackBerry 10 or PlayBook 
  * @type Boolean
  * @readOnly
  * @BB50+
@@ -69,6 +76,30 @@ blackberry.push.Data.prototype.isChannelEncrypted = undefined;
  * @type Blob
  * @readOnly
  * @BB50+
+ * @PB20 
+ * @BB10X 
  * @RIPPLE
 */
 blackberry.push.Data.prototype.payload = undefined;
+
+/**
+* Push message accepted.
+* @type Number
+* @constant
+* @default 0
+* @PB20
+* @BB10X
+* @RIPPLE
+*/
+blackberry.push.Data.ACCEPT = 0;
+
+/**
+* Push message rejected.
+* @type Number
+* @constant
+* @default 1
+* @PB20
+* @BB10X
+* @RIPPLE
+*/
+blackberry.push.Data.REJECT = 1;

@@ -18,17 +18,19 @@
 /**
  * @toc {Push} Push 
  * @BB50+
+ * @PB20
+ * @BB10X 
  * @RIPPLE
  * @namespace The Push object allows you to leverage the BlackBerry push architecture to receive push data in your application.
  * <br/><br/>
  * Since the state for JavaScript for a web page is only as long as the web page is being viewed, there is a need for 
- * the app to maintain the open port for push information. This allows this listening for push data to remain open 
+ * the app to maintain the open listener for push information. This allows this listening for push data to remain open 
  * between page transitions. If no current active callback is assigned to the push listener, the app will queue the 
  * push data (limiting the number of messages using maxQueueCap if available) for the application until a subsequent 
- * openPushListener call is made for that port. 
+ * openPushListener call is made. 
  * At that point it will then pass the data to the subscribed callback function. To subscribe to the same previously 
- * opened push port on a new web page, a secondary call to openPushListener is called. In this scenario it will 
- * reassign the callback provided to the already open port. 
+ * opened push listener on a new web page, a secondary call to openPushListener is called. In this scenario it will 
+ * reassign the callback provided to the already open listener. 
  * <br/><br/>
  * <p/>
  * It is possible for the BlackBerry Push Service to automatically unregister a subscriber behind the scenes. 
@@ -36,7 +38,7 @@
  * <ol>
  * <li>Explicit register, unregister menu options.</li>
  * <li>Use automatic, periodic registration calls to the BlackBerry Push Service to ensure that subscribers receive their desired pushes.  
- * The period you pick would depend on the application you write.  If you plan to send out a high frequency of pushes to a subscriber in a given day, you will want to make the registration calls more frequent (e.g. once a day).  If your application will only send out a low number of pushes in a given day to a subscriber, then you can make the registration calls less frequent (e.g. once a week).</li>
+ * The period you pick would depend on the application you write.  If you plan to send out a high frequency of pushes to a subscriber in a given day, you will want to make the registration calls more frequent (e.g. once a day).  If your application will only send out a low number of pushes in a given day to a subscriber, then you can make the registration calls less frequent (e.g. once a week or once a month).</li>
  * </ol>
  * @featureID blackberry.push
 */
@@ -94,19 +96,45 @@ blackberry.push = {
 	openPushListener : function(onData,port,transport,maxQueueCap) { },
 
 	/**
-	* Closes the listening connection for an already open push channel. <br/><br/>
-	* When this method is called, it will stop listening for incoming data on the push port.
-	* @param {Number} [port] The port used in the open push method. If port is not specified, all open ports will be closed.
+	* Closes the push listener so that an application  no longer receives pushes.
+	*
+	* @param {Number} [port] The port used in the open push method. If port is not specified, all open ports will be closed. <p> NOTE: port is not required for BlackBerry 10 or PlayBook.
+	* @callback {function} [onUnregister] onUnregister The callback that is invoked when the result of the unregister is received. <p> NOTE: onUnregister is only supported for BlackBerry 10 and PlayBook.
+	* @callback {Number} onUnregister.result The unegister result. These include: 0: success, 1: network error, 2: rejected by server, 3: invalid parameters, -1: general error.  
 	* @BB50+
+	* @PB20
+	* @BB10X
     * @RIPPLE
 	* @example
 	* &lt;script type=&quot;text/javascript&quot;&gt;
 	*   function cancelSubscription() {
-	*     blackberry.push.closePushListener();
+	*     blackberry.push.closePushListener(onUnregister);
 	*   }
-	* &lt;/script&gt;
+	*
+	*  function onUnregister(status) {
+	*     if (status == 0) {
+	*       alert("success");
+	*       // Unregister with content provider
+	*     }
+	*     else if (status == 1) {
+	*       alert("network error");
+	*     }
+	*     else if (status == 2) {
+	*       alert("rejected by server");
+	*     }
+	*     else if (status == 3) {
+	*       alert("invalid parameters");
+	*     }
+	*     else if (status == -1) {
+	*       alert("general error");
+	*     }
+	*     else {
+	*       alert("unknown status");
+	*     }
+	*   }
+	* &lt;/script&gt;  
 	*/
-	closePushListener : function(port) { },
+	closePushListener : function(port, onUnregister) { },
 
 	/**
 	* Opens the push listener to allow an application to listen for BES pushes. Only one port can be opened at a time if openBESPushListener
@@ -153,49 +181,50 @@ blackberry.push = {
 	openBESPushListener : function(options, onData, onSimChange) { },
 	
 	/**
-	* Opens the push listener to allow an application to listen for BIS pushes. Only one port can be opened at a time if openBESPushListener
-    * or openBISPushListener functions are used.
-	* <br/>If calling openBISPushListener on a page where the port is already open, the callbacks will be updated to use the latest one passed in. The queue size and wake up page will not be updated.
-	* <br/>If an application registered to BIS push is closed and a push message arrives, the application will be launched in background and the wake up page is displayed. <b>rim:allowInvokeParams="true"</b> attribute must be specified in the content element of config.xml.
-	* @param {Object} options Object literal that allows the user to specify the port, appId, server URL, wakeup page and maximum queue size.
-	* @param {Number} options.port The port on the device to listen for pushes on.
-	* @param {String} options.appId The id provided to you for your push application after signing up to use the BlackBerry Push Service.
-	* @param {String} options.serverUrl The URL of the push server.  Examples of this URL include: 
-	* http://pushapi.eval.blackberry.com if using the eval environment of the BlackBerry  
-	* Push Service or http://pushapi.na.blackberry.com if using the production environment 
-	* of the BlackBerry Push Service.
-	* @param {String} options.wakeUpPage The page that wlll be displayed when application is closed and a new push message arrives.
-	* @param {Number} [options.maxQueueCap] Optional parameter that specifies how many messages the app should queue if the port was not closed, but a function handler was lost (for example, during a page transition). If the parameter is not specified, no limit will be imposed.
-	* @callback {function} onData The callback that is invoked when a new push has been received. To enable reliable push and acknowledge receipt of the payload, the callback must explicitly return 0 indicating that the push message has been accepted.  Returning any other value (including not returning anything at all) in the callback would indicate that the message has been declined.
+	* Opens the push listener to allow an application to receive BIS pushes. 
+	* <br/>If calling openBISPushListener on a page where the listener is already open, the callbacks will be updated to use the latest one passed in. The queue size will not be updated.
+	*
+	* 
+	* @param {Object} options The Object literal that allows the user to specify the port, appId, server URL, wakeUpPage and maximum queue size.
+	* @param {Number} [options.port] The port on the device to listen for pushes on. <p> NOTE: options.port is not required for BlackBerry 10 or PlayBook.
+	* @param {String} options.appId The application id provided to you for your push application after signing up to use the BlackBerry Push Service.
+	* @param {String} options.serverUrl The URL of the push server. Examples of this URL include: http://&lt;cpid&gt;.pushapi.eval.blackberry.com if using the eval environment of the BlackBerry Push Service or http://<cpid>.pushapi.na.blackberry.com if using the production environment of the BlackBerry Push Service.  
+	* @param {String} options.wakeUpPage The page that wlll be displayed when application is closed and a new push message arrives. <p> NOTE: Application wake up feature is currently not available for BlackBerry 10 or PlayBook.
+	* @param {Number} [options.maxQueueCap] Optional parameter that specifies how many messages the app should queue if the listener was not closed, but a function handler was lost (for example, during a page transition). If the parameter is not specified, no limit will be imposed. 
+	* @callback {function} onData The callback that is invoked when a new push has been received. If the content provider requested an acknowledgement receipt of the payload, the callback must explicitly return 0 indicating that the push message has been accepted. Returning any other value (including not returning anything at all) in the callback would indicate that the message has been rejected/declined.
 	* @callback {blackberry.push.Data} onData.data Object that contains the data that was just received.
-	* @callback {function} onRegister The callback that is invoked when the result of the registration is received.
-	* @callback {Number} onRegister.result The registration result. These include: 0: success, 1: network error, 2: rejected by server, 3: invalid parameters, -1: general error.
-	* @callback {function} onSimChange The callback that is invoked when SIM card is changed. When this happens, the push is stopped, and user is recommended to close the push listener, unregister the old user from the content provider, and advise the user to re-register.
+	* @callback {function} onRegister The callback that is invoked when the result of the registration is received.  
+	* @callback {Number} onRegister.result The registration result. These include: 0: success, 1: network error, 2: rejected by server, 3: invalid parameters, -1: general error.  
+	* @callback {Number} onRegister.token Optional parameter. If present, this token must be communicated back to the content provider. This token is used as the address destination when initiating a push from the content provider. A token will only be present if the registration succeeded as determined by having a result code of 0. <p> NOTE: token is only returned for BlackBerry 10 and PlayBook.
+	* @callback {function} onSimChange The callback that is invoked when SIM card is changed. When this happens, pushes to this application are automatically stopped, and it is recommended to close the push listener, unregister the user from the content provider, and advise the potential new user to re-register
 	* @BB50+
+	* @PB20
+	* @BB10X
 	* @example
 	* &lt;script type=&quot;text/javascript&quot;&gt;
 	*   var port = 153;
-	*   var serverUrl = "http://pushapi.eval.blackberry.com";
+	*   var serverUrl = "http://&lt;cpid&gt;.pushapi.eval.blackberry.com";
 	*   var appId = "my application id";
 	*   var max = 100;
 	*   var wakeUpPage = "push.htm";
 	*   function openBISPushListener() {
 	*     try {
 	*       var ops = {port : port, appId : appId, serverUrl : serverUrl, wakeUpPage : 'push.htm', maxQueueCap : max};
-    *       blackberry.push.openBISPushListener(ops, onData, onRegister, onSimChange);
-    *     }
-    *     catch (err) {
-    *       alert(err);
-    *     }     
+	*       blackberry.push.openBISPushListener(ops, onData, onRegister, onSimChange);
+	*     }
+	*     catch (err) {
+	*       alert(err);
+	*     }     
 	*   } 
 	*
-	*   function onRegister(status) {
+	*   function onRegister(status, token) {
 	*     if (status == 0) {
 	*       alert("success");
-    *     }
+	*       // Commmunicate token, if available, back to content provider
+	*     }
 	*     else if (status == 1) {
 	*       alert("network error");
-    *     }
+	*     }
 	*     else if (status == 2) {
 	*       alert("rejected by server");
 	*     }
@@ -204,28 +233,28 @@ blackberry.push = {
 	*     }
 	*     else if (status == -1) {
 	*       alert("general error");
-    *     }
+	*     }
 	*     else {
 	*       alert("unknown status");
 	*     }
-    *   }
-    *	
-    *   function onData(data) {
-    *     var resultDiv = document.getElementById("resultDiv");
+	*   }
+	*	
+	*   function onData(data) {
+	*     var resultDiv = document.getElementById("resultDiv");
 	*     try {
 	*       resultDiv.innerHTML += "&lt;br&gt;" + blackberry.utils.blobToString(data.payload);
-    *       return 0; //indicate acceptance of payload for reliable push
-    *     } 
+	*       return blackberry.push.Data.ACCEPT; //indicate acceptance of payload for reliable push
+	*     } 
 	*     catch (err) {
-    *       alert(err);
-    *     }
-    *   }
+	*       alert(err);
+	*     }
+	*   }
 	*
-    *   function onSimChange() {
-    *     var resultDiv = document.getElementById("resultDiv");
-    *     resultDiv.innerHTML += "&lt;br&gt;" + "SIM card is changed!";
-    *   }
-	* &lt;/script&gt;
+	*   function onSimChange() {
+	*     var resultDiv = document.getElementById("resultDiv");
+	*     resultDiv.innerHTML += "&lt;br&gt;" + "SIM card is changed!";
+	*   }
+	* &lt;/script&gt;  
 	*/
 	openBISPushListener : function(options, onData, onRegister, onSimChange) { }
 	
