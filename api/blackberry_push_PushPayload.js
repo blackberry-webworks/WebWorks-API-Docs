@@ -25,25 +25,6 @@ blackberry.push.PushPayload = {};
 
 /**
 * <p>
-* Gets the header value matching the given header name. 
-* </p>
-* @param {String} headerName The header name.
-* @returns {String} Returns the header value.
-* @BB10X 
-*/
-blackberry.push.PushPayload.prototype.getHeader = function(headerName) { };
-
-/**
-* <p>
-* Gets all the headers associated with a push.
-* </p>
-* @returns {Object} Returns all the headers.
-* @BB10X 
-*/
-blackberry.push.PushPayload.prototype.getHeaders = function() { };
-
-/**
-* <p>
 * Sends an acknowledgement to the PPG indicating whether a push should be accepted or rejected. It is up to the application to determine
 * whether to accept or reject a push message based on it own business rules. It is strongly recommended to accept or reject the push 
 * message as soon as possible otherwise the push message will automatically be considered rejected.
@@ -54,7 +35,7 @@ blackberry.push.PushPayload.prototype.getHeaders = function() { };
 * @param {Boolean} shouldAcceptPush True if the push should be accepted; false if the push should be rejected
 * @BB10X
 * @example
-* if (pushPayload.isAckRequired) {
+* if (pushPayload.isAcknowledgeRequired) {
 *    // Accept push
 *    pushPayload.acknowledge(true);
 *    // To reject the push, you would call: pushPayload.acknowledge(false);
@@ -69,6 +50,16 @@ blackberry.push.PushPayload.prototype.acknowledge = function(shouldAcceptPush) {
 * @BB10X 
 */
 blackberry.push.PushPayload.prototype.id = undefined;
+
+/**
+* The headers of a push in string header name-header value pairs.
+* @type Object
+* @readOnly 
+* @BB10X 
+* @example
+* var headerValue = pushPayload.headers["header-name"];
+*/
+blackberry.push.PushPayload.prototype.headers = undefined;
 
 /**
 * The data (payload) of a push.
