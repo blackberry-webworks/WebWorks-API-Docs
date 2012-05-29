@@ -59,7 +59,7 @@ blackberry.ui.dialog ={
 		 * @param {String} [settings.title] Desired title of the dialog.
 		 * @param {String} [settings.size] Desired size of the dialog.
 		 * @param {String} [settings.position] Desired position of the dialog.
-		 * @param {Boolean} [settings.global] Specifies the global flag of the dialog.
+		 * @param {Boolean} [settings.global] Specifies the global flag of the dialog.  (Your application cannot be minimized when the dialog global setting is set to true). By default this parameter is false when not specified.
 		 * @BB50+
 		 * @PB10+
 		 * @BB10X
@@ -124,6 +124,7 @@ blackberry.ui.dialog ={
 		 * @param {String} [settings.title] Desired title of the dialog.
 		 * @param {String} [settings.size] Desired size of the dialog.
 		 * @param {String} [settings.position] Desired position of the dialog.
+		 * @param {String} [settings.global] Sets the dialog to be global or not. Default is false
 		 * @BB50+
 		 * @PB10+
 		 * @BB10X
