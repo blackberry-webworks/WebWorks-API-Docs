@@ -1,5 +1,5 @@
 /*
-* Copyright 2010-2011 Research In Motion Limited.
+* Copyright 2010-2012 Research In Motion Limited.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ blackberry.ui.dialog ={
 		 * @param {String} [settings.title] Desired title of the dialog.
 		 * @param {String} [settings.size] Desired size of the dialog.
 		 * @param {String} [settings.position] Desired position of the dialog.
-		 * @param {Boolean} [settings.global] Specifies the global flag of the dialog.  (Your application cannot be minimized when the dialog global setting is set to true). By default this parameter is false when not specified.
+		 * @param {Boolean} [settings.global] Specifies the global flag of the dialog. (Your application cannot be minimized when the dialog global setting is set to true). By default this parameter is false when not specified.
 		 * @BB50+
 		 * @PB10+
 		 * @BB10X
@@ -124,7 +124,7 @@ blackberry.ui.dialog ={
 		 * @param {String} [settings.title] Desired title of the dialog.
 		 * @param {String} [settings.size] Desired size of the dialog.
 		 * @param {String} [settings.position] Desired position of the dialog.
-		 * @param {String} [settings.global] Sets the dialog to be global or not. Default is false
+		 * @param {Boolean} [settings.global] Sets the dialog to be global or not. Default is false. (Your application cannot be minimized when the dialog global setting is set to true).
 		 * @BB50+
 		 * @PB10+
 		 * @BB10X
