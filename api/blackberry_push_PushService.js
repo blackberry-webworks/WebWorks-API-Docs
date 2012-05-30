@@ -17,8 +17,9 @@
 /**
 * @namespace The <code>PushService</code> object allows you to leverage the BlackBerry push architecture to receive push data in your application. 
 * The push solution includes a push-enabled application on a BlackBerry device and a content provider's server-side application (also known as the Push Initiator). 
-* The Push Initiator can deliver up to 8 KB of content (images, text, etc.) and headers (meta-data name-value pairs) using a Push Proxy Gateway (PPG). Two PPGs are 
-* available: the BlackBerry Push Service (for the general public/BIS) and the BlackBerry Enterprise Server (BES) (for enterprise users). The <code>PushService</code>
+* The Push Initiator can deliver up to 8 kB of content (images, text, etc.) and headers (metadata name-value pairs) using a Push Proxy Gateway (PPG). 
+* <br/><br/>
+* Two PPGs are available: the public/BlackBerry Internet Service (BIS) PPG and the enterprise/Blackberry Enterprise Server (BES) PPG. The <code>PushService</code>
 * object will allow your application to receive push messages sent through either of these PPGs.
 * <br/><br/>
 * To work with a <code>PushService</code> object, you must first call the static <code>create</code> function.  On a successful create, you will then be able
@@ -37,11 +38,14 @@ blackberry.push.PushService = {};
 * @param {Object} options Object literal that allows the user to specify various options.
 * @param {String} options.invokeTargetId Your application's unique invoke target ID, as set in your config.xml, related to when a new push notification 
 * is received and the application needs to be invoked.
-* @param {String} [options.appId] The provider application ID. This is required for public push.  It should not be specified for enterprise push. For public push, you are 
-* assigned a unique provider application ID after registering to use the BlackBerry Push Service.  
-* @param {String} [options.ppgUrl] The PPG URL to register with. This is required for public push.  It should not be specified for enterprise push.  For public push, you will be 
-* provided with this URL after registering to use the BlackBerry Push Service. The URL will point to either the eval or the production environment
-* (for eval, https://cp{cpid}.pushapi.eval.blackberry.com; for production, https://cp{cpid}.pushapi.na.blackberry.com where {cpid} is replaced with your content provider ID).
+* @param {String} [options.appId] The provider application ID. If writing a consumer application, this corresponds to the application ID you received after registering 
+* to use the public/BIS PPG push service.  If writing an enterprise application, you have the choice of not specifying <code>appId</code> 
+* (in which case a unique one will be generated for you under the covers) or specifying a unique value of your choosing (this second option is useful if you plan
+* to subscribe with the Push Initiator in your application).  
+* @param {String} [options.ppgUrl] The PPG URL to register with.  If writing a consumer application, you will be provided with this URL after registering to 
+* use the public/BIS PPG push service.  The URL will point to either the eval or the production environment (for eval, https://cp{cpid}.pushapi.eval.blackberry.com; 
+* for production, https://cp{cpid}.pushapi.na.blackberry.com where {cpid} is replaced with your content provider ID).  If writing an enterprise application, 
+* no <code>ppgUrl</code> value should be specified.
 * @callback {function} successCallback The callback that is invoked when the <code>create</code> operation is successful.
 * @callback {PushService} successCallback.pushService The <code>PushService</code> object that can be used on a successful <code>create</code> operation.
 * @callback {function} failCallback The callback that is invoked when the <code>create</code> operation has failed.
@@ -53,11 +57,12 @@ blackberry.push.PushService = {};
 * @BB10X
 * @static
 * @example 
-* // For public push
+* // For a consumer application (using the public/BIS PPG)
 * var ops = { invokeTargetId : 'com.sample.pushtest.target', appId : 'appId1', ppgUrl : 'https://cpcontprovId1.pushapi.na.blackberry.com' };
 *
-* // For enterprise push
-* // var ops = { invokeTargetId : 'com.sample.pushtest.target' };
+* // For an enterprise application (using the enterprise/BES PPG)
+* // var ops = { invokeTargetId : 'com.sample.pushtest.target' }; 
+* // or, with an application ID, var ops = { invokeTargetId : 'com.sample.pushtest.target', appId : 'appId1' };
 * 
 * blackberry.push.PushService.create(ops, successCallback, failCallback, simChangeCallback);
 *
@@ -74,6 +79,7 @@ blackberry.push.PushService = {};
 *    if (result == blackberry.push.PushService.INTERNAL_ERROR) {
 *        // Retry the create up to a certain number of attempts and then display an error to the user
 *    }
+*    // ... handle the other possible error constants from the PushService class
 * }
 *
 * function simChangeCallback() {
@@ -90,7 +96,7 @@ blackberry.push.PushService.create = function(options, successCallback, failCall
 * does not necessarily need to be called on every application start up. 
 * </p>
 * <p>
-* However, for public push, since it is possible for the BlackBerry Push Service to destroy a channel under certain circumstances it 
+* However, for a consumer application, since it is possible for the public/BIS PPG to destroy a channel under certain circumstances it 
 * may be advisable to periodicially re-create the channel (e.g. once a month).     
 * </p>
 * <p>
@@ -244,13 +250,13 @@ blackberry.push.PushService.INVALID_DEVICE_PIN = 10001;
 
 /**
 * <p>
-* Result error code for an invalid provider application ID.  
+* Result error code for an invalid provider application ID.  Either an invalid one was specified or none at all.
 * </p>
 * <p>
-* Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)
+* Operations this error can occur on: create, createChannel, destroyChannel (only if using public/BIS PPG)
 * </p>
 * <p>
-* Recommended action: Fixing the application ID programmatically and retrying might correct the issue.
+* Recommended action: Specifying a valid value for appId programmatically and retrying might correct the issue.
 * </p>
 * @type Number
 * @constant
@@ -438,6 +444,22 @@ blackberry.push.PushService.CREATE_SESSION_NOT_DONE = 10100;
 
 /**
 * <p>
+* Result error code when attempting to perform a create channel and a PPG URL was missing.
+* </p>
+* <p>
+* Operations this error can occur on: createChannel (only if using public/BIS PPG)
+* </p>
+* <p>
+* Recommended action: Specifying a value for ppgUrl programmatically and retrying might correct the issue.
+* </p>
+* @type Number
+* @constant
+* @static
+* @BB10X
+*/
+blackberry.push.PushService.MISSING_PPG_URL = 10102;
+/**
+* <p>
 * Result error code when a create channel or destroy channel operation has failed due to network issues.
 * </p>
 * <p>
@@ -538,3 +560,20 @@ blackberry.push.PushService.MISSING_SUBSCRIPTION_RETURN_CODE_FROM_PPG = 10108;
 * @BB10X
 */
 blackberry.push.PushService.PPG_CURRENTLY_NOT_AVAILABLE = 10110;
+
+/**
+* <p>
+* Result error code when no invoke target ID is specified on a create operation.
+* </p>
+* <p>
+* Operations this error can occur on: create
+* </p>
+* <p>
+* Recommended action: Specifying a value for invokeTargetId programmatically and retrying might correct the issue.
+* </p>
+* @type Number
+* @constant
+* @static
+* @BB10X
+*/
+blackberry.push.PushService.MISSING_INVOKE_TARGET_ID = 10111;
