@@ -232,10 +232,10 @@ blackberry.push.PushService.INTERNAL_ERROR = 500;
 
 /**
 * <p>
-* Result error code for an invalid device PIN.   
+* Result error code for an invalid device PIN as determined by the PPG.
 * </p>
 * <p>
-* Operations this error can occur on: createChannel
+* Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)
 * </p>
 * <p>
 * Recommended action: Retrying the operation might not be helpful since this is most likely an unrecoverable error 
@@ -320,20 +320,21 @@ blackberry.push.PushService.INVALID_PPG_SUBSCRIBER_STATE = 10006;
 
 /**
 * <p>
-* Result error code for when the device PIN could not be determined.  
+* Result error code for when a destroy channel operation fails because the subscriber could not be found on the PPG's end.  
 * </p>
 * <p>
-* Operations this error can occur on: createChannel (only if using public/BIS PPG)
+* Operations this error can occur on: destroyChannel (only if using public/BIS PPG)
 * </p>
 * <p>
-* Recommended action: Retrying the operation might correct the issue.
+* Recommended action: This error can most likely be ignored since if the subscriber could not be found on the PPG's end, then
+* destroying the channel will have no effect anyway (it is as if they were never registered with the PPG using create channel).
 * </p>
 * @type Number
 * @constant
 * @static
 * @BB10X
 */
-blackberry.push.PushService.DEVICE_PIN_NOT_FOUND = 10007;
+blackberry.push.PushService.PPG_SUBSCRIBER_NOT_FOUND = 10007;
 
 /**
 * <p>
@@ -463,7 +464,7 @@ blackberry.push.PushService.MISSING_PPG_URL = 10102;
 * Result error code when a create channel or destroy channel operation has failed due to network issues.
 * </p>
 * <p>
-* Operations this error can occur on: createChannel, destroyChannel
+* Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)
 * </p>
 * <p>
 * Recommended action: Retrying the operation might correct the issue.  
@@ -530,7 +531,7 @@ blackberry.push.PushService.MISSING_PORT_FROM_PPG = 10107;
 * Result error code as a result of an issue on a create channel operation obtaining a subscription return code from the PPG.
 * </p>
 * <p>
-* Operations this error can occur on: createChannel
+* Operations this error can occur on: createChannel (only if using public/BIS PPG)
 * </p>
 * <p>
 * Recommended action: Retrying the operation might correct the issue.
@@ -547,7 +548,7 @@ blackberry.push.PushService.MISSING_SUBSCRIPTION_RETURN_CODE_FROM_PPG = 10108;
 * Result error code when a create channel or destroy channel operation has failed due to a failure to communicate with the PPG.
 * </p>
 * <p>
-* Operations this error can occur on: createChannel, destroyChannel
+* Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)
 * </p>
 * <p>
 * Recommended action: Retrying the operation might correct the issue.
