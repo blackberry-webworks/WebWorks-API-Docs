@@ -211,7 +211,7 @@ blackberry.push.PushService.prototype.launchApplicationOnPush = function(shouldL
 * @static
 * @BB10X
 */
-blackberry.push.PushService.SUCCESS = 0;
+blackberry.push.PushService.SUCCESS : 0;
 
 /**
 * <p>
@@ -228,7 +228,7 @@ blackberry.push.PushService.SUCCESS = 0;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.INTERNAL_ERROR = 500;
+blackberry.push.PushService.INTERNAL_ERROR : 500;
 
 /**
 * <p>
@@ -246,7 +246,7 @@ blackberry.push.PushService.INTERNAL_ERROR = 500;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.INVALID_DEVICE_PIN = 10001;
+blackberry.push.PushService.INVALID_DEVICE_PIN : 10001;
 
 /**
 * <p>
@@ -263,7 +263,7 @@ blackberry.push.PushService.INVALID_DEVICE_PIN = 10001;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.INVALID_PROVIDER_APPLICATION_ID = 10002;
+blackberry.push.PushService.INVALID_PROVIDER_APPLICATION_ID : 10002;
 
 /**
 * <p>
@@ -280,7 +280,7 @@ blackberry.push.PushService.INVALID_PROVIDER_APPLICATION_ID = 10002;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.CHANNEL_ALREADY_DESTROYED = 10004;
+blackberry.push.PushService.CHANNEL_ALREADY_DESTROYED : 10004;
 
 /**
 * <p>
@@ -298,7 +298,7 @@ blackberry.push.PushService.CHANNEL_ALREADY_DESTROYED = 10004;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.CHANNEL_ALREADY_DESTROYED_BY_PROVIDER = 10005;
+blackberry.push.PushService.CHANNEL_ALREADY_DESTROYED_BY_PROVIDER : 10005;
 
 /**
 * <p>
@@ -316,7 +316,7 @@ blackberry.push.PushService.CHANNEL_ALREADY_DESTROYED_BY_PROVIDER = 10005;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.INVALID_PPG_SUBSCRIBER_STATE = 10006;
+blackberry.push.PushService.INVALID_PPG_SUBSCRIBER_STATE : 10006;
 
 /**
 * <p>
@@ -334,7 +334,7 @@ blackberry.push.PushService.INVALID_PPG_SUBSCRIBER_STATE = 10006;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.PPG_SUBSCRIBER_NOT_FOUND = 10007;
+blackberry.push.PushService.PPG_SUBSCRIBER_NOT_FOUND : 10007;
 
 /**
 * <p>
@@ -351,7 +351,7 @@ blackberry.push.PushService.PPG_SUBSCRIBER_NOT_FOUND = 10007;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.EXPIRED_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG = 10008;
+blackberry.push.PushService.EXPIRED_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG : 10008;
 
 /**
 * <p>
@@ -369,7 +369,7 @@ blackberry.push.PushService.EXPIRED_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG = 10008
 * @static
 * @BB10X
 */
-blackberry.push.PushService.INVALID_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG = 10009;
+blackberry.push.PushService.INVALID_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG : 10009;
 
 /**
 * <p>
@@ -388,7 +388,7 @@ blackberry.push.PushService.INVALID_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG = 10009
 * @static
 * @BB10X
 */
-blackberry.push.PushService.TOO_MANY_DEVICES_WITH_ACTIVE_CREATE_CHANNELS = 10010;
+blackberry.push.PushService.TOO_MANY_DEVICES_WITH_ACTIVE_CREATE_CHANNELS : 10010;
 
 /**
 * <p>
@@ -406,7 +406,7 @@ blackberry.push.PushService.TOO_MANY_DEVICES_WITH_ACTIVE_CREATE_CHANNELS = 10010
 * @static
 * @BB10X
 */
-blackberry.push.PushService.INVALID_OS_VERSION_OR_DEVICE_MODEL_NUMBER = 10011;
+blackberry.push.PushService.INVALID_OS_VERSION_OR_DEVICE_MODEL_NUMBER : 10011;
 
 /**
 * <p>
@@ -424,7 +424,7 @@ blackberry.push.PushService.INVALID_OS_VERSION_OR_DEVICE_MODEL_NUMBER = 10011;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.CHANNEL_SUSPENDED_BY_PROVIDER = 10012;
+blackberry.push.PushService.CHANNEL_SUSPENDED_BY_PROVIDER : 10012;
 
 /**
 * <p>
@@ -441,7 +441,7 @@ blackberry.push.PushService.CHANNEL_SUSPENDED_BY_PROVIDER = 10012;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.CREATE_SESSION_NOT_DONE = 10100;
+blackberry.push.PushService.CREATE_SESSION_NOT_DONE : 10100;
 
 /**
 * <p>
@@ -458,7 +458,7 @@ blackberry.push.PushService.CREATE_SESSION_NOT_DONE = 10100;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.MISSING_PPG_URL = 10102;
+blackberry.push.PushService.MISSING_PPG_URL : 10102;
 /**
 * <p>
 * Result error code when a create channel or destroy channel operation has failed due to network issues.
@@ -476,7 +476,7 @@ blackberry.push.PushService.MISSING_PPG_URL = 10102;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.NETWORK_FAILURE = 10103;
+blackberry.push.PushService.NETWORK_FAILURE : 10103;
 
 /**
 * <p>
@@ -490,7 +490,7 @@ blackberry.push.PushService.NETWORK_FAILURE = 10103;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.OPERATION_NOT_SUPPORTED = 10105;
+blackberry.push.PushService.OPERATION_NOT_SUPPORTED : 10105;
 
 /**
 * <p>
@@ -507,7 +507,7 @@ blackberry.push.PushService.OPERATION_NOT_SUPPORTED = 10105;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.CREATE_CHANNEL_NOT_DONE = 10106;
+blackberry.push.PushService.CREATE_CHANNEL_NOT_DONE : 10106;
 
 /**
 * <p>
@@ -524,7 +524,7 @@ blackberry.push.PushService.CREATE_CHANNEL_NOT_DONE = 10106;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.MISSING_PORT_FROM_PPG = 10107;
+blackberry.push.PushService.MISSING_PORT_FROM_PPG : 10107;
 
 /**
 * <p>
@@ -541,7 +541,7 @@ blackberry.push.PushService.MISSING_PORT_FROM_PPG = 10107;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.MISSING_SUBSCRIPTION_RETURN_CODE_FROM_PPG = 10108;
+blackberry.push.PushService.MISSING_SUBSCRIPTION_RETURN_CODE_FROM_PPG : 10108;
 
 /**
 * <p>
@@ -560,7 +560,7 @@ blackberry.push.PushService.MISSING_SUBSCRIPTION_RETURN_CODE_FROM_PPG = 10108;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.PPG_CURRENTLY_NOT_AVAILABLE = 10110;
+blackberry.push.PushService.PPG_CURRENTLY_NOT_AVAILABLE : 10110;
 
 /**
 * <p>
@@ -577,4 +577,4 @@ blackberry.push.PushService.PPG_CURRENTLY_NOT_AVAILABLE = 10110;
 * @static
 * @BB10X
 */
-blackberry.push.PushService.MISSING_INVOKE_TARGET_ID = 10111;
+blackberry.push.PushService.MISSING_INVOKE_TARGET_ID : 10111;
