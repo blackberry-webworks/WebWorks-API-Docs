@@ -238,8 +238,8 @@ blackberry.push.PushService.INTERNAL_ERROR = 500;
 * Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)
 * </p>
 * <p>
-* Recommended action: Retrying the operation might not be helpful since this is most likely an unrecoverable error 
-* that is out of control of the application.  It might make sense to communicate this issue up to the user.
+* Recommended action: Retrying the operation might correct the issue.  The PIN is obtained under the covers
+* by the public/BIS PPG.  It very rarely has issues obtaining the device PIN, so a retry might fix this.
 * </p>
 * @type Number
 * @constant
