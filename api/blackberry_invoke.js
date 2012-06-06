@@ -50,14 +50,16 @@ blackberry.invoke = {
 		invoke : function(appType, args){},
 
 		/**
+		 * @name blackberry.invoke.invoke^2
+		 * @function
 		 * @description Invokes another application
-		 * @param {Object} request Object literal that specifies what to invoke
+		 * @param {Object} request Object literal that specifies what to invoke. None of the fields are required. Refer to the example code for more information.
 		 * @param {String} [request.target] The id that identifies the component to invoke. If target is omitted, the invocation framework would perform brokering based on the specified action, type, URI or data to locate an appropriate target to invoke.
 		 * @param {String} [request.action] The action to be performed by the target.
-		 * @param {String} [request.type] Optional MIME type of data to be acted on. If the mime type is not specified then the mime type would be inferred from the given URI. If the MIME type cannot be inferred or URI field is empty then invocation will be rejected. 
+		 * @param {String} [request.type] MIME type of data to be acted on. If the mime type is not specified then the mime type would be inferred from the given URI. If the MIME type cannot be inferred or URI field is empty then invocation will be rejected.
 		 * @param {String} [request.uri] URI pointing to invocation data. If no URI is provided then this implies that the invocation data is provided in-band in the data field of the invocation request.
-		 * @param {String or Blob} [request.data] Data to be acted upon encoded based on the specified type.<br/>NOTE: If a String is passed, make sure that it does not contain unicode characters or an error will be thrown.
-		 * @callback {function} [onInvokeResponse] An arguments object specifying information for the application being invoked.
+		 * @param {String or Blob} [request.data] Data (String or Blob) to be acted upon encoded based on the specified type.<br/>NOTE: If a String is passed, make sure that it does not contain unicode characters or an error will be thrown.
+		 * @callback {function} [onInvokeResponse] Optional callback function that will be called when the invocation framework responds to the request. Expected signature: function onInvokeResponse(error).
 		 * @callback {String} [onInvokeResponse.error] A String that describes the error if the invocation is not successful, an empty String is returned if the invocation is successful.
 		 * @throws {Exception} If request data is a String that contains unicode characters.
 		 * @BB10X
@@ -66,12 +68,22 @@ blackberry.invoke = {
 		 * &lt;script type="text/javascript"&gt;
 		 *
 		 * function openWebLink() {
+		 *     // open link with any application that handles http://
 		 *     blackberry.invoke.invoke({
 		 *         uri: "http://www.blackberry.com"
 		 *     });
 		 * }
 		 *
+		 * function openWebLinkInBrowser() {
+		 *     // open link in browser
+		 *     blackberry.invoke.invoke({
+		 *         target: "sys.browser",
+		 *         uri: "http://www.blackberry.com"
+		 *     });
+		 * }
+		 *
 		 * function openMP3File() {
+		 *     // open mp3 file with any application that handles audio/mpeg3
 		 *     blackberry.invoke.invoke({
 		 *         type: "audio/mpeg3",
 		 *         uri: &lt;path to mp3 file&gt;
@@ -79,11 +91,14 @@ blackberry.invoke = {
 		 * }
 		 *
 		 * function openAnotherApp() {
+		 *     // open another application that understands custom data
 		 *     blackberry.invoke.invoke({
+		 *         target: "another.app.that.handles.custom.json.data",
 		 *         type: "text/plain",
 		 *         data: "{'myData': 'A string I pass to another app'}"
 		 *     });
 		 * }
+		 *
 		 * &lt;/script"&gt;
 		 */
 		invoke : function(request, onInvokeResponse){},
