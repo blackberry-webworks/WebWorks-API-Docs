@@ -36,22 +36,8 @@
  * &lt;/script&gt;
  */
 blackberry.invoke = {
-                
-		/**
-
-		 * @description Invokes another application on the BlackBerry Playbook.
-		 * @param {Number} appType an integer value representing the type of application to launch. Must be one of the 'APP_*' constants.
-		 * @param {Object} [args] An arguments object specifying information for the application being invoked.
-		 * @throws {Exception} If values supplied are not correct. 
-		 * @BB50+
-		 * @PB10+
-		 * @RIPPLE
-		 */
-		invoke : function(appType, args){},
 
 		/**
-		 * @name blackberry.invoke.invoke^2
-		 * @function
 		 * @description Invokes another application
 		 * @param {Object} request Object literal that specifies what to invoke. None of the fields are required. Refer to the example code for more information.
 		 * @param {String} [request.target] The id that identifies the component to invoke. If target is omitted, the invocation framework would perform brokering based on the specified action, type, URI or data to locate an appropriate target to invoke.
@@ -99,9 +85,34 @@ blackberry.invoke = {
 		 *     });
 		 * }
 		 *
+		 * function openAnotherAppWithUnicodeData(unicodeStr) {
+		 *     // convert unicode string before calling invoke, the receiver app will have to
+		 *     // call decodeURIComponent(escape(str)) to get the unicode string back
+		 *     var convertedStr = unescape(encodeURIComponent(unicodeStr));
+		 *
+		 *     // open another application that understands custom data
+		 *     blackberry.invoke.invoke({
+		 *         target: "another.app.that.handles.unicode.data",
+		 *         data: convertedStr
+		 *     });
+		 * }
+		 *
 		 * &lt;/script"&gt;
 		 */
 		invoke : function(request, onInvokeResponse){},
+
+		/**
+		 * @name blackberry.invoke.invoke^2
+		 * @function
+		 * @description Invokes another application on the BlackBerry Playbook.
+		 * @param {Number} appType an integer value representing the type of application to launch. Must be one of the 'APP_*' constants.
+		 * @param {Object} [args] An arguments object specifying information for the application being invoked.
+		 * @throws {Exception} If values supplied are not correct.
+		 * @BB50+
+		 * @PB10+
+		 * @RIPPLE
+		 */
+		invoke : function(appType, args){},
 		
 		/**
 		 * @default 0
