@@ -15,14 +15,14 @@
 */
 
 /**
- * @toc {File} HTML5 directoryEntry
- * @class directoryEntry 
+ * @toc {File} HTML5 DirectoryEntry
+ * @class DirectoryEntry 
  * @constructor
  * @param {String} fileName The name of the javascript file to be executed by the worker.
  * @description Creates a new Worker object. 
  * @BB10X
 */
-directoryEntry = function() {};
+DirectoryEntry = function() {};
 
     /**
     * @description Look up metadata about a directory.
@@ -36,7 +36,7 @@ directoryEntry = function() {};
     *
     *
     */
-    directoryEntry.getMetadata = function(successCallBack, errorCallback) {};
+    DirectoryEntry.getMetadata = function(successCallBack, errorCallback) {};
 
 	/**
     * @description  
@@ -51,7 +51,7 @@ directoryEntry = function() {};
     * Main script:
 	*
 	*/
-	directoryEntry.moveTo = function(parent, newName, successCallback, errorCallback) {};
+	DirectoryEntry.moveTo = function(parent, newName, successCallback, errorCallback) {};
 
     /**
     * @description  
@@ -63,7 +63,7 @@ directoryEntry = function() {};
     * @RIPPLE
 	* @BB10X
     */
-    directoryEntry.copyTo = function(parent, newName, successCallback, errorCallback) {};
+    DirectoryEntry.copyTo = function(parent, newName, successCallback, errorCallback) {};
     
     /**
      * @description Returns a URI that can be used to locate the file.
@@ -72,7 +72,7 @@ directoryEntry = function() {};
      * @RIPPLE
      * @BB10X
      */
-    directoryEntry.toURI = function() {};
+    DirectoryEntry.toURI = function() {};
 
     /**
     * @description  
@@ -82,7 +82,7 @@ directoryEntry = function() {};
     * @RIPPLE
 	* @BB10X
     */
-    directoryEntry.remove = function(successCallback, errorCallback) {};
+    DirectoryEntry.remove = function(successCallback, errorCallback) {};
 		
     /**
     * @description  
@@ -92,7 +92,7 @@ directoryEntry = function() {};
     * @RIPPLE
 	* @BB10X
     */
-    directoryEntry.getParent = function(successCallback, errorCallback) {};
+    DirectoryEntry.getParent = function(successCallback, errorCallback) {};
  
 	/**
     * @description  Return a File object that represents the current state of the file that this FileEntry represents.
@@ -102,7 +102,7 @@ directoryEntry = function() {};
     * @RIPPLE
 	* @BB10X
     */
-    directoryEntry.createReader  = function(successCallback, errorCallback) {};
+    DirectoryEntry.createReader  = function(successCallback, errorCallback) {};
 
 	/**
     * @description Create or look up a directory.
@@ -112,7 +112,7 @@ directoryEntry = function() {};
     * @RIPPLE
 	* @BB10X
     */
-    directoryEntry.getDirectory  = function(successCallback, errorCallback) {};
+    DirectoryEntry.getDirectory  = function(successCallback, errorCallback) {};
 
 	/**
     * @description Create or look up a file.
@@ -122,7 +122,7 @@ directoryEntry = function() {};
     * @RIPPLE
 	* @BB10X
     */
-    directoryEntry.getFile  = function(successCallback, errorCallback) {};
+    DirectoryEntry.getFile  = function(successCallback, errorCallback) {};
 
 	/**
     * @description Delete a directory and all of its contents.
@@ -132,7 +132,7 @@ directoryEntry = function() {};
     * @RIPPLE
 	* @BB10X
     */
-    directoryEntry.removeRecursively  = function(successCallback, errorCallback) {};
+    DirectoryEntry.removeRecursively  = function(successCallback, errorCallback) {};
 	
     /**
      * @field
@@ -142,7 +142,7 @@ directoryEntry = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    directoryEntry.isFile = undefined;	
+    DirectoryEntry.isFile = undefined;	
 	
     /**
      * @field
@@ -152,7 +152,7 @@ directoryEntry = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    directoryEntry.isDirectory = undefined;	
+    DirectoryEntry.isDirectory = undefined;	
 	
     /**
      * @field
@@ -162,7 +162,7 @@ directoryEntry = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    directoryEntry.fullPath = undefined;
+    DirectoryEntry.fullPath = undefined;
 	
     /**
      * @field
@@ -172,7 +172,7 @@ directoryEntry = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    directoryEntry.filesystem = undefined;
+    DirectoryEntry.filesystem = undefined;
 	
 
 

@@ -15,13 +15,13 @@
 */
 
 /**
- * @toc {File} HTML5 directoryReader
+ * @toc {File} HTML5 DirectoryReader
  * @class Web Workers objects act as if they had an implicit MessagePort associated with them. This port is part of a channel that is set up when the worker is created and never be garbage collected before the Web Workers object. Only DedicatedWorker is supported. 
  * @constructor
  * @param {String} fileName The name of the javascript file to be executed by the worker.
  * @description An object that lists files and directories in a directory.
 */
-directoryReader = function() {};
+DirectoryReader = function() {};
 
     /**
     * @description  The postMessage() method on Web Workers objects invoked the method of the same name on the port, with the same arguments, and returned the same return value.
@@ -29,12 +29,13 @@ directoryReader = function() {};
  	* @param {function} A callback that is passed an array of FileEntry and DirectoryEntry objects.
 	* @param {function} A callback that is called if an error occurs retrieving the directory listing. Invoked with a FileError object.
     * @RIPPLE
+	* @PB10+
 	* @BB10X
     * @example
     * Main script:
     *
     *
     */
-    directoryReader.readEntries(successCallback, errorCallback) {};
+    DirectoryReader.readEntries(successCallback, errorCallback) {};
 
 
