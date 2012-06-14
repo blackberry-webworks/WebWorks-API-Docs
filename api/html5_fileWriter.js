@@ -51,7 +51,7 @@ FileWriter = function() {};
     */
     FileWriter.prototype.postMessage = function(message) {};
 	
-	    /**
+	/**
     * @description  Aborts writing file.
     * @RIPPLE
 	* @BB10X
@@ -60,7 +60,7 @@ FileWriter = function() {};
     *
     *
     */
-    FileWriter.abort();
+    FileWriter.prototype.abort();
 	
     /**
     * @description  Moves the file pointer to the byte specified.
@@ -72,7 +72,7 @@ FileWriter = function() {};
     *
     *
     */
-    FileWriter.seek(byteLocation) {};	
+    FileWriter.prototype.seek(byteLocation) {};	
 
     /**
     * @description  Shortens the file to the length specified.
@@ -84,7 +84,7 @@ FileWriter = function() {};
     *
     *
     */
-    FileWriter.truncate(byte) {};
+    FileWriter.prototype.truncate(byte) {};
 
     /**
     * @description  Writes data to the file with a UTF-8 encoding.
@@ -96,7 +96,7 @@ FileWriter = function() {};
     *
     *
     */
-    FileWriter.write(stringtext) {};
+    FileWriter.prototype.write(stringtext) {};
 	
     /**
      * @field
