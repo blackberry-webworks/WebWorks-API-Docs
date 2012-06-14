@@ -61,17 +61,17 @@ FileError = {
 		 * @RIPPLE
 		 * @BB10X
 		 */
-		NOT_FOUND_ERR,
+		NOT_FOUND_ERR: NOT_FOUND_ERROR,
 
 		/**
 		 * @constant
 		 * @type String
-		 * @description
+		 * @description Security Error
 		 * @PB10+
 		 * @RIPPLE
 		 * @BB10X		 
 		 */
-		SECURITY_ERR,
+		SECURITY_ERR: SECURITY_ERR,
 
 		/**
 		 * @constant
