@@ -56,7 +56,7 @@ FileError = {
 		/**
 		 * @constant
 		 * @type String
-		 * @description
+		 * @description File/directory not found error
 		 * @PB10+
 		 * @RIPPLE
 		 * @BB10X
@@ -66,7 +66,7 @@ FileError = {
 		/**
 		 * @constant
 		 * @type String
-		 * @description Security Error
+		 * @description This is a security error code to be used in situations not covered by any other error codes.
 		 * @PB10+
 		 * @RIPPLE
 		 * @BB10X		 
@@ -76,100 +76,100 @@ FileError = {
 		/**
 		 * @constant
 		 * @type String
-		 * @description
+		 * @description This is returned when the read operation was aborted, typically with a call to abort() 
 		 * @PB10+
 		 * @RIPPLE
 		 * @BB10X		 
 		 */
-		ABORT_ERR,
+		ABORT_ERR: ABORT_ERR,
 
 		/**
 		 * @constant
 		 * @type String
-		 * @description
+		 * @description This is returned if the file cannot be read, typically due due to permission problems that occur after a reference to a file has been acquired (e.g. concurrent lock with another application).
 		 * @PB10+
 		 * @RIPPLE
 		 * @BB10X		 
 		 */
-		NOT_READABLE_ERR,
+		NOT_READABLE_ERR: NOT_READABLE_ERR,
 
 		/**
 		 * @constant
 		 * @type String
-		 * @description
+		 * @description returned when encoding error
 		 * @PB10+
 		 * @RIPPLE
 		 * @BB10X		 
 		 */
-		ENCODING_ERR,
+		ENCODING_ERR: ENCODING_ERR,
 
 		/**
 		 * @constant
 		 * @type String
-		 * @description
+		 * @description returned when file is read-only
 		 * @PB10+
 		 * @RIPPLE
 		 * @BB10X		 
 		 */
-		NO_MODIFICATION_ALLOWED_ERR,
+		NO_MODIFICATION_ALLOWED_ERR: NO_MODIFICATION_ALLOWED_ERR,
 
 		/**
 		 * @constant
 		 * @type String
-		 * @description
+		 * @description The file is in an invalid state is, and the object is unable to perform the action due to it.
 		 * @PB10+
 		 * @RIPPLE
 		 * @BB10X		 
 		 */
-		INVALID_STATE_ERR,
+		INVALID_STATE_ERR: INVALID_STATE_ERR,
 
 		/**
 		 * @constant
 		 * @type String
-		 * @description
+		 * @description Syntax Error
 		 * @PB10+
 		 * @RIPPLE
 		 * @BB10X		 
 		 */
-		SYNTAX_ERR,
+		SYNTAX_ERR: SYNTAX_ERR
 
 		/**
 		 * @constant
 		 * @type String
-		 * @description
+		 * @description Invalid modification error due to security or privacy
 		 * @PB10+
 		 * @RIPPLE
 		 * @BB10X		 
 		 */
-		INVALID_MODIFICATION_ERR,
+		INVALID_MODIFICATION_ERR: INVALID_MODIFICATION_ERR,
 
 		/**
 		 * @constant
 		 * @type String
-		 * @description
+		 * @description Error processing from asynchronous calls due to size
 		 * @PB10+
 		 * @RIPPLE
 		 * @BB10X		 
 		 */
-		QUOTA_EXCEEDED_ERR,
+		QUOTA_EXCEEDED_ERR: QUOTA_EXCEEDED_ERR,
 
 		/**
 		 * @constant
 		 * @type String
-		 * @description
+		 * @description Type mismatch error
 		 * @PB10+
 		 * @RIPPLE
 		 * @BB10X		 
 		 */
-		TYPE_MISMATCH_ERR,
+		TYPE_MISMATCH_ERR: TYPE_MISMATCH_ERR,
 
 		/**
 		 * @constant
 		 * @type String
-		 * @description
+		 * @description Directory already exists error
 		 * @PB10+
 		 * @RIPPLE
 		 * @BB10X		 
 		 */
-		PATH_EXISTS_ERR,
+		PATH_EXISTS_ERR: PATH_EXISTS_ERR,
 	};
