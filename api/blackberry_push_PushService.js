@@ -154,18 +154,18 @@ blackberry.push.PushService.prototype.destroyChannel = function(destroyChannelCa
 
 /**
 * <p>
-* Extracts the <code>PushPayload</code> from the passed in invoke object.
+* Extracts the <code>PushPayload</code> from the passed in invoke request.
 * </p>
 * <p>
 * A successful <code>create</code> must have been done before calling this function.
 * </p>
-* @param {Object} invokeObject The invoke object to parse.
+* @param {JSON} invokeRequest The invoke request to parse.
 * @returns {PushPayload} Returns the parsed out <code>PushPayload</code> object.
 * @BB10X
 * @example
-* var pushPayload = pushService.extractPushPayload(invokeObj);
+* var pushPayload = pushService.extractPushPayload(invokeRequest);
 */
-blackberry.push.PushService.prototype.extractPushPayload = function(invokeObject) { };
+blackberry.push.PushService.prototype.extractPushPayload = function(invokeRequest) { };
 
 /**
 * <p>
