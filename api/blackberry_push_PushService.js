@@ -54,6 +54,8 @@ blackberry.push.PushService = {};
 * When a SIM card change occurs, the channel will automatically be destroyed since this scenario may indicate the possibility of a new user using the device. 
 * Care should be taken by the application to handle this situation as well. For example, the application may wish to re-authenticate the user with the Push Initiator 
 * (if your Push Initiator implementation supports subscription) and then re-create the channel using <code>createChannel</code>. 
+* @throws {String} An exception is thrown if <code>create</code> is called more than once with different values for <code>options.invokeTargetId</code> and/or 
+* <code>options.appId</code>.
 * @BB10X
 * @static
 * @example 
@@ -63,8 +65,12 @@ blackberry.push.PushService = {};
 * // For an enterprise application (using the enterprise/BES PPG)
 * // var ops = { invokeTargetId : 'com.sample.pushtest.target' }; 
 * // or, with an application ID, var ops = { invokeTargetId : 'com.sample.pushtest.target', appId : 'appId1' };
-* 
-* blackberry.push.PushService.create(ops, successCallback, failCallback, simChangeCallback);
+* try {
+*     blackberry.push.PushService.create(ops, successCallback, failCallback, simChangeCallback);
+* } catch (err) {
+*     console.log("Create was called more than once with different values for options.invokeTargetId or options.appId.");
+*     console.log(err);
+* }
 *
 * function successCallback(pushService) {
 *    // The create operation was a success
@@ -164,6 +170,53 @@ blackberry.push.PushService.prototype.destroyChannel = function(destroyChannelCa
 * @BB10X
 * @example
 * var pushPayload = pushService.extractPushPayload(invokeRequest);
+* // pushPayload.data is of type Blob
+* // If the Blob is known to contain text, then do something like this:
+* blobToText(pushPayload.data, "UTF-8", textConversionCallback);
+* // If the Blob is known to contain binary, then do something like this to get an ArrayBuffer:
+* blobToArrayBuffer(pushPayload.data, binaryConversionCallback);
+* 
+* function blobToText(blob, encoding, callback) {
+*     var reader = new FileReader();
+*    	
+*      reader.onloadend = function(evt) {
+*          if (evt.target.readyState == FileReader.DONE) {
+*              if (evt.target.error == null) {
+*                  // No errors, get the result and call the callback
+*                  callback(e.target.result);
+*              } else {
+*                  console.log("Error converting Blob to string: " + evt.target.error);
+*              }
+*         }
+*     };
+*       
+*     reader.readAsText(blob, encoding);
+* }
+*
+* function textConversionCallback(str) {
+*     console.log("Data received: " + str);
+* }
+*
+* function blobToArrayBuffer(blob, callback) {
+*     var reader = new FileReader();
+*    	
+*     reader.onloadend = function(evt) {
+*         if (evt.target.readyState == FileReader.DONE) {
+*             if (evt.target.error == null) {
+*                 // No errors, get the result and call the callback
+*                 callback(e.target.result);
+*             } else {
+*                 console.log("Error converting Blob to ArrayBuffer: " + evt.target.error);
+*             }
+*         }
+*     };
+*        
+*     reader.readAsArrayBuffer(blob);
+* }
+*
+* function binaryConversionCallback(arrayBuffer) {
+*     // Process the ArrayBuffer containing binary content as needed
+* }
 */
 blackberry.push.PushService.prototype.extractPushPayload = function(invokeRequest) { };
 
