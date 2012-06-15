@@ -16,9 +16,7 @@
 
 /**
  * @toc {File} HTML5 FileError
- * @class FileError objects act as if they had an implicit MessagePort associated with them. This port is part of a channel that is set up when the worker is created and never be garbage collected before the Web Workers object. Only DedicatedWorker is supported. 
- * @constructor
- * @param {String} fileName The name of the javascript file to be executed by the worker.
+ * @class A 'FileError' object is set when an error occurs in any of the File API methods. 
  * @description A 'FileError' object is set when an error occurs in any of the File API methods.
 */
 FileError = function() {};
@@ -33,19 +31,30 @@ FileError = function() {};
     * Main script:
     *
     * &lt;script type="text/javascript"&gt;
-    *   var worker = new Worker('doWork.js');
-    *
-    *   worker.addEventListener('message', function(e) {
-    *        console.log('Worker said: ', e.data);
-    *    }, false);
-    *
+	*	function errorHandler(e) {
+			alert("error");
+			var msg = '';
+
+			switch (e.code) {
+				case FileError.NOT_FOUND_ERR:
+					msg = 'NOT_FOUND_ERR';
+					break;
+				case FileError.SECURITY_ERR:
+					msg = 'SECURITY_ERR';
+					break;
+				default:
+					msg = 'Unknown Error';
+					break;
+			};
+		};
+	alert(msg);
+ 	}
+
+	fileEntry.file(function (file) ( readfile, errorHandler);
+
+	*
     * &lt;/script&gt;
     *
-    *doWork.js (the worker):
-    *
-    *   self.addEventListener('message', function(e) {
-    *        self.postMessage(e.data);
-    *    }, false);
     *
     */
 /**
@@ -57,9 +66,6 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description File/directory not found error
-		 * @PB10+
-		 * @RIPPLE
-		 * @BB10X
 		 */
 		NOT_FOUND_ERR: NOT_FOUND_ERROR,
 
@@ -67,9 +73,6 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description This is a security error code to be used in situations not covered by any other error codes.
-		 * @PB10+
-		 * @RIPPLE
-		 * @BB10X		 
 		 */
 		SECURITY_ERR: SECURITY_ERR,
 
@@ -77,9 +80,6 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description This is returned when the read operation was aborted, typically with a call to abort() 
-		 * @PB10+
-		 * @RIPPLE
-		 * @BB10X		 
 		 */
 		ABORT_ERR: ABORT_ERR,
 
@@ -87,9 +87,6 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description This is returned if the file cannot be read, typically due due to permission problems that occur after a reference to a file has been acquired (e.g. concurrent lock with another application).
-		 * @PB10+
-		 * @RIPPLE
-		 * @BB10X		 
 		 */
 		NOT_READABLE_ERR: NOT_READABLE_ERR,
 
@@ -97,9 +94,6 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description returned when encoding error
-		 * @PB10+
-		 * @RIPPLE
-		 * @BB10X		 
 		 */
 		ENCODING_ERR: ENCODING_ERR,
 
@@ -107,9 +101,6 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description returned when file is read-only
-		 * @PB10+
-		 * @RIPPLE
-		 * @BB10X		 
 		 */
 		NO_MODIFICATION_ALLOWED_ERR: NO_MODIFICATION_ALLOWED_ERR,
 
@@ -117,9 +108,6 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description The file is in an invalid state is, and the object is unable to perform the action due to it.
-		 * @PB10+
-		 * @RIPPLE
-		 * @BB10X		 
 		 */
 		INVALID_STATE_ERR: INVALID_STATE_ERR,
 
@@ -127,9 +115,6 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description Syntax Error
-		 * @PB10+
-		 * @RIPPLE
-		 * @BB10X		 
 		 */
 		SYNTAX_ERR: SYNTAX_ERR
 
@@ -137,9 +122,6 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description Invalid modification error due to security or privacy
-		 * @PB10+
-		 * @RIPPLE
-		 * @BB10X		 
 		 */
 		INVALID_MODIFICATION_ERR: INVALID_MODIFICATION_ERR,
 
@@ -147,9 +129,6 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description Error processing from asynchronous calls due to size
-		 * @PB10+
-		 * @RIPPLE
-		 * @BB10X		 
 		 */
 		QUOTA_EXCEEDED_ERR: QUOTA_EXCEEDED_ERR,
 
@@ -157,9 +136,6 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description Type mismatch error
-		 * @PB10+
-		 * @RIPPLE
-		 * @BB10X		 
 		 */
 		TYPE_MISMATCH_ERR: TYPE_MISMATCH_ERR,
 
@@ -167,9 +143,6 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description Directory already exists error
-		 * @PB10+
-		 * @RIPPLE
-		 * @BB10X		 
 		 */
 		PATH_EXISTS_ERR: PATH_EXISTS_ERR,
 	};
