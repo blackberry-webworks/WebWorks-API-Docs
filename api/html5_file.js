@@ -16,11 +16,9 @@
 
 /**
  * @toc {File} HTML5 File
- * @class File objects act as if they had an implicit MessagePort associated with them. This port is part of a channel that is set up when the worker is created and never be garbage collected before the Web Workers object. Only DedicatedWorker is supported. 
- * @constructor
- * @param {String} fileName The name of the javascript file to be executed by the worker.
+ * @class File objects  provides functionatlity to be able to read, write and navigate file system hierarchies
+ * @constructedBy FileEntry.file
  * @description creates a new File Object 
- * @learns {Sample - Using HTML5 Web Worker } http://supportforums.blackberry.com/t5/Web-and-WebWorks-Development/Sample-Application-Using-HTML5-Web-Workers/ta-p/627078 Sample that demonstrates how to use the HTML5 Web Workers API [BlackBerry Developer Resource Center].
 */
 File = function() {};
 
