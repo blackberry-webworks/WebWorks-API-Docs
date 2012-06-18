@@ -16,7 +16,7 @@
 
 /**
  * @toc {File} HTML5 FileReader
- * @class 
+ * @namespace 
  * @param {String} fileName The name of the javascript file to be executed by the worker.
  * @description FileReader object allows the ability to read the contents of a file for manipulation
  /
@@ -38,7 +38,7 @@ FileReader = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileReader.result = undefined;
+    FileReader.prototype.result = undefined;
 	
     /**
      * @description An object containing errors. (FileError)
@@ -47,7 +47,7 @@ FileReader = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileReader.error = undefined;	
+    FileReader.prototype.error = undefined;	
 
     /**
      * @description  the function that is called when the read starts
@@ -56,7 +56,7 @@ FileReader = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileReader.onloadstart = undefined;
+    FileReader.prototype.onloadstart = undefined;
 	
     /**
      * @description  function that is called when the read has been sucessfully completed
@@ -65,7 +65,7 @@ FileReader = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileReader.onload = undefined;
+    FileReader.prototype.onload = undefined;
 
     /**
      * @description function that is called when the read has been aborted
@@ -74,7 +74,7 @@ FileReader = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileReader.onabort = undefined;
+    FileReader.prototype.onabort = undefined;
 
     /**
      * @description function that is called when the read has failed
@@ -83,7 +83,7 @@ FileReader = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileReader.onerror = undefined;
+    FileReader.prototype.onerror = undefined;
 
     /**
      * @description function that is called when file reading has been completed
@@ -92,7 +92,7 @@ FileReader = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileReader.onloadend = undefined;
+    FileReader.prototype.onloadend = undefined;
 
 	/**
 	 * @description function to abort the fileReading process

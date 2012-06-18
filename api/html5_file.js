@@ -21,33 +21,6 @@
  * @description creates a new File Object 
 */
 File = function() {};
-
-    /**
-    * @description  The postMessage() method on Web Workers objects invoked the method of the same name on the port, with the same arguments, and returned the same return value.
-    * @param {Object} message A message to post when worker is created.
-    * @PB10+
-    * @RIPPLE
-	* @BB10X
-    * @example
-    * Main script:
-    *
-    * &lt;script type="text/javascript"&gt;
-    *   var worker = new Worker('doWork.js');
-    *
-    *   worker.addEventListener('message', function(e) {
-    *        console.log('Worker said: ', e.data);
-    *    }, false);
-    *
-    * &lt;/script&gt;
-    *
-    *doWork.js (the worker):
-    *
-    *   self.addEventListener('message', function(e) {
-    *        self.postMessage(e.data);
-    *    }, false);
-    *
-    */
-    File.prototype.postMessage = function(message) {};
     
     /**
      * @field

@@ -26,9 +26,8 @@ fileEntry = function() {};
 
     /**
     * @description  returns information (metadata) regarding to the fileEntry
-    * @param {Object} message A message to post when worker is created.
-    * @callback {successCallBack} successCallBackFunction The callback function that will execute when the event occurs successfully.
-    * @callback {errorCallback} errorCallBackFunction The callback function that will execute when the event fails
+    * @callback {function} successCallBackFunction The callback function that will execute when the event occurs successfully.
+    * @callback {function} errorCallBackFunction The callback function that will execute when the event fails
     * @PB10+
     * @RIPPLE
 	* @BB10X
@@ -71,8 +70,8 @@ fileEntry = function() {};
 
     /**
      * @description deletes the file from the filesystem
-     * @param {successCallBack} Call function when the file is able to be removed.
-	 * @param {errorCallBack} Callback function when the file is unable to be removed. Invoked with a FileError object
+     * @param {function} Call function when the file is able to be removed.
+	 * @param {function} Callback function when the file is unable to be removed. Invoked with a FileError object
      * @PB10+
      * @RIPPLE
      * @BB10X

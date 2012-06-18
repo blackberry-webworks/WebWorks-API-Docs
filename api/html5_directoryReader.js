@@ -16,15 +16,18 @@
 
 /**
  * @toc {File} HTML5 DirectoryReader
- * @class
+ * @namespace
  * @description An object that lists files and directories in a directory.
+ * @RIPPLE
+ * @PB10+
+ * @BB10X
 */
 DirectoryReader = function() {};
 
     /**
     * @description function that reads the contents of a directory
- 	* @param {successCallback} successful callback function that is passed an array of FileEntry and DirectoryEntry objects
-	* @param {errorCallback} A callback that is called if an error occurs retrieving the directory listing. Invoked with a FileError object.
+ 	* @param {function} successful callback function that is passed an array of FileEntry and DirectoryEntry objects
+	* @param {function} A callback that is called if an error occurs retrieving the directory listing. Invoked with a FileError object.
     * @RIPPLE
 	* @PB10+
 	* @BB10X
