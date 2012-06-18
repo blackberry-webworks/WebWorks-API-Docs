@@ -16,6 +16,7 @@
 
 /**
  * @toc {File} HTML5 DirectoryReader
+ * @class
  * @description An object that lists files and directories in a directory.
 */
 DirectoryReader = function() {};

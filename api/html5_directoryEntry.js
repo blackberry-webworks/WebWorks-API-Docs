@@ -178,6 +178,7 @@ DirectoryEntry = function() {};
 	
 /**
  * @toc {File} HTML5 Flags
+ * @namespace
  * @description This object is used to indicate the the file or directory should be created or not. 
 */
 Flags = function() {};	

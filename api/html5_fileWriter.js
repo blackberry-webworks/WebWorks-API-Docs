@@ -16,6 +16,7 @@
 
 /**
  * @toc {File} HTML5 FileWriter
+ * @class
  * @param {String} fileName The name of the javascript file to be executed by the worker.
  * @description FileWriter object gives the capability to write to a file in the file system
  */

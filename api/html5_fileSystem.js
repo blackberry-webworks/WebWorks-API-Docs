@@ -16,6 +16,7 @@
 
 /**
  * @toc {File} HTML5 FileSystem
+ * @class
  * @constructedBy object that is returned when calling the window.requestFileSystem method
  * @description root FileSystem of the device
 */

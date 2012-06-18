@@ -16,6 +16,7 @@
 
 /**
  * @toc {File} HTML5 FileReader
+ * @class 
  * @param {String} fileName The name of the javascript file to be executed by the worker.
  * @description FileReader object allows the ability to read the contents of a file for manipulation
  /

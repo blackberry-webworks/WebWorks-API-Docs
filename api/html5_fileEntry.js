@@ -16,6 +16,7 @@
 
 /**
  * @toc {File} HTML5 FileEntry
+ * @class
  * @description Creates a new Worker object. 
  * @PB10+
  * @RIPPLE

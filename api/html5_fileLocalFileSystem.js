@@ -16,6 +16,7 @@
 
 /**
  * @toc {File} HTML5 LocalFileSystem
+ * @class 
  * @constructedBy window This objects methods are defined by the <b>window</b> object
  * @description This object provides a way to obtain root file systems.
 */
