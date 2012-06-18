@@ -16,20 +16,11 @@
 
 /**
  * @toc {File} HTML5 FileReader
- * @namespace 
- * @param {String} fileName The name of the javascript file to be executed by the worker.
- * @description FileReader object allows the ability to read the contents of a file for manipulation
- /
+ * @class 
+ * @namespace
+ * @description An object that lists out contents in a directory.
+*/
 FileReader = function() {};
-    
-    /**
-     * @description One of the three states the reader can be in EMPTY, LOADING or DONE.
-     * @type String
-     * @PB10+
-     * @RIPPLE
-	 * @BB10X
-     */
-    FileReader.readyState = undefined;
 
     /**
      * @description The contents of the file that has been read. 
@@ -118,8 +109,8 @@ FileReader = function() {};
 	 *	entry.file(win, fail);
 	 *
 	 */
-    FileReader.prototype.abort = function(){};
-
+    FileReader.prototype.abort = function () {};
+	
 	/**
 	 * @description function to read the file and return the data as a base64 encoded data url
 	 * @PB10+
@@ -134,4 +125,4 @@ FileReader = function() {};
 	 * @BB50+
 	 * @RIPPLE
 	 */
-    FileReader.prototype.readAsText = function(){};	
+    FileReader.prototype.readAsText = function(){};		
