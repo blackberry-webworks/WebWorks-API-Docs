@@ -16,8 +16,7 @@
 
 /**
  * @toc {File} HTML5 LocalFileSystem
- * @class This object provides a way to obtain root file systems.
- * @constructor
+ * @constructedBy window This objects methods are defined by the <b>window</b> object
  * @description This object provides a way to obtain root file systems.
 */
 LocalFileSystem = function() {};
@@ -57,7 +56,9 @@ LocalFileSystem = {
 
     /**
     * @description  Requests the filesystem. 
-    * @param 
+    * @param {string} location of file
+	* @param {successCallback} callback function that is invoked on successful request of a file system. Argument passed in is the FileSystem object
+	* @param {errorCallback} Optional callback for handling errors or when the request to obtain the file system is denied. Argument passed in is the FileError object
     * @PB10+
     * @RIPPLE
 	* @BB10X
@@ -65,6 +66,12 @@ LocalFileSystem = {
     * Main script:
     *
     * &lt;script type="text/javascript"&gt;
+	* function onInitFs(fs) {
+	*		console.log('Opened file system: ' + fs.name);
+	* }
+	*
+	* window.requestFileSystem(window.TEMPORARY, 5*1024*1024  onInitFs, errorHandler);    // 5*1024*1024 = 5MB
+	*
     *
     * &lt;/script&gt;
     *
@@ -74,7 +81,10 @@ LocalFileSystem = {
 	
     /**
     * @description  Requests the DirectoryEntry or FileEntry Object using local URI. 
-    * @param {Object} message A message to post when worker is created.
+    * @param {LocalFileSystem.constant} The type of storage requested (ie. temporary or persistent)
+	* @param {integer} size (in bytes) the app will require for storage
+	* @param {successCallback} callback function that is invoked on successful request of a file system. Argument passed in is the FileSystem object
+	* @param {errorCallback} Optional callback for handling errors or when the request to obtain the file system is denied. Argument passed in is the FileError object
     * @PB10+
     * @RIPPLE
 	* @BB10X
@@ -83,8 +93,11 @@ LocalFileSystem = {
     *
     * &lt;script type="text/javascript"&gt;
     *
-    * &lt;/script&gt;
-    *
+	* function onSuccess(fileEntry) {
+	*		console.log(fileEntry.name);
+	* }
+	*
+	* window.resolveLocalFileSystemURI("file:///example.txt", onSuccess, onError);    * &lt;/script&gt;
     *
     */
     LocalFileSystem.prototype.resolveLocalFileSystemURI  = function() {};

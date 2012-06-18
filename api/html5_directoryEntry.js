@@ -16,11 +16,8 @@
 
 /**
  * @toc {File} HTML5 DirectoryEntry
- * @class DirectoryEntry 
- * @constructor
- * @param {String} fileName The name of the javascript file to be executed by the worker.
- * @description Creates a new Worker object. 
- * @BB10X
+ * @constructedBy FileSystem.root
+ * @description This object represents a directory on a file system.
 */
 DirectoryEntry = function() {};
 
@@ -39,8 +36,8 @@ DirectoryEntry = function() {};
     DirectoryEntry.getMetadata = function(successCallBack, errorCallback) {};
 
 	/**
-    * @description  
-    * @param {DirectoryEntry} DirectoryEntry
+    * @description  Moves a directory to a different location. When moving the directory to a location where the name already exists, <b>moveTo</b> will attempt to overwrite it.
+    * @param {DirectoryEntry} The directory that you want to move
 	* @param {String} The new name of the directory. Defaults to the current name if unspecified. 
 	* @param {function} successCallback function to execute when it is successful
 	* @param {function} errorCallback function to execute when there is a failure
@@ -66,16 +63,16 @@ DirectoryEntry = function() {};
     DirectoryEntry.copyTo = function(parent, newName, successCallback, errorCallback) {};
     
     /**
-     * @description Returns a URI that can be used to locate the file.
+     * @description Returns a URL that can be used to locate the directory.
      * @type string
      * @PB10+
      * @RIPPLE
      * @BB10X
      */
-    DirectoryEntry.toURI = function() {};
+    DirectoryEntry.toURL = function() {};
 
     /**
-    * @description  
+    * @description function to delete a directory. 
  	* @param {function} successCallback function to execute when it is successful
 	* @param {function} errorCallback function to execute when there is a failure
     * @PB10+
@@ -85,7 +82,7 @@ DirectoryEntry = function() {};
     DirectoryEntry.remove = function(successCallback, errorCallback) {};
 		
     /**
-    * @description  
+    * @description  returns the parent DirectoryEntry
  	* @param {function} successCallback function to execute when it is successful
 	* @param {function} errorCallback function to execute when there is a failure
     * @PB10+
@@ -95,17 +92,18 @@ DirectoryEntry = function() {};
     DirectoryEntry.getParent = function(successCallback, errorCallback) {};
  
 	/**
-    * @description  Return a File object that represents the current state of the file that this FileEntry represents.
- 	* @param {function} successCallback function that is called with a File object. (Function)
-	* @param {function} errorCallback function to execute when there is an error during creating the File object. Invoked with a FileError object. (Function)
+    * @description  creates a new DirectoryReader to read contents in a directory
+	* @constructor constructor for directoryReader object
     * @PB10+
     * @RIPPLE
 	* @BB10X
     */
-    DirectoryEntry.createReader  = function(successCallback, errorCallback) {};
+    DirectoryEntry.createReader  = function() {};
 
 	/**
     * @description Create or look up a directory.
+	* @param {String} The path of the directory to be looked up or created
+	* @param {flags} Options to specify whether the directory is to be created if it doesn't exist
  	* @param {function} successCallback function that is called with a File object. (Function)
 	* @param {function} errorCallback function to execute when there is an error during creating the File object. Invoked with a FileError object. (Function)
     * @PB10+
@@ -115,14 +113,16 @@ DirectoryEntry = function() {};
     DirectoryEntry.getDirectory  = function(successCallback, errorCallback) {};
 
 	/**
-    * @description Create or look up a file.
+    * @description Creates or look up a file.
+	* @param {String} Path - path of the file to be looked up or created.
+	* @param {flags} Options - options to specify whether the file is created if it doesn't exist
  	* @param {function} successCallback function that is called with a File object. (Function)
 	* @param {function} errorCallback function to execute when there is an error during creating the File object. Invoked with a FileError object. (Function)
     * @PB10+
     * @RIPPLE
 	* @BB10X
     */
-    DirectoryEntry.getFile  = function(successCallback, errorCallback) {};
+    DirectoryEntry.getFile  = function(Path, Options, successCallback, errorCallback) {};
 
 	/**
     * @description Delete a directory and all of its contents.
@@ -135,24 +135,24 @@ DirectoryEntry = function() {};
     DirectoryEntry.removeRecursively  = function(successCallback, errorCallback) {};
 	
     /**
-     * @field
-     * @description Value is always false. {boolean}
-     * @type File
+     * @description Returns whether the object is a file or not. Value is always false. {boolean}
+	 * @field
+     * @type boolean
      * @PB10+
      * @RIPPLE
 	 * @BB10X
      */
-    DirectoryEntry.isFile = undefined;	
+    DirectoryEntry.isFile = false;	
 	
     /**
      * @field
-     * @description Value is always true. {boolean}
-     * @type File
+     * @description Returns whether the object is a directory or not. Value is always true. {boolean}
+     * @type boolean
      * @PB10+
      * @RIPPLE
 	 * @BB10X
      */
-    DirectoryEntry.isDirectory = undefined;	
+    DirectoryEntry.isDirectory = true;	
 	
     /**
      * @field
@@ -174,6 +174,29 @@ DirectoryEntry = function() {};
      */
     DirectoryEntry.filesystem = undefined;
 	
-
-
 	
+/**
+ * @toc {File} HTML5 Flags
+ * @description This object is used to indicate the the file or directory should be created or not. 
+*/
+Flags = function() {};	
+	
+    /**
+     * @field
+     * @description {boolean} Indicates whether the file or directory should be created or not, if it does not exist. 
+     * @type boolean
+     * @PB10+
+     * @RIPPLE
+	 * @BB10X
+     */
+    Flags.create = undefined;
+
+    /**
+     * @field
+     * @description {boolean} By itself, exclusive has no effect. Used with create, it causes the file or directory creation to fail if the target path already exists. 
+     * @type boolean
+     * @PB10+
+     * @RIPPLE
+	 * @BB10X
+     */
+    Flags.exclusive = undefined;	

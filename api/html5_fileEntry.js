@@ -16,89 +16,91 @@
 
 /**
  * @toc {File} HTML5 FileEntry
- * @class File objects act as if they had an implicit MessagePort associated with them. This port is part of a channel that is set up when the worker is created and never be garbage collected before the Web Workers object. Only DedicatedWorker is supported. 
- * @constructor
- * @param {String} fileName The name of the javascript file to be executed by the worker.
  * @description Creates a new Worker object. 
+ * @PB10+
+ * @RIPPLE
  * @BB10X
- * @learns {Sample - Using HTML5 Web Worker } http://supportforums.blackberry.com/t5/Web-and-WebWorks-Development/Sample-Application-Using-HTML5-Web-Workers/ta-p/627078 Sample that demonstrates how to use the HTML5 Web Workers API [BlackBerry Developer Resource Center].
-*/
+ */
 fileEntry = function() {};
 
     /**
-    * @description  returns the Metadata
+    * @description  returns information (metadata) regarding to the fileEntry
     * @param {Object} message A message to post when worker is created.
-    * @callback {function} successCallBackFunction The callback function that will execute when the event occurs successfully.
-    * @callback {function} failureCallBackFunction The callback function that will execute when the event fails
+    * @callback {successCallBack} successCallBackFunction The callback function that will execute when the event occurs successfully.
+    * @callback {errorCallback} errorCallBackFunction The callback function that will execute when the event fails
     * @PB10+
     * @RIPPLE
 	* @BB10X
-    * @example
-    * Main script:
-    *
-    * &lt;script type="text/javascript"&gt;
-    *   var worker = new Worker('doWork.js');
-    *
-    *   worker.addEventListener('message', function(e) {
-    *        console.log('Worker said: ', e.data);
-    *    }, false);
-    *
-    * &lt;/script&gt;
-    *
-    *doWork.js (the worker):
-    *
-    *   self.addEventListener('message', function(e) {
-    *        self.postMessage(e.data);
-    *    }, false);
-    *
     */
-    File.getMetadata = function(successCallBack, errorCallback) {};
+    fileEntry.getMetadata = function(successCallBack, errorCallback) {};
 
 	/**
-    * @description  
-    * @param {DirectoryEntry} DirectoryEntry
-	* @param {String} newName
+    * @description  moves a file to a different location on the file system
+    * @param {DirectoryEntry} parent directory to move the file to
+	* @param {String} newName The new name of the file.
 	* @param {function} successCallback function to execute when it is successful
 	* @param {function} errorCallback function to execute when there is a failure
     * @PB10+
     * @RIPPLE
 	* @BB10X	
-    * @example
-    * Main script:
 	*
 	*/
-	File.moveTo = function(parent, newName, successCallback, errorCallback) {};
+	fileEntry.moveTo = function(parent, newName, successCallback, errorCallback) {};
 
     /**
-    * @description  
-    * @param {DirectoryEntry} DirectoryEntry
-	* @param {String} newName
+    * @description Copy function to copy a file to another location in the file system.
+    * @param {DirectoryEntry} DirectoryEntry parent directory to copy the file to
+	* @param {String} newName New file name.
 	* @param {function} successCallback function to execute when it is successful
 	* @param {function} errorCallback function to execute when there is a failure
     * @PB10+
     * @RIPPLE
 	* @BB10X
     */
-    File.copyTo = function(parent, newName, successCallback, errorCallback) {};
+    fileEntry.copyTo = function(parent, newName, successCallback, errorCallback) {};
     
     /**
-     * @description Returns a URI that can be used to locate the file.
+     * @description Returns a URL that can be used to locate the file.
      * @type string
      * @PB10+
      * @RIPPLE
      * @BB10X
      */
-    File.toURI = function() {};
+    fileEntry.toURL = function() {};
 
     /**
-    * @description  
+     * @description deletes the file from the filesystem
+     * @param {successCallBack} Call function when the file is able to be removed.
+	 * @param {errorCallBack} Callback function when the file is unable to be removed. Invoked with a FileError object
+     * @PB10+
+     * @RIPPLE
+     * @BB10X
+     */
+    fileEntry.remove = function(successCallBack, errorCallBack) {};
+		
+    /**
+    * @description  returns the parent directoryEntry containing the specified fileEntry
  	* @param {function} successCallback function to execute when it is successful
 	* @param {function} errorCallback function to execute when there is a failure
     * @PB10+
     * @RIPPLE
 	* @BB10X
+	* @example
+	*
+	* function success(parent) {
+    *	console.log("Parent Name: " + parent.name);
+	* }
+	*
+	* function fail(error) {
+    * 	alert(error.code);
+	* }
+	*
+	* // Get the parent DirectoryEntry
+	* entry.getParent(success, fail);
+	*
+	*
     */
-    File.getParent = function(successCallback, errorCallback) {};
+    fileEntry.getParent = function(successCallback, errorCallback) {};
  
     /**
     * @description  creates the writer to write into the file
@@ -108,7 +110,7 @@ fileEntry = function() {};
     * @RIPPLE
 	* @BB10X
     */
-    File.createWriter  = function(successCallback, errorCallback) {};
+    fileEntry.createWriter  = function(successCallback, errorCallback) {};
 
 	/**
     * @description  Return a File object that represents the current state of the file that this FileEntry represents.
@@ -118,4 +120,4 @@ fileEntry = function() {};
     * @RIPPLE
 	* @BB10X
     */
-    File.file  = function(successCallback, errorCallback) {};
+    fileEntry.file  = function(successCallback, errorCallback) {};

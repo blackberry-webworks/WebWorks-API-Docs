@@ -16,49 +16,6 @@
 
 /**
  * @toc {File} HTML5 FileError
- * @class A 'FileError' object is set when an error occurs in any of the File API methods. 
- * @description A 'FileError' object is set when an error occurs in any of the File API methods.
-*/
-FileError = function() {};
-
-    /**
-    * @description  The postMessage() method on Web Workers objects invoked the method of the same name on the port, with the same arguments, and returned the same return value.
-    * @param {Object} message A message to post when worker is created.
-    * @PB10+
-    * @RIPPLE
-	* @BB10X
-    * @example
-    * Main script:
-    *
-    * &lt;script type="text/javascript"&gt;
-	*	function errorHandler(e) {
-			alert("error");
-			var msg = '';
-
-			switch (e.code) {
-				case FileError.NOT_FOUND_ERR:
-					msg = 'NOT_FOUND_ERR';
-					break;
-				case FileError.SECURITY_ERR:
-					msg = 'SECURITY_ERR';
-					break;
-				default:
-					msg = 'Unknown Error';
-					break;
-			};
-		};
-	alert(msg);
- 	}
-
-	fileEntry.file(function (file) ( readfile, errorHandler);
-
-	*
-    * &lt;/script&gt;
-    *
-    *
-    */
-/**
- * @toc {File} HTML5 FileError
  * @namespace Errors in the asynchronous File API are reported using callbacks that have a <b>FileError</b> object as one of their arguments.
  */
 FileError = {
@@ -66,6 +23,8 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description File/directory not found error
+		 * @PB10+
+		 * @BB10X
 		 */
 		NOT_FOUND_ERR: NOT_FOUND_ERROR,
 
@@ -73,6 +32,8 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description This is a security error code to be used in situations not covered by any other error codes.
+		 * @PB10+
+		 * @BB10X
 		 */
 		SECURITY_ERR: SECURITY_ERR,
 
@@ -80,13 +41,17 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description This is returned when the read operation was aborted, typically with a call to abort() 
+		 * @PB10+
+		 * @BB10X
 		 */
 		ABORT_ERR: ABORT_ERR,
 
 		/**
 		 * @constant
 		 * @type String
-		 * @description This is returned if the file cannot be read, typically due due to permission problems that occur after a reference to a file has been acquired (e.g. concurrent lock with another application).
+		 * @description This is returned if the file cannot be read, typically due to permission problems that occur after a reference to a file has been acquired (e.g. concurrent lock with another application).
+		 * @PB10+
+		 * @BB10X
 		 */
 		NOT_READABLE_ERR: NOT_READABLE_ERR,
 
@@ -94,6 +59,8 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description returned when encoding error
+		 * @PB10+
+		 * @BB10X
 		 */
 		ENCODING_ERR: ENCODING_ERR,
 
@@ -101,6 +68,8 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description returned when file is read-only
+		 * @PB10+
+		 * @BB10X
 		 */
 		NO_MODIFICATION_ALLOWED_ERR: NO_MODIFICATION_ALLOWED_ERR,
 
@@ -108,6 +77,8 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description The file is in an invalid state is, and the object is unable to perform the action due to it.
+		 * @PB10+
+		 * @BB10X
 		 */
 		INVALID_STATE_ERR: INVALID_STATE_ERR,
 
@@ -115,6 +86,8 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description Syntax Error
+		 * @PB10+
+		 * @BB10X
 		 */
 		SYNTAX_ERR: SYNTAX_ERR
 
@@ -122,6 +95,8 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description Invalid modification error due to security or privacy
+		 * @PB10+
+		 * @BB10X
 		 */
 		INVALID_MODIFICATION_ERR: INVALID_MODIFICATION_ERR,
 
@@ -129,6 +104,8 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description Error processing from asynchronous calls due to size
+		 * @PB10+
+		 * @BB10X
 		 */
 		QUOTA_EXCEEDED_ERR: QUOTA_EXCEEDED_ERR,
 
@@ -136,6 +113,8 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description Type mismatch error
+		 * @PB10+
+		 * @BB10X
 		 */
 		TYPE_MISMATCH_ERR: TYPE_MISMATCH_ERR,
 
@@ -143,6 +122,8 @@ FileError = {
 		 * @constant
 		 * @type String
 		 * @description Directory already exists error
+		 * @PB10+
+		 * @BB10X
 		 */
 		PATH_EXISTS_ERR: PATH_EXISTS_ERR,
 	};
