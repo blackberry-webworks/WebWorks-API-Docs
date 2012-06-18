@@ -23,19 +23,10 @@
 Metadata = function() {};
 
     /**
-    * @description  The postMessage() method on Web Workers objects invoked the method of the same name on the port, with the same arguments, and returned the same return value.
-    * @param {Object} message A message to post when worker is created.
+    * @description  returns
     * @PB10+
     * @RIPPLE
 	* @BB10X
-    * @example
-    * Main script:
-    *
-    * &lt;script type="text/javascript"&gt;
-    *
-    * &lt;/script&gt;
-    *
-    *
     */
     Metadata.prototype.getMetadata  = function() {};
    

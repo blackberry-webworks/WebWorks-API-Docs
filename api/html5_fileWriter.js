@@ -16,48 +16,15 @@
 
 /**
  * @toc {File} HTML5 FileWriter
- * @class File objects act as if they had an implicit MessagePort associated with them. This port is part of a channel that is set up when the worker is created and never be garbage collected before the Web Workers object. Only DedicatedWorker is supported. 
- * @constructor
  * @param {String} fileName The name of the javascript file to be executed by the worker.
- * @description creates a new File Object 
- * @learns {Sample - Using HTML5 Web Worker } http://supportforums.blackberry.com/t5/Web-and-WebWorks-Development/Sample-Application-Using-HTML5-Web-Workers/ta-p/627078 Sample that demonstrates how to use the HTML5 Web Workers API [BlackBerry Developer Resource Center].
-*/
+ * @description FileWriter object gives the capability to write to a file in the file system
+ */
 FileWriter = function() {};
 
-    /**
-    * @description  The postMessage() method on Web Workers objects invoked the method of the same name on the port, with the same arguments, and returned the same return value.
-    * @param {Object} message A message to post when worker is created.
-    * @PB10+
-    * @RIPPLE
-	* @BB10X
-    * @example
-    * Main script:
-    *
-    * &lt;script type="text/javascript"&gt;
-    *   var worker = new Worker('doWork.js');
-    *
-    *   worker.addEventListener('message', function(e) {
-    *        console.log('Worker said: ', e.data);
-    *    }, false);
-    *
-    * &lt;/script&gt;
-    *
-    *doWork.js (the worker):
-    *
-    *   self.addEventListener('message', function(e) {
-    *        self.postMessage(e.data);
-    *    }, false);
-    *
-    */
-    FileWriter.prototype.postMessage = function(message) {};
-	
 	/**
     * @description  Aborts writing file.
-    * @RIPPLE
+    * @PB10+
 	* @BB10X
-    * @example
-    * Main script:
-    *
     *
     */
     FileWriter.prototype.abort();
@@ -67,9 +34,6 @@ FileWriter = function() {};
     * @param {byte} 
     * @RIPPLE
 	* @BB10X
-    * @example
-    * Main script:
-    *
     *
     */
     FileWriter.prototype.seek(byteLocation) {};	
@@ -79,9 +43,6 @@ FileWriter = function() {};
     * @param {byte} 
     * @RIPPLE
 	* @BB10X
-    * @example
-    * Main script:
-    *
     *
     */
     FileWriter.prototype.truncate(byte) {};
@@ -91,17 +52,14 @@ FileWriter = function() {};
     * @param {string} 
     * @RIPPLE
 	* @BB10X
-    * @example
-    * Main script:
-    *
     *
     */
     FileWriter.prototype.write(stringtext) {};
 	
     /**
-     * @field
+	 * @field
      * @description One of the three states the reader can be in INIT, WRITING or DONE.
-     * @type File
+     * @type String
      * @PB10+
      * @RIPPLE
 	 * @BB10X
@@ -120,8 +78,8 @@ FileWriter = function() {};
 	
     /**
      * @field
-     * @description An object containing errors. (FileError)
-     * @type File
+     * @description lenght of the file to be written
+     * @type Long
      * @PB10+
      * @RIPPLE
 	 * @BB10X
@@ -130,60 +88,80 @@ FileWriter = function() {};
 
     /**
      * @field
-     * @description 
-     * @type File
+     * @description current position of the file pointer
+     * @type Long
      * @PB10+
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.onloadstart = undefined;
+    FileWriter.position = undefined;
 	
     /**
      * @field
-     * @description
-     * @type File
+     * @description object containing error
+     * @type FileError
      * @PB10+
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.onprogress = undefined;	
+    FileWriter.error = undefined;	
 
     /**
      * @field
-     * @description 
-     * @type File
+     * @description function called when the file writing starts
+     * @type function
      * @PB10+
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.onload = undefined;
+    FileWriter.onwritestart = undefined;
 
     /**
      * @field
-     * @description
-     * @type File
+     * @description function called when writing is in progress
+     * @type function
+     * @PB10+
+     * @RIPPLE
+	 * @BB10X
+     */
+    FileWriter.onprogress = undefined;
+
+    /**
+     * @field
+     * @description function called when the request has completed successfully
+     * @type function
+     * @PB10+
+     * @RIPPLE
+	 * @BB10X
+     */
+    FileWriter.onwrite = undefined;
+
+    /**
+     * @field
+     * @description function called when the file writing has been aborted
+     * @type function
      * @PB10+
      * @RIPPLE
 	 * @BB10X
      */
     FileWriter.onabort = undefined;
 
-    /**
+	/**
      * @field
-     * @description 
-     * @type File
+     * @description function called when there is an error during the file writing
+     * @type function
      * @PB10+
      * @RIPPLE
 	 * @BB10X
      */
     FileWriter.onerror = undefined;
 
-    /**
+	/**
      * @field
-     * @description 
-     * @type File
+     * @description function called when file writing has been completed
+     * @type function
      * @PB10+
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.onloadend = undefined;
+    FileWriter.onwriteend = undefined;

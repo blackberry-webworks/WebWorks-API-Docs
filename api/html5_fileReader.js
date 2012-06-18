@@ -23,7 +23,7 @@ FileReader = function() {};
     
     /**
      * @description One of the three states the reader can be in EMPTY, LOADING or DONE.
-     * @type File
+     * @type String
      * @PB10+
      * @RIPPLE
 	 * @BB10X
@@ -40,9 +40,8 @@ FileReader = function() {};
     FileReader.result = undefined;
 	
     /**
-     * @field
      * @description An object containing errors. (FileError)
-     * @type File
+     * @type FileError
      * @PB10+
      * @RIPPLE
 	 * @BB10X
@@ -50,8 +49,7 @@ FileReader = function() {};
     FileReader.error = undefined;	
 
     /**
-     * @field
-     * @description 
+     * @description  the function that is called when the read starts
      * @type File
      * @PB10+
      * @RIPPLE
@@ -60,19 +58,8 @@ FileReader = function() {};
     FileReader.onloadstart = undefined;
 	
     /**
-     * @field
-     * @description
-     * @type File
-     * @PB10+
-     * @RIPPLE
-	 * @BB10X
-     */
-    FileReader.onprogress = undefined;	
-
-    /**
-     * @field
-     * @description 
-     * @type File
+     * @description  function that is called when the read has been sucessfully completed
+     * @type function
      * @PB10+
      * @RIPPLE
 	 * @BB10X
@@ -80,9 +67,8 @@ FileReader = function() {};
     FileReader.onload = undefined;
 
     /**
-     * @field
-     * @description
-     * @type File
+     * @description function that is called when the read has been aborted
+     * @type function
      * @PB10+
      * @RIPPLE
 	 * @BB10X
@@ -90,9 +76,8 @@ FileReader = function() {};
     FileReader.onabort = undefined;
 
     /**
-     * @field
-     * @description 
-     * @type File
+     * @description function that is called when the read has failed
+     * @type Function
      * @PB10+
      * @RIPPLE
 	 * @BB10X
@@ -100,11 +85,52 @@ FileReader = function() {};
     FileReader.onerror = undefined;
 
     /**
-     * @field
-     * @description 
-     * @type File
+     * @description function that is called when file reading has been completed
+     * @type function
      * @PB10+
      * @RIPPLE
 	 * @BB10X
      */
     FileReader.onloadend = undefined;
+
+	/**
+	 * @description function to abort the fileReading process
+	 * @PB10+
+	 * @BB50+
+	 * @RIPPLE
+	 * @example
+	 * function win(file) {
+     *		var reader = new FileReader();
+	 *		reader.onloadend = function(evt) {
+     *			console.log("read success");
+     *			console.log(evt.target.result);
+     *		};
+	 * 
+	 *		reader.readAsText(file);
+	 *  	reader.abort();
+	 *  };
+	 *
+	 *	function fail(error) {
+	 *		console.log(error.code);
+	 *	}
+	 *
+	 *	entry.file(win, fail);
+	 *
+	 */
+    FileReader.prototype.abort = function(){};
+
+	/**
+	 * @description function to read the file and return the data as a base64 encoded data url
+	 * @PB10+
+	 * @BB50+
+	 * @RIPPLE
+	 */
+    FileReader.prototype.readAsDataURL = function(){};
+	
+	/**
+	 * @description function to read the text file
+	 * @PB10+
+	 * @BB50+
+	 * @RIPPLE
+	 */
+    FileReader.prototype.readAsText = function(){};	
