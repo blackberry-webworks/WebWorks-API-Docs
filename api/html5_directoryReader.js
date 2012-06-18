@@ -18,6 +18,7 @@
  * @toc {File} HTML5 DirectoryReader
  * @namespace
  * @description An object that lists files and directories in a directory.
+ * @namespace This object provides functions
  * @RIPPLE
  * @PB10+
  * @BB10X
