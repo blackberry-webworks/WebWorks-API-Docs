@@ -16,14 +16,13 @@
 
 /**
  * @toc {File} HTML5 Metadata
- * @class Object supplies information regarding to the state of file or directory
- * @constructor
+ * @class 
  * @description This object provides some information regardignto the state of the file or directory object
 */
 Metadata = function() {};
 
     /**
-    * @description  returns
+    * @description  returns file
     * @PB10+
     * @RIPPLE
 	* @BB10X

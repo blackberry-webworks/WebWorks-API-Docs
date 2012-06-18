@@ -16,6 +16,7 @@
 
 /**
  * @toc {File} HTML5 DirectoryEntry
+ * @class
  * @constructedBy FileSystem.root
  * @description This object represents a directory on a file system.
 */
