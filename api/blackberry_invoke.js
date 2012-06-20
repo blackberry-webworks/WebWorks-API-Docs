@@ -15,6 +15,7 @@
 */
 
 /**
+ * @beta
  * @namespace The Invoke object contains methods that interact with other applications.
  * <p/>
  * On BlackBerry OS 5.0+ and BlackBerry PlayBook 1.0+, the {@link blackberry.invoke.invoke^2} method on the invoke object allows you to pass arguments to the target application. </br>The types of arguments can be one of: {@link blackberry.invoke.AddressBookArguments}, {@link blackberry.invoke.BrowserArguments},
@@ -28,7 +29,6 @@
 blackberry.invoke = {
 
 		/**
-		 * @beta
 		 * @description Invokes another application
 		 * @param {Object} request Object literal that specifies what to invoke. None of the fields are required. Refer to the example code for more information.
 		 * @param {String} [request.target] The id that identifies the component to invoke. If target is omitted, the invocation framework would perform brokering based on the specified action, type, URI or data to locate an appropriate target to invoke.
@@ -134,7 +134,6 @@ blackberry.invoke = {
 		invoke : function(appType, args){},
 
 		/**
-		 * @beta
 		 * @type String
 		 * @constant
 		 * @BB10X
@@ -144,7 +143,6 @@ blackberry.invoke = {
 		ACTION_OPEN: "",
 
 		/**
-		 * @beta
 		 * @type String
 		 * @constant
 		 * @BB10X
@@ -154,7 +152,6 @@ blackberry.invoke = {
 		ACTION_SHARE: "",
 
 		/**
-		 * @beta
 		 * @type String
 		 * @constant
 		 * @BB10X
