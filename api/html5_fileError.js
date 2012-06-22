@@ -15,7 +15,7 @@
 */
 
 /**
- * @toc {File} HTML5 FileError
+ * @toc {IO} HTML5 FileError
  * @class
  * @namespace Errors in the asynchronous File API are reported using callbacks that have a <b>FileError</b> object as one of their arguments.
  */

@@ -15,33 +15,13 @@
 */
 
 /**
- * @toc {File} HTML5 FileSystem
+ * @toc {IO} HTML5 FileSystem
  * @class
- * @constructedBy object that is returned when calling the window.requestFileSystem method
+ * @constructedBy window.requestFileSystem method
  * @description root FileSystem of the device
 */
 FileSystem = function() {};
 
-    /**
-    * @description  The object that describes the FileSystem. From this object you get the root directory of the file system
-    * @PB10+
-    * @RIPPLE
-	* @BB10X
-    * @example
-    * Main script:
-    *
-    * function onSuccess(fileSystem) {
-	*	console.log(fileSystem.name);
-	*	console.log(fileSystem.root.name);
-	* }
-	*
-	* // request the persistent file system
-	* window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, null);
-	*
-    *
-    */
-    File.prototype.FileSystem = function() {};
-    
     /**
      * @description The name of the file system
      * @type String
@@ -49,7 +29,7 @@ FileSystem = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileSystem.name = undefined;
+    FileSystem.prototype.name = undefined;
 
     /**
      * @description The root directory of the file system
@@ -57,6 +37,5 @@ FileSystem = function() {};
      * @PB10+
      * @RIPPLE
 	 * @BB10X
-	 * @BB50+
      */
-    FileSystem.root = undefined;
+    FileSystem.prototype.root = undefined;

@@ -15,9 +15,9 @@
 */
 
 /**
- * @toc {File} HTML5 FileEntry
+ * @toc {IO} HTML5 FileEntry
  * @class
- * @description Creates a new Worker object. 
+ * @description An object that represents a file on the filesystem. 
  * @PB10+
  * @RIPPLE
  * @BB10X
@@ -26,38 +26,38 @@ fileEntry = function() {};
 
     /**
     * @description  returns information (metadata) regarding to the fileEntry
-    * @callback {function} successCallBackFunction The callback function that will execute when the event occurs successfully.
-    * @callback {function} errorCallBackFunction The callback function that will execute when the event fails
+    * @callback {successCallback} callback function that will execute when the event occurs successfully.
+    * @callback {errorCallback} callback function that will execute when the event fails
     * @PB10+
     * @RIPPLE
 	* @BB10X
     */
-    fileEntry.getMetadata = function(successCallBack, errorCallback) {};
+    fileEntry.prototype.getMetadata = function(successCallBack, errorCallback) {};
 
 	/**
     * @description  moves a file to a different location on the file system
     * @param {DirectoryEntry} parent directory to move the file to
 	* @param {String} newName The new name of the file.
-	* @param {function} successCallback function to execute when it is successful
-	* @param {function} errorCallback function to execute when there is a failure
+	* @callback {successCallback} callback function to execute when it is successful
+	* @callback {errorCallback} callback function to execute when there is a failure
     * @PB10+
     * @RIPPLE
 	* @BB10X	
 	*
 	*/
-	fileEntry.moveTo = function(parent, newName, successCallback, errorCallback) {};
+	fileEntry.prototype.moveTo = function(parent, newName, successCallback, errorCallback) {};
 
     /**
     * @description Copy function to copy a file to another location in the file system.
-    * @param {DirectoryEntry} DirectoryEntry parent directory to copy the file to
+    * @param {DirectoryEntry} parent directory to copy the file to
 	* @param {String} newName New file name.
-	* @param {function} successCallback function to execute when it is successful
-	* @param {function} errorCallback function to execute when there is a failure
+	* @callback {successCallback} callback function to execute when it is successful
+	* @param {errorCallback} callback function to execute when there is a failure
     * @PB10+
     * @RIPPLE
 	* @BB10X
     */
-    fileEntry.copyTo = function(parent, newName, successCallback, errorCallback) {};
+    fileEntry.prototype.copyTo = function(parent, newName, successCallback, errorCallback) {};
     
     /**
      * @description Returns a URL that can be used to locate the file.
@@ -66,22 +66,22 @@ fileEntry = function() {};
      * @RIPPLE
      * @BB10X
      */
-    fileEntry.toURL = function() {};
+    fileEntry.prototype.toURL = function() {};
 
     /**
      * @description deletes the file from the filesystem
-     * @param {function} Call function when the file is able to be removed.
-	 * @param {function} Callback function when the file is unable to be removed. Invoked with a FileError object
+     * @callback {successCallback} Callback function when the file is successful
+     * @callback {errorCallback} Callback function when there is a failure 
      * @PB10+
      * @RIPPLE
      * @BB10X
      */
-    fileEntry.remove = function(successCallBack, errorCallBack) {};
+    fileEntry.prototype.remove = function(successCallBack, errorCallBack) {};
 		
     /**
     * @description  returns the parent directoryEntry containing the specified fileEntry
- 	* @param {function} successCallback function to execute when it is successful
-	* @param {function} errorCallback function to execute when there is a failure
+ 	* @callback {successCallback} callback function to execute when it is successful
+	* @callback {errorCallback} callback function to execute when there is a failure
     * @PB10+
     * @RIPPLE
 	* @BB10X
@@ -100,24 +100,24 @@ fileEntry = function() {};
 	*
 	*
     */
-    fileEntry.getParent = function(successCallback, errorCallback) {};
+    fileEntry.prototype.getParent = function(successCallback, errorCallback) {};
  
     /**
     * @description  creates the writer to write into the file
- 	* @param {function} successCallback function that is called with a FileWriter object. (Function)
-	* @param {function} errorCallback function to execute when there is a failure. Invoked with a FileError object. (Function)
+    * @callback {successCallback} callback function that is called with a FileWriter object. 
+    * @callback {errorCallback} callback function to execute when there is a failure. Invoked with a FileError object. 
     * @PB10+
     * @RIPPLE
 	* @BB10X
     */
-    fileEntry.createWriter  = function(successCallback, errorCallback) {};
+    fileEntry.prototype.createWriter  = function(successCallback, errorCallback) {};
 
 	/**
     * @description  Return a File object that represents the current state of the file that this FileEntry represents.
- 	* @param {function} successCallback function that is called with a File object. (Function)
-	* @param {function} errorCallback function to execute when there is an error during creating the File object. Invoked with a FileError object. (Function)
+    * @callback {successCallback} callback function that is called with a File object. 
+    * @callback {errorCallback} callback function to execute when there is an error during creating the File object. Invoked with a FileError object. (Function)
     * @PB10+
     * @RIPPLE
 	* @BB10X
     */
-    fileEntry.file  = function(successCallback, errorCallback) {};
+    fileEntry.prototype.file  = function(successCallback, errorCallback) {};

@@ -15,47 +15,47 @@
 */
 
 /**
- * @toc {File} HTML5 FileWriter
+ * @toc {IO} HTML5 FileWriter
  * @class
  * @param {String} fileName The name of the javascript file to be executed by the worker.
  * @description FileWriter object gives the capability to write to a file in the file system
  */
 FileWriter = function() {};
 
-	/**
+    /**
     * @description  Aborts writing file.
     * @PB10+
 	* @BB10X
     *
     */
-    FileWriter.prototype.abort();
+    FileWriter.prototype.abort = function() {};
 	
     /**
     * @description  Moves the file pointer to the byte specified.
-    * @param {byte} 
+    * @param {byte} pointer moves the pointer to the byte location specified
     * @RIPPLE
 	* @BB10X
     *
     */
-    FileWriter.prototype.seek(byteLocation) {};	
+    FileWriter.prototype.seek = function(byteLocation) {};	
 
     /**
     * @description  Shortens the file to the length specified.
-    * @param {byte} 
+    * @param {byte} pointer moved the end of file pointer to the location specified
     * @RIPPLE
 	* @BB10X
     *
     */
-    FileWriter.prototype.truncate(byte) {};
+    FileWriter.prototype.truncate = function(byte) {};
 
     /**
     * @description  Writes data to the file with a UTF-8 encoding.
-    * @param {string} 
+    * @param {string} data written to the file in UTF-8 encoding
     * @RIPPLE
 	* @BB10X
     *
     */
-    FileWriter.prototype.write(stringtext) {};
+    FileWriter.prototype.write = function(stringtext) {};
 	
     /**
 	 * @field
@@ -65,27 +65,27 @@ FileWriter = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.readyState = undefined;
+    FileWriter.prototype.readyState = undefined;
 
     /**
      * @field
-     * @description The name of the file to be written
+     * @description The name of the file to be written to
      * @type String
      * @PB10+
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.fileName = undefined;
+    FileWriter.prototype.fileName = undefined;
 	
     /**
      * @field
-     * @description lenght of the file to be written
+     * @description lengh of the file to be written
      * @type Long
      * @PB10+
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.length = undefined;	
+    FileWriter.prototype.length = undefined;	
 
     /**
      * @field
@@ -95,7 +95,7 @@ FileWriter = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.position = undefined;
+    FileWriter.prototype.position = undefined;
 	
     /**
      * @field
@@ -105,7 +105,7 @@ FileWriter = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.error = undefined;	
+    FileWriter.prototype.error = undefined;	
 
     /**
      * @field
@@ -115,7 +115,7 @@ FileWriter = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.onwritestart = undefined;
+    FileWriter.prototype.onwritestart = undefined;
 
     /**
      * @field
@@ -125,7 +125,7 @@ FileWriter = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.onprogress = undefined;
+    FileWriter.prototype.onprogress = undefined;
 
     /**
      * @field
@@ -135,7 +135,7 @@ FileWriter = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.onwrite = undefined;
+    FileWriter.prototype.onwrite = undefined;
 
     /**
      * @field
@@ -145,7 +145,7 @@ FileWriter = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.onabort = undefined;
+    FileWriter.prototype.onabort = undefined;
 
 	/**
      * @field
@@ -155,7 +155,7 @@ FileWriter = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.onerror = undefined;
+    FileWriter.prototype.onerror = undefined;
 
 	/**
      * @field
@@ -165,4 +165,4 @@ FileWriter = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    FileWriter.onwriteend = undefined;
+    FileWriter.prototype.onwriteend = undefined;

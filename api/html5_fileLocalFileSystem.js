@@ -15,29 +15,12 @@
 */
 
 /**
- * @toc {File} HTML5 LocalFileSystem
+ * @toc {IO} HTML5 LocalFileSystem
  * @class 
- * @constructedBy window This objects methods are defined by the <b>window</b> object
- * @description This object provides a way to obtain root file systems.
+ * @description This object provides a way to obtain root file system
+ * @constructedBy window.requestFileSystem
 */
 LocalFileSystem = function() {};
-
-    /**
-    * @description  The postMessage() method on Web Workers objects invoked the method of the same name on the port, with the same arguments, and returned the same return value.
-    * @param {Object} message A message to post when worker is created.
-    * @PB10+
-    * @RIPPLE
-	* @BB10X
-    * @example
-    * Main script:
-    *
-    * &lt;script type="text/javascript"&gt;
-    *
-    * &lt;/script&gt;
-    *
-    *
-    */
-    LocalFileSystem.prototype.requestFileSystem  = function() {};
 
 LocalFileSystem = {
 		/**
@@ -57,9 +40,9 @@ LocalFileSystem = {
 
     /**
     * @description  Requests the filesystem. 
-    * @param {string} location of file
-	* @param {successCallback} callback function that is invoked on successful request of a file system. Argument passed in is the FileSystem object
-	* @param {errorCallback} Optional callback for handling errors or when the request to obtain the file system is denied. Argument passed in is the FileError object
+    * @param {string} String to indicate the LocalFileSystem.type (ie. LocalFileSystem.PERSISTENT or LocalFileSystem.TEMPORARY)
+    * @callback {successCallback} callback function that is invoked on successful request of a file system. Argument passed in is the FileSystem object
+    * @callback {errorCallback} callback function for handling errors or when the request to obtain the file system is denied. Argument passed in is the FileError object
     * @PB10+
     * @RIPPLE
 	* @BB10X
@@ -77,15 +60,15 @@ LocalFileSystem = {
     * &lt;/script&gt;
     *
     */
-    LocalFileSystem.prototype.requestFileSystem  = function() {};
+    LocalFileSystem.prototype.requestFileSystem  = function(filetype, successCallback, errorCallback) {};
 
 	
     /**
     * @description  Requests the DirectoryEntry or FileEntry Object using local URI. 
-    * @param {LocalFileSystem.constant} The type of storage requested (ie. temporary or persistent)
+    * @param {String} Full path and name of file
 	* @param {integer} size (in bytes) the app will require for storage
-	* @param {successCallback} callback function that is invoked on successful request of a file system. Argument passed in is the FileSystem object
-	* @param {errorCallback} Optional callback for handling errors or when the request to obtain the file system is denied. Argument passed in is the FileError object
+    * @callback {successCallback} callback function that is invoked on successful request of a file system. Argument passed in is the FileSystem object
+    * @callback {errorCallback} Optional callback for handling errors or when the request to obtain the file system is denied. Argument passed in is the FileError object
     * @PB10+
     * @RIPPLE
 	* @BB10X
@@ -101,5 +84,4 @@ LocalFileSystem = {
 	* window.resolveLocalFileSystemURI("file:///example.txt", onSuccess, onError);    * &lt;/script&gt;
     *
     */
-    LocalFileSystem.prototype.resolveLocalFileSystemURI  = function() {};
-	
+    LocalFileSystem.prototype.resolveLocalFileSystemURI  = function( String, successCallback, errorCallback) {};

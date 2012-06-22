@@ -15,7 +15,7 @@
 */
 
 /**
- * @toc {File} HTML5 Window
+ * @toc {IO} HTML5 Window
  * @class Web Workers objects act as if they had an implicit MessagePort associated with them. This port is part of a channel that is set up when the worker is created and never be garbage collected before the Web Workers object. Only DedicatedWorker is supported. 
  * @constructor
  * @param {String} fileName The name of the javascript file to be executed by the worker.

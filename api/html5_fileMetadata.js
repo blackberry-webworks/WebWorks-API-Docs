@@ -15,23 +15,15 @@
 */
 
 /**
- * @toc {File} HTML5 Metadata
+ * @toc {IO}HTML5 Metadata
  * @class 
- * @description This object provides some information regardignto the state of the file or directory object
+ * @description This object provides some information regardign to the state of the file or directory object
 */
 Metadata = function() {};
 
     /**
-    * @description  returns file
-    * @PB10+
-    * @RIPPLE
-	* @BB10X
-    */
-    Metadata.prototype.getMetadata  = function() {};
-   
-    /**
      * @field
-     * @description The name of the file
+     * @description The date/ime of which the file or directory was last modified
      * @type File
      * @PB10+
      * @RIPPLE

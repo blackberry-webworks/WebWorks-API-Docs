@@ -15,7 +15,7 @@
 */
 
 /**
- * @toc {File} HTML5 DirectoryEntry
+ * @toc {IO} HTML5 DirectoryEntry
  * @class
  * @constructedBy FileSystem.root
  * @description This object represents a directory on a file system.
@@ -24,44 +24,44 @@ DirectoryEntry = function() {};
 
     /**
     * @description Look up metadata about a directory.
-    * @callback {function} successCallBack function The callback function that will execute when the event occurs successfully.
-    * @callback {function} failureCallBack function The callback function that will execute when the event fails
+    * @callback {successCallback} callback function that will execute when the event occurs successfully.
+    * @callback {errorCallback} callback function that will execute when the event fails
     * @PB10+
     * @RIPPLE
-	* @BB10X
+    * @BB10X
     * @example
     * Main script:
     *
     *
     */
-    DirectoryEntry.getMetadata = function(successCallBack, errorCallback) {};
-
-	/**
-    * @description  Moves a directory to a different location. When moving the directory to a location where the name already exists, <b>moveTo</b> will attempt to overwrite it.
-    * @param {DirectoryEntry} The directory that you want to move
-	* @param {String} The new name of the directory. Defaults to the current name if unspecified. 
-	* @param {function} successCallback function to execute when it is successful
-	* @param {function} errorCallback function to execute when there is a failure
-    * @PB10+
-    * @RIPPLE
-	* @BB10X	
-    * @example
-    * Main script:
-	*
-	*/
-	DirectoryEntry.moveTo = function(parent, newName, successCallback, errorCallback) {};
+    DirectoryEntry.prototype.getMetadata = function(successCallBack, errorCallback) {};
 
     /**
-    * @description  
-    * @param {DirectoryEntry} DirectoryEntry
-	* @param {String} newName
-	* @param {function} successCallback function to execute when it is successful
-	* @param {function} errorCallback function to execute when there is a failure
+    * @description  Moves a directory to a different location. When moving the directory to a location where the name already exists, <b>moveTo</b> will attempt to overwrite it.
+    * @param {DirectoryEntry} The directory that you want to move
+    * @param {String} The new name of the directory. Defaults to the current name if unspecified. 
+    * @callback {successCallback} callback function to execute when it is successful
+    * @callback {errorCallback} callback function to execute when there is a failure
     * @PB10+
     * @RIPPLE
-	* @BB10X
+    * @BB10X	
+    * @example
+    * Main script:
+    *
     */
-    DirectoryEntry.copyTo = function(parent, newName, successCallback, errorCallback) {};
+    DirectoryEntry.prototype.moveTo = function(parent, newName, successCallback, errorCallback) {};
+
+    /**
+    * @description Copies the directory to a new location. When copying to a location where the name already exists, <b>copyTo</b> will attempt to overwrite it. 
+    * @param {DirectoryEntry} original directory
+    * @param {String} newName new name of directory
+    * @callback {successCallback} callback function to execute when it is successful
+    * @callback {errorCallback} callback function to execute when there is a failure
+    * @PB10+
+    * @RIPPLE
+    * @BB10X
+    */
+    DirectoryEntry.prototype.copyTo = function(parent, newName, successCallback, errorCallback) {};
     
     /**
      * @description Returns a URL that can be used to locate the directory.
@@ -70,88 +70,88 @@ DirectoryEntry = function() {};
      * @RIPPLE
      * @BB10X
      */
-    DirectoryEntry.toURL = function() {};
+    DirectoryEntry.prototype.toURL = function() {};
 
     /**
     * @description function to delete a directory. 
- 	* @param {function} successCallback function to execute when it is successful
-	* @param {function} errorCallback function to execute when there is a failure
+    * @callback {successCallback} callback function to execute when it is successful
+    * @callback {@callback} callback function to execute when there is a failure
     * @PB10+
     * @RIPPLE
-	* @BB10X
+    * @BB10X
     */
-    DirectoryEntry.remove = function(successCallback, errorCallback) {};
+    DirectoryEntry.prototype.remove = function(successCallback, errorCallback) {};
 		
     /**
     * @description  returns the parent DirectoryEntry
- 	* @param {function} successCallback function to execute when it is successful
-	* @param {function} errorCallback function to execute when there is a failure
+    * @callback {successCallback} callback function to execute when it is successful
+    * @callback {errorCallback} callback function to execute when there is a failure
     * @PB10+
     * @RIPPLE
-	* @BB10X
+    * @BB10X
     */
-    DirectoryEntry.getParent = function(successCallback, errorCallback) {};
+    DirectoryEntry.prototype.getParent = function(successCallback, errorCallback) {};
  
-	/**
+    /**
     * @description  creates a new DirectoryReader to read contents in a directory
-	* @constructor constructor for directoryReader object
+    * @constructor constructor for directoryReader object
     * @PB10+
     * @RIPPLE
-	* @BB10X
+    * @BB10X
     */
-    DirectoryEntry.createReader  = function() {};
+    DirectoryEntry.prototype.createReader  = function() {};
 
-	/**
+    /**
     * @description Create or look up a directory.
-	* @param {String} The path of the directory to be looked up or created
-	* @param {flags} Options to specify whether the directory is to be created if it doesn't exist
- 	* @param {function} successCallback function that is called with a File object. (Function)
-	* @param {function} errorCallback function to execute when there is an error during creating the File object. Invoked with a FileError object. (Function)
+    * @param {String} The path of the directory to be looked up or created
+    * @param {flags} Options to specify whether the directory is to be created if it doesn't exist
+    * @callback {successCallback} callback function that is called with a File object. (Function)
+    *callback {errorCallback} callback function to execute when there is an error during creating the File object. Invoked with a FileError object. (Function)
     * @PB10+
     * @RIPPLE
-	* @BB10X
+    * @BB10X
     */
-    DirectoryEntry.getDirectory  = function(successCallback, errorCallback) {};
+    DirectoryEntry.prototype.getDirectory  = function(successCallback, errorCallback) {};
 
-	/**
+    /**
     * @description Creates or look up a file.
-	* @param {String} Path - path of the file to be looked up or created.
-	* @param {flags} Options - options to specify whether the file is created if it doesn't exist
- 	* @param {function} successCallback function that is called with a File object. (Function)
-	* @param {function} errorCallback function to execute when there is an error during creating the File object. Invoked with a FileError object. (Function)
+    * @param {String} Path - path of the file to be looked up or created.
+    * @param {flags} Options - options to specify whether the file is created if it doesn't exist
+    * @callback {successCallback} callback function that is called with a File object. (Function)
+    * @callback {errorCallback} callback function to execute when there is an error during creating the File object. Invoked with a FileError object. 
     * @PB10+
     * @RIPPLE
-	* @BB10X
+    * @BB10X
     */
-    DirectoryEntry.getFile  = function(Path, Options, successCallback, errorCallback) {};
+    DirectoryEntry.prototype.getFile  = function(Path, Options, successCallback, errorCallback) {};
 
-	/**
+    /**
     * @description Delete a directory and all of its contents.
- 	* @param {function} successCallback function that is called with a File object. (Function)
-	* @param {function} errorCallback function to execute when there is an error during creating the File object. Invoked with a FileError object. (Function)
+    * @callback {successCallback} callback function that is called with a File object. (Function)
+    * @callback {errorCallback} callback function to execute when there is an error during creating the File object. Invoked with a FileError object. 
     * @PB10+
     * @RIPPLE
-	* @BB10X
+    * @BB10X
     */
-    DirectoryEntry.removeRecursively  = function(successCallback, errorCallback) {};
+    DirectoryEntry.prototype.removeRecursively  = function(successCallback, errorCallback) {};
 	
     /**
-     * @description Returns whether the object is a file or not. Value is always false. {boolean}
-	 * @field
+     * @description Returns whether the object is a file or not. Value is always false. 
+     * @field
      * @type boolean
      * @PB10+
      * @RIPPLE
-	 * @BB10X
+     * @BB10X
      */
     DirectoryEntry.isFile = false;	
 	
     /**
      * @field
-     * @description Returns whether the object is a directory or not. Value is always true. {boolean}
+     * @description Returns whether the object is a directory or not. Value is always true. 
      * @type boolean
      * @PB10+
      * @RIPPLE
-	 * @BB10X
+     * @BB10X
      */
     DirectoryEntry.isDirectory = true;	
 	
@@ -161,7 +161,7 @@ DirectoryEntry = function() {};
      * @type File
      * @PB10+
      * @RIPPLE
-	 * @BB10X
+     * @BB10X
      */
     DirectoryEntry.fullPath = undefined;
 	
@@ -171,13 +171,13 @@ DirectoryEntry = function() {};
      * @type File
      * @PB10+
      * @RIPPLE
-	 * @BB10X
+     * @BB10X
      */
     DirectoryEntry.filesystem = undefined;
 	
 	
 /**
- * @toc {File} HTML5 Flags
+ * @toc {IO} HTML5 Flags
  * @namespace
  * @description This object is used to indicate the the file or directory should be created or not. 
 */
@@ -189,7 +189,7 @@ Flags = function() {};
      * @type boolean
      * @PB10+
      * @RIPPLE
-	 * @BB10X
+     * @BB10X
      */
     Flags.create = undefined;
 
@@ -199,6 +199,6 @@ Flags = function() {};
      * @type boolean
      * @PB10+
      * @RIPPLE
-	 * @BB10X
+     * @BB10X
      */
     Flags.exclusive = undefined;	

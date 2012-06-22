@@ -15,7 +15,7 @@
 */
 
 /**
- * @toc {File} HTML5 DirectoryReader
+ * @toc {IO} HTML5 DirectoryReader
  * @class 
  * @description An object that lists out contents in a directory.
 */
@@ -23,10 +23,10 @@ DirectoryReader = function() {};
 
     /**
     * @description  function that reads the contents of a directory
-  	* @param {function} successCallback callback function that is passed an array of FileEntry and DirectoryEntry objects
-	* @param {function} errorCallback callback that is called if an error occurs retrieving the directory listing. Invoked with a FileError object.
+    * @callback {successCallback} callback function that is passed an array of FileEntry and DirectoryEntry objects
+    * @callback {errorCallback} callback that is called if an error occurs retrieving the directory listing. Invoked with a FileError object.
     * @PB10+
     * @RIPPLE
-	* @BB10X
+    * @BB10X
     */
     DirectoryReader.prototype.readEntries = function (successCallback, errorCallback) {};

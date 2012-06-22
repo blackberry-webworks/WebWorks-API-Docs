@@ -15,10 +15,10 @@
 */
 
 /**
- * @toc {File} HTML5 File
+ * @toc {IO} HTML5 File
  * @class File objects  provides functionatlity to be able to read, write and navigate file system hierarchies
  * @constructedBy FileEntry.file
- * @description creates a new File Object 
+ * @description  File Object 
 */
 File = function() {};
     
@@ -28,7 +28,7 @@ File = function() {};
      * @type File
      * @PB10+
      * @RIPPLE
-	 * @BB10X
+     * @BB10X
      */
     File.name = undefined;
 
@@ -38,7 +38,7 @@ File = function() {};
      * @type File
      * @PB10+
      * @RIPPLE
-	 * @BB10X
+     * @BB10X
      */
     File.fullPath = undefined;
 	
