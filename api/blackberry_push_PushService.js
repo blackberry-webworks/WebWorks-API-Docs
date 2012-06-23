@@ -189,7 +189,7 @@ blackberry.push.PushService.prototype.destroyChannel = function(destroyChannelCa
 *          if (evt.target.readyState == FileReader.DONE) {
 *              if (evt.target.error == null) {
 *                  // No errors, get the result and call the callback
-*                  callback(e.target.result);
+*                  callback(evt.target.result);
 *              } else {
 *                  console.log("Error converting Blob to string: " + evt.target.error);
 *              }
@@ -210,7 +210,7 @@ blackberry.push.PushService.prototype.destroyChannel = function(destroyChannelCa
 *         if (evt.target.readyState == FileReader.DONE) {
 *             if (evt.target.error == null) {
 *                 // No errors, get the result and call the callback
-*                 callback(e.target.result);
+*                 callback(evt.target.result);
 *             } else {
 *                 console.log("Error converting Blob to ArrayBuffer: " + evt.target.error);
 *             }
