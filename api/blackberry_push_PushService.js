@@ -167,14 +167,20 @@ blackberry.push.PushService.prototype.destroyChannel = function(destroyChannelCa
 * </p>
 * @param {JSON} invokeRequest The invoke request to parse.
 * @returns {PushPayload} Returns the parsed out <code>PushPayload</code> object.
+* @throws {String} An exception is thrown if the <code>invokeRequest</code> passed in is not valid and cannot be parsed.
 * @BB10X
 * @example
-* var pushPayload = pushService.extractPushPayload(invokeRequest);
-* // pushPayload.data is of type Blob
-* // If the Blob is known to contain text, then do something like this:
-* blobToText(pushPayload.data, "UTF-8", textConversionCallback);
-* // If the Blob is known to contain binary, then do something like this to get an ArrayBuffer:
-* blobToArrayBuffer(pushPayload.data, binaryConversionCallback);
+* try {
+*     var pushPayload = pushService.extractPushPayload(invokeRequest);
+*     // pushPayload.data is of type Blob
+*     // If the Blob is known to contain text, then do something like this:
+*     blobToText(pushPayload.data, "UTF-8", textConversionCallback);
+*     // If the Blob is known to contain binary, then do something like this to get an ArrayBuffer:
+*     // blobToArrayBuffer(pushPayload.data, binaryConversionCallback);
+* } catch (err) {
+*     console.log("Was unable to parse the invoke request.");
+*     console.log(err);
+* }
 * 
 * function blobToText(blob, encoding, callback) {
 *     var reader = new FileReader();
