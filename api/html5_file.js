@@ -30,7 +30,7 @@ File = function() {};
      * @RIPPLE
      * @BB10X
      */
-    File.name = undefined;
+    File.prototype.name = undefined;
 
     /**
      * @field
@@ -40,7 +40,7 @@ File = function() {};
      * @RIPPLE
      * @BB10X
      */
-    File.fullPath = undefined;
+    File.prototype.fullPath = undefined;
 	
     /**
      * @field
@@ -50,7 +50,7 @@ File = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    File.type = undefined;	
+    File.prototype.type = undefined;	
 
     /**
      * @field
@@ -60,7 +60,7 @@ File = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    File.lastModifiedDate = undefined;
+    File.prototype.lastModifiedDate = undefined;
 	
     /**
      * @field
@@ -70,4 +70,4 @@ File = function() {};
      * @RIPPLE
 	 * @BB10X
      */
-    File.size = undefined;	
+    File.prototype.size = undefined;	
