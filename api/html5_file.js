@@ -17,10 +17,24 @@
 /**
  * @toc {IO} HTML5 File
  * @class File objects  provides functionatlity to be able to read, write and navigate file system hierarchies
- * @constructedBy FileEntry.file
+ * @constructedBy fileEntry.file
  * @description  File Object 
 */
-File = function() {};
+File = function() {
+
+    /**
+     * 
+     * @function
+     * @constructedBy FileEntry.file
+     * @description returns the file object associated to the fileEntry
+     * @callback {function} successCallBack function to be executed when successful
+     * @callback {File} successCallBack.File The new File object
+     * @callback {function} errorCallBack function to be executed when an error is encountered
+     * @callback {FileError} errorCallBack.FileError Invoked with a FileError object
+     */
+     file : undefined
+
+};
     
     /**
      * @field
