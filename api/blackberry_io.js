@@ -31,6 +31,7 @@
  *         function (fs) {
  *              // in order to access the shared folder,
  *              // config.xml must declare the "access_shared" permsission
+ *              // reference file by absolute path since file system is un-sandboxed
  *              fs.root.getFile(blackberry.io.sharedFolder + '/documents/log.txt', {},
  *                  function (fileEntry) {
  *                      fileEntry.file(function (file) {
@@ -79,7 +80,7 @@
 blackberry.io = {
 
        /**
-        * @description Whether the file system is sandboxed. It is set to true by default.
+        * @description Whether the file system is sandboxed. It is set to true by default.<br/>When sandbox is set to false, you must use absolute path to reference a file or directory, you can use {@link blackberry.io.sharedFolder}, {@link blackberry.io.home} or {@link blackberry.io.SDCard} to construct file paths.
         * @type Boolean
         * @BB10X
         */
