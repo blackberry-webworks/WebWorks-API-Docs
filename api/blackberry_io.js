@@ -30,7 +30,7 @@
  *     window.requestFileSystem(window.TEMPORARY, 1024 * 1024,
  *         function (fs) {
  *              // in order to access the shared folder,
- *              // config.xml must declare the "access_shared" permsission
+ *              // config.xml must declare the "access_shared" permission
  *              // reference file by absolute path since file system is un-sandboxed
  *              fs.root.getFile(blackberry.io.sharedFolder + '/documents/log.txt', {},
  *                  function (fileEntry) {
