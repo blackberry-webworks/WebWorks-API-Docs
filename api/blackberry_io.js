@@ -94,7 +94,7 @@ blackberry.io = {
        home : "",
 
        /**
-        * @description The full path of the shared folder. In order to access this folder, you must specify the <code>access_shared</code> persmission in config.xml
+        * @description The full path of the shared folder. In order to access this folder, you must specify the <code>access_shared</code> permission in config.xml
         * @type String
         * @readOnly
         * @BB10X
