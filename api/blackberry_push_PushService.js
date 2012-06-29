@@ -184,18 +184,16 @@ blackberry.push.PushService.prototype.destroyChannel = function(destroyChannelCa
 * 
 * function blobToText(blob, encoding, callback) {
 *     var reader = new FileReader();
-*    	
-*      reader.onloadend = function(evt) {
-*          if (evt.target.readyState == FileReader.DONE) {
-*              if (evt.target.error == null) {
-*                  // No errors, get the result and call the callback
-*                  callback(evt.target.result);
-*              } else {
-*                  console.log("Error converting Blob to string: " + evt.target.error);
-*              }
-*         }
+*   	
+*     reader.onload = function(evt) {
+*         // No errors, get the result and call the callback
+*         callback(evt.target.result);
 *     };
-*       
+*    	
+*     reader.onerror = function(evt) {
+*         console.log("Error converting Blob to string: " + evt.target.error);
+*     };
+*        
 *     reader.readAsText(blob, encoding);
 * }
 *
@@ -206,15 +204,13 @@ blackberry.push.PushService.prototype.destroyChannel = function(destroyChannelCa
 * function blobToArrayBuffer(blob, callback) {
 *     var reader = new FileReader();
 *    	
-*     reader.onloadend = function(evt) {
-*         if (evt.target.readyState == FileReader.DONE) {
-*             if (evt.target.error == null) {
-*                 // No errors, get the result and call the callback
-*                 callback(evt.target.result);
-*             } else {
-*                 console.log("Error converting Blob to ArrayBuffer: " + evt.target.error);
-*             }
-*         }
+*     reader.onload = function(evt) {
+*         // No errors, get the result and call the callback
+*         callback(evt.target.result);
+*     };
+*    	
+*     reader.onerror = function(evt) {
+*         console.log("Error converting Blob to ArrayBuffer: " + evt.target.error);
 *     };
 *        
 *     reader.readAsArrayBuffer(blob);
@@ -433,7 +429,7 @@ blackberry.push.PushService.INVALID_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG : 10009
 /**
 * <p>
 * Result error code for when too many devices have already performed a create channel for the provider application ID.
-* The create channel is described as still "active" because no destroy channel has been done for it.
+* (A create channel will effectively register a user with the PPG for public/BIS.)
 * </p>
 * <p>
 * Operations this error can occur on: createChannel (only if using public/BIS PPG)
@@ -447,7 +443,7 @@ blackberry.push.PushService.INVALID_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG : 10009
 * @static
 * @BB10X
 */
-blackberry.push.PushService.TOO_MANY_DEVICES_WITH_ACTIVE_CREATE_CHANNELS : 10010;
+blackberry.push.PushService.PPG_SUBSCRIBER_LIMIT_REACHED : 10010;
 
 /**
 * <p>
