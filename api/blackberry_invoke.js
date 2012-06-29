@@ -36,6 +36,9 @@ blackberry.invoke = {
 		 * @param {String} [request.type] MIME type of data to be acted on. If the MIME type is not specified then the mime type would be inferred from the given URI. If the MIME type cannot be inferred or URI field is empty then invocation will be rejected.
 		 * @param {String} [request.uri] URI pointing to invocation data. If no URI is provided then this implies that the invocation data is provided in-band in the data field of the invocation request.
 		 * @param {String or Blob} [request.data] Data (String or Blob) to be acted upon encoded based on the specified type.<br/>NOTE: If a String is passed, make sure that it does not contain unicode characters or invocation will fail.
+         * @param {String} [request.winid] A mandatory property for viewer invocation. The window ID to use when the viewer creates a window. Also can be used for application - viewer communication.
+         * @param {Number} [request.width] A mandatory property for viewer invocation indicating the pixel width of the viewer.
+         * @param {Number} [request.height] A mandatory property for viewer invocation indicating the pixel height of the viewer.
 		 * @callback {function} onSuccess Callback function that will be triggered when the invocation is successful. Expected signature: function onSuccess().
 		 * @callback {function} onError Callback function that will be triggered when invocation is not successful, or if request's data field cannot be encoded (e.g. when it contains unicode characters). Expected signature: function onError(error).
 		 * @callback {String} [onError.error] A String that describes the error.
@@ -103,6 +106,16 @@ blackberry.invoke = {
 		 *         data: convertedStr
 		 *     }, onInvokeSuccess, onInvokeError);
 		 * }
+		 *
+         * function openViewer() {
+         *
+         *     blackberry.invoke.invoke({
+         *        "target": "a.viewer.app",
+         *        "winid": "viewer#001",
+         *        "height": 600,
+         *        "width": 600     
+         *     }, onInvokeSuccess, onInvokeError);
+         * }
 		 *
 		 * &lt;/script&gt;
 		 */
