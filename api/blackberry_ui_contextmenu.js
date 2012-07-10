@@ -49,25 +49,25 @@
  *</p>
  *
  */
-blackberry.ui.contextmenu ={
+blackberry.ui.contextmenu = {
 
-/**
- * @description ContextMenuEnabled allows the developer to enabled and disable crosscut context menus for their application.
- * @param {boolean} enabled property that sets the contextmenu to enabled or disabled
- *
- * @example
- * &lt;script type="text/javascript"&gt;
- *
- * function disabledContextMenu() {
- *     blackberry.ui.contextmenu.enabled = false;
- * }
- *
- * if(!blackberru.ui.contextmenu.enabled){
- *     console.log("context menu is currently disabled");
- *     }
- * &lt;/script&gt;
- *
- */
- enabled : function()
+    /**
+     * @description ContextMenuEnabled allows the developer to enabled and disable crosscut context menus for their application.
+     * @param {boolean} enabled property that sets the contextmenu to enabled or disabled
+     *
+     * @example
+     * &lt;script type="text/javascript"&gt;
+     *
+     * function disabledContextMenu() {
+     * blackberry.ui.contextmenu.enabled = false;
+     * }
+     *
+     * if(!blackberru.ui.contextmenu.enabled){
+     *     console.log("context menu is currently disabled");
+     * }
+     * &lt;/script&gt;
+     *
+     */
+    enabled : function() {};
 
 };
