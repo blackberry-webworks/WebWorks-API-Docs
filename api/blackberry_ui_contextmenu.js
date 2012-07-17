@@ -48,7 +48,7 @@
  *</p>
  *
  */
-blackberry.ui.contextmenu ={
+blackberry.ui.contextmenu = {
 
 /**
  * @description ContextMenuEnabled allows the developer to enabled and disable crosscut context menus for their application.
