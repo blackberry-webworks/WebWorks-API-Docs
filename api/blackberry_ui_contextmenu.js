@@ -37,7 +37,6 @@
  *
  *
  * <ul>
- *  <li>contextmenudisplayrequested</li>
  *  <li>contextmenuicondisplay</li>
  *  <li>contextmenufulldisplay</li>
  *  <li>contextmenuclosed</li>
@@ -68,6 +67,31 @@ blackberry.ui.contextmenu ={
  * &lt;/script&gt;
  *
  */
- enabled : function()
+ enabled : function (){},
+
+ theme : function (){},
+
+/**
+ * @description AddItem allows the developer to add custom items to the context menu. The items will be appended to the list
+ * of operating system defined functions. Developers must provide the following parameters to successfully add items to the context
+ * menu.
+ * @param {String} actionId a property that uniquely defines the action to be added to the context menu. Ideally some sort of reverse DNS style name.
+ * @param {String} label a string that will be displayed to the user describing the custom context to be performed. ie: Edit
+ * @param {String} icon a path to the an image to display in the context menu
+ *
+ * @example
+ * &lt;script type="text/javascript"&gt;
+ *
+ * function disabledContextMenu() {
+ *     blackberry.ui.contextmenu.enabled = false;
+ * }
+ *
+ * if(!blackberru.ui.contextmenu.enabled){
+ *     console.log("context menu is currently disabled");
+ *     }
+ * &lt;/script&gt;
+ *
+ */
+ addItem : function (){}
 
 };
