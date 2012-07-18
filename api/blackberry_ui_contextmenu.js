@@ -17,7 +17,9 @@
 /**
  * @toc {User Interface} ContextMenu
  * @featureID blackberry.ui.contextmenu
- * @namespace The contextmenu namespace provides the facility
+ * @BB10X
+ * @RIPPLE
+ * @namespace The contextmenu namespace provides the facility to interact with the context menu api to control whether context menus are enabled, listen to events, add items to appear based on the context, and set the theme of the context menu.
  *
  * <h3>Context Menu</h3>
  * <p>Webworks applications can choose to use an in app contextmenu as opposed to the default operating system menu. The
@@ -26,32 +28,16 @@
  * <p>
  *
  * <h4>Enabling</h4>
- * <p>The contextmenu can be enalbed by calling the blackberry.ui.contextmenu.enabled property. When set to true, the
+ * <p>The contextmenu can be enabled by calling the blackberry.ui.contextmenu.enabled property. When set to true, the
  * contextmenu will capture the context menu events, and pass any events that the user has registered for. When set to false
  * the contextmenu will default to the system, and the developer will have no access to the events described below.
  * </p>
- *
- * <h4>Events</h4>
- * Developers can subscribe to the following events:
- *</p>
- *
- *
- * <ul>
- *  <li>contextmenuicondisplay</li>
- *  <li>contextmenufulldisplay</li>
- *  <li>contextmenuclosed</li>
- * </ul>
- *
- * <p>
- * These events allow developers to alter their user interface when the menu is triggered, as well as
- * relay the menu closing and opening to the underlying application.
- *</p>
  *
  */
 blackberry.ui.contextmenu = {
 
 /**
- * @description ContextMenuEnabled allows the developer to enabled and disable crosscut context menus for their application.
+ * @description Context Menu enabled allows the developer to enabled and disable crosscut context menus for their application.
  * @param {boolean} enabled property that sets the contextmenu to enabled or disabled
  *
  * @example
@@ -68,30 +54,5 @@ blackberry.ui.contextmenu = {
  *
  */
  enabled : function (){},
-
- theme : function (){},
-
-/**
- * @description AddItem allows the developer to add custom items to the context menu. The items will be appended to the list
- * of operating system defined functions. Developers must provide the following parameters to successfully add items to the context
- * menu.
- * @param {String} actionId a property that uniquely defines the action to be added to the context menu. Ideally some sort of reverse DNS style name.
- * @param {String} label a string that will be displayed to the user describing the custom context to be performed. ie: Edit
- * @param {String} icon a path to the an image to display in the context menu
- *
- * @example
- * &lt;script type="text/javascript"&gt;
- *
- * function disabledContextMenu() {
- *     blackberry.ui.contextmenu.enabled = false;
- * }
- *
- * if(!blackberru.ui.contextmenu.enabled){
- *     console.log("context menu is currently disabled");
- *     }
- * &lt;/script&gt;
- *
- */
- addItem : function (){}
 
 };
