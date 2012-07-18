@@ -55,4 +55,52 @@ blackberry.ui.contextmenu = {
  */
  enabled : function (){},
 
+
+ /**
+ * @description Allows the developer to add custom items to the context menu. The items will be appended to the end of the list
+ * of operating system defined functions. Developers must provide the following parameters to successfully add items to the context
+ * menu.
+ * @param {String[]} contexts An array of constants defining which contexts this new item should appear.
+ * @param {Object} action An object which defines the menu item to be added.  
+ * @param {String} actionId A property that uniquely defines the action to be added to the context menu.
+ * @param {String} label A string that will be displayed to the user describing the custom context to be performed. ie: Edit
+ * @param {String} icon A path to the an image to display in the context menu
+ *
+ * @example
+ * &lt;script type="text/javascript"&gt;
+ *
+ * function addMyItem() {
+ *     var myItem = {actionId: 'MyItem', label: 'My Item', icon:'http://mysite.com/icon.png'},
+ *         contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
+ *     blackberry.ui.contextmenu.addItem(contexts, myItem); 
+ * }
+ * &lt;/script&gt;
+ *
+ */
+ addItem : function (){}
+ 
+ /**
+ * @description Allows the developer to remove previously added custom items from the context menu. 
+ * @param {String[]} contexts An array of constants defining which contexts this new item should appear.
+ * @param {String} actionId An id that uniquely defines the action to be removed from the context menu.
+ *
+ * @example
+ * &lt;script type="text/javascript"&gt;
+ *
+ * function addMyItem() {
+ *     var myItem = {actionId: 'MyItem', label: 'My Item', icon:'http://mysite.com/icon.png'},
+ *         contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
+ *     blackberry.ui.contextmenu.addItem(contexts, myItem); 
+ * }
+ *
+ * function removeMyItem() {
+ *     var myItem = {actionId: 'MyItem', label: 'My Item', icon:'http://mysite.com/icon.png'},
+ *         contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
+ *     blackberry.ui.contextmenu.removeItem(contexts, myItem.actionId); 
+ * }
+ *
+ * &lt;/script&gt;
+ *
+ */
+removeItem: function (){}
 };
