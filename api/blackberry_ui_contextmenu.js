@@ -66,6 +66,7 @@ blackberry.ui.contextmenu = {
  * @param {String} label A string that will be displayed to the user describing the custom context to be performed. ie: Edit
  * @param {String} icon A path to the an image to display in the context menu
  * @BB10X
+ * @RIPPLE
  * @example
  * &lt;script type="text/javascript"&gt;
  *
@@ -84,6 +85,7 @@ blackberry.ui.contextmenu = {
  * @param {String[]} contexts An array of constants defining which contexts this new item should appear.
  * @param {String} actionId An id that uniquely defines the action to be removed from the context menu.
  * @BB10X
+ * @RIPPLE
  * @example
  * &lt;script type="text/javascript"&gt;
  *
