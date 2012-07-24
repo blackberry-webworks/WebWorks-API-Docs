@@ -73,20 +73,15 @@
             }
 
             function runFilter() {
-                console.log("start runFilter");
                 var filter = localStorage.getItem('selectedmenu');
                 var elements = getDesiredElements(document.body, 'x-ww-support');
-                console.log(elements);
                 for (var i = 0; i < elements.length; i++) {
                     var target = elements[i];
-                    console.log(target);
                     var x_ww_support = target.getAttribute('x-ww-support').split('|');
-                    console.log(x_ww_support);
                     if (x_ww_support.indexOf(filter) < 0) {
                         target.style.display = 'none';
                     }
                 }
-                console.log("end runFilter");
             }
             
             if(window.attachEvent) {
