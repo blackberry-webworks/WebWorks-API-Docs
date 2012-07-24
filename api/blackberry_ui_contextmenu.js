@@ -15,7 +15,7 @@
 */
 
 /**
- * @toc {User Interface} ContextMenu
+ * @toc {User Interface} Context Menu
  * @featureID blackberry.ui.contextmenu
  * @BB10X
  * @RIPPLE
@@ -78,7 +78,7 @@ blackberry.ui.contextmenu = {
  * &lt;/script&gt;
  *
  */
- addItem : function (){}
+ addItem : function (){},
  
  /**
  * @description Allows the developer to remove previously added custom items from the context menu. 
@@ -104,5 +104,59 @@ blackberry.ui.contextmenu = {
  * &lt;/script&gt;
  *
  */
-removeItem: function (){}
+removeItem: function (){},
+
+/**
+ * Constant denoting all contexts.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ CONTEXT_ALL: "CONTEXT_ALL",
+
+ /**
+ * Constant denoting the context of links.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ CONTEXT_LINK: "CONTEXT_LINK",
+
+ /**
+ * Constant denoting the context of images.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ CONTEXT_IMAGE: "CONTEXT_IMAGE",
+
+ /**
+ * Constant denoting the context of image links.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ CONTEXT_IMAGE_LINK: "CONTEXT_IMAGE_LINK",
+ 
+ /**
+ * Constant denoting the context of input fields.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ CONTEXT_INPUT: "CONTEXT_INPUT",
+
+ /**
+ * Constant denoting the context of text.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ CONTEXT_TEXT: "CONTEXT_TEXT",
 };
