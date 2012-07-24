@@ -39,7 +39,7 @@ blackberry.ui.contextmenu = {
 /**
  * @description Context Menu enabled allows the developer to enabled and disable crosscut context menus for their application.
  * @param {boolean} enabled property that sets the contextmenu to enabled or disabled
- *
+ * @type boolean
  * @example
  * &lt;script type="text/javascript"&gt;
  *
@@ -53,7 +53,7 @@ blackberry.ui.contextmenu = {
  * &lt;/script&gt;
  *
  */
- enabled : function (){},
+ enabled : Boolean,
 
 
  /**
