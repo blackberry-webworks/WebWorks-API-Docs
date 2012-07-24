@@ -62,9 +62,9 @@ blackberry.ui.contextmenu = {
  * menu.
  * @param {String[]} contexts An array of constants defining which contexts this new item should appear.
  * @param {Object} action An object which defines the menu item to be added.  
- * @param {String} actionId A property that uniquely defines the action to be added to the context menu.
- * @param {String} label A string that will be displayed to the user describing the custom context to be performed. ie: Edit
- * @param {String} icon A path to the an image to display in the context menu
+ * @param {String} action.actionId A property that uniquely defines the action to be added to the context menu.
+ * @param {String} action.label A string that will be displayed to the user describing the custom context to be performed. ie: Edit
+ * @param {String} action.icon A path to the an image to display in the context menu
  * @BB10X
  * @RIPPLE
  * @example
