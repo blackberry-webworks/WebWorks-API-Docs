@@ -1,5 +1,5 @@
 /*
-* Copyright 2010-2011 Research In Motion Limited.
+* Copyright 2010-2012 Research In Motion Limited.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ blackberry.ui.contextmenu = {
  *     blackberry.ui.contextmenu.enabled = false;
  * }
  *
- * if(!blackberru.ui.contextmenu.enabled){
+ * if(!blackberry.ui.contextmenu.enabled){
  *     console.log("context menu is currently disabled");
  *     }
  * &lt;/script&gt;
