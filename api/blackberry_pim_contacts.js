@@ -54,10 +54,11 @@ blackberry.pim.contacts = {
          *
          *     function createContact() {
          *         var contacts = blackberry.pim.contacts,
+         *             ContactField = contacts.ContactField,
          *             name = new contacts.ContactName(),
-         *             workPhone = new contacts.ContactField("work", "123-456-789", true),
-         *             workEmail = new contacts.ContactField("work", "abc@blah.com", true),
-         *             homeEmail = new contacts.ContactField("home", "hello@me.com", false),
+         *             workPhone = new ContactField(ContactField.WORK, "123-456-789", true),
+         *             workEmail = new ContactField(ContactField.WORK, "abc@blah.com", true),
+         *             homeEmail = new ContactField(ContactField.HOME, "hello@me.com", false),
          *             contact;
          *         
          *         name.familyName = "Smith";
