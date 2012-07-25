@@ -19,7 +19,6 @@
  * @featureID blackberry.pim.contacts
  * @class The ContactOrganization object contains the organization information of a Contact object.
  * @constructor Constructor for a new ContactOrganization object.
- * @param {String} type The type of ContactOrganization.
  * @param {String} name The name of the organization.
  * @param {String} department The contact's department within the organization.
  * @param {String} title The contact's title within the organization.
@@ -30,7 +29,6 @@
  *     var contacts = blackberry.pim.contacts;
  *
  *     var workOrg = new contacts.ContactOrganization(
- *         contacts.ContactOrganization.WORK,
  *         "Research in Motion", "BlackBerry WebWorks", "Developer",
  *         false);
  *
@@ -58,13 +56,6 @@ blackberry.pim.contacts.ContactOrganization = {};
  * @BB10X
  */
 blackberry.pim.contacts.ContactOrganization.prototype.pref = false;
-
-/**
- * @type String
- * @description Specifies the type of ContactOrganization.
- * @BB10X
- */
-blackberry.pim.contacts.ContactOrganization.prototype.type = "";
 
 /**
  * @type String
