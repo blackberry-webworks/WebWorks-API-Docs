@@ -51,28 +51,28 @@ blackberry.pim.contacts.Contact.prototype.name = null;
 blackberry.pim.contacts.Contact.prototype.nickname = "";
 
 /**
- * @description An array of all the contact's phone numbers.<br>Possible types: ContactField.TYPE_HOME, ContactField.TYPE_WORK, ContactField.TYPE_MOBILE, ContactField.TYPE_OTHER
+ * @description An array of all the contact's phone numbers.<br>Possible types: {@link blackberry.pim.contacts.ContactField.HOME}, {@link blackberry.pim.contacts.ContactField.WORK}, {@link blackberry.pim.contacts.ContactField.MOBILE}, {@link blackberry.pim.contacts.ContactField.OTHER}
  * @type blackberry.pim.contacts.ContactField[]
  * @BB10X
  */
 blackberry.pim.contacts.Contact.prototype.phoneNumbers = null;
 
 /**
- * @description An array of all the contact's fax numbers.<br>Possible types: ContactField.TYPE_HOME, ContactField.TYPE_WORK, ContactField.TYPE_DIRECT, ContactField.TYPE_OTHER
+ * @description An array of all the contact's fax numbers.<br>Possible types: {@link blackberry.pim.contacts.ContactField.HOME}, {@link blackberry.pim.contacts.ContactField.WORK}, {@link blackberry.pim.contacts.ContactField.DIRECT}, {@link blackberry.pim.contacts.ContactField.OTHER}
  * @type blackberry.pim.contacts.ContactField[]
  * @BB10X
  */
 blackberry.pim.contacts.Contact.prototype.faxNumbers = null;
 
 /**
- * @description An array of all the contact's pager numbers.<br>Possible types: ContactField.TYPE_HOME, ContactField.TYPE_WORK, ContactField.TYPE_OTHER
+ * @description An array of all the contact's pager numbers.<br>Possible types: {@link blackberry.pim.contacts.ContactField.HOME}, {@link blackberry.pim.contacts.ContactField.WORK}, {@link blackberry.pim.contacts.ContactField.OTHER}
  * @type blackberry.pim.contacts.ContactField[]
  * @BB10X
  */
 blackberry.pim.contacts.Contact.prototype.pagerNumbers = null;
 
 /**
- * @description An array of all the contact's email addresses.<br>Possible types: ContactField.TYPE_HOME, ContactField.TYPE_WORK, ContactField.TYPE_OTHER
+ * @description An array of all the contact's email addresses.<br>Possible types: {@link blackberry.pim.contacts.ContactField.HOME}, {@link blackberry.pim.contacts.ContactField.WORK}, {@link blackberry.pim.contacts.ContactField.OTHER}
  * @type blackberry.pim.contacts.ContactField[]
  * @BB10X
  */
@@ -94,7 +94,7 @@ blackberry.pim.contacts.Contact.prototype.ims = null;
 
 /**
  * @description An array of all the contact's organizations.
- * @type blackberry.pim.contacts.ContactField[]
+ * @type blackberry.pim.contacts.ContactOrganization[]
  * @BB10X
  */
 blackberry.pim.contacts.Contact.prototype.organizations = null;
@@ -164,7 +164,7 @@ blackberry.pim.contacts.Contact.prototype.ringtone = "";
 
 /**
  * @description Whether this contact is a favorite.
- * @type boolean
+ * @type Boolean
  * @BB10X
  */
 blackberry.pim.contacts.Contact.prototype.favorite = false;
