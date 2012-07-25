@@ -52,26 +52,26 @@
  *     alert("Contact save failed: " + error.code);
  * }
  */
-blackberry.pim.contacts.ContactField = {
+blackberry.pim.contacts.ContactField = {};
 
-        /**
-         * @type Boolean
-         * @description If true, this ContactField contains the user's preferred value. 
-         * @BB10X
-         */
-        pref : 0,
+/**
+ * @type Boolean
+ * @description If true, this ContactField contains the user's preferred value. 
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactField.prototype.pref = 0;
 
-        /**
-         * @type String
-         * @description Specifies the type of ContactField.
-         * @BB10X
-         */
-        type : "",
+/**
+ * @type String
+ * @description Specifies the type of ContactField.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactField.prototype.type = "";
 
-        /**
-         * @type String
-         * @description The value of the field.  For example, an email address or a phone number.
-         * @BB10X
-         */
-        value : ""
-}
+/**
+ * @type String
+ * @description The value of the field.  For example, an email address or a phone number.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactField.prototype.value = "";
+

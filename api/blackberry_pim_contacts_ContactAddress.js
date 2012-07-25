@@ -56,62 +56,62 @@
  *     alert("Contact save failed: " + error.code);
  * }
  */
-blackberry.pim.contacts.ContactAddress = {
+blackberry.pim.contacts.ContactAddress = {};
 
-        /**
-         * @type Boolean
-         * @description If true, this ContactAddress contains the user's preferred value. 
-         * @BB10X
-         */
-        pref : 0,
+/**
+ * @type Boolean
+ * @description If true, this ContactAddress contains the user's preferred value. 
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactAddress.prototype.pref = 0;
 
-        /**
-         * @type String
-         * @description Specifies the type of ContactAddress.
-         * @BB10X
-         */
-        type : "",
+/**
+ * @type String
+ * @description Specifies the type of ContactAddress.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactAddress.prototype.type = "";
 
-        /**
-         * @type String
-         * @readonly
-         * @description A formatted version of the full address, for display.
-         * @BB10X
-         */
-        formatted : "",
+/**
+ * @type String
+ * @readonly
+ * @description A formatted version of the full address, for display.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactAddress.prototype.formatted = "";
 
-        /**
-         * @type String
-         * @description The full street address.
-         * @BB10X
-         */
-        streetAddress : "",
+/**
+ * @type String
+ * @description The full street address.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactAddress.prototype.streetAddress = "";
 
-        /**
-         * @type String
-         * @description The city or locality.
-         * @BB10X
-         */
-        locality : "",
+/**
+ * @type String
+ * @description The city or locality.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactAddress.prototype.locality = "";
 
-        /**
-         * @type String
-         * @description The province, state, or region.
-         * @BB10X
-         */
-        region : "",
+/**
+ * @type String
+ * @description The province, state, or region.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactAddress.prototype.region = "";
 
-        /**
-         * @type String
-         * @description The postal code or zip code.
-         * @BB10X
-         */
-        postalCode : "",
+/**
+ * @type String
+ * @description The postal code or zip code.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactAddress.prototype.postalCode = "";
 
-        /**
-         * @type String
-         * @description The country name.
-         * @BB10X
-         */
-        country : ""
-}
+/**
+ * @type String
+ * @description The country name.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactAddress.prototype.country = "";
+

@@ -50,40 +50,40 @@
  *     alert("Contact save failed: " + error.code);
  * }
  */
-blackberry.pim.contacts.ContactOrganization = {
+blackberry.pim.contacts.ContactOrganization = {};
 
-        /**
-         * @type Boolean
-         * @description If true, this ContactOrganization contains the user's preferred value. 
-         * @BB10X
-         */
-        pref : 0,
+/**
+ * @type Boolean
+ * @description If true, this ContactOrganization contains the user's preferred value. 
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactOrganization.prototype.pref = 0;
 
-        /**
-         * @type String
-         * @description Specifies the type of ContactOrganization.
-         * @BB10X
-         */
-        type : "",
+/**
+ * @type String
+ * @description Specifies the type of ContactOrganization.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactOrganization.prototype.type = "";
 
-        /**
-         * @type String
-         * @description The name of the organization.
-         * @BB10X
-         */
-        name : "",
+/**
+ * @type String
+ * @description The name of the organization.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactOrganization.prototype.name = "";
 
-        /**
-         * @type String
-         * @description The contact's department within the organization.
-         * @BB10X
-         */
-        department : "",
+/**
+ * @type String
+ * @description The contact's department within the organization.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactOrganization.prototype.department = "";
 
-        /**
-         * @type String
-         * @description The contact's title within the organization.
-         * @BB10X
-         */
-        title : ""
-}
+/**
+ * @type String
+ * @description The contact's title within the organization.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactOrganization.prototype.title = "";
+

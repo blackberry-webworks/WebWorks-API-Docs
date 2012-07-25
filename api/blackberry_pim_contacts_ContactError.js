@@ -19,93 +19,93 @@
  * @featureID blackberry.pim.contacts
  * @class The ContactError object contains error codes and is returned in the contactError callback.
  */
-blackberry.pim.contacts.ContactError = {
+blackberry.pim.contacts.ContactError = {};
 
-        /**
-         * @type Number
-         * @readOnly
-         * @description A code specifying the type of error that occurred.
-         * @BB10X
-         * @example
-         * function findContacts() {
-         *     var contacts = blackberry.pim.contacts;
-         *     contacts.find(["name"], onFindSuccess, onFindError, null);
-         * }
-         *
-         * function onFindSuccess(contacts) {
-         *     alert("Contact find succeeded");
-         * }
-         *
-         * function onFindError(error) {
-         *     if (error.code === error.UNKNOWN_ERROR) {
-         *         alert("Contact find error: An unknown error occurred");
-         *     }
-         * }
-         */
-        code : "",
+/**
+ * @type Number
+ * @readOnly
+ * @description A code specifying the type of error that occurred.
+ * @BB10X
+ * @example
+ * function findContacts() {
+ *     var contacts = blackberry.pim.contacts;
+ *     contacts.find(["name"], onFindSuccess, onFindError, null);
+ * }
+ *
+ * function onFindSuccess(contacts) {
+ *     alert("Contact find succeeded");
+ * }
+ *
+ * function onFindError(error) {
+ *     if (error.code === error.UNKNOWN_ERROR) {
+ *         alert("Contact find error: An unknown error occurred");
+ *     }
+ * }
+ */
+blackberry.pim.contacts.ContactError.prototype.code = "";
 
-		/**#@-*/
+/**#@-*/
 
-		/**
-		 * @type Number
-		 * @constant
-		 * @default 0
-		 * @description An unknown error occurred.
-		 * @BB10X
-		 */
-		 UNKNOWN_ERROR : 0,
+/**
+ * @type Number
+ * @constant
+ * @default 0
+ * @description An unknown error occurred.
+ * @BB10X
+ */
+ blackberry.pim.contacts.ContactError.UNKNOWN_ERROR = 0;
 
-		/**
-		 * @type Number
-		 * @constant
-		 * @default 1
-		 * @description An parameter was incorrect.
-		 * @BB10X
-		 */
-		 INVALID_ARGUMENT_ERROR : 1,
+/**
+ * @type Number
+ * @constant
+ * @default 1
+ * @description An parameter was incorrect.
+ * @BB10X
+ */
+ blackberry.pim.contacts.ContactError.INVALID_ARGUMENT_ERROR = 1;
 
-		/**
-		 * @type Number
-		 * @constant
-		 * @default 2
-		 * @description The operation timed out.
-		 * @BB10X
-		 */
-		 TIMEOUT_ERROR : 2,
+/**
+ * @type Number
+ * @constant
+ * @default 2
+ * @description The operation timed out.
+ * @BB10X
+ */
+ blackberry.pim.contacts.ContactError.TIMEOUT_ERROR = 2;
 
-		 /**
-		 * @type Number
-		 * @constant
-		 * @default 3
-		 * @description The operation failed because a previous operation is pending.
-		 * @BB10X
-		 */
-		 PENDING_OPERATION_ERROR : 3,
+ /**
+ * @type Number
+ * @constant
+ * @default 3
+ * @description The operation failed because a previous operation is pending.
+ * @BB10X
+ */
+ blackberry.pim.contacts.ContactError.PENDING_OPERATION_ERROR = 3;
 
-		 /**
-		 * @type Number
-		 * @constant
-		 * @default 4
-		 * @description An IO error occurred.
-		 * @BB10X
-		 */
-		 IO_ERROR : 4,
+ /**
+ * @type Number
+ * @constant
+ * @default 4
+ * @description An IO error occurred.
+ * @BB10X
+ */
+ blackberry.pim.contacts.ContactError.IO_ERROR = 4;
 
-		 /**
-		 * @type Number
-		 * @constant
-		 * @default 5
-		 * @description The operation is not supported.
-		 * @BB10X
-		 */
-		 NOT_SUPPORTED_ERROR : 5,
+ /**
+ * @type Number
+ * @constant
+ * @default 5
+ * @description The operation is not supported.
+ * @BB10X
+ */
+ blackberry.pim.contacts.ContactError.NOT_SUPPORTED_ERROR = 5;
 
-		 /**
-		 * @type Number
-		 * @constant
-		 * @default 20
-		 * @description The operation failed due to insufficient permissions.
-		 * @BB10X
-		 */
-		 PERMISSION_DENIED_ERROR : 20
-}
+ /**
+ * @type Number
+ * @constant
+ * @default 20
+ * @description The operation failed due to insufficient permissions.
+ * @BB10X
+ */
+ blackberry.pim.contacts.ContactError.PERMISSION_DENIED_ERROR = 20;
+
