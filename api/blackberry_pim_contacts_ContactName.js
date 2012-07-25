@@ -62,3 +62,24 @@ blackberry.pim.contacts.ContactName.prototype.honorificPrefix = "";
  * @BB10X
  */
 blackberry.pim.contacts.ContactName.prototype.honorificSuffix = "";
+
+/**
+ * @description The contact's alias.
+ * @type String
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactName.prototype.alias = "";
+
+/**
+ * @description The contact's phonetic given name.
+ * @type String
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactName.prototype.phoneticGivenName = "";
+
+/**
+ * @description The contact's phonetic family name.
+ * @type String
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactName.prototype.phoneticFamilyName = "";

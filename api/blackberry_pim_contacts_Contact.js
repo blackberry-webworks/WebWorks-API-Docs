@@ -23,6 +23,7 @@ blackberry.pim.contacts.Contact = {};
 
 /**
  * @description A globally unique identifier.
+ * @readOnly
  * @type String
  * @BB10X
  */
@@ -50,36 +51,50 @@ blackberry.pim.contacts.Contact.prototype.name = null;
 blackberry.pim.contacts.Contact.prototype.nickname = "";
 
 /**
- * @description An array of all the contact's phone numbers.
- * @type ContactField[]
+ * @description An array of all the contact's phone numbers.<br>Possible types: ContactField.TYPE_HOME, ContactField.TYPE_WORK, ContactField.TYPE_MOBILE, ContactField.TYPE_OTHER
+ * @type blackberry.pim.contacts.ContactField[]
  * @BB10X
  */
 blackberry.pim.contacts.Contact.prototype.phoneNumbers = null;
 
 /**
- * @description An array of all the contact's email addresses.
- * @type ContactField[]
+ * @description An array of all the contact's fax numbers.<br>Possible types: ContactField.TYPE_HOME, ContactField.TYPE_WORK, ContactField.TYPE_DIRECT, ContactField.TYPE_OTHER
+ * @type blackberry.pim.contacts.ContactField[]
+ * @BB10X
+ */
+blackberry.pim.contacts.Contact.prototype.faxNumbers = null;
+
+/**
+ * @description An array of all the contact's pager numbers.<br>Possible types: ContactField.TYPE_HOME, ContactField.TYPE_WORK, ContactField.TYPE_OTHER
+ * @type blackberry.pim.contacts.ContactField[]
+ * @BB10X
+ */
+blackberry.pim.contacts.Contact.prototype.pagerNumbers = null;
+
+/**
+ * @description An array of all the contact's email addresses.<br>Possible types: ContactField.TYPE_HOME, ContactField.TYPE_WORK, ContactField.TYPE_OTHER
+ * @type blackberry.pim.contacts.ContactField[]
  * @BB10X
  */
 blackberry.pim.contacts.Contact.prototype.emails = null;
 
 /**
  * @description An array of all the contact's addresses.
- * @type ContactField[]
+ * @type blackberry.pim.contacts.ContactAddress[]
  * @BB10X
  */
 blackberry.pim.contacts.Contact.prototype.addresses = null;
 
 /**
- * @description An array of all the contact's IM addresses.
- * @type ContactField[]
+ * @description An array of all the contact's IM addresses.<br>Possible types: BbmPin, Aim, Aliwangwang, GoogleTalk, Sametime, Icq, Irc, Jabber, MsLcs, Msn, Qq, Skype, YahooMessenger, YahooMessengerJapan
+ * @type blackberry.pim.contacts.ContactField[]
  * @BB10X
  */
 blackberry.pim.contacts.Contact.prototype.ims = null;
 
 /**
  * @description An array of all the contact's organizations.
- * @type ContactField[]
+ * @type blackberry.pim.contacts.ContactField[]
  * @BB10X
  */
 blackberry.pim.contacts.Contact.prototype.organizations = null;
@@ -92,39 +107,74 @@ blackberry.pim.contacts.Contact.prototype.organizations = null;
 blackberry.pim.contacts.Contact.prototype.birthday = null;
 
 /**
+ * @description The anniversary of the contact.
+ * @type Date
+ * @BB10X
+ */
+blackberry.pim.contacts.Contact.prototype.anniversary = null;
+
+/**
  * @description A note about the contact.
  * @type String
  * @BB10X
  */
-blackberry.pim.contacts.Contact.prototype.note = null;
+blackberry.pim.contacts.Contact.prototype.note = "";
 
 /**
  * @description An array of the contact's photos.
- * @type ContactField[]
+ * @type blackberry.pim.contacts.ContactPhoto[]
  * @BB10X
  */
 blackberry.pim.contacts.Contact.prototype.photos = null;
 
 /**
+ * @description An array of the contact's social networks.<br>Possible types: LinkedIn, Facebook, Twitter, Gist
+ * @type blackberry.pim.contacts.ContactField[]
+ * @BB10X
+ */
+blackberry.pim.contacts.Contact.prototype.socialNetworks = null;
+
+/**
+ * @description An array of the contact's video chat IDs
+ * @type String[]
+ * @BB10X
+ */
+blackberry.pim.contacts.Contact.prototype.videoChat = null;
+
+/**
  * @description An array of all the contacts user defined categories.
- * @type ContactField[]
+ * @type blackberry.pim.contacts.ContactField[]
  * @BB10X
  */
 blackberry.pim.contacts.Contact.prototype.categories = null;
 
 /**
- * @description  An array of web pages associated to the contact.
- * @type ContactField[]
+ * @description An array of web pages associated to the contact.<br>Possible types: blog, resume, portfolio, personal, company, other
+ * @type blackberry.pim.contacts.ContactField[]
  * @BB10X
  */
 blackberry.pim.contacts.Contact.prototype.urls = null;
 
 /**
+ * @description Ringtone for the contact.
+ * @type String
+ * @BB10X
+ */
+blackberry.pim.contacts.Contact.prototype.ringtone = "";
+
+/**
+ * @description Whether this contact is a favorite.
+ * @type boolean
+ * @BB10X
+ */
+blackberry.pim.contacts.Contact.prototype.favorite = false;
+
+/**
  * Saves a new contact to the device contacts database, or updates an existing contact if a contact with the same id already exists.
  * @param {function} onSaveSuccess The callback function that will be invoked when the contact is saved successfully.
- * @callback {Contact} onSaveSuccess.contact The Contact object.
+ * @callback {blackberry.pim.contacts.Contact} onSaveSuccess.contact The Contact object.
  * @param {function} onSaveError The callback function that will be invoked when the contact cannot be saved.
- * @callback {ContactError} onSaveError.error The ContactError object which contains the error code.
+ * @callback {blackberry.pim.contacts.ContactError} onSaveError.error The ContactError object which contains the error code.
  * @returns {void}
  * @BB10X
  */
@@ -134,7 +184,7 @@ blackberry.pim.contacts.Contact.prototype.save = function () {};
  * Removes the contact from the device contacts database. An error callback is called with a ContactError object if the removal is unsuccessful.
  * @param {function} onRemoveSuccess The callback function that will be invoked when the contact is removed successfully.
  * @param {function} onRemoveError The callback function that will be invoked when the contact cannot be removed.
- * @callback {ContactError} onRemoveError.error The ContactError object which contains the error code.
+ * @callback {blackberry.pim.contacts.ContactError} onRemoveError.error The ContactError object which contains the error code.
  * @returns {void}
  * @BB10X
  */
@@ -142,7 +192,7 @@ blackberry.pim.contacts.Contact.prototype.remove = function () {};
 
 /**
  * Returns a new Contact object that is a deep copy of the calling object, with the id property set to null.
- * @returns {Contact}
+ * @returns {blackberry.pim.contacts.Contact}
  * @BB10X
  */
 blackberry.pim.contacts.Contact.prototype.clone = function () {};

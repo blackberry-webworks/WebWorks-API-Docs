@@ -41,7 +41,7 @@ blackberry.pim.contacts = {
          *     urls: &lt;web pages - ContactField[]&gt;
          * }
          * </pre>
-         * @return Contact
+         * @return blackberry.pim.contacts.Contact
          * @example
          * &lt;script type="text/javascript"&gt;
          *     function createContact() {
@@ -72,7 +72,7 @@ blackberry.pim.contacts = {
          * @description Queries the device contacts database. The search results are passed to the onFindSuccess callback function specified by the onFindSuccess parameter. 
          * @param {String[]} contactFields A String array of contact fields to be used as search qualifier. Only these fields will have values in the resulting Contact objects.
          * @param {function} onFindSuccess Success callback function that is invoked with the contacts returned from the contacts database.
-         * @callback {Contact[]} onFindSuccess.contacts The array of Contact objects from the search.
+         * @callback {blackberry.pim.contacts.Contact[]} onFindSuccess.contacts The array of Contact objects from the search.
          * @param {function} [onFindError] Optional error callback function. Invoked when error occurs.
          * @callback {ContactError} onFindError.error The ContactError object which contains the error code.
          * @param {Object} [findOptions] Optional object literal that describes the options to be applied to the search.
