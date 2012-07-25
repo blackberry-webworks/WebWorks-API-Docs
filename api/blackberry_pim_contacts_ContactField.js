@@ -28,11 +28,11 @@
  *     var contacts = blackberry.pim.contacts;
  *
  *     var homeEmail = new contacts.ContactField(
- *         "home",
+ *         contacts.ContactField.HOME,
  *         "xyz@person.com",
  *         true);
  *     var workEmail = new contacts.ContactField(
- *         "work",
+ *         contacts.ContactField.WORK,
  *         "abc@rim.com",
  *         false);
  *
@@ -59,7 +59,7 @@ blackberry.pim.contacts.ContactField = {};
  * @description If true, this ContactField contains the user's preferred value. 
  * @BB10X
  */
-blackberry.pim.contacts.ContactField.prototype.pref = 0;
+blackberry.pim.contacts.ContactField.prototype.pref = false;
 
 /**
  * @type String
@@ -74,4 +74,49 @@ blackberry.pim.contacts.ContactField.prototype.type = "";
  * @BB10X
  */
 blackberry.pim.contacts.ContactField.prototype.value = "";
+
+/**
+ * @type String
+ * @constant
+ * @default "home"
+ * @description The type of ContactField is "home".  This constant can be used for email addresses, phone numbers, fax numbers, and pager numbers.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactField.HOME = "home";
+
+/**
+ * @type String
+ * @constant
+ * @default "work"
+ * @description The type of ContactField is "work".  This constant can be used for email addresses, phone numbers, fax numbers, and pager numbers.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactField.WORK = "work";
+
+/**
+ * @type String
+ * @constant
+ * @default "other"
+ * @description The type of ContactField is "other".  This constant can be used for email addresses, phone numbers, fax numbers, and pager numbers.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactField.OTHER = "other";
+
+/**
+ * @type String
+ * @constant
+ * @default "mobile"
+ * @description The type of ContactField is "mobile".  This constant can be used for phone numbers.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactField.MOBILE = "mobile";
+
+/**
+ * @type String
+ * @constant
+ * @default "direct"
+ * @description The type of ContactField is "mobile".  This constant can be used for fax numbers.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactField.DIRECT = "direct";
 

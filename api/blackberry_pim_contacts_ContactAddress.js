@@ -20,7 +20,8 @@
  * @class The ContactAddress object contains the address information of a Contact object.
  * @constructor Constructor for a new ContactAddress object.
  * @param {String} type The type of ContactAddress.
- * @param {String} streetAddress The full street address.
+ * @param {String} address1 The street address.
+ * @param {String} address2 Extra information about street address.
  * @param {String} locality The city or locality.
  * @param {String} region The province, state, or region.
  * @param {String} postalCode The postal code or zip code.
@@ -32,12 +33,12 @@
  *     var contacts = blackberry.pim.contacts;
  *
  *     var homeAddress = new contacts.ContactAddress(
- *         "home",
- *         "123 Abc Rd", "Waterloo", "Ontario", "Canada",
+ *         contacts.ContactAddress.HOME,
+ *         "123 Abc Rd", "", "Waterloo", "Ontario", "Canada",
  *         true);
  *     var workAddress = new contacts.ContactAddress(
- *         "work",
- *         "456 Industry St", "Waterloo", "Ontario", "Canada",
+ *         contacts.ContactAddress.WORK,
+ *         "456 Industry St", "", "Waterloo", "Ontario", "Canada",
  *         false);
  *
  *     var newContact = contacts.create();
@@ -63,7 +64,7 @@ blackberry.pim.contacts.ContactAddress = {};
  * @description If true, this ContactAddress contains the user's preferred value. 
  * @BB10X
  */
-blackberry.pim.contacts.ContactAddress.prototype.pref = 0;
+blackberry.pim.contacts.ContactAddress.prototype.pref = false;
 
 /**
  * @type String
@@ -74,7 +75,7 @@ blackberry.pim.contacts.ContactAddress.prototype.type = "";
 
 /**
  * @type String
- * @readonly
+ * @readOnly
  * @description A formatted version of the full address, for display.
  * @BB10X
  */
@@ -82,10 +83,17 @@ blackberry.pim.contacts.ContactAddress.prototype.formatted = "";
 
 /**
  * @type String
- * @description The full street address.
+ * @description The street address.
  * @BB10X
  */
-blackberry.pim.contacts.ContactAddress.prototype.streetAddress = "";
+blackberry.pim.contacts.ContactAddress.prototype.address1 = "";
+
+/**
+ * @type String
+ * @description Extra information about the street address.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactAddress.prototype.address2 = "";
 
 /**
  * @type String
@@ -114,4 +122,31 @@ blackberry.pim.contacts.ContactAddress.prototype.postalCode = "";
  * @BB10X
  */
 blackberry.pim.contacts.ContactAddress.prototype.country = "";
+
+/**
+ * @type String
+ * @constant
+ * @default "home"
+ * @description The type of ContactAddress is "home".
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactAddress.HOME = "home";
+
+/**
+ * @type String
+ * @constant
+ * @default "work"
+ * @description The type of ContactAddress is "work".
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactAddress.WORK = "work";
+
+/**
+ * @type String
+ * @constant
+ * @default "other"
+ * @description The type of ContactAddress is "other".
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactAddress.OTHER = "other";
 

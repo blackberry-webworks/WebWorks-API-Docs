@@ -30,7 +30,7 @@
  *     var contacts = blackberry.pim.contacts;
  *
  *     var workOrg = new contacts.ContactOrganization(
- *         "work",
+ *         contacts.ContactOrganization.WORK,
  *         "Research in Motion", "BlackBerry WebWorks", "Developer",
  *         false);
  *
@@ -57,7 +57,7 @@ blackberry.pim.contacts.ContactOrganization = {};
  * @description If true, this ContactOrganization contains the user's preferred value. 
  * @BB10X
  */
-blackberry.pim.contacts.ContactOrganization.prototype.pref = 0;
+blackberry.pim.contacts.ContactOrganization.prototype.pref = false;
 
 /**
  * @type String
