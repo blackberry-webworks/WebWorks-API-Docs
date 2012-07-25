@@ -44,6 +44,14 @@ blackberry.pim.contacts = {
          * @return blackberry.pim.contacts.Contact
          * @example
          * &lt;script type="text/javascript"&gt;
+         *     function onSaveSuccess(contact) {
+         *         console.log("Contact with id=" + contact.id + " is saved!");
+         *     }
+         *
+         *     function onSaveError(error) {
+         *         console.log("Error saving contact: " + error.code);
+         *     }
+         *
          *     function createContact() {
          *         var contacts = blackberry.pim.contacts,
          *             name = new contacts.ContactName(),
@@ -60,7 +68,7 @@ blackberry.pim.contacts = {
          *              "phoneNumbers": [workPhone],
          *              "emails": [workEmail, homeEmail]
          *         });
-         *         contact.save();
+         *         contact.save(onSaveSuccess, onSaveError);
          *     }
          * &lt;/script&gt;
          * @BB10X
