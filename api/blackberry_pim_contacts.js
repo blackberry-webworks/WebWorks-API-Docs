@@ -23,6 +23,7 @@ blackberry.pim.contacts = {
 
         /**
          * @name blackberry.pim.contacts.create
+         * @function
          * @description Returns a new Contact object. This method does not persist the Contact object to the device contacts database. To persist the Contact object to the device, invoke the Contact.save method.
          * @param {Object} [properties] Optional object literal that specifies the field values for the Contact object. The object should be in the following form (with any number of properties): <br><pre>
          * {
@@ -41,192 +42,82 @@ blackberry.pim.contacts = {
          *     urls: &lt;web pages - ContactField[]&gt;
          * }
          * </pre>
-         * @return blackberry.pim.contacts.Contact
+         * @returns {blackberry.pim.contacts.Contact}
          * @example
-         * &lt;script type="text/javascript"&gt;
-         *     function onSaveSuccess(contact) {
-         *         console.log("Contact with id=" + contact.id + " is saved!");
-         *     }
+         * function onSaveSuccess(contact) {
+         *     console.log("Contact with id=" + contact.id + " is saved!");
+         * }
          *
-         *     function onSaveError(error) {
-         *         console.log("Error saving contact: " + error.code);
-         *     }
+         * function onSaveError(error) {
+         *     console.log("Error saving contact: " + error.code);
+         * }
          *
-         *     function createContact() {
-         *         var contacts = blackberry.pim.contacts,
-         *             ContactField = contacts.ContactField,
-         *             name = new contacts.ContactName(),
-         *             workPhone = new ContactField(ContactField.WORK, "123-456-789", true),
-         *             workEmail = new ContactField(ContactField.WORK, "abc@blah.com", true),
-         *             homeEmail = new ContactField(ContactField.HOME, "hello@me.com", false),
-         *             contact;
+         * function createContact() {
+         *     var contacts = blackberry.pim.contacts,
+         *         ContactField = contacts.ContactField,
+         *         name = new contacts.ContactName(),
+         *         workPhone = new ContactField(ContactField.WORK, "123-456-789", true),
+         *         workEmail = new ContactField(ContactField.WORK, "abc@blah.com", true),
+         *         homeEmail = new ContactField(ContactField.HOME, "hello@me.com", false),
+         *         contact;
          *         
-         *         name.familyName = "Smith";
-         *         name.givenName = "Joe";
-         *         contact = contacts.create({
-         *              "displayName": "Batman",
-         *              "name": name,
-         *              "phoneNumbers": [workPhone],
-         *              "emails": [workEmail, homeEmail]
-         *         });
-         *         contact.save(onSaveSuccess, onSaveError);
-         *     }
-         * &lt;/script&gt;
+         *     name.familyName = "Smith";
+         *     name.givenName = "Joe";
+         *     contact = contacts.create({
+         *          "displayName": "Batman",
+         *          "name": name,
+         *          "phoneNumbers": [workPhone],
+         *          "emails": [workEmail, homeEmail]
+         *     });
+         *     contact.save(onSaveSuccess, onSaveError);
+         * }
          * @BB10X
          */
         create : function () {},
 
         /**
          * @name blackberry.pim.contacts.find
+         * @function
          * @description Queries the device contacts database. The search results are passed to the onFindSuccess callback function specified by the onFindSuccess parameter. 
          * @param {String[]} contactFields A String array of contact fields to be used as search qualifier. Only these fields will have values in the resulting Contact objects.
          * @param {function} onFindSuccess Success callback function that is invoked with the contacts returned from the contacts database.
          * @callback {blackberry.pim.contacts.Contact[]} onFindSuccess.contacts The array of Contact objects from the search.
          * @param {function} [onFindError] Optional error callback function. Invoked when error occurs.
          * @callback {ContactError} onFindError.error The ContactError object which contains the error code.
-         * @param {Object} [findOptions] Optional object literal that describes the options to be applied to the search.
-         * @param {Object[]} [findOptions.filter] An array of object literals used in order to select which contacts are returned. The object should be in the following form: <br><pre>
-         * {
-         *     fieldName: &lt;field name, one of the SEARCH_FIELD_* constants&gt;,
-         *     fieldValue: &lt;value of the field&gt;
-         * }
-         * </pre>
-         * @param {Number} [findOptions.limit] The maximum number of results to return from the search.
-         * @param {Object[]} [findOptions.sort] An array of object literals that specifies how the results should be sorted. The object should be in the following form: <br><pre>
-         * {
-         *     fieldName: &lt;field name, one of the SORT_FIELD_* constants&gt;,
-         *     desc: true to sort results in descending order     
-         * }
-         * </pre>
+         * @param {blackberry.pim.contacts.ContactFindOptions} [findOptions] Optional options to be applied to the search.
          * @example
-         * &lt;script type="text/javascript"&gt;
-         *     function onFindSuccess(contacts) {
-         *         console.log("Found " + contacts.length + " contacts in total");
-         *         contacts.forEach(function (contact, index) {
-         *              console.log("Contact " + index + ": " + contact.displayName);
-         *         });
-         *     }
+         * function onFindSuccess(contacts) {
+         *     console.log("Found " + contacts.length + " John Smith in total");
+         * }
          *
-         *     function onFindError(error) {
-         *         console.log("Error: " + error.code);
-         *     }
+         * function onFindError(error) {
+         *     console.log("Error: " + error.code);
+         * }
          *
-         *     function searchContacts() {
-         *         var contacts = blackberry.pim.contacts;
-         *         contacts.find(["displayName"], onFindSuccess, onFindError, {
-         *              filter: [{
-         *                  fieldName: contacts.SEARCH_FIELD_GIVEN_NAME,
-         *                  fieldValue: "Joe"
-         *              }],
-         *              limit: 5,
-         *              sort: [{
-         *                   fieldName: contacts.SORT_FIELD_GIVEN_NAME,
-         *                   desc: false 
-         *              }, {
-         *                   fieldName: contacts.SORT_FIELD_FAMILY_NAME,
-         *                   desc: false
-         *              }]
-         *         });
-         *     }
-         * &lt;/script&gt;
+         * function searchContacts() {
+         *     var contacts = blackberry.pim.contacts,
+         *         ContactFindOptions = contacts.ContactFindOptions,
+         *         searchFirstName = {
+         *              "fieldName" : ContactFindOptions.SEARCH_FIELD_GIVEN_NAME,
+         *              "fieldValue" : "John"
+         *         },
+         *         searchLastName = {
+         *              "fieldName" : ContactFindOptions.SEARCH_FIELD_FAMILY_NAME,
+         *              "fieldValue" : "Smith"
+         *         },
+         *         sortOrg = {
+         *              "fieldName" : ContactFindOptions.SORT_FIELD_ORGANIZATION_NAME,
+         *              "desc" : false
+         *         },
+         *         findOptions = new ContactFindOptions(
+         *             [searchFirstName, searchLastName], // filter
+         *             [sortOrg],                         // sort
+         *             20                                 // limit
+         *         );
+         *
+         *     contacts.find(["name"], onSuccess, onError, findOptions);
+         * }
          * @BB10X
          */
-        find : function () {},
-
-
-        /**
-         * @constant
-         * @type Number
-         * @description Used by specifying the search filter
-         * @BB10X
-         */
-        SEARCH_FIELD_GIVEN_NAME: 0,
-
-        /**
-         * @constant
-         * @type Number
-         * @description Used by specifying the search filter
-         * @BB10X
-         */
-        SEARCH_FIELD_FAMILY_NAME: 1,
-
-        /**
-         * @constant
-         * @type Number
-         * @description Used by specifying the search filter
-         * @BB10X
-         */
-        SEARCH_FIELD_ORGANIZATION_NAME: 2,
-
-        /**
-         * @constant
-         * @type Number
-         * @description Used by specifying the search filter
-         * @BB10X
-         */
-        SEARCH_FIELD_PHONE: 3,
-
-        /**
-         * @constant
-         * @type Number
-         * @description Used by specifying the search filter
-         * @BB10X
-         */
-        SEARCH_FIELD_EMAIL: 4,
-
-        /**
-         * @constant
-         * @type Number
-         * @description Used by specifying the search filter
-         * @BB10X
-         */
-        SEARCH_FIELD_BBMPIN: 5,
-
-        /**
-         * @constant
-         * @type Number
-         * @description Used by specifying the search filter
-         * @BB10X
-         */
-        SEARCH_FIELD_LINKEDIN: 6,
-
-        /**
-         * @constant
-         * @type Number
-         * @description Used by specifying the search filter
-         * @BB10X
-         */
-        SEARCH_FIELD_TWITTER: 7,
-
-        /**
-         * @constant
-         * @type Number
-         * @description Used by specifying the search filter
-         * @BB10X
-         */
-        SEARCH_FIELD_VIDEO_CHAT: 8,
-
-        /**
-         * @constant
-         * @type Number
-         * @description Used by specifying the sort field
-         * @BB10X
-         */
-        SORT_FIELD_GIVEN_NAME: 0,
-
-        /**
-         * @constant
-         * @type Number
-         * @description Used by specifying the sort field
-         * @BB10X
-         */
-        SORT_FIELD_FAMILY_NAME: 1,
-
-        /**
-         * @constant
-         * @type Number
-         * @description Used by specifying the sort field
-         * @BB10X
-         */
-        SORT_FIELD_ORGANIZATION_NAME: 2
+        find : function () {}
 }

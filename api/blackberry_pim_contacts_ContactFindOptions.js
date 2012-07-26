@@ -17,7 +17,7 @@
 /**
  * @toc {PIM} ContactFindOptions
  * @featureID blackberry.pim.contacts
- * @class The ContactFindOptions object contains fields that filter and sort the results of contacts.find().
+ * @class The ContactFindOptions object contains fields that filter and sort the results of {@link blackberry.pim.contacts.find}().
  * @constructor Constructor for a new ContactFindOptions object.
  * @param {Object[]} [filter] Optional.  An array of object literals that specifies search criteria to filter the results.
  * @param {Number} [filter.fieldName] The field being searched.  This should be one of the SEARCH_FIELD_* constants.
@@ -27,41 +27,6 @@
  * @param {Boolean} [sort.desc] The sort order (descending if true).
  * @param {Number} [limit] Optional.  The maximum number of results to return from the search.
  * @BB10X
- * @example
- * function findContact() {
- *     var contacts = blackberry.pim.contacts;
- *
- *     var searchFirstName = {
- *         "fieldName" : contacts.ContactFindOptions.SEARCH_FIELD_FIRST_NAME,
- *         "fieldValue" : "John"
- *     };
- *
- *     var searchLastName = {
- *         "fieldName" : contacts.ContactFindOptions.SEARCH_FIELD_LAST_NAME,
- *         "fieldValue" : "Smith"
- *     };
- *
- *     var sortOrganization = {
- *         "fieldName" : contacts.ContactFindOptions.SORT_FIELD_ORGANIZATION_NAME,
- *         "desc" : false
- *     };
- *
- *     var findOptions = new contacts.ContactFindOptions(
- *         [searchFirstName, searchLastName], // filter
- *         [sortOrganization],                // sort
- *         20                                 // limit
- *     );
- *
- *     contacts.find(["name"], onSuccess, onError, findOptions);
- * }
- *
- * function onSuccess(contacts) {
- *     alert("John Smith was found");
- * }
- *
- * function onError(error) {
- *     alert("Contact find failed: " + error.code);
- * }
  */
 blackberry.pim.contacts.ContactFindOptions = {};
 
@@ -102,7 +67,7 @@ blackberry.pim.contacts.ContactFindOptions.prototype.limit = "";
  * @description Used by specifying the search filter
  * @BB10X
  */
-blackberry.pim.contacts.ContactFindOptions.SEARCH_FIELD_FIRST_NAME = 0;
+blackberry.pim.contacts.ContactFindOptions.SEARCH_FIELD_GIVEN_NAME = 0;
 
 /**
  * @constant
@@ -110,7 +75,7 @@ blackberry.pim.contacts.ContactFindOptions.SEARCH_FIELD_FIRST_NAME = 0;
  * @description Used by specifying the search filter
  * @BB10X
  */
-blackberry.pim.contacts.ContactFindOptions.SEARCH_FIELD_LAST_NAME = 1;
+blackberry.pim.contacts.ContactFindOptions.SEARCH_FIELD_FAMILY_NAME = 1;
 
 /**
  * @constant
@@ -174,7 +139,7 @@ blackberry.pim.contacts.ContactFindOptions.SEARCH_FIELD_VIDEO_CHAT = 8;
  * @description Used by specifying the sort field
  * @BB10X
  */
-blackberry.pim.contacts.ContactFindOptions.SORT_FIELD_FIRST_NAME = 0;
+blackberry.pim.contacts.ContactFindOptions.SORT_FIELD_GIVEN_NAME = 0;
 
 /**
  * @constant
@@ -182,7 +147,7 @@ blackberry.pim.contacts.ContactFindOptions.SORT_FIELD_FIRST_NAME = 0;
  * @description Used by specifying the sort field
  * @BB10X
  */
-blackberry.pim.contacts.ContactFindOptions.SORT_FIELD_LAST_NAME = 1;
+blackberry.pim.contacts.ContactFindOptions.SORT_FIELD_FAMILY_NAME = 1;
 
 /**
  * @constant

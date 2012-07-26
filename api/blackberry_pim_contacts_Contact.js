@@ -15,7 +15,7 @@
 */
 
 /**
- * @namespace The Contact object represents a contact in the device PIM. It can be obtained by calling {@link blackberry.pim.contacts.create} or {@link blackberry.pim.contacts.find}
+ * @class The Contact object represents a contact in the device PIM. It can be obtained by calling {@link blackberry.pim.contacts.create}() or {@link blackberry.pim.contacts.find}()
  * @toc {PIM} Contact
  * @featureID blackberry.pim.contacts
  */
