@@ -56,9 +56,9 @@ blackberry.pim.contacts = {
          *     var contacts = blackberry.pim.contacts,
          *         ContactField = contacts.ContactField,
          *         name = new contacts.ContactName(),
-         *         workPhone = new ContactField(ContactField.WORK, "123-456-789", true),
-         *         workEmail = new ContactField(ContactField.WORK, "abc@blah.com", true),
-         *         homeEmail = new ContactField(ContactField.HOME, "hello@me.com", false),
+         *         workPhone = new ContactField(ContactField.WORK, "123-456-789"),
+         *         workEmail = new ContactField(ContactField.WORK, "abc@blah.com"),
+         *         homeEmail = new ContactField(ContactField.HOME, "hello@me.com"),
          *         contact;
          *         
          *     name.familyName = "Smith";
@@ -84,7 +84,7 @@ blackberry.pim.contacts = {
          * @callback {blackberry.pim.contacts.Contact[]} onFindSuccess.contacts The array of Contact objects from the search.
          * @param {function} [onFindError] Optional error callback function. Invoked when error occurs.
          * @callback {ContactError} onFindError.error The ContactError object which contains the error code.
-         * @param {blackberry.pim.contacts.ContactFindOptions} [findOptions] Optional options to be applied to the search.
+         * @param {blackberry.pim.contacts.ContactFindOptions} findOptions Options to be applied to the search.
          * @example
          * function onFindSuccess(contacts) {
          *     console.log("Found " + contacts.length + " John Smith in total");
