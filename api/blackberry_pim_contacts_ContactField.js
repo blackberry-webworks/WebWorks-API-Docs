@@ -21,7 +21,6 @@
  * @constructor Constructor for a new ContactField object.
  * @param {String} type The type of ContactField.
  * @param {String} value The value of the ContactField.
- * @param {Boolean} pref Whether this ContactField contains the user's preferred value.
  * @BB10X
  * @example
  * function createContact() {
@@ -29,12 +28,10 @@
  *
  *     var homeEmail = new contacts.ContactField(
  *         contacts.ContactField.HOME,
- *         "xyz@person.com",
- *         true);
+ *         "xyz@person.com");
  *     var workEmail = new contacts.ContactField(
  *         contacts.ContactField.WORK,
- *         "abc@rim.com",
- *         false);
+ *         "abc@rim.com");
  *
  *     var newContact = contacts.create();
  *     newContact.emails = [homeEmail, workEmail];
@@ -53,13 +50,6 @@
  * }
  */
 blackberry.pim.contacts.ContactField = {};
-
-/**
- * @type Boolean
- * @description If true, this ContactField contains the user's preferred value. 
- * @BB10X
- */
-blackberry.pim.contacts.ContactField.prototype.pref = false;
 
 /**
  * @type String

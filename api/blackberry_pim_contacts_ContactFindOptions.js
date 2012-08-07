@@ -26,6 +26,7 @@
  * @param {Number} [sort.fieldName] The field to sort.  This should be one of the SORT_FIELD_* constants.
  * @param {Boolean} [sort.desc] The sort order (descending if true).
  * @param {Number} [limit] Optional.  The maximum number of results to return from the search.
+ * @param {Boolean} [favorite] Optional. If set to true, only Contacts marked as favorite would be included in search results.
  * @BB10X
  */
 blackberry.pim.contacts.ContactFindOptions = {};
@@ -60,6 +61,13 @@ blackberry.pim.contacts.ContactFindOptions.prototype.sort = [];
  * @BB10X
  */
 blackberry.pim.contacts.ContactFindOptions.prototype.limit = "";
+
+/**
+ * @type Boolean
+ * @description If set to true, only Contacts marked as favorite would be included in search results.
+ * @BB10X
+ */
+blackberry.pim.contacts.ContactFindOptions.prototype.favorite = false;
 
 /**
  * @constant

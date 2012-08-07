@@ -22,15 +22,13 @@
  * @param {String} name The name of the organization.
  * @param {String} department The contact's department within the organization.
  * @param {String} title The contact's title within the organization.
- * @param {Boolean} pref Whether this ContactOrganization contains the user's preferred value.
  * @BB10X
  * @example
  * function createContact() {
  *     var contacts = blackberry.pim.contacts;
  *
  *     var workOrg = new contacts.ContactOrganization(
- *         "Research in Motion", "BlackBerry WebWorks", "Developer",
- *         false);
+ *         "Research in Motion", "BlackBerry WebWorks", "Developer");
  *
  *     var newContact = contacts.create();
  *     newContact.organizations = [workOrg];
@@ -49,13 +47,6 @@
  * }
  */
 blackberry.pim.contacts.ContactOrganization = {};
-
-/**
- * @type Boolean
- * @description If true, this ContactOrganization contains the user's preferred value. 
- * @BB10X
- */
-blackberry.pim.contacts.ContactOrganization.prototype.pref = false;
 
 /**
  * @type String

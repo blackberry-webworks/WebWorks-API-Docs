@@ -26,7 +26,6 @@
  * @param {String} region The province, state, or region.
  * @param {String} postalCode The postal code or zip code.
  * @param {String} country The country name.
- * @param {Boolean} pref Whether this ContactAddress contains the user's preferred value.
  * @BB10X
  * @example
  * function createContact() {
@@ -34,12 +33,10 @@
  *
  *     var homeAddress = new contacts.ContactAddress(
  *         contacts.ContactAddress.HOME,
- *         "123 Abc Rd", "", "Waterloo", "Ontario", "Canada",
- *         true);
+ *         "123 Abc Rd", "", "Waterloo", "Ontario", "Canada");
  *     var workAddress = new contacts.ContactAddress(
  *         contacts.ContactAddress.WORK,
- *         "456 Industry St", "", "Waterloo", "Ontario", "Canada",
- *         false);
+ *         "456 Industry St", "", "Waterloo", "Ontario", "Canada");
  *
  *     var newContact = contacts.create();
  *     newContact.addresses = [homeAddress, workAddress];
@@ -58,13 +55,6 @@
  * }
  */
 blackberry.pim.contacts.ContactAddress = {};
-
-/**
- * @type Boolean
- * @description If true, this ContactAddress contains the user's preferred value. 
- * @BB10X
- */
-blackberry.pim.contacts.ContactAddress.prototype.pref = false;
 
 /**
  * @type String
