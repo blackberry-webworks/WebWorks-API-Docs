@@ -19,13 +19,17 @@
  * @featureID blackberry.pim.contacts
  * @class The ContactAddress object contains the address information of a Contact object.
  * @constructor Constructor for a new ContactAddress object.
- * @param {String} type The type of ContactAddress.
- * @param {String} streetAddress The street address.
- * @param {String} streetOther Extra information about street address.
- * @param {String} locality The city or locality.
- * @param {String} region The province, state, or region.
- * @param {String} postalCode The postal code or zip code.
- * @param {String} country The country name.
+ * @param {Object} [properties] Optional object literal that specifies the field values for the ContactAddress object. The object should be in the following form (with any number of properties): <br><pre>
+ * {
+ *     type: &lt;type of address HOME, WORK, or OTHER - String&gt;,
+ *     streetAddress: &lt;the street address - String&gt;,
+ *     streetOther: &lt;extra information about street address - String&gt;,
+ *     locality: &lt;the city or locality - String&gt;,
+ *     region: &lt;the province, state, or region - String&gt;,
+ *     postalCode: &lt;the postal code or zip code - String&gt;,
+ *     country: &lt;the country name - String&gt;
+ * }
+ * </pre>
  * @BB10X
  * @example
  * function createContact() {
@@ -85,14 +89,14 @@ blackberry.pim.contacts.ContactAddress.prototype.formatted = "";
  * @description The street address.
  * @BB10X
  */
-blackberry.pim.contacts.ContactAddress.prototype.address1 = "";
+blackberry.pim.contacts.ContactAddress.prototype.streetAddress = "";
 
 /**
  * @type String
  * @description Extra information about the street address.
  * @BB10X
  */
-blackberry.pim.contacts.ContactAddress.prototype.address2 = "";
+blackberry.pim.contacts.ContactAddress.prototype.streetOther = "";
 
 /**
  * @type String

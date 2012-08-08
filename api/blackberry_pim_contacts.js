@@ -18,6 +18,7 @@
  * @namespace The contacts object provides functions for creating and finding contacts.
  * @toc {PIM} Contacts
  * @featureID blackberry.pim.contacts
+ * @permission access_pimdomain_contacts Permits your app to access contacts.
  */
 blackberry.pim.contacts = {
 

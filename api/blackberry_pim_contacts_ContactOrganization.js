@@ -19,16 +19,23 @@
  * @featureID blackberry.pim.contacts
  * @class The ContactOrganization object contains the organization information of a Contact object.
  * @constructor Constructor for a new ContactOrganization object.
- * @param {String} name The name of the organization.
- * @param {String} department The contact's department within the organization.
- * @param {String} title The contact's title within the organization.
+ * @param {Object} [properties] Optional object literal that specifies the field values for the ContactOrganization object. The object should be in the following form (with any number of properties): <br><pre>
+ * {
+ *      name: &lt;name of the organization - String&gt;,
+ *      department: &lt;the contact's department within the organization - String&gt;,
+ *      title: &lt;the contact's title within the organization - String&gt;
+ * }
+ * </pre>
  * @BB10X
  * @example
  * function createContact() {
  *     var contacts = blackberry.pim.contacts;
  *
- *     var workOrg = new contacts.ContactOrganization(
- *         "Research in Motion", "BlackBerry WebWorks", "Developer");
+ *     var workOrg = new contacts.ContactOrganization({
+ *             "name": "Research in Motion",
+ *             "department": "BlackBerry WebWorks",
+ *             "title": "Developer"
+ *         });
  *
  *     var newContact = contacts.create();
  *     newContact.organizations = [workOrg];
@@ -39,7 +46,7 @@
  * }
  *
  * function onSaveSuccess(contact) {
- *     alert("Contact saved: " + contact.displayName);
+ *     alert("Contact saved: " + contact.organizations[0].name);
  * }
  *
  * function onSaveError(error) {
