@@ -20,8 +20,8 @@
  * @class The ContactAddress object contains the address information of a Contact object.
  * @constructor Constructor for a new ContactAddress object.
  * @param {String} type The type of ContactAddress.
- * @param {String} address1 The street address.
- * @param {String} address2 Extra information about street address.
+ * @param {String} streetAddress The street address.
+ * @param {String} streetOther Extra information about street address.
  * @param {String} locality The city or locality.
  * @param {String} region The province, state, or region.
  * @param {String} postalCode The postal code or zip code.
@@ -29,14 +29,23 @@
  * @BB10X
  * @example
  * function createContact() {
- *     var contacts = blackberry.pim.contacts;
+ *     var contacts = blackberry.pim.contacts,
+ *         ContactAddress = contacts.ContactAddress;
  *
- *     var homeAddress = new contacts.ContactAddress(
- *         contacts.ContactAddress.HOME,
- *         "123 Abc Rd", "", "Waterloo", "Ontario", "Canada");
- *     var workAddress = new contacts.ContactAddress(
- *         contacts.ContactAddress.WORK,
- *         "456 Industry St", "", "Waterloo", "Ontario", "Canada");
+ *     var homeAddress = new ContactAddress({
+ *             "type": ContactAddress.HOME,
+ *             "streetAddress": "123 Abc Rd",
+ *             "locality": "Waterloo",
+ *             "region": "Ontario",
+ *             "country": "Canada"
+ *         });
+ *     var workAddress = new ContactAddress({
+ *             "type": ContactAddress.WORK,
+ *             "streetAddress": "456 Industry St",
+ *             "locality": "Waterloo",
+ *             "region": "Ontario",
+ *             "country": Canada"
+ *         });
  *
  *     var newContact = contacts.create();
  *     newContact.addresses = [homeAddress, workAddress];

@@ -115,7 +115,7 @@ blackberry.pim.contacts = {
          *             20                                 // limit
          *         );
          *
-         *     contacts.find(["name"], onSuccess, onError, findOptions);
+         *     contacts.find(["name"], onFindSuccess, onFindError, findOptions);
          * }
          * @BB10X
          */
