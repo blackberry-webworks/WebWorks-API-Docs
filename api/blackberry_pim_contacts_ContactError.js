@@ -59,7 +59,7 @@ blackberry.pim.contacts.ContactError.prototype.code = "";
  * @type Number
  * @constant
  * @default 1
- * @description An parameter was incorrect.
+ * @description A parameter was incorrect.
  * @BB10X
  */
  blackberry.pim.contacts.ContactError.INVALID_ARGUMENT_ERROR = 1;
