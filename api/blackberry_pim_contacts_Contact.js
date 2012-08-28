@@ -174,7 +174,7 @@ blackberry.pim.contacts.Contact.prototype.favorite = false;
  * Saves a new contact to the device contacts database, or updates an existing contact if a contact with the same id already exists.
  * @param {function} onSaveSuccess The callback function that will be invoked when the contact is saved successfully.
  * @callback {blackberry.pim.contacts.Contact} onSaveSuccess.contact The Contact object.
- * @param {function} onSaveError The callback function that will be invoked when the contact cannot be saved.
+ * @param {function} onSaveError The callback function that will be invoked when the contact cannot be saved. Possible errors are: permission denied error (if <pre>access_pimdomain_contacts</pre> is not specified) or illegal arguments error (if mandatory parameters are missing or invalid).
  * @callback {blackberry.pim.contacts.ContactError} onSaveError.error The ContactError object which contains the error code.
  * @returns {void}
  * @BB10X
@@ -185,7 +185,7 @@ blackberry.pim.contacts.Contact.prototype.save = function () {};
  * Removes the contact from the device contacts database. An error callback is called with a ContactError object if the removal is unsuccessful.
  * @param {function} onRemoveSuccess The callback function that will be invoked when the contact is removed successfully.
  * @param {function} onRemoveError The callback function that will be invoked when the contact cannot be removed.
- * @callback {blackberry.pim.contacts.ContactError} onRemoveError.error The ContactError object which contains the error code.
+ * @callback {blackberry.pim.contacts.ContactError} onRemoveError.error The ContactError object which contains the error code. Possible errors are: permission denied error (if <pre>access_pimdomain_contacts</pre> is not specified) or illegal arguments error (if mandatory parameters are missing or invalid).
  * @returns {void}
  * @BB10X
  */

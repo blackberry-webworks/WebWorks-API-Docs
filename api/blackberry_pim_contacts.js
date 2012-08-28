@@ -83,7 +83,7 @@ blackberry.pim.contacts = {
          * @param {String[]} contactFields A String array of contact fields to be used as search qualifier. Only these fields will have values in the resulting Contact objects.
          * @param {function} onFindSuccess Success callback function that is invoked with the contacts returned from the contacts database.
          * @callback {blackberry.pim.contacts.Contact[]} onFindSuccess.contacts The array of Contact objects from the search.
-         * @param {function} [onFindError] Optional error callback function. Invoked when error occurs.
+         * @param {function} [onFindError] Optional error callback function. Invoked when error occurs. Possible errors are: permission denied error (if <pre>access_pimdomain_contacts</pre> is not specified) or illegal arguments error (if mandatory parameters are missing or invalid).
          * @callback {ContactError} onFindError.error The ContactError object which contains the error code.
          * @param {blackberry.pim.contacts.ContactFindOptions} findOptions Options to be applied to the search.
          * @example
