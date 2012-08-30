@@ -57,7 +57,7 @@ blackberry.pim.contacts.ContactFindOptions.prototype.sort = [];
 
 /**
  * @type Number
- * @description The maximum number of contact results returned.
+ * @description The maximum number of contact results returned. If limit is set to -1, all matching contacts will be returned.
  * @BB10X
  */
 blackberry.pim.contacts.ContactFindOptions.prototype.limit = "";
