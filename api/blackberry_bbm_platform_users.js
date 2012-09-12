@@ -185,40 +185,6 @@ blackberry.bbm.platform.users = {
     sendFile : function(fileURI, comment, onFailure, contact) {
     },
     
-     /**
-     * @name blackberry.bbm.platform.users.onupdate^2
-     * @function
-     * Invoked when a user's information is updated. Assign a function to receive user updates.
-     * <p>User updates can be captured such as profile information and application installation changes.
-     * Updates can be received from the current user, contacts who have the application, and non-contacts
-     * who have joined in an application connection with the current user.</p>
-     * <ul>
-     * <li><code>"displayname"</code>: Display name update.
-     * <li><code>"displaypicture"</code>: Display picture update.
-     * <li><code>"personalmessage"</code>: Personal message update.
-     * <li><code>"status"</code>: Status and/or status message update.
-     * </ul>
-     * @param {blackberry.bbm.platform.users.BBMPlatformUser} user The user whose information updated.
-     * @param {String} event The type of update.
-     * @example
-     * &lt;script type="text/javascript"&gt;
-     * 
-     * blackberry.event.addEventListener("onupdate", function(user, event) {
-     *     // Handle events for the current user
-     *     if(user.handle == blackberry.platform.self.handle) {
-     *         if (event == "personalmessage") {
-     *             alert("Personal message update: " + user.personalmessage);
-     *         }
-     *         // Handle other events for the current user...
-     *     }
-     *     // Handle events for other users...
-     * };
-     * 
-     * &lt;/script&gt;
-     * @event
-     * @BB10X
-     */   
-     
     /**
      * Invoked when a user's information is updated. Assign a function to receive user updates.
      * <p>User updates can be captured such as profile information and application installation changes.
@@ -277,20 +243,6 @@ blackberry.bbm.platform.users = {
     inviteToDownload : function(onComplete) {
     },
     
-    /**
-     * @name blackberry.bbm.platform.users.inviteToDownload^2
-     * @function
-     * @description Allows the user to invite contacts to download the application. A download invitation
-     * card will appear allowing the user to select contacts to invite.
-     * <p><b>Only contacts without the application can be invited to download.</b>
-     * @example
-     * blackberry.bbm.platform.users.inviteToDownload();
-     * 
-     * @BB10X
-     */
-    inviteToDownload : function() {
-    },
-
     /**
      * Allows the user to invite users to their BBM contact list. A dialog will appear allowing the
      * user to select users to invite. Users already in the current user's contact list will not be

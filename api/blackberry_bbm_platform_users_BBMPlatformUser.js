@@ -52,7 +52,6 @@ blackberry.bbm.platform.users.BBMPlatformUser = function() {
      * @type String
      * @readOnly
      * @BB50+
-     * @BB10X
      */
     this.displayName = "";
 
@@ -61,7 +60,6 @@ blackberry.bbm.platform.users.BBMPlatformUser = function() {
      * @type String
      * @readOnly
      * @BB50+
-     * @BB10X
      */
     this.personalMessage = "";
 
@@ -70,7 +68,6 @@ blackberry.bbm.platform.users.BBMPlatformUser = function() {
      * @type String
      * @readOnly
      * @BB50+
-     * @BB10X
      */
     this.status = "";
 
@@ -79,7 +76,6 @@ blackberry.bbm.platform.users.BBMPlatformUser = function() {
      * @type String
      * @readOnly
      * @BB50+
-     * @BB10X
      */
     this.statusMessage = "";
     
@@ -88,7 +84,6 @@ blackberry.bbm.platform.users.BBMPlatformUser = function() {
      * @type String
      * @readOnly
      * @BB50+
-     * @BB10X
      */
     this.handle = 0;
     
@@ -97,7 +92,6 @@ blackberry.bbm.platform.users.BBMPlatformUser = function() {
      * @type String
      * @readOnly
      * @BB50+
-     * @BB10X
      */
     this.ppid = 0;
     
@@ -106,7 +100,6 @@ blackberry.bbm.platform.users.BBMPlatformUser = function() {
      * @type String
      * @readOnly
      * @BB50+
-     * @BB10X
      */
     this.appVersion = "";
     
@@ -120,32 +113,6 @@ blackberry.bbm.platform.users.BBMPlatformUser = function() {
      * @type Number
      * @readOnly
      * @BB50+
-     * @BB10X
      */
     this.bbmsdkVersion = 0;
-    
-    /**
-     * @description The country code of the user.
-     * @type String
-     * @readOnly
-     * @BB10X
-     */
-    this.countryCode = "";
-    
-    /**
-     * @description The a picture of the user's country flag encoded as base64 image string.
-     * @type String
-     * @readOnly
-     * @BB10X
-     */
-    this.countryFlag = "";
-
-    /**
-     * @description The timezone of the user.
-     * @type String
-     * @readOnly
-     * @BB10X
-     */
-    this.timezone = "";
-
 };
