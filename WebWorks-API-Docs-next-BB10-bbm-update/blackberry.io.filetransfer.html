@@ -28,6 +28,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -72,7 +118,7 @@
 
 
                 
-                    <div x-ww-support="bb10x">
+                    <div x-ww-support="bb10_menu">
                     
                 
   
@@ -116,7 +162,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.io.filetransfer.html#.download">blackberry.io.filetransfer.download</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -128,7 +174,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.io.filetransfer.html#.upload">blackberry.io.filetransfer.upload</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -140,7 +186,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.io.filetransfer.html#.FILE_NOT_FOUND_ERR">FILE_NOT_FOUND_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -152,7 +198,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.io.filetransfer.html#.INVALID_URL_ERR">INVALID_URL_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -164,7 +210,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.io.filetransfer.html#.CONNECTION_ERR">CONNECTION_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -176,7 +222,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.io.filetransfer.html#.PERMISSIONS_ERR">PERMISSIONS_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -215,7 +261,7 @@
                             
                                 
                             
-                            <tr x-ww-support="bb10x"><td>
+                            <tr x-ww-support="bb10_menu"><td>
                                 &lt;feature id="blackberry.io.filetransfer" /&gt;
                                 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -228,11 +274,11 @@
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -258,7 +304,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb10x">
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -266,7 +312,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -278,7 +324,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -306,7 +352,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb10x">
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
                 <div class="ref-sect-title">
                     <h2> Constants </h2>
                 </div>
@@ -314,7 +360,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -326,7 +372,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -338,7 +384,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -350,7 +396,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -392,7 +438,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".download"></a>
                  
@@ -586,7 +632,7 @@ function fileDownload() {
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".upload"></a>
                  
@@ -850,7 +896,7 @@ if (move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"][
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".FILE_NOT_FOUND_ERR"></a>
                  
@@ -927,7 +973,7 @@ if (move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"][
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".INVALID_URL_ERR"></a>
                  
@@ -1004,7 +1050,7 @@ if (move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"][
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".CONNECTION_ERR"></a>
                  
@@ -1081,7 +1127,7 @@ if (move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"][
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".PERMISSIONS_ERR"></a>
                  
@@ -1171,7 +1217,7 @@ if (move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"][
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:56:33 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 16:58:19 GMT-0500 (EST)
         </div>
 
     </div>

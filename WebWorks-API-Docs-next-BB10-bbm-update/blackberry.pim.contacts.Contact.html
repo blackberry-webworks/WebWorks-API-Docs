@@ -28,6 +28,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -72,7 +118,7 @@
 
 
                 
-                    <div x-ww-support="bb10x">
+                    <div x-ww-support="bb10_menu">
                     
                 
   
@@ -116,7 +162,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#clone">clone</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -128,7 +174,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#remove">remove</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -140,7 +186,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#save">save</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -152,7 +198,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.pim.contacts.Contact.html#activities">activities</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#addresses">addresses</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -164,7 +222,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#anniversary">anniversary</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -176,7 +234,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#birthday">birthday</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -188,7 +246,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#categories">categories</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -200,7 +258,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#displayName">displayName</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -212,7 +270,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#emails">emails</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -224,7 +282,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#favorite">favorite</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -236,7 +294,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#faxNumbers">faxNumbers</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -248,7 +306,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#id">id</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -260,7 +318,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#ims">ims</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -272,7 +330,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#name">name</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -284,7 +342,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.pim.contacts.Contact.html#news">news</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#nickname">nickname</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -296,7 +366,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#note">note</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -308,7 +378,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#organizations">organizations</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -320,7 +390,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#pagerNumbers">pagerNumbers</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -332,7 +402,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#phoneNumbers">phoneNumbers</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -344,7 +414,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#photos">photos</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -356,7 +426,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#ringtone">ringtone</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -368,7 +438,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#socialNetworks">socialNetworks</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -380,7 +450,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#urls">urls</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -392,7 +462,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.Contact.html#videoChat">videoChat</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -431,7 +501,7 @@
                             
                                 
                             
-                            <tr x-ww-support="bb10x"><td>
+                            <tr x-ww-support="bb10_menu"><td>
                                 &lt;feature id="blackberry.pim.contacts" /&gt;
                                 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -444,13 +514,13 @@
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                         
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             
@@ -487,7 +557,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb10x">
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -495,7 +565,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.pim.contacts.Contact.html">blackberry.pim.contacts.Contact</a>
@@ -507,7 +577,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -519,7 +589,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -544,7 +614,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb10x">
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -552,7 +622,19 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            <a href="blackberry.pim.contacts.ContactActivity.html">blackberry.pim.contacts.ContactActivity</a>[]
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.pim.contacts.Contact.html#activities">activities</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.pim.contacts.ContactAddress.html">blackberry.pim.contacts.ContactAddress</a>[]
@@ -564,7 +646,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             Date
@@ -576,7 +658,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             Date
@@ -588,7 +670,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.pim.contacts.ContactField.html">blackberry.pim.contacts.ContactField</a>[]
@@ -600,7 +682,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -612,7 +694,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.pim.contacts.ContactField.html">blackberry.pim.contacts.ContactField</a>[]
@@ -624,7 +706,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             Boolean
@@ -636,7 +718,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.pim.contacts.ContactField.html">blackberry.pim.contacts.ContactField</a>[]
@@ -648,7 +730,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -660,7 +742,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.pim.contacts.ContactField.html">blackberry.pim.contacts.ContactField</a>[]
@@ -672,7 +754,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.pim.contacts.ContactName.html">blackberry.pim.contacts.ContactName</a>
@@ -684,7 +766,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            <a href="blackberry.pim.contacts.ContactNews.html">blackberry.pim.contacts.ContactNews</a>[]
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.pim.contacts.Contact.html#news">news</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -696,7 +790,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -708,7 +802,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.pim.contacts.ContactOrganization.html">blackberry.pim.contacts.ContactOrganization</a>[]
@@ -720,7 +814,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.pim.contacts.ContactField.html">blackberry.pim.contacts.ContactField</a>[]
@@ -732,7 +826,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.pim.contacts.ContactField.html">blackberry.pim.contacts.ContactField</a>[]
@@ -744,7 +838,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.pim.contacts.ContactPhoto.html">blackberry.pim.contacts.ContactPhoto</a>[]
@@ -756,7 +850,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -768,7 +862,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.pim.contacts.ContactField.html">blackberry.pim.contacts.ContactField</a>[]
@@ -780,7 +874,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.pim.contacts.ContactField.html">blackberry.pim.contacts.ContactField</a>[]
@@ -792,7 +886,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             String[]
@@ -837,7 +931,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="clone"></a>
                  
@@ -912,7 +1006,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="remove"></a>
                  
@@ -1022,7 +1116,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="save"></a>
                  
@@ -1153,7 +1247,78 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name="activities"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        readonly
+                                        <a href="blackberry.pim.contacts.ContactActivity.html">blackberry.pim.contacts.ContactActivity</a>[]
+                                        
+                                        
+                                            activities
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>An array of the contact's latest activities.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="addresses"></a>
                  
@@ -1224,7 +1389,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="anniversary"></a>
                  
@@ -1295,7 +1460,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="birthday"></a>
                  
@@ -1366,7 +1531,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="categories"></a>
                  
@@ -1437,7 +1602,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="displayName"></a>
                  
@@ -1508,7 +1673,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="emails"></a>
                  
@@ -1579,7 +1744,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="favorite"></a>
                  
@@ -1650,7 +1815,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="faxNumbers"></a>
                  
@@ -1721,7 +1886,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="id"></a>
                  
@@ -1792,7 +1957,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="ims"></a>
                  
@@ -1863,7 +2028,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="name"></a>
                  
@@ -1934,7 +2099,78 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name="news"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        readonly
+                                        <a href="blackberry.pim.contacts.ContactNews.html">blackberry.pim.contacts.ContactNews</a>[]
+                                        
+                                        
+                                            news
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>An array of the contact's latest online news.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="nickname"></a>
                  
@@ -2005,7 +2241,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="note"></a>
                  
@@ -2076,7 +2312,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="organizations"></a>
                  
@@ -2147,7 +2383,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="pagerNumbers"></a>
                  
@@ -2218,7 +2454,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="phoneNumbers"></a>
                  
@@ -2289,7 +2525,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="photos"></a>
                  
@@ -2360,7 +2596,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="ringtone"></a>
                  
@@ -2431,7 +2667,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="socialNetworks"></a>
                  
@@ -2502,7 +2738,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="urls"></a>
                  
@@ -2573,7 +2809,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="videoChat"></a>
                  
@@ -2660,7 +2896,7 @@
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:56:31 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 16:58:16 GMT-0500 (EST)
         </div>
 
     </div>

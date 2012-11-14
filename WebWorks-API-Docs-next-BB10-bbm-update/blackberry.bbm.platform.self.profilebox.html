@@ -28,6 +28,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -98,7 +144,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
 
 
                 
-                    <div x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div x-ww-support="bb_menu">
                     
                 
   
@@ -142,7 +188,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.self.profilebox.html#.addItem">blackberry.bbm.platform.self.profilebox.addItem</a>
                                         <td class="apiYes">Y</td>
@@ -154,7 +200,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.self.profilebox.html#.clearItems">blackberry.bbm.platform.self.profilebox.clearItems</a>
                                         <td class="apiYes">Y</td>
@@ -166,7 +212,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.self.profilebox.html#.removeItem">blackberry.bbm.platform.self.profilebox.removeItem</a>
                                         <td class="apiYes">Y</td>
@@ -178,7 +224,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.self.profilebox.html#.accessible">accessible</a>
                                         <td class="apiYes">Y</td>
@@ -190,7 +236,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.self.profilebox.html#.items">items</a>
                                         <td class="apiYes">Y</td>
@@ -229,7 +275,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
                             
                                 
                             
-                            <tr x-ww-support="bb5.0|bb6.0|bb7.0"><td>
+                            <tr x-ww-support="bb_menu"><td>
                                 &lt;feature id="blackberry.bbm.platform" /&gt;
                                 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
@@ -242,11 +288,11 @@ running. The invoking profile box item can be obtained by assigning a callback t
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -272,7 +318,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -280,7 +326,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.bbm.platform.self.profilebox.ProfileBoxItem.html">blackberry.bbm.platform.self.profilebox.ProfileBoxItem</a>
@@ -292,7 +338,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -304,7 +350,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -329,7 +375,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -337,7 +383,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             Boolean
@@ -349,7 +395,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.bbm.platform.self.profilebox.ProfileBoxItem.html">blackberry.bbm.platform.self.profilebox.ProfileBoxItem</a>[]
@@ -394,7 +440,7 @@ running. The invoking profile box item can be obtained by assigning a callback t
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".addItem"></a>
                  
@@ -431,10 +477,10 @@ running. The invoking profile box item can be obtained by assigning a callback t
                             
                             
                             <p>Adds an item to the top of the user's profile box.
-<p>Icons are optional and are provided via fully-qualified URI. Non-local URIs must be whitelisted in the application's configuration file. Examples:
+<p>Icons are optional and are provided via a fully-qualified URI. Non-local URIs must be whitelisted in the application's configuration file. Examples:
 <ul>
 <li>Locally from within the widget package (e.g. "local:///smiley.jpg")
-<li>From the filesystem of the device (e.g. "file:///SDCard/BlackBerry/pictures/smiley.jpg")
+<li>From the file system of the device (e.g. "file:///SDCard/BlackBerry/pictures/smiley.jpg")
 </ul></p>
                             <br />
                             
@@ -475,8 +521,8 @@ running. The invoking profile box item can be obtained by assigning a callback t
                                                         <b>text:</b> The text of the item.
                                                     
                                                         <br />
-                                                        <b>icon:</b> <i>Optional</i> The URI of the icon to use. If not provided
-then no icon will be used.
+                                                        <b>icon:</b> <i>Optional</i> The URI of the icon to use. If not provided,
+no icon is used.
                                                     
                                                         <br />
                                                         <b>cookie:</b> <i>Optional</i> The customizable cookie.
@@ -515,7 +561,7 @@ then no icon will be used.
                                 <span><b>Return:</b></span>
                                 
                                     
-                                        <p> the new item. </p>
+                                        <p> The new item. </p>
                                     
                                 
                                 <br />
@@ -548,7 +594,7 @@ blackberry.bbm.platform.self.profilebox.addItem(options);
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".clearItems"></a>
                  
@@ -641,7 +687,7 @@ blackberry.bbm.platform.self.profilebox.addItem(options);
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".removeItem"></a>
                  
@@ -768,7 +814,7 @@ blackberry.bbm.platform.self.profilebox.addItem(options);
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".accessible"></a>
                  
@@ -840,7 +886,7 @@ The profile box is not accessible when the device is in mass storage mode.</p>
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".items"></a>
                  
@@ -927,7 +973,7 @@ The profile box is not accessible when the device is in mass storage mode.</p>
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:56:37 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 16:58:23 GMT-0500 (EST)
         </div>
 
     </div>

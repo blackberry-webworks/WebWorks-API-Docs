@@ -28,6 +28,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -72,7 +118,7 @@
 
 
                 
-                    <div x-ww-support="bb10x">
+                    <div x-ww-support="bb10_menu">
                     
                 
   
@@ -116,7 +162,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.html#.create">blackberry.pim.contacts.create</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -128,7 +174,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.html#.find">blackberry.pim.contacts.find</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -167,7 +213,7 @@
                             
                                 
                             
-                            <tr x-ww-support="bb10x"><td>
+                            <tr x-ww-support="bb10_menu"><td>
                                 &lt;feature id="blackberry.pim.contacts" /&gt;
                                 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -180,13 +226,13 @@
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                         
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             
@@ -223,7 +269,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb10x">
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -231,7 +277,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.pim.contacts.Contact.html">blackberry.pim.contacts.Contact</a>
@@ -243,7 +289,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -294,7 +340,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".create"></a>
                  
@@ -414,10 +460,10 @@ function onSaveError(error) {
 function createContact() {
     var contacts = blackberry.pim.contacts,
         ContactField = contacts.ContactField,
-        name = new contacts.ContactName(),
-        workPhone = new ContactField(ContactField.WORK, "123-456-789"),
-        workEmail = new ContactField(ContactField.WORK, "abc@blah.com"),
-        homeEmail = new ContactField(ContactField.HOME, "hello@me.com"),
+        name = {},
+        workPhone = { type: ContactField.WORK, value: "123-456-789" },
+        workEmail = { type: ContactField.WORK, value: "abc@blah.com" },
+        homeEmail = { type: ContactField.HOME, value: "hello@me.com" },
         contact;
         
     name.familyName = "Smith";
@@ -436,7 +482,7 @@ function createContact() {
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".find"></a>
                  
@@ -453,7 +499,7 @@ function createContact() {
                                             blackberry.pim.contacts.find
                                             
                                                 
-                                                    (contactFields : String[], onFindSuccess : function, <i>[onFindError : function]</i>, findOptions : <a href="blackberry.pim.contacts.ContactFindOptions.html">blackberry.pim.contacts.ContactFindOptions</a>)
+                                                    (contactFields : String[], findOptions : <a href="blackberry.pim.contacts.ContactFindOptions.html">blackberry.pim.contacts.ContactFindOptions</a>, onFindSuccess : function, <i>[onFindError : function]</i>)
                                                 
                                             
                                                                   
@@ -512,6 +558,16 @@ function createContact() {
                                     
                                         
                                         <tr>
+                                            <td><b>findOptions</b></td>
+                                            <td>
+                                                
+                                                Options to be applied to the search.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
                                             <td><b>onFindSuccess</b></td>
                                             <td>
                                                 
@@ -541,16 +597,6 @@ function createContact() {
                                                 
                                             </td>
                                         </tr>
-                                    
-                                        
-                                        <tr>
-                                            <td><b>findOptions</b></td>
-                                            <td>
-                                                
-                                                Options to be applied to the search.                         
-                                                
-                                            </td>
-                                        </tr>
                                                   
                                 </table>
                                                
@@ -572,18 +618,19 @@ function createContact() {
     <br />
     <b>Code Example:</b>
     
-        <table><tbody><td class="code"><code><pre>function onFindSuccess(contacts) {
-    console.log("Found " + contacts.length + " John Smith in total");
+        <table><tbody><td class="code"><code><pre>var contacts = blackberry.pim.contacts,
+    ContactFindOptions = contacts.ContactFindOptions;
+
+function onFindSuccess(results) {
+    console.log("Found " + results.length + " contacts in total");
 }
 
 function onFindError(error) {
     console.log("Error: " + error.code);
 }
 
-function searchContacts() {
-    var contacts = blackberry.pim.contacts,
-        ContactFindOptions = contacts.ContactFindOptions,
-        searchFirstName = {
+function searchContactsByName() {
+    var searchFirstName = {
              "fieldName" : ContactFindOptions.SEARCH_FIELD_GIVEN_NAME,
              "fieldValue" : "John"
         },
@@ -595,13 +642,61 @@ function searchContacts() {
              "fieldName" : ContactFindOptions.SORT_FIELD_ORGANIZATION_NAME,
              "desc" : false
         },
-        findOptions = new ContactFindOptions(
-            [searchFirstName, searchLastName], // filter
-            [sortOrg],                         // sort
-            20                                 // limit
-        );
+        findOptions = {
+             filter: [searchFirstName, searchLastName], // filter
+             sort: [sortOrg],                           // sort
+             limit: 20                                  // limit
+        };
+    // The first 20 contacts (based on specified sort specs) with given name "John"
+    // and family name "Smith" will be returned
+    contacts.find(["name"], findOptions, onFindSuccess, onFindError);
+}
 
-    contacts.find(["name"], onFindSuccess, onFindError, findOptions);
+function listAllContacts() {
+    var sort = [{
+             "fieldName": ContactFindOptions.SORT_FIELD_FAMILY_NAME,
+             "desc": false
+        }, {
+             "fieldName": ContactFindOptions.SORT_FIELD_GIVEN_NAME,
+             "desc": true
+        }],
+        // no filter - return all contacts
+        findOptions = { 
+             // sort contacts first by family name (desc), then by given name (asc)
+             sort: sort,  
+             limit: 20     // limit - return up to 20 contacts
+        };
+    // The first 20 contacts (based on specified sort specs) will be returned
+    contacts.find(["name"], findOptions, onFindSuccess, onFindError);
+}
+
+function listAllContactsWithEmptyFindOptions() {
+    var findOptions = {};
+    
+    //Will return all contacts with no particular sort order
+    contacts.find(["name"], findOptions, onFindSuccess, onFindError);
+}
+
+function findContactErrorMissingFilterValue() {
+    var findOptions = {
+          filter: [{
+                "fieldName": ContactFindOptions.SEARCH_FIELD_GIVEN_NAME,
+                "fieldValue": ""
+          }, {
+                "fieldName": ContactFindOptions.SEARCH_FIELD_FAMILY_NAME,
+                "fieldValue": "Smith"
+          }],
+          sort: [{
+                "fieldName": ContactFindOptions.SORT_FIELD_FAMILY_NAME,
+                "desc": false
+          }, {
+                "fieldName": ContactFindOptions.SORT_FIELD_GIVEN_NAME,
+                "desc": true
+          }],
+          limit: 2
+       };
+    // Error - illegal argument (reason: fieldValue = "" for first search field)
+    contacts.find(["name"], findOptions, onFindSuccess, onFindError);
 }</pre></code></td></tbody></table>
     
   
@@ -631,7 +726,7 @@ function searchContacts() {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:56:31 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 16:58:17 GMT-0500 (EST)
         </div>
 
     </div>

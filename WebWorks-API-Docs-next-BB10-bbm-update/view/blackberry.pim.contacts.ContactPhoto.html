@@ -45,6 +45,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -89,6 +135,49 @@
 
 
                 
+                    <div x-ww-support="bb10_menu">
+                    
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>function createContact() {
+    var contacts = blackberry.pim.contacts;
+
+    // access_shared permission is needed to access shared folder
+    var primaryPhoto = {
+        originalFilePath: blackberry.io.sharedFolder + "/photos/contact.jpg",
+        pref: true
+    };
+    var secondaryPhoto = {
+        originalFilePath: blackberry.io.sharedFolder + "/photos/other.jpg",
+        pref: false
+    };
+
+    var newContact = contacts.create();
+    newContact.name = {
+        "givenName": "Lisa",
+        "familyName": "Simpson"
+    };
+    newContact.photos = [primaryPhoto, secondaryPhoto];
+
+    newContact.save(onSaveSuccess, onSaveError);
+}
+
+function onSaveSuccess(contact) {
+    alert("Contact saved: " + contact.name.givenName);
+    alert("Small primary photo: " + contact.photos[0].smallFilePath);
+}
+
+function onSaveError(error) {
+    alert("Contact save failed: " + error.code);
+}</pre></code></td></tbody></table>
+    
+  
+
+                    </div>
+                
             </p>
         
 
@@ -125,22 +214,8 @@
                         <table class="apiTable">
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
-                                
-                                    <tr x-ww-support="bb10x">
-                                        <td>
-                                            <a href="blackberry.pim.contacts.ContactPhoto.html">blackberry.pim.contacts.ContactPhoto</a>
-                                            <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
-                                        </td>
-                                    </tr>
-                                
                             
-                            
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.ContactPhoto.html#largeFilePath">largeFilePath</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -152,7 +227,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.ContactPhoto.html#originalFilePath">originalFilePath</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -164,7 +239,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.ContactPhoto.html#pref">pref</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -176,7 +251,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.ContactPhoto.html#smallFilePath">smallFilePath</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -215,7 +290,7 @@
                             
                                 
                             
-                            <tr x-ww-support="bb10x"><td>
+                            <tr x-ww-support="bb10_menu"><td>
                                 &lt;feature id="blackberry.pim.contacts" /&gt;
                                 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -228,11 +303,11 @@
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -254,33 +329,6 @@
     
         
         
-            <br />
-            <div class="ref-sect ref-index" x-ww-support="bb10x">
-                <div class="ref-sect-title">
-                    <h2> Constructors </h2>
-                </div>
-                <div class="ref-sect-content">
-                    
-                        <table><tbody>
-                            
-                                <tr x-ww-support="bb10x">
-                                    <td class="first_column">
-                                        
-                                            
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.pim.contacts.ContactPhoto.html">blackberry.pim.contacts.ContactPhoto</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                        </tbody></table>
-                    
-                    
-                </div>
-            </div>
-        
     
         
         
@@ -291,7 +339,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb10x">
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -299,7 +347,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -311,7 +359,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -323,7 +371,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             Boolean
@@ -335,7 +383,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -371,136 +419,6 @@
 
     
     
-        <div class="ref-sect">
-            <div class="ref-sect-title clearfix">
-                <h2>Constructors</h2>
-            </div>
-            <div class="ref-sect-content">
-                
-                    <div class="detailed_item function" x-ww-support="bb10x">
-                        <h3>
-                            <a name=".ContactPhoto"></a>
-                 
-                            
-                            
-                                
-                                    blackberry.pim.contacts.ContactPhoto
-                                    
-                                        (originalFilePath : String, pref : Boolean)
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p></p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
-                                    <thead><tr><th colspan="2">
-                                        Supported Platforms
-                                    </th></tr></thead>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
-                            
-                                <br />
-                                <table>
-                                    <thead><tr><th colspan="2">
-                                        Parameters
-                                    </th></tr></thead>
-                                                   
-                                    
-                                        
-                                        <tr>
-                                            <td><b>originalFilePath</b></td>
-                                            <td>
-                                                
-                                                The file path to the contact's photo.                         
-                                                
-                                            </td>
-                                        </tr>
-                                    
-                                        
-                                        <tr>
-                                            <td><b>pref</b></td>
-                                            <td>
-                                                
-                                                Whether this ContactPhoto contains the user's preferred value.                         
-                                                
-                                            </td>
-                                        </tr>
-                                                  
-                                </table>
-                                               
-
-                            
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-
-    <br />
-    <b>Code Example:</b>
-    
-        <table><tbody><td class="code"><code><pre>function createContact() {
-    var contacts = blackberry.pim.contacts;
-
-    var primaryPhoto = new contacts.ContactPhoto(
-        blackberry.io.home + "/photos/contact.png",
-        true);
-    var secondaryPhoto = new contacts.ContactPhoto(
-        blackberry.io.home + "/photos/other.png",
-        false);
-
-    var newContact = contacts.create();
-    newContact.photos = [primaryPhoto, secondaryPhoto];
-
-    newContact.save(onSaveSuccess, onSaveError);
-
-    alert("Small primary photo: " + primaryPhoto.smallFilePath);
-}
-
-function onSaveSuccess(contact) {
-    alert("Contact saved: " + contact.displayName);
-}
-
-function onSaveError(error) {
-    alert("Contact save failed: " + error.code);
-}</pre></code></td></tbody></table>
-    
-  
-
-                        </div>
-                    </div>
-                
-            </div>
-        </div>
-    
 
     
     
@@ -516,7 +434,7 @@ function onSaveError(error) {
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="largeFilePath"></a>
                  
@@ -587,7 +505,7 @@ function onSaveError(error) {
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="originalFilePath"></a>
                  
@@ -658,7 +576,7 @@ function onSaveError(error) {
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="pref"></a>
                  
@@ -729,7 +647,7 @@ function onSaveError(error) {
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name="smallFilePath"></a>
                  
@@ -816,7 +734,7 @@ function onSaveError(error) {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:56:31 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 16:58:17 GMT-0500 (EST)
         </div>
 
     </div>

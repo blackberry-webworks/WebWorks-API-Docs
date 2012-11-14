@@ -28,6 +28,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -111,7 +157,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                                 
-                                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                    <tr x-ww-support="bb_menu|ripple">
                                         <td>
                                             <a href="blackberry.message.Message.html">blackberry.message.Message</a>
                                             <td class="apiYes">Y</td>
@@ -125,7 +171,7 @@
                                 
                             
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.find">blackberry.message.Message.find</a>
                                         <td class="apiYes">Y</td>
@@ -137,7 +183,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#save">save</a>
                                         <td class="apiYes">Y</td>
@@ -149,7 +195,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.STATUS_UNKNOWN">STATUS_UNKNOWN</a>
                                         <td class="apiYes">Y</td>
@@ -161,7 +207,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.STATUS_SAVED">STATUS_SAVED</a>
                                         <td class="apiYes">Y</td>
@@ -173,7 +219,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.STATUS_DRAFT">STATUS_DRAFT</a>
                                         <td class="apiYes">Y</td>
@@ -185,7 +231,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.STATUS_SENT">STATUS_SENT</a>
                                         <td class="apiYes">Y</td>
@@ -197,7 +243,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.STATUS_ERROR_OCCURED">STATUS_ERROR_OCCURED</a>
                                         <td class="apiYes">Y</td>
@@ -209,7 +255,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.PRIORITY_HIGH">PRIORITY_HIGH</a>
                                         <td class="apiYes">Y</td>
@@ -221,7 +267,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.PRIORITY_MEDIUM">PRIORITY_MEDIUM</a>
                                         <td class="apiYes">Y</td>
@@ -233,7 +279,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.PRIORITY_LOW">PRIORITY_LOW</a>
                                         <td class="apiYes">Y</td>
@@ -245,7 +291,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.FOLDER_INBOX">FOLDER_INBOX</a>
                                         <td class="apiYes">Y</td>
@@ -257,7 +303,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.FOLDER_SENT">FOLDER_SENT</a>
                                         <td class="apiYes">Y</td>
@@ -269,7 +315,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.FOLDER_DRAFT">FOLDER_DRAFT</a>
                                         <td class="apiYes">Y</td>
@@ -281,7 +327,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.FOLDER_OUTBOX">FOLDER_OUTBOX</a>
                                         <td class="apiYes">Y</td>
@@ -293,7 +339,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.FOLDER_DELETED">FOLDER_DELETED</a>
                                         <td class="apiYes">Y</td>
@@ -305,7 +351,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.message.Message.html#.FOLDER_OTHER">FOLDER_OTHER</a>
                                         <td class="apiYes">Y</td>
@@ -344,7 +390,7 @@
                             
                                 
                             
-                            <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple"><td>
+                            <tr x-ww-support="bb_menu|ripple"><td>
                                 &lt;feature id="blackberry.message" /&gt;
                                 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
@@ -358,7 +404,7 @@
                             
                                 
                             
-                            <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple"><td>
+                            <tr x-ww-support="bb_menu|ripple"><td>
                                 &lt;feature id="blackberry.identity" /&gt;
                                 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
@@ -372,7 +418,7 @@
                             
                                 
                             
-                            <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple"><td>
+                            <tr x-ww-support="bb_menu|ripple"><td>
                                 &lt;feature id="blackberry.find" /&gt;
                                 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
@@ -385,11 +431,11 @@
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -412,7 +458,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Constructors </h2>
                 </div>
@@ -420,7 +466,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             
@@ -442,7 +488,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -450,7 +496,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Message[]
@@ -462,7 +508,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -490,7 +536,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Constants </h2>
                 </div>
@@ -498,7 +544,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -510,7 +556,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -522,7 +568,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -534,7 +580,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -546,7 +592,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -558,7 +604,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -570,7 +616,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -582,7 +628,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -594,7 +640,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -606,7 +652,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -618,7 +664,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -630,7 +676,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -642,7 +688,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -654,7 +700,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -693,7 +739,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".Message"></a>
                  
@@ -796,7 +842,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".find"></a>
                  
@@ -920,7 +966,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name="save"></a>
                  
@@ -1023,7 +1069,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_UNKNOWN"></a>
                  
@@ -1102,7 +1148,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_SAVED"></a>
                  
@@ -1181,7 +1227,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_DRAFT"></a>
                  
@@ -1260,7 +1306,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_SENT"></a>
                  
@@ -1339,7 +1385,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_ERROR_OCCURED"></a>
                  
@@ -1418,7 +1464,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".PRIORITY_HIGH"></a>
                  
@@ -1497,7 +1543,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".PRIORITY_MEDIUM"></a>
                  
@@ -1576,7 +1622,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".PRIORITY_LOW"></a>
                  
@@ -1655,7 +1701,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".FOLDER_INBOX"></a>
                  
@@ -1734,7 +1780,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".FOLDER_SENT"></a>
                  
@@ -1813,7 +1859,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".FOLDER_DRAFT"></a>
                  
@@ -1892,7 +1938,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".FOLDER_OUTBOX"></a>
                  
@@ -1971,7 +2017,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".FOLDER_DELETED"></a>
                  
@@ -2050,7 +2096,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".FOLDER_OTHER"></a>
                  
@@ -2142,7 +2188,7 @@
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:56:36 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 16:58:21 GMT-0500 (EST)
         </div>
 
     </div>

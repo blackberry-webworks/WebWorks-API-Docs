@@ -45,6 +45,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -90,12 +136,12 @@ each other</b>. Each peer can only communicate with the current user.
 <p>For example, a channel connection could be used when a user wants to have a private chat with
 a contact, or wants to send their location information to one or more contacts.
 <br><br> <img src="/html5/files/apis/images/channel.png" alt="channel.png" /> <br><br>
-In diagram above, the current user A has invited users B, C, and D to the channel. Once the users
-join, user A can send data to B, C, and D, but B, C, and D can only send data to A.
+In the diagram above, the current user (user A) has invited users B, C, and D to the channel. Once 
+the users join, user A can send data to B, C, and D, but B, C, and D can only send data to A.
 
 
                 
-                    <div x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div x-ww-support="bb_menu">
                     
                 
   
@@ -139,7 +185,7 @@ join, user A can send data to B, C, and D, but B, C, and D can only send data to
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Channel.html#leave">leave</a>
                                         <td class="apiYes">Y</td>
@@ -178,7 +224,7 @@ join, user A can send data to B, C, and D, but B, C, and D can only send data to
                             
                                 
                             
-                            <tr x-ww-support="bb5.0|bb6.0|bb7.0"><td>
+                            <tr x-ww-support="bb_menu"><td>
                                 &lt;feature id="blackberry.bbm.platform" /&gt;
                                 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
@@ -191,11 +237,11 @@ join, user A can send data to B, C, and D, but B, C, and D can only send data to
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -221,7 +267,7 @@ join, user A can send data to B, C, and D, but B, C, and D can only send data to
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -229,7 +275,7 @@ join, user A can send data to B, C, and D, but B, C, and D can only send data to
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -250,23 +296,23 @@ join, user A can send data to B, C, and D, but B, C, and D can only send data to
                                 <dd>
                                     
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#add">add</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#inviteContacts">inviteContacts</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#remove">remove</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#removeAll">removeAll</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#send">send</a>
                                         </span>
                                     
@@ -281,7 +327,7 @@ join, user A can send data to B, C, and D, but B, C, and D can only send data to
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Events </h2>
                 </div>
@@ -294,23 +340,23 @@ join, user A can send data to B, C, and D, but B, C, and D can only send data to
                                 <dd>
                                     
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#event:ondata">ondata</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#event:onuserdeclined">onuserdeclined</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#event:onuserleft">onuserleft</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#event:onusersinvited">onusersinvited</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#event:onusersjoined">onusersjoined</a>
                                         </span>
                                     
@@ -325,7 +371,7 @@ join, user A can send data to B, C, and D, but B, C, and D can only send data to
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -338,15 +384,15 @@ join, user A can send data to B, C, and D, but B, C, and D can only send data to
                                 <dd>
                                     
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#id">id</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#joinedUsers">joinedUsers</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#pendingUsersCount">pendingUsersCount</a>
                                         </span>
                                     
@@ -361,7 +407,7 @@ join, user A can send data to B, C, and D, but B, C, and D can only send data to
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Constants </h2>
                 </div>
@@ -374,19 +420,19 @@ join, user A can send data to B, C, and D, but B, C, and D can only send data to
                                 <dd>
                                     
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#MAX_COOKIE_LENGTH">MAX_COOKIE_LENGTH</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#MAX_DATA_LENGTH">MAX_DATA_LENGTH</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#MAX_INVITE_MSG_LENGTH">MAX_INVITE_MSG_LENGTH</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#MAX_USERS">MAX_USERS</a>
                                         </span>
                                     
@@ -421,7 +467,7 @@ join, user A can send data to B, C, and D, but B, C, and D can only send data to
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="leave"></a>
                  
@@ -538,7 +584,7 @@ join, user A can send data to B, C, and D, but B, C, and D can only send data to
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:56:30 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 16:58:15 GMT-0500 (EST)
         </div>
 
     </div>

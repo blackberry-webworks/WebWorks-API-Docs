@@ -28,6 +28,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -68,11 +114,11 @@
 
         
             <p>
-                Provides access to the BBM Social Platform.
+                The BBM Social Platform (BBMSP) provides APIs that allow you to leverage the social features and functionality of BlackBerry Messenger from within your app.
 
 
                 
-                    <div x-ww-support="bb5.0|bb6.0|bb7.0|bb10x">
+                    <div x-ww-support="bb_menu|bb10_menu">
                     
                 
   
@@ -165,7 +211,7 @@ if not authorized.</b></li>
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.html#.register^2">blackberry.bbm.platform.register</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -177,7 +223,7 @@ if not authorized.</b></li>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.html#.register">blackberry.bbm.platform.register</a>
                                         <td class="apiYes">Y</td>
@@ -189,7 +235,7 @@ if not authorized.</b></li>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.html#.requestUserPermission">blackberry.bbm.platform.requestUserPermission</a>
                                         <td class="apiYes">Y</td>
@@ -201,7 +247,7 @@ if not authorized.</b></li>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.html#.showBBMAppOptions">blackberry.bbm.platform.showBBMAppOptions</a>
                                         <td class="apiYes">Y</td>
@@ -213,7 +259,7 @@ if not authorized.</b></li>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.html#.environment">environment</a>
                                         <td class="apiYes">Y</td>
@@ -225,7 +271,7 @@ if not authorized.</b></li>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.html#.event:onaccesschanged">blackberry.bbm.platform.onaccesschanged</a>
                                         <td class="apiYes">Y</td>
@@ -237,7 +283,7 @@ if not authorized.</b></li>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.html#.event:onaccesschanged^2">blackberry.bbm.platform.onaccesschanged</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -249,7 +295,7 @@ if not authorized.</b></li>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.html#.event:onappinvoked">blackberry.bbm.platform.onappinvoked</a>
                                         <td class="apiYes">Y</td>
@@ -288,7 +334,7 @@ if not authorized.</b></li>
                             
                                 
                             
-                            <tr x-ww-support="bb5.0|bb6.0|bb7.0|bb10x"><td>
+                            <tr x-ww-support="bb_menu|bb10_menu"><td>
                                 &lt;feature id="blackberry.bbm.platform" /&gt;
                                 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
@@ -301,33 +347,29 @@ if not authorized.</b></li>
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                         
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             
-
-                            
-                                <tr><td>
-                                    
-                                    <i>Declaring the permission element(s) below in your configuration document is optional.</i>
-                                    <br />
-                                </td></tr>
-                                <br />
-
+                                <tr><td><i>
+                                    You must declare the permission element(s) below in your configuration document:
+                                </i></td></tr>
                                 
                                     <tr><td>
                                         - &lt;rim:permit&gt;bbm_connect&lt;/rim:permit&gt;
                                         <br />
-                                         BBM APIs requre this permission to be set
+                                        BBM APIs require this permission to be set
                                         <br />
                                     </td></tr>
                                 
+                            
+
                             
                         
                     </table>
@@ -348,7 +390,7 @@ if not authorized.</b></li>
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|bb10x">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|bb10_menu">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -356,7 +398,7 @@ if not authorized.</b></li>
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -368,7 +410,7 @@ if not authorized.</b></li>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -380,7 +422,7 @@ if not authorized.</b></li>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -395,7 +437,7 @@ if not authorized.</b></li>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -417,7 +459,7 @@ if not authorized.</b></li>
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|bb10x">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|bb10_menu">
                 <div class="ref-sect-title">
                     <h2> Events </h2>
                 </div>
@@ -425,7 +467,7 @@ if not authorized.</b></li>
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -437,7 +479,7 @@ if not authorized.</b></li>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -449,7 +491,7 @@ if not authorized.</b></li>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -471,7 +513,7 @@ if not authorized.</b></li>
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -479,7 +521,7 @@ if not authorized.</b></li>
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -506,7 +548,7 @@ if not authorized.</b></li>
     
 
     
-        <div x-ww-support="bb5.0|bb6.0|bb7.0">
+        <div x-ww-support="bb_menu">
             <h4>** Marked for Deprecation</h4>
         </div>
     
@@ -528,7 +570,7 @@ if not authorized.</b></li>
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".register^2"></a>
                  
@@ -565,13 +607,13 @@ if not authorized.</b></li>
                                        
                             
                             
-                            <p>Registers for access to BBM Platform.
+                            <p>Registers your app to allow it to access the BBM Social Platform.
 <p>The application must assign a callback to <a href="blackberry.bbm.platform.html#.event:onaccesschanged">blackberry.bbm.platform.onaccesschanged</a>
-before registering. During registration, a dialog will be shown to guide the user through the registration process.
+before registering. During registration, a dialog opens and guides the user through the registration process.
 The application should wait until <a href="blackberry.bbm.platform.html#.event:onaccesschanged">blackberry.bbm.platform.onaccesschanged</a> is invoked before continuing.</p>
 <h4>Application in Test Environment</h4>
 Applications must provide a UUID used to identify the application in the test
-environment. If the application is in App World then the UUID will not be used. The same
+environment. If the application is in App World, the UUID will not be used. The same
 UUID should be used for future releases of the same application; otherwise communication
 between them will not be possible. The UUID must be a randomly generated 36-character UUID.
 Any UUID generator can be used.</p>
@@ -663,7 +705,7 @@ blackberry.bbm.platform.register({
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".register"></a>
                  
@@ -700,13 +742,13 @@ blackberry.bbm.platform.register({
                                        
                             
                             
-                            <p>Registers for access to BBM Platform.
+                            <p>Registers your app to allow it to access the BBM Social Platform.
 <p>The application must assign a callback to <a href="blackberry.bbm.platform.html#.event:onaccesschanged">blackberry.bbm.platform.onaccesschanged</a>
-before registering. During registration, a dialog will be shown to guide the user through the registration process.
+before registering. During registration, a dialog opens and guides the user through the registration process.
 The application should wait until <a href="blackberry.bbm.platform.html#.event:onaccesschanged">blackberry.bbm.platform.onaccesschanged</a> is invoked before continuing.</p>
 <h4>Application in Test Environment</h4>
-Applications must provide a UUID used to identify the application in the test
-environment. If the application is in App World then the UUID will not be used. The same
+Applications must provide a UUID that will be used to identify the application in the test
+environment. If the application is in App World, the UUID will not be used. The same
 UUID should be used for future releases of the same application; otherwise communication
 between them will not be possible. The UUID must be a randomly generated 36-character UUID.
 Any UUID generator can be used.</p>
@@ -824,7 +866,7 @@ blackberry.bbm.platform.register({
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".requestUserPermission"></a>
                  
@@ -866,10 +908,10 @@ blackberry.bbm.platform.register({
                                        
                             
                             
-                            <p>Shows a dialog prompting the user to connect this application to BBM. This will
+                            <p>Shows a dialog prompting the user to connect the application to BBM. This will
 only work if the application is blocked by the user (i.e. access status is <code>"user"</code>).
-<p>If the user decides to connect then the application should call <a href="blackberry.bbm.platform.html#.register">blackberry.bbm.platform.register</a>
-to complete connecting this application to BBM.</p>
+<p>If the user decides to connect, the application should call <a href="blackberry.bbm.platform.html#.register">blackberry.bbm.platform.register</a>
+to complete connecting the application to BBM.</p>
                             <br />
                             
                             
@@ -901,7 +943,7 @@ to complete connecting this application to BBM.</p>
                                             <td><b>onComplete</b></td>
                                             <td>
                                                 
-                                                Called when the user has finished connecting this application to BBM.                         
+                                                Called when the user has finished connecting the application to BBM.                         
                                                 
                                             </td>
                                         </tr>
@@ -939,7 +981,7 @@ to complete connecting this application to BBM.</p>
     
         <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
 
-// Prompt the user to connect to BBM, and call register() if they do
+// Prompt the user to connect to BBM, and if the user connects, call register()
 blackberry.bbm.platform.requestUserPermission(function(allowed) {
     if(allowed) {
         // Register with the platform
@@ -956,7 +998,7 @@ blackberry.bbm.platform.requestUserPermission(function(allowed) {
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".showBBMAppOptions"></a>
                  
@@ -993,8 +1035,8 @@ blackberry.bbm.platform.requestUserPermission(function(allowed) {
                                        
                             
                             
-                            <p>Brings the BBM options screen for this application to the foreground. This
-method may only be called if access status is <code>"allowed"</code> or blocked by
+                            <p>Brings the BBM options screen for the application to the foreground. This
+method can only be called if the access status is <code>"allowed"</code> or blocked by
 <code>"user"</code>. Otherwise this method does nothing.</p>
                             <br />
                             
@@ -1027,7 +1069,7 @@ method may only be called if access status is <code>"allowed"</code> or blocked 
                                             <td><b>onComplete</b></td>
                                             <td>
                                                 
-                                                Called when the user exited the BBM options screen.                         
+                                                Called when the user exits the BBM options screen.                         
                                                 
                                             </td>
                                         </tr>
@@ -1077,7 +1119,7 @@ blackberry.bbm.platform.showBBMAppOptions(function() {
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".event:onaccesschanged"></a>
                  
@@ -1165,8 +1207,7 @@ blackberry.bbm.platform.showBBMAppOptions(function() {
 <li><code>"rim"</code>: Access is blocked by RIM (the application has most likely violated the terms of use).
 <li><code>"itpolicy"</code>: Access is blocked by IT Policy.
 <li><code>"resetrequired"</code>: Access is blocked because a device reset is required to use the BBM Social Platform.
-<li><code>"nodata"</code>: Access is blocked because the device is out of data coverage. A data connection is required
-to register the application.
+<li><code>"nodata"</code>: Access is blocked because the device is out of data coverage. A data connection is required to register the application.
 <li><code>"temperror"</code>: Access is blocked because of a temporary error. The application should try to call
 <a href="blackberry.bbm.platform.html#.register">blackberry.bbm.platform.register</a> in 30 minutes, or the next time the application starts.
 <li><code>"nonuiapp"</code>: Access is blocked because <a href="blackberry.bbm.platform.html#.register">blackberry.bbm.platform.register</a> was called from a non-UI application.
@@ -1197,7 +1238,7 @@ to register the application.
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".event:onaccesschanged^2"></a>
                  
@@ -1234,14 +1275,14 @@ to register the application.
                                        
                             
                             
-                            <p>This event is fired by the system. If you want to listen to the event you can do so using the <a href="blackberry.event.html#.addEventListener">blackberry.event.addEventListener</a> function and remove the listener using the <a href="blackberry.event.html#.removeEventListener">blackberry.event.removeEventListener</a> function. <br/>
-Registers for access to BBM Platform.
+                            <p>This event is fired by the system. If you want to listen to the event, you can use the <a href="blackberry.event.html#.addEventListener">blackberry.event.addEventListener</a> function and remove the listener using the <a href="blackberry.event.html#.removeEventListener">blackberry.event.removeEventListener</a> function. <br/>
+Registers for access to the BBM Social Platform.
 <p>The application must assign a callback by adding an event listener <a href="blackberry.bbm.platform.html#.event:onaccesschanged">blackberry.bbm.platform.onaccesschanged</a>
-before registering. During registration, a dialog will be shown to guide the user through the registration process.
+before registering. During registration, a dialog opens and guides the user through the registration process.
 The application should wait until <a href="blackberry.bbm.platform.html#.event:onaccesschanged">blackberry.bbm.platform.onaccesschanged</a> is invoked before continuing.</p>
 <h4>Application in Test Environment</h4>
 Applications must provide a UUID used to identify the application in the test
-environment. If the application is in App World then the UUID will not be used. The same
+environment. If the application is in App World, the UUID will not be used. The same
 UUID should be used for future releases of the same application; otherwise communication
 between them will not be possible. The UUID must be a randomly generated 36-character UUID.
 Any UUID generator can be used.</p>
@@ -1333,7 +1374,7 @@ blackberry.bbm.platform.register({
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".event:onappinvoked"></a>
                  
@@ -1373,7 +1414,7 @@ blackberry.bbm.platform.register({
                             <p>Called in certain cases when the application is invoked from within BBM.
 <p>The <code>param</code> and <code>user</code> parameters are dictated by the invocation <code>reason</code>.
 
-<p>This callback should be assigned <b>before</b> the call to <a href="blackberry.bbm.platform.html#.register">blackberry.bbm.platform.register</a>. If the application is not yet running then it will be launched. This callback will only be invoked once access to BBM Social Platform is allowed.
+<p>This callback should be assigned <b>before</b> the call to <a href="blackberry.bbm.platform.html#.register">blackberry.bbm.platform.register</a>. If the application is not running, it will be launched. This callback will only be invoked after access to the BBM Social Platform is allowed.
 <p>This callback is optional. Applications are not required to handle this type of event.</p>
                             <br />
                             
@@ -1409,17 +1450,17 @@ blackberry.bbm.platform.register({
                                                 The reason that the application was invoked.
 <ul>
 <li><code>"profilebox"</code>: A user's profile box item was clicked.
-<br/><br/><code>param</code> is the <a href="blackberry.bbm.platform.self.profilebox.ProfileBoxItem.html">blackberry.bbm.platform.self.profilebox.ProfileBoxItem</a> that was clicked.
-<br/><br/>See <a href="blackberry.bbm.platform.self.profilebox.html">blackberry.bbm.platform.self.profilebox</a>.
+<br/><code>param</code> is the <a href="blackberry.bbm.platform.self.profilebox.ProfileBoxItem.html">blackberry.bbm.platform.self.profilebox.ProfileBoxItem</a> that was clicked.
+<br/>See <a href="blackberry.bbm.platform.self.profilebox.html">blackberry.bbm.platform.self.profilebox</a>.<br/><br/>
 <li><code>"profileboxtitle"</code>: A user's profile box title was clicked.
-<br/><br/><code>param</code> is <code>undefined</code>.
-<br/><br/>See <a href="blackberry.bbm.platform.self.profilebox.html">blackberry.bbm.platform.self.profilebox</a>.
+<br/><code>param</code> is <code>undefined</code>.
+<br/>See <a href="blackberry.bbm.platform.self.profilebox.html">blackberry.bbm.platform.self.profilebox</a>.<br/><br/>
 <li><code>"personalmessage"</code>: A user's personal message app link was clicked.
-<br/><br/><code>param</code> is the personal message, excluding the app link.
-<br/><br/>See <a href="blackberry.bbm.platform.self.html#.setPersonalMessage">blackberry.bbm.platform.self.setPersonalMessage</a>.
+<br/><code>param</code> is the personal message, excluding the app link.
+<br/>See <a href="blackberry.bbm.platform.self.html#.setPersonalMessage">blackberry.bbm.platform.self.setPersonalMessage</a>.<br/><br/>
 <li><code>"chatmessage"</code>: A user's chat message app link was clicked.
-<br/><br/><code>param</code> is <code>undefined</code>. 
-<br/><br/>See <a href="blackberry.bbm.platform.users.html#.startBBMChat">blackberry.bbm.platform.users.startBBMChat</a>.
+<br/><code>param</code> is <code>undefined</code>. 
+<br/>See <a href="blackberry.bbm.platform.users.html#.startBBMChat">blackberry.bbm.platform.users.startBBMChat</a>.<br/><br/>
 </ul>                         
                                                 
                                             </td>
@@ -1430,7 +1471,7 @@ blackberry.bbm.platform.register({
                                             <td><b>param</b></td>
                                             <td>
                                                 
-                                                The parameter associated with <code>reason</code>. May be <code>undefined</code>                         
+                                                The parameter associated with <code>reason</code>. May be <code>undefined</code>.                         
                                                 
                                             </td>
                                         </tr>
@@ -1510,7 +1551,7 @@ blackberry.bbm.platform.onappinvoked = function(reason, param, user) {
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".environment"></a>
                  
@@ -1601,7 +1642,7 @@ blackberry.bbm.platform.onappinvoked = function(reason, param, user) {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:56:37 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 16:58:23 GMT-0500 (EST)
         </div>
 
     </div>

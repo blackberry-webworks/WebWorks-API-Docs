@@ -28,6 +28,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -131,7 +177,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                                 
-                                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                    <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                         <td>
                                             <a href="Worker.html">Worker</a>
                                             <td class="apiYes">Y</td>
@@ -145,7 +191,7 @@
                                 
                             
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="Worker.html#onmessage">onmessage</a>
                                         <td class="apiYes">Y</td>
@@ -157,7 +203,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="Worker.html#postMessage">postMessage</a>
                                         <td class="apiYes">Y</td>
@@ -169,7 +215,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="Worker.html#applicationCache">applicationCache</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -203,11 +249,11 @@
                     </td></tr></tbody></table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -230,7 +276,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                 <div class="ref-sect-title">
                     <h2> Constructors </h2>
                 </div>
@@ -238,7 +284,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             
@@ -260,7 +306,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -268,7 +314,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             void
@@ -280,7 +326,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             void
@@ -305,7 +351,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -313,7 +359,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             <a href="ApplicationCache.html">ApplicationCache</a>
@@ -355,7 +401,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name="Worker"></a>
                  
@@ -460,7 +506,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name="onmessage"></a>
                  
@@ -587,7 +633,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name="postMessage"></a>
                  
@@ -715,7 +761,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="applicationCache"></a>
                  
@@ -814,7 +860,7 @@
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:58:55 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 17:00:38 GMT-0500 (EST)
         </div>
 
     </div>

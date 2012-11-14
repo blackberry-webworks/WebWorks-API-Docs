@@ -28,6 +28,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -72,7 +118,7 @@
 
 
                 
-                    <div x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                     
                 
   
@@ -122,7 +168,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                                 
-                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                    <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                         <td>
                                             <a href="CanvasRenderingContext2D.html#.documentConstructor">canvas.getContext(&#039;2d&#039;)</a>
                                             <td class="apiNo">&nbsp;</td>
@@ -136,7 +182,7 @@
                                 
                             
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#arc">arc</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -148,7 +194,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#arcTo">arcTo</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -160,7 +206,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#beginPath">beginPath</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -172,7 +218,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#bezierCurveTo">bezierCurveTo</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -184,7 +230,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#caretBlinkRate">caretBlinkRate</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -196,7 +242,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#clearRect">clearRect</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -208,7 +254,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#clip">clip</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -220,7 +266,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#closePath">closePath</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -232,7 +278,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#createImageData^2">createImageData</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -244,7 +290,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#createImageData">createImageData</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -256,7 +302,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#createLinearGradient">createLinearGradient</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -268,7 +314,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#createPattern">createPattern</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -280,7 +326,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#createRadialGradient">createRadialGradient</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -292,7 +338,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#drawFocusRing">drawFocusRing</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -304,7 +350,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#drawImage^2">drawImage</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -316,7 +362,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#drawImage">drawImage</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -328,7 +374,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#fill">fill</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -340,7 +386,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#fillRect">fillRect</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -352,7 +398,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#fillText">fillText</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -364,7 +410,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#getImageData">getImageData</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -376,7 +422,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#isPointInPath">isPointInPath</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -388,7 +434,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#lineTo">lineTo</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -400,7 +446,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#measureText">measureText</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -412,7 +458,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#moveTo">moveTo</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -424,7 +470,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#putImageData">putImageData</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -436,7 +482,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#quadraticCurveTo">quadraticCurveTo</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -448,7 +494,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#rect">rect</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -460,7 +506,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#restore">restore</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -472,7 +518,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#rotate">rotate</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -484,7 +530,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#save">save</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -496,7 +542,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#scale">scale</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -508,7 +554,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#setCaretSelectionRect">setCaretSelectionRect</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -520,7 +566,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#setTransform">setTransform</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -532,7 +578,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#stroke">stroke</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -544,7 +590,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#strokeRect">strokeRect</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -556,7 +602,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#strokeText">strokeText</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -568,7 +614,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#transform">transform</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -580,7 +626,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#translate">translate</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -592,7 +638,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#canvas">canvas</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -604,7 +650,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#fillStyle">fillStyle</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -616,7 +662,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#font">font</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -628,7 +674,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#globalAlpha">globalAlpha</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -640,7 +686,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#globalCompositeOperation">globalCompositeOperation</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -652,7 +698,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#lineCap">lineCap</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -664,7 +710,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#lineJoin">lineJoin</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -676,7 +722,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#lineWidth">lineWidth</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -688,7 +734,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#miterLimit">miterLimit</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -700,7 +746,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#shadowBlur">shadowBlur</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -712,7 +758,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#shadowColor">shadowColor</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -724,7 +770,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#shadowOffsetX">shadowOffsetX</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -736,7 +782,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#shadowOffsetY">shadowOffsetY</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -748,7 +794,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#strokeStyle">strokeStyle</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -760,7 +806,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#textAlign">textAlign</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -772,7 +818,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="CanvasRenderingContext2D.html#textBaseline">textBaseline</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -806,11 +852,11 @@
                     </td></tr></tbody></table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -833,7 +879,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Constructors </h2>
                 </div>
@@ -841,7 +887,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             
@@ -863,7 +909,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -871,7 +917,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -883,7 +929,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -895,7 +941,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -907,7 +953,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -919,7 +965,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -931,7 +977,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -943,7 +989,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -955,7 +1001,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -967,7 +1013,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             <a href="ImageData.html">ImageData</a>
@@ -979,7 +1025,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             <a href="ImageData.html">ImageData</a>
@@ -991,7 +1037,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             <a href="CanvasGradient.html">CanvasGradient</a>
@@ -1003,7 +1049,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             <a href="CanvasPattern.html">CanvasPattern</a>
@@ -1015,7 +1061,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             <a href="CanvasGradient.html">CanvasGradient</a>
@@ -1027,7 +1073,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             Boolean
@@ -1039,7 +1085,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1051,7 +1097,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1063,7 +1109,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1075,7 +1121,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1087,7 +1133,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1099,7 +1145,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             <a href="ImageData.html">ImageData</a>
@@ -1111,7 +1157,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Boolean
@@ -1123,7 +1169,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1135,7 +1181,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             <a href="TextMetrics.html">TextMetrics</a>
@@ -1147,7 +1193,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1159,7 +1205,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1171,7 +1217,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1183,7 +1229,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1195,7 +1241,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1207,7 +1253,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1219,7 +1265,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1231,7 +1277,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1243,7 +1289,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             Boolean
@@ -1255,7 +1301,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1267,7 +1313,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1279,7 +1325,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1291,7 +1337,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1303,7 +1349,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1315,7 +1361,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1340,7 +1386,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -1348,7 +1394,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             <a href="canvas.html">canvas</a>
@@ -1360,7 +1406,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Object
@@ -1372,7 +1418,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -1384,7 +1430,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -1396,7 +1442,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -1408,7 +1454,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -1420,7 +1466,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -1432,7 +1478,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -1444,7 +1490,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -1456,7 +1502,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -1468,7 +1514,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -1480,7 +1526,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -1492,7 +1538,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -1504,7 +1550,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Object
@@ -1516,7 +1562,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -1528,7 +1574,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -1570,7 +1616,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".documentConstructor"></a>
                  
@@ -1663,7 +1709,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="arc"></a>
                  
@@ -1837,7 +1883,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="arcTo"></a>
                  
@@ -2001,7 +2047,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="beginPath"></a>
                  
@@ -2089,7 +2135,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="bezierCurveTo"></a>
                  
@@ -2246,7 +2292,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu">
                         <h3>
                             <a name="caretBlinkRate"></a>
                  
@@ -2338,7 +2384,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="clearRect"></a>
                  
@@ -2475,7 +2521,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="clip"></a>
                  
@@ -2563,7 +2609,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="closePath"></a>
                  
@@ -2651,7 +2697,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="createImageData^2"></a>
                  
@@ -2776,7 +2822,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="createImageData"></a>
                  
@@ -2908,7 +2954,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="createLinearGradient"></a>
                  
@@ -3070,7 +3116,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="createPattern"></a>
                  
@@ -3230,7 +3276,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="createRadialGradient"></a>
                  
@@ -3421,7 +3467,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu">
                         <h3>
                             <a name="drawFocusRing"></a>
                  
@@ -3542,7 +3588,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="drawImage^2"></a>
                  
@@ -3729,7 +3775,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="drawImage"></a>
                  
@@ -3876,7 +3922,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="fill"></a>
                  
@@ -3964,7 +4010,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="fillRect"></a>
                  
@@ -4101,7 +4147,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="fillText"></a>
                  
@@ -4238,7 +4284,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="getImageData"></a>
                  
@@ -4409,7 +4455,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="isPointInPath"></a>
                  
@@ -4534,7 +4580,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="lineTo"></a>
                  
@@ -4651,7 +4697,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="measureText"></a>
                  
@@ -4766,7 +4812,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="moveTo"></a>
                  
@@ -4883,7 +4929,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="putImageData"></a>
                  
@@ -5076,7 +5122,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="quadraticCurveTo"></a>
                  
@@ -5213,7 +5259,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="rect"></a>
                  
@@ -5350,7 +5396,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="restore"></a>
                  
@@ -5438,7 +5484,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="rotate"></a>
                  
@@ -5545,7 +5591,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="save"></a>
                  
@@ -5633,7 +5679,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="scale"></a>
                  
@@ -5750,7 +5796,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu">
                         <h3>
                             <a name="setCaretSelectionRect"></a>
                  
@@ -5901,7 +5947,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="setTransform"></a>
                  
@@ -6058,7 +6104,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="stroke"></a>
                  
@@ -6146,7 +6192,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="strokeRect"></a>
                  
@@ -6283,7 +6329,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="strokeText"></a>
                  
@@ -6420,7 +6466,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="transform"></a>
                  
@@ -6577,7 +6623,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="translate"></a>
                  
@@ -6709,7 +6755,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="canvas"></a>
                  
@@ -6792,7 +6838,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="fillStyle"></a>
                  
@@ -6875,7 +6921,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="font"></a>
                  
@@ -6958,7 +7004,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="globalAlpha"></a>
                  
@@ -7041,7 +7087,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="globalCompositeOperation"></a>
                  
@@ -7124,7 +7170,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="lineCap"></a>
                  
@@ -7207,7 +7253,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="lineJoin"></a>
                  
@@ -7290,7 +7336,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="lineWidth"></a>
                  
@@ -7373,7 +7419,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="miterLimit"></a>
                  
@@ -7456,7 +7502,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="shadowBlur"></a>
                  
@@ -7539,7 +7585,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="shadowColor"></a>
                  
@@ -7622,7 +7668,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="shadowOffsetX"></a>
                  
@@ -7705,7 +7751,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="shadowOffsetY"></a>
                  
@@ -7788,7 +7834,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="strokeStyle"></a>
                  
@@ -7871,7 +7917,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="textAlign"></a>
                  
@@ -7954,7 +8000,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="textBaseline"></a>
                  
@@ -8053,7 +8099,7 @@
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:56:30 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 16:58:15 GMT-0500 (EST)
         </div>
 
     </div>

@@ -45,6 +45,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -88,11 +134,11 @@
                 Provides services to create, accept, and manage connections.
 <h3>Connections</h3>
 <h4>Connection types</h4>
-The BBM Platform supports the following types of connections:
+The BBM Social Platform supports the following types of connections:
 <br/><a href="blackberry.bbm.platform.io.Channel.html">blackberry.bbm.platform.io.Channel</a>
 <br/><a href="blackberry.bbm.platform.io.Session.html">blackberry.bbm.platform.io.Session</a>
 
-<h4>Creating a connections</h4>
+<h4>Creating connections</h4>
 <p>Connections can be created using <a href="blackberry.bbm.platform.io.html#.createConnection">blackberry.bbm.platform.io.createConnection</a>.
 When a connection is created, the application should assign callbacks to it in order to be notified
 of various events.</p>
@@ -153,7 +199,7 @@ function setConnectionCallbacks(conn, type) {
 };
 </pre>
 
-<h3>Adding Users to Connections</h3>
+<h3>Adding users to connections</h3>
 <p>There are two ways to add users to connections: (1) inviting contacts to join a connection, and
 (2) hosting a connection for non-contacts to join. A user does not have to be the connection
 creator in order to invite users.
@@ -161,7 +207,7 @@ creator in order to invite users.
 <h4>1. Inviting contacts to join</h4>
 <p>An application user can invite contacts to join a connection.</p>
 <p>When the application calls <a href="blackberry.bbm.platform.io.Connection.html#inviteContacts">inviteContacts</a> a Contact Picker dialog will be shown containing contacts that have the application installed.
-If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connection.html#event:onusersinvited">onusersinvited</a> callback will be invoked on the inviter's side.</p>
+If the user invites contacts, the <a href="blackberry.bbm.platform.io.Connection.html#event:onusersinvited">onusersinvited</a> callback will be invoked on the inviter's side.</p>
 <p>Invitees receive the invitations within BBM.</p>
 <ul>
 <li>If they accept the invitation, <a href="blackberry.bbm.platform.io.Connection.html#event:onusersjoined">onusersjoined</a> is invoked on the inviter's side, and <a href="blackberry.bbm.platform.io.html#.event:onconnectionaccepted">blackberry.bbm.platform.io.onconnectionaccepted</a> is invoked on the invitee's side with the connection they just joined. 
@@ -170,16 +216,16 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
 <br><img src="/html5/files/apis/images/invite_to_join.png" alt="invite_to_join.png" /><br>
 
 <h4>2. Hosting a public connection for non-contacts to join</h4>
-<p>An application user can also host an event within a public connection to let all application users join.</p>
-<p>When the application calls <a href="blackberry.bbm.platform.io.html#.host">blackberry.bbm.platform.io.host</a> a dialog will be shown for the user to allow or deny the decision. If the user allows, the application should then post the host's PIN and PPID to its discovery service. <b>The BBM platform does not provide a discovery service. This must be provided by the application developer.</b>
-<p>Peers should download host information (PIN and PPID) from the discovery service and then call <a href="blackberry.bbm.platform.io.html#.joinHost">blackberry.bbm.platform.io.joinHost</a>. The peer will also be presented with a dialog to allow or deny the decision.
-<p>At this point the request is in the <code>"pending"</code> state. In this state the peer can <a href="blackberry.bbm.platform.io.OutgoingJoinRequest.html#cancel">cancel</a> the request, and the host can <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html#accept">accept</a> or <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html#decline">decline</a>.</p>
+<p>An application user can also host an event within a public connection to allow all application users to join.</p>
+<p>When the application calls <a href="blackberry.bbm.platform.io.html#.host">blackberry.bbm.platform.io.host</a>, a dialog appears for the user to accept or refuse to host the public connection. If the user accepts, the application posts the host's PIN and PPID to its discovery service. <b>The BBM Social Platform does not provide a discovery service. The application developer must provide one.</b>
+<p>Peers should download host information (PIN and PPID) from the discovery service and then call <a href="blackberry.bbm.platform.io.html#.joinHost">blackberry.bbm.platform.io.joinHost</a>. The peer will also be presented with a dialog to join or decline the public connection.
+<p>At this point, the request is in the <code>"pending"</code> state. In this state, the peer can <a href="blackberry.bbm.platform.io.OutgoingJoinRequest.html#cancel">cancel</a> the request, and the host can <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html#accept">accept</a> or <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html#decline">decline</a>.</p>
 <br><img src="/html5/files/apis/images/hosting.png" alt="hosting.png" /><br>
 </p>
 
 
                 
-                    <div x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div x-ww-support="bb_menu">
                     
                 
   
@@ -223,7 +269,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.html#.createConnection">blackberry.bbm.platform.io.createConnection</a>
                                         <td class="apiYes">Y</td>
@@ -235,7 +281,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.html#.host">blackberry.bbm.platform.io.host</a>
                                         <td class="apiYes">Y</td>
@@ -247,7 +293,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.html#.joinHost">blackberry.bbm.platform.io.joinHost</a>
                                         <td class="apiYes">Y</td>
@@ -259,7 +305,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.html#.hostRequests">hostRequests</a>
                                         <td class="apiYes">Y</td>
@@ -271,7 +317,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.html#.hostedConnection">hostedConnection</a>
                                         <td class="apiYes">Y</td>
@@ -283,7 +329,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.html#.joinHostRequests">joinHostRequests</a>
                                         <td class="apiYes">Y</td>
@@ -295,7 +341,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.html#.event:onconnectionaccepted">blackberry.bbm.platform.io.onconnectionaccepted</a>
                                         <td class="apiYes">Y</td>
@@ -307,7 +353,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.html#.event:ondataexpired">blackberry.bbm.platform.io.ondataexpired</a>
                                         <td class="apiYes">Y</td>
@@ -319,7 +365,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.html#.event:onuserreachable">blackberry.bbm.platform.io.onuserreachable</a>
                                         <td class="apiYes">Y</td>
@@ -358,7 +404,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                             
                                 
                             
-                            <tr x-ww-support="bb5.0|bb6.0|bb7.0"><td>
+                            <tr x-ww-support="bb_menu"><td>
                                 &lt;feature id="blackberry.bbm.platform" /&gt;
                                 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
@@ -371,11 +417,11 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -401,7 +447,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -409,7 +455,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.bbm.platform.io.Channel.html">blackberry.bbm.platform.io.Channel</a>|<a href="blackberry.bbm.platform.io.Session.html">blackberry.bbm.platform.io.Session</a>
@@ -421,7 +467,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -433,7 +479,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -455,7 +501,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Events </h2>
                 </div>
@@ -463,7 +509,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -475,7 +521,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -487,7 +533,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -509,7 +555,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -517,7 +563,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html">blackberry.bbm.platform.io.IncomingJoinRequest</a>[]
@@ -529,7 +575,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.bbm.platform.io.Connection.html">blackberry.bbm.platform.io.Connection</a>
@@ -541,7 +587,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.bbm.platform.io.OutgoingJoinRequest.html">blackberry.bbm.platform.io.OutgoingJoinRequest</a>[]
@@ -586,7 +632,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".createConnection"></a>
                  
@@ -690,7 +736,7 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".host"></a>
                  
@@ -727,9 +773,9 @@ If the user invites contacts then the <a href="blackberry.bbm.platform.io.Connec
                                        
                             
                             
-                            <p>Enables hosting on this connection. The user will be prompted with a dialog to allow or deny hosting.
+                            <p>Enables hosting on this connection. The user is prompted with a dialog to allow or deny hosting.
 <p>To stop hosting, call <code>blackberry.bbm.platform.io.host()</code>. Stopping hosting will not
-remove users from the connection who have already joined, it will only disallow others from joining.
+remove users from the connection who have already joined, but it will prevent others from joining.
 <a href="blackberry.bbm.platform.io.html#.hostRequests">hostRequests</a> will be emptied.</p>
 <p>The user may only host on one connection in the application. If this application is already
 hosting a public connection and this method is invoked on a different connection, then hosting
@@ -849,7 +895,7 @@ a dialog to allow or deny hosting.</p>
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".joinHost"></a>
                  
@@ -893,8 +939,8 @@ a dialog to allow or deny hosting.</p>
 <li><code>"hostdeclined"</code>: The host declined without a specific reason.
 <li><code>"hostppidinvalid"</code>: The host PPID is invalid.
 <li><code>"appnotrunning"</code>: The host's application was not running when they received the request.
-<li><code>"connectionnotfound"</code>: The host is not hosting on any connection, or stopped hosting on the connection while the request was pending.
-<li><code>"connectionfull"</code>: The host's hosted connection is full.
+<li><code>"connectionnotfound"</code>: The host is not hosting on any connection, or stopped hosting the connection while the request was pending.
+<li><code>"connectionfull"</code>: The host's connection is full.
 </ul></p>
                             <br />
                             
@@ -973,7 +1019,7 @@ request sent to the host; <code>undefined</code> if the user aborted the join re
                                                     
                                                         <br />
                                                         <b>cookie:</b> The cookie sent when the host accepted the join request in <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html#accept">accept</a>. <code>undefined</code>
-if no cookie was provided.
+if a cookie wasn't provided.
                                                     
                                                 
                                             </td>
@@ -1003,8 +1049,7 @@ if no cookie was provided.
                                             <td><b>cookie</b></td>
                                             <td>
                                                 
-                                                A custom parameter provided by the application.
-e.g. Their current game level. Max length of 128 characters.                         
+                                                A custom parameter provided by the application, such as the current game level. Max length of 128 characters.                         
                                                 
                                             </td>
                                         </tr>
@@ -1087,7 +1132,7 @@ but still attempts to send another join request to the host.
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".event:onconnectionaccepted"></a>
                  
@@ -1198,7 +1243,7 @@ but still attempts to send another join request to the host.
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".event:ondataexpired"></a>
                  
@@ -1304,7 +1349,7 @@ but still attempts to send another join request to the host.
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".event:onuserreachable"></a>
                  
@@ -1412,7 +1457,7 @@ but still attempts to send another join request to the host.
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".hostRequests"></a>
                  
@@ -1488,7 +1533,7 @@ and <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html#decline">declin
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".hostedConnection"></a>
                  
@@ -1560,7 +1605,7 @@ and <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html#decline">declin
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".joinHostRequests"></a>
                  
@@ -1651,7 +1696,7 @@ list automatically.
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:56:35 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 16:58:20 GMT-0500 (EST)
         </div>
 
     </div>

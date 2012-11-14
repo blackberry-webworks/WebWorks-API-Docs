@@ -28,6 +28,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -70,18 +116,18 @@
             <p>
                 A connection to communicate with one or more peers, where <b>the peers are aware of each other</b>.
 <p>Peers may in turn invite other users, who are also visible to everyone in the session, whether or not they are contacts of the session originator.</p>
-<p>For example, a session connection could be used for a multi-player game application such as a poker game. When all the users in the session want to see the poker table, and game data is sent to each player in the game as it occurs.</p>
+<p>For example, a session connection could be used for a multi-player game application such as a poker game. When all of the users in the session want to see the poker table, game data is sent to each player in the game as it occurs.</p>
 <b>User A invites user B, and user B joins the session</b>
 <br><br> <img src="/html5/files/apis/images/session_invite1.png" alt="session_invite1.png" /> <br><br>
 <b>User B invites user C, and user C joins the session</b>
 <br><br> <img src="/html5/files/apis/images/session_invite2.png" alt="session_invite2.png" /> <br><br>
 <b>User C invites user D, and user D joins the session</b>
 <br><br> <img src="/html5/files/apis/images/session_invite3.png" alt="session_invite3.png" /> <br><br>
-Once a user has joined they can send data to anyone in the session.
+Once a user has joined, they can send data to anyone in the session.
 
 
                 
-                    <div x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div x-ww-support="bb_menu">
                     
                 
   
@@ -125,7 +171,7 @@ Once a user has joined they can send data to anyone in the session.
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Session.html#broadcast">broadcast</a>
                                         <td class="apiYes">Y</td>
@@ -137,7 +183,7 @@ Once a user has joined they can send data to anyone in the session.
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Session.html#end">end</a>
                                         <td class="apiYes">Y</td>
@@ -149,7 +195,7 @@ Once a user has joined they can send data to anyone in the session.
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Session.html#leave">leave</a>
                                         <td class="apiYes">Y</td>
@@ -161,7 +207,7 @@ Once a user has joined they can send data to anyone in the session.
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Session.html#event:onbroadcastdata">onbroadcastdata</a>
                                         <td class="apiYes">Y</td>
@@ -173,7 +219,7 @@ Once a user has joined they can send data to anyone in the session.
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Session.html#event:onended">onended</a>
                                         <td class="apiYes">Y</td>
@@ -185,7 +231,7 @@ Once a user has joined they can send data to anyone in the session.
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Session.html#event:onusersremoved">onusersremoved</a>
                                         <td class="apiYes">Y</td>
@@ -224,7 +270,7 @@ Once a user has joined they can send data to anyone in the session.
                             
                                 
                             
-                            <tr x-ww-support="bb5.0|bb6.0|bb7.0"><td>
+                            <tr x-ww-support="bb_menu"><td>
                                 &lt;feature id="blackberry.bbm.platform" /&gt;
                                 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
@@ -237,11 +283,11 @@ Once a user has joined they can send data to anyone in the session.
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -267,7 +313,7 @@ Once a user has joined they can send data to anyone in the session.
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -275,7 +321,7 @@ Once a user has joined they can send data to anyone in the session.
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -287,7 +333,7 @@ Once a user has joined they can send data to anyone in the session.
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -299,7 +345,7 @@ Once a user has joined they can send data to anyone in the session.
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -320,23 +366,23 @@ Once a user has joined they can send data to anyone in the session.
                                 <dd>
                                     
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#add">add</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#inviteContacts">inviteContacts</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#remove">remove</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#removeAll">removeAll</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#send">send</a>
                                         </span>
                                     
@@ -351,7 +397,7 @@ Once a user has joined they can send data to anyone in the session.
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Events </h2>
                 </div>
@@ -359,7 +405,7 @@ Once a user has joined they can send data to anyone in the session.
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -371,7 +417,7 @@ Once a user has joined they can send data to anyone in the session.
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -383,7 +429,7 @@ Once a user has joined they can send data to anyone in the session.
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -404,23 +450,23 @@ Once a user has joined they can send data to anyone in the session.
                                 <dd>
                                     
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#event:ondata">ondata</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#event:onuserdeclined">onuserdeclined</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#event:onuserleft">onuserleft</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#event:onusersinvited">onusersinvited</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#event:onusersjoined">onusersjoined</a>
                                         </span>
                                     
@@ -435,7 +481,7 @@ Once a user has joined they can send data to anyone in the session.
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -448,15 +494,15 @@ Once a user has joined they can send data to anyone in the session.
                                 <dd>
                                     
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#id">id</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#joinedUsers">joinedUsers</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#pendingUsersCount">pendingUsersCount</a>
                                         </span>
                                     
@@ -471,7 +517,7 @@ Once a user has joined they can send data to anyone in the session.
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Constants </h2>
                 </div>
@@ -484,19 +530,19 @@ Once a user has joined they can send data to anyone in the session.
                                 <dd>
                                     
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#MAX_COOKIE_LENGTH">MAX_COOKIE_LENGTH</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#MAX_DATA_LENGTH">MAX_DATA_LENGTH</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#MAX_INVITE_MSG_LENGTH">MAX_INVITE_MSG_LENGTH</a>
                                         </span>
                                     
-                                        <span x-ww-support="bb5.0|bb6.0|bb7.0">
+                                        <span x-ww-support="bb_menu">
                                             <a href="blackberry.bbm.platform.io.Connection.html#MAX_USERS">MAX_USERS</a>
                                         </span>
                                     
@@ -531,7 +577,7 @@ Once a user has joined they can send data to anyone in the session.
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="broadcast"></a>
                  
@@ -622,7 +668,7 @@ Once a user has joined they can send data to anyone in the session.
                                                 ContactUnreachableException                                                
                                             </td>
                                             <td>
-                                                If a user is unreachable, up to 50 packets will be queued. This will be thrown on the 51st call.
+                                                If a user is unreachable, up to 50 packets will be queued, and on the 51st call this exception is thrown.
                                             </td>
                                         </tr>
                                     
@@ -631,7 +677,7 @@ Once a user has joined they can send data to anyone in the session.
                                                 DataOverflowException                                                
                                             </td>
                                             <td>
-                                                If the rate of data sent by the application exceeds that which the BBM Platform allows.
+                                                If the application sends data at a rate greater than what the BBM Social Platform allows.
                                             </td>
                                         </tr>
                                     
@@ -658,7 +704,7 @@ Once a user has joined they can send data to anyone in the session.
                                                 PersistentContentException                                                
                                             </td>
                                             <td>
-                                                If Content Protection is enabled and device is locked.
+                                                If Content Protection is enabled and the device is locked.
                                             </td>
                                         </tr>
                                     
@@ -679,7 +725,7 @@ Once a user has joined they can send data to anyone in the session.
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="end"></a>
                  
@@ -720,7 +766,7 @@ Once a user has joined they can send data to anyone in the session.
 <p>All participants will be removed from joinedUsers. All pending invitations will be
 removed and pendingUsers will be set to <code>0</code>.
 <p><a href="blackberry.bbm.platform.io.Session.html#event:onended">onended</a> will be called for all users currently in the connection.
-<p>The connection will become inactive for the current user, and should not be used afterwards.</p>
+<p>The connection will become inactive for the current user, and should not be used again.</p>
                             <br />
                             
                             
@@ -776,7 +822,7 @@ removed and pendingUsers will be set to <code>0</code>.
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="leave"></a>
                  
@@ -815,7 +861,7 @@ removed and pendingUsers will be set to <code>0</code>.
                             
                             <p>Removes the current user from the connection, but leaves it active for all other participants.
 <p>onUserLeft will be called for all other users currently in the connection.
-<p>The connection will become inactive for the current user, and should not be used afterwards.</p>
+<p>The connection will become inactive for the current user, and should not be used again.</p>
                             <br />
                             
                             
@@ -883,7 +929,7 @@ removed and pendingUsers will be set to <code>0</code>.
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="event:onbroadcastdata"></a>
                  
@@ -952,7 +998,7 @@ removed and pendingUsers will be set to <code>0</code>.
                                             <td><b>sender</b></td>
                                             <td>
                                                 
-                                                User that sent the data.                         
+                                                The user that sent the data.                         
                                                 
                                             </td>
                                         </tr>
@@ -988,7 +1034,7 @@ removed and pendingUsers will be set to <code>0</code>.
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="event:onended"></a>
                  
@@ -1083,7 +1129,7 @@ removed and pendingUsers will be set to <code>0</code>.
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="event:onusersremoved"></a>
                  
@@ -1207,7 +1253,7 @@ removed and pendingUsers will be set to <code>0</code>.
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:56:38 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 16:58:24 GMT-0500 (EST)
         </div>
 
     </div>

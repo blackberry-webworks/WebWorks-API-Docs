@@ -45,6 +45,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -89,7 +135,7 @@
 
 
                 
-                    <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                     
                 
   
@@ -139,7 +185,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="SQLError.html#code">code</a>
                                         <td class="apiYes">Y</td>
@@ -151,7 +197,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="SQLError.html#message">message</a>
                                         <td class="apiYes">Y</td>
@@ -163,7 +209,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="SQLError.html#.UNKNOWN_ERR">UNKNOWN_ERR</a>
                                         <td class="apiYes">Y</td>
@@ -175,7 +221,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="SQLError.html#.DATABASE_ERR">DATABASE_ERR</a>
                                         <td class="apiYes">Y</td>
@@ -187,7 +233,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="SQLError.html#.VERSION_ERR">VERSION_ERR</a>
                                         <td class="apiYes">Y</td>
@@ -199,7 +245,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="SQLError.html#.TOO_LARGE_ERR">TOO_LARGE_ERR</a>
                                         <td class="apiYes">Y</td>
@@ -211,7 +257,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="SQLError.html#.QUOTA_ERR">QUOTA_ERR</a>
                                         <td class="apiYes">Y</td>
@@ -223,7 +269,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="SQLError.html#.SYNTAX_ERR">SYNTAX_ERR</a>
                                         <td class="apiYes">Y</td>
@@ -235,7 +281,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="SQLError.html#.CONSTRAINT_ERR">CONSTRAINT_ERR</a>
                                         <td class="apiYes">Y</td>
@@ -247,7 +293,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="SQLError.html#.TIMEOUT_ERR">TIMEOUT_ERR</a>
                                         <td class="apiYes">Y</td>
@@ -281,11 +327,11 @@
                     </td></tr></tbody></table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -317,7 +363,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -325,7 +371,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             Number
@@ -337,7 +383,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             String
@@ -359,7 +405,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                 <div class="ref-sect-title">
                     <h2> Constants </h2>
                 </div>
@@ -367,7 +413,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             Number
@@ -379,7 +425,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             Number
@@ -391,7 +437,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             Number
@@ -403,7 +449,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             Number
@@ -415,7 +461,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             Number
@@ -427,7 +473,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             Number
@@ -439,7 +485,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             Number
@@ -451,7 +497,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             Number
@@ -499,7 +545,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name="code"></a>
                  
@@ -582,7 +628,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name="message"></a>
                  
@@ -677,7 +723,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".UNKNOWN_ERR"></a>
                  
@@ -766,7 +812,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".DATABASE_ERR"></a>
                  
@@ -855,7 +901,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".VERSION_ERR"></a>
                  
@@ -944,7 +990,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".TOO_LARGE_ERR"></a>
                  
@@ -1033,7 +1079,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".QUOTA_ERR"></a>
                  
@@ -1122,7 +1168,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".SYNTAX_ERR"></a>
                  
@@ -1211,7 +1257,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".CONSTRAINT_ERR"></a>
                  
@@ -1300,7 +1346,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".TIMEOUT_ERR"></a>
                  
@@ -1402,7 +1448,7 @@
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:56:39 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 16:58:25 GMT-0500 (EST)
         </div>
 
     </div>

@@ -28,6 +28,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -108,7 +154,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#activeCues">activeCues</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -120,7 +166,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#cues">cues</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -132,7 +178,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#kind">kind</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -144,7 +190,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#label">label</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -156,7 +202,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#language">language</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -168,7 +214,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#mode">mode</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -180,7 +226,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#readyState">readyState</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -192,7 +238,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#.NONE">NONE</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -204,7 +250,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#.LOADING">LOADING</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -216,7 +262,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#.LOADED">LOADED</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -228,7 +274,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#.ERROR">ERROR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -240,7 +286,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#.OFF">OFF</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -252,7 +298,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#.HIDDEN">HIDDEN</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -264,7 +310,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#.SHOWING">SHOWING</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -276,7 +322,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#event:oncuechange">oncuechange</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -288,7 +334,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#event:onenter">onenter</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -300,7 +346,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#event:onerror">onerror</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -312,7 +358,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#event:onexit">onexit</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -324,7 +370,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="TextTrack.html#event:onload">onload</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -358,11 +404,11 @@
                     </td></tr></tbody></table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -391,7 +437,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Events </h2>
                 </div>
@@ -399,7 +445,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -411,7 +457,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -423,7 +469,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -435,7 +481,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -447,7 +493,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -469,7 +515,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -477,7 +523,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             <a href="TextTrackCueList.html">TextTrackCueList</a>
@@ -489,7 +535,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             <a href="TextTrackCueList.html">TextTrackCueList</a>
@@ -501,7 +547,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -513,7 +559,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -525,7 +571,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -537,7 +583,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number|<a href="TextTrack.html#.OFF">TextTrack.OFF</a>|<a href="TextTrack.html#.HIDDEN">TextTrack.HIDDEN</a>|<a href="TextTrack.html#.SHOWING">TextTrack.SHOWING</a>
@@ -549,7 +595,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number|<a href="TextTrack.html#.NONE">TextTrack.NONE</a>|<a href="TextTrack.html#.LOADING">TextTrack.LOADING</a>|<a href="TextTrack.html#.LOADED">TextTrack.LOADED</a>|<a href="TextTrack.html#.ERROR">TextTrack.ERROR</a>
@@ -571,7 +617,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Constants </h2>
                 </div>
@@ -579,7 +625,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -591,7 +637,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -603,7 +649,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -615,7 +661,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -627,7 +673,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -639,7 +685,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -651,7 +697,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -696,7 +742,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="event:oncuechange"></a>
                  
@@ -803,7 +849,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="event:onenter"></a>
                  
@@ -910,7 +956,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="event:onerror"></a>
                  
@@ -1017,7 +1063,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="event:onexit"></a>
                  
@@ -1124,7 +1170,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="event:onload"></a>
                  
@@ -1243,7 +1289,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="activeCues"></a>
                  
@@ -1326,7 +1372,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="cues"></a>
                  
@@ -1409,7 +1455,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="kind"></a>
                  
@@ -1492,7 +1538,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="label"></a>
                  
@@ -1575,7 +1621,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="language"></a>
                  
@@ -1658,7 +1704,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="mode"></a>
                  
@@ -1741,7 +1787,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="readyState"></a>
                  
@@ -1836,7 +1882,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".NONE"></a>
                  
@@ -1923,7 +1969,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".LOADING"></a>
                  
@@ -2010,7 +2056,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".LOADED"></a>
                  
@@ -2097,7 +2143,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".ERROR"></a>
                  
@@ -2184,7 +2230,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".OFF"></a>
                  
@@ -2271,7 +2317,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".HIDDEN"></a>
                  
@@ -2358,7 +2404,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".SHOWING"></a>
                  
@@ -2458,7 +2504,7 @@
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:56:39 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 16:58:25 GMT-0500 (EST)
         </div>
 
     </div>

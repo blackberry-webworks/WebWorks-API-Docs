@@ -45,6 +45,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -128,10 +174,10 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                     <br /><br />
                     
                         <a href="https://adservices.blackberry.com/register">Sign up</a> for the BlackBerry&reg; Advertising Service <br>
-<a href="http://docs.blackberry.com/en/developers/deliverables/34109/index.jsp?name=Development+Guide+-+Advertising+Service+for+BlackBerry+WebWorksAdvertising+Service1.0+Beta&language=English&userType=21&category=BlackBerry+WebWorks+for+Smartphones&subCategory="> Development Guide - Advertising Service for BlackBerry WebWorks </a>
+<a href="https://developer.blackberry.com/html5/documentation/overview_webworks_1122006_11.html"> Development Guide - Advertising Service for BlackBerry WebWorks </a>
                     
                     <br /><br />
-                    <i>Last Updated: Wed Sep 12 2012 10:56:28 GMT-0400 (EDT)</i>
+                    <i>Last Updated: Wed Nov 14 2012 16:58:13 GMT-0500 (EST)</i>
                 </p>
             </div>
         
@@ -161,7 +207,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                                 
-                                    <tr x-ww-support="bb6.0|bb7.0">
+                                    <tr x-ww-support="bb_menu">
                                         <td>
                                             <a href="blackberry.advertising.Banner.html">blackberry.advertising.Banner</a>
                                             <td class="apiNo">&nbsp;</td>
@@ -175,7 +221,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                                 
                             
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.advertising.Banner.html#bannerTransitions">bannerTransitions</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -187,7 +233,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.advertising.Banner.html#focusBorderColor">focusBorderColor</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -199,7 +245,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.advertising.Banner.html#focusBorderWidth">focusBorderWidth</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -211,7 +257,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.advertising.Banner.html#metadata">metadata</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -223,7 +269,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.advertising.Banner.html#mmaSize">mmaSize</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -235,7 +281,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.advertising.Banner.html#placeholder">placeholder</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -247,7 +293,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.advertising.Banner.html#refreshRate">refreshRate</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -286,7 +332,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                             
                                 
                             
-                            <tr x-ww-support="bb6.0|bb7.0"><td>
+                            <tr x-ww-support="bb_menu"><td>
                                 &lt;feature id="blackberry.advertising" /&gt;
                                 <td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td>
@@ -299,11 +345,11 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -326,7 +372,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Constructors </h2>
                 </div>
@@ -334,7 +380,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             
@@ -362,7 +408,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -370,7 +416,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             Boolean
@@ -382,7 +428,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -394,7 +440,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -406,7 +452,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             JSON
@@ -418,7 +464,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -430,7 +476,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -442,7 +488,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -484,7 +530,7 @@ Set access to "blackberry.advertising" and "www.blackberry.com" in the app confi
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".Banner"></a>
                  
@@ -662,7 +708,7 @@ Example 1:
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="bannerTransitions"></a>
                  
@@ -738,7 +784,7 @@ Example 1:
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="focusBorderColor"></a>
                  
@@ -814,7 +860,7 @@ Example 1:
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="focusBorderWidth"></a>
                  
@@ -890,7 +936,7 @@ Example 1:
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="metadata"></a>
                  
@@ -961,7 +1007,7 @@ Example 1:
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="mmaSize"></a>
                  
@@ -1045,7 +1091,7 @@ Example 1:
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="placeholder"></a>
                  
@@ -1116,7 +1162,7 @@ Example 1:
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="refreshRate"></a>
                  
@@ -1208,7 +1254,7 @@ Example 1:
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 12 2012 10:56:28 GMT-0400 (EDT)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 14 2012 16:58:13 GMT-0500 (EST)
         </div>
 
     </div>
