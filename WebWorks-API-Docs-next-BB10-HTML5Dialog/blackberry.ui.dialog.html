@@ -2033,7 +2033,7 @@
                                             blackberry.ui.dialog.standardAskAsync
                                             
                                                 
-                                                    (message : String, type : Number, <i>[onOptionSelected: function(<i>[firstButton: Boolean]</i>, <i>[secondButton: Boolean]</i>, <i>[thirdOptionButton: Boolean]</i>, <i>[promptText: String]</i>)]</i>, <i>[settings : Object]</i>)
+                                                    (message : String, type : Number, <i>[onOptionSelected: function(<i>[return: String]</i>, <i>[promptText: String]</i>)]</i>, <i>[settings : Object]</i>)
                                                 
                                             
                                                                   
@@ -2053,7 +2053,7 @@
                                        
                             
                             
-                            <p>Creates an asynchronous standard dialog to ask the user a question. <br/>Uses the standard dialog. The function is an asynchronous call and will not block execution. It will return an object containing selected elements and input values.<br/> NOTE: function is only implemented for Ripple emulation on Playbook.</p>
+                            <p>Creates an asynchronous standard dialog to ask the user a question. <br/>Uses the standard dialog. The function is an asynchronous call and will not block execution. It will return an object containing the selected button, and the input values.<br/> NOTE: function is only implemented for Ripple emulation on Playbook.</p>
                             <br />
                             
                             
@@ -2109,18 +2109,12 @@
                                             <td><b>onOptionSelected</b></td>
                                             <td>
                                                 
-                                                 Optional callback function that will be invoked when the user makes a selection. Expected signature: function onOptionSelected(selectedButtonIndex).  <p> NOTE: onOptionSelected is required for BlackBerry OS5.0+.                         
+                                                 Optional callback function that will be invoked when the user makes a selection. Expected signature: function onOptionSelected(selectedButtonObject).                         
                                                 
                                                     <br />
                                                     
                                                         <br />
-                                                        <b>firstButton:</b>  The element for the primary ok/save/yes/delete button. Set to true if selected.
-                                                    
-                                                        <br />
-                                                        <b>secondButton:</b>  The element for the secondary cancel/no/discard button. Set to true if selected.
-                                                    
-                                                        <br />
-                                                        <b>thirdOptionButton:</b>  The element for the optional button. Set to true if selected.
+                                                        <b>return:</b>  The element for the selected button. Returns a string of the selected button, such as "Ok" or "Cancel".
                                                     
                                                         <br />
                                                         <b>promptText:</b>  The element for entered text. Returns the user's entered string. If cancel is selected set to null.(Option only used for select dialogs: D_PROMPT). <br/><br/>
@@ -2140,9 +2134,6 @@
                                                     
                                                         <br />
                                                         <b>title:</b> Desired title of the dialog.
-                                                    
-                                                        <br />
-                                                        <b>thirdOptionLabel:</b> Desired label for optional third button. (This option is only available for select dialogs: not available for D_PROMPT or D_OK). <br/>
                                                     
                                                 
                                             </td>
@@ -2168,7 +2159,7 @@
     <br />
     <b>Code Example:</b>
     
-        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;function dialogCallBack(index){  alert(index);}function standardDialog() {  try {    blackberry.ui.dialog.standardAskAsync("Save?", blackberry.ui.dialog.D_SAVE, dialogCallBack, {title : "Save Dialog", thirdOptionLabel : "Never"});  }catch (e) {    alert("Exception in standardDialog: " + e);  }}&lt;/script&gt;</pre></code></td></tbody></table>
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;function dialogCallBack(selection){  alert(selection.return);}function standardDialog() {  try {    blackberry.ui.dialog.standardAskAsync("Save?", blackberry.ui.dialog.D_SAVE, dialogCallBack, {title : "Save Dialog"});  }catch (e) {    alert("Exception in standardDialog: " + e);  }}&lt;/script&gt;</pre></code></td></tbody></table>
     
   
 
@@ -3948,7 +3939,7 @@
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Nov 13 2012 14:17:59 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 17:59:23 GMT-0500 (EST)
         </div>
 
     </div>
