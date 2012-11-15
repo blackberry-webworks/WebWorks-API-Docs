@@ -176,18 +176,6 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb_menu">
-                                    <td>
-                                        <a href="blackberry.bbm.platform.self.html#.setDisplayPicture">blackberry.bbm.platform.self.setDisplayPicture</a>
-                                        <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
-                                    </td>
-                                </tr>
-                            
                                 <tr x-ww-support="bb_menu|bb10_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.self.html#.setPersonalMessage">blackberry.bbm.platform.self.setPersonalMessage</a>
@@ -209,6 +197,18 @@
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.self.html#.setDisplayPicture">setDisplayPicture</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
@@ -327,18 +327,6 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb_menu">
-                                    <td class="first_column">
-                                        
-                                            void
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.bbm.platform.self.html#.setDisplayPicture">blackberry.bbm.platform.self.setDisplayPicture</a>
-                                        
-                                    </td>
-                                </tr>
-                            
                                 <tr x-ww-support="bb_menu|bb10_menu">
                                     <td class="first_column">
                                         
@@ -383,6 +371,18 @@
                 <div class="ref-sect-content">
                     
                         <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.self.html#.setDisplayPicture">setDisplayPicture</a>
+                                        
+                                    </td>
+                                </tr>
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
@@ -579,140 +579,6 @@
 // Get the user's display picture
 blackberry.bbm.platform.self.getDisplayPicture(function (image) {
     // do something with the image here
-});
-&lt;/script&gt;</pre></code></td></tbody></table>
-    
-  
-
-                        </div>
-                    </div>
-                
-                    <div class="detailed_item function" x-ww-support="bb_menu">
-                        <h3>
-                            <a name=".setDisplayPicture"></a>
-                 
-                            
-                            
-                                
-                                    
-                                        static              
-                                        
-                                        
-                                            void
-                                        
-                                        
-                                            blackberry.bbm.platform.self.setDisplayPicture
-                                            
-                                                
-                                                    (displayPictureURI : String, onComplete: function(accepted : Boolean))
-                                                
-                                            
-                                                                  
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                                
-                                <br />
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p>Sets the user's display picture from a URI. A dialog appears and allows the 
-user to accept or cancel the change.
-<p>The URI must be fully qualified. Non-local URIs must be whitelisted in the application's configuration file. Examples:
-<ul>
-<li>Locally from within the widget package (e.g. "local:///smiley.jpg")
-<li>From the filesystem of a BB5.0+ device (e.g. "file:///SDCard/BlackBerry/pictures/smiley.jpg")
-</ul>
-</p></p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
-                                    <thead><tr><th colspan="2">
-                                        Supported Platforms
-                                    </th></tr></thead>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry OS 5.0+
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
-                            
-                                <br />
-                                <table>
-                                    <thead><tr><th colspan="2">
-                                        Parameters
-                                    </th></tr></thead>
-                                                   
-                                    
-                                        
-                                        <tr>
-                                            <td><b>displayPictureURI</b></td>
-                                            <td>
-                                                
-                                                The fully qualified URI.                         
-                                                
-                                            </td>
-                                        </tr>
-                                    
-                                        
-                                        <tr>
-                                            <td><b>onComplete</b></td>
-                                            <td>
-                                                
-                                                Invoked when the user has dismissed the dialog.                         
-                                                
-                                                    <br />
-                                                    
-                                                        <br />
-                                                        <b>accepted:</b> <code>true</code> if the user accepted the change;
-<code>false</code> otherwise.
-                                                    
-                                                
-                                            </td>
-                                        </tr>
-                                                  
-                                </table>
-                                               
-
-                            
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-
-    <br />
-    <b>Code Example:</b>
-    
-        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
-// Set the user's display picture
-blackberry.bbm.platform.self.setDisplayPicture("local:///smiley.jpg", function (accepted) {
-    if(accepted) {
-        // User accepted the change
-    } else {
-        // User canceled the change
-    }
 });
 &lt;/script&gt;</pre></code></td></tbody></table>
     
@@ -998,6 +864,136 @@ blackberry.bbm.platform.self.setStatus("busy", "Playing Tic-Tac-Toe!", function 
             </div>
             <div class="ref-sect-content">
                 
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".setDisplayPicture"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            setDisplayPicture
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Sets the user's display picture from a URI. A dialog appears and allows the 
+user to accept or cancel the change.
+<p>The URI must be fully qualified. Non-local URIs must be whitelisted in the application's configuration file. Examples:
+<ul>
+<li>Locally from within the widget package (e.g. "local:///smiley.jpg")
+<li>From the filesystem of a BB5.0+ device (e.g. "file:///SDCard/BlackBerry/pictures/smiley.jpg")
+</ul>
+</p></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>displayPictureURI</b></td>
+                                            <td>
+                                                
+                                                The fully qualified URI.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onComplete</b></td>
+                                            <td>
+                                                
+                                                Invoked when the user has dismissed the dialog.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>accepted:</b> <code>true</code> if the user accepted the change;
+<code>false</code> otherwise.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+// Set the user's display picture
+blackberry.bbm.platform.self.setDisplayPicture("local:///smiley.jpg", function (accepted) {
+    if(accepted) {
+        // User accepted the change
+    } else {
+        // User canceled the change
+    }
+});
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
                     <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".setDisplayPicture^2"></a>
@@ -1122,7 +1118,7 @@ blackberry.bbm.platform.self.setDisplayPicture("local:///smiley.jpg");
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 14:00:14 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 14:19:52 GMT-0500 (EST)
         </div>
 
     </div>
