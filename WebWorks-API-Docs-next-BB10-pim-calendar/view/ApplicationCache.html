@@ -45,6 +45,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -89,7 +135,7 @@
 
 
                 
-                    <div x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                     
                 
   
@@ -146,7 +192,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                                 
-                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                    <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                         <td>
                                             <a href="ApplicationCache.html#.windowConstructor">window.applicationCache</a>
                                             <td class="apiNo">&nbsp;</td>
@@ -158,7 +204,7 @@
                                         </td>
                                     </tr>
                                 
-                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                    <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                         <td>
                                             <a href="ApplicationCache.html#.workerConstructor">worker.applicationCache</a>
                                             <td class="apiNo">&nbsp;</td>
@@ -172,7 +218,7 @@
                                 
                             
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#swapCache">swapCache</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -184,7 +230,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#update">update</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -196,7 +242,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#status">status</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -208,7 +254,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#.UNCACHED">UNCACHED</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -220,7 +266,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#.IDLE">IDLE</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -232,7 +278,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#.CHECKING">CHECKING</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -244,7 +290,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#.DOWNLOADING">DOWNLOADING</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -256,7 +302,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#.UPDATEREADY">UPDATEREADY</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -268,7 +314,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#.OBSOLETE">OBSOLETE</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -280,7 +326,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#event:cached">cached</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -292,7 +338,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#event:checking">checking</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -304,7 +350,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#event:downloading">downloading</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -316,7 +362,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#event:error">error</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -328,7 +374,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#event:noupdate">noupdate</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -340,7 +386,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#event:obsolete">obsolete</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -352,7 +398,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#event:progress">progress</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -364,7 +410,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="ApplicationCache.html#event:updateready">updateready</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -398,11 +444,11 @@
                     </td></tr></tbody></table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -425,7 +471,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Constructors </h2>
                 </div>
@@ -433,7 +479,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             
@@ -445,7 +491,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             
@@ -467,7 +513,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -475,7 +521,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -487,7 +533,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -509,7 +555,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Events </h2>
                 </div>
@@ -517,7 +563,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -529,7 +575,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -541,7 +587,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -553,7 +599,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -565,7 +611,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -577,7 +623,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -589,7 +635,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -601,7 +647,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -623,7 +669,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -631,7 +677,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -653,7 +699,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Constants </h2>
                 </div>
@@ -661,7 +707,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -673,7 +719,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -685,7 +731,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -697,7 +743,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -709,7 +755,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -721,7 +767,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -760,7 +806,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".windowConstructor"></a>
                  
@@ -841,7 +887,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".workerConstructor"></a>
                  
@@ -934,7 +980,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="swapCache"></a>
                  
@@ -1045,7 +1091,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="update"></a>
                  
@@ -1151,7 +1197,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="event:cached"></a>
                  
@@ -1245,7 +1291,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="event:checking"></a>
                  
@@ -1339,7 +1385,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="event:downloading"></a>
                  
@@ -1433,7 +1479,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="event:error"></a>
                  
@@ -1527,7 +1573,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="event:noupdate"></a>
                  
@@ -1621,7 +1667,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="event:obsolete"></a>
                  
@@ -1715,7 +1761,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="event:progress"></a>
                  
@@ -1809,7 +1855,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="event:updateready"></a>
                  
@@ -1915,7 +1961,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name="status"></a>
                  
@@ -2016,7 +2062,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".UNCACHED"></a>
                  
@@ -2105,7 +2151,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".IDLE"></a>
                  
@@ -2194,7 +2240,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".CHECKING"></a>
                  
@@ -2283,7 +2329,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".DOWNLOADING"></a>
                  
@@ -2372,7 +2418,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".UPDATEREADY"></a>
                  
@@ -2461,7 +2507,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                         <h3>
                             <a name=".OBSOLETE"></a>
                  
@@ -2563,7 +2609,7 @@
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 15:27:44 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 16:01:07 GMT-0500 (EST)
         </div>
 
     </div>

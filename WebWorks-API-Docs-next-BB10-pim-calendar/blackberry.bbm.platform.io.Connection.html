@@ -28,6 +28,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -73,7 +119,7 @@
 
 
                 
-                    <div x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div x-ww-support="bb_menu">
                     
                 
   
@@ -117,7 +163,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#add">add</a>
                                         <td class="apiYes">Y</td>
@@ -129,7 +175,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#inviteContacts">inviteContacts</a>
                                         <td class="apiYes">Y</td>
@@ -141,7 +187,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#remove">remove</a>
                                         <td class="apiYes">Y</td>
@@ -153,7 +199,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#removeAll">removeAll</a>
                                         <td class="apiYes">Y</td>
@@ -165,7 +211,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#send">send</a>
                                         <td class="apiYes">Y</td>
@@ -177,7 +223,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#id">id</a>
                                         <td class="apiYes">Y</td>
@@ -189,7 +235,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#joinedUsers">joinedUsers</a>
                                         <td class="apiYes">Y</td>
@@ -201,7 +247,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#pendingUsersCount">pendingUsersCount</a>
                                         <td class="apiYes">Y</td>
@@ -213,7 +259,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#MAX_USERS">MAX_USERS</a>
                                         <td class="apiYes">Y</td>
@@ -225,7 +271,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#MAX_COOKIE_LENGTH">MAX_COOKIE_LENGTH</a>
                                         <td class="apiYes">Y</td>
@@ -237,7 +283,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#MAX_INVITE_MSG_LENGTH">MAX_INVITE_MSG_LENGTH</a>
                                         <td class="apiYes">Y</td>
@@ -249,7 +295,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#MAX_DATA_LENGTH">MAX_DATA_LENGTH</a>
                                         <td class="apiYes">Y</td>
@@ -261,7 +307,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#event:ondata">ondata</a>
                                         <td class="apiYes">Y</td>
@@ -273,7 +319,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#event:onuserdeclined">onuserdeclined</a>
                                         <td class="apiYes">Y</td>
@@ -285,7 +331,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#event:onuserleft">onuserleft</a>
                                         <td class="apiYes">Y</td>
@@ -297,7 +343,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#event:onusersinvited">onusersinvited</a>
                                         <td class="apiYes">Y</td>
@@ -309,7 +355,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.io.Connection.html#event:onusersjoined">onusersjoined</a>
                                         <td class="apiYes">Y</td>
@@ -348,7 +394,7 @@
                             
                                 
                             
-                            <tr x-ww-support="bb5.0|bb6.0|bb7.0"><td>
+                            <tr x-ww-support="bb_menu"><td>
                                 &lt;feature id="blackberry.bbm.platform" /&gt;
                                 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
@@ -361,11 +407,11 @@
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -391,7 +437,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -399,7 +445,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -411,7 +457,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -423,7 +469,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -435,7 +481,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -447,7 +493,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -469,7 +515,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Events </h2>
                 </div>
@@ -477,7 +523,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -489,7 +535,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -501,7 +547,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -513,7 +559,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -525,7 +571,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -547,7 +593,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -555,7 +601,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -567,7 +613,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>[]
@@ -579,7 +625,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -601,7 +647,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
                 <div class="ref-sect-title">
                     <h2> Constants </h2>
                 </div>
@@ -609,7 +655,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -621,7 +667,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -633,7 +679,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -645,7 +691,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -687,7 +733,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="add"></a>
                  
@@ -806,7 +852,7 @@
                                                 PersistentContentException                                                
                                             </td>
                                             <td>
-                                                If Content Protection is enabled and device is locked.
+                                                If Content Protection is enabled and the device is locked.
                                             </td>
                                         </tr>
                                     
@@ -827,7 +873,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="inviteContacts"></a>
                  
@@ -865,7 +911,7 @@
                             
                             
                             <p>Allows the user to invite contacts to join this connection.
-<p>A Contact Picker dialog will appear allowing the user to select contacts to invite. Only
+<p>A Contact Picker dialog appears and allows the user to select contacts to invite. Only
 contacts with the application will be shown in the Contact Picker.</p>
                             <br />
                             
@@ -898,7 +944,7 @@ contacts with the application will be shown in the Contact Picker.</p>
                                             <td><b>inviteMessage</b></td>
                                             <td>
                                                 
-                                                Message shown to user in invitation.                         
+                                                Message shown in the invitation to users.                         
                                                 
                                             </td>
                                         </tr>
@@ -914,7 +960,7 @@ contacts with the application will be shown in the Contact Picker.</p>
                                                     
                                                         <br />
                                                         <b>expiryTime:</b> Delay until the invitation expires (ms). If not provided
-or <code><= 0</code>, then invitation will never expire.
+or <code><= 0</code>, the invitation will not expire.
                                                     
                                                         <br />
                                                         <b>cookie:</b> A custom parameter provided by the third party application. 
@@ -976,7 +1022,7 @@ ends or leaves the connection.
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="remove"></a>
                  
@@ -1045,7 +1091,7 @@ ends or leaves the connection.
                                             <td><b>user</b></td>
                                             <td>
                                                 
-                                                Single user, or array of users, to remove from the connection.                         
+                                                Single user, or an array of users, to remove from the connection.                         
                                                 
                                             </td>
                                         </tr>
@@ -1076,7 +1122,7 @@ ends or leaves the connection.
                                                 IllegalArgumentException                                                
                                             </td>
                                             <td>
-                                                If of of the users being removed does not belong to the connection.
+                                                If one of the users being removed does not belong to the connection.
                                             </td>
                                         </tr>
                                     
@@ -1085,7 +1131,7 @@ ends or leaves the connection.
                                                 PersistentContentException                                                
                                             </td>
                                             <td>
-                                                If Content Protection is enabled and device is locked.
+                                                If Content Protection is enabled and the device is locked.
                                             </td>
                                         </tr>
                                     
@@ -1130,7 +1176,7 @@ if(users.length > 0) {
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="removeAll"></a>
                  
@@ -1202,7 +1248,7 @@ if(users.length > 0) {
                                                 PersistentContentException                                                
                                             </td>
                                             <td>
-                                                If Content Protection is enabled and device is locked.
+                                                If Content Protection is enabled and the device is locked.
                                             </td>
                                         </tr>
                                     
@@ -1223,7 +1269,7 @@ if(users.length > 0) {
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="send"></a>
                  
@@ -1263,9 +1309,9 @@ if(users.length > 0) {
                             <p>Sends data to all users on the connection or a subset. Data cannot be sent to users
 who have not joined.
 <h3>Unreachable Users</h3>
-<p>If a user becomes unreachable then up to 50 packets (50 calls of <code>send()</code>) will be queued. A ContactUnreachableException will be thrown on the 51st call.
-<p>If the user later becomes reachable then <a href="blackberry.bbm.platform.io.html#.event:onuserreachable">blackberry.bbm.platform.io.event:onuserreachable</a> will be invoked with the now-reachable user.
-<p>BBM Social Platform will continue to attempt to deliver the packets to an unreachable user for 24 hours. If the user does not become reachable within this time then the packets will expire, and <a href="blackberry.bbm.platform.io.html#.event:ondataexpired">blackberry.bbm.platform.io.event:ondataexpired</a> will be invoked with unreachable user and the expired packets.</p>
+<p>If a user becomes unreachable, up to 50 packets (50 calls of <code>send()</code>) will be queued. A ContactUnreachableException will be thrown on the 51st call.
+<p>If the user later becomes reachable, <a href="blackberry.bbm.platform.io.html#.event:onuserreachable">blackberry.bbm.platform.io.event:onuserreachable</a> will be invoked with the now-reachable user.
+<p>The BBM Social Platform will continue to attempt to deliver the packets to an unreachable user for 24 hours. If the user does not become reachable within this time, the packets will expire, and <a href="blackberry.bbm.platform.io.html#.event:ondataexpired">blackberry.bbm.platform.io.event:ondataexpired</a> will be invoked.</p>
                             <br />
                             
                             
@@ -1330,7 +1376,7 @@ If not provided, data will be sent to all users on this connection.
                                                 ContactUnreachableException                                                
                                             </td>
                                             <td>
-                                                If a user is unreachable, up to 50 packets will be queued. This will be thrown on the 51st call.
+                                                If a user is unreachable, up to 50 packets will be queued, and on the 51st call this exception is thrown.
                                             </td>
                                         </tr>
                                     
@@ -1339,7 +1385,7 @@ If not provided, data will be sent to all users on this connection.
                                                 DataOverflowException                                                
                                             </td>
                                             <td>
-                                                If the rate of data sent by the application exceeds that which the BBM Platform allows.
+                                                If the application sends data at a rate greater than what the BBM Social Platform allows.
                                             </td>
                                         </tr>
                                     
@@ -1384,7 +1430,7 @@ If not provided, data will be sent to all users on this connection.
                                                 PersistentContentException                                                
                                             </td>
                                             <td>
-                                                If Content Protection is enabled and device is locked.
+                                                If Content Protection is enabled and the device is locked.
                                             </td>
                                         </tr>
                                     
@@ -1466,7 +1512,7 @@ try {
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="event:ondata"></a>
                  
@@ -1593,7 +1639,7 @@ connection1.ondata = function(user, data) {
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="event:onuserdeclined"></a>
                  
@@ -1662,7 +1708,7 @@ connection1.ondata = function(user, data) {
                                             <td><b>user</b></td>
                                             <td>
                                                 
-                                                User who declined.                         
+                                                The user who declined.                         
                                                 
                                             </td>
                                         </tr>
@@ -1688,7 +1734,7 @@ connection1.ondata = function(user, data) {
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="event:onuserleft"></a>
                  
@@ -1757,7 +1803,7 @@ connection1.ondata = function(user, data) {
                                             <td><b>user</b></td>
                                             <td>
                                                 
-                                                User who left.                         
+                                                The user who left.                         
                                                 
                                             </td>
                                         </tr>
@@ -1783,7 +1829,7 @@ connection1.ondata = function(user, data) {
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="event:onusersinvited"></a>
                  
@@ -1853,7 +1899,7 @@ called if the user invites others to download the application.</p>
                                             <td><b>users</b></td>
                                             <td>
                                                 
-                                                the users who were invited                         
+                                                The users who were invited.                         
                                                 
                                             </td>
                                         </tr>
@@ -1879,7 +1925,7 @@ called if the user invites others to download the application.</p>
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="event:onusersjoined"></a>
                  
@@ -1958,7 +2004,7 @@ called if the user invites others to download the application.</p>
                                             <td><b>type</b></td>
                                             <td>
                                                 
-                                                The type of join.
+                                                The way that users joined.
 <ul>
 <li><code>"invitedbyme"</code>: The joining users were invited by the current user.
 <li><code>"acceptedbyme"</code>: The current user is joining the connection.
@@ -2011,7 +2057,7 @@ if no cookie was sent.
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="id"></a>
                  
@@ -2082,7 +2128,7 @@ if no cookie was sent.
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="joinedUsers"></a>
                  
@@ -2153,7 +2199,7 @@ if no cookie was sent.
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="pendingUsersCount"></a>
                  
@@ -2236,7 +2282,7 @@ if no cookie was sent.
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="MAX_USERS"></a>
                  
@@ -2315,7 +2361,7 @@ and will not allow more users to join.</p>
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="MAX_COOKIE_LENGTH"></a>
                  
@@ -2392,7 +2438,7 @@ and will not allow more users to join.</p>
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="MAX_INVITE_MSG_LENGTH"></a>
                  
@@ -2469,7 +2515,7 @@ and will not allow more users to join.</p>
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="MAX_DATA_LENGTH"></a>
                  
@@ -2507,7 +2553,7 @@ and will not allow more users to join.</p>
                                        
                             
                             
-                            <p>The maximum length of a data payload .</p>
+                            <p>The maximum length of a data payload.</p>
                             <br />
                             
                             
@@ -2559,7 +2605,7 @@ and will not allow more users to join.</p>
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 15:27:47 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 16:01:10 GMT-0500 (EST)
         </div>
 
     </div>

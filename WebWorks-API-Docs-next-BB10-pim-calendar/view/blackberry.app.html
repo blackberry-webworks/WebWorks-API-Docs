@@ -45,6 +45,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -89,7 +135,7 @@
 
 
                 
-                    <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                     
                 
 
@@ -145,7 +191,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.app.html#.exit">blackberry.app.exit</a>
                                         <td class="apiYes">Y</td>
@@ -157,7 +203,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.app.html#.lockOrientation">blackberry.app.lockOrientation</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.app.html#.removeBannerIndicator">blackberry.app.removeBannerIndicator</a>
                                         <td class="apiYes">Y</td>
@@ -169,7 +227,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.app.html#.requestBackground">blackberry.app.requestBackground</a>
                                         <td class="apiYes">Y</td>
@@ -181,7 +239,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.app.html#.requestForeground">blackberry.app.requestForeground</a>
                                         <td class="apiYes">Y</td>
@@ -193,7 +251,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.app.html#.rotate">blackberry.app.rotate</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.app.html#.setHomeScreenIcon">blackberry.app.setHomeScreenIcon</a>
                                         <td class="apiYes">Y</td>
@@ -205,7 +275,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.app.html#.setHomeScreenName">blackberry.app.setHomeScreenName</a>
                                         <td class="apiYes">Y</td>
@@ -217,7 +287,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.app.html#.showBannerIndicator">blackberry.app.showBannerIndicator</a>
                                         <td class="apiYes">Y</td>
@@ -229,7 +299,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0">
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.app.html#.unlockOrientation">blackberry.app.unlockOrientation</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="pb_menu">
                                     <td>
                                         <a href="blackberry.app.html#.get">http://localhost:8472/blackberry/app/get</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -241,7 +323,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.app.html#.author">author</a>
                                         <td class="apiYes">Y</td>
@@ -253,7 +335,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.app.html#.authorEmail">authorEmail</a>
                                         <td class="apiYes">Y</td>
@@ -265,7 +347,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.app.html#.authorURL">authorURL</a>
                                         <td class="apiYes">Y</td>
@@ -277,7 +359,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.app.html#.copyright">copyright</a>
                                         <td class="apiYes">Y</td>
@@ -289,7 +371,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.app.html#.description">description</a>
                                         <td class="apiYes">Y</td>
@@ -301,7 +383,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.app.html#.id">id</a>
                                         <td class="apiYes">Y</td>
@@ -313,7 +395,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.app.html#.isForeground">isForeground</a>
                                         <td class="apiYes">Y</td>
@@ -325,7 +407,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.app.html#.license">license</a>
                                         <td class="apiYes">Y</td>
@@ -337,7 +419,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.app.html#.licenseURL">licenseURL</a>
                                         <td class="apiYes">Y</td>
@@ -349,7 +431,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.app.html#.name">name</a>
                                         <td class="apiYes">Y</td>
@@ -361,7 +443,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.app.html#.orientation">orientation</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.app.html#.version">version</a>
                                         <td class="apiYes">Y</td>
@@ -373,7 +467,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.app.html#.event:keyboardClosed">blackberry.app.keyboardClosed</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -385,7 +479,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.app.html#.event:keyboardClosing">blackberry.app.keyboardClosing</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -397,7 +491,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.app.html#.event:keyboardOpened">blackberry.app.keyboardOpened</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -409,7 +503,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.app.html#.event:keyboardOpening">blackberry.app.keyboardOpening</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -421,7 +515,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.app.html#.event:keyboardPosition">blackberry.app.keyboardPosition</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -433,7 +527,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.app.html#.event:orientationchange">blackberry.app.orientationchange</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.app.html#.event:pause">blackberry.app.pause</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -445,7 +551,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.app.html#.event:resume">blackberry.app.resume</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -457,7 +563,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.app.html#.event:swipedown">blackberry.app.swipedown</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -496,7 +602,7 @@
                             
                                 
                             
-                            <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common"><td>
+                            <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common"><td>
                                 &lt;feature id="blackberry.app" /&gt;
                                 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
@@ -509,11 +615,11 @@
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -539,7 +645,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -547,7 +653,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             void
@@ -559,7 +665,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.app.html#.lockOrientation">blackberry.app.lockOrientation</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -571,7 +689,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -583,7 +701,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -595,7 +713,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.app.html#.rotate">blackberry.app.rotate</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Boolean
@@ -607,7 +737,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Boolean
@@ -619,7 +749,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -627,6 +757,18 @@
                                     </td>
                                     <td>
                                         <a href="blackberry.app.html#.showBannerIndicator">blackberry.app.showBannerIndicator</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.app.html#.unlockOrientation">blackberry.app.unlockOrientation</a>
                                         
                                     </td>
                                 </tr>
@@ -641,7 +783,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb10x">
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
                 <div class="ref-sect-title">
                     <h2> Events </h2>
                 </div>
@@ -649,7 +791,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -661,7 +803,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -673,7 +815,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -685,7 +827,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -697,7 +839,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -709,7 +851,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.app.html#.event:orientationchange">blackberry.app.orientationchange</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -721,7 +875,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -733,7 +887,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -755,7 +909,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -763,7 +917,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             String
@@ -775,7 +929,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             String
@@ -787,7 +941,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             String
@@ -799,7 +953,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             String
@@ -811,7 +965,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             String
@@ -823,7 +977,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             String
@@ -835,7 +989,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Boolean
@@ -847,7 +1001,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             String
@@ -859,7 +1013,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             String
@@ -871,7 +1025,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             String
@@ -883,7 +1037,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.app.html#.orientation">orientation</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             String
@@ -908,7 +1074,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="pb1.0|pb2.0">
+            <div class="ref-sect ref-index" x-ww-support="pb_menu">
                 <div class="ref-sect-title">
                     <h2> URI Functions </h2>
                 </div>
@@ -916,7 +1082,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="pb1.0|pb2.0">
+                                <tr x-ww-support="pb_menu">
                                     <td class="first_column">
                                         
                                             JSON of all the properties
@@ -955,7 +1121,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".exit"></a>
                  
@@ -1043,7 +1209,116 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".lockOrientation"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.app.lockOrientation
+                                            
+                                                
+                                                    (orientation : String, <i>[receiveRotateEvents : Boolean]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>This function will lock the application's screen to the given orientation.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>orientation</b></td>
+                                            <td>
+                                                
+                                                The orientation to lock the device to. If the device is currently not in this orientation, the application will rotate then lock.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>receiveRotateEvents</b></td>
+                                            <td>
+                                                
+                                                Optional parameter to allow rotation events to still occur while the screen is locked.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".removeBannerIndicator"></a>
                  
@@ -1123,7 +1398,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".requestBackground"></a>
                  
@@ -1203,7 +1478,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".requestForeground"></a>
                  
@@ -1283,7 +1558,106 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".rotate"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.app.rotate
+                                            
+                                                
+                                                    (orientation : String)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>This function will rotate the application.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>orientation</b></td>
+                                            <td>
+                                                
+                                                The orientation to rotate the device to.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".setHomeScreenIcon"></a>
                  
@@ -1400,7 +1774,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".setHomeScreenName"></a>
                  
@@ -1507,7 +1881,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".showBannerIndicator"></a>
                  
@@ -1618,6 +1992,86 @@ A banner indicator can have an optional numeric value that usually serves as a c
                         </div>
                     </div>
                 
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".unlockOrientation"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.app.unlockOrientation
+                                            
+                                                
+                                                    ()
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>This function will unlock the screen rotating if it was previously locked.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
             </div>
         </div>
     
@@ -1630,7 +2084,7 @@ A banner indicator can have an optional numeric value that usually serves as a c
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".event:keyboardClosed"></a>
                  
@@ -1720,7 +2174,7 @@ The <b>keyboardClosed</b> event is triggered when the virtual keyboard has finis
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".event:keyboardClosing"></a>
                  
@@ -1810,7 +2264,7 @@ The <b>keyboardClosing</b> event is triggered when the virtual keyboard is toggl
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".event:keyboardOpened"></a>
                  
@@ -1900,7 +2354,7 @@ The <b>keyboardOpened</b> event is triggered when the virtual keyboard has finis
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".event:keyboardOpening"></a>
                  
@@ -1990,7 +2444,7 @@ The <b>keyboardOpening</b> event is triggered when the virtual keyboard is toggl
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".event:keyboardPosition"></a>
                  
@@ -2086,7 +2540,97 @@ The <b>keyboardPosition</b> event is triggered when the virtual keyboard's posit
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".event:orientationchange"></a>
+                 
+                            
+                            
+                                
+                                    
+                                            blackberry.app.orientationchange
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>This event is fired by the system. If you want to listen to the event you can do so using the <a href="blackberry.event.html#.addEventListener">blackberry.event.addEventListener</a> function and remove the listener using the <a href="blackberry.event.html#.removeEventListener">blackberry.event.removeEventListener</a> function. <br/>
+The <b>orientationchange</b> event is triggered when the user changes the orientation of the device.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>yourCallbackFunction</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be invoked on the orientationchange event                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;function onOrientationChange(orientation) {  alert("New orientation is: " + orientation);}blackberry.event.addEventListener("orientationchange", onOrientationChange);&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".event:pause"></a>
                  
@@ -2176,7 +2720,7 @@ The <b>pause</b> event is triggered whenever the the application is put into the
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".event:resume"></a>
                  
@@ -2266,7 +2810,7 @@ The <b>resume</b> event is triggered whenever the the application is retrieved f
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".event:swipedown"></a>
                  
@@ -2368,7 +2912,7 @@ The <b>swipedown</b> event is triggered when the user swipes down from the top o
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".author"></a>
                  
@@ -2451,7 +2995,7 @@ The <b>swipedown</b> event is triggered when the user swipes down from the top o
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".authorEmail"></a>
                  
@@ -2534,7 +3078,7 @@ The <b>swipedown</b> event is triggered when the user swipes down from the top o
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".authorURL"></a>
                  
@@ -2617,7 +3161,7 @@ The <b>swipedown</b> event is triggered when the user swipes down from the top o
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".copyright"></a>
                  
@@ -2700,7 +3244,7 @@ The <b>swipedown</b> event is triggered when the user swipes down from the top o
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".description"></a>
                  
@@ -2783,7 +3327,7 @@ The <b>swipedown</b> event is triggered when the user swipes down from the top o
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".id"></a>
                  
@@ -2866,7 +3410,7 @@ The <b>swipedown</b> event is triggered when the user swipes down from the top o
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".isForeground"></a>
                  
@@ -2941,7 +3485,7 @@ The <b>swipedown</b> event is triggered when the user swipes down from the top o
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".license"></a>
                  
@@ -3024,7 +3568,7 @@ The <b>swipedown</b> event is triggered when the user swipes down from the top o
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".licenseURL"></a>
                  
@@ -3107,7 +3651,7 @@ The <b>swipedown</b> event is triggered when the user swipes down from the top o
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".name"></a>
                  
@@ -3190,7 +3734,82 @@ The <b>swipedown</b> event is triggered when the user swipes down from the top o
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".orientation"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            orientation
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>The current orientation of the BlackBerry device.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".version"></a>
                  
@@ -3288,7 +3907,7 @@ The <b>swipedown</b> event is triggered when the user swipes down from the top o
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0">
+                    <div class="detailed_item function" x-ww-support="pb_menu">
                         <h3>
                             <a name=".get"></a>
                  
@@ -3377,7 +3996,7 @@ The <b>swipedown</b> event is triggered when the user swipes down from the top o
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 15:27:43 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 16:01:07 GMT-0500 (EST)
         </div>
 
     </div>

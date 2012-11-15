@@ -45,6 +45,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -89,7 +135,7 @@
 
 
                 
-                    <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                     
                 
   
@@ -139,7 +185,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.colorPickerAsync">blackberry.ui.dialog.colorPickerAsync</a>
                                         <td class="apiYes">Y</td>
@@ -151,7 +197,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.customAsk">blackberry.ui.dialog.customAsk</a>
                                         <td class="apiYes">Y</td>
@@ -163,7 +209,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.customAskAsync">blackberry.ui.dialog.customAskAsync</a>
                                         <td class="apiYes">Y</td>
@@ -175,7 +221,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.dateTimeAsync">blackberry.ui.dialog.dateTimeAsync</a>
                                         <td class="apiYes">Y</td>
@@ -187,7 +233,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.selectAsync">blackberry.ui.dialog.selectAsync</a>
                                         <td class="apiYes">Y</td>
@@ -199,7 +245,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.standardAsk">blackberry.ui.dialog.standardAsk</a>
                                         <td class="apiYes">Y</td>
@@ -211,7 +257,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.standardAskAsync">blackberry.ui.dialog.standardAskAsync</a>
                                         <td class="apiYes">Y</td>
@@ -223,7 +269,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.D_OK">D_OK</a>
                                         <td class="apiYes">Y</td>
@@ -235,7 +281,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.D_SAVE">D_SAVE</a>
                                         <td class="apiYes">Y</td>
@@ -247,7 +293,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.D_DELETE">D_DELETE</a>
                                         <td class="apiYes">Y</td>
@@ -259,7 +305,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.D_YES_NO">D_YES_NO</a>
                                         <td class="apiYes">Y</td>
@@ -271,7 +317,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.D_OK_CANCEL">D_OK_CANCEL</a>
                                         <td class="apiYes">Y</td>
@@ -283,7 +329,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.dialog.html#.D_PROMPT">D_PROMPT</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.C_CANCEL">C_CANCEL</a>
                                         <td class="apiYes">Y</td>
@@ -295,7 +353,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.C_OK">C_OK</a>
                                         <td class="apiYes">Y</td>
@@ -307,7 +365,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.C_SAVE">C_SAVE</a>
                                         <td class="apiYes">Y</td>
@@ -319,7 +377,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.C_DISCARD">C_DISCARD</a>
                                         <td class="apiYes">Y</td>
@@ -331,7 +389,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.C_DELETE">C_DELETE</a>
                                         <td class="apiYes">Y</td>
@@ -343,7 +401,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.C_YES">C_YES</a>
                                         <td class="apiYes">Y</td>
@@ -355,7 +413,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.C_NO">C_NO</a>
                                         <td class="apiYes">Y</td>
@@ -367,7 +425,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.BOTTOM">BOTTOM</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -379,7 +437,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.CENTER">CENTER</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -391,7 +449,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.TOP">TOP</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -403,7 +461,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.SIZE_FULL">SIZE_FULL</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -415,7 +473,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.SIZE_LARGE">SIZE_LARGE</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -427,7 +485,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.SIZE_MEDIUM">SIZE_MEDIUM</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -439,7 +497,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.SIZE_SMALL">SIZE_SMALL</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -451,7 +509,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.dialog.html#.SIZE_TALL">SIZE_TALL</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -490,7 +548,7 @@
                             
                                 
                             
-                            <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common"><td>
+                            <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common"><td>
                                 &lt;feature id="blackberry.ui.dialog" /&gt;
                                 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
@@ -503,11 +561,11 @@
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -533,7 +591,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -541,7 +599,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -553,7 +611,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -568,7 +626,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             void
@@ -580,7 +638,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -592,7 +650,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -604,7 +662,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -619,7 +677,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             void
@@ -647,7 +705,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                 <div class="ref-sect-title">
                     <h2> Constants </h2>
                 </div>
@@ -655,7 +713,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             Number
@@ -667,7 +725,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             Number
@@ -679,7 +737,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             Number
@@ -691,7 +749,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             Number
@@ -703,7 +761,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                                     <td class="first_column">
                                         
                                             Number
@@ -715,7 +773,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.dialog.html#.D_PROMPT">D_PROMPT</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -727,7 +797,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -739,7 +809,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -751,7 +821,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -763,7 +833,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -775,7 +845,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -787,7 +857,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -799,7 +869,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -811,7 +881,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -823,7 +893,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -835,7 +905,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -847,7 +917,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -859,7 +929,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -871,7 +941,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -883,7 +953,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="pb_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -907,7 +977,7 @@
     
 
     
-        <div x-ww-support="bb5.0|bb6.0|bb7.0">
+        <div x-ww-support="bb_menu">
             <h4>** Marked for Deprecation</h4>
         </div>
     
@@ -929,7 +999,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".colorPickerAsync"></a>
                  
@@ -1046,7 +1116,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".customAsk"></a>
                  
@@ -1190,7 +1260,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".customAskAsync"></a>
                  
@@ -1321,7 +1391,7 @@
                                                         <b>position:</b> Desired position of the dialog.
                                                     
                                                         <br />
-                                                        <b>global:</b> Specifies the global flag of the dialog window. (Your application cannot be minimized when the dialog global setting is set to true and when any dialog window is open). By default this parameter is false when not specified.
+                                                        <b>global:</b> Specifies the global flag of the dialog window. (Your application cannot be minimized when the dialog global setting is set to true and when any dialog window is open). By default this parameter is false when not specified. <br/>NOTE: The parameters for 'size', 'position', and 'global' are NOT implemented for BB10.
                                                     
                                                 
                                             </td>
@@ -1354,7 +1424,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".dateTimeAsync"></a>
                  
@@ -1493,7 +1563,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".selectAsync"></a>
                  
@@ -1635,7 +1705,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".standardAsk"></a>
                  
@@ -1779,7 +1849,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".standardAskAsync"></a>
                  
@@ -1796,7 +1866,7 @@
                                             blackberry.ui.dialog.standardAskAsync
                                             
                                                 
-                                                    (message : String, type : Number, <i>[onOptionSelected: function(<i>[index: Number]</i>)]</i>, <i>[settings : Object]</i>)
+                                                    (message : String, type : Number, <i>[onOptionSelected: function(<i>[index: Number]</i>, <i>[promptText: String]</i>)]</i>, <i>[settings : Object]</i>)
                                                 
                                             
                                                                   
@@ -1816,7 +1886,7 @@
                                        
                             
                             
-                            <p>Creates an asynchronous standard dialog to ask the user a question. <br/>Uses the standard dialog. The function is an asynchronous call and will not block execution. It will return the 0-based index of the user's choice. <br/> NOTE: function is only implemented for Ripple emulation on Playbook.</p>
+                            <p>Creates an asynchronous standard dialog to ask the user a question. <br/>Uses the standard dialog. The function is an asynchronous call and will not block execution. It will return the 0-based index of the user's choice.<br/> NOTE: function is only implemented for Ripple emulation on Playbook.</p>
                             <br />
                             
                             
@@ -1887,6 +1957,9 @@
                                                         <br />
                                                         <b>index:</b>  The index of the selection the user has made.
                                                     
+                                                        <br />
+                                                        <b>promptText:</b>  The element for entered text. Returns the user's entered string.(Option only used for select dialogs: D_PROMPT). <br/><br/>NOTE: Callback 'promptText', is only implemented on BB10.
+                                                    
                                                 
                                             </td>
                                         </tr>
@@ -1912,6 +1985,9 @@
                                                         <br />
                                                         <b>global:</b> Specifies the global flag of the dialog window. (Your application cannot be minimized when the dialog global setting is set to true and when any dialog window is open). By default this parameter is false when not specified.
                                                     
+                                                        <br />
+                                                        <b>thirdOptionLabel:</b> Desired label for optional third button. (This option is only available for select dialogs: not available for D_PROMPT or D_OK). <br/><br/>NOTE: The parameters for 'size', 'position', and 'global' are NOT implemented for BB10. Also note 'third' parameter is only implemented in BB10.
+                                                    
                                                 
                                             </td>
                                         </tr>
@@ -1936,7 +2012,7 @@
     <br />
     <b>Code Example:</b>
     
-        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;function dialogCallBack(index){  alert(index);}function standardDialog() {  try {    blackberry.ui.dialog.standardAskAsync("Save?", blackberry.ui.dialog.D_SAVE, dialogCallBack, {title : "Save Dialog", size: blackberry.ui.dialog.SIZE_MEDIUM, position : blackberry.ui.dialog.BOTTOM});  }catch (e) {    alert("Exception in standardDialog: " + e);  }}&lt;/script&gt;</pre></code></td></tbody></table>
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;function dialogCallBack(index){  alert(index);}function standardDialog() {  try {    blackberry.ui.dialog.standardAskAsync("Save?", blackberry.ui.dialog.D_SAVE, dialogCallBack, {title : "Save Dialog"});  }catch (e) {    alert("Exception in standardDialog: " + e);  }}&lt;/script&gt;</pre></code></td></tbody></table>
     
   
 
@@ -1961,7 +2037,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".D_OK"></a>
                  
@@ -2050,7 +2126,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".D_SAVE"></a>
                  
@@ -2139,7 +2215,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".D_DELETE"></a>
                  
@@ -2228,7 +2304,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".D_YES_NO"></a>
                  
@@ -2317,7 +2393,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                         <h3>
                             <a name=".D_OK_CANCEL"></a>
                  
@@ -2406,7 +2482,88 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".D_PROMPT"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            D_PROMPT
+                                            
+                                                
+                                                    
+                                                        = 5
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Standard OK/Cancel dialog</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".C_CANCEL"></a>
                  
@@ -2444,7 +2601,7 @@
                                        
                             
                             
-                            <p>Cancel Choice for us in dialogs</p>
+                            <p>Standard Prompt input dialog</p>
                             <br />
                             
                             
@@ -2487,7 +2644,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".C_OK"></a>
                  
@@ -2568,7 +2725,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".C_SAVE"></a>
                  
@@ -2649,7 +2806,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".C_DISCARD"></a>
                  
@@ -2730,7 +2887,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".C_DELETE"></a>
                  
@@ -2811,7 +2968,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".C_YES"></a>
                  
@@ -2892,7 +3049,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".C_NO"></a>
                  
@@ -2973,7 +3130,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|ripple">
+                    <div class="detailed_item function" x-ww-support="pb_menu|ripple">
                         <h3>
                             <a name=".BOTTOM"></a>
                  
@@ -3054,7 +3211,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|ripple">
+                    <div class="detailed_item function" x-ww-support="pb_menu|ripple">
                         <h3>
                             <a name=".CENTER"></a>
                  
@@ -3135,7 +3292,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|ripple">
+                    <div class="detailed_item function" x-ww-support="pb_menu|ripple">
                         <h3>
                             <a name=".TOP"></a>
                  
@@ -3216,7 +3373,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|ripple">
+                    <div class="detailed_item function" x-ww-support="pb_menu|ripple">
                         <h3>
                             <a name=".SIZE_FULL"></a>
                  
@@ -3297,7 +3454,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|ripple">
+                    <div class="detailed_item function" x-ww-support="pb_menu|ripple">
                         <h3>
                             <a name=".SIZE_LARGE"></a>
                  
@@ -3378,7 +3535,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|ripple">
+                    <div class="detailed_item function" x-ww-support="pb_menu|ripple">
                         <h3>
                             <a name=".SIZE_MEDIUM"></a>
                  
@@ -3459,7 +3616,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|ripple">
+                    <div class="detailed_item function" x-ww-support="pb_menu|ripple">
                         <h3>
                             <a name=".SIZE_SMALL"></a>
                  
@@ -3541,7 +3698,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|ripple">
+                    <div class="detailed_item function" x-ww-support="pb_menu|ripple">
                         <h3>
                             <a name=".SIZE_TALL"></a>
                  
@@ -3635,7 +3792,7 @@
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 15:27:48 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 16:01:12 GMT-0500 (EST)
         </div>
 
     </div>

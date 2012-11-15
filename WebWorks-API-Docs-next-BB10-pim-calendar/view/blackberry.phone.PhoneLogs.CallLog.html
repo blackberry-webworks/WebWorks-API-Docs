@@ -45,6 +45,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -89,7 +135,7 @@
 
 
                 
-                    <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div x-ww-support="bb_menu|ripple">
                     
                 
 
@@ -141,7 +187,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#addressBookNumber">addressBookNumber</a>
                                         <td class="apiYes">Y</td>
@@ -153,7 +199,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#addressBookType">addressBookType</a>
                                         <td class="apiYes">Y</td>
@@ -165,7 +211,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#date">date</a>
                                         <td class="apiYes">Y</td>
@@ -177,7 +223,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#duration">duration</a>
                                         <td class="apiYes">Y</td>
@@ -189,7 +235,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#name">name</a>
                                         <td class="apiYes">Y</td>
@@ -201,7 +247,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#notes">notes</a>
                                         <td class="apiYes">Y</td>
@@ -213,7 +259,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#number">number</a>
                                         <td class="apiYes">Y</td>
@@ -225,7 +271,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#status">status</a>
                                         <td class="apiYes">Y</td>
@@ -237,7 +283,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#type">type</a>
                                         <td class="apiYes">Y</td>
@@ -249,7 +295,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_NORMAL">STATUS_NORMAL</a>
                                         <td class="apiYes">Y</td>
@@ -261,7 +307,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_BUSY">STATUS_BUSY</a>
                                         <td class="apiYes">Y</td>
@@ -273,7 +319,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_CONGESTION">STATUS_CONGESTION</a>
                                         <td class="apiYes">Y</td>
@@ -285,7 +331,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_PATH_UNAVAILABLE">STATUS_PATH_UNAVAILABLE</a>
                                         <td class="apiYes">Y</td>
@@ -297,7 +343,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_NUMBER_UNOBTAINABLE">STATUS_NUMBER_UNOBTAINABLE</a>
                                         <td class="apiYes">Y</td>
@@ -309,7 +355,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_AUTHENTICATION_FAILURE">STATUS_AUTHENTICATION_FAILURE</a>
                                         <td class="apiYes">Y</td>
@@ -321,7 +367,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_EMERGENCY_CALLS_ONLY">STATUS_EMERGENCY_CALLS_ONLY</a>
                                         <td class="apiYes">Y</td>
@@ -333,7 +379,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_HOLD_ERROR">STATUS_HOLD_ERROR</a>
                                         <td class="apiYes">Y</td>
@@ -345,7 +391,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_OUTGOING_CALLS_BARRED">STATUS_OUTGOING_CALLS_BARRED</a>
                                         <td class="apiYes">Y</td>
@@ -357,7 +403,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_GENERAL_ERROR">STATUS_GENERAL_ERROR</a>
                                         <td class="apiYes">Y</td>
@@ -369,7 +415,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_MAINTENANCE_REQUIRED">STATUS_MAINTENANCE_REQUIRED</a>
                                         <td class="apiYes">Y</td>
@@ -381,7 +427,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_SERVICE_NOT_AVAILABLE">STATUS_SERVICE_NOT_AVAILABLE</a>
                                         <td class="apiYes">Y</td>
@@ -393,7 +439,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_CALL_FAIL_DUE_TO_FADING">STATUS_CALL_FAIL_DUE_TO_FADING</a>
                                         <td class="apiYes">Y</td>
@@ -405,7 +451,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_CALL_LOST_DUE_TO_FADING">STATUS_CALL_LOST_DUE_TO_FADING</a>
                                         <td class="apiYes">Y</td>
@@ -417,7 +463,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_CALL_FAILED_TRY_AGAIN">STATUS_CALL_FAILED_TRY_AGAIN</a>
                                         <td class="apiYes">Y</td>
@@ -429,7 +475,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_FDN_MISMATCH">STATUS_FDN_MISMATCH</a>
                                         <td class="apiYes">Y</td>
@@ -441,7 +487,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_CONNECTION_DENIED">STATUS_CONNECTION_DENIED</a>
                                         <td class="apiYes">Y</td>
@@ -453,7 +499,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.STATUS_INCOMING_CALL_BARRED">STATUS_INCOMING_CALL_BARRED</a>
                                         <td class="apiYes">Y</td>
@@ -465,7 +511,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.TYPE_RECEIVED_CALL">TYPE_RECEIVED_CALL</a>
                                         <td class="apiYes">Y</td>
@@ -477,7 +523,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.TYPE_PLACED_CALL">TYPE_PLACED_CALL</a>
                                         <td class="apiYes">Y</td>
@@ -489,7 +535,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.TYPE_MISSED_CALL_UNOPENED">TYPE_MISSED_CALL_UNOPENED</a>
                                         <td class="apiYes">Y</td>
@@ -501,7 +547,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td>
                                         <a href="blackberry.phone.PhoneLogs.CallLog.html#.TYPE_MISSED_CALL_OPENED">TYPE_MISSED_CALL_OPENED</a>
                                         <td class="apiYes">Y</td>
@@ -540,7 +586,7 @@
                             
                                 
                             
-                            <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple"><td>
+                            <tr x-ww-support="bb_menu|ripple"><td>
                                 &lt;feature id="blackberry.phone.PhoneLogs" /&gt;
                                 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
@@ -553,11 +599,11 @@
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -589,7 +635,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -597,7 +643,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -609,7 +655,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -621,7 +667,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Date
@@ -633,7 +679,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -645,7 +691,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -657,7 +703,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -669,7 +715,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             String
@@ -681,7 +727,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -693,7 +739,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -715,7 +761,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Constants </h2>
                 </div>
@@ -723,7 +769,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -735,7 +781,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -747,7 +793,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -759,7 +805,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -771,7 +817,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -783,7 +829,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -795,7 +841,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -807,7 +853,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -819,7 +865,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -831,7 +877,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -843,7 +889,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -855,7 +901,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -867,7 +913,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -879,7 +925,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -891,7 +937,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -903,7 +949,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -915,7 +961,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -927,7 +973,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -939,7 +985,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -951,7 +997,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -963,7 +1009,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -975,7 +1021,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <tr x-ww-support="bb_menu|ripple">
                                     <td class="first_column">
                                         
                                             Number
@@ -1023,7 +1069,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name="addressBookNumber"></a>
                  
@@ -1098,7 +1144,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name="addressBookType"></a>
                  
@@ -1174,7 +1220,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name="date"></a>
                  
@@ -1249,7 +1295,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name="duration"></a>
                  
@@ -1324,7 +1370,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name="name"></a>
                  
@@ -1399,7 +1445,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name="notes"></a>
                  
@@ -1474,7 +1520,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name="number"></a>
                  
@@ -1549,7 +1595,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name="status"></a>
                  
@@ -1624,7 +1670,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name="type"></a>
                  
@@ -1711,7 +1757,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_NORMAL"></a>
                  
@@ -1792,7 +1838,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_BUSY"></a>
                  
@@ -1873,7 +1919,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_CONGESTION"></a>
                  
@@ -1954,7 +2000,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_PATH_UNAVAILABLE"></a>
                  
@@ -2035,7 +2081,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_NUMBER_UNOBTAINABLE"></a>
                  
@@ -2116,7 +2162,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_AUTHENTICATION_FAILURE"></a>
                  
@@ -2197,7 +2243,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_EMERGENCY_CALLS_ONLY"></a>
                  
@@ -2278,7 +2324,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_HOLD_ERROR"></a>
                  
@@ -2359,7 +2405,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_OUTGOING_CALLS_BARRED"></a>
                  
@@ -2440,7 +2486,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_GENERAL_ERROR"></a>
                  
@@ -2521,7 +2567,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_MAINTENANCE_REQUIRED"></a>
                  
@@ -2602,7 +2648,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_SERVICE_NOT_AVAILABLE"></a>
                  
@@ -2683,7 +2729,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_CALL_FAIL_DUE_TO_FADING"></a>
                  
@@ -2764,7 +2810,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_CALL_LOST_DUE_TO_FADING"></a>
                  
@@ -2845,7 +2891,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_CALL_FAILED_TRY_AGAIN"></a>
                  
@@ -2926,7 +2972,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_FDN_MISMATCH"></a>
                  
@@ -3007,7 +3053,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_CONNECTION_DENIED"></a>
                  
@@ -3088,7 +3134,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".STATUS_INCOMING_CALL_BARRED"></a>
                  
@@ -3169,7 +3215,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".TYPE_RECEIVED_CALL"></a>
                  
@@ -3250,7 +3296,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".TYPE_PLACED_CALL"></a>
                  
@@ -3331,7 +3377,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".TYPE_MISSED_CALL_UNOPENED"></a>
                  
@@ -3412,7 +3458,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
                         <h3>
                             <a name=".TYPE_MISSED_CALL_OPENED"></a>
                  
@@ -3506,7 +3552,7 @@ returned (for example, &quot;Phone&quot;). Otherwise, an empty string is returne
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 15:27:45 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 16:01:09 GMT-0500 (EST)
         </div>
 
     </div>

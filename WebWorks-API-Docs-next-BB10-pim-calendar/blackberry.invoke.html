@@ -28,6 +28,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -74,7 +120,7 @@
 
 
                 
-                    <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common">
+                    <div x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
                     
                 
   
@@ -103,7 +149,7 @@
                         
                     
                     <br /><br />
-                    <i>Last Updated: Thu Nov 15 2012 15:27:50 GMT-0500 (EST)</i>
+                    <i>Last Updated: Thu Nov 15 2012 16:01:15 GMT-0500 (EST)</i>
                 </p>
             </div>
         
@@ -139,7 +185,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb10x|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
                                     <td>
                                         <a href="blackberry.invoke.html#.closeChildCard">blackberry.invoke.closeChildCard</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -151,7 +197,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|ripple">
                                     <td>
                                         <a href="blackberry.invoke.html#.invoke^2">blackberry.invoke.invoke</a>
                                         <td class="apiYes">Y</td>
@@ -163,7 +209,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
                                     <td>
                                         <a href="blackberry.invoke.html#.invoke">blackberry.invoke.invoke</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -175,7 +221,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
                                     <td>
                                         <a href="blackberry.invoke.html#.query">blackberry.invoke.query</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -187,7 +233,55 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.invoke.html#.FILE_TRANSFER_COPY_RO">FILE_TRANSFER_COPY_RO</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.invoke.html#.FILE_TRANSFER_COPY_RW">FILE_TRANSFER_COPY_RW</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.invoke.html#.FILE_TRANSFER_LINK">FILE_TRANSFER_LINK</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.invoke.html#.FILE_TRANSFER_PRESERVE">FILE_TRANSFER_PRESERVE</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.invoke.html#.event:onChildCardClosed">blackberry.invoke.onChildCardClosed</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -199,7 +293,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.invoke.html#.event:onChildCardEndPeek">blackberry.invoke.onChildCardEndPeek</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -211,7 +305,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.invoke.html#.event:onChildCardStartPeek">blackberry.invoke.onChildCardStartPeek</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -250,7 +344,7 @@
                             
                                 
                             
-                            <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple|common"><td>
+                            <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common"><td>
                                 &lt;feature id="blackberry.invoke" /&gt;
                                 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
@@ -263,11 +357,11 @@
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -293,7 +387,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|bb10x|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -301,7 +395,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb10x|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -313,7 +407,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|ripple">
+                                <tr x-ww-support="bb_menu|pb_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -325,7 +419,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -337,7 +431,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -359,7 +453,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb10x">
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
                 <div class="ref-sect-title">
                     <h2> Events </h2>
                 </div>
@@ -367,7 +461,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -379,7 +473,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -391,7 +485,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -414,6 +508,69 @@
         
     
         
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
+                <div class="ref-sect-title">
+                    <h2> Constants </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.invoke.html#.FILE_TRANSFER_COPY_RO">FILE_TRANSFER_COPY_RO</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.invoke.html#.FILE_TRANSFER_COPY_RW">FILE_TRANSFER_COPY_RW</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.invoke.html#.FILE_TRANSFER_LINK">FILE_TRANSFER_LINK</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.invoke.html#.FILE_TRANSFER_PRESERVE">FILE_TRANSFER_PRESERVE</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
         
     
         
@@ -439,7 +596,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
                         <h3>
                             <a name=".closeChildCard"></a>
                  
@@ -524,7 +681,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|ripple">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|ripple">
                         <h3>
                             <a name=".invoke^2"></a>
                  
@@ -660,7 +817,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
                         <h3>
                             <a name=".invoke"></a>
                  
@@ -752,6 +909,9 @@
                                                         <br />
                                                         <b>data:</b> Data (String or Blob) to be acted upon encoded based on the specified type.<br/>NOTE: If a String is passed, make sure that it does not contain unicode characters or invocation will fail.
                                                     
+                                                        <br />
+                                                        <b>file_transfer_mode:</b> An optional string that represents the file transfer mode that can be one of <a href="blackberry.invoke.html#.FILE_TRANSFER_PRESERVE">FILE_TRANSFER_PRESERVE</a>, <a href="blackberry.invoke.html#.FILE_TRANSFER_COPY_RO">FILE_TRANSFER_COPY_RO</a>, <a href="blackberry.invoke.html#.FILE_TRANSFER_COPY_RW">FILE_TRANSFER_COPY_RW</a>, <a href="blackberry.invoke.html#.FILE_TRANSFER_LINK">FILE_TRANSFER_LINK</a>. If omitted, it a sensible default of <a href="blackberry.invoke.html#.FILE_TRANSFER_COPY_RO">FILE_TRANSFER_COPY_RO</a> will be used.
+                                                    
                                                 
                                             </td>
                                         </tr>
@@ -802,14 +962,14 @@
     <br />
     <b>Code Example:</b>
     
-        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;function onInvokeSuccess() {    alert("Invocation successful!");}function onInvokeError(error) {    alert("Invocation failed, error: " + error);}function openWebLink() {    // open web link - allows the system to choose an appropriate target that handles http://    blackberry.invoke.invoke({        uri: "http://www.blackberry.com"    }, onInvokeSuccess, onInvokeError);}function openWebLinkInBrowser() {    // open web link in browser    blackberry.invoke.invoke({        target: "sys.browser",        uri: "http://www.blackberry.com"    }, onInvokeSuccess, onInvokeError);}function openMP3File() {    // open mp3 file - allows the system to choose an appropriate target that handles audio/mpeg3    blackberry.invoke.invoke({        type: "audio/mpeg3",        uri: &lt;path to mp3 file&gt;    }, onInvokeSuccess, onInvokeError);}function viewPicture() {    // view picture    blackberry.invoke.invoke({        uri: &lt;path to jpg file&gt;,        action: bb.action.VIEW    }, onInvokeSuccess, onInvokeError);}function openAnotherApp() {    // open another application that understands custom data    blackberry.invoke.invoke({        target: "another.app.that.handles.custom.json.data",        type: "text/plain",        data: "{'myData': 'A string I pass to another app'}"    }, onInvokeSuccess, onInvokeError);}function openAnotherAppWithUnicodeData(unicodeStr) {    // convert unicode string before calling invoke, the receiver app will have to    // call decodeURIComponent(escape(str)) to get the unicode string back    var convertedStr = unescape(encodeURIComponent(unicodeStr));    // open another application that understands custom data    blackberry.invoke.invoke({        target: "another.app.that.handles.unicode.data",        data: convertedStr    }, onInvokeSuccess, onInvokeError);}function invokeCard() {    // invoking Card is the same as invoking an application, except the target specified should point to the "Card" target entry point    blackberry.invoke.invoke({        target: "an.app.that.supports.card", // The target should point to the "Card" target entry point of an application        type: "text/plain",        data: "{'myData': 'Some data'}"    }, onInvokeSuccess, onInvokeError);}&lt;/script&gt;</pre></code></td></tbody></table>
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;function onInvokeSuccess() {    alert("Invocation successful!");}function onInvokeError(error) {    alert("Invocation failed, error: " + error);}function openWebLink() {    // open web link - allows the system to choose an appropriate target that handles http://    blackberry.invoke.invoke({        uri: "http://www.blackberry.com"    }, onInvokeSuccess, onInvokeError);}function openWebLinkInBrowser() {    // open web link in browser    blackberry.invoke.invoke({        target: "sys.browser",        uri: "http://www.blackberry.com"    }, onInvokeSuccess, onInvokeError);}function openMP3File() {    // open mp3 file - allows the system to choose an appropriate target that handles audio/mpeg3    blackberry.invoke.invoke({        type: "audio/mpeg3",        uri: &lt;path to mp3 file&gt;    }, onInvokeSuccess, onInvokeError);}function viewPicture() {    // view picture    blackberry.invoke.invoke({        uri: &lt;path to jpg file&gt;,        action: bb.action.VIEW    }, onInvokeSuccess, onInvokeError);}function openAnotherApp() {    // open another application that understands custom data    blackberry.invoke.invoke({        target: "another.app.that.handles.custom.json.data",        type: "text/plain",        data: "{'myData': 'A string I pass to another app'}"    }, onInvokeSuccess, onInvokeError);}function openAnotherAppWithUnicodeData(unicodeStr) {    // convert unicode string before calling invoke, the receiver app will have to    // call decodeURIComponent(escape(str)) to get the unicode string back    var convertedStr = unescape(encodeURIComponent(unicodeStr));    // open another application that understands custom data    blackberry.invoke.invoke({        target: "another.app.that.handles.unicode.data",        data: convertedStr    }, onInvokeSuccess, onInvokeError);}function invokeCard() {    // invoking Card is the same as invoking an application, except the target specified should point to the "Card" target entry point    blackberry.invoke.invoke({        target: "an.app.that.supports.card", // The target should point to the "Card" target entry point of an application        type: "text/plain",        data: "{'myData': 'Some data'}"    }, onInvokeSuccess, onInvokeError);}function invokePictureViewer() {    // invoking Card is the same as invoking an application, except the target specified should point to the "Card" target entry point    blackberry.invoke.invoke({        action: "bb.action.VIEW",        uri : "local:///img/image.jpg",        file_transfer_mode : blackberry.invoke.FILE_TRANSFER_COPY_RO    }, onInvokeSuccess, onInvokeError);}function invokeAudoPlayer() {     blackberry.invoke.invoke({         action: "bb.action.VIEW",         uri : "local:///audio/test.mp3",         file_transfer_mode : blackberry.invoke.FILE_TRANSFER_COPY_RO      }, onInvokeSuccess, onInvokeError);}function invokeAudioWithoutTrasnsfer() {     blackberry.invoke.invoke({         action: "bb.action.VIEW",         uri : "local:///audio/test.mp3",      }, onInvokeSuccess, onInvokeError);}&lt;/script&gt;</pre></code></td></tbody></table>
     
   
 
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
                         <h3>
                             <a name=".query"></a>
                  
@@ -979,7 +1139,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".event:onChildCardClosed"></a>
                  
@@ -1084,7 +1244,7 @@ The <b>onChildCardClosed</b> event is fired by the navigator to notify the paren
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".event:onChildCardEndPeek"></a>
                  
@@ -1174,7 +1334,7 @@ The <b>onChildCardEndPeek</b> event is fired by the navigator to notify the pare
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".event:onChildCardStartPeek"></a>
                  
@@ -1279,6 +1439,315 @@ The <b>onChildCardStartPeek</b> event is fired by the navigator to notify the pa
 
     
     
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Constants</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".FILE_TRANSFER_COPY_RO"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            FILE_TRANSFER_COPY_RO
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Describes the file transfer mode where the file will be copied to the invoked application with read only privileges</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".FILE_TRANSFER_COPY_RW"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            FILE_TRANSFER_COPY_RW
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Describes the file transfer mode where the file will be copied to the invoked application with read and write privileges</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".FILE_TRANSFER_LINK"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            FILE_TRANSFER_LINK
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Describes the file transfer mode where the invoked application will receive a link to the file path provided. The permissions of the original file MUST include o+r. It o+w the sender must be the owner of the file.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".FILE_TRANSFER_PRESERVE"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            FILE_TRANSFER_PRESERVE
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Describes the file transfer mode where the provided URI is preserved as is. No box-2-box logic is applied</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
 
     
     
@@ -1289,7 +1758,7 @@ The <b>onChildCardStartPeek</b> event is fired by the navigator to notify the pa
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 15:27:50 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 16:01:15 GMT-0500 (EST)
         </div>
 
     </div>

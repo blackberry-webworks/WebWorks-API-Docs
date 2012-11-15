@@ -45,6 +45,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -85,10 +131,10 @@
 
         
             <p>
-                <p>Provides read-only access to a BBM platform user's information as defined in their BBM profile.
-<p><i>Instances of this object are not created, but obtained from the BBM platform.</i>
+                <p>Provides read-only access to a BBM user's information as defined in their BBM profile.
+<p><i>Instances of this object are not created, but are obtained from the BBM platform.</i>
 <h3>Current User</h3>
-The current user's BBMPlatformUser instance is <a href="blackberry.bbm.platform.self.html">blackberry.bbm.platform.self</a>. It also provides the ability to set properties of the current user.
+The current user's <code>BBMPlatformUser</code> instance is <a href="blackberry.bbm.platform.self.html">blackberry.bbm.platform.self</a>. It also provides the ability to set properties of the current user.
 <h3>Other Users</h3>
 You can obtain other users from the following functions/callbacks:
 <ul>
@@ -96,11 +142,11 @@ You can obtain other users from the following functions/callbacks:
 <li><a href="blackberry.bbm.platform.users.html#.pickUsers">blackberry.bbm.platform.users.pickUsers</a>
 <li><a href="blackberry.bbm.platform.users.html#.event:onupdate">blackberry.bbm.platform.users.event:onupdate</a>
 </ul>
-<a href="blackberry.bbm.platform.io.Channel.html">blackberry.bbm.platform.io.Channel</a> and <a href="blackberry.bbm.platform.io.Session.html">blackberry.bbm.platform.io.Session</a> also use BBMPlatformUser extensively.
+<a href="blackberry.bbm.platform.io.Channel.html">blackberry.bbm.platform.io.Channel</a> and <a href="blackberry.bbm.platform.io.Session.html">blackberry.bbm.platform.io.Session</a> also use <code>BBMPlatformUser</code> extensively.
 
 
                 
-                    <div x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div x-ww-support="bb_menu|bb10_menu">
                     
                 
   
@@ -135,6 +181,8 @@ You can obtain other users from the following functions/callbacks:
                             
                                 <tr><td>- BlackBerry OS 5.0+</td></tr>
                             
+                                <tr><td>- BlackBerry 10</td></tr>
+                            
                             </tbody>
                         </table>
                     
@@ -144,7 +192,7 @@ You can obtain other users from the following functions/callbacks:
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.users.BBMPlatformUser.html#appVersion">appVersion</a>
                                         <td class="apiYes">Y</td>
@@ -152,11 +200,11 @@ You can obtain other users from the following functions/callbacks:
 <td class="apiYes">Y</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.users.BBMPlatformUser.html#bbmsdkVersion">bbmsdkVersion</a>
                                         <td class="apiYes">Y</td>
@@ -164,11 +212,11 @@ You can obtain other users from the following functions/callbacks:
 <td class="apiYes">Y</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.users.BBMPlatformUser.html#displayName">displayName</a>
                                         <td class="apiYes">Y</td>
@@ -176,11 +224,11 @@ You can obtain other users from the following functions/callbacks:
 <td class="apiYes">Y</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.users.BBMPlatformUser.html#displayPicture">displayPicture</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -192,7 +240,7 @@ You can obtain other users from the following functions/callbacks:
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.users.BBMPlatformUser.html#handle">handle</a>
                                         <td class="apiYes">Y</td>
@@ -200,11 +248,11 @@ You can obtain other users from the following functions/callbacks:
 <td class="apiYes">Y</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.users.BBMPlatformUser.html#personalMessage">personalMessage</a>
                                         <td class="apiYes">Y</td>
@@ -212,11 +260,11 @@ You can obtain other users from the following functions/callbacks:
 <td class="apiYes">Y</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.users.BBMPlatformUser.html#ppid">ppid</a>
                                         <td class="apiYes">Y</td>
@@ -224,11 +272,11 @@ You can obtain other users from the following functions/callbacks:
 <td class="apiYes">Y</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.users.BBMPlatformUser.html#status">status</a>
                                         <td class="apiYes">Y</td>
@@ -236,11 +284,11 @@ You can obtain other users from the following functions/callbacks:
 <td class="apiYes">Y</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.users.BBMPlatformUser.html#statusMessage">statusMessage</a>
                                         <td class="apiYes">Y</td>
@@ -248,7 +296,7 @@ You can obtain other users from the following functions/callbacks:
 <td class="apiYes">Y</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
@@ -279,30 +327,43 @@ You can obtain other users from the following functions/callbacks:
                             
                                 
                             
-                            <tr x-ww-support="bb5.0|bb6.0|bb7.0"><td>
+                            <tr x-ww-support="bb_menu|bb10_menu"><td>
                                 &lt;feature id="blackberry.bbm.platform" /&gt;
                                 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                             </td></tr>
                         
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
+                    
+                        
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
-                            <tr><td>
-                                This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
-                            </td></tr>
-                            <br />
+                            
+                                <tr><td><i>
+                                    You must declare the permission element(s) below in your configuration document:
+                                </i></td></tr>
+                                
+                                    <tr><td>
+                                        - &lt;rim:permit&gt;bbm_connect&lt;/rim:permit&gt;
+                                        <br />
+                                        BBM APIs require this permission to be set
+                                        <br />
+                                    </td></tr>
+                                
+                            
+
+                            
                         
                     </table>
                 </div>
@@ -328,7 +389,7 @@ You can obtain other users from the following functions/callbacks:
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb5.0|bb6.0|bb7.0">
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|bb10_menu">
                 <div class="ref-sect-title">
                     <h2> Properties </h2>
                 </div>
@@ -336,7 +397,7 @@ You can obtain other users from the following functions/callbacks:
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -348,7 +409,7 @@ You can obtain other users from the following functions/callbacks:
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             Number
@@ -360,7 +421,7 @@ You can obtain other users from the following functions/callbacks:
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -372,7 +433,7 @@ You can obtain other users from the following functions/callbacks:
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -384,7 +445,7 @@ You can obtain other users from the following functions/callbacks:
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -396,7 +457,7 @@ You can obtain other users from the following functions/callbacks:
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -408,7 +469,7 @@ You can obtain other users from the following functions/callbacks:
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -420,7 +481,7 @@ You can obtain other users from the following functions/callbacks:
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -432,7 +493,7 @@ You can obtain other users from the following functions/callbacks:
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <tr x-ww-support="bb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -483,7 +544,7 @@ You can obtain other users from the following functions/callbacks:
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu|bb10_menu">
                         <h3>
                             <a name="appVersion"></a>
                  
@@ -529,6 +590,10 @@ You can obtain other users from the following functions/callbacks:
                                             &nbsp;- BlackBerry OS 5.0+
                                         </td></tr>
                                     
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
                                 </table>              
                                                
                             <br />
@@ -554,7 +619,7 @@ You can obtain other users from the following functions/callbacks:
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu|bb10_menu">
                         <h3>
                             <a name="bbmsdkVersion"></a>
                  
@@ -605,6 +670,10 @@ You can obtain other users from the following functions/callbacks:
                                             &nbsp;- BlackBerry OS 5.0+
                                         </td></tr>
                                     
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
                                 </table>              
                                                
                             <br />
@@ -630,7 +699,7 @@ You can obtain other users from the following functions/callbacks:
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu|bb10_menu">
                         <h3>
                             <a name="displayName"></a>
                  
@@ -676,6 +745,10 @@ You can obtain other users from the following functions/callbacks:
                                             &nbsp;- BlackBerry OS 5.0+
                                         </td></tr>
                                     
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
                                 </table>              
                                                
                             <br />
@@ -701,7 +774,7 @@ You can obtain other users from the following functions/callbacks:
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name="displayPicture"></a>
                  
@@ -784,7 +857,7 @@ displayPicImg.src = user.displayPicture;
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu|bb10_menu">
                         <h3>
                             <a name="handle"></a>
                  
@@ -830,6 +903,10 @@ displayPicImg.src = user.displayPicture;
                                             &nbsp;- BlackBerry OS 5.0+
                                         </td></tr>
                                     
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
                                 </table>              
                                                
                             <br />
@@ -855,7 +932,7 @@ displayPicImg.src = user.displayPicture;
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu|bb10_menu">
                         <h3>
                             <a name="personalMessage"></a>
                  
@@ -901,6 +978,10 @@ displayPicImg.src = user.displayPicture;
                                             &nbsp;- BlackBerry OS 5.0+
                                         </td></tr>
                                     
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
                                 </table>              
                                                
                             <br />
@@ -926,7 +1007,7 @@ displayPicImg.src = user.displayPicture;
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu|bb10_menu">
                         <h3>
                             <a name="ppid"></a>
                  
@@ -972,6 +1053,10 @@ displayPicImg.src = user.displayPicture;
                                             &nbsp;- BlackBerry OS 5.0+
                                         </td></tr>
                                     
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
                                 </table>              
                                                
                             <br />
@@ -997,7 +1082,7 @@ displayPicImg.src = user.displayPicture;
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu|bb10_menu">
                         <h3>
                             <a name="status"></a>
                  
@@ -1043,6 +1128,10 @@ displayPicImg.src = user.displayPicture;
                                             &nbsp;- BlackBerry OS 5.0+
                                         </td></tr>
                                     
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
                                 </table>              
                                                
                             <br />
@@ -1068,7 +1157,7 @@ displayPicImg.src = user.displayPicture;
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb5.0|bb6.0|bb7.0">
+                    <div class="detailed_item function" x-ww-support="bb_menu|bb10_menu">
                         <h3>
                             <a name="statusMessage"></a>
                  
@@ -1114,6 +1203,10 @@ displayPicImg.src = user.displayPicture;
                                             &nbsp;- BlackBerry OS 5.0+
                                         </td></tr>
                                     
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
                                 </table>              
                                                
                             <br />
@@ -1155,7 +1248,7 @@ displayPicImg.src = user.displayPicture;
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 15:27:44 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 16:01:07 GMT-0500 (EST)
         </div>
 
     </div>

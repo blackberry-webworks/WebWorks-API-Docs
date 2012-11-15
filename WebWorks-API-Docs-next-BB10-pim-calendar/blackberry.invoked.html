@@ -28,6 +28,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -72,7 +118,7 @@
 
 
                 
-                    <div x-ww-support="bb10x|ripple">
+                    <div x-ww-support="bb10_menu|ripple">
                     
                 
   
@@ -101,7 +147,7 @@
                         
                     
                     <br /><br />
-                    <i>Last Updated: Thu Nov 15 2012 15:27:50 GMT-0500 (EST)</i>
+                    <i>Last Updated: Thu Nov 15 2012 16:01:15 GMT-0500 (EST)</i>
                 </p>
             </div>
         
@@ -133,7 +179,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="bb10x|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
                                     <td>
                                         <a href="blackberry.invoked.html#.cardRequestClosure">blackberry.invoked.cardRequestClosure</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -145,19 +191,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x|ripple">
-                                    <td>
-                                        <a href="blackberry.invoked.html#.cardResizeDone">blackberry.invoked.cardResizeDone</a>
-                                        <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td><td class="apiYes">Y</td>
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="bb10x|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
                                     <td>
                                         <a href="blackberry.invoked.html#.cardStartPeek">blackberry.invoked.cardStartPeek</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -169,7 +203,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.invoked.html#.event:invoked">blackberry.invoked.invoked</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -181,21 +215,9 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.invoked.html#.event:onCardClosed">blackberry.invoked.onCardClosed</a>
-                                        <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="bb10x">
-                                    <td>
-                                        <a href="blackberry.invoked.html#.event:onCardResize">blackberry.invoked.onCardResize</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -232,7 +254,7 @@
                             
                                 
                             
-                            <tr x-ww-support="bb10x|ripple"><td>
+                            <tr x-ww-support="bb10_menu|ripple"><td>
                                 &lt;feature id="blackberry.invoked" /&gt;
                                 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -245,11 +267,11 @@
                     </table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -275,7 +297,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb10x|ripple">
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu|ripple">
                 <div class="ref-sect-title">
                     <h2> Functions </h2>
                 </div>
@@ -283,7 +305,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb10x|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -295,19 +317,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x|ripple">
-                                    <td class="first_column">
-                                        
-                                            void
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.invoked.html#.cardResizeDone">blackberry.invoked.cardResizeDone</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="bb10x|ripple">
+                                <tr x-ww-support="bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -329,7 +339,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="bb10x">
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
                 <div class="ref-sect-title">
                     <h2> Events </h2>
                 </div>
@@ -337,7 +347,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -349,7 +359,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb10x">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -357,18 +367,6 @@
                                     </td>
                                     <td>
                                         <a href="blackberry.invoked.html#.event:onCardClosed">blackberry.invoked.onCardClosed</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="bb10x">
-                                    <td class="first_column">
-                                        
-                                            void
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.invoked.html#.event:onCardResize">blackberry.invoked.onCardResize</a>
                                         
                                     </td>
                                 </tr>
@@ -409,7 +407,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
                         <h3>
                             <a name=".cardRequestClosure"></a>
                  
@@ -535,104 +533,7 @@ function requestClosure() {
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x|ripple">
-                        <h3>
-                            <a name=".cardResizeDone"></a>
-                 
-                            
-                            
-                                
-                                    
-                                        static              
-                                        
-                                        
-                                            void
-                                        
-                                        
-                                            blackberry.invoked.cardResizeDone
-                                            
-                                                
-                                                    ()
-                                                
-                                            
-                                                                  
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                                
-                                <br />
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p>As a Card, notify the navigator that it is finished handling resize request</p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
-                                    <thead><tr><th colspan="2">
-                                        Supported Platforms
-                                    </th></tr></thead>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- Ripple Emulator
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
-                                               
-
-                            
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-
-    <br />
-    <b>Code Example:</b>
-    
-        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
-
-function onCardResizeHandler(resizeRequest) {
-    // Resizing
-    ...
-
-    // Notify the navigator resize is done
-    blackberry.invoked.cardResizeDone();
-}
-
-blackberry.event.addEventListener("onCardResize", onCardResizeHandler);
-&lt;/script&gt;</pre></code></td></tbody></table>
-    
-  
-
-                        </div>
-                    </div>
-                
-                    <div class="detailed_item function" x-ww-support="bb10x|ripple">
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
                         <h3>
                             <a name=".cardStartPeek"></a>
                  
@@ -756,7 +657,7 @@ function peekParent() {
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".event:invoked"></a>
                  
@@ -892,7 +793,7 @@ blackberry.event.addEventListener("invoked", onInvoked);
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".event:onCardClosed"></a>
                  
@@ -1008,125 +909,6 @@ blackberry.event.addEventListener("onCardClosed", onCardClosedHandler);
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb10x">
-                        <h3>
-                            <a name=".event:onCardResize"></a>
-                 
-                            
-                            
-                                
-                                    
-                                            blackberry.invoked.onCardResize
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                                
-                                <br />
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p>This event is fired by the system. If you want to listen to the event you can do so using the <a href="blackberry.event.html#.addEventListener">blackberry.event.addEventListener</a> function and remove the listener using the <a href="blackberry.event.html#.removeEventListener">blackberry.event.removeEventListener</a> function. <br/>
-As a Card, the <b>onCardResize</b> event is fired by the navigator to indicate that it should resize its buffers.</p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
-                                    <thead><tr><th colspan="2">
-                                        Supported Platforms
-                                    </th></tr></thead>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
-                            
-                                <br />
-                                <table>
-                                    <thead><tr><th colspan="2">
-                                        Parameters
-                                    </th></tr></thead>
-                                                   
-                                    
-                                        
-                                        <tr>
-                                            <td><b>yourCallbackFunction</b></td>
-                                            <td>
-                                                
-                                                The callback function that will be invoked on the onCardResize event                         
-                                                
-                                                    <br />
-                                                    
-                                                        <br />
-                                                        <b>resizeRequest:</b> An object that contains the resize information.
-                                                    
-                                                        <br />
-                                                        <b>resizeRequest.width:</b> Describes the new width for the card.
-                                                    
-                                                        <br />
-                                                        <b>resizeRequest.height:</b> Describes the new height for the card.
-                                                    
-                                                        <br />
-                                                        <b>resizeRequest.orientation:</b> Describes the new orientation of device (portrait or landscape). The value is either "portrait" or "landscape".
-                                                    
-                                                        <br />
-                                                        <b>resizeRequest.edge:</b> Describes the new edge of device that is pointing up. When the new orientation of device is portrait, the value is either "top_up" (the top of the device is pointing up) or "bottom_up" (the bottom of the device is pointing up); when the new orientation of device is landscape, the value is either "left_up" (the left side of the device is pointing up) or "right_up" (the right side of the device is pointing up).
-                                                    
-                                                
-                                            </td>
-                                        </tr>
-                                                  
-                                </table>
-                                               
-
-                            
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-
-    <br />
-    <b>Code Example:</b>
-    
-        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
-
-function onCardResizeHandler(resizeRequest) {
-   doResize(resizeRequest.width, resizeRequest.height, resizeRequest.orientation, resizeRequest.edge);
-   ...
-    // Notify the navigator resize is done
-    blackberry.invoked.cardResizeDone();
-}
-
-blackberry.event.addEventListener("onCardResize", onCardResizeHandler);
-
-&lt;/script&gt;</pre></code></td></tbody></table>
-    
-  
-
-                        </div>
-                    </div>
-                
             </div>
         </div>
     
@@ -1146,7 +928,7 @@ blackberry.event.addEventListener("onCardResize", onCardResizeHandler);
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 15:27:50 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 16:01:15 GMT-0500 (EST)
         </div>
 
     </div>

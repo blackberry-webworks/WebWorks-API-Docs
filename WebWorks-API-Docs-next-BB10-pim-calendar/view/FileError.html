@@ -45,6 +45,52 @@
 <section>
 
     <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var filter = localStorage.getItem('selectedmenu');
+                var elements = getDesiredElements(document.body, 'x-ww-support');
+                for (var i = 0; i < elements.length; i++) {
+                    var target = elements[i];
+                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
+                    if (x_ww_support.indexOf(filter) < 0) {
+                        target.style.display = 'none';
+                    }
+                }
+            }
+            
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload;
+                    var newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
 
         function viewSupportedTable() {
             var table = document.getElementById('APISupportTable');
@@ -89,7 +135,7 @@
 
 
                 
-                    <div x-ww-support="pb1.0|pb2.0|bb10x">
+                    <div x-ww-support="pb_menu|bb10_menu">
                     
                 
   
@@ -135,7 +181,7 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td>
                                         <a href="FileError.html#.NOT_FOUND_ERR">NOT_FOUND_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -147,7 +193,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td>
                                         <a href="FileError.html#.SECURITY_ERR">SECURITY_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -159,7 +205,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td>
                                         <a href="FileError.html#.ABORT_ERR">ABORT_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -171,7 +217,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td>
                                         <a href="FileError.html#.NOT_READABLE_ERR">NOT_READABLE_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -183,7 +229,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td>
                                         <a href="FileError.html#.ENCODING_ERR">ENCODING_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -195,7 +241,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td>
                                         <a href="FileError.html#.NO_MODIFICATION_ALLOWED_ERR">NO_MODIFICATION_ALLOWED_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -207,7 +253,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td>
                                         <a href="FileError.html#.INVALID_STATE_ERR">INVALID_STATE_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -219,7 +265,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td>
                                         <a href="FileError.html#.SYNTAX_ERR">SYNTAX_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -231,7 +277,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td>
                                         <a href="FileError.html#.INVALID_MODIFICATION_ERR">INVALID_MODIFICATION_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -243,7 +289,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td>
                                         <a href="FileError.html#.QUOTA_EXCEEDED_ERR">QUOTA_EXCEEDED_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -255,7 +301,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td>
                                         <a href="FileError.html#.TYPE_MISMATCH_ERR">TYPE_MISMATCH_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -267,7 +313,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td>
                                         <a href="FileError.html#.PATH_EXISTS_ERR">PATH_EXISTS_ERR</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -301,11 +347,11 @@
                     </td></tr></tbody></table>
                 
 
-                <div x-ww-support="pb1.0|pb2.0">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -340,7 +386,7 @@
         
         
             <br />
-            <div class="ref-sect ref-index" x-ww-support="pb1.0|pb2.0|bb10x">
+            <div class="ref-sect ref-index" x-ww-support="pb_menu|bb10_menu">
                 <div class="ref-sect-title">
                     <h2> Constants </h2>
                 </div>
@@ -348,7 +394,7 @@
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -360,7 +406,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -372,7 +418,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -384,7 +430,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -396,7 +442,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -408,7 +454,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -420,7 +466,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -432,7 +478,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -444,7 +490,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -456,7 +502,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -468,7 +514,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -480,7 +526,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb1.0|pb2.0|bb10x">
+                                <tr x-ww-support="pb_menu|bb10_menu">
                                     <td class="first_column">
                                         
                                             String
@@ -531,7 +577,7 @@
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
                         <h3>
                             <a name=".NOT_FOUND_ERR"></a>
                  
@@ -610,7 +656,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
                         <h3>
                             <a name=".SECURITY_ERR"></a>
                  
@@ -689,7 +735,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
                         <h3>
                             <a name=".ABORT_ERR"></a>
                  
@@ -768,7 +814,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
                         <h3>
                             <a name=".NOT_READABLE_ERR"></a>
                  
@@ -847,7 +893,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
                         <h3>
                             <a name=".ENCODING_ERR"></a>
                  
@@ -926,7 +972,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
                         <h3>
                             <a name=".NO_MODIFICATION_ALLOWED_ERR"></a>
                  
@@ -1005,7 +1051,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
                         <h3>
                             <a name=".INVALID_STATE_ERR"></a>
                  
@@ -1084,7 +1130,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
                         <h3>
                             <a name=".SYNTAX_ERR"></a>
                  
@@ -1163,7 +1209,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
                         <h3>
                             <a name=".INVALID_MODIFICATION_ERR"></a>
                  
@@ -1242,7 +1288,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
                         <h3>
                             <a name=".QUOTA_EXCEEDED_ERR"></a>
                  
@@ -1321,7 +1367,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
                         <h3>
                             <a name=".TYPE_MISMATCH_ERR"></a>
                  
@@ -1400,7 +1446,7 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb1.0|pb2.0|bb10x">
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
                         <h3>
                             <a name=".PATH_EXISTS_ERR"></a>
                  
@@ -1492,7 +1538,7 @@
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 15:27:49 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 15 2012 16:01:13 GMT-0500 (EST)
         </div>
 
     </div>
