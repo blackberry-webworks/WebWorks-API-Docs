@@ -338,7 +338,7 @@ The functionality of this object allows the developer to display system toast no
                                             blackberry.ui.toast.show
                                             
                                                 
-                                                    (message : String, <i>[buttonText : String]</i>, <i>[buttonCallback: function(<i>[toastId: Number]</i>)]</i>, <i>[dismissCallback: function(<i>[toastId: Number]</i>)]</i>)
+                                                    (message : String, <i>[options : Object]</i>)
                                                 
                                             
                                                                   
@@ -397,41 +397,21 @@ The functionality of this object allows the developer to display system toast no
                                     
                                         
                                         <tr>
-                                            <td><b>buttonText</b></td>
+                                            <td><b>options</b></td>
                                             <td>
                                                 
-                                                Optional parameter that specifies the label for the button within the toast.                         
-                                                
-                                            </td>
-                                        </tr>
-                                    
-                                        
-                                        <tr>
-                                            <td><b>buttonCallback</b></td>
-                                            <td>
-                                                
-                                                 Optional callback for receiving the button event when the user selects the toast button.                         
+                                                An optional options object that specifies the buttonText, and callback handlers that should be used by the toast                         
                                                 
                                                     <br />
                                                     
                                                         <br />
-                                                        <b>toastId:</b>  The numeric ID for the toast which this callback belongs to.
-                                                    
-                                                
-                                            </td>
-                                        </tr>
-                                    
-                                        
-                                        <tr>
-                                            <td><b>dismissCallback</b></td>
-                                            <td>
-                                                
-                                                 Optional callback for receiving an event when the toast dismisses either through the toast's timeout or when the button is selected.                         
-                                                
-                                                    <br />
+                                                        <b>buttonText:</b> Optional parameter that specifies the label for the button within the toast.
                                                     
                                                         <br />
-                                                        <b>toastId:</b>  The numeric ID for the toast which this callback belongs to.
+                                                        <b>buttonCallback:</b>  Optional callback for receiving the button event when the user selects the toast button.
+                                                    
+                                                        <br />
+                                                        <b>dismissCallback:</b>  Optional callback for receiving an event when the toast dismisses either through the toast's timeout or when the button is selected.
                                                     
                                                 
                                             </td>
@@ -477,9 +457,14 @@ function showCustomToast() {
        onToastDismissed = function (id) {
           console.log('Toast disappeared: ' + id);
        },
-       toastId;
+       toastId,
+       options = {
+         buttonText : buttonText,
+         dissmissCallback : onToastDismissed,
+         buttonCallback : onButtonSelected
+       };
 
-   toastId = blackberry.ui.toast.show(message, buttonTest, onButtonSelected, onToastDismissed);
+   toastId = blackberry.ui.toast.show(message, options);
 }
 
 &lt;/script&gt;</pre></code></td></tbody></table>
@@ -511,7 +496,7 @@ function showCustomToast() {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 07 2012 12:10:17 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Nov 16 2012 14:49:06 GMT-0500 (EST)
         </div>
 
     </div>

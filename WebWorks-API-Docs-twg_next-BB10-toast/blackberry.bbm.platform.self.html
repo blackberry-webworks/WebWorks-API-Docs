@@ -596,13 +596,13 @@ blackberry.bbm.platform.self.getDisplayPicture(function (image) {
                                        
                             
                             
-                            <p>Sets the user's display picture from a URI. A dialog will be presented to
-the user to allow or deny the change.
+                            <p>Sets the user's display picture from a URI. A dialog appears and allows the 
+user to accept or cancel the change.
 <p>The URI must be fully qualified. Non-local URIs must be whitelisted in the application's configuration file. Examples:
 <ul>
 <li>Locally from within the widget package (e.g. "local:///smiley.jpg")
-<li>From the filesystem of the a BB5.0+ device (e.g. "file:///SDCard/BlackBerry/pictures/smiley.jpg")
-<li>From the filesystem of the a BB10 device (e.g. "/accounts/1000/shared/photos/smiley.jpg")
+<li>From the filesystem of a BB5.0+ device (e.g. "file:///SDCard/BlackBerry/pictures/smiley.jpg")
+<li>From the filesystem of a BB10 device (e.g. "/accounts/1000/shared/photos/smiley.jpg")
 </ul>
 </p></p>
                             <br />
@@ -655,7 +655,7 @@ the user to allow or deny the change.
                                                     <br />
                                                     
                                                         <br />
-                                                        <b>accepted:</b> <code>true</code> if the user allowed the change;
+                                                        <b>accepted:</b> <code>true</code> if the user accepted the change;
 <code>false</code> otherwise.
                                                     
                                                 
@@ -686,9 +686,9 @@ the user to allow or deny the change.
 // Set the user's display picture
 blackberry.bbm.platform.self.setDisplayPicture("local:///smiley.jpg", function (accepted) {
     if(accepted) {
-        // User allowed the change
+        // User accepted the change
     } else {
-        // User denied the change
+        // User canceled the change
     }
 });
 &lt;/script&gt;</pre></code></td></tbody></table>
@@ -735,8 +735,8 @@ blackberry.bbm.platform.self.setDisplayPicture("local:///smiley.jpg", function (
                                        
                             
                             
-                            <p>Sets the user's personal message. A dialog will be presented to the user to
-allow or deny the change.</p>
+                            <p>Sets the user's personal message. A dialog appears and allows the user to
+accept or cancel the change.</p>
                             <br />
                             
                             
@@ -774,7 +774,7 @@ allow or deny the change.</p>
                                                 
                                                 The personal message. The maximum length is 160 characters;
 anything over will be truncated. If <code>null</code> is provided then the personal message
-will be cleared.                         
+is cleared.                         
                                                 
                                             </td>
                                         </tr>
@@ -784,12 +784,12 @@ will be cleared.
                                             <td><b>onComplete</b></td>
                                             <td>
                                                 
-                                                Invoked when the user has dismissed the dialog.                         
+                                                Invoked if the user dismissed the dialog.                         
                                                 
                                                     <br />
                                                     
                                                         <br />
-                                                        <b>accepted:</b> <code>true</code> if the user allowed the change;
+                                                        <b>accepted:</b> <code>true</code> if the user accepted the change;
 <code>false</code> otherwise.
                                                     
                                                 
@@ -854,8 +854,8 @@ will be cleared.
                                        
                             
                             
-                            <p>Sets the user's status. A dialog will be presented to the user to allow
-or deny the change.</p>
+                            <p>Sets the user's status. A dialog appears and allows the user to accept
+or cancel the change.</p>
                             <br />
                             
                             
@@ -901,7 +901,7 @@ or deny the change.</p>
                                             <td><b>message</b></td>
                                             <td>
                                                 
-                                                The optional status message. If not provided then the default message of
+                                                The optional status message. If not provided, the default message of
 either "Available" or "Busy" will be used.                         
                                                 
                                             </td>
@@ -912,12 +912,12 @@ either "Available" or "Busy" will be used.
                                             <td><b>onComplete</b></td>
                                             <td>
                                                 
-                                                Invoked when the user has dismissed the dialog.                         
+                                                Invoked if the user dismissed the dialog.                         
                                                 
                                                     <br />
                                                     
                                                         <br />
-                                                        <b>accepted:</b> <code>true</code> if the user allowed the change;
+                                                        <b>accepted:</b> <code>true</code> if the user accepted the change;
 <code>false</code> otherwise.
                                                     
                                                 
@@ -948,9 +948,9 @@ either "Available" or "Busy" will be used.
 // Set the user's status and status message
 blackberry.bbm.platform.self.setStatus("busy", "Playing Tic-Tac-Toe!", function (accepted) {
     if(accepted) {
-        // User allowed the change
+        // User accepted the change
     } else {
-        // User denied the change
+        // User canceled the change
     }
 });
 &lt;/script&gt;</pre></code></td></tbody></table>
@@ -982,7 +982,7 @@ blackberry.bbm.platform.self.setStatus("busy", "Playing Tic-Tac-Toe!", function 
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 07 2012 12:10:15 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Nov 16 2012 14:49:04 GMT-0500 (EST)
         </div>
 
     </div>

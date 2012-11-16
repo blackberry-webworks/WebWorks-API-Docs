@@ -852,7 +852,7 @@
                                                 PersistentContentException                                                
                                             </td>
                                             <td>
-                                                If Content Protection is enabled and device is locked.
+                                                If Content Protection is enabled and the device is locked.
                                             </td>
                                         </tr>
                                     
@@ -911,7 +911,7 @@
                             
                             
                             <p>Allows the user to invite contacts to join this connection.
-<p>A Contact Picker dialog will appear allowing the user to select contacts to invite. Only
+<p>A Contact Picker dialog appears and allows the user to select contacts to invite. Only
 contacts with the application will be shown in the Contact Picker.</p>
                             <br />
                             
@@ -944,7 +944,7 @@ contacts with the application will be shown in the Contact Picker.</p>
                                             <td><b>inviteMessage</b></td>
                                             <td>
                                                 
-                                                Message shown to user in invitation.                         
+                                                Message shown in the invitation to users.                         
                                                 
                                             </td>
                                         </tr>
@@ -960,7 +960,7 @@ contacts with the application will be shown in the Contact Picker.</p>
                                                     
                                                         <br />
                                                         <b>expiryTime:</b> Delay until the invitation expires (ms). If not provided
-or <code><= 0</code>, then invitation will never expire.
+or <code><= 0</code>, the invitation will not expire.
                                                     
                                                         <br />
                                                         <b>cookie:</b> A custom parameter provided by the third party application. 
@@ -1091,7 +1091,7 @@ ends or leaves the connection.
                                             <td><b>user</b></td>
                                             <td>
                                                 
-                                                Single user, or array of users, to remove from the connection.                         
+                                                Single user, or an array of users, to remove from the connection.                         
                                                 
                                             </td>
                                         </tr>
@@ -1122,7 +1122,7 @@ ends or leaves the connection.
                                                 IllegalArgumentException                                                
                                             </td>
                                             <td>
-                                                If of of the users being removed does not belong to the connection.
+                                                If one of the users being removed does not belong to the connection.
                                             </td>
                                         </tr>
                                     
@@ -1131,7 +1131,7 @@ ends or leaves the connection.
                                                 PersistentContentException                                                
                                             </td>
                                             <td>
-                                                If Content Protection is enabled and device is locked.
+                                                If Content Protection is enabled and the device is locked.
                                             </td>
                                         </tr>
                                     
@@ -1248,7 +1248,7 @@ if(users.length > 0) {
                                                 PersistentContentException                                                
                                             </td>
                                             <td>
-                                                If Content Protection is enabled and device is locked.
+                                                If Content Protection is enabled and the device is locked.
                                             </td>
                                         </tr>
                                     
@@ -1309,9 +1309,9 @@ if(users.length > 0) {
                             <p>Sends data to all users on the connection or a subset. Data cannot be sent to users
 who have not joined.
 <h3>Unreachable Users</h3>
-<p>If a user becomes unreachable then up to 50 packets (50 calls of <code>send()</code>) will be queued. A ContactUnreachableException will be thrown on the 51st call.
-<p>If the user later becomes reachable then <a href="blackberry.bbm.platform.io.html#.event:onuserreachable">blackberry.bbm.platform.io.event:onuserreachable</a> will be invoked with the now-reachable user.
-<p>BBM Social Platform will continue to attempt to deliver the packets to an unreachable user for 24 hours. If the user does not become reachable within this time then the packets will expire, and <a href="blackberry.bbm.platform.io.html#.event:ondataexpired">blackberry.bbm.platform.io.event:ondataexpired</a> will be invoked with unreachable user and the expired packets.</p>
+<p>If a user becomes unreachable, up to 50 packets (50 calls of <code>send()</code>) will be queued. A ContactUnreachableException will be thrown on the 51st call.
+<p>If the user later becomes reachable, <a href="blackberry.bbm.platform.io.html#.event:onuserreachable">blackberry.bbm.platform.io.event:onuserreachable</a> will be invoked with the now-reachable user.
+<p>The BBM Social Platform will continue to attempt to deliver the packets to an unreachable user for 24 hours. If the user does not become reachable within this time, the packets will expire, and <a href="blackberry.bbm.platform.io.html#.event:ondataexpired">blackberry.bbm.platform.io.event:ondataexpired</a> will be invoked.</p>
                             <br />
                             
                             
@@ -1376,7 +1376,7 @@ If not provided, data will be sent to all users on this connection.
                                                 ContactUnreachableException                                                
                                             </td>
                                             <td>
-                                                If a user is unreachable, up to 50 packets will be queued. This will be thrown on the 51st call.
+                                                If a user is unreachable, up to 50 packets will be queued, and on the 51st call this exception is thrown.
                                             </td>
                                         </tr>
                                     
@@ -1385,7 +1385,7 @@ If not provided, data will be sent to all users on this connection.
                                                 DataOverflowException                                                
                                             </td>
                                             <td>
-                                                If the rate of data sent by the application exceeds that which the BBM Platform allows.
+                                                If the application sends data at a rate greater than what the BBM Social Platform allows.
                                             </td>
                                         </tr>
                                     
@@ -1430,7 +1430,7 @@ If not provided, data will be sent to all users on this connection.
                                                 PersistentContentException                                                
                                             </td>
                                             <td>
-                                                If Content Protection is enabled and device is locked.
+                                                If Content Protection is enabled and the device is locked.
                                             </td>
                                         </tr>
                                     
@@ -1708,7 +1708,7 @@ connection1.ondata = function(user, data) {
                                             <td><b>user</b></td>
                                             <td>
                                                 
-                                                User who declined.                         
+                                                The user who declined.                         
                                                 
                                             </td>
                                         </tr>
@@ -1803,7 +1803,7 @@ connection1.ondata = function(user, data) {
                                             <td><b>user</b></td>
                                             <td>
                                                 
-                                                User who left.                         
+                                                The user who left.                         
                                                 
                                             </td>
                                         </tr>
@@ -1899,7 +1899,7 @@ called if the user invites others to download the application.</p>
                                             <td><b>users</b></td>
                                             <td>
                                                 
-                                                the users who were invited                         
+                                                The users who were invited.                         
                                                 
                                             </td>
                                         </tr>
@@ -2004,7 +2004,7 @@ called if the user invites others to download the application.</p>
                                             <td><b>type</b></td>
                                             <td>
                                                 
-                                                The type of join.
+                                                The way that users joined.
 <ul>
 <li><code>"invitedbyme"</code>: The joining users were invited by the current user.
 <li><code>"acceptedbyme"</code>: The current user is joining the connection.
@@ -2553,7 +2553,7 @@ and will not allow more users to join.</p>
                                        
                             
                             
-                            <p>The maximum length of a data payload .</p>
+                            <p>The maximum length of a data payload.</p>
                             <br />
                             
                             
@@ -2605,7 +2605,7 @@ and will not allow more users to join.</p>
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Nov 07 2012 12:10:06 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Nov 16 2012 14:48:55 GMT-0500 (EST)
         </div>
 
     </div>

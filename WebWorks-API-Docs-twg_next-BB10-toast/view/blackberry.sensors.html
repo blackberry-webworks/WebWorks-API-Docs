@@ -6,7 +6,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <title>
-        HTML5 FileError - BlackBerry WebWorks
+        Sensors - BlackBerry WebWorks
     </title>
 
     <script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/pagehead.min.js"></script>
@@ -124,20 +124,26 @@
 
         <h1>
             
-                HTML5 FileError
+                Sensors
             
         </h1>
 
 
         
             <p>
-                Errors in the asynchronous File API are reported using callbacks that have a <b>FileError</b> object as one of their arguments.
+                The Sensors object allows you to get access to system level sensors and attributes of the BlackBerry device.<br><br>The sensors object has various event listeners for sensors on the device.
 
 
                 
-                    <div x-ww-support="pb_menu|bb10_menu">
+                    <div x-ww-support="bb10_menu">
                     
                 
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;// Create a callback to handle each sensorfunction compassCallback(sensor, data) {    alert("Current azimuth: " + data.value);}// Start listening to the compass sensor with a delay feedback of 1000 blackberry.sensors.setOptions("devicecompass", { delay : 1000 });   // Start the event listener for the sensors callbackblackberry.event.addEventListener("devicecompass", compassCallback);   &lt;/script&gt;</pre></code></td></tbody></table>
+    
   
 
                     </div>
@@ -168,8 +174,6 @@
                         <table>
                             <tbody>
                             
-                                <tr><td>- BlackBerry PlayBook 1.0+</td></tr>
-                            
                                 <tr><td>- BlackBerry 10</td></tr>
                             
                             </tbody>
@@ -181,146 +185,158 @@
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
                             
                             
-                                <tr x-ww-support="pb_menu|bb10_menu">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="FileError.html#.NOT_FOUND_ERR">NOT_FOUND_ERR</a>
+                                        <a href="blackberry.sensors.html#.setOptions">blackberry.sensors.setOptions</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb_menu|bb10_menu">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="FileError.html#.SECURITY_ERR">SECURITY_ERR</a>
+                                        <a href="blackberry.sensors.html#.event:deviceaccelerometer">blackberry.sensors.deviceaccelerometer</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb_menu|bb10_menu">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="FileError.html#.ABORT_ERR">ABORT_ERR</a>
+                                        <a href="blackberry.sensors.html#.event:deviceazimuthpitchroll">blackberry.sensors.deviceazimuthpitchroll</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb_menu|bb10_menu">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="FileError.html#.NOT_READABLE_ERR">NOT_READABLE_ERR</a>
+                                        <a href="blackberry.sensors.html#.event:devicecompass">blackberry.sensors.devicecompass</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb_menu|bb10_menu">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="FileError.html#.ENCODING_ERR">ENCODING_ERR</a>
+                                        <a href="blackberry.sensors.html#.event:devicegravity">blackberry.sensors.devicegravity</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb_menu|bb10_menu">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="FileError.html#.NO_MODIFICATION_ALLOWED_ERR">NO_MODIFICATION_ALLOWED_ERR</a>
+                                        <a href="blackberry.sensors.html#.event:devicegyroscope">blackberry.sensors.devicegyroscope</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb_menu|bb10_menu">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="FileError.html#.INVALID_STATE_ERR">INVALID_STATE_ERR</a>
+                                        <a href="blackberry.sensors.html#.event:deviceholster">blackberry.sensors.deviceholster</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb_menu|bb10_menu">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="FileError.html#.SYNTAX_ERR">SYNTAX_ERR</a>
+                                        <a href="blackberry.sensors.html#.event:devicelight">blackberry.sensors.devicelight</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb_menu|bb10_menu">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="FileError.html#.INVALID_MODIFICATION_ERR">INVALID_MODIFICATION_ERR</a>
+                                        <a href="blackberry.sensors.html#.event:devicelinearacceleration">blackberry.sensors.devicelinearacceleration</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb_menu|bb10_menu">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="FileError.html#.QUOTA_EXCEEDED_ERR">QUOTA_EXCEEDED_ERR</a>
+                                        <a href="blackberry.sensors.html#.event:devicemagnetometer">blackberry.sensors.devicemagnetometer</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb_menu|bb10_menu">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="FileError.html#.TYPE_MISMATCH_ERR">TYPE_MISMATCH_ERR</a>
+                                        <a href="blackberry.sensors.html#.event:deviceorientation">blackberry.sensors.deviceorientation</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="pb_menu|bb10_menu">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="FileError.html#.PATH_EXISTS_ERR">PATH_EXISTS_ERR</a>
+                                        <a href="blackberry.sensors.html#.event:deviceproximity">blackberry.sensors.deviceproximity</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicerotationmatrix">blackberry.sensors.devicerotationmatrix</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
@@ -342,9 +358,27 @@
                         <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
                     </td></tr>
                     
-                    <tr><td>
-                        This API does not require a &lt;feature&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
-                    </td></tr></tbody></table>
+                        <tr><td>
+                            <p>You must declare the feature element(s) below in your configuration document:</p>
+                        </td></tr></tbody></table>
+                    <table>
+                        <thead><tr><th>Feature ID</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                        
+                            
+                            
+                                
+                            
+                            <tr x-ww-support="bb10_menu"><td>
+                                &lt;feature id="blackberry.sensors" /&gt;
+                                <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                            </td></tr>
+                        
+                    </table>
                 
 
                 <div x-ww-support="pb_menu|bb10_menu">
@@ -376,164 +410,23 @@
     
         
         
-    
-        
-        
-    
-        
-        
-    
-        
-        
             <br />
-            <div class="ref-sect ref-index" x-ww-support="pb_menu|bb10_menu">
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
                 <div class="ref-sect-title">
-                    <h2> Constants </h2>
+                    <h2> Functions </h2>
                 </div>
                 <div class="ref-sect-content">
                     
                         <table><tbody>
                             
-                                <tr x-ww-support="pb_menu|bb10_menu">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
-                                            String
+                                            void
                                         
                                     </td>
                                     <td>
-                                        <a href="FileError.html#.NOT_FOUND_ERR">NOT_FOUND_ERR</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="pb_menu|bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="FileError.html#.SECURITY_ERR">SECURITY_ERR</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="pb_menu|bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="FileError.html#.ABORT_ERR">ABORT_ERR</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="pb_menu|bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="FileError.html#.NOT_READABLE_ERR">NOT_READABLE_ERR</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="pb_menu|bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="FileError.html#.ENCODING_ERR">ENCODING_ERR</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="pb_menu|bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="FileError.html#.NO_MODIFICATION_ALLOWED_ERR">NO_MODIFICATION_ALLOWED_ERR</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="pb_menu|bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="FileError.html#.INVALID_STATE_ERR">INVALID_STATE_ERR</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="pb_menu|bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="FileError.html#.SYNTAX_ERR">SYNTAX_ERR</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="pb_menu|bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="FileError.html#.INVALID_MODIFICATION_ERR">INVALID_MODIFICATION_ERR</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="pb_menu|bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="FileError.html#.QUOTA_EXCEEDED_ERR">QUOTA_EXCEEDED_ERR</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="pb_menu|bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="FileError.html#.TYPE_MISMATCH_ERR">TYPE_MISMATCH_ERR</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="pb_menu|bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="FileError.html#.PATH_EXISTS_ERR">PATH_EXISTS_ERR</a>
+                                        <a href="blackberry.sensors.html#.setOptions">blackberry.sensors.setOptions</a>
                                         
                                     </td>
                                 </tr>
@@ -543,6 +436,174 @@
                     
                 </div>
             </div>
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
+                <div class="ref-sect-title">
+                    <h2> Events </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:deviceaccelerometer">blackberry.sensors.deviceaccelerometer</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:deviceazimuthpitchroll">blackberry.sensors.deviceazimuthpitchroll</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicecompass">blackberry.sensors.devicecompass</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicegravity">blackberry.sensors.devicegravity</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicegyroscope">blackberry.sensors.devicegyroscope</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:deviceholster">blackberry.sensors.deviceholster</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicelight">blackberry.sensors.devicelight</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicelinearacceleration">blackberry.sensors.devicelinearacceleration</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicemagnetometer">blackberry.sensors.devicemagnetometer</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:deviceorientation">blackberry.sensors.deviceorientation</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:deviceproximity">blackberry.sensors.deviceproximity</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicerotationmatrix">blackberry.sensors.devicerotationmatrix</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+        
         
     
         
@@ -562,24 +623,150 @@
 
     
     
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Functions</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".setOptions"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.sensors.setOptions
+                                            
+                                                
+                                                    (sensor : String, options : Object)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>This method will start a sensor with the specifed options and begin returning it to the added event listener.<br><br>The supported object fields for 'options' are:</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>sensor</b></td>
+                                            <td>
+                                                
+                                                The sensor to listen to.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                The options for the sensor being started.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>delay:</b> Time in µs (microseconds) to report back between sensor updates.
+                                                    
+                                                        <br />
+                                                        <b>background:</b> Allow sensor to send updates while the screen is off.
+                                                    
+                                                        <br />
+                                                        <b>batching:</b> When batching is enabled and supported by the hardware, sensors will report samples in hardware-specific batch sizes to conserve power.
+                                                    
+                                                        <br />
+                                                        <b>queue:</b> Enabling the queue creates a client-specific service side queue of events, this is useful to not miss any events.
+                                                    
+                                                        <br />
+                                                        <b>reducedReporting:</b> When reduced reporting is enabled, only a significant change between the last read event and the current unread event will cause an event to be delivered (useful for power saving).
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
 
-    
-    
+                            
+                            
+                            
 
-    
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
     
 
     
     
         <div class="ref-sect">
             <div class="ref-sect-title clearfix">
-                <h2>Constants</h2>
+                <h2>Events</h2>
             </div>
             <div class="ref-sect-content">
                 
-                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".NOT_FOUND_ERR"></a>
+                            <a name=".event:deviceaccelerometer"></a>
                  
                             
                             
@@ -587,13 +774,14 @@
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            NOT_FOUND_ERR
+                                            blackberry.sensors.deviceaccelerometer
                                             
                                                 
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -613,7 +801,7 @@
                                        
                             
                             
-                            <p>File/directory not found error</p>
+                            <p>Device accelerometer sensor.<p>This sensor returns accelerometer data. Returned as m/s/s (meters/second/second).</p>
                             <br />
                             
                             
@@ -624,10 +812,6 @@
                                     </th></tr></thead>
                                     
                                         <tr><td></td><td>
-                                            &nbsp;- BlackBerry PlayBook 1.0+
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
                                             &nbsp;- BlackBerry 10
                                         </td></tr>
                                     
@@ -636,6 +820,37 @@
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>x:</b> The x-axis value.
+                                                    
+                                                        <br />
+                                                        <b>y:</b> The y-axis value.
+                                                    
+                                                        <br />
+                                                        <b>z:</b> The z-axis value.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -656,9 +871,9 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".SECURITY_ERR"></a>
+                            <a name=".event:deviceazimuthpitchroll"></a>
                  
                             
                             
@@ -666,13 +881,14 @@
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            SECURITY_ERR
+                                            blackberry.sensors.deviceazimuthpitchroll
                                             
                                                 
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -692,7 +908,7 @@
                                        
                             
                             
-                            <p>This is a security error code to be used in situations not covered by any other error codes.</p>
+                            <p>Device sensor azimuth pitch roll sensor.<p>This sensor returns a rotation matrix based on the orientation of the device.</p>
                             <br />
                             
                             
@@ -703,10 +919,6 @@
                                     </th></tr></thead>
                                     
                                         <tr><td></td><td>
-                                            &nbsp;- BlackBerry PlayBook 1.0+
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
                                             &nbsp;- BlackBerry 10
                                         </td></tr>
                                     
@@ -715,6 +927,37 @@
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>azimuth:</b> Azimuth from 0 -> 360 degrees from magnetic north.
+                                                    
+                                                        <br />
+                                                        <b>pitch:</b> Pitch from -180 to 180 degrees.
+                                                    
+                                                        <br />
+                                                        <b>roll:</b> Roll from -90 to 90 degrees.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -735,9 +978,9 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".ABORT_ERR"></a>
+                            <a name=".event:devicecompass"></a>
                  
                             
                             
@@ -745,13 +988,14 @@
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            ABORT_ERR
+                                            blackberry.sensors.devicecompass
                                             
                                                 
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -771,7 +1015,7 @@
                                        
                             
                             
-                            <p>This is returned when the read operation was aborted, typically with a call to abort()</p>
+                            <p>Device compass sensor.<p>This sensor returns directional information from the compass sensor.</p>
                             <br />
                             
                             
@@ -782,10 +1026,6 @@
                                     </th></tr></thead>
                                     
                                         <tr><td></td><td>
-                                            &nbsp;- BlackBerry PlayBook 1.0+
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
                                             &nbsp;- BlackBerry 10
                                         </td></tr>
                                     
@@ -794,6 +1034,34 @@
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>value:</b> Azimuth from 0 -> 360 degrees from magnetic north.
+                                                    
+                                                        <br />
+                                                        <b>isFaceDown:</b> 1 if face is down and compass heading is flipped, 0 otherwise.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -814,9 +1082,9 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".NOT_READABLE_ERR"></a>
+                            <a name=".event:devicegravity"></a>
                  
                             
                             
@@ -824,13 +1092,14 @@
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            NOT_READABLE_ERR
+                                            blackberry.sensors.devicegravity
                                             
                                                 
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -850,7 +1119,7 @@
                                        
                             
                             
-                            <p>This is returned if the file cannot be read, typically due to permission problems that occur after a reference to a file has been acquired (e.g. concurrent lock with another application).</p>
+                            <p>Device gravity sensor.<p>This sensor returns gravity information from the gravity sensor. Returned as m/s/s (meters/second/second).<br>Only the acceleration caused by gravity is reported. Movements of the device caused by the user have no effect other than changing the direction when the device is rotated.</p>
                             <br />
                             
                             
@@ -861,10 +1130,6 @@
                                     </th></tr></thead>
                                     
                                         <tr><td></td><td>
-                                            &nbsp;- BlackBerry PlayBook 1.0+
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
                                             &nbsp;- BlackBerry 10
                                         </td></tr>
                                     
@@ -873,6 +1138,37 @@
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>x:</b> The x-axis value.
+                                                    
+                                                        <br />
+                                                        <b>y:</b> The y-axis value.
+                                                    
+                                                        <br />
+                                                        <b>z:</b> The z-axis value.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -893,9 +1189,9 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".ENCODING_ERR"></a>
+                            <a name=".event:devicegyroscope"></a>
                  
                             
                             
@@ -903,13 +1199,14 @@
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            ENCODING_ERR
+                                            blackberry.sensors.devicegyroscope
                                             
                                                 
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -929,7 +1226,7 @@
                                        
                             
                             
-                            <p>returned when encoding error</p>
+                            <p>Device gyroscope sensor.<p>This sensor returns data from the gyroscope sensor. Returned as r/s (radians/second).</p>
                             <br />
                             
                             
@@ -940,10 +1237,6 @@
                                     </th></tr></thead>
                                     
                                         <tr><td></td><td>
-                                            &nbsp;- BlackBerry PlayBook 1.0+
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
                                             &nbsp;- BlackBerry 10
                                         </td></tr>
                                     
@@ -952,6 +1245,40 @@
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>x:</b> The x-axis value.
+                                                    
+                                                        <br />
+                                                        <b>y:</b> The y-axis value.
+                                                    
+                                                        <br />
+                                                        <b>z:</b> The z-axis value.
+                                                    
+                                                        <br />
+                                                        <b>temperature:</b> The temperature of the gyroscope sensor (in degrees Celsius).
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -972,9 +1299,9 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".NO_MODIFICATION_ALLOWED_ERR"></a>
+                            <a name=".event:deviceholster"></a>
                  
                             
                             
@@ -982,13 +1309,14 @@
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            NO_MODIFICATION_ALLOWED_ERR
+                                            blackberry.sensors.deviceholster
                                             
                                                 
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -1008,7 +1336,7 @@
                                        
                             
                             
-                            <p>returned when file is read-only</p>
+                            <p>Device holster detection sensor.<p>This sensor returns the status of the holster sensor.</p>
                             <br />
                             
                             
@@ -1019,10 +1347,6 @@
                                     </th></tr></thead>
                                     
                                         <tr><td></td><td>
-                                            &nbsp;- BlackBerry PlayBook 1.0+
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
                                             &nbsp;- BlackBerry 10
                                         </td></tr>
                                     
@@ -1031,6 +1355,31 @@
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>value:</b> 1 if device is holstered, 0 otherwise.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -1051,9 +1400,9 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".INVALID_STATE_ERR"></a>
+                            <a name=".event:devicelight"></a>
                  
                             
                             
@@ -1061,13 +1410,14 @@
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            INVALID_STATE_ERR
+                                            blackberry.sensors.devicelight
                                             
                                                 
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -1087,7 +1437,7 @@
                                        
                             
                             
-                            <p>The file is in an invalid state is, and the object is unable to perform the action due to it.</p>
+                            <p>Device light sensor.<p>This sensor returns brightness information from the light sensor.</p>
                             <br />
                             
                             
@@ -1098,10 +1448,6 @@
                                     </th></tr></thead>
                                     
                                         <tr><td></td><td>
-                                            &nbsp;- BlackBerry PlayBook 1.0+
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
                                             &nbsp;- BlackBerry 10
                                         </td></tr>
                                     
@@ -1110,6 +1456,31 @@
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>value:</b> Illuminance in lux.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -1130,9 +1501,9 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".SYNTAX_ERR"></a>
+                            <a name=".event:devicelinearacceleration"></a>
                  
                             
                             
@@ -1140,13 +1511,14 @@
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            SYNTAX_ERR
+                                            blackberry.sensors.devicelinearacceleration
                                             
                                                 
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -1166,7 +1538,7 @@
                                        
                             
                             
-                            <p>Syntax Error</p>
+                            <p>Device linear acceleration sensor.<p>This sensor returns linear acceleration data from the device accelerometer. Returned as m/s/s (meters/second/second).<br>Only the acceleration caused by the user moving the device is reported, the effect of gravity is canceled out.</p>
                             <br />
                             
                             
@@ -1177,10 +1549,6 @@
                                     </th></tr></thead>
                                     
                                         <tr><td></td><td>
-                                            &nbsp;- BlackBerry PlayBook 1.0+
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
                                             &nbsp;- BlackBerry 10
                                         </td></tr>
                                     
@@ -1189,6 +1557,37 @@
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>x:</b> The x-axis value.
+                                                    
+                                                        <br />
+                                                        <b>y:</b> The y-axis value.
+                                                    
+                                                        <br />
+                                                        <b>z:</b> The z-axis value.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -1209,9 +1608,9 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".INVALID_MODIFICATION_ERR"></a>
+                            <a name=".event:devicemagnetometer"></a>
                  
                             
                             
@@ -1219,13 +1618,14 @@
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            INVALID_MODIFICATION_ERR
+                                            blackberry.sensors.devicemagnetometer
                                             
                                                 
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -1245,7 +1645,7 @@
                                        
                             
                             
-                            <p>Invalid modification error due to security or privacy</p>
+                            <p>Device magnetometer sensor.<p>This sensor returns values from the device's magnetometer. Returned as µT (micro Tesla).</p>
                             <br />
                             
                             
@@ -1256,10 +1656,6 @@
                                     </th></tr></thead>
                                     
                                         <tr><td></td><td>
-                                            &nbsp;- BlackBerry PlayBook 1.0+
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
                                             &nbsp;- BlackBerry 10
                                         </td></tr>
                                     
@@ -1268,6 +1664,37 @@
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>x:</b> The x-axis value.
+                                                    
+                                                        <br />
+                                                        <b>y:</b> The y-axis value.
+                                                    
+                                                        <br />
+                                                        <b>z:</b> The z-axis value.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -1288,9 +1715,9 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".QUOTA_EXCEEDED_ERR"></a>
+                            <a name=".event:deviceorientation"></a>
                  
                             
                             
@@ -1298,13 +1725,14 @@
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            QUOTA_EXCEEDED_ERR
+                                            blackberry.sensors.deviceorientation
                                             
                                                 
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -1324,7 +1752,7 @@
                                        
                             
                             
-                            <p>Error processing from asynchronous calls due to size</p>
+                            <p>Device orientation sensor.<p>This sensor returns device orientation information.<br>This relates to the physical device orientation.</p>
                             <br />
                             
                             
@@ -1335,10 +1763,6 @@
                                     </th></tr></thead>
                                     
                                         <tr><td></td><td>
-                                            &nbsp;- BlackBerry PlayBook 1.0+
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
                                             &nbsp;- BlackBerry 10
                                         </td></tr>
                                     
@@ -1347,6 +1771,34 @@
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>screen:</b> Screen rotation in degrees: 0, 90, 180 or 270.
+                                                    
+                                                        <br />
+                                                        <b>face:</b> String-based representation of device face.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -1367,9 +1819,9 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".TYPE_MISMATCH_ERR"></a>
+                            <a name=".event:deviceproximity"></a>
                  
                             
                             
@@ -1377,13 +1829,14 @@
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            TYPE_MISMATCH_ERR
+                                            blackberry.sensors.deviceproximity
                                             
                                                 
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -1403,7 +1856,7 @@
                                        
                             
                             
-                            <p>Type mismatch error</p>
+                            <p>Device proximity sensor.<p>This sensor returns data from the proximity sensor.</p>
                             <br />
                             
                             
@@ -1414,10 +1867,6 @@
                                     </th></tr></thead>
                                     
                                         <tr><td></td><td>
-                                            &nbsp;- BlackBerry PlayBook 1.0+
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
                                             &nbsp;- BlackBerry 10
                                         </td></tr>
                                     
@@ -1426,6 +1875,34 @@
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>value:</b> Discrete steps of distance or actual value in cm.
+                                                    
+                                                        <br />
+                                                        <b>normalized:</b> 0.0 -> 1.0 (close -> far), normalized unit-less signal from raw sensor.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -1446,9 +1923,9 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".PATH_EXISTS_ERR"></a>
+                            <a name=".event:devicerotationmatrix"></a>
                  
                             
                             
@@ -1456,13 +1933,14 @@
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            PATH_EXISTS_ERR
+                                            blackberry.sensors.devicerotationmatrix
                                             
                                                 
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -1482,7 +1960,7 @@
                                        
                             
                             
-                            <p>Directory already exists error</p>
+                            <p>Device rotation matrix sensor.<p>This sensor returns a rotation matrix based on the orientation of the device.</p>
                             <br />
                             
                             
@@ -1493,10 +1971,6 @@
                                     </th></tr></thead>
                                     
                                         <tr><td></td><td>
-                                            &nbsp;- BlackBerry PlayBook 1.0+
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
                                             &nbsp;- BlackBerry 10
                                         </td></tr>
                                     
@@ -1505,6 +1979,31 @@
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>matrix:</b> Float array of data values representing the matrix.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -1532,13 +2031,19 @@
     
     
 
+    
+    
+
+    
+    
+
 
 
 
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Nov 16 2012 14:48:58 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Nov 16 2012 14:49:04 GMT-0500 (EST)
         </div>
 
     </div>

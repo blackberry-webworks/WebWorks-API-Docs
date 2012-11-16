@@ -107,15 +107,14 @@
 
         <h1>
             
-                ContactAddress
+                Sensors
             
         </h1>
 
 
         
             <p>
-                The ContactAddress object contains the address information of a Contact object.
-</pre>
+                The Sensors object allows you to get access to system level sensors and attributes of the BlackBerry device.<br><br>The sensors object has various event listeners for sensors on the device.
 
 
                 
@@ -126,42 +125,7 @@
     <br />
     <b>Code Example:</b>
     
-        <table><tbody><td class="code"><code><pre>function createContact() {
-    var contacts = blackberry.pim.contacts,
-        ContactAddress = contacts.ContactAddress;
-
-    var homeAddress = {
-             "type": ContactAddress.HOME,
-             "streetAddress": "123 Abc Rd",
-             "locality": "Waterloo",
-             "region": "Ontario",
-             "country": "Canada"
-       };
-    var workAddress = {
-             "type": ContactAddress.WORK,
-             "streetAddress": "456 Industry St",
-             "locality": "Waterloo",
-             "region": "Ontario",
-             "country": "Canada"
-        };
-
-    var newContact = contacts.create();
-    newContact.name = {
-        "givenName": "Bart",
-        "familyName": "Simpson"
-    };
-    newContact.addresses = [homeAddress, workAddress];
-
-    newContact.save(onSaveSuccess, onSaveError);
-}
-
-function onSaveSuccess(contact) {
-    alert("Contact saved: " + contact.name.givenName);
-}
-
-function onSaveError(error) {
-    alert("Contact save failed: " + error.code);
-}</pre></code></td></tbody></table>
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;// Create a callback to handle each sensorfunction compassCallback(sensor, data) {    alert("Current azimuth: " + data.value);}// Start listening to the compass sensor with a delay feedback of 1000 blackberry.sensors.setOptions("devicecompass", { delay : 1000 });   // Start the event listener for the sensors callbackblackberry.event.addEventListener("devicecompass", compassCallback);   &lt;/script&gt;</pre></code></td></tbody></table>
     
   
 
@@ -206,7 +170,7 @@ function onSaveError(error) {
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#country">country</a>
+                                        <a href="blackberry.sensors.html#.setOptions">blackberry.sensors.setOptions</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -218,7 +182,7 @@ function onSaveError(error) {
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#formatted">formatted</a>
+                                        <a href="blackberry.sensors.html#.event:deviceaccelerometer">blackberry.sensors.deviceaccelerometer</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -230,7 +194,7 @@ function onSaveError(error) {
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#locality">locality</a>
+                                        <a href="blackberry.sensors.html#.event:deviceazimuthpitchroll">blackberry.sensors.deviceazimuthpitchroll</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -242,7 +206,7 @@ function onSaveError(error) {
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#postalCode">postalCode</a>
+                                        <a href="blackberry.sensors.html#.event:devicecompass">blackberry.sensors.devicecompass</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -254,7 +218,7 @@ function onSaveError(error) {
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#region">region</a>
+                                        <a href="blackberry.sensors.html#.event:devicegravity">blackberry.sensors.devicegravity</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -266,7 +230,7 @@ function onSaveError(error) {
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#streetAddress">streetAddress</a>
+                                        <a href="blackberry.sensors.html#.event:devicegyroscope">blackberry.sensors.devicegyroscope</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -278,7 +242,7 @@ function onSaveError(error) {
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#streetOther">streetOther</a>
+                                        <a href="blackberry.sensors.html#.event:deviceholster">blackberry.sensors.deviceholster</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -290,7 +254,7 @@ function onSaveError(error) {
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#type">type</a>
+                                        <a href="blackberry.sensors.html#.event:devicelight">blackberry.sensors.devicelight</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -302,7 +266,7 @@ function onSaveError(error) {
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#.HOME">HOME</a>
+                                        <a href="blackberry.sensors.html#.event:devicelinearacceleration">blackberry.sensors.devicelinearacceleration</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -314,7 +278,7 @@ function onSaveError(error) {
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#.WORK">WORK</a>
+                                        <a href="blackberry.sensors.html#.event:devicemagnetometer">blackberry.sensors.devicemagnetometer</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -326,7 +290,31 @@ function onSaveError(error) {
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#.OTHER">OTHER</a>
+                                        <a href="blackberry.sensors.html#.event:deviceorientation">blackberry.sensors.deviceorientation</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:deviceproximity">blackberry.sensors.deviceproximity</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicerotationmatrix">blackberry.sensors.devicerotationmatrix</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -364,7 +352,7 @@ function onSaveError(error) {
                                 
                             
                             <tr x-ww-support="bb10_menu"><td>
-                                &lt;feature id="blackberry.pim.contacts" /&gt;
+                                &lt;feature id="blackberry.sensors" /&gt;
                                 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -405,16 +393,10 @@ function onSaveError(error) {
     
         
         
-    
-        
-        
-    
-        
-        
             <br />
             <div class="ref-sect ref-index" x-ww-support="bb10_menu">
                 <div class="ref-sect-title">
-                    <h2> Properties </h2>
+                    <h2> Functions </h2>
                 </div>
                 <div class="ref-sect-content">
                     
@@ -423,95 +405,11 @@ function onSaveError(error) {
                                 <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
-                                            String
+                                            void
                                         
                                     </td>
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#country">country</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#formatted">formatted</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#locality">locality</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#postalCode">postalCode</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#region">region</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#streetAddress">streetAddress</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#streetOther">streetOther</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            String
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#type">type</a>
+                                        <a href="blackberry.sensors.html#.setOptions">blackberry.sensors.setOptions</a>
                                         
                                     </td>
                                 </tr>
@@ -528,7 +426,7 @@ function onSaveError(error) {
             <br />
             <div class="ref-sect ref-index" x-ww-support="bb10_menu">
                 <div class="ref-sect-title">
-                    <h2> Constants </h2>
+                    <h2> Events </h2>
                 </div>
                 <div class="ref-sect-content">
                     
@@ -537,11 +435,11 @@ function onSaveError(error) {
                                 <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
-                                            String
+                                            void
                                         
                                     </td>
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#.HOME">HOME</a>
+                                        <a href="blackberry.sensors.html#.event:deviceaccelerometer">blackberry.sensors.deviceaccelerometer</a>
                                         
                                     </td>
                                 </tr>
@@ -549,11 +447,11 @@ function onSaveError(error) {
                                 <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
-                                            String
+                                            void
                                         
                                     </td>
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#.WORK">WORK</a>
+                                        <a href="blackberry.sensors.html#.event:deviceazimuthpitchroll">blackberry.sensors.deviceazimuthpitchroll</a>
                                         
                                     </td>
                                 </tr>
@@ -561,11 +459,119 @@ function onSaveError(error) {
                                 <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
-                                            String
+                                            void
                                         
                                     </td>
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html#.OTHER">OTHER</a>
+                                        <a href="blackberry.sensors.html#.event:devicecompass">blackberry.sensors.devicecompass</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicegravity">blackberry.sensors.devicegravity</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicegyroscope">blackberry.sensors.devicegyroscope</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:deviceholster">blackberry.sensors.deviceholster</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicelight">blackberry.sensors.devicelight</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicelinearacceleration">blackberry.sensors.devicelinearacceleration</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicemagnetometer">blackberry.sensors.devicemagnetometer</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:deviceorientation">blackberry.sensors.deviceorientation</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:deviceproximity">blackberry.sensors.deviceproximity</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.sensors.html#.event:devicerotationmatrix">blackberry.sensors.devicerotationmatrix</a>
                                         
                                     </td>
                                 </tr>
@@ -575,6 +581,12 @@ function onSaveError(error) {
                     
                 </div>
             </div>
+        
+    
+        
+        
+    
+        
         
     
         
@@ -594,32 +606,31 @@ function onSaveError(error) {
 
     
     
-
-    
-    
-
-    
-    
         <div class="ref-sect">
             <div class="ref-sect-title clearfix">
-                <h2>Properties</h2>
+                <h2>Functions</h2>
             </div>
             <div class="ref-sect-content">
                 
                     <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name="country"></a>
+                            <a name=".setOptions"></a>
                  
                             
                             
                                 
                                     
-                                                      
-                                        
-                                        String
+                                        static              
                                         
                                         
-                                            country
+                                            void
+                                        
+                                        
+                                            blackberry.sensors.setOptions
+                                            
+                                                
+                                                    (sensor : String, options : Object)
+                                                
                                             
                                                                   
                                     
@@ -638,7 +649,7 @@ function onSaveError(error) {
                                        
                             
                             
-                            <p>The country name.</p>
+                            <p>This method will start a sensor with the specifed options and begin returning it to the added event listener.<br><br>The supported object fields for 'options' are:</p>
                             <br />
                             
                             
@@ -657,503 +668,53 @@ function onSaveError(error) {
                             <br />
                             
                             
-                                               
-
                             
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-  
-
-                        </div>
-                    </div>
-                
-                    <div class="detailed_item function" x-ww-support="bb10_menu">
-                        <h3>
-                            <a name="formatted"></a>
-                 
-                            
-                            
-                                
-                                    
-                                                      
-                                        readonly
-                                        String
-                                        
-                                        
-                                            formatted
-                                            
-                                                                  
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                                
                                 <br />
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p>A formatted version of the full address, for display.</p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
+                                <table>
                                     <thead><tr><th colspan="2">
-                                        Supported Platforms
+                                        Parameters
                                     </th></tr></thead>
+                                                   
                                     
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
-                                               
-
-                            
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-  
-
-                        </div>
-                    </div>
-                
-                    <div class="detailed_item function" x-ww-support="bb10_menu">
-                        <h3>
-                            <a name="locality"></a>
-                 
-                            
-                            
-                                
-                                    
-                                                      
                                         
-                                        String
+                                        <tr>
+                                            <td><b>sensor</b></td>
+                                            <td>
+                                                
+                                                The sensor to listen to.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
                                         
-                                        
-                                            locality
-                                            
-                                                                  
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                                
-                                <br />
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p>The city or locality.</p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
-                                    <thead><tr><th colspan="2">
-                                        Supported Platforms
-                                    </th></tr></thead>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
-                                               
-
-                            
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-  
-
-                        </div>
-                    </div>
-                
-                    <div class="detailed_item function" x-ww-support="bb10_menu">
-                        <h3>
-                            <a name="postalCode"></a>
-                 
-                            
-                            
-                                
-                                    
-                                                      
-                                        
-                                        String
-                                        
-                                        
-                                            postalCode
-                                            
-                                                                  
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                                
-                                <br />
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p>The postal code or zip code.</p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
-                                    <thead><tr><th colspan="2">
-                                        Supported Platforms
-                                    </th></tr></thead>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
-                                               
-
-                            
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-  
-
-                        </div>
-                    </div>
-                
-                    <div class="detailed_item function" x-ww-support="bb10_menu">
-                        <h3>
-                            <a name="region"></a>
-                 
-                            
-                            
-                                
-                                    
-                                                      
-                                        
-                                        String
-                                        
-                                        
-                                            region
-                                            
-                                                                  
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                                
-                                <br />
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p>The province, state, or region.</p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
-                                    <thead><tr><th colspan="2">
-                                        Supported Platforms
-                                    </th></tr></thead>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
-                                               
-
-                            
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-  
-
-                        </div>
-                    </div>
-                
-                    <div class="detailed_item function" x-ww-support="bb10_menu">
-                        <h3>
-                            <a name="streetAddress"></a>
-                 
-                            
-                            
-                                
-                                    
-                                                      
-                                        
-                                        String
-                                        
-                                        
-                                            streetAddress
-                                            
-                                                                  
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                                
-                                <br />
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p>The street address.</p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
-                                    <thead><tr><th colspan="2">
-                                        Supported Platforms
-                                    </th></tr></thead>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
-                                               
-
-                            
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-  
-
-                        </div>
-                    </div>
-                
-                    <div class="detailed_item function" x-ww-support="bb10_menu">
-                        <h3>
-                            <a name="streetOther"></a>
-                 
-                            
-                            
-                                
-                                    
-                                                      
-                                        
-                                        String
-                                        
-                                        
-                                            streetOther
-                                            
-                                                                  
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                                
-                                <br />
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p>Extra information about the street address.</p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
-                                    <thead><tr><th colspan="2">
-                                        Supported Platforms
-                                    </th></tr></thead>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
-                                               
-
-                            
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-  
-
-                        </div>
-                    </div>
-                
-                    <div class="detailed_item function" x-ww-support="bb10_menu">
-                        <h3>
-                            <a name="type"></a>
-                 
-                            
-                            
-                                
-                                    
-                                                      
-                                        
-                                        String
-                                        
-                                        
-                                            type
-                                            
-                                                                  
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                                
-                                <br />
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p>Specifies the type of ContactAddress.</p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
-                                    <thead><tr><th colspan="2">
-                                        Supported Platforms
-                                    </th></tr></thead>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                The options for the sensor being started.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>delay:</b> Time in µs (microseconds) to report back between sensor updates.
+                                                    
+                                                        <br />
+                                                        <b>background:</b> Allow sensor to send updates while the screen is off.
+                                                    
+                                                        <br />
+                                                        <b>batching:</b> When batching is enabled and supported by the hardware, sensors will report samples in hardware-specific batch sizes to conserve power.
+                                                    
+                                                        <br />
+                                                        <b>queue:</b> Enabling the queue creates a client-specific service side queue of events, this is useful to not miss any events.
+                                                    
+                                                        <br />
+                                                        <b>reducedReporting:</b> When reduced reporting is enabled, only a significant change between the last read event and the current unread event will cause an event to be delivered (useful for power saving).
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -1182,13 +743,13 @@ function onSaveError(error) {
     
         <div class="ref-sect">
             <div class="ref-sect-title clearfix">
-                <h2>Constants</h2>
+                <h2>Events</h2>
             </div>
             <div class="ref-sect-content">
                 
                     <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".HOME"></a>
+                            <a name=".event:deviceaccelerometer"></a>
                  
                             
                             
@@ -1196,15 +757,14 @@ function onSaveError(error) {
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            HOME
+                                            blackberry.sensors.deviceaccelerometer
                                             
                                                 
-                                                    
-                                                        = "home"
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -1224,7 +784,7 @@ function onSaveError(error) {
                                        
                             
                             
-                            <p>The type of ContactAddress is "home".</p>
+                            <p>Device accelerometer sensor.<p>This sensor returns accelerometer data. Returned as m/s/s (meters/second/second).</p>
                             <br />
                             
                             
@@ -1243,6 +803,37 @@ function onSaveError(error) {
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>x:</b> The x-axis value.
+                                                    
+                                                        <br />
+                                                        <b>y:</b> The y-axis value.
+                                                    
+                                                        <br />
+                                                        <b>z:</b> The z-axis value.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -1265,7 +856,7 @@ function onSaveError(error) {
                 
                     <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".WORK"></a>
+                            <a name=".event:deviceazimuthpitchroll"></a>
                  
                             
                             
@@ -1273,15 +864,14 @@ function onSaveError(error) {
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            WORK
+                                            blackberry.sensors.deviceazimuthpitchroll
                                             
                                                 
-                                                    
-                                                        = "work"
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -1301,7 +891,7 @@ function onSaveError(error) {
                                        
                             
                             
-                            <p>The type of ContactAddress is "work".</p>
+                            <p>Device sensor azimuth pitch roll sensor.<p>This sensor returns a rotation matrix based on the orientation of the device.</p>
                             <br />
                             
                             
@@ -1320,6 +910,37 @@ function onSaveError(error) {
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>azimuth:</b> Azimuth from 0 -> 360 degrees from magnetic north.
+                                                    
+                                                        <br />
+                                                        <b>pitch:</b> Pitch from -180 to 180 degrees.
+                                                    
+                                                        <br />
+                                                        <b>roll:</b> Roll from -90 to 90 degrees.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -1342,7 +963,7 @@ function onSaveError(error) {
                 
                     <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name=".OTHER"></a>
+                            <a name=".event:devicecompass"></a>
                  
                             
                             
@@ -1350,15 +971,14 @@ function onSaveError(error) {
                                     
                                         static              
                                         
-                                        String
+                                        
+                                            void
                                         
                                         
-                                            OTHER
+                                            blackberry.sensors.devicecompass
                                             
                                                 
-                                                    
-                                                        = "other"
-                                                    
+                                                    (data : Object)
                                                 
                                             
                                                                   
@@ -1378,7 +998,7 @@ function onSaveError(error) {
                                        
                             
                             
-                            <p>The type of ContactAddress is "other".</p>
+                            <p>Device compass sensor.<p>This sensor returns directional information from the compass sensor.</p>
                             <br />
                             
                             
@@ -1397,6 +1017,976 @@ function onSaveError(error) {
                             <br />
                             
                             
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>value:</b> Azimuth from 0 -> 360 degrees from magnetic north.
+                                                    
+                                                        <br />
+                                                        <b>isFaceDown:</b> 1 if face is down and compass heading is flipped, 0 otherwise.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".event:devicegravity"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.sensors.devicegravity
+                                            
+                                                
+                                                    (data : Object)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Device gravity sensor.<p>This sensor returns gravity information from the gravity sensor. Returned as m/s/s (meters/second/second).<br>Only the acceleration caused by gravity is reported. Movements of the device caused by the user have no effect other than changing the direction when the device is rotated.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>x:</b> The x-axis value.
+                                                    
+                                                        <br />
+                                                        <b>y:</b> The y-axis value.
+                                                    
+                                                        <br />
+                                                        <b>z:</b> The z-axis value.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".event:devicegyroscope"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.sensors.devicegyroscope
+                                            
+                                                
+                                                    (data : Object)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Device gyroscope sensor.<p>This sensor returns data from the gyroscope sensor. Returned as r/s (radians/second).</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>x:</b> The x-axis value.
+                                                    
+                                                        <br />
+                                                        <b>y:</b> The y-axis value.
+                                                    
+                                                        <br />
+                                                        <b>z:</b> The z-axis value.
+                                                    
+                                                        <br />
+                                                        <b>temperature:</b> The temperature of the gyroscope sensor (in degrees Celsius).
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".event:deviceholster"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.sensors.deviceholster
+                                            
+                                                
+                                                    (data : Object)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Device holster detection sensor.<p>This sensor returns the status of the holster sensor.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>value:</b> 1 if device is holstered, 0 otherwise.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".event:devicelight"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.sensors.devicelight
+                                            
+                                                
+                                                    (data : Object)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Device light sensor.<p>This sensor returns brightness information from the light sensor.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>value:</b> Illuminance in lux.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".event:devicelinearacceleration"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.sensors.devicelinearacceleration
+                                            
+                                                
+                                                    (data : Object)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Device linear acceleration sensor.<p>This sensor returns linear acceleration data from the device accelerometer. Returned as m/s/s (meters/second/second).<br>Only the acceleration caused by the user moving the device is reported, the effect of gravity is canceled out.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>x:</b> The x-axis value.
+                                                    
+                                                        <br />
+                                                        <b>y:</b> The y-axis value.
+                                                    
+                                                        <br />
+                                                        <b>z:</b> The z-axis value.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".event:devicemagnetometer"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.sensors.devicemagnetometer
+                                            
+                                                
+                                                    (data : Object)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Device magnetometer sensor.<p>This sensor returns values from the device's magnetometer. Returned as µT (micro Tesla).</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>x:</b> The x-axis value.
+                                                    
+                                                        <br />
+                                                        <b>y:</b> The y-axis value.
+                                                    
+                                                        <br />
+                                                        <b>z:</b> The z-axis value.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".event:deviceorientation"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.sensors.deviceorientation
+                                            
+                                                
+                                                    (data : Object)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Device orientation sensor.<p>This sensor returns device orientation information.<br>This relates to the physical device orientation.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>screen:</b> Screen rotation in degrees: 0, 90, 180 or 270.
+                                                    
+                                                        <br />
+                                                        <b>face:</b> String-based representation of device face.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".event:deviceproximity"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.sensors.deviceproximity
+                                            
+                                                
+                                                    (data : Object)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Device proximity sensor.<p>This sensor returns data from the proximity sensor.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>value:</b> Discrete steps of distance or actual value in cm.
+                                                    
+                                                        <br />
+                                                        <b>normalized:</b> 0.0 -> 1.0 (close -> far), normalized unit-less signal from raw sensor.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".event:devicerotationmatrix"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.sensors.devicerotationmatrix
+                                            
+                                                
+                                                    (data : Object)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Device rotation matrix sensor.<p>This sensor returns a rotation matrix based on the orientation of the device.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The object containing the sensor data.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>matrix:</b> Float array of data values representing the matrix.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
                                                
 
                             
@@ -1419,6 +2009,12 @@ function onSaveError(error) {
                 
             </div>
         </div>
+    
+
+    
+    
+
+    
     
 
     
@@ -1430,7 +2026,7 @@ function onSaveError(error) {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Nov 16 2012 14:48:56 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Nov 16 2012 14:49:04 GMT-0500 (EST)
         </div>
 
     </div>
