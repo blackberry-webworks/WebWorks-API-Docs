@@ -1,0 +1,627 @@
+
+
+<section  class="page_container references">
+	<div class="row">
+        <nav class="column grid_4 side-navigation" id="side-nav-api" role="navigation">
+            <div id="sticky-anchor"> </div>
+            <div class="side-nav-wrapper" id="sticky">
+                <div class="side-nav-content clearfix" id="none">
+                    <div class="side-nav-section clearfix" id="side-nav-title">
+                        <h3>API Reference</h3>
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-parents"> 
+                    </div>
+                    <div class="side-nav-section clearfix" id="side-nav-filter"> 
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-children"> 
+                    </div>
+                </div>
+            </div>
+            <div class="side-navspacer-bottom"> </div>
+        </nav>
+
+        <div class="column grid_8">
+                <div class="row">
+                    <article id="main" class="column grid_8" role="main">
+                        
+
+<section>
+
+    <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
+                    }
+                }
+            }
+
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload,
+                        newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
+
+        function viewSupportedTable() {
+            var table = document.getElementById('APISupportTable');
+            if (table != null && table.style.display != 'inline') {
+                table.style.display = 'inline';
+            }
+            else {
+                table.style.display = 'none';
+            }
+        }
+
+    </script>
+    
+    <style type="text/css">
+
+        .apiYes {
+            background-color: #D1F8FB;
+        }
+        
+        .tdNoWrap {
+            white-space:nowrap;
+        }
+        
+        .APISupportTable {
+            display:none;
+        }
+    </style>
+
+    <div>
+
+
+        <h1>
+            
+                Contacts
+            
+        </h1>
+
+
+        
+            <p>
+                The contacts object provides functions for creating and finding contacts.
+
+
+                
+                    <div x-ww-support="bb10_menu">
+                    
+                
+  
+
+                    </div>
+                
+            </p>
+        
+
+
+        
+            
+            <br />
+        
+
+
+        
+
+
+        
+
+
+        
+            <div class="ref-sect ref-index">
+                <div class="ref-sect-title">
+                    <h2>Supported Platform(s)</h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table>
+                            <tbody>
+                            
+                                <tr><td>- BlackBerry 10</td></tr>
+                            
+                            </tbody>
+                        </table>
+                    
+                    <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
+                    <div class="APISupportTable" id="APISupportTable">
+                        <table class="apiTable">
+                            <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                            
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.pim.contacts.html#.create">blackberry.pim.contacts.create</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.pim.contacts.html#.find">blackberry.pim.contacts.find</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+
+
+        <div class="ref-sect ref-index">
+            <div class="ref-sect-title">
+                <h2>Configuration Document Settings</h2>
+            </div>
+            <div class="ref-sect-content">
+                <table><tbody>
+                    <tr><td>
+                        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
+                    </td></tr>
+                    
+                        <tr><td>
+                            <p>You must declare the feature element(s) below in your configuration document:</p>
+                        </td></tr></tbody></table>
+                    <table>
+                        <thead><tr><th>Feature ID</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                        
+                            
+                            
+                                
+                            
+                            <tr x-ww-support="bb10_menu"><td>
+                                &lt;feature id="blackberry.pim.contacts" /&gt;
+                                <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                            </td></tr>
+                        
+                    </table>
+                
+
+                <div x-ww-support="pb_menu">
+                    
+                        
+                    
+                    <table>
+                        <tr>
+                            <th>Permission Elements (PlayBook Only)</th>
+                        </tr>
+                        
+                            
+                                <tr><td><i>
+                                    You must declare the permission element(s) below in your configuration document:
+                                </i></td></tr>
+                                
+                                    <tr><td>
+                                        - &lt;rim:permit&gt;access_pimdomain_contacts&lt;/rim:permit&gt;
+                                        <br />
+                                        Permits your app to access contacts.
+                                        <br />
+                                    </td></tr>
+                                
+                            
+
+                            
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        
+        
+
+
+<div>
+    
+        
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
+                <div class="ref-sect-title">
+                    <h2> Functions </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            <a href="blackberry.pim.contacts.contact.html">blackberry.pim.contacts.Contact</a>
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.pim.contacts.html#.create">blackberry.pim.contacts.create</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.pim.contacts.html#.find">blackberry.pim.contacts.find</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+
+    
+</div>
+
+
+
+        
+        
+
+    
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Functions</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".create"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        <a href="blackberry.pim.contacts.contact.html">blackberry.pim.contacts.Contact</a>
+                                        
+                                        
+                                            blackberry.pim.contacts.create
+                                            
+                                                
+                                                    (<i>[properties : Object]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Returns a new Contact object. This method does not persist the Contact object to the device contacts database. To persist the Contact object to the device, invoke the Contact.save method.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>properties</b></td>
+                                            <td>
+                                                
+                                                Optional object literal that specifies the field values for the Contact object. The object should be in the following form (with any number of properties): <br><pre>{    displayName: &lt;display name - String&gt;,    name: &lt;name - ContactName&gt;,    nickname: &lt;nickname - String&gt;,    phoneNumbers: &lt;phone numbers - ContactField[]&gt;,    emails: &lt;email addresses - ContactField[]&gt;,    addresses: &lt;addresses - ContactAddress[]&gt;,    ims: &lt;IM addresses - ContactField[]&gt;,    organizations: &lt;organization - ContactOrganization[]&gt;,    birthday: &lt;birthday - Date&gt;,    note: &lt;note - String&gt;,    photos: &lt;photos - ContactField[]&gt;,    categories: &lt;user defined categories - ContactField[]&gt;,    urls: &lt;web pages - ContactField[]&gt;}</pre>                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>function onSaveSuccess(contact) {    console.log("Contact with id=" + contact.id + " is saved!");}function onSaveError(error) {    console.log("Error saving contact: " + error.code);}function createContact() {    var contacts = blackberry.pim.contacts,        ContactField = contacts.ContactField,        name = new contacts.ContactName(),        workPhone = new ContactField(ContactField.WORK, "123-456-789"),        workEmail = new ContactField(ContactField.WORK, "abc@blah.com"),        homeEmail = new ContactField(ContactField.HOME, "hello@me.com"),        contact;            name.familyName = "Smith";    name.givenName = "Joe";    contact = contacts.create({         "displayName": "Batman",         "name": name,         "phoneNumbers": [workPhone],         "emails": [workEmail, homeEmail]    });    contact.save(onSaveSuccess, onSaveError);}</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".find"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.pim.contacts.find
+                                            
+                                                
+                                                    (contactFields : String[], findOptions : <a href="blackberry.pim.contacts.contactfindoptions.html">blackberry.pim.contacts.ContactFindOptions</a>, onFindSuccess : function, <i>[onFindError : function]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Queries the device contacts database. The search results are passed to the onFindSuccess callback function specified by the onFindSuccess parameter.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>contactFields</b></td>
+                                            <td>
+                                                
+                                                A String array of contact fields to be used as search qualifier. Only these fields will have values in the resulting Contact objects.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>findOptions</b></td>
+                                            <td>
+                                                
+                                                Options to be applied to the search.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onFindSuccess</b></td>
+                                            <td>
+                                                
+                                                Success callback function that is invoked with the contacts returned from the contacts database.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>contacts:</b> The array of Contact objects from the search.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onFindError</b></td>
+                                            <td>
+                                                
+                                                Optional error callback function. Invoked when error occurs. Possible errors are: permission denied error (if access_pimdomain_contacts is not specified) or illegal arguments error (if mandatory parameters are missing or invalid).                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>error:</b> The <a href="blackberry.pim.contacts.contacterror.html">blackberry.pim.contacts.ContactError</a> object which contains the error code.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>function onFindSuccess(contacts) {    console.log("Found " + contacts.length + " John Smith in total");}function onFindError(error) {    console.log("Error: " + error.code);}function searchContacts() {    var contacts = blackberry.pim.contacts,        ContactFindOptions = contacts.ContactFindOptions,        searchFirstName = {             "fieldName" : ContactFindOptions.SEARCH_FIELD_GIVEN_NAME,             "fieldValue" : "John"        },        searchLastName = {             "fieldName" : ContactFindOptions.SEARCH_FIELD_FAMILY_NAME,             "fieldValue" : "Smith"        },        sortOrg = {             "fieldName" : ContactFindOptions.SORT_FIELD_ORGANIZATION_NAME,             "desc" : false        },        findOptions = new ContactFindOptions(            [searchFirstName, searchLastName], // filter            [sortOrg],                         // sort            20                                 // limit        );    contacts.find(["name"], findOptions, onFindSuccess, onFindError);}</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+
+
+
+
+        <div >
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Nov 13 2012 13:55:25 GMT-0500 (EST)
+        </div>
+
+    </div>
+</section>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
