@@ -126,6 +126,49 @@
 
 
                 
+                    <div x-ww-support="bb10_menu">
+                    
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>function createContact() {
+    var contacts = blackberry.pim.contacts;
+
+    var homeEmail = {
+        type: contacts.ContactField.HOME,
+        value: "xyz@person.com"
+    };
+    var workEmail = {
+        type: contacts.ContactField.WORK,
+        value: "abc@rim.com"
+    };
+
+    var newContact = contacts.create();
+    newContact.name = {
+	       givenName: "Marge",
+        familyName: "Simpson"
+    };
+    newContact.emails = [homeEmail, workEmail];
+
+    newContact.save(onSaveSuccess, onSaveError);
+
+    alert("Home email: " + homeEmail.value);
+}
+
+function onSaveSuccess(contact) {
+    alert("Contact saved: " + contact.name.givenName);
+}
+
+function onSaveError(error) {
+    alert("Contact save failed: " + error.code);
+}</pre></code></td></tbody></table>
+    
+  
+
+                    </div>
+                
             </p>
         
 
@@ -161,20 +204,6 @@
                     <div class="APISupportTable" id="APISupportTable">
                         <table class="apiTable">
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
-                            
-                                
-                                    <tr x-ww-support="bb10_menu">
-                                        <td>
-                                            <a href="blackberry.pim.contacts.ContactField.html">blackberry.pim.contacts.ContactField</a>
-                                            <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
-                                        </td>
-                                    </tr>
-                                
                             
                             
                                 <tr x-ww-support="bb10_menu">
@@ -301,11 +330,11 @@
                     </table>
                 
 
-                <div x-ww-support="pb_menu">
+                <div x-ww-support="pb_menu|bb10_menu">
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
                             <tr><td>
@@ -326,33 +355,6 @@
 <div>
     
         
-        
-            <br />
-            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
-                <div class="ref-sect-title">
-                    <h2> Constructors </h2>
-                </div>
-                <div class="ref-sect-content">
-                    
-                        <table><tbody>
-                            
-                                <tr x-ww-support="bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.pim.contacts.ContactField.html">blackberry.pim.contacts.ContactField</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                        </tbody></table>
-                    
-                    
-                </div>
-            </div>
         
     
         
@@ -494,136 +496,6 @@
         
 
     
-    
-        <div class="ref-sect">
-            <div class="ref-sect-title clearfix">
-                <h2>Constructors</h2>
-            </div>
-            <div class="ref-sect-content">
-                
-                    <div class="detailed_item function" x-ww-support="bb10_menu">
-                        <h3>
-                            <a name=".ContactField"></a>
-                 
-                            
-                            
-                                
-                                    blackberry.pim.contacts.ContactField
-                                    
-                                        (type : String, value : String)
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p></p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
-                                    <thead><tr><th colspan="2">
-                                        Supported Platforms
-                                    </th></tr></thead>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
-                            
-                                <br />
-                                <table>
-                                    <thead><tr><th colspan="2">
-                                        Parameters
-                                    </th></tr></thead>
-                                                   
-                                    
-                                        
-                                        <tr>
-                                            <td><b>type</b></td>
-                                            <td>
-                                                
-                                                The type of ContactField.                         
-                                                
-                                            </td>
-                                        </tr>
-                                    
-                                        
-                                        <tr>
-                                            <td><b>value</b></td>
-                                            <td>
-                                                
-                                                The value of the ContactField.                         
-                                                
-                                            </td>
-                                        </tr>
-                                                  
-                                </table>
-                                               
-
-                            
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-
-    <br />
-    <b>Code Example:</b>
-    
-        <table><tbody><td class="code"><code><pre>function createContact() {
-    var contacts = blackberry.pim.contacts;
-
-    var homeEmail = new contacts.ContactField(
-        contacts.ContactField.HOME,
-        "xyz@person.com");
-    var workEmail = new contacts.ContactField(
-        contacts.ContactField.WORK,
-        "abc@rim.com");
-
-    var newContact = contacts.create();
-    newContact.emails = [homeEmail, workEmail];
-
-    newContact.save(onSaveSuccess, onSaveError);
-
-    alert("Home email: " + homeEmail.value);
-}
-
-function onSaveSuccess(contact) {
-    alert("Contact saved: " + contact.displayName);
-}
-
-function onSaveError(error) {
-    alert("Contact save failed: " + error.code);
-}</pre></code></td></tbody></table>
-    
-  
-
-                        </div>
-                    </div>
-                
-            </div>
-        </div>
     
 
     
@@ -1192,7 +1064,7 @@ function onSaveError(error) {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 22 2012 15:53:27 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 22 2012 16:09:00 GMT-0500 (EST)
         </div>
 
     </div>

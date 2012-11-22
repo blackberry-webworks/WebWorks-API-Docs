@@ -201,12 +201,24 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb_menu|bb10_menu">
+                                <tr x-ww-support="bb_menu">
                                     <td>
                                         <a href="blackberry.bbm.platform.self.html#.setDisplayPicture">blackberry.bbm.platform.self.setDisplayPicture</a>
                                         <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.self.html#.setDisplayPicture^2">blackberry.bbm.platform.self.setDisplayPicture</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
@@ -277,17 +289,30 @@
                     </table>
                 
 
-                <div x-ww-support="pb_menu">
+                <div x-ww-support="pb_menu|bb10_menu">
+                    
+                        
                     
                     <table>
                         <tr>
-                            <th>Permission Elements (PlayBook Only)</th>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
                         </tr>
                         
-                            <tr><td>
-                                This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
-                            </td></tr>
-                            <br />
+                            
+                                <tr><td><i>
+                                    You must declare the permission element(s) below in your configuration document:
+                                </i></td></tr>
+                                
+                                    <tr><td>
+                                        - &lt;rim:permit&gt;bbm_connect&lt;/rim:permit&gt;
+                                        <br />
+                                        BBM APIs requre this permission to be set
+                                        <br />
+                                    </td></tr>
+                                
+                            
+
+                            
                         
                     </table>
                 </div>
@@ -327,7 +352,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb_menu|bb10_menu">
+                                <tr x-ww-support="bb_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -335,6 +360,18 @@
                                     </td>
                                     <td>
                                         <a href="blackberry.bbm.platform.self.html#.setDisplayPicture">blackberry.bbm.platform.self.setDisplayPicture</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.self.html#.setDisplayPicture^2">blackberry.bbm.platform.self.setDisplayPicture</a>
                                         
                                     </td>
                                 </tr>
@@ -571,7 +608,7 @@ blackberry.bbm.platform.self.getDisplayPicture(function (image) {
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb_menu|bb10_menu">
+                    <div class="detailed_item function" x-ww-support="bb_menu">
                         <h3>
                             <a name=".setDisplayPicture"></a>
                  
@@ -608,13 +645,12 @@ blackberry.bbm.platform.self.getDisplayPicture(function (image) {
                                        
                             
                             
-                            <p>Sets the user's display picture from a URI. A dialog will be presented to
-the user to allow or deny the change.
+                            <p>Sets the user's display picture from a URI. A dialog appears and allows the 
+user to accept or cancel the change.
 <p>The URI must be fully qualified. Non-local URIs must be whitelisted in the application's configuration file. Examples:
 <ul>
 <li>Locally from within the widget package (e.g. "local:///smiley.jpg")
-<li>From the filesystem of the a BB5.0+ device (e.g. "file:///SDCard/BlackBerry/pictures/smiley.jpg")
-<li>From the filesystem of the a BB10 device (e.g. "/accounts/1000/shared/photos/smiley.jpg")
+<li>From the filesystem of a BB5.0+ device (e.g. "file:///SDCard/BlackBerry/pictures/smiley.jpg")
 </ul>
 </p></p>
                             <br />
@@ -628,10 +664,6 @@ the user to allow or deny the change.
                                     
                                         <tr><td></td><td>
                                             &nbsp;- BlackBerry OS 5.0+
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
                                         </td></tr>
                                     
                                 </table>              
@@ -667,7 +699,7 @@ the user to allow or deny the change.
                                                     <br />
                                                     
                                                         <br />
-                                                        <b>accepted:</b> <code>true</code> if the user allowed the change;
+                                                        <b>accepted:</b> <code>true</code> if the user accepted the change;
 <code>false</code> otherwise.
                                                     
                                                 
@@ -698,11 +730,123 @@ the user to allow or deny the change.
 // Set the user's display picture
 blackberry.bbm.platform.self.setDisplayPicture("local:///smiley.jpg", function (accepted) {
     if(accepted) {
-        // User allowed the change
+        // User accepted the change
     } else {
-        // User denied the change
+        // User canceled the change
     }
 });
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".setDisplayPicture^2"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.self.setDisplayPicture
+                                            
+                                                
+                                                    (displayPictureURI : String)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Sets the user's display picture from a URI. A dialog appears and allows the 
+user to accept or cancel the change. Note that the display picture cannot exceed 32KB.
+<p>The URI must be fully qualified. Non-local URIs must be whitelisted in the application's configuration file. Examples:
+<ul>
+<li>Locally from within the widget package (e.g. "local:///smiley.jpg")
+<li>From the filesystem of a BB10 device (e.g. "/accounts/1000/shared/photos/smiley.jpg")
+</ul>
+</p></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>displayPictureURI</b></td>
+                                            <td>
+                                                
+                                                The fully qualified URI.
+<code>false</code> otherwise.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+// Set the user's display picture
+blackberry.bbm.platform.self.setDisplayPicture("local:///smiley.jpg");
 &lt;/script&gt;</pre></code></td></tbody></table>
     
   
@@ -747,8 +891,8 @@ blackberry.bbm.platform.self.setDisplayPicture("local:///smiley.jpg", function (
                                        
                             
                             
-                            <p>Sets the user's personal message. A dialog will be presented to the user to
-allow or deny the change.</p>
+                            <p>Sets the user's personal message. A dialog appears and allows the user to
+accept or cancel the change.</p>
                             <br />
                             
                             
@@ -786,7 +930,7 @@ allow or deny the change.</p>
                                                 
                                                 The personal message. The maximum length is 160 characters;
 anything over will be truncated. If <code>null</code> is provided then the personal message
-will be cleared.                         
+is cleared.                         
                                                 
                                             </td>
                                         </tr>
@@ -796,12 +940,12 @@ will be cleared.
                                             <td><b>onComplete</b></td>
                                             <td>
                                                 
-                                                Invoked when the user has dismissed the dialog.                         
+                                                Invoked if the user dismissed the dialog.                         
                                                 
                                                     <br />
                                                     
                                                         <br />
-                                                        <b>accepted:</b> <code>true</code> if the user allowed the change;
+                                                        <b>accepted:</b> <code>true</code> if the user accepted the change;
 <code>false</code> otherwise.
                                                     
                                                 
@@ -866,8 +1010,8 @@ will be cleared.
                                        
                             
                             
-                            <p>Sets the user's status. A dialog will be presented to the user to allow
-or deny the change.</p>
+                            <p>Sets the user's status. A dialog appears and allows the user to accept
+or cancel the change.</p>
                             <br />
                             
                             
@@ -913,7 +1057,7 @@ or deny the change.</p>
                                             <td><b>message</b></td>
                                             <td>
                                                 
-                                                The optional status message. If not provided then the default message of
+                                                The optional status message. If not provided, the default message of
 either "Available" or "Busy" will be used.                         
                                                 
                                             </td>
@@ -924,12 +1068,12 @@ either "Available" or "Busy" will be used.
                                             <td><b>onComplete</b></td>
                                             <td>
                                                 
-                                                Invoked when the user has dismissed the dialog.                         
+                                                Invoked if the user dismissed the dialog.                         
                                                 
                                                     <br />
                                                     
                                                         <br />
-                                                        <b>accepted:</b> <code>true</code> if the user allowed the change;
+                                                        <b>accepted:</b> <code>true</code> if the user accepted the change;
 <code>false</code> otherwise.
                                                     
                                                 
@@ -960,9 +1104,9 @@ either "Available" or "Busy" will be used.
 // Set the user's status and status message
 blackberry.bbm.platform.self.setStatus("busy", "Playing Tic-Tac-Toe!", function (accepted) {
     if(accepted) {
-        // User allowed the change
+        // User accepted the change
     } else {
-        // User denied the change
+        // User canceled the change
     }
 });
 &lt;/script&gt;</pre></code></td></tbody></table>
@@ -994,7 +1138,7 @@ blackberry.bbm.platform.self.setStatus("busy", "Playing Tic-Tac-Toe!", function 
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 22 2012 15:53:36 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 22 2012 16:09:07 GMT-0500 (EST)
         </div>
 
     </div>
