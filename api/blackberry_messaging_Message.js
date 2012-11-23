@@ -82,7 +82,7 @@ blackberry.message.Message.STATUS_SENT = 2;
 * @BB50+
 * @RIPPLE
 */
-blackberry.message.Message.STATUS_ERROR_OCCURED = 3;
+blackberry.message.Message.STATUS_ERROR_OCCURRED = 3;
 
 /**
 * Constant representing a HIGH priority 
