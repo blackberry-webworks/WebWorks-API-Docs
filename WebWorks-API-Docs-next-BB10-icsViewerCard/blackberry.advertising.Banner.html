@@ -1,0 +1,1259 @@
+
+
+<section  class="page_container references">
+	<div class="row">
+        <nav class="column grid_4 side-navigation" id="side-nav-api" role="navigation">
+            <div id="sticky-anchor"> </div>
+            <div class="side-nav-wrapper" id="sticky">
+                <div class="side-nav-content clearfix" id="none">
+                    <div class="side-nav-section clearfix" id="side-nav-title">
+                        <h3>API Reference</h3>
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-parents"> 
+                    </div>
+                    <div class="side-nav-section clearfix" id="side-nav-filter"> 
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-children"> 
+                    </div>
+                </div>
+            </div>
+            <div class="side-navspacer-bottom"> </div>
+        </nav>
+
+        <div class="column grid_8">
+                <div class="row">
+                    <article id="main" class="column grid_8" role="main">
+                        
+
+<section>
+
+    <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
+                    }
+                }
+            }
+
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload,
+                        newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
+
+        function viewSupportedTable() {
+            var table = document.getElementById('APISupportTable');
+            if (table != null && table.style.display != 'inline') {
+                table.style.display = 'inline';
+            }
+            else {
+                table.style.display = 'none';
+            }
+        }
+
+    </script>
+    
+    <style type="text/css">
+
+        .apiYes {
+            background-color: #D1F8FB;
+        }
+        
+        .tdNoWrap {
+            white-space:nowrap;
+        }
+        
+        .APISupportTable {
+            display:none;
+        }
+    </style>
+
+    <div>
+
+
+        <h1>
+            
+                Banner
+            
+        </h1>
+
+
+        
+            <p>
+                The Banner object is an advertising banner that will be created and automatically added into a specified div in your html.
+
+
+                
+            </p>
+        
+
+
+        
+            
+                
+                    <div class="notice warning">                        
+                        <span><b>Please Note:</b></span>
+                        <p>
+Minimum requirement is BlackBerry&reg; WebWorks SDK 2.1.<br>
+Set access to "blackberry.advertising" and "www.blackberry.com" in the app config.xml
+<br> <br>
+<code>
+&lt;xml version="1.0" encoding="UTF-8" ?&gt; <br>
+&lt;widget xmlns="http://www.w3.org/ns/widgets" xmlns:rim="http://www.blackberry.com/ns/widgets" version="2.1" rim:header="RIM-Widget: rim/widget"&gt; <br>
+  &nbsp;&nbsp;&nbsp;&lt;access subdomains="true" uri="http://www.blackberry.com/"&gt; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;feature id="blackberry.advertising" required="true" version="1.0.0" /&gt; <br>
+  &nbsp;&nbsp;&nbsp;&lt;/access&gt; <br>
+  &nbsp;&nbsp;&nbsp;&lt;accesss subdomains="true" uri="*" /&gt; <br>
+&lt;/widget&gt; <br>
+</code></p>
+                    </div>
+                
+            
+            <br />
+        
+
+
+        
+            <div class="notice warning">                
+                <span><b>Beta Notice:</b></span>
+                <p>
+                    This API is considered to be in Beta.
+                    The function and property signatures listed below could change at anytime.
+                    Once the API moves out of Beta it will be distributed as part of the core API.
+                    <br /><br />
+                    
+                        <a href="https://adservices.blackberry.com/register">Sign up</a> for the BlackBerry&reg; Advertising Service <br>
+<a href="https://developer.blackberry.com/html5/documentation/overview_webworks_1122006_11.html"> Development Guide - Advertising Service for BlackBerry WebWorks </a>
+                    
+                    <br /><br />
+                    <i>Last Updated: Mon Nov 26 2012 14:05:52 GMT-0500 (EST)</i>
+                </p>
+            </div>
+        
+
+
+        
+
+
+        
+            <div class="ref-sect ref-index">
+                <div class="ref-sect-title">
+                    <h2>Supported Platform(s)</h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table>
+                            <tbody>
+                            
+                                <tr><td>- BlackBerry OS 6.0+</td></tr>
+                            
+                            </tbody>
+                        </table>
+                    
+                    <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
+                    <div class="APISupportTable" id="APISupportTable">
+                        <table class="apiTable">
+                            <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                            
+                                
+                                    <tr x-ww-support="bb_menu">
+                                        <td>
+                                            <a href="blackberry.advertising.Banner.html">blackberry.advertising.Banner</a>
+                                            <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                        </td>
+                                    </tr>
+                                
+                            
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html#bannerTransitions">bannerTransitions</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html#focusBorderColor">focusBorderColor</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html#focusBorderWidth">focusBorderWidth</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html#metadata">metadata</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html#mmaSize">mmaSize</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html#placeholder">placeholder</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html#refreshRate">refreshRate</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+
+
+        <div class="ref-sect ref-index">
+            <div class="ref-sect-title">
+                <h2>Configuration Document Settings</h2>
+            </div>
+            <div class="ref-sect-content">
+                <table><tbody>
+                    <tr><td>
+                        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
+                    </td></tr>
+                    
+                        <tr><td>
+                            <p>You must declare the feature element(s) below in your configuration document:</p>
+                        </td></tr></tbody></table>
+                    <table>
+                        <thead><tr><th>Feature ID</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                        
+                            
+                            
+                                
+                            
+                            <tr x-ww-support="bb_menu"><td>
+                                &lt;feature id="blackberry.advertising" /&gt;
+                                <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                            </td></tr>
+                        
+                    </table>
+                
+
+                <div x-ww-support="pb_menu|bb10_menu">
+                    
+                    <table>
+                        <tr>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
+                        </tr>
+                        
+                            <tr><td>
+                                This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+                            </td></tr>
+                            <br />
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        
+        
+
+
+<div>
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
+                <div class="ref-sect-title">
+                    <h2> Constructors </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html">blackberry.advertising.Banner</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
+                <div class="ref-sect-title">
+                    <h2> Properties </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            Boolean
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html#bannerTransitions">bannerTransitions</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html#focusBorderColor">focusBorderColor</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html#focusBorderWidth">focusBorderWidth</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            JSON
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html#metadata">metadata</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html#mmaSize">mmaSize</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html#placeholder">placeholder</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.advertising.Banner.html#refreshRate">refreshRate</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+        
+        
+    
+
+    
+</div>
+
+
+
+        
+        
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Constructors</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".Banner"></a>
+                 
+                            
+                            
+                                
+                                    blackberry.advertising.Banner
+                                    
+                                        (zoneId : Number, divId : String, <i>[properties : JSON]</i>)
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Creates a new Banner Object with the given properties and automatically inserts it into the div with the specified id.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 6.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>zoneId</b></td>
+                                            <td>
+                                                
+                                                The Zone Id given to the developer by the BlackBerry Advertising Service on registration.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>divId</b></td>
+                                            <td>
+                                                
+                                                The id attribute of the div tag to which the banner will be inserted.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>properties</b></td>
+                                            <td>
+                                                
+                                                A set of options to further customize the advertising banner.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>bannerTransitions:</b> Sets the <a href="blackberry.advertising.Banner.html#bannerTransitions">bannerTransitions</a> property.
+                                                    
+                                                        <br />
+                                                        <b>focusBorderColor:</b> Sets the <a href="blackberry.advertising.Banner.html#focusBorderColor">focusBorderColor</a> property.
+                                                    
+                                                        <br />
+                                                        <b>focusBorderWidth:</b> Sets the <a href="blackberry.advertising.Banner.html#focusBorderWidth">focusBorderWidth</a> property.
+                                                    
+                                                        <br />
+                                                        <b>metadata:</b> Sets the <a href="blackberry.advertising.Banner.html#metadata">metadata</a> property.
+                                                    
+                                                        <br />
+                                                        <b>mmaSize:</b> Sets the <a href="blackberry.advertising.Banner.html#mmaSize">mmaSize</a> property.
+                                                    
+                                                        <br />
+                                                        <b>placeholder:</b> Sets the <a href="blackberry.advertising.Banner.html#placeholder">placeholder</a> property.
+                                                    
+                                                        <br />
+                                                        <b>refreshRate:</b> Sets the <a href="blackberry.advertising.Banner.html#refreshRate">refreshRate</a> property.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>Include Advertising SDK JavaScript and API code into all the HTML pages as shown below:
+Example 1:
+
+&lt;script type="text/javascript" src="http://www.blackberry.com/app_includes/asdk/adBanner.js"&gt;&lt;/script&gt;
+ 
+&lt;center&gt; &lt;div id='bannerDiv'&gt;     &lt;/div&gt; &lt;/center&gt;
+
+&lt;script type="text/javascript"&gt;
+  //Adding Banner with default Banner properties
+ var banner1 = new blackberry.advertising.Banner(31848, "bannerDiv");   
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+        <table><tbody><td class="code"><code><pre>Example 2: 
+&lt;script type="text/javascript" src="http://www.blackberry.com/app_includes/asdk/adBanner.js"&gt;&lt;/script&gt;
+ 
+&lt;center&gt; &lt;div id='bannerDiv'&gt;     &lt;/div&gt; &lt;/center&gt;
+
+&lt;script type="text/javascript"&gt;
+ //Adding Banner with custom Banner properties
+ var banner1 = new blackberry.advertising.Banner(31848, "bannerDiv", {"bannerTransitions" : true,
+                                                                "mmaSize" : "extralarge",
+                                                                "focusBorderColor" : "blue",
+                                                                "focusBorderWidth" : "2px",
+                                                                "refreshRate" : 6000,
+                                                                "placeholder" : "http://test.com/placeholder.jpg"},
+                                                                "metadata": {"age" : "12",
+                                                                             "gender" : "male",
+                                                                             "city" : "SanFrancisco"}
+                                                               };
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Properties</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="bannerTransitions"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        Boolean
+                                        
+                                        
+                                            bannerTransitions
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Determines whether banner transitions will be enabled.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 6.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+                                <br />
+                                <span><b>Default Value:</b></span>
+                                <p> false </p>
+                                <br />
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="focusBorderColor"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        String
+                                        
+                                        
+                                            focusBorderColor
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Specifies the focus border colour of the Advertising Banner. Both RGB (ie #667766) and colour names (ie blue) are valid.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 6.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+                                <br />
+                                <span><b>Default Value:</b></span>
+                                <p> 'blue' </p>
+                                <br />
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="focusBorderWidth"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        String
+                                        
+                                        
+                                            focusBorderWidth
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Sets the border width of the banner when focused.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 6.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+                                <br />
+                                <span><b>Default Value:</b></span>
+                                <p> '2px' </p>
+                                <br />
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="metadata"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        JSON
+                                        
+                                        
+                                            metadata
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Specify the metadata (key/value pairs) for more targeted Advertisement.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 6.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="mmaSize"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        String
+                                        
+                                        
+                                            mmaSize
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Specify the size of the banner. Should be one of;
+<ul>
+<li>"small"</li>
+<li>"medium"</li>
+<li>"large"</li>
+<li>"extralarge"</li>
+<li>"extraextralarge"</li>
+<li>"auto"</li>
+</ul></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 6.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+                                <br />
+                                <span><b>Default Value:</b></span>
+                                <p> "auto" </p>
+                                <br />
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="placeholder"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        String
+                                        
+                                        
+                                            placeholder
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Set temporary place holder URL for the banner.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 6.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="refreshRate"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        Number
+                                        
+                                        
+                                            refreshRate
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Set the banner refresh time in miliseconds. The timer cannot be set to less than 60000 ms.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 6.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+                                <br />
+                                <span><b>Default Value:</b></span>
+                                <p> 60000 </p>
+                                <br />
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+    
+    
+
+
+
+
+
+        <div >
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Mon Nov 26 2012 14:05:52 GMT-0500 (EST)
+        </div>
+
+    </div>
+</section>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
