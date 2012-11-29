@@ -6,7 +6,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <title>
-        ContactPhoto - BlackBerry WebWorks
+        MediaPlayerOptions - BlackBerry WebWorks
     </title>
 
     <script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/pagehead.min.js"></script>
@@ -132,56 +132,20 @@
 
         <h1>
             
-                ContactPhoto
+                MediaPlayerOptions
             
         </h1>
 
 
         
             <p>
-                The ContactPhoto object contains the address information of a Contact object.
+                The MediaPlayerOptions object contains options that are passed into <a href="blackberry.invoke.card.html#.invokeMediaPlayer">blackberry.invoke.card.invokeMediaPlayer</a>().
 
 
                 
                     <div x-ww-support="bb10_menu">
                     
                 
-
-    <br />
-    <b>Code Example:</b>
-    
-        <table><tbody><td class="code"><code><pre>function createContact() {
-    var contacts = blackberry.pim.contacts;
-
-    // access_shared permission is needed to access shared folder
-    var primaryPhoto = {
-        originalFilePath: blackberry.io.sharedFolder + "/photos/contact.jpg",
-        pref: true
-    };
-    var secondaryPhoto = {
-        originalFilePath: blackberry.io.sharedFolder + "/photos/other.jpg",
-        pref: false
-    };
-
-    var newContact = contacts.create();
-    newContact.name = {
-        "givenName": "Lisa",
-        "familyName": "Simpson"
-    };
-    newContact.photos = [primaryPhoto, secondaryPhoto];
-
-    newContact.save(onSaveSuccess, onSaveError);
-}
-
-function onSaveSuccess(contact) {
-    alert("Contact saved: " + contact.name.givenName);
-    alert("Small primary photo: " + contact.photos[0].smallFilePath);
-}
-
-function onSaveError(error) {
-    alert("Contact save failed: " + error.code);
-}</pre></code></td></tbody></table>
-    
   
 
                     </div>
@@ -225,7 +189,7 @@ function onSaveError(error) {
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactPhoto.html#largeFilePath">largeFilePath</a>
+                                        <a href="blackberry.invoke.card.MediaPlayerOptions.html#contentTitle">contentTitle</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -237,7 +201,7 @@ function onSaveError(error) {
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactPhoto.html#originalFilePath">originalFilePath</a>
+                                        <a href="blackberry.invoke.card.MediaPlayerOptions.html#contentUri">contentUri</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -249,19 +213,7 @@ function onSaveError(error) {
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactPhoto.html#pref">pref</a>
-                                        <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="bb10_menu">
-                                    <td>
-                                        <a href="blackberry.pim.contacts.ContactPhoto.html#smallFilePath">smallFilePath</a>
+                                        <a href="blackberry.invoke.card.MediaPlayerOptions.html#imageUri">imageUri</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -288,27 +240,9 @@ function onSaveError(error) {
                         <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
                     </td></tr>
                     
-                        <tr><td>
-                            <p>You must declare the feature element(s) below in your configuration document:</p>
-                        </td></tr></tbody></table>
-                    <table>
-                        <thead><tr><th>Feature ID</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
-                        
-                            
-                            
-                                
-                            
-                            <tr x-ww-support="bb10_menu"><td>
-                                &lt;feature id="blackberry.pim.contacts" /&gt;
-                                <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
-                            </td></tr>
-                        
-                    </table>
+                    <tr><td>
+                        This API does not require a &lt;feature&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+                    </td></tr></tbody></table>
                 
 
                 <div x-ww-support="pb_menu|bb10_menu">
@@ -362,7 +296,7 @@ function onSaveError(error) {
                                         
                                     </td>
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactPhoto.html#largeFilePath">largeFilePath</a>
+                                        <a href="blackberry.invoke.card.MediaPlayerOptions.html#contentTitle">contentTitle</a>
                                         
                                     </td>
                                 </tr>
@@ -374,19 +308,7 @@ function onSaveError(error) {
                                         
                                     </td>
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactPhoto.html#originalFilePath">originalFilePath</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                                <tr x-ww-support="bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            Boolean
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.pim.contacts.ContactPhoto.html#pref">pref</a>
+                                        <a href="blackberry.invoke.card.MediaPlayerOptions.html#contentUri">contentUri</a>
                                         
                                     </td>
                                 </tr>
@@ -398,7 +320,7 @@ function onSaveError(error) {
                                         
                                     </td>
                                     <td>
-                                        <a href="blackberry.pim.contacts.ContactPhoto.html#smallFilePath">smallFilePath</a>
+                                        <a href="blackberry.invoke.card.MediaPlayerOptions.html#imageUri">imageUri</a>
                                         
                                     </td>
                                 </tr>
@@ -444,18 +366,18 @@ function onSaveError(error) {
                 
                     <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name="largeFilePath"></a>
+                            <a name="contentTitle"></a>
                  
                             
                             
                                 
                                     
                                                       
-                                        readonly
+                                        
                                         String
                                         
                                         
-                                            largeFilePath
+                                            contentTitle
                                             
                                                                   
                                     
@@ -474,7 +396,7 @@ function onSaveError(error) {
                                        
                             
                             
-                            <p>Contains the large photo file path</p>
+                            <p>The title to be displayed in the media player title field.</p>
                             <br />
                             
                             
@@ -515,7 +437,7 @@ function onSaveError(error) {
                 
                     <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name="originalFilePath"></a>
+                            <a name="contentUri"></a>
                  
                             
                             
@@ -526,7 +448,7 @@ function onSaveError(error) {
                                         String
                                         
                                         
-                                            originalFilePath
+                                            contentUri
                                             
                                                                   
                                     
@@ -545,7 +467,7 @@ function onSaveError(error) {
                                        
                             
                             
-                            <p>Contains the file path of the original contact photo.</p>
+                            <p>The URL for the content to be played.</p>
                             <br />
                             
                             
@@ -586,7 +508,7 @@ function onSaveError(error) {
                 
                     <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
-                            <a name="pref"></a>
+                            <a name="imageUri"></a>
                  
                             
                             
@@ -594,81 +516,10 @@ function onSaveError(error) {
                                     
                                                       
                                         
-                                        Boolean
-                                        
-                                        
-                                            pref
-                                            
-                                                                  
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                                
-                                <br />
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p>If true, this ContactPhoto contains the user's preferred value.</p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
-                                    <thead><tr><th colspan="2">
-                                        Supported Platforms
-                                    </th></tr></thead>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
-                                               
-
-                            
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-  
-
-                        </div>
-                    </div>
-                
-                    <div class="detailed_item function" x-ww-support="bb10_menu">
-                        <h3>
-                            <a name="smallFilePath"></a>
-                 
-                            
-                            
-                                
-                                    
-                                                      
-                                        readonly
                                         String
                                         
                                         
-                                            smallFilePath
+                                            imageUri
                                             
                                                                   
                                     
@@ -687,7 +538,7 @@ function onSaveError(error) {
                                        
                             
                             
-                            <p>Contains the small photo file path.</p>
+                            <p>The image source URL that will be used to replace the default background image. This is useful if the content is audio type.</p>
                             <br />
                             
                             
@@ -742,7 +593,7 @@ function onSaveError(error) {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 29 2012 16:23:46 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 29 2012 16:23:50 GMT-0500 (EST)
         </div>
 
     </div>
