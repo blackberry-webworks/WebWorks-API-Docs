@@ -45,23 +45,31 @@
             }
 
             function runFilter() {
-                var filter = localStorage.getItem('selectedmenu');
-                var elements = getDesiredElements(document.body, 'x-ww-support');
-                for (var i = 0; i < elements.length; i++) {
-                    var target = elements[i];
-                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
-                    if (x_ww_support.indexOf(filter) < 0) {
-                        target.style.display = 'none';
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
                     }
                 }
             }
-            
+
             if(window.attachEvent) {
                 window.attachEvent('onload', runFilter);
             } else {
                 if(window.onload) {
-                    var curronload = window.onload;
-                    var newonload = function() {
+                    var curronload = window.onload,
+                        newonload = function() {
                         curronload();
                         runFilter();
                     };
@@ -118,6 +126,41 @@
 
 
                 
+                    <div x-ww-support="bb10_menu">
+                    
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>function createContact() {
+    var contacts = blackberry.pim.contacts;
+
+    var name = {
+        "givenName": "John",
+        "familyName": "Smith"
+    };
+
+    var newContact = contacts.create();
+    newContact.name = name;
+
+    newContact.save(onSaveSuccess, onSaveError);
+
+    alert("Contact first name: " + newContact.name.givenName);
+}
+
+function onSaveSuccess(contact) {
+    alert("Contact saved: " + contact.name.givenName);
+}
+
+function onSaveError(error) {
+    alert("Contact save failed: " + error.code);
+}</pre></code></td></tbody></table>
+    
+  
+
+                    </div>
+                
             </p>
         
 
@@ -153,20 +196,6 @@
                     <div class="APISupportTable" id="APISupportTable">
                         <table class="apiTable">
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
-                            
-                                
-                                    <tr x-ww-support="bb10_menu">
-                                        <td>
-                                            <a href="blackberry.pim.contacts.ContactName.html">blackberry.pim.contacts.ContactName</a>
-                                            <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
-                                        </td>
-                                    </tr>
-                                
                             
                             
                                 <tr x-ww-support="bb10_menu">
@@ -343,33 +372,6 @@
     
         
         
-            <br />
-            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
-                <div class="ref-sect-title">
-                    <h2> Constructors </h2>
-                </div>
-                <div class="ref-sect-content">
-                    
-                        <table><tbody>
-                            
-                                <tr x-ww-support="bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.pim.contacts.ContactName.html">blackberry.pim.contacts.ContactName</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                        </tbody></table>
-                    
-                    
-                </div>
-            </div>
-        
     
         
         
@@ -519,135 +521,6 @@
         
 
     
-    
-        <div class="ref-sect">
-            <div class="ref-sect-title clearfix">
-                <h2>Constructors</h2>
-            </div>
-            <div class="ref-sect-content">
-                
-                    <div class="detailed_item function" x-ww-support="bb10_menu">
-                        <h3>
-                            <a name=".ContactName"></a>
-                 
-                            
-                            
-                                
-                                    blackberry.pim.contacts.ContactName
-                                    
-                                        (<i>[properties : Object]</i>)
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p></p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
-                                    <thead><tr><th colspan="2">
-                                        Supported Platforms
-                                    </th></tr></thead>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
-                            
-                                <br />
-                                <table>
-                                    <thead><tr><th colspan="2">
-                                        Parameters
-                                    </th></tr></thead>
-                                                   
-                                    
-                                        
-                                        <tr>
-                                            <td><b>properties</b></td>
-                                            <td>
-                                                
-                                                Optional object literal that specifies the field values for the ContactName object. The object should be in the following form (with any number of properties): <br><pre>
-{
-     familyName: &lt;family name of the contact - String&gt;,
-     givenName: &lt;given name of the contact - String&gt;,
-     middleName: &lt;middle name of the contact - String&gt;,
-     honorificPrefix: &lt;prefix of the contact - String&gt;,
-     honorificSuffix: &lt;suffix of the contact - String&gt;,
-     alias: &lt;alias of the contact - String&gt;,
-     phoneticGivenName: &lt;phonetic given name of the contact - String&gt;,
-     phoneticFamilyName: &lt;phonetic family name of the contact - String&gt;
-}
-</pre>                         
-                                                
-                                            </td>
-                                        </tr>
-                                                  
-                                </table>
-                                               
-
-                            
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-
-    <br />
-    <b>Code Example:</b>
-    
-        <table><tbody><td class="code"><code><pre>function createContact() {
-    var contacts = blackberry.pim.contacts;
-
-    var name = new contacts.ContactName({
-            "givenName": "John",
-            "familyName": "Smith"
-        });
-
-    var newContact = contacts.create();
-    newContact.name = name;
-
-    newContact.save(onSaveSuccess, onSaveError);
-
-    alert("Contact first name: " + newContact.name.givenName);
-}
-
-function onSaveSuccess(contact) {
-    alert("Contact saved: " + contact.name.givenName);
-}
-
-function onSaveError(error) {
-    alert("Contact save failed: " + error.code);
-}</pre></code></td></tbody></table>
-    
-  
-
-                        </div>
-                    </div>
-                
-            </div>
-        </div>
     
 
     
@@ -1319,7 +1192,7 @@ function onSaveError(error) {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 08 2012 01:20:35 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 29 2012 13:24:12 GMT-0500 (EST)
         </div>
 
     </div>

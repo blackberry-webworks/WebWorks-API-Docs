@@ -62,23 +62,31 @@
             }
 
             function runFilter() {
-                var filter = localStorage.getItem('selectedmenu');
-                var elements = getDesiredElements(document.body, 'x-ww-support');
-                for (var i = 0; i < elements.length; i++) {
-                    var target = elements[i];
-                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
-                    if (x_ww_support.indexOf(filter) < 0) {
-                        target.style.display = 'none';
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
                     }
                 }
             }
-            
+
             if(window.attachEvent) {
                 window.attachEvent('onload', runFilter);
             } else {
                 if(window.onload) {
-                    var curronload = window.onload;
-                    var newonload = function() {
+                    var curronload = window.onload,
+                        newonload = function() {
                         curronload();
                         runFilter();
                     };
@@ -165,7 +173,7 @@
                         
                     
                     <br /><br />
-                    <i>Last Updated: Thu Nov 08 2012 01:20:34 GMT-0500 (EST)</i>
+                    <i>Last Updated: Thu Nov 29 2012 13:24:11 GMT-0500 (EST)</i>
                 </p>
             </div>
         
@@ -210,6 +218,18 @@
                                 <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.invoke.card.html#.invokeFilePicker">blackberry.invoke.card.invokeFilePicker</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.invoke.card.html#.invokeMediaPlayer">blackberry.invoke.card.invokeMediaPlayer</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -569,6 +589,18 @@
                                     </td>
                                     <td>
                                         <a href="blackberry.invoke.card.html#.invokeFilePicker">blackberry.invoke.card.invokeFilePicker</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.invoke.card.html#.invokeMediaPlayer">blackberry.invoke.card.invokeMediaPlayer</a>
                                         
                                     </td>
                                 </tr>
@@ -958,7 +990,7 @@
                                             <td><b>onSave</b></td>
                                             <td>
                                                 
-                                                The callback function that will be triggerd if the user saves a picture or video.                         
+                                                The callback function that will be triggered if the user saves a picture or video.                         
                                                 
                                                     <br />
                                                     
@@ -1127,7 +1159,7 @@ function invokeCameraCard() {
                                             <td><b>onDone</b></td>
                                             <td>
                                                 
-                                                The callback function that will be triggerd if the user selects file(s) or folder(s).                         
+                                                The callback function that will be triggered if the user selects file(s) or folder(s).                         
                                                 
                                                     <br />
                                                     
@@ -1333,6 +1365,206 @@ function invokeFileInPickerMode12() {
           defaultType: blackberry.invoke.card.FILEPICKER_TYPE_DOCUMENT
       };
   invokeFilePicker(details);
+}
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".invokeMediaPlayer"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.invoke.card.invokeMediaPlayer
+                                            
+                                                
+                                                    (options : <a href="blackberry.invoke.card.MediaPlayerOptions.html">blackberry.invoke.card.MediaPlayerOptions</a>, onDone: function(<i>[data: String]</i>), onCancel: function(<i>[reason: String]</i>), onInvoke: function(<i>[error: String]</i>))
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invokes the MediaPlayer Card.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                An object to type <a href="blackberry.invoke.card.MediaPlayerOptions.html">blackberry.invoke.card.MediaPlayerOptions</a> describe all the options available for meida player.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onDone</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered when the user finished with the media player.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>data:</b>  The data string back from the media player.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onCancel</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered if the user cancel the media player.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>reason:</b>  A String that describes the reason the MediaPlayer was cancelled.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onInvoke</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered when the media player is invoked.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>error:</b>  A String that describes if there was an error. No error will be returned on success.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+//invoke the mediaPlayer Card
+function invokeMediaPlayer(options) {
+  blackberry.invoke.card.invokeMediaPlayer(options, function (data) {
+      alert("Done: "+ data);
+    },
+    function (reason) {
+      alert("cancelled: " + reason);
+    },
+    function (error) {
+      if (error) {
+        alert("invoke error "+ error);
+      } else {
+        console.log("invoke success");
+      }
+    }
+  );
+}
+
+
+//Invoke media player with the only title set.
+function invokeMediaPlayerWithTitle() {
+  var options = {
+    contentTitle: "Just Title",
+  };
+
+  invokeMediaPlayer(options);
+}
+
+//Invoke media player with title and video.
+function invokeMediaPlayerTitleAndVideo() {
+  var options = {
+    contentTitle: "My First Record",
+    contentUri: "file:///accounts/1000/shared/camera/VID_00000001.mp4"
+  };
+
+  invokeMediaPlayer(options);
+}
+
+//Invoke media player with title, audio and a background image.
+function invokeMediaPlayerTitleAudioAndImage() {
+  var options = {
+    contentTitle: "My First Record",
+    contentUri: "file:///accounts/1000/shared/camera/AUD_00000001.m4a,
+    imageUri: "local:///Background4MediaPlayerAudio.jpg"
+  };
+
+  invokeMediaPlayer(options);
 }
 
 &lt;/script&gt;</pre></code></td></tbody></table>
@@ -2948,7 +3180,7 @@ function invokeFileInPickerMode12() {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 08 2012 01:20:34 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 29 2012 13:24:11 GMT-0500 (EST)
         </div>
 
     </div>

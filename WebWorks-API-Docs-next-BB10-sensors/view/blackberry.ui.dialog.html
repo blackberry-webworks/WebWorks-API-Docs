@@ -62,23 +62,31 @@
             }
 
             function runFilter() {
-                var filter = localStorage.getItem('selectedmenu');
-                var elements = getDesiredElements(document.body, 'x-ww-support');
-                for (var i = 0; i < elements.length; i++) {
-                    var target = elements[i];
-                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
-                    if (x_ww_support.indexOf(filter) < 0) {
-                        target.style.display = 'none';
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
                     }
                 }
             }
-            
+
             if(window.attachEvent) {
                 window.attachEvent('onload', runFilter);
             } else {
                 if(window.onload) {
-                    var curronload = window.onload;
-                    var newonload = function() {
+                    var curronload = window.onload,
+                        newonload = function() {
                         curronload();
                         runFilter();
                     };
@@ -257,14 +265,26 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|ripple">
                                     <td>
-                                        <a href="blackberry.ui.dialog.html#.standardAskAsync">blackberry.ui.dialog.standardAskAsync</a>
+                                        <a href="blackberry.ui.dialog.html#.standardAskAsync^2">blackberry.ui.dialog.standardAskAsync</a>
                                         <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
 <td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.dialog.html#.standardAskAsync">blackberry.ui.dialog.standardAskAsync</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
 <td class="apiYes">Y</td><td class="apiYes">Y</td>
                                     </td>
                                 </tr>
@@ -677,7 +697,19 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
+                                <tr x-ww-support="bb_menu|pb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.dialog.html#.standardAskAsync^2">blackberry.ui.dialog.standardAskAsync</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
                                     <td class="first_column">
                                         
                                             void
@@ -1849,9 +1881,9 @@
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu|ripple|common">
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|ripple">
                         <h3>
-                            <a name=".standardAskAsync"></a>
+                            <a name=".standardAskAsync^2"></a>
                  
                             
                             
@@ -1866,7 +1898,7 @@
                                             blackberry.ui.dialog.standardAskAsync
                                             
                                                 
-                                                    (message : String, type : Number, <i>[onOptionSelected: function(<i>[index: Number]</i>, <i>[promptText: String]</i>)]</i>, <i>[settings : Object]</i>)
+                                                    (message : String, type : Number, <i>[onOptionSelected: function(<i>[index: Number]</i>)]</i>, <i>[settings : Object]</i>)
                                                 
                                             
                                                                   
@@ -1886,7 +1918,7 @@
                                        
                             
                             
-                            <p>Creates an asynchronous standard dialog to ask the user a question. <br/>Uses the standard dialog. The function is an asynchronous call and will not block execution. It will return the 0-based index of the user's choice.<br/> NOTE: function is only implemented for Ripple emulation on Playbook.</p>
+                            <p>Creates an asynchronous standard dialog to ask the user a question. <br/>Uses the standard dialog. The function is an asynchronous call and will not block execution. It will return the 0-based index of the user's choice. <br/> NOTE: function is only implemented for Ripple emulation on Playbook.</p>
                             <br />
                             
                             
@@ -1902,10 +1934,6 @@
                                     
                                         <tr><td></td><td>
                                             &nbsp;- BlackBerry PlayBook 1.0+
-                                        </td></tr>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
                                         </td></tr>
                                     
                                         <tr><td></td><td>
@@ -1957,9 +1985,6 @@
                                                         <br />
                                                         <b>index:</b>  The index of the selection the user has made.
                                                     
-                                                        <br />
-                                                        <b>promptText:</b>  The element for entered text. Returns the user's entered string.(Option only used for select dialogs: D_PROMPT). <br/><br/>NOTE: Callback 'promptText', is only implemented on BB10.
-                                                    
                                                 
                                             </td>
                                         </tr>
@@ -1985,8 +2010,155 @@
                                                         <br />
                                                         <b>global:</b> Specifies the global flag of the dialog window. (Your application cannot be minimized when the dialog global setting is set to true and when any dialog window is open). By default this parameter is false when not specified.
                                                     
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;function dialogCallBack(index){  alert(index);}function standardDialog() {  try {    blackberry.ui.dialog.standardAskAsync("Save?", blackberry.ui.dialog.D_SAVE, dialogCallBack, {title : "Save Dialog", size: blackberry.ui.dialog.SIZE_MEDIUM, position : blackberry.ui.dialog.BOTTOM});  }catch (e) {    alert("Exception in standardDialog: " + e);  }}&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".standardAskAsync"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.ui.dialog.standardAskAsync
+                                            
+                                                
+                                                    (message : String, type : Number, <i>[onOptionSelected: function(<i>[return: String]</i>, <i>[promptText: String]</i>)]</i>, <i>[settings : Object]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Creates an asynchronous standard dialog to ask the user a question. <br/>Uses the standard dialog. The function is an asynchronous call and will not block execution. It will return an object containing the selected button, and the input values.<br/> NOTE: function is only implemented for Ripple emulation on Playbook.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>message</b></td>
+                                            <td>
+                                                
+                                                Message to be displayed in the dialog.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>type</b></td>
+                                            <td>
+                                                
+                                                Parameter that specifies the type of standard dialog. Constants starting with D_*.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onOptionSelected</b></td>
+                                            <td>
+                                                
+                                                 Optional callback function that will be invoked when the user makes a selection. Expected signature: function onOptionSelected(selectedButtonObject).                         
+                                                
+                                                    <br />
+                                                    
                                                         <br />
-                                                        <b>thirdOptionLabel:</b> Desired label for optional third button. (This option is only available for select dialogs: not available for D_PROMPT or D_OK). <br/><br/>NOTE: The parameters for 'size', 'position', and 'global' are NOT implemented for BB10. Also note 'third' parameter is only implemented in BB10.
+                                                        <b>return:</b>  The element for the selected button, returns a string based on users choice.
+                                                    
+                                                        <br />
+                                                        <b>promptText:</b>  The element for entered text. Returns the user's entered string. If cancel is selected set to null. (This property is only used for select dialogs: D_PROMPT). <br/><br/>Example returns for each dialog type:<ol>    <li>D_OK</li>    <ul>        <li>Ok selected: {return: "Ok"}</li>    </ul>    <li>D_SAVE</li>    <ul>         <li>Save selected: {return: "Save"}</li>         <li>Discard selected: {return: "Discard"}</li>    </ul>    <li>D_DELETE</li>    <ul>         <li>Delete selected: {return: "Delete"}</li>         <li>Cancel selected: {return: "Cancel"}</li>    </ul>    <li>D_YES_NO</li>    <ul>         <li>Yes selected: {return: "Yes"}</li>         <li>No selected: {return: "No"}</li>    </ul>    <li>D_OK_CANCEL</li>    <ul>         <li>Ok selected: {return: "Ok"}</li>         <li>Cancel selected: {return: "Cancel"}</li>    </ul>    <li>D_PROMPT</li>    <ul>         <li>Ok selected with input: {return: "Ok", promptText: "test input"}</li>         <li>Ok selected with empty input: {return: "Ok", promptText: null}</li>         <li>Cancel selected: {return: "Cancel", promptText: null}</li>    </ul></ol>
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>settings</b></td>
+                                            <td>
+                                                <i>[Default Value:  null]</i><p/>
+                                                Optional Object literal that allows the user to manipulate the title and optional buttons of the dialog. It is not required to provide all parameters, and these do not have to be specified in any particular order. <p> NOTE: The settings parameter applies only to PlayBook, Ripple, and BB10. On the other devices, it has no effect.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>title:</b> Desired title of the dialog.
                                                     
                                                 
                                             </td>
@@ -2012,7 +2184,7 @@
     <br />
     <b>Code Example:</b>
     
-        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;function dialogCallBack(index){  alert(index);}function standardDialog() {  try {    blackberry.ui.dialog.standardAskAsync("Save?", blackberry.ui.dialog.D_SAVE, dialogCallBack, {title : "Save Dialog"});  }catch (e) {    alert("Exception in standardDialog: " + e);  }}&lt;/script&gt;</pre></code></td></tbody></table>
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;function dialogCallBack(selection){  alert(selection.return);}function standardDialog() {  try {    blackberry.ui.dialog.standardAskAsync("Save?", blackberry.ui.dialog.D_SAVE, dialogCallBack, {title : "Save Dialog"});  }catch (e) {    alert("Exception in standardDialog: " + e);  }}&lt;/script&gt;</pre></code></td></tbody></table>
     
   
 
@@ -3792,7 +3964,7 @@
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 08 2012 01:20:36 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 29 2012 13:24:13 GMT-0500 (EST)
         </div>
 
     </div>

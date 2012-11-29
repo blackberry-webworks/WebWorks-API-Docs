@@ -62,23 +62,31 @@
             }
 
             function runFilter() {
-                var filter = localStorage.getItem('selectedmenu');
-                var elements = getDesiredElements(document.body, 'x-ww-support');
-                for (var i = 0; i < elements.length; i++) {
-                    var target = elements[i];
-                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
-                    if (x_ww_support.indexOf(filter) < 0) {
-                        target.style.display = 'none';
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
                     }
                 }
             }
-            
+
             if(window.attachEvent) {
                 window.attachEvent('onload', runFilter);
             } else {
                 if(window.onload) {
-                    var curronload = window.onload;
-                    var newonload = function() {
+                    var curronload = window.onload,
+                        newonload = function() {
                         curronload();
                         runFilter();
                     };
@@ -132,8 +140,57 @@
         
             <p>
                 The ContactAddress object contains the address information of a Contact object.
+</pre>
 
 
+                
+                    <div x-ww-support="bb10_menu">
+                    
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>function createContact() {
+    var contacts = blackberry.pim.contacts,
+        ContactAddress = contacts.ContactAddress;
+
+    var homeAddress = {
+             "type": ContactAddress.HOME,
+             "streetAddress": "123 Abc Rd",
+             "locality": "Waterloo",
+             "region": "Ontario",
+             "country": "Canada"
+       };
+    var workAddress = {
+             "type": ContactAddress.WORK,
+             "streetAddress": "456 Industry St",
+             "locality": "Waterloo",
+             "region": "Ontario",
+             "country": "Canada"
+        };
+
+    var newContact = contacts.create();
+    newContact.name = {
+        "givenName": "Bart",
+        "familyName": "Simpson"
+    };
+    newContact.addresses = [homeAddress, workAddress];
+
+    newContact.save(onSaveSuccess, onSaveError);
+}
+
+function onSaveSuccess(contact) {
+    alert("Contact saved: " + contact.name.givenName);
+}
+
+function onSaveError(error) {
+    alert("Contact save failed: " + error.code);
+}</pre></code></td></tbody></table>
+    
+  
+
+                    </div>
                 
             </p>
         
@@ -170,20 +227,6 @@
                     <div class="APISupportTable" id="APISupportTable">
                         <table class="apiTable">
                             <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
-                            
-                                
-                                    <tr x-ww-support="bb10_menu">
-                                        <td>
-                                            <a href="blackberry.pim.contacts.ContactAddress.html">blackberry.pim.contacts.ContactAddress</a>
-                                            <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
-                                        </td>
-                                    </tr>
-                                
                             
                             
                                 <tr x-ww-support="bb10_menu">
@@ -384,33 +427,6 @@
     
         
         
-            <br />
-            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
-                <div class="ref-sect-title">
-                    <h2> Constructors </h2>
-                </div>
-                <div class="ref-sect-content">
-                    
-                        <table><tbody>
-                            
-                                <tr x-ww-support="bb10_menu">
-                                    <td class="first_column">
-                                        
-                                            
-                                        
-                                    </td>
-                                    <td>
-                                        <a href="blackberry.pim.contacts.ContactAddress.html">blackberry.pim.contacts.ContactAddress</a>
-                                        
-                                    </td>
-                                </tr>
-                            
-                        </tbody></table>
-                    
-                    
-                </div>
-            </div>
-        
     
         
         
@@ -599,145 +615,6 @@
         
 
     
-    
-        <div class="ref-sect">
-            <div class="ref-sect-title clearfix">
-                <h2>Constructors</h2>
-            </div>
-            <div class="ref-sect-content">
-                
-                    <div class="detailed_item function" x-ww-support="bb10_menu">
-                        <h3>
-                            <a name=".ContactAddress"></a>
-                 
-                            
-                            
-                                
-                                    blackberry.pim.contacts.ContactAddress
-                                    
-                                        (<i>[properties : Object]</i>)
-                                    
-                                
-                            
-                            <br />
-                        </h3>
-                        <div class="detailed description">
-                            
-                            
-                    
-                            
-                                       
-                            
-                            
-                            <p></p>
-                            <br />
-                            
-                            
-                            
-                                <table>              
-                                    <thead><tr><th colspan="2">
-                                        Supported Platforms
-                                    </th></tr></thead>
-                                    
-                                        <tr><td></td><td>
-                                            &nbsp;- BlackBerry 10
-                                        </td></tr>
-                                    
-                                </table>              
-                                               
-                            <br />
-                            
-                            
-                            
-                                <br />
-                                <table>
-                                    <thead><tr><th colspan="2">
-                                        Parameters
-                                    </th></tr></thead>
-                                                   
-                                    
-                                        
-                                        <tr>
-                                            <td><b>properties</b></td>
-                                            <td>
-                                                
-                                                Optional object literal that specifies the field values for the ContactAddress object. The object should be in the following form (with any number of properties): <br><pre>
-{
-    type: &lt;type of address HOME, WORK, or OTHER - String&gt;,
-    streetAddress: &lt;the street address - String&gt;,
-    streetOther: &lt;extra information about street address - String&gt;,
-    locality: &lt;the city or locality - String&gt;,
-    region: &lt;the province, state, or region - String&gt;,
-    postalCode: &lt;the postal code or zip code - String&gt;,
-    country: &lt;the country name - String&gt;
-}
-</pre>                         
-                                                
-                                            </td>
-                                        </tr>
-                                                  
-                                </table>
-                                               
-
-                            
-                            
-                            
-
-                            
-                            
-                            
-                            
-                            
-
-                            
-                            
-                
-
-    <br />
-    <b>Code Example:</b>
-    
-        <table><tbody><td class="code"><code><pre>function createContact() {
-    var contacts = blackberry.pim.contacts,
-        ContactAddress = contacts.ContactAddress;
-
-    var homeAddress = new ContactAddress({
-            "type": ContactAddress.HOME,
-            "streetAddress": "123 Abc Rd",
-            "locality": "Waterloo",
-            "region": "Ontario",
-            "country": "Canada"
-        });
-    var workAddress = new ContactAddress({
-            "type": ContactAddress.WORK,
-            "streetAddress": "456 Industry St",
-            "locality": "Waterloo",
-            "region": "Ontario",
-            "country": Canada"
-        });
-
-    var newContact = contacts.create();
-    newContact.addresses = [homeAddress, workAddress];
-
-    newContact.save(onSaveSuccess, onSaveError);
-
-    alert("Home address: " + homeAddress.formatted);
-}
-
-function onSaveSuccess(contact) {
-    alert("Contact saved: " + contact.displayName);
-}
-
-function onSaveError(error) {
-    alert("Contact save failed: " + error.code);
-}</pre></code></td></tbody></table>
-    
-  
-
-                        </div>
-                    </div>
-                
-            </div>
-        </div>
     
 
     
@@ -1578,7 +1455,7 @@ function onSaveError(error) {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 08 2012 01:20:35 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 29 2012 13:24:11 GMT-0500 (EST)
         </div>
 
     </div>
