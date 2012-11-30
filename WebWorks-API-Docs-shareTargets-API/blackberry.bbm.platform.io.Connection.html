@@ -1,0 +1,2627 @@
+
+
+<section  class="page_container references">
+	<div class="row">
+        <nav class="column grid_4 side-navigation" id="side-nav-api" role="navigation">
+            <div id="sticky-anchor"> </div>
+            <div class="side-nav-wrapper" id="sticky">
+                <div class="side-nav-content clearfix" id="none">
+                    <div class="side-nav-section clearfix" id="side-nav-title">
+                        <h3>API Reference</h3>
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-parents"> 
+                    </div>
+                    <div class="side-nav-section clearfix" id="side-nav-filter"> 
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-children"> 
+                    </div>
+                </div>
+            </div>
+            <div class="side-navspacer-bottom"> </div>
+        </nav>
+
+        <div class="column grid_8">
+                <div class="row">
+                    <article id="main" class="column grid_8" role="main">
+                        
+
+<section>
+
+    <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
+                    }
+                }
+            }
+
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload,
+                        newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
+
+        function viewSupportedTable() {
+            var table = document.getElementById('APISupportTable');
+            if (table != null && table.style.display != 'inline') {
+                table.style.display = 'inline';
+            }
+            else {
+                table.style.display = 'none';
+            }
+        }
+
+    </script>
+    
+    <style type="text/css">
+
+        .apiYes {
+            background-color: #D1F8FB;
+        }
+        
+        .tdNoWrap {
+            white-space:nowrap;
+        }
+        
+        .APISupportTable {
+            display:none;
+        }
+    </style>
+
+    <div>
+
+
+        <h1>
+            
+                blackberry.bbm.platform.io.Connection
+            
+        </h1>
+
+
+        
+            <p>
+                The base interface for all connections. See <a href="blackberry.bbm.platform.io.Channel.html">blackberry.bbm.platform.io.Channel</a> and
+<a href="blackberry.bbm.platform.io.Session.html">blackberry.bbm.platform.io.Session</a> for more information on the respective connection types.
+
+
+                
+                    <div x-ww-support="bb_menu">
+                    
+                
+  
+
+                    </div>
+                
+            </p>
+        
+
+
+        
+            
+            <br />
+        
+
+
+        
+
+
+        
+
+
+        
+            <div class="ref-sect ref-index">
+                <div class="ref-sect-title">
+                    <h2>Supported Platform(s)</h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table>
+                            <tbody>
+                            
+                                <tr><td>- BlackBerry OS 5.0+</td></tr>
+                            
+                            </tbody>
+                        </table>
+                    
+                    <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
+                    <div class="APISupportTable" id="APISupportTable">
+                        <table class="apiTable">
+                            <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                            
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#add">add</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#inviteContacts">inviteContacts</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#remove">remove</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#removeAll">removeAll</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#send">send</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#id">id</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#joinedUsers">joinedUsers</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#pendingUsersCount">pendingUsersCount</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#MAX_USERS">MAX_USERS</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#MAX_COOKIE_LENGTH">MAX_COOKIE_LENGTH</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#MAX_INVITE_MSG_LENGTH">MAX_INVITE_MSG_LENGTH</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#MAX_DATA_LENGTH">MAX_DATA_LENGTH</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#event:ondata">ondata</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#event:onuserdeclined">onuserdeclined</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#event:onuserleft">onuserleft</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#event:onusersinvited">onusersinvited</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#event:onusersjoined">onusersjoined</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+
+
+        <div class="ref-sect ref-index">
+            <div class="ref-sect-title">
+                <h2>Configuration Document Settings</h2>
+            </div>
+            <div class="ref-sect-content">
+                <table><tbody>
+                    <tr><td>
+                        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
+                    </td></tr>
+                    
+                        <tr><td>
+                            <p>You must declare the feature element(s) below in your configuration document:</p>
+                        </td></tr></tbody></table>
+                    <table>
+                        <thead><tr><th>Feature ID</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                        
+                            
+                            
+                                
+                            
+                            <tr x-ww-support="bb_menu"><td>
+                                &lt;feature id="blackberry.bbm.platform" /&gt;
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                            </td></tr>
+                        
+                    </table>
+                
+
+                <div x-ww-support="pb_menu|bb10_menu">
+                    
+                    <table>
+                        <tr>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
+                        </tr>
+                        
+                            <tr><td>
+                                This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+                            </td></tr>
+                            <br />
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        
+        
+
+
+<div>
+    
+        
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
+                <div class="ref-sect-title">
+                    <h2> Functions </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#add">add</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#inviteContacts">inviteContacts</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#remove">remove</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#removeAll">removeAll</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#send">send</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
+                <div class="ref-sect-title">
+                    <h2> Events </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#event:ondata">ondata</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#event:onuserdeclined">onuserdeclined</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#event:onuserleft">onuserleft</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#event:onusersinvited">onusersinvited</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#event:onusersjoined">onusersjoined</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
+                <div class="ref-sect-title">
+                    <h2> Properties </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#id">id</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>[]
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#joinedUsers">joinedUsers</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#pendingUsersCount">pendingUsersCount</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
+                <div class="ref-sect-title">
+                    <h2> Constants </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#MAX_USERS">MAX_USERS</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#MAX_COOKIE_LENGTH">MAX_COOKIE_LENGTH</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#MAX_INVITE_MSG_LENGTH">MAX_INVITE_MSG_LENGTH</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.Connection.html#MAX_DATA_LENGTH">MAX_DATA_LENGTH</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+
+    
+</div>
+
+
+
+        
+        
+
+    
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Functions</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="add"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            add
+                                            
+                                                
+                                                    (user : blackberry.bbm.platform.user.BBMPlatformUser, <i>[cookie : String]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Adds a user, who has already joined a connection in this application, to this connection.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>user</b></td>
+                                            <td>
+                                                
+                                                The user to be added.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>cookie</b></td>
+                                            <td>
+                                                
+                                                A custom parameter provided by the third party application.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                           Throws
+                                    </th></tr></thead>
+                                    
+                                        <tr>
+                                            <td>
+                                                NullPointerException                                                
+                                            </td>
+                                            <td>
+                                                If <code>user</code> is null.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                IllegalArgumentException                                                
+                                            </td>
+                                            <td>
+                                                If <code>user</code> is not connected with the current user in any existing connections in this application.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                PersistentContentException                                                
+                                            </td>
+                                            <td>
+                                                If Content Protection is enabled and the device is locked.
+                                            </td>
+                                        </tr>
+                                    
+                                </table>
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="inviteContacts"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            inviteContacts
+                                            
+                                                
+                                                    (inviteMessage : String, <i>[options : Object]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Allows the user to invite contacts to join this connection.
+<p>A Contact Picker dialog appears and allows the user to select contacts to invite. Only
+contacts with the application will be shown in the Contact Picker.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>inviteMessage</b></td>
+                                            <td>
+                                                
+                                                Message shown in the invitation to users.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                Options.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>expiryTime:</b> Delay until the invitation expires (ms). If not provided
+or <code><= 0</code>, the invitation will not expire.
+                                                    
+                                                        <br />
+                                                        <b>cookie:</b> A custom parameter provided by the third party application. 
+e.g. The current game level. Max length of 128 characters.
+                                                    
+                                                        <br />
+                                                        <b>contacts:</b> The contacts that
+will be shown.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                           Throws
+                                    </th></tr></thead>
+                                    
+                                        <tr>
+                                            <td>
+                                                IllegalStateException                                                
+                                            </td>
+                                            <td>
+                                                If the connection is full.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                IllegalStateException                                                
+                                            </td>
+                                            <td>
+                                                If the connection is inactive, which can happen if the user
+ends or leaves the connection.
+                                            </td>
+                                        </tr>
+                                    
+                                </table>
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="remove"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            remove
+                                            
+                                                
+                                                    (user : <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a> | blackberry.bbm.platform.users.BBMPlatformUser[])
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Removes a user from the connection.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>user</b></td>
+                                            <td>
+                                                
+                                                Single user, or an array of users, to remove from the connection.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                           Throws
+                                    </th></tr></thead>
+                                    
+                                        <tr>
+                                            <td>
+                                                NullPointerException                                                
+                                            </td>
+                                            <td>
+                                                If <code>user</code> is null.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                IllegalArgumentException                                                
+                                            </td>
+                                            <td>
+                                                If one of the users being removed does not belong to the connection.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                PersistentContentException                                                
+                                            </td>
+                                            <td>
+                                                If Content Protection is enabled and the device is locked.
+                                            </td>
+                                        </tr>
+                                    
+                                </table>
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+// Remove the first user in a connection
+var users = conn.joinedUsers;
+if(users.length > 0) {
+    conn.remove(conn.joinedUsers[0])
+}
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+// Remove all users in a connection
+var users = conn.joinedUsers;
+if(users.length > 0) {
+    conn.remove(conn.joinedUsers)
+}
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="removeAll"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            removeAll
+                                            
+                                                
+                                                    ()
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Removes all users from the connection.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                           Throws
+                                    </th></tr></thead>
+                                    
+                                        <tr>
+                                            <td>
+                                                PersistentContentException                                                
+                                            </td>
+                                            <td>
+                                                If Content Protection is enabled and the device is locked.
+                                            </td>
+                                        </tr>
+                                    
+                                </table>
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="send"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            send
+                                            
+                                                
+                                                    (data : String, <i>[users : <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>[]]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Sends data to all users on the connection or a subset. Data cannot be sent to users
+who have not joined.
+<h3>Unreachable Users</h3>
+<p>If a user becomes unreachable, up to 50 packets (50 calls of <code>send()</code>) will be queued. A ContactUnreachableException will be thrown on the 51st call.
+<p>If the user later becomes reachable, <a href="blackberry.bbm.platform.io.html#.event:onuserreachable">blackberry.bbm.platform.io.event:onuserreachable</a> will be invoked with the now-reachable user.
+<p>The BBM Social Platform will continue to attempt to deliver the packets to an unreachable user for 24 hours. If the user does not become reachable within this time, the packets will expire, and <a href="blackberry.bbm.platform.io.html#.event:ondataexpired">blackberry.bbm.platform.io.event:ondataexpired</a> will be invoked.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                Object to be sent.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>users</b></td>
+                                            <td>
+                                                
+                                                Data recipients. 
+If not provided, data will be sent to all users on this connection.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                           Throws
+                                    </th></tr></thead>
+                                    
+                                        <tr>
+                                            <td>
+                                                ContactUnreachableException                                                
+                                            </td>
+                                            <td>
+                                                If a user is unreachable, up to 50 packets will be queued, and on the 51st call this exception is thrown.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                DataOverflowException                                                
+                                            </td>
+                                            <td>
+                                                If the application sends data at a rate greater than what the BBM Social Platform allows.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                NullPointerException                                                
+                                            </td>
+                                            <td>
+                                                If <code>data</code> is null or empty.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                IllegalArgumentException                                                
+                                            </td>
+                                            <td>
+                                                If <code>data.length</code> is larger than blackberry.bbm.platform.io.Connection.MAX_DATA_LENGTH.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                IllegalArgumentException                                                
+                                            </td>
+                                            <td>
+                                                If <code>users</code> contains a user who has not joined this connection.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                IllegalArgumentException                                                
+                                            </td>
+                                            <td>
+                                                If <code>users.length > 24</code>.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                PersistentContentException                                                
+                                            </td>
+                                            <td>
+                                                If Content Protection is enabled and the device is locked.
+                                            </td>
+                                        </tr>
+                                    
+                                </table>
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+// Send message to all users
+var replyText = ""; // Obtain reply text from user...
+var msgObj = {
+    id:'msg',
+    value:replyText
+};
+try {
+    connnection1.send(JSON.stringify(msgObj));
+} catch(e) {
+    // Error occurred while sending data
+}
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+// Ping all users
+var pingObj = { id:'ping' };
+try {
+    connection1.send(JSON.stringify(pingObj));
+} catch(e) {
+    // Error occurred while sending data
+}
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+// Send high score to all users
+var highScoreObj = {
+    id: 'highscore',
+    score: 9000,
+    hits: 130,
+    misses: 40
+};
+try {
+    connection1.send(JSON.stringify(highScoreObj));
+} catch(e) {
+    // Error occurred while sending data
+}
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Events</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="event:ondata"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            ondata
+                                            
+                                                
+                                                    (sender : <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>, data : String)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invoked when data is received from a user.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>sender</b></td>
+                                            <td>
+                                                
+                                                User that sent the data.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                Data received.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+connection1.ondata = function(user, data) {
+    var dataObj = JSON.parse(data);
+    var dataID = dataObj.id;
+
+    // Handle application-defined data types
+    if(dataID == "msg") {
+        // Handle msg type
+    } else if(dataID == "ping") {
+        // Handle ping type
+    } else if(dataID == "highscore") {
+        // Handle highscore type
+    }
+};
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="event:onuserdeclined"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            onuserdeclined
+                                            
+                                                
+                                                    (user : <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invoked when a user declines an invitation.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>user</b></td>
+                                            <td>
+                                                
+                                                The user who declined.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="event:onuserleft"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            onuserleft
+                                            
+                                                
+                                                    (user : <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invoked when a user leaves the connection.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>user</b></td>
+                                            <td>
+                                                
+                                                The user who left.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="event:onusersinvited"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            onusersinvited
+                                            
+                                                
+                                                    (users : blackberry.bbm.platform.io.BBMPlatformUser[])
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invoked when the user invites others to join the connection. This will not be
+called if the user invites others to download the application.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>users</b></td>
+                                            <td>
+                                                
+                                                The users who were invited.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="event:onusersjoined"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            onusersjoined
+                                            
+                                                
+                                                    (users : <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>[], type : String, cookie : String)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invoked when users join the connection by accepting an invitation.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>users</b></td>
+                                            <td>
+                                                
+                                                The users who joined.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>type</b></td>
+                                            <td>
+                                                
+                                                The way that users joined.
+<ul>
+<li><code>"invitedbyme"</code>: The joining users were invited by the current user.
+<li><code>"acceptedbyme"</code>: The current user is joining the connection.
+</ul>                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>cookie</b></td>
+                                            <td>
+                                                
+                                                The cookie that was sent with the invitation. <code>undefined</code>
+if no cookie was sent.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Properties</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="id"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        readonly
+                                        Number
+                                        
+                                        
+                                            id
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>This connection's unique ID. Automatically set on connection creation.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="joinedUsers"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        readonly
+                                        <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>[]
+                                        
+                                        
+                                            joinedUsers
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Users who have joined the connection.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="pendingUsersCount"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        readonly
+                                        Number
+                                        
+                                        
+                                            pendingUsersCount
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>The number of invited users who have not yet joined the connection.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Constants</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="MAX_USERS"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        Number
+                                        
+                                        
+                                            MAX_USERS
+                                            
+                                                
+                                                    
+                                                        = 24 users
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>The maximum number of users a connection can have, not including the current user.
+<br/><br/>Once the limit is reached, the platform will not allow the user to send more join invitations
+and will not allow more users to join.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="MAX_COOKIE_LENGTH"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        Number
+                                        
+                                        
+                                            MAX_COOKIE_LENGTH
+                                            
+                                                
+                                                    
+                                                        = 128 characters
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>The maximum length of an invitation cookie.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="MAX_INVITE_MSG_LENGTH"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        Number
+                                        
+                                        
+                                            MAX_INVITE_MSG_LENGTH
+                                            
+                                                
+                                                    
+                                                        = 128 characters
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>The maximum length of an invitation message.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name="MAX_DATA_LENGTH"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        Number
+                                        
+                                        
+                                            MAX_DATA_LENGTH
+                                            
+                                                
+                                                    
+                                                        = 61440 characters
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>The maximum length of a data payload.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+
+
+
+
+        <div >
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Nov 30 2012 01:27:50 GMT-0500 (EST)
+        </div>
+
+    </div>
+</section>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
