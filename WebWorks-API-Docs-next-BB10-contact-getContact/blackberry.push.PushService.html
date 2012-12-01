@@ -1,0 +1,3755 @@
+
+
+<section  class="page_container references">
+	<div class="row">
+        <nav class="column grid_4 side-navigation" id="side-nav-api" role="navigation">
+            <div id="sticky-anchor"> </div>
+            <div class="side-nav-wrapper" id="sticky">
+                <div class="side-nav-content clearfix" id="none">
+                    <div class="side-nav-section clearfix" id="side-nav-title">
+                        <h3>API Reference</h3>
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-parents"> 
+                    </div>
+                    <div class="side-nav-section clearfix" id="side-nav-filter"> 
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-children"> 
+                    </div>
+                </div>
+            </div>
+            <div class="side-navspacer-bottom"> </div>
+        </nav>
+
+        <div class="column grid_8">
+                <div class="row">
+                    <article id="main" class="column grid_8" role="main">
+                        
+
+<section>
+
+    <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
+                    }
+                }
+            }
+
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload,
+                        newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
+
+        function viewSupportedTable() {
+            var table = document.getElementById('APISupportTable');
+            if (table != null && table.style.display != 'inline') {
+                table.style.display = 'inline';
+            }
+            else {
+                table.style.display = 'none';
+            }
+        }
+
+    </script>
+    
+    <style type="text/css">
+
+        .apiYes {
+            background-color: #D1F8FB;
+        }
+        
+        .tdNoWrap {
+            white-space:nowrap;
+        }
+        
+        .APISupportTable {
+            display:none;
+        }
+    </style>
+
+    <div>
+
+
+        <h1>
+            
+                PushService
+            
+        </h1>
+
+
+        
+            <p>
+                The <code>PushService</code> object allows you to leverage the BlackBerry push architecture to receive push data in your application. The push solution includes a push-enabled application on a BlackBerry device and a content provider's server-side application (also known as the Push Initiator). The Push Initiator can deliver up to 8 kB of content (images, text, etc.) and headers (metadata name-value pairs) using a Push Proxy Gateway (PPG). <br/><br/>Two PPGs are available: the public/BlackBerry Internet Service (BIS) PPG and the enterprise/Blackberry Enterprise Server (BES) PPG. The <code>PushService</code>object will allow your application to receive push messages sent through either of these PPGs.<br/><br/>To work with a <code>PushService</code> object, you must first call the static <code>create</code> function.  On a successful create, you will then be ableto perform operations using the <code>PushService</code> object you receive in the success callback.<br/><br/>For a great sample app that demonstrates how to use the push APIs, see <a href="https://github.com/blackberry/BB10-WebWorks-Samples/tree/master/pushCapture">Push Capture</a>.<br/><br/>There is also a very valuable developer guide for the Push Capture sample app that you can find <a href='https://developer.blackberry.com/html5/documentation/push_service.html'>here</a>.
+
+
+                
+                    <div x-ww-support="bb10_menu">
+                    
+                
+  
+
+                    </div>
+                
+            </p>
+        
+
+
+        
+            
+            <br />
+        
+
+
+        
+
+
+        
+
+
+        
+            <div class="ref-sect ref-index">
+                <div class="ref-sect-title">
+                    <h2>Supported Platform(s)</h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table>
+                            <tbody>
+                            
+                                <tr><td>- BlackBerry 10</td></tr>
+                            
+                            </tbody>
+                        </table>
+                    
+                    <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
+                    <div class="APISupportTable" id="APISupportTable">
+                        <table class="apiTable">
+                            <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                            
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.create">blackberry.push.PushService.create</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#createChannel">createChannel</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#destroyChannel">destroyChannel</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#extractPushPayload">extractPushPayload</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#launchApplicationOnPush">launchApplicationOnPush</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.SUCCESS">SUCCESS</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.INTERNAL_ERROR">INTERNAL_ERROR</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.INVALID_DEVICE_PIN">INVALID_DEVICE_PIN</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.INVALID_PROVIDER_APPLICATION_ID">INVALID_PROVIDER_APPLICATION_ID</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.CHANNEL_ALREADY_DESTROYED">CHANNEL_ALREADY_DESTROYED</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.CHANNEL_ALREADY_DESTROYED_BY_PROVIDER">CHANNEL_ALREADY_DESTROYED_BY_PROVIDER</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.INVALID_PPG_SUBSCRIBER_STATE">INVALID_PPG_SUBSCRIBER_STATE</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.PPG_SUBSCRIBER_NOT_FOUND">PPG_SUBSCRIBER_NOT_FOUND</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.EXPIRED_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG">EXPIRED_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.INVALID_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG">INVALID_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.PPG_SUBSCRIBER_LIMIT_REACHED">PPG_SUBSCRIBER_LIMIT_REACHED</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.INVALID_OS_VERSION_OR_DEVICE_MODEL_NUMBER">INVALID_OS_VERSION_OR_DEVICE_MODEL_NUMBER</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.CHANNEL_SUSPENDED_BY_PROVIDER">CHANNEL_SUSPENDED_BY_PROVIDER</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.CREATE_SESSION_NOT_DONE">CREATE_SESSION_NOT_DONE</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.MISSING_PPG_URL">MISSING_PPG_URL</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.PUSH_TRANSPORT_UNAVAILABLE">PUSH_TRANSPORT_UNAVAILABLE</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.OPERATION_NOT_SUPPORTED">OPERATION_NOT_SUPPORTED</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.CREATE_CHANNEL_NOT_DONE">CREATE_CHANNEL_NOT_DONE</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.MISSING_PORT_FROM_PPG">MISSING_PORT_FROM_PPG</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.MISSING_SUBSCRIPTION_RETURN_CODE_FROM_PPG">MISSING_SUBSCRIPTION_RETURN_CODE_FROM_PPG</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.PPG_SERVER_ERROR">PPG_SERVER_ERROR</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.MISSING_INVOKE_TARGET_ID">MISSING_INVOKE_TARGET_ID</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.SESSION_ALREADY_EXISTS">SESSION_ALREADY_EXISTS</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.INVALID_PPG_URL">INVALID_PPG_URL</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.CREATE_CHANNEL_OPERATION">CREATE_CHANNEL_OPERATION</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.DESTROY_CHANNEL_OPERATION">DESTROY_CHANNEL_OPERATION</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+
+
+        <div class="ref-sect ref-index">
+            <div class="ref-sect-title">
+                <h2>Configuration Document Settings</h2>
+            </div>
+            <div class="ref-sect-content">
+                <table><tbody>
+                    <tr><td>
+                        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
+                    </td></tr>
+                    
+                        <tr><td>
+                            <p>You must declare the feature element(s) below in your configuration document:</p>
+                        </td></tr></tbody></table>
+                    <table>
+                        <thead><tr><th>Feature ID</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                        
+                            
+                            
+                                
+                            
+                            <tr x-ww-support="bb10_menu"><td>
+                                &lt;feature id="blackberry.push" /&gt;
+                                <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                            </td></tr>
+                        
+                    </table>
+                
+
+                <div x-ww-support="pb_menu|bb10_menu">
+                    
+                        
+                    
+                    <table>
+                        <tr>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
+                        </tr>
+                        
+                            
+                                <tr><td><i>
+                                    You must declare the permission element(s) below in your configuration document:
+                                </i></td></tr>
+                                
+                                    <tr><td>
+                                        - &lt;rim:permit system = 'true'&gt;_sys_use_consumer_push&lt;/rim:permit&gt;
+                                        <br />
+                                        Permits your consumer (public) application to use push. This permission is not needed to use enterprise push.
+                                        <br />
+                                    </td></tr>
+                                
+                            
+
+                            
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        
+        
+
+
+<div>
+    
+        
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
+                <div class="ref-sect-title">
+                    <h2> Functions </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.create">blackberry.push.PushService.create</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#createChannel">createChannel</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#destroyChannel">destroyChannel</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            PushPayload
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#extractPushPayload">extractPushPayload</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#launchApplicationOnPush">launchApplicationOnPush</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu">
+                <div class="ref-sect-title">
+                    <h2> Constants </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.SUCCESS">SUCCESS</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.INTERNAL_ERROR">INTERNAL_ERROR</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.INVALID_DEVICE_PIN">INVALID_DEVICE_PIN</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.INVALID_PROVIDER_APPLICATION_ID">INVALID_PROVIDER_APPLICATION_ID</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.CHANNEL_ALREADY_DESTROYED">CHANNEL_ALREADY_DESTROYED</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.CHANNEL_ALREADY_DESTROYED_BY_PROVIDER">CHANNEL_ALREADY_DESTROYED_BY_PROVIDER</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.INVALID_PPG_SUBSCRIBER_STATE">INVALID_PPG_SUBSCRIBER_STATE</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.PPG_SUBSCRIBER_NOT_FOUND">PPG_SUBSCRIBER_NOT_FOUND</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.EXPIRED_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG">EXPIRED_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.INVALID_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG">INVALID_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.PPG_SUBSCRIBER_LIMIT_REACHED">PPG_SUBSCRIBER_LIMIT_REACHED</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.INVALID_OS_VERSION_OR_DEVICE_MODEL_NUMBER">INVALID_OS_VERSION_OR_DEVICE_MODEL_NUMBER</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.CHANNEL_SUSPENDED_BY_PROVIDER">CHANNEL_SUSPENDED_BY_PROVIDER</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.CREATE_SESSION_NOT_DONE">CREATE_SESSION_NOT_DONE</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.MISSING_PPG_URL">MISSING_PPG_URL</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.PUSH_TRANSPORT_UNAVAILABLE">PUSH_TRANSPORT_UNAVAILABLE</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.OPERATION_NOT_SUPPORTED">OPERATION_NOT_SUPPORTED</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.CREATE_CHANNEL_NOT_DONE">CREATE_CHANNEL_NOT_DONE</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.MISSING_PORT_FROM_PPG">MISSING_PORT_FROM_PPG</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.MISSING_SUBSCRIPTION_RETURN_CODE_FROM_PPG">MISSING_SUBSCRIPTION_RETURN_CODE_FROM_PPG</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.PPG_SERVER_ERROR">PPG_SERVER_ERROR</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.MISSING_INVOKE_TARGET_ID">MISSING_INVOKE_TARGET_ID</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.SESSION_ALREADY_EXISTS">SESSION_ALREADY_EXISTS</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.INVALID_PPG_URL">INVALID_PPG_URL</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.CREATE_CHANNEL_OPERATION">CREATE_CHANNEL_OPERATION</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.push.PushService.html#.DESTROY_CHANNEL_OPERATION">DESTROY_CHANNEL_OPERATION</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+
+    
+</div>
+
+
+
+        
+        
+
+    
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Functions</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".create"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.push.PushService.create
+                                            
+                                                
+                                                    (options : Object, successCallback: function(pushService : PushService), failCallback: function(result : Number), simChangeCallback: function(), pushTransportReadyCallback: function(lastFailedOperation : Number))
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p><p>Creates a <code>PushService</code> object.  The <code>PushService</code> object will only be available if the <code>successCallback</code> function is called.It will not be available if the <code>failCallback</code> function is called instead.</p></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                Object literal that allows the user to specify various options.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>invokeTargetId:</b> Your application's unique invoke target ID, as set in your config.xml, related to when a new push notification is received and the application needs to be invoked.
+                                                    
+                                                        <br />
+                                                        <b>appId:</b> The provider application ID. If writing a consumer application, this corresponds to the application ID you received after registering to use the public/BIS PPG push service.  If writing an enterprise application, you have the choice of not specifying <code>appId</code> (in which case a unique one will be generated for you under the covers) or specifying a unique value of your choosing (this second option is useful if you planto subscribe with the Push Initiator in your application).
+                                                    
+                                                        <br />
+                                                        <b>ppgUrl:</b> The PPG URL to register with.  If writing a consumer application, you will be provided with this URL after registering to use the public/BIS PPG push service.  The URL will point to either the eval or the production environment (for eval, https://cp{cpid}.pushapi.eval.blackberry.com; for production, https://cp{cpid}.pushapi.na.blackberry.com where {cpid} is replaced with your content provider ID).  If writing an enterprise application, no <code>ppgUrl</code> value should be specified.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>successCallback</b></td>
+                                            <td>
+                                                
+                                                The callback that is invoked when the <code>create</code> operation is successful.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>pushService:</b> The <code>PushService</code> object that can be used on a successful <code>create</code> operation.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>failCallback</b></td>
+                                            <td>
+                                                
+                                                The callback that is invoked when the <code>create</code> operation has failed.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>result:</b> The reason for the failure. See the constants provided to see what result codes apply for this operation.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>simChangeCallback</b></td>
+                                            <td>
+                                                
+                                                The callback that is invoked when a SIM card change has occurred.  This callback only applies on a successful create.  When a SIM card change occurs, the channel will automatically be destroyed since this scenario may indicate the possibility of a new user using the device. Care should be taken by the application to handle this situation as well. For example, the application may wish to re-authenticate the user with the Push Initiator (if your Push Initiator implementation supports subscription) and then re-create the channel using <code>createChannel</code>.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>pushTransportReadyCallback</b></td>
+                                            <td>
+                                                
+                                                The callback that is invoked after a create channel or destroy operation has failed with a result error code ofeither <code>PUSH_TRANSPORT_UNAVAILABLE</code> or <code>PPG_SERVER_ERROR</code> and the network/push transport/PPG is now available again.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>lastFailedOperation:</b> The last operation that was performed that failed with a result error code of either <code>PUSH_TRANSPORT_UNAVAILABLE</code> or <code>PPG_SERVER_ERROR</code>. It should be one of <code>CREATE_CHANNEL_OPERATION</code> or <code>DESTROY_CHANNEL_OPERATION</code>.  Use this value to determine which operation should be tried again.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                           Throws
+                                    </th></tr></thead>
+                                    
+                                        <tr>
+                                            <td>
+                                                String                                                
+                                            </td>
+                                            <td>
+                                                An exception is thrown if <code>create</code> is called more than once with different values for <code>options.invokeTargetId</code> and/or <code>options.appId</code>.
+                                            </td>
+                                        </tr>
+                                    
+                                </table>
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>// For a consumer application (using the public/BIS PPG)var ops = { invokeTargetId : 'com.sample.pushtest.target',             appId : 'appId1',             ppgUrl : 'https://cp123.pushapi.na.blackberry.com' };// For an enterprise application (using the enterprise/BES PPG)// var ops = { invokeTargetId : 'com.sample.pushtest.target' }; // Or, for an enterprise application with an application ID: // var ops = { invokeTargetId : 'com.sample.pushtest.target', //             appId : 'appId1' };try {    blackberry.push.PushService.create(ops,         successCallback,         failCallback,         simChangeCallback,         pushTransportReadyCallback);} catch (err) {    console.log("Create was called more than once with different "         + "values for options.invokeTargetId or options.appId.");    console.log(err);}function successCallback(pushService) {    // The create operation was a success    // Save the pushService object to a global variable    // Now, use the pushService object to now perform a     // launchApplicationOnPush, createChannel, destroyChannel, etc.    pushService.createChannel(createChannelCallback);}function failCallback(result) {    // The create operation failed    // You should compare the result code against the error      // constants in this PushService class that apply for     // create and take the recommended action for that constant    if (result === blackberry.push.PushService.INTERNAL_ERROR) {        // Retry the create up to a certain number of attempts         // and then display an error to the user    }    // ... handle the other possible error constants     // from the PushService class}function simChangeCallback() {    // The SIM card was changed and the channel has been     // destroyed since a new user might be using the device.    // It is recommended that the user of this application be     // re-authenticated with the Push Initiator (if your     // Push Initiator implementation supports subscription)     // followed by a call to createChannel.}function pushTransportReadyCallback(lastFailedOperation) {    // This callback will be called when a create channel    // or destroy channel was previously attempted and it     // failed with a PUSH_TRANSPORT_UNAVAILABLE or a 
+      // PPG_SERVER_ERROR error code and now the     // network/push transport/PPG is available again.     // The operation indicated by lastFailedOperation should     // be retried again.    if (lastFailedOperation ===         blackberry.push.PushService.CREATE_CHANNEL_OPERATION) {        pushService.createChannel(createChannelCallback);    } else if (lastFailedOperation ===        blackberry.push.PushService.DESTROY_CHANNEL_OPERATION) {       pushService.destroyChannel(destroyChannelCallback);    }}</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name="createChannel"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            createChannel
+                                            
+                                                
+                                                    (createChannelCallback: function(result : Number, token : String))
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p><p>Creates a push channel for the given application. Once a channel is created, it will survive application restarts and thereforedoes not necessarily need to be called on every application start up. </p><p>However, for a consumer application, since it is possible for the public/BIS PPG to destroy a channel under certain circumstances it may be advisable to periodicially re-create the channel (e.g. once a month).     </p><p>A successful <code>create</code> must have been done before calling this function.</p><p>This function should be called in order for an application to be able to start receiving pushes.  If a <code>destroyChannel</code> call is then made, no pushes will be able to be received until a <code>createChannel</code> call is made again.</p></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>createChannelCallback</b></td>
+                                            <td>
+                                                
+                                                The callback that is invoked when the result of the create channel operation is received.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>result:</b> The create channel operation result. See the constants provided to see what result codes apply for this operation.
+                                                    
+                                                        <br />
+                                                        <b>token:</b> On a successful create channel operation (result of <code>SUCCESS</code>), a token is returned.  This token must then be communicated back to the content provider's server-side application (the Push Initiator).  This token is then used by the content provider as the means to address the application on the device when initiating a push request to the PPG.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>pushService.createChannel(createChannelCallback);function createChannelCallback(result, token) {    if (result === blackberry.push.PushService.SUCCESS) {        // Success, so a token should be available        // Subscribe with the Push Initiator using this          // token (if your Push Initiator supports subscription)         // so that you can push to this user using this token    } else if (result ===         blackberry.push.PushService.INTERNAL_ERROR) {        // Retry the createChannel up to a certain number of          // attempts and then display an error to the user    } else if ... (handle all the error codes possible for                    createChannel - see the error constants                    in this PushService class)}</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name="destroyChannel"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            destroyChannel
+                                            
+                                                
+                                                    (destroyChannelCallback: function(result : Number))
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p><p>Destroys a push channel for the given application.</p><p>A successful <code>create</code> must have been done and a channel must have been created using <code>createChannel</code> before calling this function.</p><p>This function should be called in order for an application to stop receiving pushes.No pushes will be received after a <code>destroyChannel</code> call until a <code>createChannel</code> call is made after that.</p></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>destroyChannelCallback</b></td>
+                                            <td>
+                                                
+                                                The callback that is invoked when the result of the destroy channel operation is received.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>result:</b> The destroy channel operation result. See the constants provided to see what result codes apply for this operation.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>pushService.destroyChannel(destroyChannelCallback);function destroyChannelCallback(result) {    if (result === blackberry.push.PushService.INTERNAL_ERROR) {        // Retry the destroyChannel up to a certain number          // of attempts and then display an error to the user    } else if ... (handle all the error codes possible for                    destroyChannel - see the error constants                    in this PushService class)}</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name="extractPushPayload"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        PushPayload
+                                        
+                                        
+                                            extractPushPayload
+                                            
+                                                
+                                                    (invokeRequest : JSON)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p><p>Extracts the <code>PushPayload</code> from the passed in invoke request.</p><p>A successful <code>create</code> must have been done before calling this function.</p></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>invokeRequest</b></td>
+                                            <td>
+                                                
+                                                The invoke request to parse.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                           Throws
+                                    </th></tr></thead>
+                                    
+                                        <tr>
+                                            <td>
+                                                String                                                
+                                            </td>
+                                            <td>
+                                                An exception is thrown if the <code>invokeRequest</code> passed in is not valid and cannot be parsed.
+                                            </td>
+                                        </tr>
+                                    
+                                </table>
+                            
+
+                            
+                            
+                                <br />
+                                <span><b>Return:</b></span>
+                                
+                                    
+                                        <p> Returns the parsed out <code>PushPayload</code> object. </p>
+                                    
+                                
+                                <br />
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>try {    var pushPayload =         pushService.extractPushPayload(invokeRequest);    // pushPayload.data is of type Blob    // If the Blob is known to contain text,     // then do something like this:    blobToText(pushPayload.data, "UTF-8", textConversionCallback);    // If the Blob is known to contain binary, then do     // something like this to get an ArrayBuffer:    // blobToArrayBuffer(pushPayload.data,     //     binaryConversionCallback);} catch (err) {    console.log("Was unable to parse the invoke request.");    console.log(err);}function blobToText(blob, encoding, callback) {    var reader = new FileReader();  	    reader.onload = function(evt) {        // No errors, get the result and call the callback        callback(evt.target.result);    };   	    reader.onerror = function(evt) {        console.log("Error converting Blob to string: " +             evt.target.error);    };           reader.readAsText(blob, encoding);}function textConversionCallback(str) {    console.log("Data received: " + str);}function blobToArrayBuffer(blob, callback) {    var reader = new FileReader();   	    reader.onload = function(evt) {        // No errors, get the result and call the callback        callback(evt.target.result);    };   	    reader.onerror = function(evt) {        console.log("Error converting Blob to ArrayBuffer: " +             evt.target.error);    };           reader.readAsArrayBuffer(blob);}function binaryConversionCallback(arrayBuffer) {    // Process the ArrayBuffer containing     // binary content as needed}</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name="launchApplicationOnPush"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            launchApplicationOnPush
+                                            
+                                                
+                                                    (shouldLaunch : Boolean, launchApplicationCallback: function(result : Number))
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p><p>Indicates whether or not the application should be launched (started up) if it is currently closed (not running)and a new push is received.  The default system behaviour is to not launch the application. </p><p>A successful <code>create</code> must have been done before calling this function.</p><p>It is important to note that the <code>shouldLaunch</code> flag is only persisted once a channel has been created using the <code>createChannel</code> function.In other words, once the create channel function has been called the state of the <code>shouldLaunch</code> flag is persisted between application and device restarts. The flag is only removed once the destroy channel function is called.  This flag can be toggled at any time using this function but, again, its value is only persisted once the create channel function has been called at least once for the lifetime of the application. </p></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>shouldLaunch</b></td>
+                                            <td>
+                                                
+                                                True if the application should be launched on a new push; false if the application should not be launched when a new push comes in                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>launchApplicationCallback</b></td>
+                                            <td>
+                                                
+                                                The callback that is invoked when the result of the launch application operation is received.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>result:</b> The launch application operation result. See the constants provided to see what result codes apply for this operation.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>// Indicate that you want the application to launch on a new pushpushService.launchApplicationOnPush(true,     launchApplicationCallback);// To indicate that you do not want to launch on a new push, // either leave the default behaviour or call:// pushService.launchApplicationOnPush(false, //     launchApplicationCallback);function launchApplicationOnPush(result) {   if (result === blackberry.push.PushService.INTERNAL_ERROR) {     // Retry the launchApplicationOnPush up to a certain number      // of attempts and then display an error to the user   } else if ... (handle all the error codes possible for                   launchApplicationOnPush - see the error                   constants in this PushService class)}</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Constants</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".SUCCESS"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            SUCCESS
+                                            
+                                                
+                                                    
+                                                        = 0
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result code for an operation that was performed successfully. <br/><br/>Operations this code applies to: create, createChannel, destroyChannel, launchApplicationOnPush</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".INTERNAL_ERROR"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            INTERNAL_ERROR
+                                            
+                                                
+                                                    
+                                                        = 500
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code for an internal error. <br/><br/> Operations this error can occur on: create, createChannel, destroyChannel, launchApplicationOnPush<br/><br/>Recommended action: Retrying the operation might correct the issue.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".INVALID_DEVICE_PIN"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            INVALID_DEVICE_PIN
+                                            
+                                                
+                                                    
+                                                        = 10001
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code for an invalid device PIN as determined by the PPG.<br/><br/>Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)<br/><br/>Recommended action: Retrying the operation might correct the issue.  The PIN is obtained under the coversby the public/BIS PPG.  It very rarely has issues obtaining the device PIN, so a retry might fix this.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".INVALID_PROVIDER_APPLICATION_ID"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            INVALID_PROVIDER_APPLICATION_ID
+                                            
+                                                
+                                                    
+                                                        = 10002
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code for an invalid provider application ID.  Either an invalid one was specified or none at all.<br/><br/>Operations this error can occur on: create, createChannel, destroyChannel (only if using public/BIS PPG)<br/><br/>Recommended action: Specifying a valid value for <code>options.appId</code> in the static <code>create</code> function and retrying might correct the issue.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".CHANNEL_ALREADY_DESTROYED"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            CHANNEL_ALREADY_DESTROYED
+                                            
+                                                
+                                                    
+                                                        = 10004
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code when attempting to call destroy channel again after a successful destroy channel has already been done.  <br/><br/>Operations this error can occur on: destroyChannel (only if using public/BIS PPG)<br/><br/>Recommended action: Most applications will typically want to just ignore this error code when it comes back.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".CHANNEL_ALREADY_DESTROYED_BY_PROVIDER"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            CHANNEL_ALREADY_DESTROYED_BY_PROVIDER
+                                            
+                                                
+                                                    
+                                                        = 10005
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code when attempting to call destroy channel after a content provider has already done the destroying of the channelby unregistering a user.  <br/><br/>Operations this error can occur on: destroyChannel (only if using public/BIS PPG)<br/><br/>Recommended action: Most applications will typically want to just ignore this error code when it comes back.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".INVALID_PPG_SUBSCRIBER_STATE"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            INVALID_PPG_SUBSCRIBER_STATE
+                                            
+                                                
+                                                    
+                                                        = 10006
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>This result error code should not typically be encountered.  It would only occur if a create or destroy channel operation internally causes the state of a subscriber on the PPG to be in an invalid state.<br/><br/>Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)<br/><br/>Recommended action: If this error occurs, it should be logged and reported to the RIM support team.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".PPG_SUBSCRIBER_NOT_FOUND"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            PPG_SUBSCRIBER_NOT_FOUND
+                                            
+                                                
+                                                    
+                                                        = 10007
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code for when a destroy channel operation fails because the subscriber could not be found on the PPG's end.  <br/><br/>Operations this error can occur on: destroyChannel (only if using public/BIS PPG)<br/><br/>Recommended action: This error can most likely be ignored since if the subscriber could not be found on the PPG's end, thendestroying the channel will have no effect anyway (it is as if they were never registered with the PPG using create channel).</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".EXPIRED_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            EXPIRED_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG
+                                            
+                                                
+                                                    
+                                                        = 10008
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code for when a create channel or destroy channel operation internally passes an expired authentication token to the PPG.  <br/><br/>Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)<br/><br/>Recommended action: Retrying the operation might correct the issue.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".INVALID_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            INVALID_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG
+                                            
+                                                
+                                                    
+                                                        = 10009
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>This result error code should not typically be encountered.  It would only occur if a create channel or destroy channel operation internally passes an invalid authentication token to the PPG.<br/><br/>Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)<br/><br/>Recommended action: If this error occurs, it should be logged and reported to the RIM support team.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".PPG_SUBSCRIBER_LIMIT_REACHED"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            PPG_SUBSCRIBER_LIMIT_REACHED
+                                            
+                                                
+                                                    
+                                                        = 10010
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code for when too many devices have already performed a create channel for the provider application ID.(A create channel will effectively register a user with the PPG for public/BIS.)<br/><br/>Operations this error can occur on: createChannel (only if using public/BIS PPG)<br/><br/>Recommended action: No action can be taken by the application for this error, but it should somehow be communicated  back to the content provider and then to RIM to try to increase the allowed subscription limit.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".INVALID_OS_VERSION_OR_DEVICE_MODEL_NUMBER"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            INVALID_OS_VERSION_OR_DEVICE_MODEL_NUMBER
+                                            
+                                                
+                                                    
+                                                        = 10011
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code for when a device attempting to do a create channel has an invalid operating system version number or an invalid device model number.<br/><br/>Operations this error can occur on: createChannel (only if using public/BIS PPG)<br/><br/>Recommended action: Retrying the operation is not recommended since this is an unrecoverable error that is out of control of the application.It might make sense to communicate this issue up to the user.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".CHANNEL_SUSPENDED_BY_PROVIDER"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            CHANNEL_SUSPENDED_BY_PROVIDER
+                                            
+                                                
+                                                    
+                                                        = 10012
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code when attempting to call destroy channel after a content provider has manually suspended a user.<br/><br/>Operations this error can occur on: destroyChannel (only if using public/BIS PPG)<br/><br/>Recommended action: Most applications will typically want to just ignore this error code when it comes back.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".CREATE_SESSION_NOT_DONE"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            CREATE_SESSION_NOT_DONE
+                                            
+                                                
+                                                    
+                                                        = 10100
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code when attempting to perform an operation and a create session has not been done beforehand.<br/><br/>Operations this error can occur on: createChannel, destroyChannel, launchApplicationOnPush<br/><br/>Recommended action: This usually means a programming error in the application.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".MISSING_PPG_URL"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            MISSING_PPG_URL
+                                            
+                                                
+                                                    
+                                                        = 10102
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code when attempting to perform a create channel and a PPG URL was missing.<br/><br/>Operations this error can occur on: createChannel (only if using public/BIS PPG)<br/><br/>Recommended action: Specifying a value for <code>options.ppgUrl</code> in the static <code>create</code> functionand retrying might correct the issue.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".PUSH_TRANSPORT_UNAVAILABLE"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            PUSH_TRANSPORT_UNAVAILABLE
+                                            
+                                                
+                                                    
+                                                        = 10103
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code when a create channel or destroy channel operation has failed due to network issues or the push transport being down.<br/><br/>Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)<br/><br/>Recommended action: Wait until <code>pushTransportReadyCallback</code> (one of the arguments in the static <code>create</code> function) is called before retrying. This error can also occur when the user's wireless connection (e.g. Wi-Fi, Mobile Network) is off or temporarily down, so it might make sense to communicate this issue up to the user to double check their wireless connection.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".OPERATION_NOT_SUPPORTED"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            OPERATION_NOT_SUPPORTED
+                                            
+                                                
+                                                    
+                                                        = 10105
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code when a certain operation is currently not supported.<br/><br/>Recommended action: This operation might not yet be implemented and so should not be performed.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".CREATE_CHANNEL_NOT_DONE"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            CREATE_CHANNEL_NOT_DONE
+                                            
+                                                
+                                                    
+                                                        = 10106
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code when attempting to perform a destroy channel and a create channel has not been done beforehand.<br/><br/>Operations this error can occur on: destroyChannel<br/><br/>Recommended action: This might mean a programming error in the application.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".MISSING_PORT_FROM_PPG"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            MISSING_PORT_FROM_PPG
+                                            
+                                                
+                                                    
+                                                        = 10107
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code as a result of an issue on a create channel operation obtaining a port from the PPG.<br/><br/>Operations this error can occur on: createChannel<br/><br/>Recommended action: Retrying the operation might correct the issue.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".MISSING_SUBSCRIPTION_RETURN_CODE_FROM_PPG"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            MISSING_SUBSCRIPTION_RETURN_CODE_FROM_PPG
+                                            
+                                                
+                                                    
+                                                        = 10108
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code as a result of an issue on a create channel operation obtaining a subscription return code from the PPG.<br/><br/>Operations this error can occur on: createChannel (only if using public/BIS PPG)<br/><br/>Recommended action: Retrying the operation might correct the issue.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".PPG_SERVER_ERROR"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            PPG_SERVER_ERROR
+                                            
+                                                
+                                                    
+                                                        = 10110
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code when the PPG returns a server error.<br/><br/>Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)<br/><br/>Recommended action: Wait until <code>pushTransportReadyCallback</code> (one of the arguments in the static <code>create</code> function) is called before retrying.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".MISSING_INVOKE_TARGET_ID"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            MISSING_INVOKE_TARGET_ID
+                                            
+                                                
+                                                    
+                                                        = 10111
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code when no invoke target ID is specified on a create operation.<br/><br/>Operations this error can occur on: create<br/><br/>Recommended action: Specifying a value for <code>options.invokeTargetId</code> in the static <code>create</code> function and retrying might correct the issue.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".SESSION_ALREADY_EXISTS"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            SESSION_ALREADY_EXISTS
+                                            
+                                                
+                                                    
+                                                        = 10112
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code when an underlying session already exists.<br/><br/>Operations this error can occur on: create<br/><br/>Recommended action: Check <code>options.appId</code> and <code>options.invokeTargetId</code> in the static <code>create</code> function to ensure that they are valid and unique to your application.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".INVALID_PPG_URL"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            INVALID_PPG_URL
+                                            
+                                                
+                                                    
+                                                        = 10114
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Result error code when an invalid PPG URL was specified.<br/><br/>Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)<br/><br/>Recommended action: Specifying a valid value for <code>options.ppgUrl</code> in the static <code>create</code> function and retrying might correct the issue.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".CREATE_CHANNEL_OPERATION"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            CREATE_CHANNEL_OPERATION
+                                            
+                                                
+                                                    
+                                                        = 1
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant associated with the createChannel operation.<br/><br/>Compare this constant against <code>pushTransportReadyCallback.lastFailedOperation</code> to determinewhich failed operation should be tried again.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".DESTROY_CHANNEL_OPERATION"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            DESTROY_CHANNEL_OPERATION
+                                            
+                                                
+                                                    
+                                                        = 2
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant associated with the destroyChannel operation.<br/><br/>Compare this constant against <code>pushTransportReadyCallback.lastFailedOperation</code> to determinewhich failed operation should be tried again.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+
+
+
+
+        <div >
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sat Dec 01 2012 01:20:12 GMT-0500 (EST)
+        </div>
+
+    </div>
+</section>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
