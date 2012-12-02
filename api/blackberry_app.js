@@ -57,6 +57,23 @@ blackberry.app ={
 	 */
 	exit: function(){},
 
+	/**
+	 * @description This function updates the window cover
+	 * @param {Object} windowCover Represents the window cover for the application. It describes what will de displayed when the application is in thumbnail mode.
+	 * @param {Object} [windowCover.cover] Describes the window cover.
+	 * @param {String} [windowCover.cover.type] Type of window cover, can be file or snapshot
+	 * @param {String} [windowCover.cover.path] Must be specified if type is file. Path to image.
+	 * @param {Object} [windowCover.cover.capture] Must be specified if type is snapshot. Describes co-ordinates to of screen to capture
+	 * @param {Number} [windowCover.cover.capture.x] Starting x value for screenshot capture
+	 * @param {Number} [windowCover.cover.capture.y] Starting y value for screenshot capture
+	 * @param {Number} [windowCover.cover.capture.width] Width of screenshot capture
+	 * @param {Number} [windowCover.cover.capture.height] Height of screenshot capture
+	 * @param {Object[]} [windowCover.text] Array of text labels to be displayed on cover. Each one has a label (String), size (Number), and wrap (Boolean)
+	 * @BB10X
+	 *
+	 */
+	 updateCover: function (windowCover){},
+
     /**
      * @description Minimizes the application window to a thumbnail and sends the user to the application switcher on the home screen. This will trigger the pause event.
      * @BB10X
@@ -272,6 +289,13 @@ A banner indicator can have an optional numeric value that usually serves as a c
      * @type String
      */
     windowState : "",
+
+    /**
+    * @description window cover dimensions. Contains x (width in pixels) and y (height in pixels)
+    * @type Object
+    * @BB10X
+    */
+    coverSize: "",
 
 	/**
      * Returns a JSON object containing all properties of the application.
@@ -496,5 +520,46 @@ A banner indicator can have an optional numeric value that usually serves as a c
     */
    orientationchange : function(orientation){}
 
+   /**
+    * @description The <b>entercover</b> event is triggered when the application enters window cover mode.
+    * @calback {function} yourCallBackFunction the callback function that will be invoked on the entercover event.
+    * @example
+    * &lt;script type="text/javascript"&gt;
+    *
+    * function onEnterCover() {
+    *   alert("Window enter cover event");
+    * }
+    *
+    * blackberry.event.addEventListener("entercover", onEnterCover);
+    *
+    * &lt;/script&gt;
+    */
+    entercover : function(){}
+
+   /**
+    * @description The <b>exitcover</b> event is triggered when the application exits window cover mode.
+    * @calback {function} yourCallBackFunction the callback function that will be invoked on the exitcover event.
+    * @example
+    * &lt;script type="text/javascript"&gt;
+    *
+    * function onExitCover() {
+    *   alert("Window enter cover event");
+    * }
+    *
+    * blackberry.event.addEventListener("exitcover", onExitCover);
+    *
+    * &lt;/script&gt;
+    */
+    exitcover : function(){}
+
+
     /**#@-*/
 };
+
+/**
+* @description window cover constants
+* @type blackberry.app.cover
+* @BB10X
+*/
+blackberry.app.prototype.cover: "";
+
