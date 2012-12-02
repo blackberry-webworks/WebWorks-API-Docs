@@ -173,7 +173,7 @@
                         
                     
                     <br /><br />
-                    <i>Last Updated: Thu Nov 29 2012 16:03:10 GMT-0500 (EST)</i>
+                    <i>Last Updated: Sun Dec 02 2012 02:07:16 GMT-0500 (EST)</i>
                 </p>
             </div>
         
@@ -218,6 +218,18 @@
                                 <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.invoke.card.html#.invokeFilePicker">blackberry.invoke.card.invokeFilePicker</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.invoke.card.html#.invokeIcsViewer">blackberry.invoke.card.invokeIcsViewer</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -589,6 +601,18 @@
                                     </td>
                                     <td>
                                         <a href="blackberry.invoke.card.html#.invokeFilePicker">blackberry.invoke.card.invokeFilePicker</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.invoke.card.html#.invokeIcsViewer">blackberry.invoke.card.invokeIcsViewer</a>
                                         
                                     </td>
                                 </tr>
@@ -1365,6 +1389,195 @@ function invokeFileInPickerMode12() {
           defaultType: blackberry.invoke.card.FILEPICKER_TYPE_DOCUMENT
       };
   invokeFilePicker(details);
+}
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".invokeIcsViewer"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.invoke.card.invokeIcsViewer
+                                            
+                                                
+                                                    (options : <a href="blackberry.invoke.card.IcsViewerOptions.html">blackberry.invoke.card.IcsViewerOptions</a>, onDone: function(<i>[data: String]</i>), onCancel: function(<i>[reason: String]</i>), onInvoke: function(<i>[error: String]</i>))
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invokes the IcsViewer Card.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                An object to type <a href="blackberry.invoke.card.IcsViewerOptions.html">blackberry.invoke.card.IcsViewerOptions</a> describes all the options available for IcsViewer.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onDone</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered .                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>data:</b>  A data string might be an empty or to contain some information.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onCancel</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered when the card invocation has been cancelled.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>reason:</b>  A string that describes the reason the IcsViewer was cancelled.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onInvoke</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered when the IcsViewer card is invoked.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>error:</b>  A String that describes if there was an error. No error will be returned on success.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+//invoke the IcsViewer Card
+function invokeIcsViewer(options) {
+  blackberry.invoke.card.invokeIcsViewer(options, function (data) {
+        alert("Card is done");
+      },
+      function (reason) {
+        alert("cancelled " + reason);
+      },
+      function (error) {
+        if (error) {
+          alert("invoke error "+ error);
+        } else {
+          console.log("invoke success " );
+        }
+      }
+  );
+}
+
+
+//invoke IcsViewer with no account id provided
+function invokeIcsViewerNoAccountId() {
+  var options = {
+    uri: "file:///accounts/1000/shared/documents/test.ics"
+  };
+
+  invokeIcsViewer(options);
+}
+
+//invoke IcsViewer with an account id provided
+function invokeIcsViewerWithAccountId() {
+  var options = {
+    uri: "file:///accounts/1000/shared/documents/test.ics",
+    accountId: 1
+  };
+
+  invokeIcsViewer(options);
 }
 
 &lt;/script&gt;</pre></code></td></tbody></table>
@@ -3180,7 +3393,7 @@ function invokeMediaPlayerTitleAudioAndImage() {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 29 2012 16:03:10 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Dec 02 2012 02:07:16 GMT-0500 (EST)
         </div>
 
     </div>
