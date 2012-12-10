@@ -41,7 +41,15 @@ blackberry.ui.cover.prototype.resetCover = function () {};
  * @example
  * &lt;script type="text/javascript"&gt;
  *
- * blackberry.ui.cover.updateCover();
+ * function onEnterCover() {
+ *  blackberry.ui.cover.setContent(blackberry.ui.TYPE_IMAGE, {path: "/path/to/an/image/windowCover.png"})
+ *  blackberry.ui.cover.labels.push({label: "Label 1", size: 15, wrap: false});
+ *  blackberry.ui.cover.labels.push({label: "Label 2", size: 15, wrap: false});
+ *  blackberry.ui.cover.setTransition(blackberry.ui.cover.TRANSITION_FADE);
+ *  blackberry.ui.cover.updateCover();
+ * }
+ *
+ * blackberry.event.addEventListener("entercover", onEnterCover);
  *
  * &lt;/script&gt;
  * @BB10X
@@ -92,6 +100,12 @@ blackberry.ui.cover.prototype.showBadges = {};
  * @type Object
  * @description The application's cover dimensions, contains a width and height (in pixels)
  * @BB10X
+ * @example
+ * &lt;script type="text/javascript"&gt;
+ *
+ * console.log(blackberry.ui.cover.coverSize);
+ * //prints out object: {width: 334, height: 396}
+ *
  */
 blackberry.ui.cover.prototype.coverSize = {};
 
