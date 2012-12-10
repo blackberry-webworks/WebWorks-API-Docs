@@ -76,11 +76,12 @@ blackberry.ui.contextmenu = {
  *         contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
  *     blackberry.ui.contextmenu.addItem(contexts, myItem, function() { console.log('hi') });
  * }
- * &lt;/script&gt;
  *
+ *
+ * &lt;/script&gt;
  */
  addItem : function (){},
- 
+
  /**
  * @description Allows the developer to remove previously added custom items from the context menu.
  * @param {String[]} contexts An array of constants defining which contexts this new item should appear.
@@ -134,6 +135,60 @@ removeItem: function (){},
 defineCustomContext: function (){},
 
 /**
+ * @description Allows the developer to override platform menu items in the context menu.
+ * @param {Object} action An object that should be used to override the platform menu item using the actionId.
+ * @param {String} action.actionId A property that uniquely defines the action to be added to the context menu.
+ * @param {String} action.label A string that will be displayed to the user describing the custom context to be performed. ie: Edit
+ * @param {String} action.icon A path to the an image to display in the context menu
+ * @callback {Function} callback A function which runs when the menu item action is executed
+ * @BB10X
+ * @RIPPLE
+ * @example
+ * &lt;script type="text/javascript"&gt;
+ *
+ *  //Override the system Copy action by actionId using the ACTION_COPY constant
+ *  function overridePlatformWithIcon() {
+ *   var myItem = {actionId: blackberry.ui.contextmenu.ACTION_COPY, label: 'Custom Copy!',
+ *       icon:'local:///icon.png'};
+ *
+ *   blackberry.ui.contextmenu.overrideItem(myItem, function() {
+ *       alert("Wow you succesfully overrode the platform menu item Copy");
+ *   });
+ * }
+ *  //Override the system Copy action by actionId using the ACTION_SAVE_IMAGE constant
+ *  // this example does not provide a icon, and uses the system default
+ *  function overridePlatformNoIcon() {
+ *   var myItem = {actionId: blackberry.ui.contextmenu.ACTION_SAVE_IMAGE, label: 'Save Image'};
+ *
+ *   blackberry.ui.contextmenu.overrideItem(myItem, function() {
+ *       alert("Custom Save using system icon");
+ *   });
+ * }
+ * &lt;/script&gt;
+ *
+ */
+overrideItem: function (){},
+
+/**
+ * @description Allows the developer clear the override on a platform menu item in the context menu.
+ * @param {String} actionId The actionId of the context menu item to clear the override on.
+ * @BB10X
+ * @RIPPLE
+ * @example
+ * &lt;script type="text/javascript"&gt;
+ *
+ *  function clearPlatformCopyOverride() {
+ *   var actionId = blackberry.ui.contextmenu.ACTION_COPY;
+ *   blackberry.ui.contextmenu.clearOverride(actionId);
+ * }
+ *
+ * clearPlatformCopyOverride();
+ * &lt;/script&gt;
+ *
+ */
+clearOverride: function (){}.
+
+/**
  * Constant denoting all contexts.
  * @type String
  * @constant
@@ -168,7 +223,7 @@ defineCustomContext: function (){},
  * @RIPPLE
  */
  CONTEXT_IMAGE_LINK: "CONTEXT_IMAGE_LINK",
- 
+
  /**
  * Constant denoting the context of input fields.
  * @type String
@@ -185,5 +240,123 @@ defineCustomContext: function (){},
  * @BB10X
  * @RIPPLE
  */
- CONTEXT_TEXT: "CONTEXT_TEXT"
+ CONTEXT_TEXT: "CONTEXT_TEXT",
+
+ /**
+ * Constant denoting the actionId of cancel
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ ACTION_CANCEL: "Cancel",
+
+ /**
+ * Constant denoting the actionId of clear field.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ ACTION_CLEAR_FIELD: "ClearField",
+
+ /**
+ * Constant denoting the actionId of copy.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ ACTION_COPY: "Copy",
+
+ /**
+ * Constant denoting the actionId of copy image link.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ ACTION_COPY_IMAGE_LINK: "CopyImageLink",
+
+ /**
+ * Constant denoting the actionId of copy link.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ ACTION_COPY_LINK: "CopyLink",
+
+ /**
+ * Constant denoting the actionId of cut.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ ACTION_CUT: "Cut",
+
+ /**
+ * Constant denoting the actionId of inspect element
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ INSPECT_ELEMENT: "InspectElement",
+
+ /**
+ * Constant denoting the actionId of open link.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ ACTION_OPEN_LINK: "OpenLink",
+
+ /**
+ * Constant denoting the actionId of paste.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ ACTION_PASTE: "Paste",
+
+ /**
+ * Constant denoting the actionId of save image.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ ACTION_SAVE_IMAGE: "SaveImage",
+
+ /**
+ * Constant denoting the actionId of save link as.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ ACTION_SAVE_LINK_AS: "SaveLinkAs",
+
+ /**
+ * Constant denoting the actionId of select.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ ACTION_SELECT: "Select",
+
+ /**
+ * Constant denoting the actionId of view image.
+ * @type String
+ * @constant
+ * @BB10X
+ * @RIPPLE
+ */
+ ACTION_VIEW_IMAGE: "ViewImage",
+
 };
