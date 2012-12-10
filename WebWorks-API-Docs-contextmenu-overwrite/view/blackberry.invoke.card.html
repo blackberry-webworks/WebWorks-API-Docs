@@ -62,23 +62,31 @@
             }
 
             function runFilter() {
-                var filter = localStorage.getItem('selectedmenu');
-                var elements = getDesiredElements(document.body, 'x-ww-support');
-                for (var i = 0; i < elements.length; i++) {
-                    var target = elements[i];
-                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
-                    if (x_ww_support.indexOf(filter) < 0) {
-                        target.style.display = 'none';
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
                     }
                 }
             }
-            
+
             if(window.attachEvent) {
                 window.attachEvent('onload', runFilter);
             } else {
                 if(window.onload) {
-                    var curronload = window.onload;
-                    var newonload = function() {
+                    var curronload = window.onload,
+                        newonload = function() {
                         curronload();
                         runFilter();
                     };
@@ -165,7 +173,7 @@
                         
                     
                     <br /><br />
-                    <i>Last Updated: Thu Nov 22 2012 01:16:27 GMT-0500 (EST)</i>
+                    <i>Last Updated: Mon Dec 10 2012 15:12:31 GMT-0500 (EST)</i>
                 </p>
             </div>
         
@@ -197,6 +205,30 @@
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
+                                        <a href="blackberry.invoke.card.html#.invokeCalendarComposer">blackberry.invoke.card.invokeCalendarComposer</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="">
+                                    <td>
+                                        <a href="blackberry.invoke.card.html#.invokeCalendarPicker">blackberry.invoke.card.invokeCalendarPicker</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
                                         <a href="blackberry.invoke.card.html#.invokeCamera">blackberry.invoke.card.invokeCamera</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -209,7 +241,55 @@
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
+                                        <a href="blackberry.invoke.card.html#.invokeEmailComposer">blackberry.invoke.card.invokeEmailComposer</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
                                         <a href="blackberry.invoke.card.html#.invokeFilePicker">blackberry.invoke.card.invokeFilePicker</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.invoke.card.html#.invokeIcsViewer">blackberry.invoke.card.invokeIcsViewer</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.invoke.card.html#.invokeMediaPlayer">blackberry.invoke.card.invokeMediaPlayer</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.invoke.card.html#.invokeTargetPicker">blackberry.invoke.card.invokeTargetPicker</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -556,6 +636,30 @@
                                         
                                     </td>
                                     <td>
+                                        <a href="blackberry.invoke.card.html#.invokeCalendarComposer">blackberry.invoke.card.invokeCalendarComposer</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.invoke.card.html#.invokeCalendarPicker">blackberry.invoke.card.invokeCalendarPicker</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
                                         <a href="blackberry.invoke.card.html#.invokeCamera">blackberry.invoke.card.invokeCamera</a>
                                         
                                     </td>
@@ -568,7 +672,55 @@
                                         
                                     </td>
                                     <td>
+                                        <a href="blackberry.invoke.card.html#.invokeEmailComposer">blackberry.invoke.card.invokeEmailComposer</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
                                         <a href="blackberry.invoke.card.html#.invokeFilePicker">blackberry.invoke.card.invokeFilePicker</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.invoke.card.html#.invokeIcsViewer">blackberry.invoke.card.invokeIcsViewer</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.invoke.card.html#.invokeMediaPlayer">blackberry.invoke.card.invokeMediaPlayer</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.invoke.card.html#.invokeTargetPicker">blackberry.invoke.card.invokeTargetPicker</a>
                                         
                                     </td>
                                 </tr>
@@ -881,6 +1033,294 @@
                 
                     <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
+                            <a name=".invokeCalendarComposer"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.invoke.card.invokeCalendarComposer
+                                            
+                                                
+                                                    (options : <a href="blackberry.invoke.card.CalendarComposerOptions.html">blackberry.invoke.card.CalendarComposerOptions</a>, onDone: function(<i>[data: String]</i>), onCancel: function(<i>[reason: String]</i>), onInvoke: function(<i>[error: String]</i>))
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invokes calendar event composer card</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                An object of type <a href="blackberry.invoke.card.CalendarComposerOptions.html">blackberry.invoke.card.CalendarComposerOptions</a> which describes all options available to the event composer.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onDone</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered when the user finished with the event composer.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>data:</b>  The data string back from the event composer.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onCancel</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered if the user cancel the event composer.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>reason:</b>  A String that describes the reason the event composer was cancelled.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onInvoke</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered when the event composer is invoked.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>error:</b>  A String that describes if there was an error. No error will be returned on success.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt; script="text/javascript"&gt;
+//simply invoke calendar composer, with no options and callbacks
+blackberry.invoke.card.invokeCalendarComposer();
+
+//invoke calendar event composer with subject, body, participants, startTime and duration options
+blackberry.invoke.card.invokeCalendarComposer({
+    subject: "Event Name",
+    body: "Notes about this event",
+    participants: ["a@a.ca", "b@b.com"],
+    startTime: "Wed Jun 25 11:00:00 2012",
+    duration: 30
+}, function (done) {
+    console.log(done);
+}, function (cancel) {
+    console.log(cancel)
+}, function (invokeError) {
+    console.log(invokeError);
+});
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="">
+                        <h3>
+                            <a name=".invokeCalendarPicker"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.invoke.card.invokeCalendarPicker
+                                            
+                                                
+                                                    (options : , onDone : , onCancel : , onInvoke : )
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onDone</b></td>
+                                            <td>
+                                                
+                                                                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onCancel</b></td>
+                                            <td>
+                                                
+                                                                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onInvoke</b></td>
+                                            <td>
+                                                
+                                                                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
                             <a name=".invokeCamera"></a>
                  
                             
@@ -958,7 +1398,7 @@
                                             <td><b>onSave</b></td>
                                             <td>
                                                 
-                                                The callback function that will be triggerd if the user saves a picture or video.                         
+                                                The callback function that will be triggered if the user saves a picture or video.                         
                                                 
                                                     <br />
                                                     
@@ -1050,6 +1490,173 @@ function invokeCameraCard() {
                 
                     <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
+                            <a name=".invokeEmailComposer"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.invoke.card.invokeEmailComposer
+                                            
+                                                
+                                                    (options : <a href="blackberry.invoke.card.EmailComposerOptions.html">blackberry.invoke.card.EmailComposerOptions</a>, onDone: function(<i>[data: String]</i>), onCancel: function(<i>[reason: String]</i>), onInvoke: function(<i>[error: String]</i>))
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invokes email composer card</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                An object of type <a href="blackberry.invoke.card.EmailComposerOptions.html">blackberry.invoke.card.EmailComposerOptions</a> which describes all options available to the email composer.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onDone</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered when the user finished with the email composer.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>data:</b>  The data string back from the email composer.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onCancel</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered if the user cancel the email composer.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>reason:</b>  A String that describes the reason the email composer was cancelled.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onInvoke</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered when the email composer is invoked.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>error:</b>  A String that describes if there was an error. No error will be returned on success.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt; script="text/javascript"&gt;
+//simply invoke email composer, with no options and callbacks
+blackberry.invoke.card.invokeEmailComposer();
+
+//invoke email composer with subject, body, to, cc and attachment options
+blackberry.invoke.card.invokeEmailComposer({
+    subject: "Email subject",
+    body: "Email body",
+    to: ["a@a.ca", "b@b.com"],
+    cc: ["c@c.ca, d@d.com"],
+    attachment: ["/path/to/an/attachment.txt", "path/to/another/attachment.txt"]
+}, function (done) {
+    console.log(done);
+}, function (cancel) {
+    console.log(cancel)
+}, function (invokeError) {
+    console.log(invokeError);
+});
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
                             <a name=".invokeFilePicker"></a>
                  
                             
@@ -1127,7 +1734,7 @@ function invokeCameraCard() {
                                             <td><b>onDone</b></td>
                                             <td>
                                                 
-                                                The callback function that will be triggerd if the user selects file(s) or folder(s).                         
+                                                The callback function that will be triggered if the user selects file(s) or folder(s).                         
                                                 
                                                     <br />
                                                     
@@ -1333,6 +1940,622 @@ function invokeFileInPickerMode12() {
           defaultType: blackberry.invoke.card.FILEPICKER_TYPE_DOCUMENT
       };
   invokeFilePicker(details);
+}
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".invokeIcsViewer"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.invoke.card.invokeIcsViewer
+                                            
+                                                
+                                                    (options : <a href="blackberry.invoke.card.IcsViewerOptions.html">blackberry.invoke.card.IcsViewerOptions</a>, onDone: function(<i>[data: String]</i>), onCancel: function(<i>[reason: String]</i>), onInvoke: function(<i>[error: String]</i>))
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invokes the IcsViewer Card.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                An object to type <a href="blackberry.invoke.card.IcsViewerOptions.html">blackberry.invoke.card.IcsViewerOptions</a> describes all the options available for IcsViewer.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onDone</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered .                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>data:</b>  A data string might be an empty or to contain some information.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onCancel</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered when the card invocation has been cancelled.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>reason:</b>  A string that describes the reason the IcsViewer was cancelled.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onInvoke</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered when the IcsViewer card is invoked.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>error:</b>  A String that describes if there was an error. No error will be returned on success.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+//invoke the IcsViewer Card
+function invokeIcsViewer(options) {
+  blackberry.invoke.card.invokeIcsViewer(options, function (data) {
+        alert("Card is done");
+      },
+      function (reason) {
+        alert("cancelled " + reason);
+      },
+      function (error) {
+        if (error) {
+          alert("invoke error "+ error);
+        } else {
+          console.log("invoke success " );
+        }
+      }
+  );
+}
+
+
+//invoke IcsViewer with no account id provided
+function invokeIcsViewerNoAccountId() {
+  var options = {
+    uri: "file:///accounts/1000/shared/documents/test.ics"
+  };
+
+  invokeIcsViewer(options);
+}
+
+//invoke IcsViewer with an account id provided
+function invokeIcsViewerWithAccountId() {
+  var options = {
+    uri: "file:///accounts/1000/shared/documents/test.ics",
+    accountId: 1
+  };
+
+  invokeIcsViewer(options);
+}
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".invokeMediaPlayer"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.invoke.card.invokeMediaPlayer
+                                            
+                                                
+                                                    (options : <a href="blackberry.invoke.card.MediaPlayerOptions.html">blackberry.invoke.card.MediaPlayerOptions</a>, onDone: function(<i>[data: String]</i>), onCancel: function(<i>[reason: String]</i>), onInvoke: function(<i>[error: String]</i>))
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invokes the MediaPlayer Card.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                An object to type <a href="blackberry.invoke.card.MediaPlayerOptions.html">blackberry.invoke.card.MediaPlayerOptions</a> describe all the options available for meida player.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onDone</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered when the user finished with the media player.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>data:</b>  The data string back from the media player.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onCancel</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered if the user cancel the media player.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>reason:</b>  A String that describes the reason the MediaPlayer was cancelled.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onInvoke</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered when the media player is invoked.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>error:</b>  A String that describes if there was an error. No error will be returned on success.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+//invoke the mediaPlayer Card
+function invokeMediaPlayer(options) {
+  blackberry.invoke.card.invokeMediaPlayer(options, function (data) {
+      alert("Done: "+ data);
+    },
+    function (reason) {
+      alert("cancelled: " + reason);
+    },
+    function (error) {
+      if (error) {
+        alert("invoke error "+ error);
+      } else {
+        console.log("invoke success");
+      }
+    }
+  );
+}
+
+
+//Invoke media player with the only title set.
+function invokeMediaPlayerWithTitle() {
+  var options = {
+    contentTitle: "Just Title",
+  };
+
+  invokeMediaPlayer(options);
+}
+
+//Invoke media player with title and video.
+function invokeMediaPlayerTitleAndVideo() {
+  var options = {
+    contentTitle: "My First Record",
+    contentUri: "file:///accounts/1000/shared/camera/VID_00000001.mp4"
+  };
+
+  invokeMediaPlayer(options);
+}
+
+//Invoke media player with title, audio and a background image.
+function invokeMediaPlayerTitleAudioAndImage() {
+  var options = {
+    contentTitle: "My First Record",
+    contentUri: "file:///accounts/1000/shared/camera/AUD_00000001.m4a,
+    imageUri: "local:///Background4MediaPlayerAudio.jpg"
+  };
+
+  invokeMediaPlayer(options);
+}
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".invokeTargetPicker"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.invoke.card.invokeTargetPicker
+                                            
+                                                
+                                                    (request : Object, title : String, onSuccess: function(), onError: function())
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invokes the Target Picker Card.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>request</b></td>
+                                            <td>
+                                                
+                                                Object literal that specifies what to invoke. None of the fields are required. Refer to the example code for more information.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>action:</b> The action to be performed by the target.
+                                                    
+                                                        <br />
+                                                        <b>mime:</b> MIME type of data to be acted on. If the MIME type is not specified then the mime type would be inferred from the given URI. If the MIME type cannot be inferred or URI field is empty then invocation will be rejected.
+                                                    
+                                                        <br />
+                                                        <b>uri:</b> URI pointing to invocation data. If no URI is provided then this implies that the invocation data is provided in-band in the data field of the invocation request.
+                                                    
+                                                        <br />
+                                                        <b>data:</b> Data (String or Blob) to be acted upon encoded based on the specified type.<br/>NOTE: If a String is passed, make sure that it does not contain unicode characters or invocation will fail.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>title</b></td>
+                                            <td>
+                                                
+                                                The title string that should appear at the top of the target picker card.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onSuccess</b></td>
+                                            <td>
+                                                
+                                                a callback that is called on successfull invocation of a target.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onError</b></td>
+                                            <td>
+                                                
+                                                a callback function that will be triggered on error during the invocation process.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+function onInvokeSuccess (msg) {
+    console.log("Invocation Success" + msg);
+}
+
+function onInvokeError (msg) {
+    console.log("Invocation Error: " + msg);
+ }
+
+function shareCardPNG() {
+    var request = {
+            action : 'bb.action.SHARE',
+            uri : 'local:///test_image.png',
+            target_type: ["CARD"]
+        };
+
+     blackberry.invoke.card.invokeTargetPicker(request, "Share Card JPEG", onInvokeSuccess, onInvokeError);
+}
+
+function shareCardFilePNG() {
+    var request = {
+        action : 'bb.action.SHARE',
+        uri : 'file://' + blackberry.io.home  + '/../app/native/manual/InvocationTest/test_image.png',
+        target_type: ["CARD"]
+    };
+
+    blackberry.invoke.card.invokeTargetPicker(request, "Share JPEGS Card", onInvokeSuccess, onInvokeError);
+}
+
+function sharePNG() {
+    var request = {
+        action : 'bb.action.SHARE',
+        uri : 'local:///test_image.png',
+        target_type: ["APPLICATION", "VIEWER", "CARD"]
+    };
+
+    blackberry.invoke.card.invokeTargetPicker(request, "Shared PNG", onInvokeSuccess, onInvokeError);
+}
+
+function sharePDFURI() {
+    var request = {
+        action : 'bb.action.SHARE',
+        uri : 'local:///test.pdf',
+        target_type: ["APPLICATION", "VIEWER"]
+    };
+
+    blackberry.invoke.card.invokeTargetPicker(request, "Shared PDF", onInvokeSuccess, onInvokeError);
+}
+
+function shareDocURI() {
+    var request = {
+        action : 'bb.action.SHARE',
+        uri : 'local:///test.docx',
+        target_type: ["APPLICATION", "VIEWER", "CARD"]
+    };
+
+    blackberry.invoke.card.invokeTargetPicker(request, "Share Word Document", onInvokeSuccess, onInvokeError);
+}
+
+function shareRemoteURL() {
+    var request = {
+        action : 'bb.action.SHARE',
+        uri : 'http://google.com',
+        target_type: ["APPLICATION", "VIEWER", "CARD"]
+    };
+
+    blackberry.invoke.card.invokeTargetPicker(request, "Shared Remote URL", onInvokeSuccess, onInvokeError);
+}
+
+function shareTextMockingSelection() {
+    var request = {
+        action : 'bb.action.SHARE',
+        mime : 'text/plain',
+        data : 'Some awesome text',
+        target_type: ["VIEWER", "CARD"]
+    };
+
+    blackberry.invoke.card.invokeTargetPicker(request, "Sharing Text", onInvokeSuccess, onInvokeError);
 }
 
 &lt;/script&gt;</pre></code></td></tbody></table>
@@ -2948,7 +4171,7 @@ function invokeFileInPickerMode12() {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Nov 22 2012 01:16:27 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Mon Dec 10 2012 15:12:31 GMT-0500 (EST)
         </div>
 
     </div>
