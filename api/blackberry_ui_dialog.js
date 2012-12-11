@@ -120,8 +120,9 @@ blackberry.ui.dialog ={
          * @param {String} message Message to be displayed in the dialog.
          * @param {Number} type  Parameter that specifies the type of standard dialog. Constants starting with D_*. 
          * @callback {function} [onOptionSelected] Optional callback function that will be invoked when the user makes a selection. Expected signature: function onOptionSelected(selectedButtonObject).
-         * @callback {String} [onOptionSelected.return] The element for the selected button, returns a string based on users choice. 
-         * @callback {String} [onOptionSelected.promptText] The element for entered text. Returns the user's entered string. If cancel is selected set to null. (This property is only used for select dialogs: D_PROMPT). <br/><br/>
+         * @returns {Object} [selection] The object of the users choice.
+         * @returns {String} [selection.result] The element for the selected button, returns a string based on users choice. 
+         * @returns {String} [selection.promptText] The element for entered text. Returns the user's entered string. If cancel is selected set to null. (This property is only used for select dialogs: D_PROMPT). <br/><br/>
          * Example returns for each dialog type:
          * <ol>
          *     <li>D_OK</li>
