@@ -156,7 +156,7 @@
                         
                     
                     <br /><br />
-                    <i>Last Updated: Fri Dec 07 2012 01:20:23 GMT-0500 (EST)</i>
+                    <i>Last Updated: Wed Dec 12 2012 01:20:52 GMT-0500 (EST)</i>
                 </p>
             </div>
         
@@ -198,7 +198,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="">
+                                <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.invoke.card.html#.invokeCalendarPicker">blackberry.invoke.card.invokeCalendarPicker</a>
                                         <td class="apiNo">&nbsp;</td>
@@ -206,7 +206,7 @@
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
                                     </td>
                                 </tr>
                             
@@ -624,7 +624,7 @@
                                     </td>
                                 </tr>
                             
-                                <tr x-ww-support="">
+                                <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
                                             void
@@ -1181,7 +1181,7 @@ blackberry.invoke.card.invokeCalendarComposer({
                         </div>
                     </div>
                 
-                    <div class="detailed_item function" x-ww-support="">
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
                             <a name=".invokeCalendarPicker"></a>
                  
@@ -1198,7 +1198,7 @@ blackberry.invoke.card.invokeCalendarComposer({
                                             blackberry.invoke.card.invokeCalendarPicker
                                             
                                                 
-                                                    (options : , onDone : , onCancel : , onInvoke : )
+                                                    (options : <a href="blackberry.invoke.card.CalendarPickerOptions.html">blackberry.invoke.card.CalendarPickerOptions</a>, onDone: function(<i>[data: String]</i>), onCancel: function(<i>[reason: String]</i>), onInvoke: function(<i>[error: String]</i>))
                                                 
                                             
                                                                   
@@ -1218,7 +1218,7 @@ blackberry.invoke.card.invokeCalendarComposer({
                                        
                             
                             
-                            <p></p>
+                            <p>Invokes calendar event picker card</p>
                             <br />
                             
                             
@@ -1227,6 +1227,10 @@ blackberry.invoke.card.invokeCalendarComposer({
                                     <thead><tr><th colspan="2">
                                         Supported Platforms
                                     </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
                                     
                                 </table>              
                                                
@@ -1246,7 +1250,7 @@ blackberry.invoke.card.invokeCalendarComposer({
                                             <td><b>options</b></td>
                                             <td>
                                                 
-                                                                         
+                                                An object of type <a href="blackberry.invoke.card.CalendarPickerOptions.html">blackberry.invoke.card.CalendarPickerOptions</a> which describes all options available to the event picker.                         
                                                 
                                             </td>
                                         </tr>
@@ -1256,7 +1260,13 @@ blackberry.invoke.card.invokeCalendarComposer({
                                             <td><b>onDone</b></td>
                                             <td>
                                                 
-                                                                         
+                                                The callback function that will be triggered when the user finished with the event picker.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>data:</b>  The data string back from the event picker.
+                                                    
                                                 
                                             </td>
                                         </tr>
@@ -1266,7 +1276,13 @@ blackberry.invoke.card.invokeCalendarComposer({
                                             <td><b>onCancel</b></td>
                                             <td>
                                                 
-                                                                         
+                                                The callback function that will be triggered if the user cancel the event picker.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>reason:</b>  A String that describes the reason the event picker was cancelled.
+                                                    
                                                 
                                             </td>
                                         </tr>
@@ -1276,7 +1292,13 @@ blackberry.invoke.card.invokeCalendarComposer({
                                             <td><b>onInvoke</b></td>
                                             <td>
                                                 
-                                                                         
+                                                The callback function that will be triggered when the event picker is invoked.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>error:</b>  A String that describes if there was an error. No error will be returned on success.
+                                                    
                                                 
                                             </td>
                                         </tr>
@@ -1297,6 +1319,24 @@ blackberry.invoke.card.invokeCalendarComposer({
                             
                             
                 
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt; script="text/javascript"&gt;
+//simply invoke calendar picker, with no options and callbacks
+blackberry.invoke.card.invokeCalendarPicker();
+
+//invoke calendar event picker with filepath option
+blackberry.invoke.card.invokeCalendarPicker({filepath: "/path/to/file.vcs"}, function (done) {
+    console.log(done);
+}, function (cancel) {
+    console.log(cancel)
+}, function (invokeError) {
+    console.log(invokeError);
+});
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
   
 
                         </div>
@@ -4154,7 +4194,7 @@ function shareTextMockingSelection() {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Dec 07 2012 01:20:23 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Dec 12 2012 01:20:52 GMT-0500 (EST)
         </div>
 
     </div>
