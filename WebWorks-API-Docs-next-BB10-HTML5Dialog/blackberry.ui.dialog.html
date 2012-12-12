@@ -695,7 +695,7 @@
                                 <tr x-ww-support="bb10_menu|ripple">
                                     <td class="first_column">
                                         
-                                            Object, String, String
+                                            void
                                         
                                     </td>
                                     <td>
@@ -2034,13 +2034,14 @@
                                     
                                         static              
                                         
-                                        Object, String, String
+                                        
+                                            void
                                         
                                         
                                             blackberry.ui.dialog.standardAskAsync
                                             
                                                 
-                                                    (message : String, type : Number, <i>[onOptionSelected: function()]</i>, <i>[settings : Object]</i>)
+                                                    (message : String, type : Number, <i>[onOptionSelected: function(<i>[selection: Object]</i>)]</i>, <i>[settings : Object]</i>)
                                                 
                                             
                                                                   
@@ -2118,6 +2119,18 @@
                                                 
                                                  Optional callback function that will be invoked when the user makes a selection. Expected signature: function onOptionSelected(selectedButtonObject).                         
                                                 
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>selection:</b>  The object of the user's choice.
+                                                    
+                                                        <br />
+                                                        <b>selection.return:</b>  The element for the selected button, returns a string based on the user's choice.
+                                                    
+                                                        <br />
+                                                        <b>selection.promptText:</b>  The element for entered text. Returns the user's entered string. If cancel is selected set to null. (This property is only used for select dialogs: D_PROMPT). <br/><br/>Example returns for each dialog type:<ol>    <li>D_OK</li>    <ul>        <li>Ok selected: {return: "Ok"}</li>    </ul>    <li>D_SAVE</li>    <ul>         <li>Save selected: {return: "Save"}</li>         <li>Discard selected: {return: "Discard"}</li>    </ul>    <li>D_DELETE</li>    <ul>         <li>Delete selected: {return: "Delete"}</li>         <li>Cancel selected: {return: "Cancel"}</li>    </ul>    <li>D_YES_NO</li>    <ul>         <li>Yes selected: {return: "Yes"}</li>         <li>No selected: {return: "No"}</li>    </ul>    <li>D_OK_CANCEL</li>    <ul>         <li>Ok selected: {return: "Ok"}</li>         <li>Cancel selected: {return: "Cancel"}</li>    </ul>    <li>D_PROMPT</li>    <ul>         <li>Ok selected with input: {return: "Ok", promptText: "test input"}</li>         <li>Ok selected with empty input: {return: "Ok", promptText: null}</li>         <li>Cancel selected: {return: "Cancel", promptText: null}</li>    </ul></ol>
+                                                    
+                                                
                                             </td>
                                         </tr>
                                     
@@ -2145,23 +2158,6 @@
                             
 
                             
-                            
-                                <br />
-                                <span><b>Return:</b></span>
-                                
-                                    
-                                        <p> [selection] The object of the users choice. </p>
-                                    
-                                
-                                    
-                                        <p> [selection.result] The element for the selected button, returns a string based on users choice. </p>
-                                    
-                                
-                                    
-                                        <p> [selection.promptText] The element for entered text. Returns the user's entered string. If cancel is selected set to null. (This property is only used for select dialogs: D_PROMPT). <br/><br/>Example returns for each dialog type:<ol>    <li>D_OK</li>    <ul>        <li>Ok selected: {return: "Ok"}</li>    </ul>    <li>D_SAVE</li>    <ul>         <li>Save selected: {return: "Save"}</li>         <li>Discard selected: {return: "Discard"}</li>    </ul>    <li>D_DELETE</li>    <ul>         <li>Delete selected: {return: "Delete"}</li>         <li>Cancel selected: {return: "Cancel"}</li>    </ul>    <li>D_YES_NO</li>    <ul>         <li>Yes selected: {return: "Yes"}</li>         <li>No selected: {return: "No"}</li>    </ul>    <li>D_OK_CANCEL</li>    <ul>         <li>Ok selected: {return: "Ok"}</li>         <li>Cancel selected: {return: "Cancel"}</li>    </ul>    <li>D_PROMPT</li>    <ul>         <li>Ok selected with input: {return: "Ok", promptText: "test input"}</li>         <li>Ok selected with empty input: {return: "Ok", promptText: null}</li>         <li>Cancel selected: {return: "Cancel", promptText: null}</li>    </ul></ol> </p>
-                                    
-                                
-                                <br />
                             
                             
                             
@@ -3954,7 +3950,7 @@
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Dec 12 2012 01:48:14 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Dec 12 2012 10:16:42 GMT-0500 (EST)
         </div>
 
     </div>
