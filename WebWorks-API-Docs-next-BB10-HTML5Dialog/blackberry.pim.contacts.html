@@ -45,23 +45,31 @@
             }
 
             function runFilter() {
-                var filter = localStorage.getItem('selectedmenu');
-                var elements = getDesiredElements(document.body, 'x-ww-support');
-                for (var i = 0; i < elements.length; i++) {
-                    var target = elements[i];
-                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
-                    if (x_ww_support.indexOf(filter) < 0) {
-                        target.style.display = 'none';
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
                     }
                 }
             }
-            
+
             if(window.attachEvent) {
                 window.attachEvent('onload', runFilter);
             } else {
                 if(window.onload) {
-                    var curronload = window.onload;
-                    var newonload = function() {
+                    var curronload = window.onload,
+                        newonload = function() {
                         curronload();
                         runFilter();
                     };
@@ -186,6 +194,30 @@
                                     </td>
                                 </tr>
                             
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.pim.contacts.html#.getContact">blackberry.pim.contacts.getContact</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.pim.contacts.html#.invokeContactPicker">blackberry.pim.contacts.invokeContactPicker</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
                         </table>
                     </div>
                 </div>
@@ -297,6 +329,30 @@
                                     </td>
                                     <td>
                                         <a href="blackberry.pim.contacts.html#.find">blackberry.pim.contacts.find</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            <a href="blackberry.pim.contacts.Contact.html">blackberry.pim.contacts.Contact</a>
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.pim.contacts.html#.getContact">blackberry.pim.contacts.getContact</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.pim.contacts.html#.invokeContactPicker">blackberry.pim.contacts.invokeContactPicker</a>
                                         
                                     </td>
                                 </tr>
@@ -460,10 +516,10 @@ function onSaveError(error) {
 function createContact() {
     var contacts = blackberry.pim.contacts,
         ContactField = contacts.ContactField,
-        name = new contacts.ContactName(),
-        workPhone = new ContactField(ContactField.WORK, "123-456-789"),
-        workEmail = new ContactField(ContactField.WORK, "abc@blah.com"),
-        homeEmail = new ContactField(ContactField.HOME, "hello@me.com"),
+        name = {},
+        workPhone = { type: ContactField.WORK, value: "123-456-789" },
+        workEmail = { type: ContactField.WORK, value: "abc@blah.com" },
+        homeEmail = { type: ContactField.HOME, value: "hello@me.com" },
         contact;
         
     name.familyName = "Smith";
@@ -622,7 +678,7 @@ function createContact() {
     ContactFindOptions = contacts.ContactFindOptions;
 
 function onFindSuccess(results) {
-    console.log("Found " + results.length + " John Smith in total");
+    console.log("Found " + results.length + " contacts in total");
 }
 
 function onFindError(error) {
@@ -642,11 +698,11 @@ function searchContactsByName() {
              "fieldName" : ContactFindOptions.SORT_FIELD_ORGANIZATION_NAME,
              "desc" : false
         },
-        findOptions = new ContactFindOptions(
-            [searchFirstName, searchLastName], // filter
-            [sortOrg],                         // sort
-            20                                 // limit
-        );
+        findOptions = {
+             filter: [searchFirstName, searchLastName], // filter
+             sort: [sortOrg],                           // sort
+             limit: 20                                  // limit
+        };
     // The first 20 contacts (based on specified sort specs) with given name "John"
     // and family name "Smith" will be returned
     contacts.find(["name"], findOptions, onFindSuccess, onFindError);
@@ -654,52 +710,374 @@ function searchContactsByName() {
 
 function listAllContacts() {
     var sort = [{
-            "fieldName": ContactFindOptions.SORT_FIELD_FAMILY_NAME,
-            "desc": false
+             "fieldName": ContactFindOptions.SORT_FIELD_FAMILY_NAME,
+             "desc": false
         }, {
-            "fieldName": ContactFindOptions.SORT_FIELD_GIVEN_NAME,
-            "desc": true
+             "fieldName": ContactFindOptions.SORT_FIELD_GIVEN_NAME,
+             "desc": true
         }],
-        findOptions = new ContactFindOptions(
-            null,  // null filter - return all contacts
-            sort,  // sort contacts first by family name (desc), then by given name (asc)
-            20     // limit - return up to 20 contacts
-        );
+        // no filter - return all contacts
+        findOptions = { 
+             // sort contacts first by family name (desc), then by given name (asc)
+             sort: sort,  
+             limit: 20     // limit - return up to 20 contacts
+        };
     // The first 20 contacts (based on specified sort specs) will be returned
     contacts.find(["name"], findOptions, onFindSuccess, onFindError);
 }
 
-function findContactErrorMissingFilterValue() {
-    var findOptions = new ContactFindOptions([{
-            "fieldName": ContactFindOptions.SEARCH_FIELD_GIVEN_NAME,
-            "fieldValue": ""
-        }, {
-            "fieldName": ContactFindOptions.SEARCH_FIELD_FAMILY_NAME,
-            "fieldValue": "Smith"
-        }], [{
-            "fieldName": ContactFindOptions.SORT_FIELD_FAMILY_NAME,
-            "desc": false
-        }, {
-            "fieldName": ContactFindOptions.SORT_FIELD_GIVEN_NAME,
-            "desc": true
-        }],
-        2);
-    // Error - illegal argument (reason: fieldValue = "" for first search field)
+function listAllContactsWithEmptyFindOptions() {
+    var findOptions = {};
+    
+    //Will return all contacts with no particular sort order
     contacts.find(["name"], findOptions, onFindSuccess, onFindError);
 }
 
-function findContactErrorMissingFilter() {
-    var findOptions = new ContactFindOptions([{
-            "fieldName": ContactFindOptions.SORT_FIELD_FAMILY_NAME,
-            "desc": false
-        }, {
-            "fieldName": ContactFindOptions.SORT_FIELD_GIVEN_NAME,
-            "desc": true
-        }], // sort
-        2); // limit
-    // Error - illegal argument (reason: filter omitted, but the params followed by it are not)
-    // Once an optional param is omitted, all params followed by it should also be omitted
+function findContactErrorMissingFilterValue() {
+    var findOptions = {
+          filter: [{
+                "fieldName": ContactFindOptions.SEARCH_FIELD_GIVEN_NAME,
+                "fieldValue": ""
+          }, {
+                "fieldName": ContactFindOptions.SEARCH_FIELD_FAMILY_NAME,
+                "fieldValue": "Smith"
+          }],
+          sort: [{
+                "fieldName": ContactFindOptions.SORT_FIELD_FAMILY_NAME,
+                "desc": false
+          }, {
+                "fieldName": ContactFindOptions.SORT_FIELD_GIVEN_NAME,
+                "desc": true
+          }],
+          limit: 2
+       };
+    // Error - illegal argument (reason: fieldValue = "" for first search field)
     contacts.find(["name"], findOptions, onFindSuccess, onFindError);
+}</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".getContact"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        <a href="blackberry.pim.contacts.Contact.html">blackberry.pim.contacts.Contact</a>
+                                        
+                                        
+                                            blackberry.pim.contacts.getContact
+                                            
+                                                
+                                                    (contactId : String)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Retrieves the contact with specified contactId. This function is especially useful if you have
+previously obtained an contact object, and you want to get a fresh copy from the backend to make sure all its properties
+are up-to-date.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>contactId</b></td>
+                                            <td>
+                                                
+                                                The identifier of the contact                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>var contacts = blackberry.pim.contacts;
+
+function getContactById(contactId) {
+    var contact = contacts.getContact(contactId);
+    if (contact) {
+       alert("Contact id #" + contactId + " corresponds to '" + contact.name.givenName + " " + contact.name.familyName +"'.");
+    } else {
+       alert("There is no contact with id: " + contactId);
+    }
+}</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".invokeContactPicker"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.pim.contacts.invokeContactPicker
+                                            
+                                                
+                                                    (options : <a href="blackberry.pim.contacts.ContactPickerOptions.html">blackberry.pim.contacts.ContactPickerOptions</a>, onDone : function, onCancel : function, onInvoke : function)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invokes contact picker card.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                An object of type <a href="blackberry.pim.contacts.ContactPickerOptions.html">blackberry.pim.contacts.ContactPickerOptions</a> which describes all options available to the contact picker.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onDone</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered when the user is finished with the contact picker.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>data:</b> The data returned by the contact picker. The returned data varies depends on the picker mode.
+<ol>
+<li>If mode = <a href="blackberry.pim.contacts.ContactPickerOptions.html#.MODE_SINGLE">MODE_SINGLE</a>:<pre>
+{
+   // id of the selected contact
+   contactId: "123"
+}</pre>
+</li>
+<li>If mode = <a href="blackberry.pim.contacts.ContactPickerOptions.html#.MODE_MULTIPLE">MODE_MULTIPLE</a>:<pre>
+{
+   // ids of the selected contacts
+   contactIds: ["123", "456", "789"]
+}</pre></li>
+<li>If mode = <a href="blackberry.pim.contacts.ContactPickerOptions.html#.MODE_ATTRIBUTE">MODE_ATTRIBUTE</a>:<pre>
+{
+   // id of the contact
+   contactId: "193",
+   // value of the selected attribute
+   value: "1234567890",
+   // field name of the selected attribute
+   field: "phoneNumbers",
+   // field type of the selected attribute
+   type: "work"
+}</pre>
+</li>
+</ol>
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onCancel</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered if the user presses cancel in the contact picker.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onInvoke</b></td>
+                                            <td>
+                                                
+                                                The callback function that will be triggered when the contact picker is invoked.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>error:</b>  The <a href="blackberry.pim.contacts.ContactError.html">blackberry.pim.contacts.ContactError</a> object which contains the error code. If the contact picker is invoked successfully, the error object will be undefined.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>var contacts = blackberry.pim.contacts,
+    ContactPickerOptions = contacts.ContactPickerOptions;
+
+function onCancel() {
+    alert("User pressed cancel in contact picker.");
+}
+
+function onInvoke(error) {
+    if (error) {
+       alert("Error invoking contact picker: " + error.code);
+    } else {
+       alert("Contact picker invoked!");
+    }
+}
+
+function onContactSelected(data) {
+    alert("Id of selected contact: " + data.contactId);
+}
+
+function onContactsSelected(data) {
+    alert("Total # contacts selected: " + data.contactIds.length);
+}
+
+function onContactAttributeSelected(data) {
+    alert("The selected field '" + data.field + "(" + data.type + ")' has value '" + data.value + "' belongs to contact with id: " + data.contactId);
+}
+
+function invokeContactPickerSingle() {
+    contacts.invokeContactPicker({
+        mode: ContactPickerOptions.MODE_SINGLE,
+        fields: ["phoneNumbers"]
+    }, onContactSelected, onCancel, onInvoke);
+}
+
+function invokeContactPickerMultiple() {
+    contacts.invokeContactPicker({
+        mode: ContactPickerOptions.MODE_MULTIPLE,
+        fields: ["phoneNumbers"]
+    }, onContactsSelected, onCancel, onInvoke);
+}
+
+function invokeContactPickerAttribute() {
+    contacts.invokeContactPicker({
+        mode: ContactPickerOptions.MODE_ATTRIBUTE,
+        fields: ["phoneNumbers", "emails"]
+    }, onContactAttributeSelected, onCancel, onInvoke);
 }</pre></code></td></tbody></table>
     
   
@@ -729,7 +1107,7 @@ function findContactErrorMissingFilter() {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sat Nov 17 2012 15:01:33 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Dec 12 2012 01:48:13 GMT-0500 (EST)
         </div>
 
     </div>
