@@ -80,7 +80,7 @@ blackberry.ui.contextmenu = {
  *
  */
  addItem : function (){},
- 
+
  /**
  * @description Allows the developer to remove previously added custom items from the context menu.
  * @param {String[]} contexts An array of constants defining which contexts this new item should appear.
@@ -134,6 +134,127 @@ removeItem: function (){},
 defineCustomContext: function (){},
 
 /**
+ * @description Allows the developer to override platform menu items in the context menu.
+ * @param {Object} action An object that should be used to override the platform menu item using the actionId.
+ * @param {String} action.actionId A property that uniquely defines the action to be added to the context menu.
+ * @param {String} action.label A string that will be displayed to the user describing the custom context to be performed. ie: Edit
+ * @param {String} action.icon A path to the an image to display in the context menu
+ * @callback {Function} callback A function which runs when the menu item action is executed
+ * @BB10X
+ * @RIPPLE
+ * @example
+ * &lt;script type="text/javascript"&gt;
+ *
+ *  //Override the system Copy action by actionId using the ACTION_COPY constant
+ *  function overridePlatformWithIcon() {
+ *   var myItem = {actionId: blackberry.ui.contextmenu.ACTION_COPY, label: 'Custom Copy!',
+ *       icon:'local:///icon.png'};
+ *
+ *   blackberry.ui.contextmenu.overrideItem(myItem, function() {
+ *       alert("Wow you succesfully overrode the platform menu item Copy");
+ *   });
+ * }
+ *  //Override the system Copy action by actionId using the ACTION_SAVE_IMAGE constant
+ *  // this example does not provide a icon, and uses the system default
+ *  function overridePlatformNoIcon() {
+ *   var myItem = {actionId: blackberry.ui.contextmenu.ACTION_SAVE_IMAGE, label: 'Save Image'};
+ *
+ *   blackberry.ui.contextmenu.overrideItem(myItem, function() {
+ *       alert("Custom Save using system icon");
+ *   });
+ * }
+ * &lt;/script&gt;
+ *
+ */
+overrideItem: function (){},
+
+/**
+ * @description Allows the developer clear the override on a platform menu item in the context menu.
+ * @param {String} actionId The actionId of the context menu item to clear the override on.
+ * @BB10X
+ * @RIPPLE
+ * @example
+ * &lt;script type="text/javascript"&gt;
+ *
+ *  function clearPlatformCopyOverride() {
+ *   var actionId = blackberry.ui.contextmenu.ACTION_COPY;
+ *   blackberry.ui.contextmenu.clearoOverride(actionId);
+ * }
+ *
+ * clearPlatformCopyOverride();
+ * &lt;/script&gt;
+ *
+ */
+clearOverride: function (){}.
+
+/**
+ * @description Allows the developer to disable platform provided menu items in the context menu.
+ * Developers must provide the following parameters to successfully disable platform item.
+ * @param {String} context A string constant defining which context this platform item should be removed.
+ * @param {String} actionId A string constant defining which item should be removed.
+ * @return {Boolean} True if operation was successful
+ * @BB10X
+ * @RIPPLE
+ * @example
+ * &lt;script type="text/javascript"&gt;
+ *
+ * function disableCopyItemForImageContext() {
+ *     var context = blackberry.ui.contextmenu.CONTEXT_IMAGE,
+ *         actionId = blackberry.ui.contextmenu.ACTION_COPY;
+ *     blackberry.ui.contextmenu.disablePlatformItem(context, actionId);
+ * }
+ *
+ * &lt;/script&gt;
+ */
+ disablePlatformItem : function (){},
+
+/**
+ * @description Allows the developer to re-enable a disabled platform provided menu item in the context menu.
+ * Developers must provide the following parameters to successfully re-enable the disabled platform item.
+ * @param {String} context A string constant defining which context this platform item should be restored.
+ * @param {String} actionId A string constant defining which item should be restored.
+ * @return {Boolean} True if operation was successful
+ * @BB10X
+ * @RIPPLE
+ * @example
+ * &lt;script type="text/javascript"&gt;
+ *
+ * function enableCopyItemForImageContext() {
+ *     var context = blackberry.ui.contextmenu.CONTEXT_IMAGE,
+ *         actionId = blackberry.ui.contextmenu.ACTION_COPY;
+ *     blackberry.ui.contextmenu.enablePlatformItem(context, actionId);
+ * }
+ *
+ * &lt;/script&gt;
+ */
+ enablePlatformItem : function (){},
+
+/**
+ * @description Lists the disabled platform menu items in the context menu.
+ * @return {Object[]} 2D array of disabled items.  First index is context, second index is actionId
+ * @BB10X
+ * @RIPPLE
+ * @example
+ * &lt;script type="text/javascript"&gt;
+ *
+ * function listDisabledMenuItems() {
+ *     var imageContext = blackberry.ui.contextmenu.CONTEXT_IMAGE,
+ *         disabledItems = blackberry.ui.contextmenu.listDisabledPlatformItems();
+ *
+ *     // Print all disabled platform items for the image context
+ *     if (disabledItems[imageContext].length !== 0) {
+ *          disabledItems[imageContext].forEach(function (actionId) {
+ *              console.log(actionId);
+ *          });
+ *     }
+ * }
+ *
+ * &lt;/script&gt;
+ */
+ listDisabledPlatformItems: function (){},
+
+
+/**
  * Constant denoting all contexts.
  * @type String
  * @constant
@@ -168,7 +289,7 @@ defineCustomContext: function (){},
  * @RIPPLE
  */
  CONTEXT_IMAGE_LINK: "CONTEXT_IMAGE_LINK",
- 
+
  /**
  * Constant denoting the context of input fields.
  * @type String
