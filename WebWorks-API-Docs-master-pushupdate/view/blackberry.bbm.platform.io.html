@@ -1,0 +1,1779 @@
+
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>
+        Connections - BlackBerry WebWorks
+    </title>
+
+    <script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/pagehead.min.js"></script>
+    <link href="https://bdsc.webapps.blackberry.com/html5/webroot/css/main.min.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="site_container clearfix guide-container">
+    
+
+<section  class="page_container references">
+	<div class="row">
+        <nav class="column grid_4 side-navigation" id="side-nav-api" role="navigation">
+            <div id="sticky-anchor"> </div>
+            <div class="side-nav-wrapper" id="sticky">
+                <div class="side-nav-content clearfix" id="none">
+                    <div class="side-nav-section clearfix" id="side-nav-title">
+                        <h3>API Reference</h3>
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-parents"> 
+                    </div>
+                    <div class="side-nav-section clearfix" id="side-nav-filter"> 
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-children"> 
+                    </div>
+                </div>
+            </div>
+            <div class="side-navspacer-bottom"> </div>
+        </nav>
+
+        <div class="column grid_8">
+                <div class="row">
+                    <article id="main" class="column grid_8" role="main">
+                        
+
+<section>
+
+    <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
+                    }
+                }
+            }
+
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload,
+                        newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
+
+        function viewSupportedTable() {
+            var table = document.getElementById('APISupportTable');
+            if (table != null && table.style.display != 'inline') {
+                table.style.display = 'inline';
+            }
+            else {
+                table.style.display = 'none';
+            }
+        }
+
+    </script>
+    
+    <style type="text/css">
+
+        .apiYes {
+            background-color: #D1F8FB;
+        }
+        
+        .tdNoWrap {
+            white-space:nowrap;
+        }
+        
+        .APISupportTable {
+            display:none;
+        }
+    </style>
+
+    <div>
+
+
+        <h1>
+            
+                Connections
+            
+        </h1>
+
+
+        
+            <p>
+                Provides services to create, accept, and manage connections.
+<h3>Connections</h3>
+<h4>Connection types</h4>
+The BBM Social Platform supports the following types of connections:
+<br/><a href="blackberry.bbm.platform.io.Channel.html">blackberry.bbm.platform.io.Channel</a>
+<br/><a href="blackberry.bbm.platform.io.Session.html">blackberry.bbm.platform.io.Session</a>
+
+<h4>Creating connections</h4>
+<p>Connections can be created using <a href="blackberry.bbm.platform.io.html#.createConnection">blackberry.bbm.platform.io.createConnection</a>.
+When a connection is created, the application should assign callbacks to it in order to be notified
+of various events.</p>
+
+<pre>
+var type = ... // One of "channel" or "session"
+var conn = blackberry.bbm.platform.io.createConnection(type);
+setConnectionCallbacks(conn, type);
+</pre>
+
+<h4>Accepting incoming connections</h4>
+When the current user accepts an invitation within BBM, <a href="blackberry.bbm.platform.io.html#.event:onconnectionaccepted">blackberry.bbm.platform.io.onconnectionaccepted</a>
+will be invoked with the connection on which the invitation was accepted. The application should
+assign callbacks to the connection within this method.
+<pre>
+var conn;
+
+blackberry.bbm.platform.io.onconnectionaccepted = function(type, connection) {
+    // Save the connection and set the callbacks
+    conn = connection;
+    setConnectionCallbacks(conn, type);
+};
+</pre>
+
+<h4>Connection events</h4>
+A generic function can be used to assign callbacks to connections.
+<pre>
+function setConnectionCallbacks(conn, type) {
+    // Channel/Session callbacks
+    conn.onusersinvited = function(users) {
+        // ...
+    };
+    conn.onusersjoined = function(users, type, cookie) {
+        // ...
+    };
+    conn.onuserdeclined = function(user) {
+        // ...
+    };
+    conn.onuserleft = function(user) {
+        // ...
+    };
+    conn.ondata = function(user, data) {
+        // ...
+    };
+    
+    // Session callbacks
+    if(type == "session") {
+        conn.onbroadcastdata = function(user, data) {
+            // ...
+        };
+        conn.onusersremoved = function(user, users) {
+            // ...
+        };
+        conn.onended = function(user) {
+            // ...
+        };
+    }
+};
+</pre>
+
+<h3>Adding users to connections</h3>
+<p>There are two ways to add users to connections: (1) inviting contacts to join a connection, and
+(2) hosting a connection for non-contacts to join. A user does not have to be the connection
+creator in order to invite users.
+
+<h4>1. Inviting contacts to join</h4>
+<p>An application user can invite contacts to join a connection.</p>
+<p>When the application calls <a href="blackberry.bbm.platform.io.Connection.html#inviteContacts">inviteContacts</a> a Contact Picker dialog will be shown containing contacts that have the application installed.
+If the user invites contacts, the <a href="blackberry.bbm.platform.io.Connection.html#event:onusersinvited">onusersinvited</a> callback will be invoked on the inviter's side.</p>
+<p>Invitees receive the invitations within BBM.</p>
+<ul>
+<li>If they accept the invitation, <a href="blackberry.bbm.platform.io.Connection.html#event:onusersjoined">onusersjoined</a> is invoked on the inviter's side, and <a href="blackberry.bbm.platform.io.html#.event:onconnectionaccepted">blackberry.bbm.platform.io.onconnectionaccepted</a> is invoked on the invitee's side with the connection they just joined. 
+<li>If they decline the invitation, <a href="blackberry.bbm.platform.io.Connection.html#event:onuserdeclined">onuserdeclined</a> is invoked on the inviter's side.
+</ul>
+<br><img src="/html5/files/apis/images/invite_to_join.png" alt="invite_to_join.png" /><br>
+
+<h4>2. Hosting a public connection for non-contacts to join</h4>
+<p>An application user can also host an event within a public connection to allow all application users to join.</p>
+<p>When the application calls <a href="blackberry.bbm.platform.io.html#.host">blackberry.bbm.platform.io.host</a>, a dialog appears for the user to accept or refuse to host the public connection. If the user accepts, the application posts the host's PIN and PPID to its discovery service. <b>The BBM Social Platform does not provide a discovery service. The application developer must provide one.</b>
+<p>Peers should download host information (PIN and PPID) from the discovery service and then call <a href="blackberry.bbm.platform.io.html#.joinHost">blackberry.bbm.platform.io.joinHost</a>. The peer will also be presented with a dialog to join or decline the public connection.
+<p>At this point, the request is in the <code>"pending"</code> state. In this state, the peer can <a href="blackberry.bbm.platform.io.OutgoingJoinRequest.html#cancel">cancel</a> the request, and the host can <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html#accept">accept</a> or <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html#decline">decline</a>.</p>
+<br><img src="/html5/files/apis/images/hosting.png" alt="hosting.png" /><br>
+</p>
+
+
+                
+                    <div x-ww-support="bb_menu">
+                    
+                
+  
+
+                    </div>
+                
+            </p>
+        
+
+
+        
+            
+            <br />
+        
+
+
+        
+
+
+        
+
+
+        
+            <div class="ref-sect ref-index">
+                <div class="ref-sect-title">
+                    <h2>Supported Platform(s)</h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table>
+                            <tbody>
+                            
+                                <tr><td>- BlackBerry OS 5.0+</td></tr>
+                            
+                            </tbody>
+                        </table>
+                    
+                    <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
+                    <div class="APISupportTable" id="APISupportTable">
+                        <table class="apiTable">
+                            <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                            
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.createConnection">blackberry.bbm.platform.io.createConnection</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.host">blackberry.bbm.platform.io.host</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.joinHost">blackberry.bbm.platform.io.joinHost</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.hostRequests">hostRequests</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.hostedConnection">hostedConnection</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.joinHostRequests">joinHostRequests</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.event:onconnectionaccepted">blackberry.bbm.platform.io.onconnectionaccepted</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.event:ondataexpired">blackberry.bbm.platform.io.ondataexpired</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.event:onuserreachable">blackberry.bbm.platform.io.onuserreachable</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+
+
+        <div class="ref-sect ref-index">
+            <div class="ref-sect-title">
+                <h2>Configuration Document Settings</h2>
+            </div>
+            <div class="ref-sect-content">
+                <table><tbody>
+                    <tr><td>
+                        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
+                    </td></tr>
+                    
+                        <tr><td>
+                            <p>You must declare the feature element(s) below in your configuration document:</p>
+                        </td></tr></tbody></table>
+                    <table>
+                        <thead><tr><th>Feature ID</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                        
+                            
+                            
+                                
+                            
+                            <tr x-ww-support="bb_menu"><td>
+                                &lt;feature id="blackberry.bbm.platform" /&gt;
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                            </td></tr>
+                        
+                    </table>
+                
+
+                <div x-ww-support="pb_menu|bb10_menu">
+                    
+                    <table>
+                        <tr>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
+                        </tr>
+                        
+                            <tr><td>
+                                This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+                            </td></tr>
+                            <br />
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        
+        
+
+
+<div>
+    
+        
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
+                <div class="ref-sect-title">
+                    <h2> Functions </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            <a href="blackberry.bbm.platform.io.Channel.html">blackberry.bbm.platform.io.Channel</a>|<a href="blackberry.bbm.platform.io.Session.html">blackberry.bbm.platform.io.Session</a>
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.createConnection">blackberry.bbm.platform.io.createConnection</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.host">blackberry.bbm.platform.io.host</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.joinHost">blackberry.bbm.platform.io.joinHost</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
+                <div class="ref-sect-title">
+                    <h2> Events </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.event:onconnectionaccepted">blackberry.bbm.platform.io.onconnectionaccepted</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.event:ondataexpired">blackberry.bbm.platform.io.ondataexpired</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.event:onuserreachable">blackberry.bbm.platform.io.onuserreachable</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
+                <div class="ref-sect-title">
+                    <h2> Properties </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html">blackberry.bbm.platform.io.IncomingJoinRequest</a>[]
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.hostRequests">hostRequests</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            <a href="blackberry.bbm.platform.io.Connection.html">blackberry.bbm.platform.io.Connection</a>
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.hostedConnection">hostedConnection</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            <a href="blackberry.bbm.platform.io.OutgoingJoinRequest.html">blackberry.bbm.platform.io.OutgoingJoinRequest</a>[]
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.io.html#.joinHostRequests">joinHostRequests</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+        
+        
+    
+
+    
+</div>
+
+
+
+        
+        
+
+    
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Functions</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".createConnection"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        <a href="blackberry.bbm.platform.io.Channel.html">blackberry.bbm.platform.io.Channel</a> | <a href="blackberry.bbm.platform.io.Session.html">blackberry.bbm.platform.io.Session</a>
+                                        
+                                        
+                                            blackberry.bbm.platform.io.createConnection
+                                            
+                                                
+                                                    (type : String)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Creates a connection.
+<p><b>The application should assign callbacks to the connection after creating it.</b></p></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>type</b></td>
+                                            <td>
+                                                
+                                                The type of connection to create: <code>"channel"</code> or <code>"session"</code>.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                                <br />
+                                <span><b>Return:</b></span>
+                                
+                                    
+                                        <p> The connection created. </p>
+                                    
+                                
+                                <br />
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".host"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.io.host
+                                            
+                                                
+                                                    (connection : <a href="blackberry.bbm.platform.io.Connection.html">blackberry.bbm.platform.io.Connection</a>, onComplete: function(hosting : Boolean), onRequestReceived: function(request : <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html">blackberry.bbm.platform.io.IncomingJoinRequest</a>), onRequestCanceled: function(request : <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html">blackberry.bbm.platform.io.IncomingJoinRequest</a>, reason : String))
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Enables hosting on this connection. The user is prompted with a dialog to allow or deny hosting.
+<p>To stop hosting, call <code>blackberry.bbm.platform.io.host()</code>. Stopping hosting will not
+remove users from the connection who have already joined, but it will prevent others from joining.
+<a href="blackberry.bbm.platform.io.html#.hostRequests">hostRequests</a> will be emptied.</p>
+<p>The user may only host on one connection in the application. If this application is already
+hosting a public connection and this method is invoked on a different connection, then hosting
+will stop on the old connection and begin on the new one. The user will again be prompted with
+a dialog to allow or deny hosting.</p>
+<h3>Reasons why a request is canceled</h3>
+<ul>
+<li><code>"peercanceled"</code>: The peer canceled the request without a specific reason.
+<li><code>"peerleft"</code>: The peer exited the application.
+</ul></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>connection</b></td>
+                                            <td>
+                                                
+                                                The connection on which to host.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onComplete</b></td>
+                                            <td>
+                                                
+                                                Invoked when the user finishes approving/denying hosting.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>hosting:</b> <code>true</code> if the user decided to start hosting;
+<code>false</code> otherwise.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onRequestReceived</b></td>
+                                            <td>
+                                                
+                                                Invoked when the host receives a join request from a peer.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>request:</b> The received request.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onRequestCanceled</b></td>
+                                            <td>
+                                                
+                                                Invoked when a peer cancels a join request.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>request:</b> The canceled request.
+                                                    
+                                                        <br />
+                                                        <b>reason:</b> The reason that the request was canceled.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".joinHost"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.io.joinHost
+                                            
+                                                
+                                                    (hostPIN : String, hostPPID : String, onComplete: function(request : <a href="blackberry.bbm.platform.io.OutgoingJoinRequest.html">blackberry.bbm.platform.io.OutgoingJoinRequest</a>), onHostAccepted: function(request : <a href="blackberry.bbm.platform.io.OutgoingJoinRequest.html">blackberry.bbm.platform.io.OutgoingJoinRequest</a>, cookie : String), onHostDeclined: function(request : <a href="blackberry.bbm.platform.io.OutgoingJoinRequest.html">blackberry.bbm.platform.io.OutgoingJoinRequest</a>, reason : String), <i>[cookie : String]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Sends a join request to a user hosting a public connection for others to join.
+<p>The host does not need to be a contact of the current user.
+<h3>Reasons why a request is declined</h3>
+<ul>
+<li><code>"hostdeclined"</code>: The host declined without a specific reason.
+<li><code>"hostppidinvalid"</code>: The host PPID is invalid.
+<li><code>"appnotrunning"</code>: The host's application was not running when they received the request.
+<li><code>"connectionnotfound"</code>: The host is not hosting on any connection, or stopped hosting the connection while the request was pending.
+<li><code>"connectionfull"</code>: The host's connection is full.
+</ul></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>hostPIN</b></td>
+                                            <td>
+                                                
+                                                The host PIN. Can be obtained by <code>blackberry.identity.PIN</code>                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>hostPPID</b></td>
+                                            <td>
+                                                
+                                                The host PPID. Can be obtained by <code>blackberry.bbm.platform.self.ppid</code>.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onComplete</b></td>
+                                            <td>
+                                                
+                                                Invoked when the user finishes approving the join request.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>request:</b> The
+request sent to the host; <code>undefined</code> if the user aborted the join request.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onHostAccepted</b></td>
+                                            <td>
+                                                
+                                                Invoked when the join request is accepted by the host.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>request:</b> The accepted request.
+                                                    
+                                                        <br />
+                                                        <b>cookie:</b> The cookie sent when the host accepted the join request in <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html#accept">accept</a>. <code>undefined</code>
+if a cookie wasn't provided.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onHostDeclined</b></td>
+                                            <td>
+                                                
+                                                Invoked when the join request is declined by the host.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>request:</b> The declined request.
+                                                    
+                                                        <br />
+                                                        <b>reason:</b> The reason that the request was declined.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>cookie</b></td>
+                                            <td>
+                                                
+                                                A custom parameter provided by the application, such as the current game level. Max length of 128 characters.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                           Throws
+                                    </th></tr></thead>
+                                    
+                                        <tr>
+                                            <td>
+                                                IllegalStateException                                                
+                                            </td>
+                                            <td>
+                                                If the current user has connected with the host in a connection
+but still attempts to send another join request to the host.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                IllegalArgumentException                                                
+                                            </td>
+                                            <td>
+                                                If <code>hostPIN</code> is invalid.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                IllegalArgumentException                                                
+                                            </td>
+                                            <td>
+                                                If <code>hostPPID</code> is invalid.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                IllegalArgumentException                                                
+                                            </td>
+                                            <td>
+                                                If <code>cookie</code> is longer than 128 characters.
+                                            </td>
+                                        </tr>
+                                    
+                                </table>
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Events</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".event:onconnectionaccepted"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.io.onconnectionaccepted
+                                            
+                                                
+                                                    (connectionType : String, connection : <a href="blackberry.bbm.platform.io.Channel.html">blackberry.bbm.platform.io.Channel</a>|<a href="blackberry.bbm.platform.io.Session.html">blackberry.bbm.platform.io.Session</a>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invoked when an incoming connection is accepted. There are two cases when this may happen:
+<ul>
+<li>When an invitation is accepted in the BBM chat window.
+<li>When a host accepts a join request.
+</ul>
+<p>This callback is required when using either invitation framework. It must be assigned <b>before</b> the call to <a href="blackberry.bbm.platform.html#.register">blackberry.bbm.platform.register</a>. 
+<p><b>The application should assign callbacks to the connection in this method.</b></p></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>connectionType</b></td>
+                                            <td>
+                                                
+                                                The type of connection: <code>"channel"</code> or <code>"session"</code>.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>connection</b></td>
+                                            <td>
+                                                
+                                                The connection.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".event:ondataexpired"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.io.ondataexpired
+                                            
+                                                
+                                                    (user : <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>, data : String[])
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invoked when pending data for an unreachable user has expired. See <a href="blackberry.bbm.platform.io.Connection.html#send">send</a> for more details.
+<p>See <a href="blackberry.bbm.platform.io.Connection.html#send">send</a></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>user</b></td>
+                                            <td>
+                                                
+                                                The unreachable user.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>data</b></td>
+                                            <td>
+                                                
+                                                The data messages which expired.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".event:onuserreachable"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.io.onuserreachable
+                                            
+                                                
+                                                    (user : <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invoked when a contact has become reachable after a ContactUnreachableException was thrown from <a href="blackberry.bbm.platform.io.Connection.html#send">send</a>.
+<p>See <a href="blackberry.bbm.platform.io.Connection.html#send">send</a></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>user</b></td>
+                                            <td>
+                                                
+                                                The user who has become reachable.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Properties</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".hostRequests"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        readonly
+                                        <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html">blackberry.bbm.platform.io.IncomingJoinRequest</a>[]
+                                        
+                                        
+                                            hostRequests
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Requests that the current user (host) has received on <a href="blackberry.bbm.platform.io.html#.hostedConnection">hostedConnection</a>.
+<p>Requests in this list are in the pending state. New requests will be added to this list
+automatically. Requests that are accepted, denied, or canceled will be removed from this
+list automatically.
+<p>The host can accept or decline a request using <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html#accept">accept</a>
+and <a href="blackberry.bbm.platform.io.IncomingJoinRequest.html#decline">decline</a>.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".hostedConnection"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        readonly
+                                        <a href="blackberry.bbm.platform.io.Connection.html">blackberry.bbm.platform.io.Connection</a>
+                                        
+                                        
+                                            hostedConnection
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>The connection being hosted. <code>undefined</code> if no connection is being hosted.
+<p>Use <a href="blackberry.bbm.platform.io.html#.host">blackberry.bbm.platform.io.host</a> to host an existing connection.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".joinHostRequests"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        readonly
+                                        <a href="blackberry.bbm.platform.io.OutgoingJoinRequest.html">blackberry.bbm.platform.io.OutgoingJoinRequest</a>[]
+                                        
+                                        
+                                            joinHostRequests
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Requests that the current user (peer) has sent to hosts using <a href="blackberry.bbm.platform.io.html#.joinHost">blackberry.bbm.platform.io.joinHost</a>.
+<p>Requests in this list are in the pending state. New requests will be added to this list
+automatically. Requests that are accepted, denied, or canceled will be removed from this
+list automatically.
+<p>The user can cancel a request using <a href="blackberry.bbm.platform.io.OutgoingJoinRequest.html#cancel">cancel</a>.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+    
+    
+
+
+
+
+
+        <div >
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Dec 21 2012 15:34:54 GMT-0500 (EST)
+        </div>
+
+    </div>
+</section>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+
+
+<script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/pageend.min.js"></script>
+<script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/jquery.carouFredSel-4.4.1-packed.js"></script>
+<script type="text/javascript" src="https://client.akamai.com/dlm/dlm.js"></js>
+<script> 
+    global.init('/html5/', 'apis', 'index', '', '/html5/webroot/');
+</script>
+<script>
+	var menu, menu_id_str, selected, siblings;
+	menu = null;
+	menu_id_str = $('.side-nav-content').attr('id');
+	if (menu_id_str !== 'none') {
+		menu = menu_id_str;
+	}
+	$(document).ready(function () {
+		stage.initiate();
+		sticky.initiate();
+		sizer.initiate(); /* Initiates resizing of menu on pages where it is relevant */
+
+		selected = $('.no_children.item_active').first();
+		selected.siblings().addClass('active_sibling');
+		$("#main a").each(function () {
+			$(this).bind('click', function () {
+				sticky.scrollEvent();
+			});
+		});
+		
+	});
+	$(window).load(function () {
+		var container, scrollTo;
+		renderMenu(window.location.pathname, menu);
+		reset_size_and_scroll();
+		$(function () {
+			container = $('#side-nav-children');
+			scrollTo = $('.active', container);
+			if (scrollTo.length > 0) {
+				container.scrollTop(scrollTo.offset().top - container.offset().top + container.scrollTop() - 80);
+			}
+		});
+	});
+
+	$(window).resize(function (e) {
+		if (e) { e.stopPropagation(); }
+		reset_size_and_scroll();
+	});
+	$(window).scroll(function (e) {
+		if (e) { e.stopPropagation(); }
+		reset_size_and_scroll();
+	});
+</script>
+<script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/pageload.min.js"></script>
+<script type="text/javascript" src="nav.js"></script>
+
+
+
+</body>
+</html>
+

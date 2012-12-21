@@ -1,0 +1,1102 @@
+
+
+<section  class="page_container references">
+	<div class="row">
+        <nav class="column grid_4 side-navigation" id="side-nav-api" role="navigation">
+            <div id="sticky-anchor"> </div>
+            <div class="side-nav-wrapper" id="sticky">
+                <div class="side-nav-content clearfix" id="none">
+                    <div class="side-nav-section clearfix" id="side-nav-title">
+                        <h3>API Reference</h3>
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-parents"> 
+                    </div>
+                    <div class="side-nav-section clearfix" id="side-nav-filter"> 
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-children"> 
+                    </div>
+                </div>
+            </div>
+            <div class="side-navspacer-bottom"> </div>
+        </nav>
+
+        <div class="column grid_8">
+                <div class="row">
+                    <article id="main" class="column grid_8" role="main">
+                        
+
+<section>
+
+    <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
+                    }
+                }
+            }
+
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload,
+                        newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
+
+        function viewSupportedTable() {
+            var table = document.getElementById('APISupportTable');
+            if (table != null && table.style.display != 'inline') {
+                table.style.display = 'inline';
+            }
+            else {
+                table.style.display = 'none';
+            }
+        }
+
+    </script>
+    
+    <style type="text/css">
+
+        .apiYes {
+            background-color: #D1F8FB;
+        }
+        
+        .tdNoWrap {
+            white-space:nowrap;
+        }
+        
+        .APISupportTable {
+            display:none;
+        }
+    </style>
+
+    <div>
+
+
+        <h1>
+            
+                HTML5 Element Touch Events
+            
+        </h1>
+
+
+        
+            <p>
+                HTML Element<br/><br/>The touchstart, touchend, touchmove, touchenter, touchleave, touchcancel events must be defined on an element.
+
+
+                
+                    <div x-ww-support="bb_menu|pb_menu|bb10_menu">
+                    
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;html&gt;&lt;head&gt;&lt;title&gt;sample&lt;/title&gt;&lt;/head&gt;  &lt;body&gt;    &lt;img src=&quot;button.png&quot; ontouchstart=&quot;alert(event.target)&quot; /&gt;  &lt;/body&gt;&lt;/html&gt;</pre></code></td></tbody></table>
+    
+        <table><tbody><td class="code"><code><pre>var img = document.createElement('img');img.ontouchstart=function(e) { for(var i = 0; I < e. touches.length; i++){   var touch = touches[i];   var x = touch.clientX;   var y = touch.clientY;   // do something}</pre></code></td></tbody></table>
+    
+        <table><tbody><td class="code"><code><pre>preventMove = function(e) {   evt.preventDefault();   window.scroll(0, 0);   return false;};window.document.addEventListener('touchmove', preventMove, false);</pre></code></td></tbody></table>
+    
+  
+
+                    </div>
+                
+            </p>
+        
+
+
+        
+            
+            <br />
+        
+
+
+        
+
+
+        
+            <div class="ref-sect ref-index">
+                <div class="ref-sect-title">
+                    <h2>Learning Resources:</h2>
+                </div>
+                <div class="ref-sect-content">
+			        <table><tbody>
+                        
+                            <tr><td class="notice note">
+                                <a href=http://docs.blackberry.com/en/developers/deliverables/27297/Touch_Objects_1593432_11.jsp target='_new'>Reference - Touch API</a>
+                                BlackBerry browser JavaScript reference guide [BlackBerry Documentation].
+                            </td></tr>
+                        
+                            <tr><td class="notice note">
+                                <a href=http://supportforums.blackberry.com/t5/Web-and-WebWorks-Development/Sample-Code-SketchPad-Application/ta-p/614077 target='_new'>Sample - SketchPad Application</a>
+                                Example that draws finger sketches on an HTML5 canvas corresponding to touch screen or trackpad movement [BlackBerry Developer Resource Center].
+                            </td></tr>
+                        
+                    </tbody></table>
+                </div>
+            </div>
+        
+
+
+        
+            <div class="ref-sect ref-index">
+                <div class="ref-sect-title">
+                    <h2>Supported Platform(s)</h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table>
+                            <tbody>
+                            
+                                <tr><td>- BlackBerry OS 6.0+</td></tr>
+                            
+                                <tr><td>- BlackBerry PlayBook 1.0+</td></tr>
+                            
+                                <tr><td>- BlackBerry 10</td></tr>
+                            
+                            </tbody>
+                        </table>
+                    
+                    <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
+                    <div class="APISupportTable" id="APISupportTable">
+                        <table class="apiTable">
+                            <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                            
+                            
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
+                                    <td>
+                                        <a href="Element.html#event:ontouchcancel">ontouchcancel</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
+                                    <td>
+                                        <a href="Element.html#event:ontouchend">ontouchend</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
+                                    <td>
+                                        <a href="Element.html#event:ontouchenter">ontouchenter</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
+                                    <td>
+                                        <a href="Element.html#event:ontouchleave">ontouchleave</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
+                                    <td>
+                                        <a href="Element.html#event:ontouchmove">ontouchmove</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
+                                    <td>
+                                        <a href="Element.html#event:ontouchstart">ontouchstart</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+
+
+        <div class="ref-sect ref-index">
+            <div class="ref-sect-title">
+                <h2>Configuration Document Settings</h2>
+            </div>
+            <div class="ref-sect-content">
+                <table><tbody>
+                    <tr><td>
+                        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
+                    </td></tr>
+                    
+                    <tr><td>
+                        This API does not require a &lt;feature&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+                    </td></tr></tbody></table>
+                
+
+                <div x-ww-support="pb_menu|bb10_menu">
+                    
+                    <table>
+                        <tr>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
+                        </tr>
+                        
+                            <tr><td>
+                                This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+                            </td></tr>
+                            <br />
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        
+        
+
+
+<div>
+    
+        
+        
+    
+        
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu|bb10_menu">
+                <div class="ref-sect-title">
+                    <h2> Events </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="Element.html#event:ontouchcancel">ontouchcancel</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="Element.html#event:ontouchend">ontouchend</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="Element.html#event:ontouchenter">ontouchenter</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="Element.html#event:ontouchleave">ontouchleave</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="Element.html#event:ontouchmove">ontouchmove</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu|bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="Element.html#event:ontouchstart">ontouchstart</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+
+    
+</div>
+
+
+
+        
+        
+
+    
+    
+
+    
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Events</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu">
+                        <h3>
+                            <a name="event:ontouchcancel"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            ontouchcancel
+                                            
+                                                
+                                                    (event : <a href="TouchEvent.html">TouchEvent</a>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>A user agent must dispatch this event type to indicate when a touch point has been disrupted in an implementation-specific manner, such as a synchronous event or action originating from the UA canceling the touch, or the touch point leaving the document window into a non-document area which is capable of handling user interactions. (e.g. The UA's native user interface, plug-ins) A user agent may also dispatch this event type when the user places more touch points on the touch surface than the device or implementation is configured to store, in which case the earliest Touch object in the TouchList should be removed.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 6.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry PlayBook 1.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>event</b></td>
+                                            <td>
+                                                
+                                                                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu">
+                        <h3>
+                            <a name="event:ontouchend"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            ontouchend
+                                            
+                                                
+                                                    (event : <a href="TouchEvent.html">TouchEvent</a>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>A user agent must dispatch this event type to indicate when the user removes a touch point from the touch surface, also including cases where the touch point physically leaves the touch surface, such as being dragged off of the screen. <br/><br/>The target of this event must be the same Element that received the touchstart event when this touch point was placed on the surface, even if the touch point has since moved outside the interactive area of the target element.<br/><br/>The touch point or points that were removed must be included in the changedTouches attribute of the TouchEvent, and must not be included in the touches and targetTouches attributes.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 6.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry PlayBook 1.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>event</b></td>
+                                            <td>
+                                                
+                                                                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu">
+                        <h3>
+                            <a name="event:ontouchenter"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            ontouchenter
+                                            
+                                                
+                                                    (event : <a href="TouchEvent.html">TouchEvent</a>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>A user agent must dispatch this event type to indicate when a touch point moves onto the interactive area defined by a DOM element. Events of this type must not bubble.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 6.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry PlayBook 1.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>event</b></td>
+                                            <td>
+                                                
+                                                                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu">
+                        <h3>
+                            <a name="event:ontouchleave"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            ontouchleave
+                                            
+                                                
+                                                    (event : <a href="TouchEvent.html">TouchEvent</a>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>A user agent must dispatch this event type to indicate when a touch point moves off the interactive area defined by a DOM element. Events of this type must not bubble.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 6.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry PlayBook 1.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>event</b></td>
+                                            <td>
+                                                
+                                                                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu">
+                        <h3>
+                            <a name="event:ontouchmove"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            ontouchmove
+                                            
+                                                
+                                                    (event : <a href="TouchEvent.html">TouchEvent</a>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>A user agent must dispatch this event type to indicate when the user moves a touch point along the touch surface.<br/><br/>The target of this event must be the same Element that received the touchstart event when this touch point was placed on the surface, even if the touch point has since moved outside the interactive area of the target element.<br/><br/>If the values of radiusX, radiusY, rotationAngle, or force are known, then the user agent also must dispatch this event type to indicate when any of these attributes of a touch point have changed.<br/><br/>Note that the rate at which the user agent sends touchmove events is implementation-defined, and may depend on hardware capabilities and other implementation details.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 6.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry PlayBook 1.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>event</b></td>
+                                            <td>
+                                                
+                                                                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu|bb10_menu">
+                        <h3>
+                            <a name="event:ontouchstart"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            ontouchstart
+                                            
+                                                
+                                                    (event : <a href="TouchEvent.html">TouchEvent</a>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>A user agent must dispatch this event type to indicate when the user places a touch point on the touch surface. <br/><br/>The target of this event must be an Element.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 6.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry PlayBook 1.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>event</b></td>
+                                            <td>
+                                                
+                                                                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+
+
+
+
+        <div >
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Dec 21 2012 15:34:51 GMT-0500 (EST)
+        </div>
+
+    </div>
+</section>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
