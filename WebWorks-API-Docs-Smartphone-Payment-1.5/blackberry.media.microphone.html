@@ -1,0 +1,599 @@
+
+
+<section>
+
+    <script type="text/javascript">
+
+        function viewSupportedTable() {
+            var table = document.getElementById('APISupportTable');
+            if (table != null && table.style.display != 'inline') {
+                table.style.display = 'inline';
+            }
+            else {
+                table.style.display = 'none';
+            }
+        }
+
+    </script>
+    
+    <style type="text/css">
+
+        .apiYes {
+            background-color: #D1F8FB;
+        }
+        
+        .tdNoWrap {
+            white-space:nowrap;
+        }
+        
+        .APISupportTable {
+            display:none;
+        }
+    </style>
+
+    <div>
+
+
+        <h1>
+            
+                Microphone
+            
+        </h1>
+
+
+        
+            <p>
+                The Microphone object contains functions for recording audio from microphone.
+            </p>
+        
+
+
+        
+
+
+        
+
+
+        
+
+
+        
+            <h2>Supported Platform(s)</h2>
+            <pre>- BlackBerry OS 5.0+<br />- BlackBerry PlayBook</pre>
+            <p>
+                <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
+            </p>
+            <div class="APISupportTable" id="APISupportTable">
+                <table class="apiTable">
+                    <thead><tr><th>API</th><th>OS 5.0</th><th>OS 6.0</th><th>OS 7.0</th><th>PlayBook</th><th>Ripple</th></tr></thead>
+                    
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0">
+                            <td>
+                                <a href="blackberry.media.microphone.html#.getSupportedMediaTypes">getSupportedMediaTypes</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td>
+                                <a href="blackberry.media.microphone.html#.pause">pause</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td>
+                                <a href="blackberry.media.microphone.html#.record">record</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td>
+                                <a href="blackberry.media.microphone.html#.stop">stop</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                            </td>
+                        </tr>
+                    
+                </table>
+            </div>
+        
+
+
+        <br />
+        <h2>Configuration Document Settings</h2>
+        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
+        
+            <br />
+            <p>You must declare the feature element(s) below in your configuration document:</p>
+            <table>
+                 <thead><tr><th>Feature ID</th><th>OS 5.0</th><th>OS 6.0</th><th>OS 7.0</th><th>PlayBook</th><th>Ripple</th></tr></thead>
+                 
+                     
+                     
+                         
+                     
+                     <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                         <td>
+                             &lt;feature id="blackberry.media.microphone" /&gt;
+                             <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                         </td>
+                     </tr>
+                 
+            </table>
+        
+
+
+        <div x-ww-support="pb1.0">
+            
+                
+
+                
+                    <br />
+                    <p>You must declare the permission element(s) below in your configuration document:</p>
+                
+            
+
+            <table>
+                <tr>
+                    <th>Permission Elements (PlayBook Only)</th>
+                </tr>
+                
+                    
+                        
+                            <tr><td>
+                                - &lt;rim:permit&gt;record_audio&lt;/rim:permit&gt; Permits the app to record sound through the microphone without prompting the user.
+                            <br />
+                            </td></tr>
+                        
+                    
+
+                    
+                        <tr><td>
+                        <br />
+                        <i><b>Note:</b> Declaring the permission element(s) below in your configuration document is optional.</i>
+                        <br />
+                        </td></tr>
+                        <br />
+
+                        
+                            <tr><td>
+                                - &lt;rim:permit&gt;access_shared&lt;/rim:permit&gt;  Any references to files/directories under "shared" folder (e.g. music) requires this permission to be set.
+                            <br />
+                            </td></tr>
+                        
+                    
+                
+            </table>
+        </div>
+
+
+        
+        
+
+
+<div>
+<h2>API Summary</h2>
+    
+        
+        
+    
+        
+        
+            <br />
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                <h3> Functions </h3>
+                
+                    <ul>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0">
+                                <a href="blackberry.media.microphone.html#.getSupportedMediaTypes">getSupportedMediaTypes</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                <a href="blackberry.media.microphone.html#.pause">pause</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                <a href="blackberry.media.microphone.html#.record">record</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                <a href="blackberry.media.microphone.html#.stop">stop</a>
+                                
+                            </li>
+                        
+                    </ul>
+                
+                
+            </div>
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+
+    
+</div>
+
+
+
+        
+        
+
+    
+
+    
+        
+            <div x-ww-support="bb5.0|bb6.0|bb7.0">
+                <h2>
+                    <a name=".getSupportedMediaTypes"></a>
+                    getSupportedMediaTypes
+                </h2>
+                <hr/>
+                 
+                
+                    <table>
+                        <tr><td>
+                            
+                                static              
+                                String[]
+                                
+                                    getSupportedMediaTypes()
+                                                          
+                            
+                        </td></tr>
+                    </table>
+                    <br />
+                
+                        
+                           
+                        
+                              
+                    <h3>Supported Platform(s)</h3>      
+                    
+                        &nbsp;- BlackBerry OS 5.0+
+                        <br />
+                                  
+                                   
+                <br />
+                        
+                <h3>Description</h3>
+                <p>Return the mime types that the record method supports<br/><br/>Sample values: &quot;audio/amr&quot;, &quot;audio/wav&quot;</p>
+                <br />
+                        
+                
+                        
+                                   
+                        
+                
+
+                
+
+                
+                
+
+	<br /><h3>Code Example(s)</h3>
+	
+		<pre>function printSupportedTypes() {        var types = blackberry.media.microphone.getSupportedMediaTypes();        var alertMsg = "";        for(var i = 0; i < types.length; i++) {            alertMsg += types[i] + " ";        }        alert(alertMsg);}</pre>
+	
+    
+            </div>
+        
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                <h2>
+                    <a name=".pause"></a>
+                    pause
+                </h2>
+                <hr/>
+                 
+                
+                    <table>
+                        <tr><td>
+                            
+                                static              
+                                void
+                                
+                                    pause()
+                                                          
+                            
+                        </td></tr>
+                    </table>
+                    <br />
+                
+                        
+                           
+                        
+                              
+                    <h3>Supported Platform(s)</h3>      
+                    
+                        &nbsp;- BlackBerry OS 5.0+
+                        <br />
+                    
+                        &nbsp;- BlackBerry PlayBook
+                        <br />
+                                  
+                                   
+                <br />
+                        
+                <h3>Description</h3>
+                <p>Pauses/resumes recording.<br><br>If the microphone is in recording mode, calling pause() would cause recording topause. If the microphone is paused, calling pause() would cause recording to resume.<br><br></p>
+                <br />
+                        
+                
+                        
+                                   
+                        
+                
+
+                
+
+                
+                
+    
+            </div>
+        
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                <h2>
+                    <a name=".record"></a>
+                    record
+                </h2>
+                <hr/>
+                 
+                
+                    <table>
+                        <tr><td>
+                            
+                                static              
+                                void
+                                
+                                    record(filePath : String, onCaptured : function, onError : function)
+                                                          
+                            
+                        </td></tr>
+                    </table>
+                    <br />
+                
+                        
+                           
+                        
+                              
+                    <h3>Supported Platform(s)</h3>      
+                    
+                        &nbsp;- BlackBerry OS 5.0+
+                        <br />
+                    
+                        &nbsp;- BlackBerry PlayBook
+                        <br />
+                                  
+                                   
+                <br />
+                        
+                <h3>Description</h3>
+                <p>Records audio from the microphone.<br><br>If the specified format is not supported on the device, an error is passed to the onError callback with the message &quot;Unsupported record encoding type&quot;.The supported recording formats are:<table class="confluenceTable"><tr><th class="confluenceTh">&nbsp;</th><th class="confluenceTh"><strong>PlayBook</th><th class="confluenceTh">BB OS 5.0, 6.0 (GSM)</th><th class="confluenceTh">BB OS 5.0, 6.0 (CDMA)</th><th class="confluenceTh">BB OS 7.0</th><tr><th class="confluenceTh">Supported Formats:</th><td class="confluenceTd">WAV</td><td class="confluenceTd">WAV, AMR</td><td class="confluenceTd">AMR</td><td class="confluenceTd">WAV, AMR</td></tr><tr><th class="confluenceTh">Bit Depth:</th><td class="confluenceTd">16</td><td class="confluenceTd">16</td><td class="confluenceTd">16</td><td class="confluenceTd">16</td></tr><tr><th class="confluenceTh">Sampling Rate:</th><td class="confluenceTd">44,100Hz</td><td class="confluenceTd">8,000Hz</td><td class="confluenceTd">8,000Hz</td><td class="confluenceTd">8,000Hz</td></tr><tr><th class="confluenceTh">Channels:</th><td class="confluenceTd">1</td><td class="confluenceTd">1</td><td class="confluenceTd">1</td><td class="confluenceTd">1</td></tr></table></p>
+                <br />
+                        
+                
+                        
+                
+                    <br />
+                    <table>
+                        <thead><tr>
+                            <th>
+                               Parameter
+                               
+                            </th>
+                            <th>
+                               Type
+                               
+                            </th>
+                            <th>
+                               Description
+                               
+                            </th>
+                        </tr></thead>
+                                       
+                        
+                            
+                            <tr>
+                                <td><b>filePath</b></td>
+                                <td>
+                                    
+                                        String
+                                    
+                                                                                        
+                                </td>
+                                <td>
+                                    
+                                    full path to the file, specified in the form of file:// URL                         
+                                    
+                                </td>
+                            </tr>
+                        
+                            
+                            <tr>
+                                <td><b>onCaptured</b></td>
+                                <td>
+                                    
+                                        function(filePath : String)
+                                    
+                                                                                        
+                                </td>
+                                <td>
+                                    
+                                    This callback function is called when the application has successfully recorded the audio and saved it to the requested file.                         
+                                    
+                                        <br />
+                                        
+                                            <br />
+                                            <b>filePath:</b> The file path that points to the created audio file.
+                                        
+                                    
+                                </td>
+                            </tr>
+                        
+                            
+                            <tr>
+                                <td><b>onError</b></td>
+                                <td>
+                                    
+                                        function(errorCode : Number, errorMsg : String)
+                                    
+                                                                                        
+                                </td>
+                                <td>
+                                    
+                                    This callback function is called if the recording has failed.                         
+                                    
+                                        <br />
+                                        
+                                            <br />
+                                            <b>errorCode:</b> The error code for the error.
+                                        
+                                            <br />
+                                            <b>errorMsg:</b> The error message for the error.
+                                        
+                                    
+                                </td>
+                            </tr>
+                                      
+                    </table>
+                                   
+                        
+                
+
+                
+
+                
+                
+    
+            </div>
+        
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                <h2>
+                    <a name=".stop"></a>
+                    stop
+                </h2>
+                <hr/>
+                 
+                
+                    <table>
+                        <tr><td>
+                            
+                                static              
+                                void
+                                
+                                    stop()
+                                                          
+                            
+                        </td></tr>
+                    </table>
+                    <br />
+                
+                        
+                           
+                        
+                              
+                    <h3>Supported Platform(s)</h3>      
+                    
+                        &nbsp;- BlackBerry OS 5.0+
+                        <br />
+                    
+                        &nbsp;- BlackBerry PlayBook
+                        <br />
+                                  
+                                   
+                <br />
+                        
+                <h3>Description</h3>
+                <p>Stops recording, this causes the recorded audio data to be saved to the file. The onCaptured callback function passed in record will beinvoked when the audio file has been saved to disk.</p>
+                <br />
+                        
+                
+                        
+                                   
+                        
+                
+
+                
+
+                
+                
+    
+            </div>
+        
+    
+
+    
+
+
+
+        
+        
+
+
+    
+    
+
+    
+    
+
+
+
+        
+        
+
+    
+
+
+
+        
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+            
+                
+
+	<h2>Code Example(s)</h2><hr/>
+	
+		<pre>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css"/&gt;&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"&gt;&lt;/script&gt;&lt;script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt;var mic = blackberry.media.microphone;var isPaused = false;function record() {  try {    // NOTE: access to shared folder requires "access_shared" permission on config.xml    mic.record(blackberry.io.dir.appDirs.shared.music.path + '/' + document.getElementById('filename').value, testSuccess, testError);    $("#record").button("option", "disabled", true);    $("#pause").button("option", "disabled", false);    $("#stop").button("option", "disabled", false);  } catch (e) {    alert('Record, e:' + e.message);  }}function pause() {  isPaused = !isPaused;  if (isPaused) {    $("#pause").button("option", "label", "Resume");  } else {    $("#pause").button("option", "label", "Pause");  }  try {    mic.pause();  } catch (e) {    alert('Pause, e:' + e.message);  }}function stop() {  try {    mic.stop();    $("#record").button("option", "disabled", false);    $("#pause").button("option", "disabled", true);    $("#stop").button("option", "disabled", true);  } catch (e) {    alert('Stop, e:' + e.message);  }}function testSuccess(filePath) {  alert("Recorded successfully! File: " + filePath);}function testError(errorCode, errorMessage) {    if(errorMessage == "Unsupported record encoding type") {        alert("try recording an .amr audio file");        return;    }  alert('error code:' + errorCode + ' error message:' + errorMessage);}&lt;/script&gt;&lt;script type="text/javascript"&gt;$(document).ready(function() {  $("#record").button();  $("#pause").button({ disabled: true });  $("#stop").button({ disabled: true });  $("#record").bind("click", record);  $("#pause").bind("click", pause);  $("#stop").bind("click", stop);});&lt;/script&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;File Name:&nbsp;&lt;input type="text" id="filename"&gt;&lt;/p&gt;&lt;button id="record"&gt;Record&lt;/button&gt;&nbsp;&nbsp;&lt;button id="pause"&gt;Pause&lt;/button&gt;&nbsp;&nbsp;&lt;button id="stop"&gt;Stop&lt;/button&gt;&lt;/body&gt;&lt;/html&gt;</pre>
+	
+  
+            </div>
+        
+
+
+        <hr />
+        <div >
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sat Dec 22 2012 12:20:37 GMT-0500 (EST)
+        </div>
+
+    </div>
+</section>

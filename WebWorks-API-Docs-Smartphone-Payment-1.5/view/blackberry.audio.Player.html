@@ -1,0 +1,2449 @@
+<!--
+* Copyright 2010-2011 Research In Motion Limited.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.-->
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- ============================== header ================================= -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>
+        
+            Audio Player
+        
+        - BlackBerry WebWorks
+    </title>
+
+    <script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/main.min.js"></script>
+
+      <link href="https://bdsc.webapps.blackberry.com/html5/webroot/css/main.min.css" type="text/css" rel="stylesheet" />
+
+      <script type="text/javascript">
+
+        global.init('https://bdsc.webapps.blackberry.com/html5/', 'apis', 'index', '', 'https://bdsc.webapps.blackberry.com/html5/webroot/');
+
+      </script>
+
+       <!--[if lt IE 9]>
+
+        <link rel="stylesheet" type="text/css" href="https://bdsc.webapps.blackberry.com/html5/webroot/css/main-ie7.min.css" />
+
+      <script src="https://bdsc.webapps.blackberry.com/html5/webroot/js/html5.js" type="text/javascript"></script>
+
+      <![endif]-->
+
+            <!--[if lte IE 9]>
+
+                <link rel="stylesheet" type="text/css" href="https://bdsc.webapps.blackberry.com/html5/webroot/css/main-ie.min.css" />
+
+            <![endif]-->
+
+            <!--[if IE 9]>
+
+        <style type="text/css">
+
+          #carousel-news .carousel-item .link {
+
+            background-position: 0 3px;
+
+          }
+
+          .highlights .highlight .link {
+
+            background-position: 0 3px;
+
+
+
+          }
+
+
+
+          .shortcuts .column .meta .link { background-position: 0 12px; }
+
+          .shortcuts .column a:hover .meta .link { background-position: 0 -12px; }
+
+          .extra-item .meta .link {}
+
+        </style>
+
+      <![endif]-->
+
+
+
+          <!--[if IE 7]>
+
+        <script type="text/javascript">
+
+          $(document).ready(function() {
+
+            $('a[name]').css('color', '#363636');
+
+            $('a[name]').hover(function () { $(this).css('text-decoration', 'none') });
+
+          });
+
+        </script>
+
+    <![endif]-->
+
+
+
+</head>
+
+<body>
+    <div class="site_container clearfix guide-container">
+
+
+
+<section class="page_container guide-section two_columns">
+
+    <div class="row clearfix">
+
+        <div class="column grid_4 side-navigation"><ul class="level_1"><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.advertising.Banner.html">Advertising</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.advertising.Banner.html">Banner</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.bbm.platform.html">BBM</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.bbm.platform.html">BBM Platform</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.bbm.platform.io.html">Connections</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.bbm.platform.self.html">Current User</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.bbm.platform.users.html">Other Users</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.bbm.platform.self.profilebox.html">Profile Box</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.widgetcache.CacheInformation.html">Cache</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.widgetcache.CacheInformation.html">CacheInformation</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="ApplicationCache.html">HTML5 ApplicationCache</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.widgetcache.html">WidgetCache</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="Database.html">Data Storage</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="Database.html">HTML5 Database</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="localStorage.html">HTML5 Local Storage</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="SQLError.html">HTML5 SQLError</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="SQLResultSet.html">HTML5 SQLResultSet</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="SQLResultSetRowList.html">HTML5 SQLResultSetRowList</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="SQLTransaction.html">HTML5 SQLTransaction</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="Acceleration.html">Device Motion</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="Acceleration.html">HTML5 Acceleration</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="DeviceMotionEvent.html">HTML5 Device Motion Event</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="Coordinates.html">GPS</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="Coordinates.html">HTML5 Coordinates</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="navigator.geolocation.html">HTML5 Geolocation</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="Position.html">HTML5 Position</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="PositionError.html">HTML5 PositionError</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="PositionOptions.html">HTML5 PositionOptions</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.identity.html">Identity</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.identity.html">Identity</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.identity.phone.html">Phone</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.identity.Service.html">Service</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.identity.Transport.html">Transport</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.invoke.AddressBookArguments.html">Invoke</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.invoke.AddressBookArguments.html">AddressBookArguments</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.invoke.BrowserArguments.html">BrowserArguments</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.invoke.CalendarArguments.html">CalendarArguments</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.invoke.CameraArguments.html">CameraArguments</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.invoke.html">Invoke</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.invoke.JavaArguments.html">JavaArguments</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.invoke.MapsArguments.html">MapsArguments</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.invoke.MemoArguments.html">MemoArguments</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.invoke.MessageArguments.html">MessageArguments</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.invoke.PhoneArguments.html">PhoneArguments</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.invoke.SearchArguments.html">SearchArguments</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.invoke.TaskArguments.html">TaskArguments</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.io.dir.html">IO</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.io.dir.html">Directory</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.io.file.html">File</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.io.file.FileProperties.html">FileProperties</a></span></li></ul></li><li class="seperator"></li><li class="with_children open"><span class="item child_active"><span class="opener">&nbsp;</span><a href="blackberry.audio.html">Media</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.audio.html">Audio</a></span></li><li class="no_children"><span class="item active"><span class="opener">&nbsp;</span><a href="blackberry.audio.Player.html">Audio Player</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.media.camera.html">Camera</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="HTMLAudioElement.html">HTML5 Audio</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="HTMLVideoElement.html">HTML5 Video</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.media.microphone.html">Microphone</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.message.Message.html">Message</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.message.Message.html">Message</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.message.sms.html">SMS</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.payment.html">Payment</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.payment.html">Payment</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="Purchase.html">Purchase</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.phone.Phone.Call.html">Phone</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.phone.Phone.Call.html">Call</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.phone.PhoneLogs.CallLog.html">CallLog</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.phone.Find.FilterExpression.html">Find FilterExpression</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.phone.Phone.html">Phone</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.phone.PhoneLogs.html">PhoneLogs</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.pim.Address.html">PIM</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.pim.Address.html">Address</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.pim.Appointment.html">Appointment</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.pim.Attendee.html">Attendee</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.pim.category.html">Category</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.pim.Contact.html">Contact</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.find.FilterExpression.html">FilterExpression</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.pim.Memo.html">Memo</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.pim.Recurrence.html">Recurrence</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.pim.Reminder.html">Reminder</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.pim.Task.html">Task</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.push.Data.html">Push</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.push.Data.html">Data</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.push.html">Push</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.app.html">System</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.app.html">Application</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.app.event.html">Application Event</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="Worker.html">HTML5 Web Workers</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.html">Network</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.system.html">System</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.system.event.html">System Event</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="Element.html">Touch</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="Element.html">HTML5 Element Touch Events</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="TouchEvent.html">HTML5 Touch Event</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.ui.dialog.html">User Interface</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.ui.dialog.html">Dialog</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.focus.html">Focus</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="CanvasRenderingContext2D.html">HTML5 2D Canvas Context</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="canvas.html">HTML5 Canvas</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.ui.menu.html">Menu</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.ui.menu.MenuItem.html">MenuItem</a></span></li></ul></li><li class="seperator"></li><li class="with_children not_open"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.utils.URL.html">Utilities</a></span><ul class="obfuscated_css level_2"><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.utils.URL.html">URL</a></span></li><li class="no_children"><span class="item"><span class="opener">&nbsp;</span><a href="blackberry.utils.html">Utils</a></span></li></ul></li><li class="seperator"></li></ul></div>
+
+        <div class="column grid_8 page-content">
+
+<section>
+
+    <script type="text/javascript">
+
+        function viewSupportedTable() {
+            var table = document.getElementById('APISupportTable');
+            if (table != null && table.style.display != 'inline') {
+                table.style.display = 'inline';
+            }
+            else {
+                table.style.display = 'none';
+            }
+        }
+
+    </script>
+    
+    <style type="text/css">
+
+        .apiYes {
+            background-color: #D1F8FB;
+        }
+        
+        .tdNoWrap {
+            white-space:nowrap;
+        }
+        
+        .APISupportTable {
+            display:none;
+        }
+    </style>
+
+    <div>
+
+
+        <h1>
+            
+                Audio Player
+            
+        </h1>
+
+
+        
+            <p>
+                The audio player is an API introduced so that audio can be played on the BlackBerry 5.0 operating system since the 		HTML5 &lt;audio&gt; element is not yet supported on this OS. The audio player is intended to play audio files only 		which does <b>not</b> include streaming audio.		<br/><br/>		It is recommended that you use the HTML5 &lt;audio&gt; element on BlackBerry Operating Systems with versions higher than OS 5.0 as well as on the Tablet OS.		<br/><br/>      The audio Player object is an instance object; if a new instance is desired, it must be created using the new keyword.
+            </p>
+        
+
+
+        
+
+
+        
+
+
+        
+
+
+        
+            <h2>Supported Platform(s)</h2>
+            <pre>- BlackBerry OS 5.0+<br />- Ripple Emulator</pre>
+            <p>
+                <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
+            </p>
+            <div class="APISupportTable" id="APISupportTable">
+                <table class="apiTable">
+                    <thead><tr><th>API</th><th>OS 5.0</th><th>OS 6.0</th><th>OS 7.0</th><th>PlayBook</th><th>Ripple</th></tr></thead>
+                    
+                        
+                            <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <td>
+                                    <a href="blackberry.audio.Player.html">blackberry.audio.Player</a>
+                                    <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                </td>
+                            </tr>
+                        
+                    
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.addPlayerListener">addPlayerListener</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.close">close</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.pause">pause</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.play">play</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_BUFFERING_STARTED">EVENT_BUFFERING_STARTED</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_BUFFERING_STOPPED">EVENT_BUFFERING_STOPPED</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_CLOSED">EVENT_CLOSED</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_DEVICE_AVAILABLE">EVENT_DEVICE_AVAILABLE</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_DEVICE_UNAVAILABLE">EVENT_DEVICE_UNAVAILABLE</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_DURATION_UPDATED">EVENT_DURATION_UPDATED</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_END_OF_MEDIA">EVENT_END_OF_MEDIA</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_ERROR">EVENT_ERROR</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_RECORD_ERROR">EVENT_RECORD_ERROR</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_RECORD_STARTED">EVENT_RECORD_STARTED</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_RECORD_STOPPED">EVENT_RECORD_STOPPED</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_SIZE_CHANGED">EVENT_SIZE_CHANGED</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_STARTED">EVENT_STARTED</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_STOPPED">EVENT_STOPPED</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_STOPPED_AT_TIME">EVENT_STOPPED_AT_TIME</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.EVENT_VOLUME_CHANGED">EVENT_VOLUME_CHANGED</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.duration">duration</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.mediaTime">mediaTime</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.state">state</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.volumeLevel">volumeLevel</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.TIME_UNKNOWN">TIME_UNKNOWN</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.CLOSED">CLOSED</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.UNREALIZED">UNREALIZED</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.REALIZED">REALIZED</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                            <td>
+                                <a href="blackberry.audio.Player.html#.PREFETCHED">PREFETCHED</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td>
+                        </tr>
+                    
+                </table>
+            </div>
+        
+
+
+        <br />
+        <h2>Configuration Document Settings</h2>
+        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
+        
+            <br />
+            <p>You must declare the feature element(s) below in your configuration document:</p>
+            <table>
+                 <thead><tr><th>Feature ID</th><th>OS 5.0</th><th>OS 6.0</th><th>OS 7.0</th><th>PlayBook</th><th>Ripple</th></tr></thead>
+                 
+                     
+                     
+                         
+                     
+                     <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                         <td>
+                             &lt;feature id="blackberry.audio.Player" /&gt;
+                             <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                         </td>
+                     </tr>
+                 
+            </table>
+        
+
+
+        <div x-ww-support="pb1.0">
+            
+
+            <table>
+                <tr>
+                    <th>Permission Elements (PlayBook Only)</th>
+                </tr>
+                
+                    <tr><td>
+                        This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+                    </td></tr>
+                    <br />
+                
+            </table>
+        </div>
+
+
+        
+        
+
+
+<div>
+<h2>API Summary</h2>
+    
+        
+        
+            <br />
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                <h3> Constructors </h3>
+                
+                    <ul>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html">blackberry.audio.Player</a>
+                                
+                            </li>
+                        
+                    </ul>
+                
+                
+            </div>
+        
+    
+        
+        
+            <br />
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                <h3> Functions </h3>
+                
+                    <ul>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.addPlayerListener">addPlayerListener</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.close">close</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.pause">pause</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.play">play</a>
+                                
+                            </li>
+                        
+                    </ul>
+                
+                
+            </div>
+        
+    
+        
+        
+    
+        
+        
+            <br />
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                <h3> Properties </h3>
+                
+                    <ul>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_BUFFERING_STARTED">EVENT_BUFFERING_STARTED</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_BUFFERING_STOPPED">EVENT_BUFFERING_STOPPED</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_CLOSED">EVENT_CLOSED</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_DEVICE_AVAILABLE">EVENT_DEVICE_AVAILABLE</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_DEVICE_UNAVAILABLE">EVENT_DEVICE_UNAVAILABLE</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_DURATION_UPDATED">EVENT_DURATION_UPDATED</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_END_OF_MEDIA">EVENT_END_OF_MEDIA</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_ERROR">EVENT_ERROR</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_RECORD_ERROR">EVENT_RECORD_ERROR</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_RECORD_STARTED">EVENT_RECORD_STARTED</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_RECORD_STOPPED">EVENT_RECORD_STOPPED</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_SIZE_CHANGED">EVENT_SIZE_CHANGED</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_STARTED">EVENT_STARTED</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_STOPPED">EVENT_STOPPED</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_STOPPED_AT_TIME">EVENT_STOPPED_AT_TIME</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.EVENT_VOLUME_CHANGED">EVENT_VOLUME_CHANGED</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.duration">duration</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.mediaTime">mediaTime</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.state">state</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.volumeLevel">volumeLevel</a>
+                                
+                            </li>
+                        
+                    </ul>
+                
+                
+            </div>
+        
+    
+        
+        
+            <br />
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                <h3> Constants </h3>
+                
+                    <ul>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.TIME_UNKNOWN">TIME_UNKNOWN</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.CLOSED">CLOSED</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.UNREALIZED">UNREALIZED</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.REALIZED">REALIZED</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                                <a href="blackberry.audio.Player.html#.PREFETCHED">PREFETCHED</a>
+                                
+                            </li>
+                        
+                    </ul>
+                
+                
+            </div>
+        
+    
+        
+        
+    
+
+    
+</div>
+
+
+
+        
+        
+
+    
+        
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                <h2>
+                    <a name=".Player"></a>
+                    blackberry.audio.Player
+                </h2>
+                <hr/>
+                 
+                
+                    <table>
+                        <tr><td>
+                            
+                                blackberry.audio.Player
+                                
+                                    (locator : String, <i>[type: String]</i>, <i>[async: Boolean]</i>)
+                                
+                            
+                        </td></tr>
+                    </table>
+                    <br />
+                
+                        
+                           
+                        
+                              
+                    <h3>Supported Platform(s)</h3>      
+                    
+                        &nbsp;- BlackBerry OS 5.0+
+                        <br />
+                    
+                        &nbsp;- Ripple Emulator
+                        <br />
+                                  
+                                   
+                <br />
+                        
+                <h3>Description</h3>
+                <p><div>Audio Player object for BlackBerry 5.0 smartphones that do not support the HTML5 &lt;audio&gt; element<br/><br/>Media locators are specified in URI syntax which is defined in the form: &apos;&lt;scheme&gt;:&lt;scheme-specific-part&gt;&apos;. If scheme is &apos;local&apos;, media type should be specified.</div></p>
+                <br />
+                        
+                
+                        
+                
+                    <br />
+                    <table>
+                        <thead><tr>
+                            <th>
+                               Parameter
+                               
+                            </th>
+                            <th>
+                               Type
+                               
+                            </th>
+                            <th>
+                               Description
+                               
+                            </th>
+                        </tr></thead>
+                                       
+                        
+                            
+                            <tr>
+                                <td><b>locator</b></td>
+                                <td>
+                                    
+                                        String
+                                    
+                                                                                        
+                                </td>
+                                <td>
+                                    
+                                    Media locator string in URI syntax that describes the media content.                         
+                                    
+                                </td>
+                            </tr>
+                        
+                            
+                            <tr>
+                                <td><b>type</b></td>
+                                <td>
+                                    
+                                        String
+                                    
+                                    <br /><i>Optional</i>                                                    
+                                </td>
+                                <td>
+                                    
+                                    The ContentType of the media.                         
+                                    
+                                </td>
+                            </tr>
+                        
+                            
+                            <tr>
+                                <td><b>async</b></td>
+                                <td>
+                                    
+                                        Boolean
+                                    
+                                    <br /><i>Optional</i>                                                    
+                                </td>
+                                <td>
+                                    
+                                    The parameter specifying whether the player should asynchronously advance to PREFETCHED state. If not provided set to false.                         
+                                    
+                                </td>
+                            </tr>
+                                      
+                    </table>
+                                   
+                        
+                
+
+                
+
+                
+                
+
+	<br /><h3>Code Example(s)</h3>
+	
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;  function createPlayerFromMediaFileStoredInLocal() {    var playerInstance = new  blackberry.audio.Player(&quot;local:///res/filename.mid&quot;, &quot;audio/mid&quot;, true);  }  function createPlayerFromMediaFileStoresInSystem() {    var playerInstance = new  blackberry.audio.Player(&quot;file:///store/home/user/music/filename.mid&quot;);  }&lt;/script&gt;</pre>
+	
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;  // Display some player static and non-static constants.  var playerInstance = new  blackberry.audio.Player(&quot;file:///store/home/user/music/filename.mid&quot;);  var res = blackberry.audio.Player.UNREALIZED;  alert(&quot;The value of UNREALIZED static constant is: &quot; + res);  res = playerInstance.EVENT_DURATION_UPDATED;  alert(&quot;The value of EVENT_DURATION_UPDATED non-static constant is: &quot; + res);&lt;/script&gt;</pre>
+	
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;  var playerInstance = new  blackberry.audio.Player(&quot;file:///store/home/user/music/filename.mp3&quot;);  // Setting new time for media  playerInstance.mediaTime = 10000;  alert(&quot;New media time: &quot; + playerInstance.mediaTime);  // Setting new volume for media  playerInstance.volumeLevel = 85;  alert(&quot;New volume level: &quot; + playerInstance.volumeLevel);    &lt;/script&gt;</pre>
+	
+    
+            </div>
+        
+    
+
+    
+        
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                <h2>
+                    <a name=".addPlayerListener"></a>
+                    addPlayerListener
+                </h2>
+                <hr/>
+                 
+                
+                    <table>
+                        <tr><td>
+                            
+                                static              
+                                Boolean
+                                
+                                    addPlayerListener(<i>[onPlayerUpdate: function]</i>)
+                                                          
+                            
+                        </td></tr>
+                    </table>
+                    <br />
+                
+                        
+                           
+                        
+                              
+                    <h3>Supported Platform(s)</h3>      
+                    
+                        &nbsp;- BlackBerry OS 5.0+
+                        <br />
+                    
+                        &nbsp;- Ripple Emulator
+                        <br />
+                                  
+                                   
+                <br />
+                        
+                <h3>Description</h3>
+                <p>Add a player listener for this player.  All subsequent calls assigning a new onPlayerUpdate callback will override the previous callback assigned. To unsubscribe from the PlayerListener, pass null as an onPlayerUpdate parameter.</p>
+                <br />
+                        
+                
+                    <br />
+                    <h3>Returns</h3>
+                    
+                        Returns true if the callback is successfully assigned
+                    
+                    <br />
+                
+                        
+                
+                    <br />
+                    <table>
+                        <thead><tr>
+                            <th>
+                               Parameter
+                               
+                            </th>
+                            <th>
+                               Type
+                               
+                            </th>
+                            <th>
+                               Description
+                               
+                            </th>
+                        </tr></thead>
+                                       
+                        
+                            
+                            <tr>
+                                <td><b>onPlayerUpdate</b></td>
+                                <td>
+                                    
+                                        function(<i>[player: <a href="blackberry.audio.Player.html">blackberry.audio.Player</a>]</i>, <i>[event: String]</i>, <i>[eventData: Object]</i>)
+                                    
+                                    <br /><i>Optional</i>                                                    
+                                </td>
+                                <td>
+                                    
+                                     This callback function is called to deliver an event to a registered listener when a Player event is observed.                         
+                                    
+                                        <br />
+                                        
+                                            <br />
+                                            <b>player:</b>  The player which generated the event.
+                                        
+                                            <br />
+                                            <b>event:</b>  The event generated as defined by the enumerated types.
+                                        
+                                            <br />
+                                            <b>eventData:</b>  The associated event data.
+                                        
+                                    
+                                </td>
+                            </tr>
+                                      
+                    </table>
+                                   
+                        
+                
+
+                
+
+                
+                
+
+	<br /><h3>Code Example(s)</h3>
+	
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;  // Subscribing and unsubscribing with player&apos;s events  var playerInstance = new  blackberry.audio.Player(&quot;file:///store&sol;home/user/music/filename.mp3&quot;);      playerInstance.addPlayerListener(OnPlayerUpdate);  // Invoked when there is an update event for the player.  function OnPlayerUpdate(player, event, eventData) {    try {      alert(&quot;Player&apos;s duration is: &quot; + player.duration)    } catch (e) {}    try {      alert(&quot;Event: &quot; + event);    } catch (e) {}    try {      alert(&quot;Event Data:  &quot; + eventData);    } catch (e) {}    playerInstance.addPlayerListener(null);  }&lt;/script&gt;</pre>
+	
+    
+            </div>
+        
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                <h2>
+                    <a name=".close"></a>
+                    close
+                </h2>
+                <hr/>
+                 
+                
+                    <table>
+                        <tr><td>
+                            
+                                static              
+                                Boolean
+                                
+                                    close()
+                                                          
+                            
+                        </td></tr>
+                    </table>
+                    <br />
+                
+                        
+                           
+                        
+                              
+                    <h3>Supported Platform(s)</h3>      
+                    
+                        &nbsp;- BlackBerry OS 5.0+
+                        <br />
+                    
+                        &nbsp;- Ripple Emulator
+                        <br />
+                                  
+                                   
+                <br />
+                        
+                <h3>Description</h3>
+                <p>Closing the Player and releases most of its resources, it must not be used again.</p>
+                <br />
+                        
+                
+                    <br />
+                    <h3>Returns</h3>
+                    
+                        Returns true if the player is successfully closed
+                    
+                    <br />
+                
+                        
+                                   
+                        
+                
+
+                
+
+                
+                
+    
+            </div>
+        
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                <h2>
+                    <a name=".pause"></a>
+                    pause
+                </h2>
+                <hr/>
+                 
+                
+                    <table>
+                        <tr><td>
+                            
+                                static              
+                                Boolean
+                                
+                                    pause()
+                                                          
+                            
+                        </td></tr>
+                    </table>
+                    <br />
+                
+                        
+                           
+                        
+                              
+                    <h3>Supported Platform(s)</h3>      
+                    
+                        &nbsp;- BlackBerry OS 5.0+
+                        <br />
+                    
+                        &nbsp;- Ripple Emulator
+                        <br />
+                                  
+                                   
+                <br />
+                        
+                <h3>Description</h3>
+                <p>Pause the player&apos;s playback.</p>
+                <br />
+                        
+                
+                    <br />
+                    <h3>Returns</h3>
+                    
+                        Returns true if the player is successfully paused
+                    
+                    <br />
+                
+                        
+                                   
+                        
+                
+
+                
+
+                
+                
+
+	<br /><h3>Code Example(s)</h3>
+	
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;  // Pausing the player and then closing it  var playerInstance = new  blackberry.audio.Player(&quot;file:///store/home/user/music/filename.mp3&quot;);      playerInstance.pause();  playerInstance.close();&lt;/script&gt;</pre>
+	
+    
+            </div>
+        
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                <h2>
+                    <a name=".play"></a>
+                    play
+                </h2>
+                <hr/>
+                 
+                
+                    <table>
+                        <tr><td>
+                            
+                                static              
+                                Boolean
+                                
+                                    play()
+                                                          
+                            
+                        </td></tr>
+                    </table>
+                    <br />
+                
+                        
+                           
+                        
+                              
+                    <h3>Supported Platform(s)</h3>      
+                    
+                        &nbsp;- BlackBerry OS 5.0+
+                        <br />
+                    
+                        &nbsp;- Ripple Emulator
+                        <br />
+                                  
+                                   
+                <br />
+                        
+                <h3>Description</h3>
+                <p>Starts playing the loaded content.</p>
+                <br />
+                        
+                
+                    <br />
+                    <h3>Returns</h3>
+                    
+                        Returns true if the player successfully starts playing
+                    
+                    <br />
+                
+                        
+                                   
+                        
+                
+
+                
+
+                
+                
+
+	<br /><h3>Code Example(s)</h3>
+	
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;  &sol;&sol; Playing the player  var playerInstance = new  blackberry.audio.Player(&quot;file:&sol;&sol;&sol;store&sol;home&sol;user&sol;music&sol;filename.mp3&quot;);      playerInstance.play();&lt;/script&gt;</pre>
+	
+    
+            </div>
+        
+    
+
+    
+
+
+
+        
+        
+
+
+    
+    
+       
+        <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+            <h2>Properties:</h2>
+            <hr/>
+          
+            <table>
+                <thead><tr>
+                    <th>
+                    Property
+                   
+                    </th>
+                    <th>
+                       Type
+                       
+                    </th>
+                    <th>
+                       Description
+                       
+                    </th>
+                    <th>
+                       Supported Platform(s)            
+                       
+                    </th>
+                </tr></thead>
+                
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_BUFFERING_STARTED">EVENT_BUFFERING_STARTED</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when the Player enters into a buffering mode. <br/><br/>When this event is received, the eventdata parameter will be a number designating the media time when the buffering is started.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_BUFFERING_STOPPED">EVENT_BUFFERING_STOPPED</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when the Player leaves the buffering mode. <br/><br/>When this even is received, the eventData parameter will be a number designating the media time when the buffering stopped.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_CLOSED">EVENT_CLOSED</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when a Player is closed. <br/><br/>When this event is received, the eventData parameter is null.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_DEVICE_AVAILABLE">EVENT_DEVICE_AVAILABLE</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when the system or another higher priority application has released an exclusive device which is now available to the Player. <br/><br/>The eventData parameter is a string specifying the name of the device.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_DEVICE_UNAVAILABLE">EVENT_DEVICE_UNAVAILABLE</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when the system or another higher priority application has temporarily taken control of an exclusive device which was previously available to the Player. <br/><br/>The eventData parameter is a string specifying the name of the device.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_DURATION_UPDATED">EVENT_DURATION_UPDATED</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when the duration of a Player is updated. <br/><br/>When this event is received, the eventData parameter will be a number designating the duration of the media.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_END_OF_MEDIA">EVENT_END_OF_MEDIA</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when a Player has reached the end of the media. <br/><br/>When this event is received, the eventData parameter will be a number designating the media time when the player reached end of media and stopped.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_ERROR">EVENT_ERROR</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when an error had occurred. <br/><br/>When this event is received, the eventData parameter will be a string object specifying the error message. Error code: <ol><li>Media player busy: the media player is currently performing an operation that precludes the requested operation.</li><li>Invalid parameter: a parameter was specified with an invalid value. </li><li>Insufficient memory: there is insufficient memory to perform the requested operation.</li><li>Need more data: playback cannot proceed until the streaming source provides more data. </li><li>Unspecified: some error occured which does not fit into any other category. </li><li>Format: an error in the media file was detected. </li><li>No server response: a server has stopped responding. </li><li>Connetion lost: the current connection has been dropped. </li><li>DNS resolve error: an invalid URL has been detected. </li><li>Unseekable: the media player needs to seek in the file in order to access headers, but can&apos;t since the file being played is unseekable.</li><li>Connection timeout: the (streaming) server is unreachable. </li><li>No rights: The DRM agent wasn&apos;t able to find a valid digital right in the media. RTSP error 401 has occurred.</li><li>General client error: The streaming server rejected the streaming request. RTSP error 4xx not covered by another error code has occurred. </li><li>Server error: An error occured on the streaming server while streaming. RTSP error 5xx has occurred. </li><li>Payment required: Payment is required to stream this item from the server. RTSP error 402 has occurred. </li><li>Forbidden: The streaming server has rejected the streaming request for security reasons. RTSP error 403 has occurred. </li><li>Client file not found: The item required to stream doesn&apos;t exist or has been removed from the server. RTSP error 404 has occurred. </li><li>Client proxy authentication required: Device needs to authenticate with a proxy server before streaming. RTSP error 407 has occurred. </li><li>Client request URI too large: The request URI sent to the server is too large. RTSP error 414 has occurred. </li><li>Not enough bandwidth: There is not enough bandwidth to support streaming. RTSP error 453 has occurred. </li><li>Client session not found: Streaming session has been removed by the server (e.g.: when paused for too long). RTSP error 454 has occurred. </li><li>Unsupported transport: The streaming server/network doesn&apos;t support UDP/TCP streaming. RTSP error 461 has occurred. </li></ol><ol start="29"><li>Switch cannot be completed: Try to do a fast content switch but failed. The server returned 4xx/5xx error.</li></ol>
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_RECORD_ERROR">EVENT_RECORD_ERROR</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when an error occurs during the recording. <br/><br/>When this event is received, the eventData parameter will be a string object specifying the error message.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_RECORD_STARTED">EVENT_RECORD_STARTED</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when recording is started. <br/><br/>When this event is received, the eventData parameter will be a number designating the media time when the recording is started.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_RECORD_STOPPED">EVENT_RECORD_STOPPED</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when recording is stopped. <br/><br/>When this event is received, the eventData parameter will be a number designating the media time when the recording stopped.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_SIZE_CHANGED">EVENT_SIZE_CHANGED</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when the size of the video is changed either because the source video size or the display size is changed. <br/><br/>When this event is received, the eventdata parameter will be null.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_STARTED">EVENT_STARTED</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when a Player is started. <br/><br/>When this event is received, the eventData parameter will be a number designating the media time when the player is started.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_STOPPED">EVENT_STOPPED</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when a Player stops in response to the stop method call. <br/><br/>When this event is received, the eventData parameter will be a number designating the media time when the player stopped.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_STOPPED_AT_TIME">EVENT_STOPPED_AT_TIME</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when a Player is stopped as responding to the setStopTime call using the StopTimeControl.<br/><br/>When this event is received, the eventData parameter will be a number designating the media time when the player is stopped.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".EVENT_VOLUME_CHANGED">EVENT_VOLUME_CHANGED</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                String
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            Posted when the volume of an audio device is changed. <br/><br/>When this event is received, the eventData parameter will be null.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".duration">duration</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                Number
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            The duration of the media in milliseconds.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".mediaTime">mediaTime</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                Number
+                            
+                            
+                        </td>
+                        
+                        <td >
+                            Get&sol;Set Player&apos;s media time.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".state">state</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                Number
+                            
+                            
+                                <br />readonly
+                            
+                        </td>
+                        
+                        <td >
+                            The current state of this Player (one of Enumerated Player&apos;s constants).
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".volumeLevel">volumeLevel</a>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                Number
+                            
+                            
+                        </td>
+                        
+                        <td >
+                            Get/Set the player&apos;s volume level.  Valid values are between 0 and 100.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+            </table>
+            
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+        </div>
+    
+
+    
+    
+       
+        <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+            <h2>Constants:</h2>
+            <hr/>
+          
+            <table>
+                <thead><tr>
+                    <th>
+                    Property
+                   
+                    </th>
+                    <th>
+                       Type
+                       
+                    </th>
+                    <th>
+                       Description
+                       
+                    </th>
+                    <th>
+                       Supported Platform(s)            
+                       
+                    </th>
+                </tr></thead>
+                
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".TIME_UNKNOWN">TIME_UNKNOWN</a>
+                            
+                                <b>default: -1</b>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                            
+                                Number
+                            
+                            
+                        </td>
+                        
+                        <td >
+                            The returned value indicating that the requested time is unknown.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".CLOSED">CLOSED</a>
+                            
+                                <b>default: 0</b>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                            
+                                Number
+                            
+                            
+                        </td>
+                        
+                        <td >
+                            The state of the Player indicating that the Player is closed.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".UNREALIZED">UNREALIZED</a>
+                            
+                                <b>default: 100</b>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                            
+                                Number
+                            
+                            
+                        </td>
+                        
+                        <td >
+                            The state of the Player indicating that it has not acquired the required information and resources to function.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".REALIZED">REALIZED</a>
+                            
+                                <b>default: 200</b>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                            
+                                Number
+                            
+                            
+                        </td>
+                        
+                        <td >
+                            The state of the Player indicating that it has acquired the required information but not the resources to function.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
+                        <td>
+                            <a name=".PREFETCHED">PREFETCHED</a>
+                            
+                                <b>default: 300</b>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                            
+                                Number
+                            
+                            
+                        </td>
+                        
+                        <td >
+                            The state of the Player indicating that it has acquired all the resources to begin playing.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- Ripple Emulator
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+            </table>
+            
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+				
+                
+    
+            
+        </div>
+    
+
+
+
+        
+        
+
+    
+
+
+
+        
+
+
+        <hr />
+        <div >
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sat Dec 22 2012 12:20:38 GMT-0500 (EST)
+        </div>
+
+    </div>
+</section>
+</div>
+
+    </div>
+
+</section>
+
+<script type="text/javascript">
+
+initSidebarMenuEventHandlers();
+
+function getPackage() {
+
+    pathname = document.location.pathname;
+
+    g = '/apis/'
+
+    guideposition = pathname.lastIndexOf(g);
+
+    sub = pathname.substr(guideposition+g.length);
+
+    sub2 = sub.substr(0, sub.indexOf('/'));
+
+    return sub2;
+
+}
+
+images = $('.page-content img, .page-content embed');
+
+pkg = getPackage();
+
+images.each(function() {
+
+    srcAttr = $(this).attr('src');
+
+    if (pkg != '') {
+
+        src = '/html5/files/apis/'+pkg+'/'+src;
+
+        $(this).attr('src', src);
+
+    } else {
+
+        $(this).attr('src','/html5/files/apis/'+srcAttr);
+
+    }
+
+});
+
+
+
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(loadPage());
+
+
+
+</script>
+
+
+</body>
+</html>

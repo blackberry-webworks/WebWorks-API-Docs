@@ -1,0 +1,639 @@
+
+
+<section>
+
+    <script type="text/javascript">
+
+        function viewSupportedTable() {
+            var table = document.getElementById('APISupportTable');
+            if (table != null && table.style.display != 'inline') {
+                table.style.display = 'inline';
+            }
+            else {
+                table.style.display = 'none';
+            }
+        }
+
+    </script>
+    
+    <style type="text/css">
+
+        .apiYes {
+            background-color: #D1F8FB;
+        }
+        
+        .tdNoWrap {
+            white-space:nowrap;
+        }
+        
+        .APISupportTable {
+            display:none;
+        }
+    </style>
+
+    <div>
+
+
+        <h1>
+            
+                Payment
+            
+        </h1>
+
+
+        
+            <p>
+                Entry point for purchasing digital goods.<p>API that permits BlackBerry device users to initiate the purchase of digital goods from within your application. For example, this API can be used to allow users to purchase additional levels in a gaming application, music from a radio application, or any other digital good registered on the Vendor Portal for BlackBerry App World. The digital good being purchased must be associated with the calling application in the Vendor Portal for BlackBerry App World.<p>Purchases are initiated via the purchase method. The amount of time that elapses before a response is returned depends on how quickly the user completes the purchase process (which may include steps such as signing in to their BlackBerry ID account and setting up their preferred billing method). The purchase method dispatches a callbackOnSuccess on success, or dispatches a callbackOnFailure on failure.<p>When calling the purchase method only the ID or SKU of the digital good to be purchased is required; it is not necessary to provide both, and all other arguments are optional. If both the ID and SKU are provided, then the ID takes precedence; the SKU is only used if the digital good could not be located on the Payment Service server based on the ID.<p>If an application requires a list of its digital goods that have already been purchased by the user (for example, to avoid offering for sale a digital good the user already owns), such a list can be obtained with the <a href="blackberry.payment.html#.getExistingPurchases">getExistingPurchases</a> method. This method requires the same user interaction as the purchase method, so it can also be a long-running method.
+            </p>
+        
+
+
+        
+
+
+        
+
+
+        
+
+
+        
+            <h2>Supported Platform(s)</h2>
+            <pre>- BlackBerry OS 5.0+<br />- BlackBerry PlayBook</pre>
+            <p>
+                <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
+            </p>
+            <div class="APISupportTable" id="APISupportTable">
+                <table class="apiTable">
+                    <thead><tr><th>API</th><th>OS 5.0</th><th>OS 6.0</th><th>OS 7.0</th><th>PlayBook</th><th>Ripple</th></tr></thead>
+                    
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td>
+                                <a href="blackberry.payment.html#.getExistingPurchases">getExistingPurchases</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td>
+                                <a href="blackberry.payment.html#.purchase">purchase</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td>
+                                <a href="blackberry.payment.html#.developmentMode">developmentMode</a>
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                            </td>
+                        </tr>
+                    
+                </table>
+            </div>
+        
+
+
+        <br />
+        <h2>Configuration Document Settings</h2>
+        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
+        
+            <br />
+            <p>You must declare the feature element(s) below in your configuration document:</p>
+            <table>
+                 <thead><tr><th>Feature ID</th><th>OS 5.0</th><th>OS 6.0</th><th>OS 7.0</th><th>PlayBook</th><th>Ripple</th></tr></thead>
+                 
+                     
+                     
+                         
+                     
+                     <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                         <td>
+                             &lt;feature id="blackberry.payment" /&gt;
+                             <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                         </td>
+                     </tr>
+                 
+            </table>
+        
+
+
+        <div x-ww-support="pb1.0">
+            
+
+            <table>
+                <tr>
+                    <th>Permission Elements (PlayBook Only)</th>
+                </tr>
+                
+                    <tr><td>
+                        This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+                    </td></tr>
+                    <br />
+                
+            </table>
+        </div>
+
+
+        
+        
+
+
+<div>
+<h2>API Summary</h2>
+    
+        
+        
+    
+        
+        
+            <br />
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                <h3> Functions </h3>
+                
+                    <ul>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                <a href="blackberry.payment.html#.getExistingPurchases">getExistingPurchases</a>
+                                
+                            </li>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                <a href="blackberry.payment.html#.purchase">purchase</a>
+                                
+                            </li>
+                        
+                    </ul>
+                
+                
+            </div>
+        
+    
+        
+        
+    
+        
+        
+            <br />
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                <h3> Properties </h3>
+                
+                    <ul>
+                        
+                            <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                <a href="blackberry.payment.html#.developmentMode">developmentMode</a>
+                                
+                            </li>
+                        
+                    </ul>
+                
+                
+            </div>
+        
+    
+        
+        
+    
+        
+        
+    
+
+    
+</div>
+
+
+
+        
+        
+
+    
+
+    
+        
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                <h2>
+                    <a name=".getExistingPurchases"></a>
+                    getExistingPurchases
+                </h2>
+                <hr/>
+                 
+                
+                    <table>
+                        <tr><td>
+                            
+                                static              
+                                void
+                                
+                                    getExistingPurchases(<i>[refresh: Boolean]</i>, callbackOnSuccess : function, <i>[callbackOnFailure: function]</i>)
+                                                          
+                            
+                        </td></tr>
+                    </table>
+                    <br />
+                
+                        
+                           
+                        
+                              
+                    <h3>Supported Platform(s)</h3>      
+                    
+                        &nbsp;- BlackBerry OS 5.0+
+                        <br />
+                    
+                        &nbsp;- BlackBerry PlayBook
+                        <br />
+                                  
+                                   
+                <br />
+                        
+                <h3>Description</h3>
+                <p>Retrieves the previous successful purchases made by the user from within the calling application.</p>
+                <br />
+                        
+                
+                        
+                
+                    <br />
+                    <table>
+                        <thead><tr>
+                            <th>
+                               Parameter
+                               
+                            </th>
+                            <th>
+                               Type
+                               
+                            </th>
+                            <th>
+                               Description
+                               
+                            </th>
+                        </tr></thead>
+                                       
+                        
+                            
+                            <tr>
+                                <td><b>refresh</b></td>
+                                <td>
+                                    
+                                        Boolean
+                                    
+                                    <br /><i>Optional</i>                                                    
+                                </td>
+                                <td>
+                                    
+                                    True if the BlackBerry should be allowed to refresh the list of purchases from the Payment Service server. False if the current list of cached purchases should be returned immediately.                         
+                                    
+                                </td>
+                            </tr>
+                        
+                            
+                            <tr>
+                                <td><b>callbackOnSuccess</b></td>
+                                <td>
+                                    
+                                        function(data : String)
+                                    
+                                                                                        
+                                </td>
+                                <td>
+                                    
+                                    Function to be invoked on successful call.                         
+                                    
+                                        <br />
+                                        
+                                            <br />
+                                            <b>data:</b> A string representing a literal array of <a href="Purchase.html">Purchase</a> items is passed as a parameter in the form below:<pre>[{"transactionID": "00000001","digitalGoodID": "123","date": "1234567891011","digitalGoodSKU": "SKU_1","licenseKey": null,"metaData": "My Metadata"},{"transactionID": "00000002","digitalGoodID": "456","date": "1234567891011","digitalGoodSKU": "SKU_2","licenseKey": null,"metaData": "My Metadata"}]</pre>
+                                        
+                                    
+                                </td>
+                            </tr>
+                        
+                            
+                            <tr>
+                                <td><b>callbackOnFailure</b></td>
+                                <td>
+                                    
+                                        function(errorText : String, errorID : Number)
+                                    
+                                    <br /><i>Optional</i>                                                    
+                                </td>
+                                <td>
+                                    
+                                     Function to be invoked when an error occurs.                         
+                                    
+                                        <br />
+                                        
+                                            <br />
+                                            <b>errorText:</b> Retrieves the message set for an error. In addition to descriptive text, error code may appear at the end of the message.
+                                        
+                                            <br />
+                                            <b>errorID:</b> Contains the reference number associated with the specific error in corresponding to the following values.<ul><li> User Cancelled = 1</li><li> Payment System Busy = 2</li><li> General Payment System Error  = 3</li><li> Digital Good not Found = 4</li><li> Illegal Application Error = 5 [BlackBerry OS 5.0+ only]</li></ul><b>Note:</b> The actual values may be different when <a href="blackberry.payment.html#.developmentMode">developmentMode</a> equals true.
+                                        
+                                    
+                                </td>
+                            </tr>
+                                      
+                    </table>
+                                   
+                        
+                
+
+                
+
+                
+                
+    
+            </div>
+        
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                <h2>
+                    <a name=".purchase"></a>
+                    purchase
+                </h2>
+                <hr/>
+                 
+                
+                    <table>
+                        <tr><td>
+                            
+                                static              
+                                void
+                                
+                                    purchase(args : Object, callbackOnSuccess : function, <i>[callbackOnFailure: function]</i>)
+                                                          
+                            
+                        </td></tr>
+                    </table>
+                    <br />
+                
+                        
+                           
+                        
+                              
+                    <h3>Supported Platform(s)</h3>      
+                    
+                        &nbsp;- BlackBerry OS 5.0+
+                        <br />
+                    
+                        &nbsp;- BlackBerry PlayBook
+                        <br />
+                                  
+                                   
+                <br />
+                        
+                <h3>Description</h3>
+                <p>Initiates the purchase of a digital good.</p>
+                <br />
+                        
+                
+                        
+                
+                    <br />
+                    <table>
+                        <thead><tr>
+                            <th>
+                               Parameter
+                               
+                            </th>
+                            <th>
+                               Type
+                               
+                            </th>
+                            <th>
+                               Description
+                               
+                            </th>
+                        </tr></thead>
+                                       
+                        
+                            
+                            <tr>
+                                <td><b>args</b></td>
+                                <td>
+                                    
+                                        Object
+                                    
+                                                                                        
+                                </td>
+                                <td>
+                                    
+                                    Contains information that describes the purchase.                         
+                                    
+                                        <br />
+                                        
+                                            <br />
+                                            <b>digitalGoodID:</b> ID of the digital good being purchased.
+                                        
+                                            <br />
+                                            <b>digitalGoodSKU:</b> SKU of the digital good being purchased.
+                                        
+                                            <br />
+                                            <b>digitalGoodName:</b> Name of the digital good being purchased.
+                                        
+                                            <br />
+                                            <b>metaData:</b> Metadata associated with the digital good. Metadata offers the application developer a way to store information about each purchase on the Payment Service server.
+                                        
+                                            <br />
+                                            <b>purchaseAppName:</b> Name of the application requesting the purchase.
+                                        
+                                            <br />
+                                            <b>purchaseAppIcon:</b> Icon of the application requesting the purchase.
+                                        
+                                    
+                                </td>
+                            </tr>
+                        
+                            
+                            <tr>
+                                <td><b>callbackOnSuccess</b></td>
+                                <td>
+                                    
+                                        function(data : String)
+                                    
+                                                                                        
+                                </td>
+                                <td>
+                                    
+                                    Function to be called when the payment is successful.                         
+                                    
+                                        <br />
+                                        
+                                            <br />
+                                            <b>data:</b> A string representing a <a href="Purchase.html">Purchase</a> object literal.
+                                        
+                                    
+                                </td>
+                            </tr>
+                        
+                            
+                            <tr>
+                                <td><b>callbackOnFailure</b></td>
+                                <td>
+                                    
+                                        function(errorText : String, errorID : Number)
+                                    
+                                    <br /><i>Optional</i>                                                    
+                                </td>
+                                <td>
+                                    
+                                     Function to be called when an error occurs.                         
+                                    
+                                        <br />
+                                        
+                                            <br />
+                                            <b>errorText:</b> Retrieves the message set for an error. In addition to descriptive text, error code may appear at the end of the message.
+                                        
+                                            <br />
+                                            <b>errorID:</b> Contains the reference number associated with the specific error in corresponding to the following values.<ul><li> User Cancelled = 1</li><li> Payment System Busy = 2</li><li> General Payment System Error  = 3</li><li> Digital Good not Found = 4</li><li> Illegal Application Error = 5 [BlackBerry OS 5.0+ only]</li></ul>
+                                        
+                                    
+                                </td>
+                            </tr>
+                                      
+                    </table>
+                                   
+                        
+                
+
+                
+
+                
+                
+
+	<br /><h3>Code Example(s)</h3>
+	
+		<pre>&lt;script type="text/javascript"&gt;  function pay() {    try{      blackberry.payment.purchase({      "digitalGoodID":"123",      "digitalGoodSKU":"someSKU",      "digitalGoodName":"SomeName",      "metaData":"metadata",      "purchaseAppName":"WebWorks APP",      "purchaseAppIcon":null},      success,failure);   }catch (e){     alert ("Error" + e);   } } function success(purchase) {   var purchasedItem = JSON.parse(purchase);   var transId = purchasedItem.transactionID;   var sku = purchasedItem.digitalGoodSKU;   var dgId = purchasedItem.digitalGoodID;   alert("Purchased Item: " + transId + "," + sku +  "," + dgId); } function failure(errorText, errorId) {   alert("Error occured: " + errorText + ", " + errorId); }&lt;/script&gt;</pre>
+	
+    
+            </div>
+        
+    
+
+    
+
+
+
+        
+        
+
+
+    
+    
+       
+        <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+            <h2>Properties:</h2>
+            <hr/>
+          
+            <table>
+                <thead><tr>
+                    <th>
+                    Property
+                   
+                    </th>
+                    <th>
+                       Type
+                       
+                    </th>
+                    <th>
+                       Description
+                       
+                    </th>
+                    <th>
+                       Supported Platform(s)            
+                       
+                    </th>
+                </tr></thead>
+                
+                
+                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                        <td>
+                            <a name=".developmentMode">developmentMode</a>
+                            
+                                <b>default: false</b>
+                            
+                        </td>
+                        
+                        <td>
+                            
+                                Static<br />
+                            
+                            
+                                Boolean
+                            
+                            
+                        </td>
+                        
+                        <td >
+                            Defines the development mode used in the application. If development mode is set to true, the application does not contact the Payment Service server for any transactions. For purchases, a simulated purchase screen is displayed, allowing the user to choose the result of the purchase. For retrieving existing purchases, only simulated successful purchases are returned. This mode is useful for testing how your application handles the possible results without requiring network connections or currency. THIS MODE SHOULD NOT BE USED IN PRODUCTION CODE. If development mode is set to false, purchases and retrievals of existing purchases proceed normally, contacting the Payment Service server as necessary. This is the default development mode, and applications in production should not modify it.
+                            
+                                <br />
+                                
+                            
+                                           
+                        </td>
+                        
+                        <td class="tdNoWrap">
+                            
+                                
+                                    &nbsp;- BlackBerry OS 5.0+
+                                    <br />
+                                
+                                    &nbsp;- BlackBerry PlayBook
+                                    <br />
+                                                  
+                            
+                        </td>
+                    </tr>
+                
+            </table>
+            
+            
+				
+                
+    
+            
+        </div>
+    
+
+    
+    
+
+
+
+        
+        
+
+    
+
+
+
+        
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+            
+                
+  
+            </div>
+        
+
+
+        <hr />
+        <div >
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sat Dec 22 2012 12:20:37 GMT-0500 (EST)
+        </div>
+
+    </div>
+</section>
