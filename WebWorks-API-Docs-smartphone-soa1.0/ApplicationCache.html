@@ -1,0 +1,1549 @@
+<!--
+* Copyright 2010-2011 Research In Motion Limited.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.-->
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- ============================== header ================================= -->    
+<html> 
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+        
+            <title>HTML5 ApplicationCache</title>
+        
+        
+        <style type="text/css">
+            .apiColumn {
+                width: 200px;
+            }
+            
+            .apiTable {
+                margin: 5px;
+                border-collapse: collapse;
+            }
+            
+            .apiYes {
+                background-color: #95B9C7;
+                color:#FAF8CC;
+                text-align:center;
+            }
+            
+            .apiNo {
+                background-color: #FAF8CC;
+                text-align:center;
+            }
+            
+            .apiTh {
+                border-width: 1px;
+                border-style: solid;
+                border-color: #ccc;
+                padding: 5px;
+                background-color: #f0f0f0;
+                text-align: left;
+                vertical-align: top;
+            }
+            
+            .apiTd {
+                border-width: 1px;
+                border-style: solid;
+                border-color: #ccc;
+                padding: 5px;
+                vertical-align: top;
+            }
+            
+            .apiProperty {
+                padding-left: 20px;
+            }
+            
+            .elemTh {
+                text-align: left;
+                vertical-align: top;
+                color: #616161;
+            }
+            
+            table.betaTable {
+                border-width: 1px;
+                border-style: solid;
+                border-color: #ccc;
+                padding: 5px;
+                vertical-align: top;
+                margin: 5px;
+                margin-bottom:15px;
+                width : 90%;
+                background-color: #FCD8B9;
+            }
+            
+            td.betaTd {
+                color: #484848;
+                vertical-align: top;
+                background-color: #FCD8B9;
+            }
+            #APISupportTable {
+                display: none;
+            }
+        </style>
+      
+        <link rel="stylesheet" href="common.css" type="text/css" />
+        <script src="server.js" type="text/javascript"></script>
+    </head>
+    
+<!-- ============================== Body ============================ -->   
+    <body><div class="scrollable" id="content">     
+    
+<!-- ============================== description ============================ -->
+        <p>
+            
+                The applicationCache object is your programmatic access to the browser's app cache.
+            
+        </p>
+        
+<!-- ============================== notice ============================ -->
+        
+    
+        
+            
+                
+                    <table class="noticeTable">
+                        <tr>
+                            <td class="noticeTd">
+                                <div class="title">Warning (BlackBerry 6.0 Notice):</div>
+                                Support for Application Cache on BlackBerry Smartphones starts with 6.0.0.418
+                            </td>
+                        </tr>
+                    </table>
+                
+            
+        
+        
+<!-- ============================== Beta Tag ============================ -->
+        
+    
+<!-- ============================== Learning Resources ============================ -->
+        
+        
+<!-- ============================== Support Platforms ============================ -->
+        
+        
+            
+            
+            
+            
+        
+        
+            
+            
+            
+            
+        
+        
+            
+            
+        
+        
+        
+        
+            <div class="title">Supported Platform(s)</div>      
+            <table class="scriptTable">         
+                <tr> 
+                    <td class="scriptTd">
+                        
+                            - BlackBerry OS 6.0+<br/>
+                        
+                            - BlackBerry PlayBook<br/>
+                        
+                    </td> 
+                </tr>
+                <tr>
+                    <td>
+                        <div>- Supported Platform Table: <span id="codeExpand" onclick="codeClick('APISupportTable',this)";>Expand</span></div>
+                        <div id="APISupportTable">
+                            <table class="apiTable">
+                                <tr>
+                                    <th class="apiTh apiColumn">
+                                       API
+                                       
+                                    </th>
+                                    <th class="apiTh" >
+                                       OS 5.0
+                                       
+                                    </th>
+                                    <th class="apiTh" >
+                                       OS 6.0
+                                       
+                                    </th>
+						<th class="apiTh" >
+                                       OS 7.0
+                                       
+                                    </th>
+                                    <th class="apiTh" >
+                                       PlayBook
+                                       
+                                    </th>
+                                </tr>
+                                
+                                    
+                                        <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                            <td class="apiTd">
+                                                <a href="ApplicationCache.html#.windowConstructor">window.applicationCache</a>                               
+                                                <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                            </td>
+                                        </tr>                               
+                                    
+                                        <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                            <td class="apiTd">
+                                                <a href="ApplicationCache.html#.workerConstructor">worker.applicationCache</a>                               
+                                                <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                            </td>
+                                        </tr>                               
+                                    
+                                
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#swapCache">swapCache</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#update">update</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#status">status</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#.UNCACHED">ApplicationCache.UNCACHED</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#.IDLE">ApplicationCache.IDLE</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#.CHECKING">ApplicationCache.CHECKING</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#.DOWNLOADING">ApplicationCache.DOWNLOADING</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#.UPDATEREADY">ApplicationCache.UPDATEREADY</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#.OBSOLETE">ApplicationCache.OBSOLETE</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#event:cached">cached</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#event:checking">checking</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#event:downloading">downloading</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#event:error">error</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#event:noupdate">noupdate</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#event:obsolete">obsolete</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#event:progress">progress</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                                        <td class="apiTd">
+                                            <a href="ApplicationCache.html#event:updateready">updateready</a>                               
+                                            <td class="apiTd apiNo">&nbsp;</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                            </table>
+                        </div>
+                    </td>
+                </tr>           
+            </table>
+        
+        
+<!-- ============================== Configuration Settings  ============================ -->	
+    <br/>
+    <div class="title">Configuration Document Settings</div>
+        To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:      
+    
+    <table class="scriptTable">
+        <tr>
+            <th class="elemTh">Feature Elements</th>
+        </tr>
+        
+            <tr><td class="scriptTd">
+            This API does not require a &lt;feature&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+            </td></tr><br/>
+        
+    </table>
+    
+    <div x-ww-support="">
+        <table class="scriptTable">
+        <tr><th class="elemTh">Permission Elements (PlayBook Only)</th></tr>
+        
+            <tr><td class="scriptTd">
+            This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+            </td></tr><br/>
+        
+        </table>
+    </div>
+
+<!-- ============================== Constructor Summary ========================= -->
+        
+            <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                <h1>Constructors</h1>
+                <ul class="ulNoTopMargin">
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#.windowConstructor">window.applicationCache</a>
+                            
+                        </li>
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#.workerConstructor">worker.applicationCache</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+    
+<!-- ============================== Deprecation setup  ==================== -->
+        
+        
+<!-- ============================== Function Summary  ==================== -->    
+        
+        
+            
+            <br/>
+            <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                <h1>Functions</h1>
+        
+        
+                  
+                <ul class="ulNoTopMargin">          
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#swapCache">swapCache</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#update">update</a>
+                            
+                        </li>               
+                    
+                </ul>   
+       
+    
+    <!-- ============================== Inherited Functions Summary  ==================== -->   
+        
+        
+        
+            </div>
+                   
+        
+<!-- ============================== events summary ======================== -->
+        
+        
+        
+            
+            <br/>
+            <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                <h1>Events</h1>
+        
+        
+        
+                <ul class="ulNoTopMargin">          
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#event:cached">cached</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#event:checking">checking</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#event:downloading">downloading</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#event:error">error</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#event:noupdate">noupdate</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#event:obsolete">obsolete</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#event:progress">progress</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#event:updateready">updateready</a>
+                            
+                        </li>               
+                    
+                </ul>
+        
+        
+<!-- ============================== Inherited Event Summary  ==================== -->   
+        
+        
+         
+            </div>
+        
+<!-- ============================== Properties summary ===================== -->
+        
+        
+        
+            
+            <br/>
+            <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                <h1>Properties</h1>
+        
+        
+              
+                <ul class="ulNoTopMargin">
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#status">status</a>
+                            
+                        </li>               
+                    
+                </ul>
+        
+<!-- ============================== Inherited Properties Summary  ==================== -->  
+        
+        
+        
+            </div>
+           
+<!-- ============================== Constants summary ===================== -->
+        
+        
+        
+            
+            <br/>
+            <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                <h1>Constants</h1>
+        
+        
+        
+                <ul class="ulNoTopMargin">
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#.UNCACHED">ApplicationCache.UNCACHED</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#.IDLE">ApplicationCache.IDLE</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#.CHECKING">ApplicationCache.CHECKING</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#.DOWNLOADING">ApplicationCache.DOWNLOADING</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#.UPDATEREADY">ApplicationCache.UPDATEREADY</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <a href="ApplicationCache.html#.OBSOLETE">ApplicationCache.OBSOLETE</a>
+                            
+                        </li>               
+                    
+                </ul>
+        
+    
+<!-- ============================== Inherited Constants Summary  ==================== -->   
+        
+        
+        
+            </div>
+        
+<!-- ============================== URI Summary  ==================== -->           
+        
+        
+        
+        
+               
+    
+<!-- ============================== Inherited URI Summary  ==================== --> 
+        
+        
+        
+        
+<!-- ============================== Deprecation Notice  ==================== -->
+           
+        
+<!-- ============================== Constructor Details ========================= -->
+        
+           
+               <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                   <h2><a name=".windowConstructor"> </a>window.applicationCache</h2>
+                   <hr style="margin-bottom: 15px;"/>
+            
+                    <table class="scriptTable">
+                        <tr>
+                            <td class="scriptTd">
+                               window.applicationCache
+                               
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                
+                               
+                                                
+                    <div class="title">Supported Platform(s)</div>      
+                    
+                        &nbsp;- BlackBerry OS 6.0+<br/>
+                    
+                        &nbsp;- BlackBerry PlayBook<br/>
+                                                      
+                    <br/>
+                    
+                    <div class="title">Description</div>
+                    &nbsp;Returns the ApplicationCache object that applies to the active document of that Window.
+            
+                    
+            
+                    
+                        <br/>
+                        <div class="title">Code Example(s)</div>
+                        
+                            <table class="scriptTable">             
+                                <tr><td class="scriptTd">
+                                   <pre>&lt;script type="text/javascript"&gt;  var appCache = window.applicationCache;&lt;/script&gt;</pre>
+                                </td></tr>              
+                            </table>
+                        
+                                   
+                </div>
+            
+               <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                   <h2><a name=".workerConstructor"> </a>worker.applicationCache</h2>
+                   <hr style="margin-bottom: 15px;"/>
+            
+                    <table class="scriptTable">
+                        <tr>
+                            <td class="scriptTd">
+                               worker.applicationCache
+                               
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                
+                               
+                                                
+                    <div class="title">Supported Platform(s)</div>      
+                    
+                        &nbsp;- BlackBerry OS 6.0+<br/>
+                    
+                        &nbsp;- BlackBerry PlayBook<br/>
+                                                      
+                    <br/>
+                    
+                    <div class="title">Description</div>
+                    &nbsp;Returns the ApplicationCache object that applies to the current shared <a href="Worker.html#applicationCache">applicationCache</a>.
+            
+                    
+            
+                    
+                        <br/>
+                        <div class="title">Code Example(s)</div>
+                        
+                            <table class="scriptTable">             
+                                <tr><td class="scriptTd">
+                                   <pre>&lt;script type="text/javascript"&gt;  var worker = new Worker('doWork.js');&lt;/script&gt;doWork.js (the worker):  var appCache = self.applicationCache()</pre>
+                                </td></tr>              
+                            </table>
+                        
+                                   
+                </div>
+            
+        
+<!-- ============================== Function details ========================= -->      
+        
+            
+                <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                    <h2><a name="swapCache"></a>
+                        swapCache
+                    </h2>
+                    <hr style="margin-bottom: 15px;"/>
+                    
+                    <table class="scriptTable">
+                        <tr>
+                            <td class="scriptTd">
+                                              
+                                void
+                                
+                                    swapCache()
+                                                           
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    
+                               
+                    
+                                  
+                        <div class="title">Supported Platform(s)</div>      
+                        
+                            &nbsp;- BlackBerry OS 6.0+<br/>
+                        
+                            &nbsp;- BlackBerry PlayBook<br/>
+                                      
+                                       
+                    <br/>
+                    
+                    <div class="title">Description</div>
+                    &nbsp;Switches to the most recent application cache, if there is a newer one.<br>This does not cause previously-loaded resources to be reloaded; for example,images do not suddenly get reloaded and style sheets and scripts do not get reparsed or reevaluated.The only change is that subsequent requests for cached resources will obtain the newer copies.<br>
+                    
+                    
+                    
+                                       
+                    
+                    
+                        <table class="confluenceTable">
+                            <tr>
+                                <th class="confluenceTh">
+                                   Throws
+                                   
+                                </th>
+                                <th class="confluenceTh">
+                                   Description
+                                   
+                                </th>
+                            </tr>
+                            
+                                <tr>
+                                    <td class="confluenceTd">
+                                        INVALID_STATE_ERR                                                
+                                    </td>
+                                    <td class="confluenceTd">
+                                        If the current app cache is the most recent
+                                    </td>
+                                </tr>
+                            
+                        </table>
+                    
+                                
+                    
+                        <br/>
+                        <div class="title">Code Example(s)</div>
+                        
+                            <table class="scriptTable">             
+                                <tr><td class="scriptTd">
+                                    <pre>var appCache = window.applicationCache;appCache.update(); // Attempt to update the user's cache....if (appCache.status == window.applicationCache.UPDATEREADY) {    appCache.swapCache();  // The fetch was successful, swap in the new cache.}</pre>
+                                </td></tr>              
+                            </table>
+                        
+                    
+                </div>
+            
+                <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                    <h2><a name="update"></a>
+                        update
+                    </h2>
+                    <hr style="margin-bottom: 15px;"/>
+                    
+                    <table class="scriptTable">
+                        <tr>
+                            <td class="scriptTd">
+                                              
+                                void
+                                
+                                    update()
+                                                           
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    
+                               
+                    
+                                  
+                        <div class="title">Supported Platform(s)</div>      
+                        
+                            &nbsp;- BlackBerry OS 6.0+<br/>
+                        
+                            &nbsp;- BlackBerry PlayBook<br/>
+                                      
+                                       
+                    <br/>
+                    
+                    <div class="title">Description</div>
+                    &nbsp;Invokes the application cache download process.<br>Throws an INVALID_STATE_ERR exception if there is no application cache to update.<br>
+                    
+                    
+                    
+                                       
+                    
+                    
+                                
+                    
+                        <br/>
+                        <div class="title">Code Example(s)</div>
+                        
+                            <table class="scriptTable">             
+                                <tr><td class="scriptTd">
+                                    <pre>var appCache = window.applicationCache;appCache.update(); // Attempt to update the user's cache....if (appCache.status == window.applicationCache.UPDATEREADY) {    appCache.swapCache();  // The fetch was successful, swap in the new cache.}</pre>
+                                </td></tr>              
+                            </table>
+                        
+                    
+                </div>
+            
+        
+                
+<!-- ============================== Event details ========================= -->     
+        
+            
+                <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                    <h2>
+                        <a name="event:cached"></a>
+                        cached
+                    </h2>
+                    <hr style="margin-bottom: 15px;"/>
+                    
+                    <table class="scriptTable">
+                        <tr>
+                            <td class="scriptTd">
+                            
+                            void
+                                cached()
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    
+                               
+                    
+                                  
+                        <div class="title">Supported Platform(s)</div>      
+                        
+                            &nbsp;- BlackBerry OS 6.0+<br/>
+                        
+                            &nbsp;- BlackBerry PlayBook<br/>
+                                      
+                                       
+                    <br/>
+                    
+                    <div class="title">Description</div>
+                    &nbsp;Sent when the resources listed in the manifest have been downloaded, and the application is now cached.<br>
+                    
+                    
+                    
+                                       
+                    
+                    
+                                
+                    
+                        <br/>
+                        <div class="title">Code Example(s)</div>
+                        
+                            <table class="scriptTable">             
+                                <tr><td class="scriptTd">
+                                    <pre>function handleCacheEvent(e) {    //...}// Fired after the first cache of the manifest.appCache.addEventListener('cached', handleCacheEvent, false);</pre>
+                                </td></tr>              
+                            </table>
+                        
+                    
+                </div>
+            
+                <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                    <h2>
+                        <a name="event:checking"></a>
+                        checking
+                    </h2>
+                    <hr style="margin-bottom: 15px;"/>
+                    
+                    <table class="scriptTable">
+                        <tr>
+                            <td class="scriptTd">
+                            
+                            void
+                                checking()
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    
+                               
+                    
+                                  
+                        <div class="title">Supported Platform(s)</div>      
+                        
+                            &nbsp;- BlackBerry OS 6.0+<br/>
+                        
+                            &nbsp;- BlackBerry PlayBook<br/>
+                                      
+                                       
+                    <br/>
+                    
+                    <div class="title">Description</div>
+                    &nbsp;Sent when the cache update process begins.<br>
+                    
+                    
+                    
+                                       
+                    
+                    
+                                
+                    
+                        <br/>
+                        <div class="title">Code Example(s)</div>
+                        
+                            <table class="scriptTable">             
+                                <tr><td class="scriptTd">
+                                    <pre>function handleCacheEvent(e) {    //...}// Checking for an update. Always the first event fired in the sequence.appCache.addEventListener('checking', handleCacheEvent, false);</pre>
+                                </td></tr>              
+                            </table>
+                        
+                    
+                </div>
+            
+                <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                    <h2>
+                        <a name="event:downloading"></a>
+                        downloading
+                    </h2>
+                    <hr style="margin-bottom: 15px;"/>
+                    
+                    <table class="scriptTable">
+                        <tr>
+                            <td class="scriptTd">
+                            
+                            void
+                                downloading()
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    
+                               
+                    
+                                  
+                        <div class="title">Supported Platform(s)</div>      
+                        
+                            &nbsp;- BlackBerry OS 6.0+<br/>
+                        
+                            &nbsp;- BlackBerry PlayBook<br/>
+                                      
+                                       
+                    <br/>
+                    
+                    <div class="title">Description</div>
+                    &nbsp;Sent when the update process begins downloading resources in the manifest file.<br>
+                    
+                    
+                    
+                                       
+                    
+                    
+                                
+                    
+                        <br/>
+                        <div class="title">Code Example(s)</div>
+                        
+                            <table class="scriptTable">             
+                                <tr><td class="scriptTd">
+                                    <pre>function handleCacheEvent(e) {    //...}// An update was found. The browser is fetching resources.appCache.addEventListener('downloading', handleCacheEvent, false);</pre>
+                                </td></tr>              
+                            </table>
+                        
+                    
+                </div>
+            
+                <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                    <h2>
+                        <a name="event:error"></a>
+                        error
+                    </h2>
+                    <hr style="margin-bottom: 15px;"/>
+                    
+                    <table class="scriptTable">
+                        <tr>
+                            <td class="scriptTd">
+                            
+                            void
+                                error()
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    
+                               
+                    
+                                  
+                        <div class="title">Supported Platform(s)</div>      
+                        
+                            &nbsp;- BlackBerry OS 6.0+<br/>
+                        
+                            &nbsp;- BlackBerry PlayBook<br/>
+                                      
+                                       
+                    <br/>
+                    
+                    <div class="title">Description</div>
+                    &nbsp;Sent when an error occurs.<br>
+                    
+                    
+                    
+                                       
+                    
+                    
+                                
+                    
+                        <br/>
+                        <div class="title">Code Example(s)</div>
+                        
+                            <table class="scriptTable">             
+                                <tr><td class="scriptTd">
+                                    <pre>function handleCacheErro(e) {    alert('Error: Cache failed to update!');};// The manifest returns 404 or 410, the download failed,// or the manifest changed while the download was in progress.appCache.addEventListener('error', handleCacheError, false);</pre>
+                                </td></tr>              
+                            </table>
+                        
+                    
+                </div>
+            
+                <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                    <h2>
+                        <a name="event:noupdate"></a>
+                        noupdate
+                    </h2>
+                    <hr style="margin-bottom: 15px;"/>
+                    
+                    <table class="scriptTable">
+                        <tr>
+                            <td class="scriptTd">
+                            
+                            void
+                                noupdate()
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    
+                               
+                    
+                                  
+                        <div class="title">Supported Platform(s)</div>      
+                        
+                            &nbsp;- BlackBerry OS 6.0+<br/>
+                        
+                            &nbsp;- BlackBerry PlayBook<br/>
+                                      
+                                       
+                    <br/>
+                    
+                    <div class="title">Description</div>
+                    &nbsp;Sent when the update process finishes but the manifest file does not change.<br>
+                    
+                    
+                    
+                                       
+                    
+                    
+                                
+                    
+                        <br/>
+                        <div class="title">Code Example(s)</div>
+                        
+                            <table class="scriptTable">             
+                                <tr><td class="scriptTd">
+                                    <pre>function handleCacheEvent(e) {    //...}// Fired after the first download of the manifest.appCache.addEventListener('noupdate', handleCacheEvent, false);</pre>
+                                </td></tr>              
+                            </table>
+                        
+                    
+                </div>
+            
+                <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                    <h2>
+                        <a name="event:obsolete"></a>
+                        obsolete
+                    </h2>
+                    <hr style="margin-bottom: 15px;"/>
+                    
+                    <table class="scriptTable">
+                        <tr>
+                            <td class="scriptTd">
+                            
+                            void
+                                obsolete()
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    
+                               
+                    
+                                  
+                        <div class="title">Supported Platform(s)</div>      
+                        
+                            &nbsp;- BlackBerry OS 6.0+<br/>
+                        
+                            &nbsp;- BlackBerry PlayBook<br/>
+                                      
+                                       
+                    <br/>
+                    
+                    <div class="title">Description</div>
+                    &nbsp;Sent when the manifest was found to have become a 404 or 410 page, so the application cache is being deleted.<br>
+                    
+                    
+                    
+                                       
+                    
+                    
+                                
+                    
+                        <br/>
+                        <div class="title">Code Example(s)</div>
+                        
+                            <table class="scriptTable">             
+                                <tr><td class="scriptTd">
+                                    <pre>function handleCacheEvent(e) {    //...}// Fired if the manifest file returns a 404 or 410.// This results in the application cache being deletedappCache.addEventListener('obsolete', handleCacheEvent, false);</pre>
+                                </td></tr>              
+                            </table>
+                        
+                    
+                </div>
+            
+                <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                    <h2>
+                        <a name="event:progress"></a>
+                        progress
+                    </h2>
+                    <hr style="margin-bottom: 15px;"/>
+                    
+                    <table class="scriptTable">
+                        <tr>
+                            <td class="scriptTd">
+                            
+                            void
+                                progress()
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    
+                               
+                    
+                                  
+                        <div class="title">Supported Platform(s)</div>      
+                        
+                            &nbsp;- BlackBerry OS 6.0+<br/>
+                        
+                            &nbsp;- BlackBerry PlayBook<br/>
+                                      
+                                       
+                    <br/>
+                    
+                    <div class="title">Description</div>
+                    &nbsp;Sent when each resource in the manifest file begins to download.<br>
+                    
+                    
+                    
+                                       
+                    
+                    
+                                
+                    
+                        <br/>
+                        <div class="title">Code Example(s)</div>
+                        
+                            <table class="scriptTable">             
+                                <tr><td class="scriptTd">
+                                    <pre>function handleCacheEvent(e) {    //...}// Fired for each resource listed in the manifest as it is being fetched.appCache.addEventListener('progress', handleCacheEvent, false);</pre>
+                                </td></tr>              
+                            </table>
+                        
+                    
+                </div>
+            
+                <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                    <h2>
+                        <a name="event:updateready"></a>
+                        updateready
+                    </h2>
+                    <hr style="margin-bottom: 15px;"/>
+                    
+                    <table class="scriptTable">
+                        <tr>
+                            <td class="scriptTd">
+                            
+                            void
+                                updateready()
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    
+                               
+                    
+                                  
+                        <div class="title">Supported Platform(s)</div>      
+                        
+                            &nbsp;- BlackBerry OS 6.0+<br/>
+                        
+                            &nbsp;- BlackBerry PlayBook<br/>
+                                      
+                                       
+                    <br/>
+                    
+                    <div class="title">Description</div>
+                    &nbsp;Sent when there is an existing application cache, the update process finishes,and there is a new application cache ready for use.<br>
+                    
+                    
+                    
+                                       
+                    
+                    
+                                
+                    
+                        <br/>
+                        <div class="title">Code Example(s)</div>
+                        
+                            <table class="scriptTable">             
+                                <tr><td class="scriptTd">
+                                    <pre>function handleCacheEvent(e) {    //...}// Fired when the manifest resources have been newly redownloaded.appCache.addEventListener('updateready', handleCacheEvent, false);</pre>
+                                </td></tr>              
+                            </table>
+                        
+                    
+                </div>
+            
+        
+<!-- ============================== properties details ========================== -->       
+        
+           
+            <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                <h2>Properties:</h2>
+                <hr style="margin-bottom: 15px;"/>
+              
+                <table class="confluenceTable">
+                    <tr>
+                        <th class="confluenceTh">
+                        Property
+                       
+                        </th>
+                        <th class="confluenceTh">
+                           Type
+                           
+                        </th>
+                        <th class="confluenceTh">
+                           Description
+                           
+                        </th>
+                        <th class="confluenceThnoverflow">
+                           Supported Platform(s)
+                           
+                        </th>
+                    </tr>
+                    
+                    
+                        <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <td class="confluenceTd"><a name="status" class="propertyName">status</a></td>
+                            <td class="confluenceTd">
+                                
+                                
+                                    Number
+                                
+                                
+                                
+                            </td>
+                            
+                            <td class="confluenceTd">The current state of the application cache that the ApplicationCache object's cache host is associated with, if any.<br>This must be the appropriate value from the following list:   <li>UNCACHED (numeric value 0)   <li>IDLE (numeric value 1)    <li>CHECKING (numeric value 2)   <li>DOWNLOADING (numeric value 3)   <li>UPDATEREADY (numeric value 4)   <li>OBSOLETE (numeric value 5)
+                                
+                                    <br/>
+                                    
+                                
+                                               
+                            </td>
+                            
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 6.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                </table>
+                
+                
+                    
+                        <div class="title">Code Example(s)</div>
+                        
+                            <table class="scriptTable">             
+                                <tr><td class="scriptTd">
+                                    <pre>var appCache = window.applicationCache;switch (appCache.status) {case appCache.UNCACHED:    // UNCACHED == 0	return 'UNCACHED';	break;case appCache.IDLE: 		  // IDLE == 1	return 'IDLE'; 	break;case appCache.CHECKING:    // CHECKING == 2	return 'CHECKING';	break;case appCache.DOWNLOADING: // DOWNLOADING == 3	return 'DOWNLOADING';	break;case appCache.UPDATEREADY: // UPDATEREADY == 5	return 'UPDATEREADY';	break;case appCache.OBSOLETE:    // OBSOLETE == 5	return 'OBSOLETE';	break;default:	return 'UKNOWN CACHE STATUS';	break;};</pre>
+                                </td></tr>              
+                            </table>
+                        
+                    
+                
+            </div>
+        
+        
+<!-- ============================== constant details ========================== -->     
+        
+            
+            <div x-ww-support="bb6.0|bb7.0|pb1.0">
+                <h2>Constants:</h2>
+                <hr style="margin-bottom: 15px;"/>
+              
+                <table class="confluenceTable">
+                    <tr>
+                        <th class="confluenceTh">
+                        Constant
+                       
+                        </th>
+                        <th class="confluenceTh">
+                           Type
+                           
+                        </th>
+                        <th class="confluenceTh">
+                           Description
+                           
+                        </th>
+                        <th class="confluenceThnoverflow">
+                           Supported Platform(s)
+                           
+                        </th>
+                    </tr>
+                    
+                    
+                        <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <td class="confluenceTd">
+                               <a name=".UNCACHED" class="propertyName">ApplicationCache.UNCACHED</a>
+                            </td>
+                            <td class="confluenceTd">Number                      
+                                
+                                     = 0
+                                
+                            </td>
+                            <td class="confluenceTd">The ApplicationCache object's cache host is not associated with an application cache at this time.
+                                
+                            </td>
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 6.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <td class="confluenceTd">
+                               <a name=".IDLE" class="propertyName">ApplicationCache.IDLE</a>
+                            </td>
+                            <td class="confluenceTd">Number                      
+                                
+                                     = 1
+                                
+                            </td>
+                            <td class="confluenceTd">The ApplicationCache object's cache host is associated withan application cache whose application cache group's update status is idle,and that application cache is the newest cache in its application cache group,and the application cache group is not marked as obsolete.
+                                
+                            </td>
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 6.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <td class="confluenceTd">
+                               <a name=".CHECKING" class="propertyName">ApplicationCache.CHECKING</a>
+                            </td>
+                            <td class="confluenceTd">Number                      
+                                
+                                     = 2
+                                
+                            </td>
+                            <td class="confluenceTd">The ApplicationCache object's cache host is associated with an application cachewhose application cache group's update status is checking.
+                                
+                            </td>
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 6.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <td class="confluenceTd">
+                               <a name=".DOWNLOADING" class="propertyName">ApplicationCache.DOWNLOADING</a>
+                            </td>
+                            <td class="confluenceTd">Number                      
+                                
+                                     = 3
+                                
+                            </td>
+                            <td class="confluenceTd">The ApplicationCache object's cache host is associated with an application cachewhose application cache group's update status is downloading.
+                                
+                            </td>
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 6.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <td class="confluenceTd">
+                               <a name=".UPDATEREADY" class="propertyName">ApplicationCache.UPDATEREADY</a>
+                            </td>
+                            <td class="confluenceTd">Number                      
+                                
+                                     = 4
+                                
+                            </td>
+                            <td class="confluenceTd">The ApplicationCache object's cache host is associated with an application cachewhose application cache group's update status is idle, and whose application cache groupis not marked as obsolete, but that application cache is not the newest cache in its group.
+                                
+                            </td>
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 6.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb6.0|bb7.0|pb1.0">
+                            <td class="confluenceTd">
+                               <a name=".OBSOLETE" class="propertyName">ApplicationCache.OBSOLETE</a>
+                            </td>
+                            <td class="confluenceTd">Number                      
+                                
+                                     = 5
+                                
+                            </td>
+                            <td class="confluenceTd">The ApplicationCache object's cache host is associated with an application cachewhose application cache group is marked as obsolete.
+                                
+                            </td>
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 6.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                </table>
+            </div>
+        
+    
+<!-- ============================== URI  ==================== -->           
+             
+                   
+        
+        
+        
+        
+                    
+<!-- ============================== footer ================================= -->
+        <hr style="margin-bottom: 15px;"/>
+        <div class="fineprint" style="clear: both">
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Dec 23 2012 01:46:51 GMT-0500 (EST)
+        </div>
+        
+    </div></body>
+</html>

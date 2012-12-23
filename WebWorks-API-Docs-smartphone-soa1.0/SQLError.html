@@ -1,0 +1,804 @@
+<!--
+* Copyright 2010-2011 Research In Motion Limited.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.-->
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- ============================== header ================================= -->    
+<html> 
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+        
+            <title>HTML5 SQLError</title>
+        
+        
+        <style type="text/css">
+            .apiColumn {
+                width: 200px;
+            }
+            
+            .apiTable {
+                margin: 5px;
+                border-collapse: collapse;
+            }
+            
+            .apiYes {
+                background-color: #95B9C7;
+                color:#FAF8CC;
+                text-align:center;
+            }
+            
+            .apiNo {
+                background-color: #FAF8CC;
+                text-align:center;
+            }
+            
+            .apiTh {
+                border-width: 1px;
+                border-style: solid;
+                border-color: #ccc;
+                padding: 5px;
+                background-color: #f0f0f0;
+                text-align: left;
+                vertical-align: top;
+            }
+            
+            .apiTd {
+                border-width: 1px;
+                border-style: solid;
+                border-color: #ccc;
+                padding: 5px;
+                vertical-align: top;
+            }
+            
+            .apiProperty {
+                padding-left: 20px;
+            }
+            
+            .elemTh {
+                text-align: left;
+                vertical-align: top;
+                color: #616161;
+            }
+            
+            table.betaTable {
+                border-width: 1px;
+                border-style: solid;
+                border-color: #ccc;
+                padding: 5px;
+                vertical-align: top;
+                margin: 5px;
+                margin-bottom:15px;
+                width : 90%;
+                background-color: #FCD8B9;
+            }
+            
+            td.betaTd {
+                color: #484848;
+                vertical-align: top;
+                background-color: #FCD8B9;
+            }
+            #APISupportTable {
+                display: none;
+            }
+        </style>
+      
+        <link rel="stylesheet" href="common.css" type="text/css" />
+        <script src="server.js" type="text/javascript"></script>
+    </head>
+    
+<!-- ============================== Body ============================ -->   
+    <body><div class="scrollable" id="content">     
+    
+<!-- ============================== description ============================ -->
+        <p>
+            
+                Errors in the asynchronous database API are reported using callbacks that have a <b>SQLError</b> object as one of their arguments.
+            
+        </p>
+        
+<!-- ============================== notice ============================ -->
+        
+    
+        
+        
+<!-- ============================== Beta Tag ============================ -->
+        
+    
+<!-- ============================== Learning Resources ============================ -->
+        
+        
+<!-- ============================== Support Platforms ============================ -->
+        
+        
+        
+            
+            
+            
+            
+        
+        
+        
+        
+        
+            <div class="title">Supported Platform(s)</div>      
+            <table class="scriptTable">         
+                <tr> 
+                    <td class="scriptTd">
+                        
+                            - BlackBerry OS 5.0+<br/>
+                        
+                            - BlackBerry PlayBook<br/>
+                        
+                    </td> 
+                </tr>
+                <tr>
+                    <td>
+                        <div>- Supported Platform Table: <span id="codeExpand" onclick="codeClick('APISupportTable',this)";>Expand</span></div>
+                        <div id="APISupportTable">
+                            <table class="apiTable">
+                                <tr>
+                                    <th class="apiTh apiColumn">
+                                       API
+                                       
+                                    </th>
+                                    <th class="apiTh" >
+                                       OS 5.0
+                                       
+                                    </th>
+                                    <th class="apiTh" >
+                                       OS 6.0
+                                       
+                                    </th>
+						<th class="apiTh" >
+                                       OS 7.0
+                                       
+                                    </th>
+                                    <th class="apiTh" >
+                                       PlayBook
+                                       
+                                    </th>
+                                </tr>
+                                
+                                
+                                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                        <td class="apiTd">
+                                            <a href="SQLError.html#code">code</a>                               
+                                            <td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                        <td class="apiTd">
+                                            <a href="SQLError.html#message">message</a>                               
+                                            <td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                        <td class="apiTd">
+                                            <a href="SQLError.html#.UNKNOWN_ERR">SQLError.UNKNOWN_ERR</a>                               
+                                            <td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                        <td class="apiTd">
+                                            <a href="SQLError.html#.DATABASE_ERR">SQLError.DATABASE_ERR</a>                               
+                                            <td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                        <td class="apiTd">
+                                            <a href="SQLError.html#.VERSION_ERR">SQLError.VERSION_ERR</a>                               
+                                            <td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                        <td class="apiTd">
+                                            <a href="SQLError.html#.TOO_LARGE_ERR">SQLError.TOO_LARGE_ERR</a>                               
+                                            <td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                        <td class="apiTd">
+                                            <a href="SQLError.html#.QUOTA_ERR">SQLError.QUOTA_ERR</a>                               
+                                            <td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                        <td class="apiTd">
+                                            <a href="SQLError.html#.SYNTAX_ERR">SQLError.SYNTAX_ERR</a>                               
+                                            <td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                        <td class="apiTd">
+                                            <a href="SQLError.html#.CONSTRAINT_ERR">SQLError.CONSTRAINT_ERR</a>                               
+                                            <td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                                    <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                                        <td class="apiTd">
+                                            <a href="SQLError.html#.TIMEOUT_ERR">SQLError.TIMEOUT_ERR</a>                               
+                                            <td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+<td class="apiTd apiYes">Y</td>
+                                        </td>
+                                    </tr>                               
+                                
+                            </table>
+                        </div>
+                    </td>
+                </tr>           
+            </table>
+        
+        
+<!-- ============================== Configuration Settings  ============================ -->	
+    <br/>
+    <div class="title">Configuration Document Settings</div>
+        To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:      
+    
+    <table class="scriptTable">
+        <tr>
+            <th class="elemTh">Feature Elements</th>
+        </tr>
+        
+            <tr><td class="scriptTd">
+            This API does not require a &lt;feature&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+            </td></tr><br/>
+        
+    </table>
+    
+    <div x-ww-support="">
+        <table class="scriptTable">
+        <tr><th class="elemTh">Permission Elements (PlayBook Only)</th></tr>
+        
+            <tr><td class="scriptTd">
+            This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+            </td></tr><br/>
+        
+        </table>
+    </div>
+
+<!-- ============================== Constructor Summary ========================= -->
+        
+    
+<!-- ============================== Deprecation setup  ==================== -->
+        
+        
+<!-- ============================== Function Summary  ==================== -->    
+        
+        
+        
+       
+    
+    <!-- ============================== Inherited Functions Summary  ==================== -->   
+        
+        
+                   
+        
+<!-- ============================== events summary ======================== -->
+        
+        
+        
+        
+        
+        
+<!-- ============================== Inherited Event Summary  ==================== -->   
+        
+        
+        
+<!-- ============================== Properties summary ===================== -->
+        
+        
+        
+            
+            <br/>
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                <h1>Properties</h1>
+        
+        
+              
+                <ul class="ulNoTopMargin">
+                    
+                        <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <a href="SQLError.html#code">code</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <a href="SQLError.html#message">message</a>
+                            
+                        </li>               
+                    
+                </ul>
+        
+<!-- ============================== Inherited Properties Summary  ==================== -->  
+        
+        
+        
+            </div>
+           
+<!-- ============================== Constants summary ===================== -->
+        
+        
+        
+            
+            <br/>
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                <h1>Constants</h1>
+        
+        
+        
+                <ul class="ulNoTopMargin">
+                    
+                        <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <a href="SQLError.html#.UNKNOWN_ERR">SQLError.UNKNOWN_ERR</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <a href="SQLError.html#.DATABASE_ERR">SQLError.DATABASE_ERR</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <a href="SQLError.html#.VERSION_ERR">SQLError.VERSION_ERR</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <a href="SQLError.html#.TOO_LARGE_ERR">SQLError.TOO_LARGE_ERR</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <a href="SQLError.html#.QUOTA_ERR">SQLError.QUOTA_ERR</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <a href="SQLError.html#.SYNTAX_ERR">SQLError.SYNTAX_ERR</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <a href="SQLError.html#.CONSTRAINT_ERR">SQLError.CONSTRAINT_ERR</a>
+                            
+                        </li>               
+                    
+                        <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <a href="SQLError.html#.TIMEOUT_ERR">SQLError.TIMEOUT_ERR</a>
+                            
+                        </li>               
+                    
+                </ul>
+        
+    
+<!-- ============================== Inherited Constants Summary  ==================== -->   
+        
+        
+        
+            </div>
+        
+<!-- ============================== URI Summary  ==================== -->           
+        
+        
+        
+        
+               
+    
+<!-- ============================== Inherited URI Summary  ==================== --> 
+        
+        
+        
+        
+<!-- ============================== Deprecation Notice  ==================== -->
+           
+        
+<!-- ============================== Constructor Details ========================= -->
+        
+<!-- ============================== Function details ========================= -->      
+        
+                
+<!-- ============================== Event details ========================= -->     
+        
+<!-- ============================== properties details ========================== -->       
+        
+           
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                <h2>Properties:</h2>
+                <hr style="margin-bottom: 15px;"/>
+              
+                <table class="confluenceTable">
+                    <tr>
+                        <th class="confluenceTh">
+                        Property
+                       
+                        </th>
+                        <th class="confluenceTh">
+                           Type
+                           
+                        </th>
+                        <th class="confluenceTh">
+                           Description
+                           
+                        </th>
+                        <th class="confluenceThnoverflow">
+                           Supported Platform(s)
+                           
+                        </th>
+                    </tr>
+                    
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td class="confluenceTd"><a name="code" class="propertyName">code</a></td>
+                            <td class="confluenceTd">
+                                
+                                
+                                    Number
+                                
+                                
+                                
+                                    <br/>readonly
+                                
+                            </td>
+                            
+                            <td class="confluenceTd">The most appropriate error code.
+                                
+                                    <br/>
+                                    
+                                
+                                               
+                            </td>
+                            
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 5.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td class="confluenceTd"><a name="message" class="propertyName">message</a></td>
+                            <td class="confluenceTd">
+                                
+                                
+                                    String
+                                
+                                
+                                
+                                    <br/>readonly
+                                
+                            </td>
+                            
+                            <td class="confluenceTd">An error message describing the error encountered. The message should be localized to the user's language.
+                                
+                                    <br/>
+                                    
+                                
+                                               
+                            </td>
+                            
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 5.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                </table>
+                
+                
+                    
+                
+                    
+                
+            </div>
+        
+        
+<!-- ============================== constant details ========================== -->     
+        
+            
+            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                <h2>Constants:</h2>
+                <hr style="margin-bottom: 15px;"/>
+              
+                <table class="confluenceTable">
+                    <tr>
+                        <th class="confluenceTh">
+                        Constant
+                       
+                        </th>
+                        <th class="confluenceTh">
+                           Type
+                           
+                        </th>
+                        <th class="confluenceTh">
+                           Description
+                           
+                        </th>
+                        <th class="confluenceThnoverflow">
+                           Supported Platform(s)
+                           
+                        </th>
+                    </tr>
+                    
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td class="confluenceTd">
+                               <a name=".UNKNOWN_ERR" class="propertyName">SQLError.UNKNOWN_ERR</a>
+                            </td>
+                            <td class="confluenceTd">Number                      
+                                
+                                     = 0
+                                
+                            </td>
+                            <td class="confluenceTd">The transaction failed for reasons unrelated to the database itself and not covered by any other error code.
+                                
+                            </td>
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 5.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td class="confluenceTd">
+                               <a name=".DATABASE_ERR" class="propertyName">SQLError.DATABASE_ERR</a>
+                            </td>
+                            <td class="confluenceTd">Number                      
+                                
+                                     = 1
+                                
+                            </td>
+                            <td class="confluenceTd">The statement failed for database reasons not covered by any other error code.
+                                
+                            </td>
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 5.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td class="confluenceTd">
+                               <a name=".VERSION_ERR" class="propertyName">SQLError.VERSION_ERR</a>
+                            </td>
+                            <td class="confluenceTd">Number                      
+                                
+                                     = 2
+                                
+                            </td>
+                            <td class="confluenceTd">The operation failed because the actual database version was not what it should be.
+                                
+                            </td>
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 5.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td class="confluenceTd">
+                               <a name=".TOO_LARGE_ERR" class="propertyName">SQLError.TOO_LARGE_ERR</a>
+                            </td>
+                            <td class="confluenceTd">Number                      
+                                
+                                     = 3
+                                
+                            </td>
+                            <td class="confluenceTd">The statement failed because the data returned from the database was too large. The SQL "LIMIT" modifier might be useful to reduce the size of the result set.
+                                
+                            </td>
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 5.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td class="confluenceTd">
+                               <a name=".QUOTA_ERR" class="propertyName">SQLError.QUOTA_ERR</a>
+                            </td>
+                            <td class="confluenceTd">Number                      
+                                
+                                     = 4
+                                
+                            </td>
+                            <td class="confluenceTd">The statement failed because there was not enough remaining storage space, or the storage quota was reached and the user declined to give more space to the database.
+                                
+                            </td>
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 5.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td class="confluenceTd">
+                               <a name=".SYNTAX_ERR" class="propertyName">SQLError.SYNTAX_ERR</a>
+                            </td>
+                            <td class="confluenceTd">Number                      
+                                
+                                     = 5
+                                
+                            </td>
+                            <td class="confluenceTd">The statement failed because of a syntax error, or the number of arguments did not match the number of ? placeholders in the statement, or the statement tried to use a statement that is not allowed, such as <b>BEGIN</b>, <b>COMMIT</b>, or <b>ROLLBACK</b>, or the statement tried to use a verb that could modify the database but the transaction was read-only.
+                                
+                            </td>
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 5.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td class="confluenceTd">
+                               <a name=".CONSTRAINT_ERR" class="propertyName">SQLError.CONSTRAINT_ERR</a>
+                            </td>
+                            <td class="confluenceTd">Number                      
+                                
+                                     = 6
+                                
+                            </td>
+                            <td class="confluenceTd">An <b>INSERT</b>, <b>UPDATE</b>, or <b>REPLACE</b> statement failed due to a constraint failure. For example, because a row was being inserted and the value given for the primary key column duplicated the value of an existing row.
+                                
+                            </td>
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 5.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|common">
+                            <td class="confluenceTd">
+                               <a name=".TIMEOUT_ERR" class="propertyName">SQLError.TIMEOUT_ERR</a>
+                            </td>
+                            <td class="confluenceTd">Number                      
+                                
+                                     = 7
+                                
+                            </td>
+                            <td class="confluenceTd">A lock for the transaction could not be obtained in a reasonable time.
+                                
+                            </td>
+                            <td class="confluenceTdnoverflow">
+                                              
+                                    
+                                        &nbsp;- BlackBerry OS 5.0+
+                                        <br/>
+                                    
+                                        &nbsp;- BlackBerry PlayBook
+                                        <br/>
+                                                      
+                                
+                            </td>
+                        </tr>
+                    
+                </table>
+            </div>
+        
+    
+<!-- ============================== URI  ==================== -->           
+        
+        
+        
+        
+                    
+<!-- ============================== footer ================================= -->
+        <hr style="margin-bottom: 15px;"/>
+        <div class="fineprint" style="clear: both">
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Dec 23 2012 01:46:54 GMT-0500 (EST)
+        </div>
+        
+    </div></body>
+</html>
