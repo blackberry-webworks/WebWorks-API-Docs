@@ -1,848 +1,0 @@
-
-
-<section>
-
-    <script type="text/javascript">
-
-        function viewSupportedTable() {
-            var table = document.getElementById('APISupportTable');
-            if (table != null && table.style.display != 'inline') {
-                table.style.display = 'inline';
-            }
-            else {
-                table.style.display = 'none';
-            }
-        }
-
-    </script>
-    
-    <style type="text/css">
-
-        .apiYes {
-            background-color: #D1F8FB;
-        }
-        
-        .tdNoWrap {
-            white-space:nowrap;
-        }
-        
-        .APISupportTable {
-            display:none;
-        }
-    </style>
-
-    <div>
-
-
-        <h1>
-            
-                Push
-            
-        </h1>
-
-
-        
-            <p>
-                The Push object allows you to leverage the BlackBerry push architecture to receive push data in your application.<br/><br/>Since the state for JavaScript for a web page is only as long as the web page is being viewed, there is a need for the app to maintain the open port for push information. This allows this listening for push data to remain open between page transitions. If no current active callback is assigned to the push listener, the app will queue the push data (limiting the number of messages using maxQueueCap if available) for the application until a subsequent openPushListener call is made for that port. At that point it will then pass the data to the subscribed callback function. To subscribe to the same previously opened push port on a new web page, a secondary call to openPushListener is called. In this scenario it will reassign the callback provided to the already open port. <br/><br/><p/>It is possible for the BlackBerry Push Service to automatically unregister a subscriber behind the scenes. When writing a push application, to combat this possible automatic unregister, you should offer one of the following options: <ol><li>Explicit register, unregister menu options.</li><li>Use automatic, periodic registration calls to the BlackBerry Push Service to ensure that subscribers receive their desired pushes.  The period you pick would depend on the application you write.  If you plan to send out a high frequency of pushes to a subscriber in a given day, you will want to make the registration calls more frequent (e.g. once a day).  If your application will only send out a low number of pushes in a given day to a subscriber, then you can make the registration calls less frequent (e.g. once a week).</li></ol>
-            </p>
-        
-
-
-        
-
-
-        
-
-
-        
-
-
-        
-            <h2>Supported Platform(s)</h2>
-            <pre>- BlackBerry OS 5.0+<br />- Ripple Emulator</pre>
-            <p>
-                <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
-            </p>
-            <div class="APISupportTable" id="APISupportTable">
-                <table class="apiTable">
-                    <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>Ripple</th></tr></thead>
-                    
-                    
-                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
-                            <td>
-                                <a href="blackberry.push.html#.closePushListener">closePushListener</a>
-                                <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-                            </td>
-                        </tr>
-                    
-                        <tr x-ww-support="bb5.0|bb6.0|bb7.0">
-                            <td>
-                                <a href="blackberry.push.html#.openBESPushListener">openBESPushListener</a>
-                                <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-                            </td>
-                        </tr>
-                    
-                        <tr x-ww-support="bb5.0|bb6.0|bb7.0">
-                            <td>
-                                <a href="blackberry.push.html#.openBISPushListener">openBISPushListener</a>
-                                <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-                            </td>
-                        </tr>
-                    
-                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
-                            <td>
-                                <a href="blackberry.push.html#.openPushListener">openPushListener</a>
-                                <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-                            </td>
-                        </tr>
-                    
-                </table>
-            </div>
-        
-
-
-        <br />
-        <h2>Configuration Document Settings</h2>
-        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
-        
-            <br />
-            <p>You must declare the feature element(s) below in your configuration document:</p>
-            <table>
-                 <thead><tr><th>Feature ID</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>Ripple</th></tr></thead>
-                 
-                     
-                     
-                         
-                     
-                     <tr x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
-                         <td>
-                             &lt;feature id="blackberry.push" /&gt;
-                             <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiYes">Y</td>
-                         </td>
-                     </tr>
-                 
-            </table>
-        
-
-
-        <div x-ww-support="pb1.0">
-            
-
-            <table>
-                <tr>
-                    <th>Permission Elements (PlayBook Only)</th>
-                </tr>
-                
-                    <tr><td>
-                        This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
-                    </td></tr>
-                    <br />
-                
-            </table>
-        </div>
-
-
-        
-        
-
-
-<div>
-<h2>API Summary</h2>
-    
-        
-        
-    
-        
-        
-            <br />
-            <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
-                <h3> Functions </h3>
-                
-                    <ul>
-                        
-                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
-                                <a href="blackberry.push.html#.closePushListener">closePushListener</a>
-                                
-                            </li>
-                        
-                            <li x-ww-support="bb5.0|bb6.0|bb7.0">
-                                <a href="blackberry.push.html#.openBESPushListener">openBESPushListener</a>
-                                
-                            </li>
-                        
-                            <li x-ww-support="bb5.0|bb6.0|bb7.0">
-                                <a href="blackberry.push.html#.openBISPushListener">openBISPushListener</a>
-                                
-                            </li>
-                        
-                            <li x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
-                                <a href="blackberry.push.html#.openPushListener">openPushListener</a>
-                                
-                                    <span class="depricate">**</span>
-                                    
-                                
-                            </li>
-                        
-                    </ul>
-                
-                
-            </div>
-        
-    
-        
-        
-    
-        
-        
-    
-        
-        
-    
-        
-        
-    
-
-    
-        <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
-            <h4>** Marked for Deprecation</h4>
-        </div>
-    
-</div>
-
-
-
-        
-        
-
-    
-
-    
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
-                <h2>
-                    <a name=".closePushListener"></a>
-                    closePushListener
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    closePushListener(<i>[port: Number]</i>)
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                    
-                        &nbsp;- BlackBerry OS 5.0+
-                        <br />
-                    
-                        &nbsp;- Ripple Emulator
-                        <br />
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Closes the listening connection for an already open push channel. <br/><br/>When this method is called, it will stop listening for incoming data on the push port.</p>
-                <br />
-                        
-                
-                        
-                
-                    <br />
-                    <table>
-                        <thead><tr>
-                            <th>
-                               Parameter
-                               
-                            </th>
-                            <th>
-                               Type
-                               
-                            </th>
-                            <th>
-                               Description
-                               
-                            </th>
-                        </tr></thead>
-                                       
-                        
-                            
-                            <tr>
-                                <td><b>port</b></td>
-                                <td>
-                                    
-                                        Number
-                                    
-                                    <br /><i>Optional</i>                                                    
-                                </td>
-                                <td>
-                                    
-                                    The port used in the open push method. If port is not specified, all open ports will be closed.                         
-                                    
-                                </td>
-                            </tr>
-                                      
-                    </table>
-                                   
-                        
-                
-
-                
-
-                
-                
-
-	<br /><h3>Code Example(s)</h3>
-	
-		<pre>&lt;script type=&quot;text/javascript&quot;&gt;  function cancelSubscription() {    blackberry.push.closePushListener();  }&lt;/script&gt;</pre>
-	
-    
-            </div>
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0">
-                <h2>
-                    <a name=".openBESPushListener"></a>
-                    openBESPushListener
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    openBESPushListener(options : Object, onData : function, onSimChange : function)
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                    
-                        &nbsp;- BlackBerry OS 5.0+
-                        <br />
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Opens the push listener to allow an application to listen for BES pushes. Only one port can be opened at a time if openBESPushListeneror openBISPushListener functions are used.<br/>If calling openBESPushListener on a page where the port is already open, the callbacks will be updated to use the latest one passed in. The queue size and wake up page will not be updated.<br/>If an application registered to BES push is closed and a push message arrives, the application will be launched in background and the wake up page is displayed. <b>rim:allowInvokeParams="true"</b> attribute must be specified in the content element of config.xml.</p>
-                <br />
-                        
-                
-                        
-                
-                    <br />
-                    <table>
-                        <thead><tr>
-                            <th>
-                               Parameter
-                               
-                            </th>
-                            <th>
-                               Type
-                               
-                            </th>
-                            <th>
-                               Description
-                               
-                            </th>
-                        </tr></thead>
-                                       
-                        
-                            
-                            <tr>
-                                <td><b>options</b></td>
-                                <td>
-                                    
-                                        Object
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Object literal that allows the user to specify the port, wake up page and maximum queue size.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>port:</b> The port on the device to listen for pushes on.
-                                        
-                                            <br />
-                                            <b>wakeUpPage:</b> The page that wlll be displayed when application is closed and a new push message arrives.
-                                        
-                                            <br />
-                                            <b>maxQueueCap:</b> Optional parameter that specifies how many messages the app should queue if the port was not closed, but a function handler was lost (for example, during a page transition). If the parameter is not specified, no limit will be imposed.
-                                        
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>onData</b></td>
-                                <td>
-                                    
-                                        function(data : <a href="blackberry.push.Data.html">blackberry.push.Data</a>)
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    The callback that is invoked when a new push has been received. To enable reliable push and acknowledge receipt of the payload, the callback must explicitly return 0 indicating that the push message has been accepted.  Returning any other value (including not returning anything at all) in the callback would indicate that the message has been declined.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>data:</b> Object that contains the data that was just received.
-                                        
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>onSimChange</b></td>
-                                <td>
-                                    
-                                        function()
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    The callback that is invoked when SIM card is changed. When this happens, the push is stopped, and user is recommended to close the push listener, unregister the old user from the content provider, and advise the user to re-register.                         
-                                    
-                                </td>
-                            </tr>
-                                      
-                    </table>
-                                   
-                        
-                
-
-                
-
-                
-                
-
-	<br /><h3>Code Example(s)</h3>
-	
-		<pre>&lt;script type=&quot;text/javascript&quot;&gt;  function openBESPushListener() {    try {      var ops = {port : 153, wakeUpPage : 'push.htm', maxQueueCap : 100};      blackberry.push.openBESPushListener(ops, onData, onSimChange);    }    catch (err) {      alert(err);    }       }  function onData(data) {    var resultDiv = document.getElementById("resultDiv");    try {      resultDiv.innerHTML += "&lt;br&gt;" + blackberry.utils.blobToString(data.payload);      return 0; //indicate acceptance of payload for reliable push    }     catch (err) {      alert(err);    }  }  function onSimChange() {    var resultDiv = document.getElementById("resultDiv");    resultDiv.innerHTML += "&lt;br&gt;" + "SIM card is changed!";  }&lt;/script&gt;</pre>
-	
-    
-            </div>
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0">
-                <h2>
-                    <a name=".openBISPushListener"></a>
-                    openBISPushListener
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    openBISPushListener(options : Object, onData : function, onRegister : function, onSimChange : function)
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                    
-                        &nbsp;- BlackBerry OS 5.0+
-                        <br />
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Opens the push listener to allow an application to listen for BIS pushes. Only one port can be opened at a time if openBESPushListeneror openBISPushListener functions are used.<br/>If calling openBISPushListener on a page where the port is already open, the callbacks will be updated to use the latest one passed in. The queue size and wake up page will not be updated.<br/>If an application registered to BIS push is closed and a push message arrives, the application will be launched in background and the wake up page is displayed. <b>rim:allowInvokeParams="true"</b> attribute must be specified in the content element of config.xml.</p>
-                <br />
-                        
-                
-                        
-                
-                    <br />
-                    <table>
-                        <thead><tr>
-                            <th>
-                               Parameter
-                               
-                            </th>
-                            <th>
-                               Type
-                               
-                            </th>
-                            <th>
-                               Description
-                               
-                            </th>
-                        </tr></thead>
-                                       
-                        
-                            
-                            <tr>
-                                <td><b>options</b></td>
-                                <td>
-                                    
-                                        Object
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Object literal that allows the user to specify the port, appId, server URL, wakeup page and maximum queue size.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>port:</b> The port on the device to listen for pushes on.
-                                        
-                                            <br />
-                                            <b>appId:</b> The id provided to you for your push application after signing up to use the BlackBerry Push Service.
-                                        
-                                            <br />
-                                            <b>serverUrl:</b> The URL of the push server.  Examples of this URL include: http://pushapi.eval.blackberry.com if using the eval environment of the BlackBerry  Push Service or http://pushapi.na.blackberry.com if using the production environment of the BlackBerry Push Service.
-                                        
-                                            <br />
-                                            <b>wakeUpPage:</b> The page that wlll be displayed when application is closed and a new push message arrives.
-                                        
-                                            <br />
-                                            <b>maxQueueCap:</b> Optional parameter that specifies how many messages the app should queue if the port was not closed, but a function handler was lost (for example, during a page transition). If the parameter is not specified, no limit will be imposed.
-                                        
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>onData</b></td>
-                                <td>
-                                    
-                                        function(data : <a href="blackberry.push.Data.html">blackberry.push.Data</a>)
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    The callback that is invoked when a new push has been received. To enable reliable push and acknowledge receipt of the payload, the callback must explicitly return 0 indicating that the push message has been accepted.  Returning any other value (including not returning anything at all) in the callback would indicate that the message has been declined.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>data:</b> Object that contains the data that was just received.
-                                        
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>onRegister</b></td>
-                                <td>
-                                    
-                                        function(result : Number)
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    The callback that is invoked when the result of the registration is received.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>result:</b> The registration result. These include: 0: success, 1: network error, 2: rejected by server, 3: invalid parameters, -1: general error.
-                                        
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>onSimChange</b></td>
-                                <td>
-                                    
-                                        function()
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    The callback that is invoked when SIM card is changed. When this happens, the push is stopped, and user is recommended to close the push listener, unregister the old user from the content provider, and advise the user to re-register.                         
-                                    
-                                </td>
-                            </tr>
-                                      
-                    </table>
-                                   
-                        
-                
-
-                
-
-                
-                
-
-	<br /><h3>Code Example(s)</h3>
-	
-		<pre>&lt;script type=&quot;text/javascript&quot;&gt;  var port = 153;  var serverUrl = "http://pushapi.eval.blackberry.com";  var appId = "my application id";  var max = 100;  var wakeUpPage = "push.htm";  function openBISPushListener() {    try {      var ops = {port : port, appId : appId, serverUrl : serverUrl, wakeUpPage : 'push.htm', maxQueueCap : max};      blackberry.push.openBISPushListener(ops, onData, onRegister, onSimChange);    }    catch (err) {      alert(err);    }       }   function onRegister(status) {    if (status == 0) {      alert("success");    }    else if (status == 1) {      alert("network error");    }    else if (status == 2) {      alert("rejected by server");    }    else if (status == 3) {      alert("invalid parameters");    }    else if (status == -1) {      alert("general error");    }    else {      alert("unknown status");    }  }	  function onData(data) {    var resultDiv = document.getElementById("resultDiv");    try {      resultDiv.innerHTML += "&lt;br&gt;" + blackberry.utils.blobToString(data.payload);      return 0; //indicate acceptance of payload for reliable push    }     catch (err) {      alert(err);    }  }  function onSimChange() {    var resultDiv = document.getElementById("resultDiv");    resultDiv.innerHTML += "&lt;br&gt;" + "SIM card is changed!";  }&lt;/script&gt;</pre>
-	
-    
-            </div>
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
-                <h2>
-                    <a name=".openPushListener"></a>
-                    openPushListener
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    openPushListener(onData : function, port : Number, <i>[transport: blackberry.identity.Transport]</i>, <i>[maxQueueCap: Number]</i>)
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                
-                    <table>
-                        <tr><td>
-                            <h3>Deprecation Notice:</h3>
-                            This API is deprecated, please use <a href="blackberry.push.html#.openBESPushListener">openBESPushListener</a> or <a href="blackberry.push.html#.openBISPushListener">openBISPushListener</a> instead.<br/><br/><b>Known Issues:</b><br/>Using this API in multiple applications could cause large CPU usage on some of the applications. It is recommened to use (<a href="blackberry.push.html#.openBESPushListener">openBESPushListener</a> or <a href="blackberry.push.html#.openBISPushListener">openBISPushListener</a>) instead.
-                        </td></tr>
-                    </table>                
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                    
-                        &nbsp;- BlackBerry OS 5.0+
-                        <br />
-                    
-                        &nbsp;- Ripple Emulator
-                        <br />
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Registers a callback function that will be called when new data has been pushed to the device. <br/><br/>If calling openPushListener on a page where the port is already open, the callback will be updated to use the latest one passed in. <b>NOTE:</b> In such cases where consecutive calls to openPushListener occurs on the page,the transport argument will only be used on the first call, and ignored for all others. Any calls to openPushListener should have matching calls to closePushListener to ensure ports are not left open accidentally.<br/><br/>Known issue: Running multiple push applications or opening multiple port in the same application could cause large CPU usage. It is recommended to use new push API when writing new push application. Opening multiple ports in the same application is not allowed in the new push API.</p>
-                <br />
-                        
-                
-                        
-                
-                    <br />
-                    <table>
-                        <thead><tr>
-                            <th>
-                               Parameter
-                               
-                            </th>
-                            <th>
-                               Type
-                               
-                            </th>
-                            <th>
-                               Description
-                               
-                            </th>
-                        </tr></thead>
-                                       
-                        
-                            
-                            <tr>
-                                <td><b>onData</b></td>
-                                <td>
-                                    
-                                        function(data : <a href="blackberry.push.Data.html">blackberry.push.Data</a>)
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    This callback function is triggered when data is received.To enable reliable push and acknowledge receipt of the payload, the callback must explicitly return 0 indicating that the push message has been accepted.Returning any other value (including not returning anything at all) in the callback would indicate that the message has been declined.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>data:</b> Object that contains the data that was just received. It has a payload property which is a Blob. The developer can then retrieve the data either as a Blob or use blackberry.utils.blobToString() function to convert it into a string if the data is a string.
-                                        
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>port</b></td>
-                                <td>
-                                    
-                                        Number
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Integer port number to listen on for push data.                         
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>transport</b></td>
-                                <td>
-                                    
-                                        <a href="blackberry.identity.Transport.html">blackberry.identity.Transport</a>
-                                    
-                                    <br /><i>Optional</i>                                                    
-                                </td>
-                                <td>
-                                    
-                                    Optional parameter where you can choose which communications transport you wish to listen on.                         
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>maxQueueCap</b></td>
-                                <td>
-                                    
-                                        Number
-                                    
-                                    <br /><i>Optional</i>                                                    
-                                </td>
-                                <td>
-                                    
-                                    Optional parameter that specifies how many messages the app should queue if the port was not closed, but a function handler was lost (for example, during a page transition).                         
-                                    
-                                </td>
-                            </tr>
-                                      
-                    </table>
-                                   
-                        
-                
-
-                
-
-                
-                
-
-	<br /><h3>Code Example(s)</h3>
-	
-		<pre>&lt;script  type=&quot;text/javascript&quot;&gt;  var port = 1234;   function doMySubscription() {    &sol;&sol;See if they have a BIS transport.. if so use it    var transports = blackberry.system.getTransportList();    found = false;    for (var i = 0; i &lt; transports.length; i++) {      if (transports[i].name == &quot;BIS&quot;) {        found = true;        blackberry.push.openPushListener(handleMyReturnData, port, transport[i]);        break;      }    }    if (!found)      blackberry.push.openPushListener(handleMyReturnData, port);  }  function handleMyReturnData(data) {    if (data != null) {      var myRecievedData= blackberry.utils.blobToString(data.payload)      alert(myRecievedData);    }    else      alert(&quot;No data from the push&quot;);  }  function cancelSubscription() {    blackberry.push.closePushListener(port);  }&lt;/script&gt;</pre>
-	
-    
-            </div>
-        
-    
-
-    
-
-
-
-        
-        
-
-
-
-
-    
-    
-
-    
-    
-
-
-
-        
-        
-
-    
-
-
-
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0|ripple">
-            
-                
-  
-            </div>
-        
-
-
-        <hr />
-        <div >
-            
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sat Dec 22 2012 12:25:46 GMT-0500 (EST)
-        </div>
-
-    </div>
-</section>

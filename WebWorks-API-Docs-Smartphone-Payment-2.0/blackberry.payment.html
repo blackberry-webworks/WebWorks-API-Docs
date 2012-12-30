@@ -1,1813 +1,0 @@
-
-
-<section>
-
-    <script type="text/javascript">
-
-        function viewSupportedTable() {
-            var table = document.getElementById('APISupportTable');
-            if (table != null && table.style.display != 'inline') {
-                table.style.display = 'inline';
-            }
-            else {
-                table.style.display = 'none';
-            }
-        }
-
-    </script>
-    
-    <style type="text/css">
-
-        .apiYes {
-            background-color: #D1F8FB;
-        }
-        
-        .tdNoWrap {
-            white-space:nowrap;
-        }
-        
-        .APISupportTable {
-            display:none;
-        }
-    </style>
-
-    <div>
-
-
-        <h1>
-            
-                Payment
-            
-        </h1>
-
-
-        
-            <p>
-                Entry point for purchasing digital goods.<p>API that permits BlackBerry device users to initiate the purchase of digital goods from within your application. For example, this API can be used to allow users to purchase additional levels in a gaming application, music from a radio application, or any other digital good registered on the Vendor Portal for BlackBerry App World. The digital good being purchased must be associated with the calling application in the Vendor Portal for BlackBerry App World.<p>Purchases are initiated via the purchase method. The amount of time that elapses before a response is returned depends on how quickly the user completes the purchase process (which may include steps such as signing in to their BlackBerry ID account and setting up their preferred billing method). The purchase method dispatches a callbackOnSuccess on success, or dispatches a callbackOnFailure on failure.<p>When calling the purchase method only the ID or SKU of the digital good to be purchased is required; it is not necessary to provide both, and all other arguments are optional. If both the ID and SKU are provided, then the ID takes precedence; the SKU is only used if the digital good could not be located on the Payment Service server based on the ID.<p>If an application requires a list of its digital goods that have already been purchased by the user (for example, to avoid offering for sale a digital good the user already owns), such a list can be obtained with the <a href="blackberry.payment.html#.getExistingPurchases">getExistingPurchases</a> method. This method requires the same user interaction as the purchase method, so it can also be a long-running method.
-            </p>
-        
-
-
-        
-
-
-        
-
-
-        
-
-
-        
-            <h2>Supported Platform(s)</h2>
-            <pre>- BlackBerry OS 5.0+<br />- BlackBerry PlayBook 1.0+</pre>
-            <p>
-                <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
-            </p>
-            <div class="APISupportTable" id="APISupportTable">
-                <table class="apiTable">
-                    <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>Ripple</th></tr></thead>
-                    
-                    
-                        <tr x-ww-support="bb5.0|bb6.0|bb7.0">
-                            <td>
-                                <a href="blackberry.payment.html#.cancelSubscription">cancelSubscription</a>
-                                <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-                            </td>
-                        </tr>
-                    
-                        <tr x-ww-support="bb5.0|bb6.0|bb7.0">
-                            <td>
-                                <a href="blackberry.payment.html#.checkExisting">checkExisting</a>
-                                <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-                            </td>
-                        </tr>
-                    
-                        <tr x-ww-support="bb5.0|bb6.0|bb7.0">
-                            <td>
-                                <a href="blackberry.payment.html#.getDigitalGoods">getDigitalGoods</a>
-                                <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-                            </td>
-                        </tr>
-                    
-                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|common">
-                            <td>
-                                <a href="blackberry.payment.html#.getExistingPurchases">getExistingPurchases</a>
-                                <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-                            </td>
-                        </tr>
-                    
-                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|common">
-                            <td>
-                                <a href="blackberry.payment.html#.getPrice">getPrice</a>
-                                <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-                            </td>
-                        </tr>
-                    
-                        <tr x-ww-support="bb5.0|bb6.0|bb7.0">
-                            <td>
-                                <a href="blackberry.payment.html#.getPurchaseDetails">getPurchaseDetails</a>
-                                <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-                            </td>
-                        </tr>
-                    
-                        <tr x-ww-support="bb5.0|bb6.0|bb7.0">
-                            <td>
-                                <a href="blackberry.payment.html#.getPurchaseHistory">getPurchaseHistory</a>
-                                <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-                            </td>
-                        </tr>
-                    
-                        <tr x-ww-support="bb5.0|bb6.0|bb7.0">
-                            <td>
-                                <a href="blackberry.payment.html#.isAppWorldInstalledAndAtCorrectVersion">isAppWorldInstalledAndAtCorrectVersion</a>
-                                <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-                            </td>
-                        </tr>
-                    
-                        <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|common">
-                            <td>
-                                <a href="blackberry.payment.html#.purchase">purchase</a>
-                                <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-                            </td>
-                        </tr>
-                    
-                        <tr x-ww-support="">
-                            <td>
-                                <a href="blackberry.payment.html#.setDebugFalse">setDebugFalse</a>
-                                <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-                            </td>
-                        </tr>
-                    
-                        <tr x-ww-support="">
-                            <td>
-                                <a href="blackberry.payment.html#.setDebugTrue">setDebugTrue</a>
-                                <td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-                            </td>
-                        </tr>
-                    
-                        <tr x-ww-support="bb5.0|bb6.0|bb7.0">
-                            <td>
-                                <a href="blackberry.payment.html#.updateAppWorld">updateAppWorld</a>
-                                <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-<td class="apiNo">&nbsp;</td>
-                            </td>
-                        </tr>
-                    
-                </table>
-            </div>
-        
-
-
-        <br />
-        <h2>Configuration Document Settings</h2>
-        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
-        
-            <br />
-            <p>You must declare the feature element(s) below in your configuration document:</p>
-            <table>
-                 <thead><tr><th>Feature ID</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>Ripple</th></tr></thead>
-                 
-                     
-                     
-                         
-                     
-                     <tr x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|common">
-                         <td>
-                             &lt;feature id="blackberry.payment" /&gt;
-                             <td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiYes">Y</td>
-<td class="apiNo">&nbsp;</td>
-                         </td>
-                     </tr>
-                 
-            </table>
-        
-
-
-        <div x-ww-support="pb1.0">
-            
-
-            <table>
-                <tr>
-                    <th>Permission Elements (PlayBook Only)</th>
-                </tr>
-                
-                    <tr><td>
-                        This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
-                    </td></tr>
-                    <br />
-                
-            </table>
-        </div>
-
-
-        
-        
-
-
-<div>
-<h2>API Summary</h2>
-    
-        
-        
-    
-        
-        
-            <br />
-            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|common">
-                <h3> Functions </h3>
-                
-                    <ul>
-                        
-                            <li x-ww-support="bb5.0|bb6.0|bb7.0">
-                                <a href="blackberry.payment.html#.cancelSubscription">cancelSubscription</a>
-                                
-                            </li>
-                        
-                            <li x-ww-support="bb5.0|bb6.0|bb7.0">
-                                <a href="blackberry.payment.html#.checkExisting">checkExisting</a>
-                                
-                            </li>
-                        
-                            <li x-ww-support="bb5.0|bb6.0|bb7.0">
-                                <a href="blackberry.payment.html#.getDigitalGoods">getDigitalGoods</a>
-                                
-                            </li>
-                        
-                            <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|common">
-                                <a href="blackberry.payment.html#.getExistingPurchases">getExistingPurchases</a>
-                                
-                            </li>
-                        
-                            <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|common">
-                                <a href="blackberry.payment.html#.getPrice">getPrice</a>
-                                
-                            </li>
-                        
-                            <li x-ww-support="bb5.0|bb6.0|bb7.0">
-                                <a href="blackberry.payment.html#.getPurchaseDetails">getPurchaseDetails</a>
-                                
-                            </li>
-                        
-                            <li x-ww-support="bb5.0|bb6.0|bb7.0">
-                                <a href="blackberry.payment.html#.getPurchaseHistory">getPurchaseHistory</a>
-                                
-                            </li>
-                        
-                            <li x-ww-support="bb5.0|bb6.0|bb7.0">
-                                <a href="blackberry.payment.html#.isAppWorldInstalledAndAtCorrectVersion">isAppWorldInstalledAndAtCorrectVersion</a>
-                                
-                            </li>
-                        
-                            <li x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|common">
-                                <a href="blackberry.payment.html#.purchase">purchase</a>
-                                
-                            </li>
-                        
-                            <li x-ww-support="">
-                                <a href="blackberry.payment.html#.setDebugFalse">setDebugFalse</a>
-                                
-                            </li>
-                        
-                            <li x-ww-support="">
-                                <a href="blackberry.payment.html#.setDebugTrue">setDebugTrue</a>
-                                
-                            </li>
-                        
-                            <li x-ww-support="bb5.0|bb6.0|bb7.0">
-                                <a href="blackberry.payment.html#.updateAppWorld">updateAppWorld</a>
-                                
-                            </li>
-                        
-                    </ul>
-                
-                
-            </div>
-        
-    
-        
-        
-    
-        
-        
-    
-        
-        
-    
-        
-        
-    
-
-    
-</div>
-
-
-
-        
-        
-
-    
-
-    
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0">
-                <h2>
-                    <a name=".cancelSubscription"></a>
-                    cancelSubscription
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    cancelSubscription(transactionID : String, callbackOnSuccess : function, <i>[callbackOnFailure: function]</i>)
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                    
-                        &nbsp;- BlackBerry OS 5.0+
-                        <br />
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Initiates a request to cancel the digital good subscription given it's TransactionID.</p>
-                <br />
-                        
-                
-                        
-                
-                    <br />
-                    <table>
-                        <thead><tr>
-                            <th>
-                               Parameter
-                               
-                            </th>
-                            <th>
-                               Type
-                               
-                            </th>
-                            <th>
-                               Description
-                               
-                            </th>
-                        </tr></thead>
-                                       
-                        
-                            
-                            <tr>
-                                <td><b>transactionID</b></td>
-                                <td>
-                                    
-                                        String
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    the transaction id of the digital good you would like to cancel                         
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnSuccess</b></td>
-                                <td>
-                                    
-                                        function()
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Function to be called when the transaction is cancelled                         
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnFailure</b></td>
-                                <td>
-                                    
-                                        function(errorText : String, errorID : Number)
-                                    
-                                    <br /><i>Optional</i>                                                    
-                                </td>
-                                <td>
-                                    
-                                     Function to be called when an error occurs.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>errorText:</b> Retrieves the message set for an error. In addition to descriptive text, error code may appear at the end of the message.
-                                        
-                                            <br />
-                                            <b>errorID:</b> Contains the reference number associated with the specific error in corresponding to the following values.<ul><li> User Cancelled = 1</li><li> Payment System Busy = 2</li><li> General Payment System Error  = 3</li><li> Digital Good not Found = 4</li><li> Illegal Application Error = 5 [BlackBerry OS 5.0+ only]</li></ul>
-                                        
-                                    
-                                </td>
-                            </tr>
-                                      
-                    </table>
-                                   
-                        
-                
-
-                
-
-                
-                
-
-	<br /><h3>Code Example(s)</h3>
-	
-		<pre>&lt;script type="text/javascript"&gt;  function cancelSubscription() {    try{      blackberry.payment.cancelSubscription("transaction_id", success, failure);    }catch (e){      alert ("Error" + e);    } } function success(purchase) {   var o = JSON.parse(purchase);   var transactionID = o.transactionID;   alert("Transaction " + transactionID + " has been cancelled"); } function failure(errorText, errorId) {   alert("Error occured: " + errorText + ", " + errorId); }&lt;/script&gt;</pre>
-	
-    
-            </div>
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0">
-                <h2>
-                    <a name=".checkExisting"></a>
-                    checkExisting
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    checkExisting(sku : String, callbackOnSuccess : function, <i>[callbackOnFailure: function]</i>)
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                    
-                        &nbsp;- BlackBerry OS 5.0+
-                        <br />
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Invokes callbackOnSuccess if the user who is logged in with a BlackBerry ID has rights for this digital good SKU at the time of calling this method.</p>
-                <br />
-                        
-                
-                        
-                
-                    <br />
-                    <table>
-                        <thead><tr>
-                            <th>
-                               Parameter
-                               
-                            </th>
-                            <th>
-                               Type
-                               
-                            </th>
-                            <th>
-                               Description
-                               
-                            </th>
-                        </tr></thead>
-                                       
-                        
-                            
-                            <tr>
-                                <td><b>sku</b></td>
-                                <td>
-                                    
-                                        String
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    the SKU of the digital goods requested                         
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnSuccess</b></td>
-                                <td>
-                                    
-                                        function()
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Function to be invoked on successful call.                         
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnFailure</b></td>
-                                <td>
-                                    
-                                        function(errorText : String, errorID : Number)
-                                    
-                                    <br /><i>Optional</i>                                                    
-                                </td>
-                                <td>
-                                    
-                                     Function to be invoked when an error occurs.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>errorText:</b> Retrieves the message set for an error. In addition to descriptive text, error code may appear at the end of the message.
-                                        
-                                            <br />
-                                            <b>errorID:</b> Contains the reference number associated with the specific error in corresponding to the following values.<ul><li> User Cancelled = 1</li><li> Payment System Busy = 2</li><li> General Payment System Error  = 3</li><li> Digital Good not Found = 4</li><li> Illegal Application Error = 5 [BlackBerry OS 5.0+ only]</li></ul>
-                                        
-                                    
-                                </td>
-                            </tr>
-                                      
-                    </table>
-                                   
-                        
-                
-
-                
-
-                
-                
-    
-            </div>
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0">
-                <h2>
-                    <a name=".getDigitalGoods"></a>
-                    getDigitalGoods
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    getDigitalGoods(callbackOnSuccess : function, <i>[callbackOnFailure: function]</i>)
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                    
-                        &nbsp;- BlackBerry OS 5.0+
-                        <br />
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Retrieves a listing of digital goods available for the calling application.</p>
-                <br />
-                        
-                
-                        
-                
-                    <br />
-                    <table>
-                        <thead><tr>
-                            <th>
-                               Parameter
-                               
-                            </th>
-                            <th>
-                               Type
-                               
-                            </th>
-                            <th>
-                               Description
-                               
-                            </th>
-                        </tr></thead>
-                                       
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnSuccess</b></td>
-                                <td>
-                                    
-                                        function(data : String)
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Function to be invoked on successful call.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>data:</b> A string representing a literal array of <a href="DigitalGood.html">DigitalGood</a> items is passed as a parameter in the form below:<pre>[{"sku": "SKU_1","vendor": "Vendor_1","name": "DG_1","shortDescription": "DG_1 short desc.","longDescription": "This is the long description for DG_1","price": "$1.00","subscriptionInitialPrice": "$4.99","subscriptionRenewalPrice": "$1.99","subscriptionPeriod": "30 days","subscriptionInitialPeriod": "3 days"},{"sku": "SKU_2","vendor": "Vendor_2","name": "DG_2","shortDescription": "DG_2 short desc.","longDescription": "This is the long description for DG_2","price": "$2.00","subscriptionInitialPrice": "$4.99","subscriptionRenewalPrice": "$1.99","subscriptionPeriod": "30 days","subscriptionInitialPeriod": "3 days"}]</pre>
-                                        
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnFailure</b></td>
-                                <td>
-                                    
-                                        function(errorText : String, errorID : Number)
-                                    
-                                    <br /><i>Optional</i>                                                    
-                                </td>
-                                <td>
-                                    
-                                     Function to be invoked when an error occurs.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>errorText:</b> Retrieves the message set for an error. In addition to descriptive text, error code may appear at the end of the message.
-                                        
-                                            <br />
-                                            <b>errorID:</b> Contains the reference number associated with the specific error in corresponding to the following values.<ul><li> User Cancelled = 1</li><li> Payment System Busy = 2</li><li> General Payment System Error  = 3</li><li> Digital Good not Found = 4</li><li> Illegal Application Error = 5 [BlackBerry OS 5.0+ only]</li></ul>
-                                        
-                                    
-                                </td>
-                            </tr>
-                                      
-                    </table>
-                                   
-                        
-                
-
-                
-
-                
-                
-    
-            </div>
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|common">
-                <h2>
-                    <a name=".getExistingPurchases"></a>
-                    getExistingPurchases
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    getExistingPurchases(<i>[refresh: Boolean]</i>, callbackOnSuccess : function, <i>[callbackOnFailure: function]</i>)
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                    
-                        &nbsp;- BlackBerry OS 5.0+
-                        <br />
-                    
-                        &nbsp;- BlackBerry PlayBook 1.0+
-                        <br />
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Retrieves the previous successful purchases made by the user from within the calling application.</p>
-                <br />
-                        
-                
-                        
-                
-                    <br />
-                    <table>
-                        <thead><tr>
-                            <th>
-                               Parameter
-                               
-                            </th>
-                            <th>
-                               Type
-                               
-                            </th>
-                            <th>
-                               Description
-                               
-                            </th>
-                        </tr></thead>
-                                       
-                        
-                            
-                            <tr>
-                                <td><b>refresh</b></td>
-                                <td>
-                                    
-                                        Boolean
-                                    
-                                    <br /><i>Optional</i>                                                    
-                                </td>
-                                <td>
-                                    
-                                    True if the BlackBerry should be allowed to refresh the list of purchases from the Payment Service server. False if the current list of cached purchases should be returned immediately.                         
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnSuccess</b></td>
-                                <td>
-                                    
-                                        function(data : String)
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Function to be invoked on successful call.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>data:</b> A string representing a literal array of <a href="Purchase.html">Purchase</a> items is passed as a parameter in the form below:<pre>[{"digitalGoodID": "123","digitalGoodSKU": "SKU_1","date": "1234567891011","licenseKey": null,"metaData": "My Metadata","transactionID": "00000001"},{"digitalGoodID": "456","digitalGoodSKU": "SKU_2","date": "1234567891011","licenseKey": null,"metaData": "My Metadata","transactionID": "00000002"}]</pre>
-                                        
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnFailure</b></td>
-                                <td>
-                                    
-                                        function(errorText : String, errorID : Number)
-                                    
-                                    <br /><i>Optional</i>                                                    
-                                </td>
-                                <td>
-                                    
-                                     Function to be invoked when an error occurs.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>errorText:</b> Retrieves the message set for an error. In addition to descriptive text, error code may appear at the end of the message.
-                                        
-                                            <br />
-                                            <b>errorID:</b> Contains the reference number associated with the specific error in corresponding to the following values.<ul><li> User Cancelled = 1</li><li> Payment System Busy = 2</li><li> General Payment System Error  = 3</li><li> Digital Good not Found = 4</li><li> Illegal Application Error = 5 [BlackBerry OS 5.0+ only]</li></ul><b>Note:</b> The actual values may be different when blackberry.payment.developmentMode equals true.
-                                        
-                                    
-                                </td>
-                            </tr>
-                                      
-                    </table>
-                                   
-                        
-                
-
-                
-
-                
-                
-    
-            </div>
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|common">
-                <h2>
-                    <a name=".getPrice"></a>
-                    getPrice
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    getPrice(args : Object, callbackOnSuccess : function, <i>[callbackOnFailure: function]</i>)
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                    
-                        &nbsp;- BlackBerry OS 5.0+
-                        <br />
-                    
-                        &nbsp;- BlackBerry PlayBook 1.0+
-                        <br />
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Initiates a request for the price of a digital good. The request can be initiated by using either the digital good ID or the digital good SKU to be purchased, but it is not necessary to provide both.</p>
-                <br />
-                        
-                
-                        
-                
-                    <br />
-                    <table>
-                        <thead><tr>
-                            <th>
-                               Parameter
-                               
-                            </th>
-                            <th>
-                               Type
-                               
-                            </th>
-                            <th>
-                               Description
-                               
-                            </th>
-                        </tr></thead>
-                                       
-                        
-                            
-                            <tr>
-                                <td><b>args</b></td>
-                                <td>
-                                    
-                                        Object
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Contains information about the digital good to query.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>digitalGoodSKU:</b> SKU of the digital good to query.
-                                        
-                                            <br />
-                                            <b>digitalGoodID:</b> ID of the digital good to query.
-                                        
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnSuccess</b></td>
-                                <td>
-                                    
-                                        function(data : String)
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Function to be called when the price set is retrieved.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>data:</b> A string representing a price set object literal containing the localized formated price of the good or a set of items for a subscription is passed as a parameter in the form below: <pre>[{"getFailureReason":"-224718155","price":"$1.05","returnCode":"-224718155","statusMessage":"","subscriptionInitialPeriod":"null","subscriptionInitialPrice":"$1.05","subscriptionPeriodName":"null","subscriptionRenewalPrice":"null"}]</pre>.
-                                        
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnFailure</b></td>
-                                <td>
-                                    
-                                        function(errorText : String, errorID : Number)
-                                    
-                                    <br /><i>Optional</i>                                                    
-                                </td>
-                                <td>
-                                    
-                                     Function to be called when an error occurs.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>errorText:</b> Retrieves the message set for an error. In addition to descriptive text, error code may appear at the end of the message.
-                                        
-                                            <br />
-                                            <b>errorID:</b> Contains the reference number associated with the specific error in corresponding to the following values.<ul><li> User Cancelled = 1</li><li> Payment System Busy = 2</li><li> General Payment System Error  = 3</li><li> Digital Good not Found = 4</li><li> Illegal Application Error = 5 [BlackBerry OS 5.0+ only]</li></ul>
-                                        
-                                    
-                                </td>
-                            </tr>
-                                      
-                    </table>
-                                   
-                        
-                
-
-                
-
-                
-                
-
-	<br /><h3>Code Example(s)</h3>
-	
-		<pre>&lt;script type="text/javascript"&gt;  function getPrice() {    try{      blackberry.payment.getPrice({"digitalGoodSKU":"someSKU"}, success, failure);    }catch (e){      alert ("Error" + e);    } } function success(priceSet) {   var digitalGoodPS = JSON.parse(priceSet);   var price = digitalGoodPS.price;   var subscriptionInitialPrice = digitalGoodPS.subscriptionInitialPrice;   var subscriptionInitialPeriod = digitalGoodPS.subscriptionInitialPeriod;   var subscriptionRenewalPrice = digitalGoodPS.subscriptionRenewalPrice;   var output = "Price: " + price 	      + "\nSubscription Initial Price: " + subscriptionInitialPrice	      + "\nSubscription Initial Period: " + subscriptionInitialPeriod 	      + "\nSubscription Renewal Price: " + subscriptionRenewalPrice;				   alert(output); } function failure(errorText, errorId) {   alert("Error occured: " + errorText + ", " + errorId); }&lt;/script&gt;</pre>
-	
-    
-            </div>
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0">
-                <h2>
-                    <a name=".getPurchaseDetails"></a>
-                    getPurchaseDetails
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    getPurchaseDetails(sku : String, callbackOnSuccess : function, <i>[callbackOnFailure: function]</i>)
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                    
-                        &nbsp;- BlackBerry OS 5.0+
-                        <br />
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Returns a <a href="Purchase.html">Purchase</a> object if the user who is logged in with a BlackBerry ID has rights for this digital good SKU at the time of calling this method. The result is based on the default business rules defined by the Payment Service server or BlackBerry App World. For example, in the case of a subscription, a "Canceled" subscription will return true until the next renewal date. All "Refunded" SKUs will return false immediately.</p>
-                <br />
-                        
-                
-                        
-                
-                    <br />
-                    <table>
-                        <thead><tr>
-                            <th>
-                               Parameter
-                               
-                            </th>
-                            <th>
-                               Type
-                               
-                            </th>
-                            <th>
-                               Description
-                               
-                            </th>
-                        </tr></thead>
-                                       
-                        
-                            
-                            <tr>
-                                <td><b>sku</b></td>
-                                <td>
-                                    
-                                        String
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    of the digital good to query.                         
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnSuccess</b></td>
-                                <td>
-                                    
-                                        function(data : String)
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Function to be called when the price set is retrieved.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>data:</b> A string representing a digital good object literal is passed as a parameter in the form below:<pre>[{"digitalGoodID":"123456","digitalGoodSKU":"Some_SKU","date":"1322066643848","licenseKey":"Single License Key","metaData":"Some metadata","transactionID":"10101"}]</pre>.
-                                        
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnFailure</b></td>
-                                <td>
-                                    
-                                        function(errorText : String, errorID : Number)
-                                    
-                                    <br /><i>Optional</i>                                                    
-                                </td>
-                                <td>
-                                    
-                                     Function to be called when an error occurs.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>errorText:</b> Retrieves the message set for an error. In addition to descriptive text, error code may appear at the end of the message.
-                                        
-                                            <br />
-                                            <b>errorID:</b> Contains the reference number associated with the specific error in corresponding to the following values.<ul><li> User Cancelled = 1</li><li> Payment System Busy = 2</li><li> General Payment System Error  = 3</li><li> Digital Good not Found = 4</li><li> Illegal Application Error = 5 [BlackBerry OS 5.0+ only]</li></ul>
-                                        
-                                    
-                                </td>
-                            </tr>
-                                      
-                    </table>
-                                   
-                        
-                
-
-                
-
-                
-                
-
-	<br /><h3>Code Example(s)</h3>
-	
-		<pre>&lt;script type="text/javascript"&gt;  function get() {    try{      blackberry.payment.getPurchaseDetails("Some_SKU", success, failure);    }catch (e){      alert ("Error" + e);    } } function success(purchase) {   var o = JSON.parse(purchase);   var id = o.digitalGoodID;   var sku = o.digitalGoodSKU;   var date = o.date;   var license = o.licenseKey;   var metadata = o.metadata;   var transactionID = o.transactionID;   var output = "ID: " + id 	      + "\nSKU: " + sku	      + "\nDate: " + date	      + "\nLicense: " + license	      + "\nMetadata: " + metadata	      + "\nTransaction ID: " + transactionID;				   alert(output); } function failure(errorText, errorId) {   alert("Error occured: " + errorText + ", " + errorId); }&lt;/script&gt;</pre>
-	
-    
-            </div>
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0">
-                <h2>
-                    <a name=".getPurchaseHistory"></a>
-                    getPurchaseHistory
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    getPurchaseHistory(callbackOnSuccess : function, <i>[callbackOnFailure: function]</i>)
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                    
-                        &nbsp;- BlackBerry OS 5.0+
-                        <br />
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Retrieve the user's purchase history for the calling application as well as any digital goods associated with the application.</p>
-                <br />
-                        
-                
-                        
-                
-                    <br />
-                    <table>
-                        <thead><tr>
-                            <th>
-                               Parameter
-                               
-                            </th>
-                            <th>
-                               Type
-                               
-                            </th>
-                            <th>
-                               Description
-                               
-                            </th>
-                        </tr></thead>
-                                       
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnSuccess</b></td>
-                                <td>
-                                    
-                                        function(data : String)
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Function to be invoked on successful call.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>data:</b> A string representing a literal array of <a href="Purchase.html">Purchase</a> items is passed as a parameter in the form below:<pre>[{"digitalGoodID": "123","digitalGoodSKU": "SKU_1","date": "1234567891011","licenseKey": null,"metaData": "My Metadata","transactionID": "00000001"},{"digitalGoodID": "456","digitalGoodSKU": "SKU_2","date": "1234567891011","licenseKey": null,"metaData": "My Metadata","transactionID": "00000002"}]</pre>
-                                        
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnFailure</b></td>
-                                <td>
-                                    
-                                        function(errorText : String, errorID : Number)
-                                    
-                                    <br /><i>Optional</i>                                                    
-                                </td>
-                                <td>
-                                    
-                                     Function to be invoked when an error occurs.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>errorText:</b> Retrieves the message set for an error. In addition to descriptive text, error code may appear at the end of the message.
-                                        
-                                            <br />
-                                            <b>errorID:</b> Contains the reference number associated with the specific error in corresponding to the following values.<ul><li> User Cancelled = 1</li><li> Payment System Busy = 2</li><li> General Payment System Error  = 3</li><li> Digital Good not Found = 4</li><li> Illegal Application Error = 5 [BlackBerry OS 5.0+ only]</li></ul>
-                                        
-                                    
-                                </td>
-                            </tr>
-                                      
-                    </table>
-                                   
-                        
-                
-
-                
-
-                
-                
-    
-            </div>
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0">
-                <h2>
-                    <a name=".isAppWorldInstalledAndAtCorrectVersion"></a>
-                    isAppWorldInstalledAndAtCorrectVersion
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    isAppWorldInstalledAndAtCorrectVersion(callbackOnSuccess : function, <i>[callbackOnFailure: function]</i>)
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                    
-                        &nbsp;- BlackBerry OS 5.0+
-                        <br />
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Invokes the callbackOnSuccess if the BlackBerry App World client is installed and at the correct verison.</p>
-                <br />
-                        
-                
-                        
-                
-                    <br />
-                    <table>
-                        <thead><tr>
-                            <th>
-                               Parameter
-                               
-                            </th>
-                            <th>
-                               Type
-                               
-                            </th>
-                            <th>
-                               Description
-                               
-                            </th>
-                        </tr></thead>
-                                       
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnSuccess</b></td>
-                                <td>
-                                    
-                                        function()
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Function to be invoked on successful call.                         
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnFailure</b></td>
-                                <td>
-                                    
-                                        function(errorText : String, errorID : Number)
-                                    
-                                    <br /><i>Optional</i>                                                    
-                                </td>
-                                <td>
-                                    
-                                     Function to be invoked when an error occurs.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>errorText:</b> Retrieves the message set for an error. In addition to descriptive text, error code may appear at the end of the message.
-                                        
-                                            <br />
-                                            <b>errorID:</b> Contains the reference number associated with the specific error in corresponding to the following values.<ul><li> User Cancelled = 1</li><li> Payment System Busy = 2</li><li> General Payment System Error  = 3</li><li> Digital Good not Found = 4</li><li> Illegal Application Error = 5 [BlackBerry OS 5.0+ only]</li></ul>
-                                        
-                                    
-                                </td>
-                            </tr>
-                                      
-                    </table>
-                                   
-                        
-                
-
-                
-
-                
-                
-    
-            </div>
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|common">
-                <h2>
-                    <a name=".purchase"></a>
-                    purchase
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    purchase(args : Object, callbackOnSuccess : function, <i>[callbackOnFailure: function]</i>)
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                    
-                        &nbsp;- BlackBerry OS 5.0+
-                        <br />
-                    
-                        &nbsp;- BlackBerry PlayBook 1.0+
-                        <br />
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Initiates the purchase of a digital good.</p>
-                <br />
-                        
-                
-                        
-                
-                    <br />
-                    <table>
-                        <thead><tr>
-                            <th>
-                               Parameter
-                               
-                            </th>
-                            <th>
-                               Type
-                               
-                            </th>
-                            <th>
-                               Description
-                               
-                            </th>
-                        </tr></thead>
-                                       
-                        
-                            
-                            <tr>
-                                <td><b>args</b></td>
-                                <td>
-                                    
-                                        Object
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Contains information that describes the purchase.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>digitalGoodID:</b> ID of the digital good being purchased.
-                                        
-                                            <br />
-                                            <b>digitalGoodSKU:</b> SKU of the digital good being purchased.
-                                        
-                                            <br />
-                                            <b>digitalGoodName:</b> Name of the digital good being purchased.
-                                        
-                                            <br />
-                                            <b>metaData:</b> Metadata associated with the digital good. Metadata offers the application developer a way to store information about each purchase on the Payment Service server.
-                                        
-                                            <br />
-                                            <b>purchaseAppName:</b> Name of the application requesting the purchase.
-                                        
-                                            <br />
-                                            <b>purchaseAppIcon:</b> Icon of the application requesting the purchase.
-                                        
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnSuccess</b></td>
-                                <td>
-                                    
-                                        function(data : String)
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Function to be called when the payment is successful.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>data:</b> A string representing a <a href="Purchase.html">Purchase</a> object literal.
-                                        
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnFailure</b></td>
-                                <td>
-                                    
-                                        function(errorText : String, errorID : Number)
-                                    
-                                    <br /><i>Optional</i>                                                    
-                                </td>
-                                <td>
-                                    
-                                     Function to be called when an error occurs.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>errorText:</b> Retrieves the message set for an error. In addition to descriptive text, error code may appear at the end of the message.
-                                        
-                                            <br />
-                                            <b>errorID:</b> Contains the reference number associated with the specific error in corresponding to the following values.<ul><li> User Cancelled = 1</li><li> Payment System Busy = 2</li><li> General Payment System Error  = 3</li><li> Digital Good not Found = 4</li><li> Illegal Application Error = 5 [BlackBerry OS 5.0+ only]</li></ul>
-                                        
-                                    
-                                </td>
-                            </tr>
-                                      
-                    </table>
-                                   
-                        
-                
-
-                
-
-                
-                
-
-	<br /><h3>Code Example(s)</h3>
-	
-		<pre>&lt;script type="text/javascript"&gt;  function purchase() {    try{      blackberry.payment.purchase({      "digitalGoodID":"123",      "digitalGoodSKU":"someSKU",      "digitalGoodName":"SomeName",      "metaData":"metadata",      "purchaseAppName":"WebWorks APP",      "purchaseAppIcon":null},      success,failure);    }catch (e){      alert ("Error" + e);    } } function success(purchase) {   var purchasedItem = JSON.parse(purchase);   var transId = purchasedItem.transactionID;   var sku = purchasedItem.digitalGoodSKU;   var dgId = purchasedItem.digitalGoodID;   alert("Purchased Item: " + transId + "," + sku +  "," + dgId); } function failure(errorText, errorId) {   alert("Error occured: " + errorText + ", " + errorId); }&lt;/script&gt;</pre>
-	
-    
-            </div>
-        
-            <div x-ww-support="">
-                <h2>
-                    <a name=".setDebugFalse"></a>
-                    setDebugFalse
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    setDebugFalse()
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Sets the debug flag to false to hide debug information from being shown.</p>
-                <br />
-                        
-                
-                        
-                                   
-                        
-                
-
-                
-
-                
-                
-    
-            </div>
-        
-            <div x-ww-support="">
-                <h2>
-                    <a name=".setDebugTrue"></a>
-                    setDebugTrue
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    setDebugTrue()
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Sets the debug flag to true to show debug information via alert dialogs during development.</p>
-                <br />
-                        
-                
-                        
-                                   
-                        
-                
-
-                
-
-                
-                
-    
-            </div>
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0">
-                <h2>
-                    <a name=".updateAppWorld"></a>
-                    updateAppWorld
-                </h2>
-                <hr/>
-                 
-                
-                    <table>
-                        <tr><td>
-                            
-                                static              
-                                void
-                                
-                                    updateAppWorld(callbackOnSuccess : function, <i>[callbackOnFailure: function]</i>)
-                                                          
-                            
-                        </td></tr>
-                    </table>
-                    <br />
-                
-                        
-                           
-                        
-                              
-                    <h3>Supported Platform(s)</h3>      
-                    
-                        &nbsp;- BlackBerry OS 5.0+
-                        <br />
-                                  
-                                   
-                <br />
-                        
-                <h3>Description</h3>
-                <p>Starts the process of upgrading BlackBerry App World to the current version by opening the browser on the device to the BlackBerry App World upgrade page.</p>
-                <br />
-                        
-                
-                        
-                
-                    <br />
-                    <table>
-                        <thead><tr>
-                            <th>
-                               Parameter
-                               
-                            </th>
-                            <th>
-                               Type
-                               
-                            </th>
-                            <th>
-                               Description
-                               
-                            </th>
-                        </tr></thead>
-                                       
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnSuccess</b></td>
-                                <td>
-                                    
-                                        function()
-                                    
-                                                                                        
-                                </td>
-                                <td>
-                                    
-                                    Function to be invoked on successful call.                         
-                                    
-                                </td>
-                            </tr>
-                        
-                            
-                            <tr>
-                                <td><b>callbackOnFailure</b></td>
-                                <td>
-                                    
-                                        function(errorText : String, errorID : Number)
-                                    
-                                    <br /><i>Optional</i>                                                    
-                                </td>
-                                <td>
-                                    
-                                     Function to be invoked when an error occurs.                         
-                                    
-                                        <br />
-                                        
-                                            <br />
-                                            <b>errorText:</b> Retrieves the message set for an error. In addition to descriptive text, error code may appear at the end of the message.
-                                        
-                                            <br />
-                                            <b>errorID:</b> Contains the reference number associated with the specific error in corresponding to the following values.<ul><li> User Cancelled = 1</li><li> Payment System Busy = 2</li><li> General Payment System Error  = 3</li><li> Digital Good not Found = 4</li><li> Illegal Application Error = 5 [BlackBerry OS 5.0+ only]</li></ul>
-                                        
-                                    
-                                </td>
-                            </tr>
-                                      
-                    </table>
-                                   
-                        
-                
-
-                
-
-                
-                
-    
-            </div>
-        
-    
-
-    
-
-
-
-        
-        
-
-
-
-
-    
-    
-
-    
-    
-
-
-
-        
-        
-
-    
-
-
-
-        
-            <div x-ww-support="bb5.0|bb6.0|bb7.0|pb1.0|pb2.0|common">
-            
-                
-  
-            </div>
-        
-
-
-        <hr />
-        <div >
-            
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sat Dec 22 2012 12:25:46 GMT-0500 (EST)
-        </div>
-
-    </div>
-</section>
