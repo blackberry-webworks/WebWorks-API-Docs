@@ -190,9 +190,9 @@ blackberry.payment = {
     *    alert("Digital good price: " + price);
     *
     *    if(data.initialPeriod) {
-    *       var initialPeriod = digitalGoodPriceSet.initialPeriod;
-    *       var renewalPrice = digitalGoodPriceSet.renewalPrice;
-    *       var renewalPeriod = digitalGoodPriceSet.renewalPeriod;
+    *       var initialPeriod = data.initialPeriod;
+    *       var renewalPrice = data.renewalPrice;
+    *       var renewalPeriod = data.renewalPeriod;
     *       alert("Subscription Info: " + initialPeriod + "," + renewalPrice + "," + renewalPeriod);
     *    }
     *    
