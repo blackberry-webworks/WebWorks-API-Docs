@@ -62,23 +62,31 @@
             }
 
             function runFilter() {
-                var filter = localStorage.getItem('selectedmenu');
-                var elements = getDesiredElements(document.body, 'x-ww-support');
-                for (var i = 0; i < elements.length; i++) {
-                    var target = elements[i];
-                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
-                    if (x_ww_support.indexOf(filter) < 0) {
-                        target.style.display = 'none';
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
                     }
                 }
             }
-            
+
             if(window.attachEvent) {
                 window.attachEvent('onload', runFilter);
             } else {
                 if(window.onload) {
-                    var curronload = window.onload;
-                    var newonload = function() {
+                    var curronload = window.onload,
+                        newonload = function() {
                         curronload();
                         runFilter();
                     };
@@ -145,11 +153,81 @@ contextmenu will capture the context menu events, and pass any events that the u
 the contextmenu will default to the system, and the developer will have no access to the events described below.
 </p>
 
+<h4>Context Information</h4>
+<p>Context information is available from the window object through a contextmenu event "window.oncontextmenu". This event is triggered whenever there
+is a context menu request from the client. This event provides all the contextual information needed to store the context yourself
+and save what element the context menu was triggered on. This allows you to perform a multitude of different actions once a context
+menu has been requested.
+
+<pre>
+&lt;script type="text/javascript"&gt;
+
+// Update the path from a small icon to a full image
+function translateIcontoFullImage (path) {
+    if (path && path.indexOf('.ico') !== -1) {
+        return path.replace('.ico', '.jpeg');
+    }
+}
+
+function onContextMenu (contextEvent) {
+    var srcElement = contextEvent.srcElement;
+    blackberry.invoke.interrupter = function (request) {
+        // Check if this is an image we wish to translate
+        if (srcElement && srcElement.src {
+            request.uri = translateIcontoFullImage(srcElement.src);
+        }
+
+        // Return the updated request object
+        return request;
+    };
+
+}
+
+window.addEventListener('oncontextmenu', onContextMenu);
+
+&lt;/script&gt;
+</pre>
+
+<h3>Custom Context Menu</h3>
+<p>Webworks applications can give Dom elements custom context by using the data-webworks-context xml attribute. When a Dom element contains this attribute, custom context menus will be activated when the element is long pressed.
+Once you have created a custom context using the data-webworks-context attribute, you can then use addItem to add items to the custom context. You can also optionally use defineCustomContext to further define the items shown.
+
 
                 
                     <div x-ww-support="bb10_menu|ripple">
                     
                 
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+function addMenuItemToCustomContext() {
+    var myItem = {actionId: '7', label: 'itemForCustom', icon:'local:///img/myIcon.png'},
+        contexts = ["myContext"];
+    blackberry.ui.contextmenu.addItem(contexts, myItem);
+}
+
+function addAdditionalItemsFromCustomContext) {
+    var options = {
+        includeContextItems: [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_IMAGE_LINK],
+        includePlatformItems: true,
+        includeMenuService: true
+    };
+    blackberry.ui.contextmenu.defineCustomContext("myContext", options);
+}
+
+function removeAdditionalItemsFromCustomContext) {
+    var options = {
+        includeContextItems: [],
+        includePlatformItems: false,
+        includeMenuService: false
+    };
+    blackberry.ui.contextmenu.defineCustomContext("myContext", options);
+}
+&lt;/script&gt;
+&lt;div data-webworks-context="myContext"&gt;I am a custom context!&lt;/div&gt;</pre></code></td></tbody></table>
+    
   
 
                     </div>
@@ -196,6 +274,18 @@ the contextmenu will default to the system, and the developer will have no acces
                                 <tr x-ww-support="bb10_menu|ripple">
                                     <td>
                                         <a href="blackberry.ui.contextmenu.html#.addItem">blackberry.ui.contextmenu.addItem</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.defineCustomContext">blackberry.ui.contextmenu.defineCustomContext</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -398,6 +488,18 @@ the contextmenu will default to the system, and the developer will have no acces
                                         
                                     </td>
                                     <td>
+                                        <a href="blackberry.ui.contextmenu.html#.defineCustomContext">blackberry.ui.contextmenu.defineCustomContext</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
                                         <a href="blackberry.ui.contextmenu.html#.removeItem">blackberry.ui.contextmenu.removeItem</a>
                                         
                                     </td>
@@ -573,7 +675,7 @@ the contextmenu will default to the system, and the developer will have no acces
                                             blackberry.ui.contextmenu.addItem
                                             
                                                 
-                                                    (contexts : String[], action : Object, callback: function())
+                                                    (contexts : String[], action : Object, callback: function(sourceId : String))
                                                 
                                             
                                                                   
@@ -665,6 +767,12 @@ menu.</p>
                                                 
                                                 A function which runs when the menu item action is executed                         
                                                 
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>sourceId:</b> The returned sourceId from the element which defined the custom context and the context was invoked on.
+                                                    
+                                                
                                             </td>
                                         </tr>
                                                   
@@ -694,6 +802,175 @@ function addMyItem() {
     var myItem = {actionId: 'MyItem', label: 'My Item', icon:'http://mysite.com/icon.png'},
         contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
     blackberry.ui.contextmenu.addItem(contexts, myItem, function() { console.log('hi') });
+}
+
+//Perform an action on custom context, with a custom item
+function deleteItem(sourceId) {
+    var element = document.getElementById(sourceId);
+        element.parentNode.removeChild(element);
+}
+
+function greyOutItem(sourceId) {
+    var element = document.getElementById(sourceId);
+        element.className = "greyed-out";
+}
+
+var options = {
+        includeContextItems: [blackberry.ui.contextmenu.CONTEXT_ALL],
+        includePlatformItems: true,
+        includeMenuServiceItems: true
+     },
+     item,
+     contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
+
+// Define the custom context with the options that we want used
+blackberry.ui.contextmenu.defineCustomContext("PrincessContext", options);
+
+// Create a menu item and add it to the context
+item = {actionId: '1', label: 'Delete Item', icon:'local:///images/icon.png'};
+blackberry.ui.contextmenu.addItem(contexts, item, deleteItem);
+
+// And another
+item = {actionId: '2', label: 'Grey Out', icon:'local:///images/icon.png'};
+blackberry.ui.contextmenu.addItem(contexts, item, greyOutItem);
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".defineCustomContext"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.ui.contextmenu.defineCustomContext
+                                            
+                                                
+                                                    (context : String, options : Object)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Allows the developer to define a custom context.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>context</b></td>
+                                            <td>
+                                                
+                                                A String representing the custom context.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                An Object that contains the various options to set for the custom context.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>includeContextItems:</b> An Array that defines a list of contexts to which custom items will be used from when applicable.
+                                                    
+                                                        <br />
+                                                        <b>includePlatformItems:</b> An boolean indicating whether to include the default platform items.
+                                                    
+                                                        <br />
+                                                        <b>includeMenuServiceItems:</b> An boolean indicating whether to add menu items provided by the menu service.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+function defineCustomContext() {
+    var options = {
+        includeContextItems: [blackberry.ui.contextmenu.CONTEXT_IMAGE],//Includes custom items added for CONTEXT_IMAGE
+        includePlatformItems: true,
+        includeMenuServiceItems: true
+    };
+
+    blackberry.ui.contextmenu.defineCustomContext("myContext", options)
 }
 &lt;/script&gt;</pre></code></td></tbody></table>
     
@@ -939,7 +1216,7 @@ function disabledContextMenu() {
 
 if(!blackberry.ui.contextmenu.enabled){
     console.log("context menu is currently disabled");
-    }
+}
 &lt;/script&gt;</pre></code></td></tbody></table>
     
   
@@ -1446,7 +1723,7 @@ if(!blackberry.ui.contextmenu.enabled){
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Dec 30 2012 16:32:15 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Jan 08 2013 01:29:24 GMT-0500 (EST)
         </div>
 
     </div>

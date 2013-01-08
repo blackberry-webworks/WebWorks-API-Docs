@@ -45,23 +45,31 @@
             }
 
             function runFilter() {
-                var filter = localStorage.getItem('selectedmenu');
-                var elements = getDesiredElements(document.body, 'x-ww-support');
-                for (var i = 0; i < elements.length; i++) {
-                    var target = elements[i];
-                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
-                    if (x_ww_support.indexOf(filter) < 0) {
-                        target.style.display = 'none';
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
                     }
                 }
             }
-            
+
             if(window.attachEvent) {
                 window.attachEvent('onload', runFilter);
             } else {
                 if(window.onload) {
-                    var curronload = window.onload;
-                    var newonload = function() {
+                    var curronload = window.onload,
+                        newonload = function() {
                         curronload();
                         runFilter();
                     };
@@ -383,18 +391,21 @@ The functionality of this object allows the developer to display system toast no
                                             <td><b>options</b></td>
                                             <td>
                                                 
-                                                An optional options object that specifies the buttonText, and callback handlers that should be used by the toast                         
+                                                options object that specifies the buttonText, and callback handlers that should be used by the toast                         
                                                 
                                                     <br />
                                                     
                                                         <br />
-                                                        <b>buttonText:</b> Optional parameter that specifies the label for the button within the toast.
+                                                        <b>buttonText:</b> parameter that specifies the label for the button within the toast.
                                                     
                                                         <br />
-                                                        <b>buttonCallback:</b>  Optional callback for receiving the button event when the user selects the toast button.
+                                                        <b>buttonCallback:</b>  callback for receiving the button event when the user selects the toast button.
                                                     
                                                         <br />
-                                                        <b>dismissCallback:</b>  Optional callback for receiving an event when the toast dismisses either through the toast's timeout or when the button is selected.
+                                                        <b>dismissCallback:</b>  callback for receiving an event when the toast dismisses either through the toast's timeout or when the button is selected.
+                                                    
+                                                        <br />
+                                                        <b>timeout:</b> timeout value that can be used to extend the toast for as long as the user desires. The value specified is parsed in milliseconds.
                                                     
                                                 
                                             </td>
@@ -443,13 +454,32 @@ function showCustomToast() {
        },
        options = {
          buttonText : buttonText,
-         dissmissCallback : onToastDismissed,
+         dismissCallback : onToastDismissed,
          buttonCallback : onButtonSelected
        };
 
    toastId = blackberry.ui.toast.show(message, options);
 }
 
+function showCustomToastWithTimeout() {
+   var message = "This is my toast!",
+       buttonText = "Click Me",
+       toastId,
+       onButtonSelected = function () {
+          console.log('Button was clicked for toast: ' + toastId);
+       },
+       onToastDismissed = function () {
+          console.log('Toast disappeared: ' + toastId);
+       },
+       options = {
+         buttonText : buttonText,
+         dissmissCallback : onToastDismissed,
+         buttonCallback : onButtonSelected,
+         timeout : 10000
+       };
+
+   toastId = blackberry.ui.toast.show(message, options);
+}
 &lt;/script&gt;</pre></code></td></tbody></table>
     
   
@@ -479,7 +509,7 @@ function showCustomToast() {
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Dec 30 2012 16:32:24 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Jan 08 2013 01:29:32 GMT-0500 (EST)
         </div>
 
     </div>

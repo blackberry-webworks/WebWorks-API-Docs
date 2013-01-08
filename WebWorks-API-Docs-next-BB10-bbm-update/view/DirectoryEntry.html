@@ -62,23 +62,31 @@
             }
 
             function runFilter() {
-                var filter = localStorage.getItem('selectedmenu');
-                var elements = getDesiredElements(document.body, 'x-ww-support');
-                for (var i = 0; i < elements.length; i++) {
-                    var target = elements[i];
-                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
-                    if (x_ww_support.indexOf(filter) < 0) {
-                        target.style.display = 'none';
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
                     }
                 }
             }
-            
+
             if(window.attachEvent) {
                 window.attachEvent('onload', runFilter);
             } else {
                 if(window.onload) {
-                    var curronload = window.onload;
-                    var newonload = function() {
+                    var curronload = window.onload,
+                        newonload = function() {
                         curronload();
                         runFilter();
                     };
@@ -172,6 +180,18 @@
                                 <tr x-ww-support="pb_menu|bb10_menu|ripple">
                                     <td>
                                         <a href="DirectoryEntry.html#copyTo">copyTo</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="pb_menu|bb10_menu|ripple">
+                                    <td>
+                                        <a href="DirectoryEntry.html#createReader">createReader</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -393,6 +413,18 @@
                                     </td>
                                     <td>
                                         <a href="DirectoryEntry.html#copyTo">copyTo</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="pb_menu|bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            <a href="DirectoryReader.html">DirectoryReader</a>
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="DirectoryEntry.html#createReader">createReader</a>
                                         
                                     </td>
                                 </tr>
@@ -730,6 +762,98 @@
                 
                     <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu|ripple">
                         <h3>
+                            <a name="createReader"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        <a href="DirectoryReader.html">DirectoryReader</a>
+                                        
+                                        
+                                            createReader
+                                            
+                                                
+                                                    ()
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>creates a new DirectoryReader to read contents in a directory</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry PlayBook 1.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                                <br />
+                                <span><b>Return:</b></span>
+                                
+                                    
+                                        <p> The directoryReader object </p>
+                                    
+                                
+                                <br />
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu|ripple">
+                        <h3>
                             <a name="getDirectory"></a>
                  
                             
@@ -745,7 +869,7 @@
                                             getDirectory
                                             
                                                 
-                                                    (The : String, Options : flags, callback: function())
+                                                    (path : String, options : flags, callback: function(), callback: function())
                                                 
                                             
                                                                   
@@ -802,20 +926,20 @@
                                     
                                         
                                         <tr>
-                                            <td><b>The</b></td>
+                                            <td><b>path</b></td>
                                             <td>
                                                 
-                                                path of the directory to be looked up or created                         
+                                                - path of the directory to be looked up or created.                         
                                                 
                                             </td>
                                         </tr>
                                     
                                         
                                         <tr>
-                                            <td><b>Options</b></td>
+                                            <td><b>options</b></td>
                                             <td>
                                                 
-                                                to specify whether the directory is to be created if it doesn't exist                         
+                                                - options to specify whether the directory is to be created if it doesn't exist                         
                                                 
                                             </td>
                                         </tr>
@@ -825,8 +949,17 @@
                                             <td><b>callback</b></td>
                                             <td>
                                                 
-                                                function that is called with a File object. (Function)
-callback {errorCallback} callback function to execute when there is an error during creating the File object. Invoked with a FileError object. (Function)                         
+                                                function that is called with a File object. (Function)                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>callback</b></td>
+                                            <td>
+                                                
+                                                function to execute when there is an error during creating the File object. Invoked with a FileError object. (Function)                         
                                                 
                                             </td>
                                         </tr>
@@ -869,7 +1002,7 @@ callback {errorCallback} callback function to execute when there is an error dur
                                             getFile
                                             
                                                 
-                                                    (Path : String, Options : flags, callback: function(), callback: function())
+                                                    (path : String, options : flags, callback: function(), callback: function())
                                                 
                                             
                                                                   
@@ -926,7 +1059,7 @@ callback {errorCallback} callback function to execute when there is an error dur
                                     
                                         
                                         <tr>
-                                            <td><b>Path</b></td>
+                                            <td><b>path</b></td>
                                             <td>
                                                 
                                                 - path of the file to be looked up or created.                         
@@ -936,7 +1069,7 @@ callback {errorCallback} callback function to execute when there is an error dur
                                     
                                         
                                         <tr>
-                                            <td><b>Options</b></td>
+                                            <td><b>options</b></td>
                                             <td>
                                                 
                                                 - options to specify whether the file is created if it doesn't exist                         
@@ -959,7 +1092,7 @@ callback {errorCallback} callback function to execute when there is an error dur
                                             <td><b>callback</b></td>
                                             <td>
                                                 
-                                                function to execute when there is an error during creating the File object. Invoked with a FileError object.                         
+                                                function to execute when there is an error during creating the File object. Invoked with a FileError object. (Function)                         
                                                 
                                             </td>
                                         </tr>
@@ -1556,7 +1689,7 @@ callback {errorCallback} callback function to execute when there is an error dur
                                             <td><b>callback</b></td>
                                             <td>
                                                 
-                                                function to execute when there is an error during creating the File object. Invoked with a FileError object.                         
+                                                function to execute when there is an error during creating the File object. Invoked with a FileError object. (Function)                         
                                                 
                                             </td>
                                         </tr>
@@ -2012,7 +2145,7 @@ callback {errorCallback} callback function to execute when there is an error dur
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Dec 30 2012 16:32:16 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Jan 08 2013 01:29:25 GMT-0500 (EST)
         </div>
 
     </div>

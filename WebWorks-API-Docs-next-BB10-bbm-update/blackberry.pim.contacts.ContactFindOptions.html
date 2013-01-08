@@ -45,23 +45,31 @@
             }
 
             function runFilter() {
-                var filter = localStorage.getItem('selectedmenu');
-                var elements = getDesiredElements(document.body, 'x-ww-support');
-                for (var i = 0; i < elements.length; i++) {
-                    var target = elements[i];
-                    var x_ww_support = target.getAttribute('x-ww-support').split('|');
-                    if (x_ww_support.indexOf(filter) < 0) {
-                        target.style.display = 'none';
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
                     }
                 }
             }
-            
+
             if(window.attachEvent) {
                 window.attachEvent('onload', runFilter);
             } else {
                 if(window.onload) {
-                    var curronload = window.onload;
-                    var newonload = function() {
+                    var curronload = window.onload,
+                        newonload = function() {
                         curronload();
                         runFilter();
                     };
@@ -164,6 +172,18 @@
                             
                                 <tr x-ww-support="bb10_menu">
                                     <td>
+                                        <a href="blackberry.pim.contacts.ContactFindOptions.html#excludeAccounts">excludeAccounts</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
                                         <a href="blackberry.pim.contacts.ContactFindOptions.html#favorite">favorite</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -177,6 +197,18 @@
                                 <tr x-ww-support="bb10_menu">
                                     <td>
                                         <a href="blackberry.pim.contacts.ContactFindOptions.html#filter">filter</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.pim.contacts.ContactFindOptions.html#includeAccounts">includeAccounts</a>
                                         <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
 <td class="apiNo">&nbsp;</td>
@@ -441,6 +473,18 @@
                                 <tr x-ww-support="bb10_menu">
                                     <td class="first_column">
                                         
+                                            <a href="blackberry.pim.contacts.ContactAccount.html">blackberry.pim.contacts.ContactAccount</a>[]
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.pim.contacts.ContactFindOptions.html#excludeAccounts">excludeAccounts</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
                                             Boolean
                                         
                                     </td>
@@ -458,6 +502,18 @@
                                     </td>
                                     <td>
                                         <a href="blackberry.pim.contacts.ContactFindOptions.html#filter">filter</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            <a href="blackberry.pim.contacts.ContactAccount.html">blackberry.pim.contacts.ContactAccount</a>[]
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.pim.contacts.ContactFindOptions.html#includeAccounts">includeAccounts</a>
                                         
                                     </td>
                                 </tr>
@@ -686,6 +742,77 @@
                 
                     <div class="detailed_item function" x-ww-support="bb10_menu">
                         <h3>
+                            <a name="excludeAccounts"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        <a href="blackberry.pim.contacts.ContactAccount.html">blackberry.pim.contacts.ContactAccount</a>[]
+                                        
+                                        
+                                            excludeAccounts
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>If specified, search results will be filtered to contain only contacts where the sources of the contact do not come from any of the provided accounts. If an empty array is passed, this property will be ignored. If a non-array is passed, the error callback will be triggered.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
                             <a name="favorite"></a>
                  
                             
@@ -793,6 +920,77 @@
     fieldValue: &lt;value of the field&gt;
 }
 </pre></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name="includeAccounts"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        <a href="blackberry.pim.contacts.ContactAccount.html">blackberry.pim.contacts.ContactAccount</a>[]
+                                        
+                                        
+                                            includeAccounts
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>If specified, search results will be filtered to contain only contacts where the sources of the contact come from any of the provided accounts. If an empty array is passed, this property will be ignored. If a non-array is passed, the error callback will be triggered.</p>
                             <br />
                             
                             
@@ -1903,7 +2101,7 @@
 
         <div >
             
-            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Dec 30 2012 16:32:15 GMT-0500 (EST)
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Jan 08 2013 01:29:23 GMT-0500 (EST)
         </div>
 
     </div>
