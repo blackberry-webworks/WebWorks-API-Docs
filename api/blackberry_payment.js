@@ -259,7 +259,7 @@ blackberry.payment = {
     * &lt;script type="text/javascript"&gt;
     *   function checkSubscription() {
     *     try{
-            blackberry.payment.checkExisting("12345", success, failure);
+            blackberry.payment.checkAppSubscription(success, failure);
     *    }catch (e){
     *      alert ("Error" + e);
     *    }
