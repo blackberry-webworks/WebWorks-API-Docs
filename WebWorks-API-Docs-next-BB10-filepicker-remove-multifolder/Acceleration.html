@@ -1,0 +1,618 @@
+
+
+<section  class="page_container references">
+	<div class="row">
+        <nav class="column grid_4 side-navigation" id="side-nav-api" role="navigation">
+            <div id="sticky-anchor"> </div>
+            <div class="side-nav-wrapper" id="sticky">
+                <div class="side-nav-content clearfix" id="none">
+                    <div class="side-nav-section clearfix" id="side-nav-title">
+                        <h3>API Reference</h3>
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-parents"> 
+                    </div>
+                    <div class="side-nav-section clearfix" id="side-nav-filter"> 
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-children"> 
+                    </div>
+                </div>
+            </div>
+            <div class="side-navspacer-bottom"> </div>
+        </nav>
+
+        <div class="column grid_8">
+                <div class="row">
+                    <article id="main" class="column grid_8" role="main">
+                        
+
+<section>
+
+    <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
+                    }
+                }
+            }
+
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload,
+                        newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
+
+        function viewSupportedTable() {
+            var table = document.getElementById('APISupportTable');
+            if (table != null && table.style.display != 'inline') {
+                table.style.display = 'inline';
+            }
+            else {
+                table.style.display = 'none';
+            }
+        }
+
+    </script>
+    
+    <style type="text/css">
+
+        .apiYes {
+            background-color: #D1F8FB;
+        }
+        
+        .tdNoWrap {
+            white-space:nowrap;
+        }
+        
+        .APISupportTable {
+            display:none;
+        }
+    </style>
+
+    <div>
+
+
+        <h1>
+            
+                HTML5 Acceleration
+            
+        </h1>
+
+
+        
+            <p>
+                Acceleration data is given in meters per second squared and uses the body axes defined in the device orientation event. Acceleration data (without the effect of gravity) cannot be provided when there is a lack of a gyroscope. Implementations that are unable to provide acceleration data without the effect of gravity may instead supply the acceleration including the effect of gravity. <p>The values reported are equal to the acceleration of the device, plus an acceleration equal and opposite to the acceleration due to gravity.This is less useful in many applications but is provided as a means of providing best-effort support. These values can be stored and manipulated in variables outside the event scope. These values can be used to control the motion of objects defined on the DOM by the device's gyroscope and accelerometer. <br><br> <img src="/html5/files/apis/images/xyz.jpg" alt="xyz.jpg" /> <br><br><p>Data Examples= A device lying flat on a horizontal surface with the screen upmost has an acceleration of zero and the following value for accelerationIncludingGravity=    <p><i> {x= 0,     y= 0,     z= 9.81};</i></p></p>
+
+
+                
+                    <div x-ww-support="pb_menu|bb10_menu|ripple">
+                    
+                
+  
+
+                    </div>
+                
+            </p>
+        
+
+
+        
+            
+            <br />
+        
+
+
+        
+
+
+        
+
+
+        
+            <div class="ref-sect ref-index">
+                <div class="ref-sect-title">
+                    <h2>Supported Platform(s)</h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table>
+                            <tbody>
+                            
+                                <tr><td>- BlackBerry PlayBook 1.0+</td></tr>
+                            
+                                <tr><td>- BlackBerry 10</td></tr>
+                            
+                                <tr><td>- Ripple Emulator</td></tr>
+                            
+                            </tbody>
+                        </table>
+                    
+                    <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
+                    <div class="APISupportTable" id="APISupportTable">
+                        <table class="apiTable">
+                            <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                            
+                            
+                                <tr x-ww-support="pb_menu|bb10_menu|ripple">
+                                    <td>
+                                        <a href="Acceleration.html#x">x</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="pb_menu|bb10_menu|ripple">
+                                    <td>
+                                        <a href="Acceleration.html#y">y</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="pb_menu|bb10_menu|ripple">
+                                    <td>
+                                        <a href="Acceleration.html#z">z</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+
+
+        <div class="ref-sect ref-index">
+            <div class="ref-sect-title">
+                <h2>Configuration Document Settings</h2>
+            </div>
+            <div class="ref-sect-content">
+                <table><tbody>
+                    <tr><td>
+                        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
+                    </td></tr>
+                    
+                    <tr><td>
+                        This API does not require a &lt;feature&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+                    </td></tr></tbody></table>
+                
+
+                <div x-ww-support="pb_menu|bb10_menu">
+                    
+                    <table>
+                        <tr>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
+                        </tr>
+                        
+                            <tr><td>
+                                This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+                            </td></tr>
+                            <br />
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        
+        
+
+
+<div>
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="pb_menu|bb10_menu|ripple">
+                <div class="ref-sect-title">
+                    <h2> Properties </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="pb_menu|bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="Acceleration.html#x">x</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="pb_menu|bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="Acceleration.html#y">y</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="pb_menu|bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="Acceleration.html#z">z</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+        
+        
+    
+
+    
+</div>
+
+
+
+        
+        
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Properties</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu|ripple">
+                        <h3>
+                            <a name="x"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        readonly
+                                        Number
+                                        
+                                        
+                                            x
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>x-coordinate of the acceleration</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry PlayBook 1.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu|ripple">
+                        <h3>
+                            <a name="y"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        readonly
+                                        Number
+                                        
+                                        
+                                            y
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>y-coordinate of the acceleration</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry PlayBook 1.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="pb_menu|bb10_menu|ripple">
+                        <h3>
+                            <a name="z"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        readonly
+                                        Number
+                                        
+                                        
+                                            z
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>z-coordinate of the acceleration</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry PlayBook 1.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+    
+    
+
+
+
+
+
+        <div >
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Jan 09 2013 13:55:26 GMT-0500 (EST)
+        </div>
+
+    </div>
+</section>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

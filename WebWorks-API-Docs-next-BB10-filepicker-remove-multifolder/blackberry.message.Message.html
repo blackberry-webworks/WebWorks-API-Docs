@@ -1,0 +1,2210 @@
+
+
+<section  class="page_container references">
+	<div class="row">
+        <nav class="column grid_4 side-navigation" id="side-nav-api" role="navigation">
+            <div id="sticky-anchor"> </div>
+            <div class="side-nav-wrapper" id="sticky">
+                <div class="side-nav-content clearfix" id="none">
+                    <div class="side-nav-section clearfix" id="side-nav-title">
+                        <h3>API Reference</h3>
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-parents"> 
+                    </div>
+                    <div class="side-nav-section clearfix" id="side-nav-filter"> 
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-children"> 
+                    </div>
+                </div>
+            </div>
+            <div class="side-navspacer-bottom"> </div>
+        </nav>
+
+        <div class="column grid_8">
+                <div class="row">
+                    <article id="main" class="column grid_8" role="main">
+                        
+
+<section>
+
+    <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
+                    }
+                }
+            }
+
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload,
+                        newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
+
+        function viewSupportedTable() {
+            var table = document.getElementById('APISupportTable');
+            if (table != null && table.style.display != 'inline') {
+                table.style.display = 'inline';
+            }
+            else {
+                table.style.display = 'none';
+            }
+        }
+
+    </script>
+    
+    <style type="text/css">
+
+        .apiYes {
+            background-color: #D1F8FB;
+        }
+        
+        .tdNoWrap {
+            white-space:nowrap;
+        }
+        
+        .APISupportTable {
+            display:none;
+        }
+    </style>
+
+    <div>
+
+
+        <h1>
+            
+                Message
+            
+        </h1>
+
+
+        
+            <p>
+                The Email Message object represents a message on the BlackBerry device. This class can be created and used when launching the new message screen using the invoke API or for direct interaction with the message list storage function.
+
+
+                
+            </p>
+        
+
+
+        
+            
+            <br />
+        
+
+
+        
+
+
+        
+
+
+        
+            <div class="ref-sect ref-index">
+                <div class="ref-sect-title">
+                    <h2>Supported Platform(s)</h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table>
+                            <tbody>
+                            
+                                <tr><td>- BlackBerry OS 5.0+</td></tr>
+                            
+                                <tr><td>- Ripple Emulator</td></tr>
+                            
+                            </tbody>
+                        </table>
+                    
+                    <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
+                    <div class="APISupportTable" id="APISupportTable">
+                        <table class="apiTable">
+                            <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                            
+                                
+                                    <tr x-ww-support="bb_menu|ripple">
+                                        <td>
+                                            <a href="blackberry.message.Message.html">blackberry.message.Message</a>
+                                            <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                        </td>
+                                    </tr>
+                                
+                            
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.find">blackberry.message.Message.find</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#save">save</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.STATUS_UNKNOWN">STATUS_UNKNOWN</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.STATUS_SAVED">STATUS_SAVED</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.STATUS_DRAFT">STATUS_DRAFT</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.STATUS_SENT">STATUS_SENT</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.STATUS_ERROR_OCCURED">STATUS_ERROR_OCCURED</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.PRIORITY_HIGH">PRIORITY_HIGH</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.PRIORITY_MEDIUM">PRIORITY_MEDIUM</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.PRIORITY_LOW">PRIORITY_LOW</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.FOLDER_INBOX">FOLDER_INBOX</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.FOLDER_SENT">FOLDER_SENT</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.FOLDER_DRAFT">FOLDER_DRAFT</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.FOLDER_OUTBOX">FOLDER_OUTBOX</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.FOLDER_DELETED">FOLDER_DELETED</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.FOLDER_OTHER">FOLDER_OTHER</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+
+
+        <div class="ref-sect ref-index">
+            <div class="ref-sect-title">
+                <h2>Configuration Document Settings</h2>
+            </div>
+            <div class="ref-sect-content">
+                <table><tbody>
+                    <tr><td>
+                        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
+                    </td></tr>
+                    
+                        <tr><td>
+                            <p>You must declare the feature element(s) below in your configuration document:</p>
+                        </td></tr></tbody></table>
+                    <table>
+                        <thead><tr><th>Feature ID</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                        
+                            
+                            
+                                
+                            
+                            <tr x-ww-support="bb_menu|ripple"><td>
+                                &lt;feature id="blackberry.message" /&gt;
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td></tr>
+                        
+                            
+                            
+                                
+                            
+                            <tr x-ww-support="bb_menu|ripple"><td>
+                                &lt;feature id="blackberry.identity" /&gt;
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td></tr>
+                        
+                            
+                            
+                                
+                            
+                            <tr x-ww-support="bb_menu|ripple"><td>
+                                &lt;feature id="blackberry.find" /&gt;
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiYes">Y</td>
+                            </td></tr>
+                        
+                    </table>
+                
+
+                <div x-ww-support="pb_menu|bb10_menu">
+                    
+                    <table>
+                        <tr>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
+                        </tr>
+                        
+                            <tr><td>
+                                This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+                            </td></tr>
+                            <br />
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        
+        
+
+
+<div>
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|ripple">
+                <div class="ref-sect-title">
+                    <h2> Constructors </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html">blackberry.message.Message</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|ripple">
+                <div class="ref-sect-title">
+                    <h2> Functions </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Message[]
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.find">blackberry.message.Message.find</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#save">save</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|ripple">
+                <div class="ref-sect-title">
+                    <h2> Constants </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.STATUS_UNKNOWN">STATUS_UNKNOWN</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.STATUS_SAVED">STATUS_SAVED</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.STATUS_DRAFT">STATUS_DRAFT</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.STATUS_SENT">STATUS_SENT</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.STATUS_ERROR_OCCURED">STATUS_ERROR_OCCURED</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.PRIORITY_HIGH">PRIORITY_HIGH</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.PRIORITY_MEDIUM">PRIORITY_MEDIUM</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.PRIORITY_LOW">PRIORITY_LOW</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.FOLDER_INBOX">FOLDER_INBOX</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.FOLDER_SENT">FOLDER_SENT</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.FOLDER_DRAFT">FOLDER_DRAFT</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.FOLDER_OUTBOX">FOLDER_OUTBOX</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.FOLDER_DELETED">FOLDER_DELETED</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            Number
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.message.Message.html#.FOLDER_OTHER">FOLDER_OTHER</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+
+    
+</div>
+
+
+
+        
+        
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Constructors</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".Message"></a>
+                 
+                            
+                            
+                                
+                                    blackberry.message.Message
+                                    
+                                        (<i>[service : <a href="blackberry.identity.Service.html">blackberry.identity.Service</a>]</i>)
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p><div><p>      The Message object is an instance object, where if a new instance is desired, it must be created using the new keyword.    </p></div></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>service</b></td>
+                                            <td>
+                                                
+                                                optional parameter that specifies the type of service that is expected.  This value can specify the email service to create an email message for.  If no parameter is specified the default email service will be used.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type=&quot;text&#47;javascript&quot;&gt;  var message = new blackberry.message.Message();  message.toRecipients = &quot;noone@blackberryWidgets.com&quot;;  message.subject = &quot;Hello&quot;;  message.body = &quot;World&quot;;  message.send();&lt;&#92;script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Functions</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".find"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Message[]
+                                        
+                                        
+                                            blackberry.message.Message.find
+                                            
+                                                
+                                                    (<i>[filter : <a href="blackberry.find.FilterExpression.html">blackberry.find.FilterExpression</a>]</i>, <i>[maxReturn : Number]</i>, <i>[service : <a href="blackberry.identity.Service.html">blackberry.identity.Service</a>]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>This method looks up the messages that matches the expression provided.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>filter</b></td>
+                                            <td>
+                                                
+                                                optional parameter that defines the search criteria for the find.  If no value is provided the method will return all the Messages on the device for the service provided.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>maxReturn</b></td>
+                                            <td>
+                                                
+                                                optional integer parameter specifying the maximum number of results to return from the find.  If no value is specified, it will return all results found.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>service</b></td>
+                                            <td>
+                                                
+                                                optional parameter to define which service you wish to search for your messages. If not provided the default service for messages will be used.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type=&quot;text&#47;javascript&quot;&gt;  var message = new blackberry.message.Message();  message.toRecipients = "nobody@blackberryWidgets.com";  message.subject = "[DRAFT] Hello World";  message.body = "[DRAFT]Just hanging around. How are you doing?";  message.folder = blackberry.message.Message.FOLDER_DRAFT;  message.save();  var filter = new blackberry.find.FilterExpression("nobody@blackberryWidgets.com", "==", message.toRecipients, true);  var results = blackberry.message.Message.find(filter); &lt;&#92;script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name="save"></a>
+                 
+                            
+                            
+                                
+                                    
+                                                      
+                                        
+                                        void
+                                        
+                                        
+                                            save
+                                            
+                                                
+                                                    ()
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>This method will save the changes made to the message object.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type=&quot;text&#47;javascript&quot;&gt;  var message = new blackberry.message.Message();  message.toRecipients = "nobody@blackberryWidgets.com";  message.subject = "[DRAFT] An example to show how message.save works";  message.body = "[DRAFT] Just another message to be saved in the draft folder";  message.folder = blackberry.message.Message.FOLDER_DRAFT;  message.save();&lt;&#92;script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Constants</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".STATUS_UNKNOWN"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            STATUS_UNKNOWN
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant representing the UNKNOWN status. The current status cannot be determined.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".STATUS_SAVED"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            STATUS_SAVED
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant representing the SAVED status</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".STATUS_DRAFT"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            STATUS_DRAFT
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant representing the DRAFT status</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".STATUS_SENT"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            STATUS_SENT
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant representing the SENT status</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".STATUS_ERROR_OCCURED"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            STATUS_ERROR_OCCURED
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant representing the ERROR status</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".PRIORITY_HIGH"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            PRIORITY_HIGH
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant representing a HIGH priority</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".PRIORITY_MEDIUM"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            PRIORITY_MEDIUM
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant representing a MEDIUM priority</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".PRIORITY_LOW"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            PRIORITY_LOW
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant representing a LOW priority</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".FOLDER_INBOX"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            FOLDER_INBOX
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant representing the INBOX folder</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".FOLDER_SENT"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            FOLDER_SENT
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant representing the SENT folder</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".FOLDER_DRAFT"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            FOLDER_DRAFT
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant representing the DRAFT folder</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".FOLDER_OUTBOX"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            FOLDER_OUTBOX
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant representing the OUTBOX folder</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".FOLDER_DELETED"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            FOLDER_DELETED
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant representing the DELETED folder</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|ripple">
+                        <h3>
+                            <a name=".FOLDER_OTHER"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        Number
+                                        
+                                        
+                                            FOLDER_OTHER
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant representing an OTHER folder</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+
+
+
+
+        <div >
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Jan 09 2013 13:55:37 GMT-0500 (EST)
+        </div>
+
+    </div>
+</section>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
