@@ -1,0 +1,760 @@
+
+
+<section  class="page_container references">
+	<div class="row">
+        <nav class="column grid_4 side-navigation" id="side-nav-api" role="navigation">
+            <div id="sticky-anchor"> </div>
+            <div class="side-nav-wrapper" id="sticky">
+                <div class="side-nav-content clearfix" id="none">
+                    <div class="side-nav-section clearfix" id="side-nav-title">
+                        <h3>API Reference</h3>
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-parents"> 
+                    </div>
+                    <div class="side-nav-section clearfix" id="side-nav-filter"> 
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-children"> 
+                    </div>
+                </div>
+            </div>
+            <div class="side-navspacer-bottom"> </div>
+        </nav>
+
+        <div class="column grid_8">
+                <div class="row">
+                    <article id="main" class="column grid_8" role="main">
+                        
+
+<section>
+
+    <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
+                    }
+                }
+            }
+
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload,
+                        newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
+
+        function viewSupportedTable() {
+            var table = document.getElementById('APISupportTable');
+            if (table != null && table.style.display != 'inline') {
+                table.style.display = 'inline';
+            }
+            else {
+                table.style.display = 'none';
+            }
+        }
+
+    </script>
+    
+    <style type="text/css">
+
+        .apiYes {
+            background-color: #D1F8FB;
+        }
+        
+        .tdNoWrap {
+            white-space:nowrap;
+        }
+        
+        .APISupportTable {
+            display:none;
+        }
+    </style>
+
+    <div>
+
+
+        <h1>
+            
+                Camera
+            
+        </h1>
+
+
+        
+            <p>
+                <p>Using Camera API allows to invoke the native camera application to record video or take a picture and receive a path to the file stored.</p><p>The methods are static and don't required to create an instance of a camera.</p><p>Note that the application will require the user to grant it input simulation and file api permissions for this extension to work on the BlackBerry.</p>
+
+
+                
+                    <div x-ww-support="bb_menu|pb_menu">
+                    
+                
+  
+
+                    </div>
+                
+            </p>
+        
+
+
+        
+            
+            <br />
+        
+
+
+        
+
+
+        
+
+
+        
+            <div class="ref-sect ref-index">
+                <div class="ref-sect-title">
+                    <h2>Supported Platform(s)</h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table>
+                            <tbody>
+                            
+                                <tr><td>- BlackBerry OS 5.0+</td></tr>
+                            
+                                <tr><td>- BlackBerry PlayBook 1.0+</td></tr>
+                            
+                            </tbody>
+                        </table>
+                    
+                    <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
+                    <div class="APISupportTable" id="APISupportTable">
+                        <table class="apiTable">
+                            <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                            
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.media.camera.html#.close">blackberry.media.camera.close</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu">
+                                    <td>
+                                        <a href="blackberry.media.camera.html#.takePicture">blackberry.media.camera.takePicture</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu">
+                                    <td>
+                                        <a href="blackberry.media.camera.html#.takeVideo">blackberry.media.camera.takeVideo</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+
+
+        <div class="ref-sect ref-index">
+            <div class="ref-sect-title">
+                <h2>Configuration Document Settings</h2>
+            </div>
+            <div class="ref-sect-content">
+                <table><tbody>
+                    <tr><td>
+                        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
+                    </td></tr>
+                    
+                        <tr><td>
+                            <p>You must declare the feature element(s) below in your configuration document:</p>
+                        </td></tr></tbody></table>
+                    <table>
+                        <thead><tr><th>Feature ID</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                        
+                            
+                            
+                                
+                            
+                            <tr x-ww-support="bb_menu|pb_menu"><td>
+                                &lt;feature id="blackberry.media.camera" /&gt;
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                            </td></tr>
+                        
+                    </table>
+                
+
+                <div x-ww-support="pb_menu|bb10_menu">
+                    
+                        
+                    
+                    <table>
+                        <tr>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
+                        </tr>
+                        
+                            
+                                <tr><td><i>
+                                    You must declare the permission element(s) below in your configuration document:
+                                </i></td></tr>
+                                
+                                    <tr><td>
+                                        - &lt;rim:permit&gt;use_camera&lt;/rim:permit&gt;
+                                        <br />
+                                        Permits your app to use the camera.
+                                        <br />
+                                    </td></tr>
+                                
+                            
+
+                            
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        
+        
+
+
+<div>
+    
+        
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|pb_menu">
+                <div class="ref-sect-title">
+                    <h2> Functions </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.media.camera.html#.close">blackberry.media.camera.close</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.media.camera.html#.takePicture">blackberry.media.camera.takePicture</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu|pb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.media.camera.html#.takeVideo">blackberry.media.camera.takeVideo</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+
+    
+</div>
+
+
+
+        
+        
+
+    
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Functions</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".close"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.media.camera.close
+                                            
+                                                
+                                                    ()
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Close the camera or video recorder if it's in the foreground.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>function takeVideo() {  try {    blackberry.media.camera.takeVideo(successCB);  } catch(e) {    alert("Error in supported: " + e);  }}function successCB(filePath) {  blackberry.media.camera.close();  // do something with filePath}</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu">
+                        <h3>
+                            <a name=".takePicture"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.media.camera.takePicture
+                                            
+                                                
+                                                    (onCaptured: function(<i>[filePath: String]</i>), <i>[onCameraClosed: function()]</i>, <i>[onError: function(<i>[e: String]</i>)]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Opens the camera and return a path to the onCaptured callback when a photo is taken.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry PlayBook 1.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onCaptured</b></td>
+                                            <td>
+                                                
+                                                Method will be invoked when a picture is captured. <br/>Expected signature: <code>function onCaptured(filePath)</code>                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>filePath:</b>  Path to a picture captured by the camera.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onCameraClosed</b></td>
+                                            <td>
+                                                
+                                                 Method will be invoked on camera closed event. <br/>Expected signature: <code>function onCameraClosed()</code>                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onError</b></td>
+                                            <td>
+                                                
+                                                 Method will be invoked when an error occurs. <br/>Expected signature: <code>function onError(e)</code>                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>e:</b>  Error message
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu|pb_menu">
+                        <h3>
+                            <a name=".takeVideo"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.media.camera.takeVideo
+                                            
+                                                
+                                                    (onCaptured: function(<i>[filePath: String]</i>), <i>[onCameraClosed: function()]</i>, <i>[onError: function(<i>[e: String]</i>)]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Opens the camera and return a path to the onCaptured callback when a video is taken.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry PlayBook 1.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onCaptured</b></td>
+                                            <td>
+                                                
+                                                Method will be invoked when a video is recorded. <br/>Expected signature: <code>function onCaptured(filePath)</code>                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>filePath:</b>  Path to a video captured by the camera.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onCameraClosed</b></td>
+                                            <td>
+                                                
+                                                 Method will be invoked on camera closed event. <br/>Expected signature: <code>function onCameraClosed()</code>                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onError</b></td>
+                                            <td>
+                                                
+                                                 Method will be invoked when an error occurs. <br/>Expected signature: <code>function onError(e)</code>                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>e:</b>  Error message
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>function takeVideo() {  try {    blackberry.media.camera.takeVideo(successCB, closedCB, errorCB);  } catch(e) {    alert("Error in supported: " + e);  }}function successCB(filePath) {  alert("Succeed: " + filePath);}function closedCB() {  alert("Camera closed event");}function errorCB(e) {  alert("Error occured: " + e);}</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+
+
+
+
+        <div >
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 10 2013 16:02:05 GMT-0500 (EST)
+        </div>
+
+    </div>
+</section>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

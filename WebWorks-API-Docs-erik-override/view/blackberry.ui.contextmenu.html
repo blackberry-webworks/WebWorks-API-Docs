@@ -1,0 +1,3055 @@
+
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>
+        Context Menu - BlackBerry WebWorks
+    </title>
+
+    <script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/pagehead.min.js"></script>
+    <link href="https://bdsc.webapps.blackberry.com/html5/webroot/css/main.min.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="site_container clearfix guide-container">
+    
+
+<section  class="page_container references">
+	<div class="row">
+        <nav class="column grid_4 side-navigation" id="side-nav-api" role="navigation">
+            <div id="sticky-anchor"> </div>
+            <div class="side-nav-wrapper" id="sticky">
+                <div class="side-nav-content clearfix" id="none">
+                    <div class="side-nav-section clearfix" id="side-nav-title">
+                        <h3>API Reference</h3>
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-parents"> 
+                    </div>
+                    <div class="side-nav-section clearfix" id="side-nav-filter"> 
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-children"> 
+                    </div>
+                </div>
+            </div>
+            <div class="side-navspacer-bottom"> </div>
+        </nav>
+
+        <div class="column grid_8">
+                <div class="row">
+                    <article id="main" class="column grid_8" role="main">
+                        
+
+<section>
+
+    <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
+                    }
+                }
+            }
+
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload,
+                        newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
+
+        function viewSupportedTable() {
+            var table = document.getElementById('APISupportTable');
+            if (table != null && table.style.display != 'inline') {
+                table.style.display = 'inline';
+            }
+            else {
+                table.style.display = 'none';
+            }
+        }
+
+    </script>
+    
+    <style type="text/css">
+
+        .apiYes {
+            background-color: #D1F8FB;
+        }
+        
+        .tdNoWrap {
+            white-space:nowrap;
+        }
+        
+        .APISupportTable {
+            display:none;
+        }
+    </style>
+
+    <div>
+
+
+        <h1>
+            
+                Context Menu
+            
+        </h1>
+
+
+        
+            <p>
+                The contextmenu namespace provides the facility to interact with the context menu api to control whether context menus are enabled, listen to events, add items to appear based on the context, and set the theme of the context menu.
+
+<h3>Context Menu</h3>
+<p>Webworks applications can choose to use an in app contextmenu as opposed to the default operating system menu. The
+contextmenu provides several facilities to developers to allow them to control the elements that appear in the menu, as
+well as listen to specific events related to the context menu being triggered and displayed.
+<p>
+
+<h4>Enabling</h4>
+<p>The contextmenu can be enabled by calling the blackberry.ui.contextmenu.enabled property. When set to true, the
+contextmenu will capture the context menu events, and pass any events that the user has registered for. When set to false
+the contextmenu will default to the system, and the developer will have no access to the events described below.
+</p>
+
+<h4>Context Information</h4>
+<p>Context information is available from the window object through a contextmenu event "window.oncontextmenu". This event is triggered whenever there
+is a context menu request from the client. This event provides all the contextual information needed to store the context yourself
+and save what element the context menu was triggered on. This allows you to perform a multitude of different actions once a context
+menu has been requested.
+
+<pre>
+&lt;script type="text/javascript"&gt;
+
+// Update the path from a small icon to a full image
+function translateIcontoFullImage (path) {
+    if (path && path.indexOf('.ico') !== -1) {
+        return path.replace('.ico', '.jpeg');
+    }
+}
+
+function onContextMenu (contextEvent) {
+    var srcElement = contextEvent.srcElement;
+    blackberry.invoke.interrupter = function (request) {
+        // Check if this is an image we wish to translate
+        if (srcElement && srcElement.src {
+            request.uri = translateIcontoFullImage(srcElement.src);
+        }
+
+        // Return the updated request object
+        return request;
+    };
+
+}
+
+window.addEventListener('oncontextmenu', onContextMenu);
+
+&lt;/script&gt;
+</pre>
+
+<h3>Custom Context Menu</h3>
+<p>Webworks applications can give Dom elements custom context by using the data-webworks-context xml attribute. When a Dom element contains this attribute, custom context menus will be activated when the element is long pressed.
+Once you have created a custom context using the data-webworks-context attribute, you can then use addItem to add items to the custom context. You can also optionally use defineCustomContext to further define the items shown.
+
+
+                
+                    <div x-ww-support="bb10_menu|ripple">
+                    
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+function addMenuItemToCustomContext() {
+    var myItem = {actionId: '7', label: 'itemForCustom', icon:'local:///img/myIcon.png'},
+        contexts = ["myContext"];
+    blackberry.ui.contextmenu.addItem(contexts, myItem);
+}
+
+function addAdditionalItemsFromCustomContext) {
+    var options = {
+        includeContextItems: [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_IMAGE_LINK],
+        includePlatformItems: true,
+        includeMenuService: true
+    };
+    blackberry.ui.contextmenu.defineCustomContext("myContext", options);
+}
+
+function removeAdditionalItemsFromCustomContext) {
+    var options = {
+        includeContextItems: [],
+        includePlatformItems: false,
+        includeMenuService: false
+    };
+    blackberry.ui.contextmenu.defineCustomContext("myContext", options);
+}
+&lt;/script&gt;
+&lt;div data-webworks-context="myContext"&gt;I am a custom context!&lt;/div&gt;</pre></code></td></tbody></table>
+    
+  
+
+                    </div>
+                
+            </p>
+        
+
+
+        
+            
+            <br />
+        
+
+
+        
+
+
+        
+
+
+        
+            <div class="ref-sect ref-index">
+                <div class="ref-sect-title">
+                    <h2>Supported Platform(s)</h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table>
+                            <tbody>
+                            
+                                <tr><td>- BlackBerry 10</td></tr>
+                            
+                                <tr><td>- Ripple Emulator</td></tr>
+                            
+                            </tbody>
+                        </table>
+                    
+                    <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
+                    <div class="APISupportTable" id="APISupportTable">
+                        <table class="apiTable">
+                            <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                            
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.addItem">blackberry.ui.contextmenu.addItem</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.defineCustomContext">blackberry.ui.contextmenu.defineCustomContext</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.removeItem">blackberry.ui.contextmenu.removeItem</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.enabled">enabled</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.CONTEXT_ALL">CONTEXT_ALL</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.CONTEXT_LINK">CONTEXT_LINK</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.CONTEXT_IMAGE">CONTEXT_IMAGE</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.CONTEXT_IMAGE_LINK">CONTEXT_IMAGE_LINK</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.CONTEXT_INPUT">CONTEXT_INPUT</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.CONTEXT_TEXT">CONTEXT_TEXT</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_CANCEL">ACTION_CANCEL</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_CLEAR_FIELD">ACTION_CLEAR_FIELD</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_COPY">ACTION_COPY</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_COPY_IMAGE_LINK">ACTION_COPY_IMAGE_LINK</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_COPY_LINK">ACTION_COPY_LINK</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_CUT">ACTION_CUT</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.INSPECT_ELEMENT">INSPECT_ELEMENT</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_PASTE">ACTION_PASTE</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTIONE_SAVE_IMAGE">ACTIONE_SAVE_IMAGE</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_SAVE_LINK_AS">ACTION_SAVE_LINK_AS</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_SELECT">ACTION_SELECT</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_VIEW_IMAGE">ACTION_VIEW_IMAGE</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                                    </td>
+                                </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+
+
+        <div class="ref-sect ref-index">
+            <div class="ref-sect-title">
+                <h2>Configuration Document Settings</h2>
+            </div>
+            <div class="ref-sect-content">
+                <table><tbody>
+                    <tr><td>
+                        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
+                    </td></tr>
+                    
+                        <tr><td>
+                            <p>You must declare the feature element(s) below in your configuration document:</p>
+                        </td></tr></tbody></table>
+                    <table>
+                        <thead><tr><th>Feature ID</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                        
+                            
+                            
+                                
+                            
+                            <tr x-ww-support="bb10_menu|ripple"><td>
+                                &lt;feature id="blackberry.ui.contextmenu" /&gt;
+                                <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiYes">Y</td>
+                            </td></tr>
+                        
+                    </table>
+                
+
+                <div x-ww-support="pb_menu|bb10_menu">
+                    
+                    <table>
+                        <tr>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
+                        </tr>
+                        
+                            <tr><td>
+                                This API does not require a &lt;permission&gt; element to be declared in the configuration document of your BlackBerry WebWorks Application.
+                            </td></tr>
+                            <br />
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        
+        
+
+
+<div>
+    
+        
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu|ripple">
+                <div class="ref-sect-title">
+                    <h2> Functions </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.addItem">blackberry.ui.contextmenu.addItem</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.defineCustomContext">blackberry.ui.contextmenu.defineCustomContext</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.removeItem">blackberry.ui.contextmenu.removeItem</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="">
+                <div class="ref-sect-title">
+                    <h2> Properties </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="">
+                                    <td class="first_column">
+                                        
+                                            boolean
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.enabled">enabled</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb10_menu|ripple">
+                <div class="ref-sect-title">
+                    <h2> Constants </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.CONTEXT_ALL">CONTEXT_ALL</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.CONTEXT_LINK">CONTEXT_LINK</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.CONTEXT_IMAGE">CONTEXT_IMAGE</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.CONTEXT_IMAGE_LINK">CONTEXT_IMAGE_LINK</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.CONTEXT_INPUT">CONTEXT_INPUT</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.CONTEXT_TEXT">CONTEXT_TEXT</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_CANCEL">ACTION_CANCEL</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_CLEAR_FIELD">ACTION_CLEAR_FIELD</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_COPY">ACTION_COPY</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_COPY_IMAGE_LINK">ACTION_COPY_IMAGE_LINK</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_COPY_LINK">ACTION_COPY_LINK</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_CUT">ACTION_CUT</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.INSPECT_ELEMENT">INSPECT_ELEMENT</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_PASTE">ACTION_PASTE</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTIONE_SAVE_IMAGE">ACTIONE_SAVE_IMAGE</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_SAVE_LINK_AS">ACTION_SAVE_LINK_AS</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_SELECT">ACTION_SELECT</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu|ripple">
+                                    <td class="first_column">
+                                        
+                                            String
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.ui.contextmenu.html#.ACTION_VIEW_IMAGE">ACTION_VIEW_IMAGE</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+
+    
+</div>
+
+
+
+        
+        
+
+    
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Functions</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".addItem"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.ui.contextmenu.addItem
+                                            
+                                                
+                                                    (contexts : String[], action : Object, callback: function(sourceId : String))
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Allows the developer to add custom items to the context menu. The items will be appended to the end of the list
+of operating system defined functions. Developers must provide the following parameters to successfully add items to the context
+menu.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>contexts</b></td>
+                                            <td>
+                                                
+                                                An array of constants defining which contexts this new item should appear.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>action</b></td>
+                                            <td>
+                                                
+                                                An object which defines the menu item to be added.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>actionId:</b> A property that uniquely defines the action to be added to the context menu.
+                                                    
+                                                        <br />
+                                                        <b>label:</b> A string that will be displayed to the user describing the custom context to be performed. ie: Edit
+                                                    
+                                                        <br />
+                                                        <b>icon:</b> A path to the an image to display in the context menu
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>callback</b></td>
+                                            <td>
+                                                
+                                                A function which runs when the menu item action is executed                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>sourceId:</b> The returned sourceId from the element which defined the custom context and the context was invoked on.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+function addMyItem() {
+    var myItem = {actionId: 'MyItem', label: 'My Item', icon:'http://mysite.com/icon.png'},
+        contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
+    blackberry.ui.contextmenu.addItem(contexts, myItem, function() { console.log('hi') });
+}
+
+//Perform an action on custom context, with a custom item
+function deleteItem(sourceId) {
+    var element = document.getElementById(sourceId);
+        element.parentNode.removeChild(element);
+}
+
+function greyOutItem(sourceId) {
+    var element = document.getElementById(sourceId);
+        element.className = "greyed-out";
+}
+
+var options = {
+        includeContextItems: [blackberry.ui.contextmenu.CONTEXT_ALL],
+        includePlatformItems: true,
+        includeMenuServiceItems: true
+     },
+     item,
+     contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
+
+// Define the custom context with the options that we want used
+blackberry.ui.contextmenu.defineCustomContext("PrincessContext", options);
+
+// Create a menu item and add it to the context
+item = {actionId: '1', label: 'Delete Item', icon:'local:///images/icon.png'};
+blackberry.ui.contextmenu.addItem(contexts, item, deleteItem);
+
+// And another
+item = {actionId: '2', label: 'Grey Out', icon:'local:///images/icon.png'};
+blackberry.ui.contextmenu.addItem(contexts, item, greyOutItem);
+
+ //Override the system Copy action by actionId using the ACTION_COPY constant
+ function overridePlatformWithIcon() {
+  var myItem = {actionId: blackberry.ui.contextmenu.ACTION_COPY, label: 'Custom Copy!',
+      icon:'local:///icon.png'},
+      contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
+
+  blackberry.ui.contextmenu.addItem(contexts, myItem, function() {
+      alert("Wow you succesfully overrode the platform menu item Copy");
+  });
+}
+ //Override the system Copy action by actionId using the ACTION_SAVE_IMAGE constant
+ // this example does not provide a icon, and uses the system default
+ function overridePlatformNoIcon() {
+  var myItem = {actionId: blackberry.ui.contextmenu.ACTION_SAVE_IMAGE, label: 'Save Image'},
+      contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
+
+  blackberry.ui.contextmenu.addItem(contexts, myItem, function() {
+      alert("Custom Save using system icon");
+  });
+}
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".defineCustomContext"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.ui.contextmenu.defineCustomContext
+                                            
+                                                
+                                                    (context : String, options : Object)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Allows the developer to define a custom context.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>context</b></td>
+                                            <td>
+                                                
+                                                A String representing the custom context.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                An Object that contains the various options to set for the custom context.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>includeContextItems:</b> An Array that defines a list of contexts to which custom items will be used from when applicable.
+                                                    
+                                                        <br />
+                                                        <b>includePlatformItems:</b> An boolean indicating whether to include the default platform items.
+                                                    
+                                                        <br />
+                                                        <b>includeMenuServiceItems:</b> An boolean indicating whether to add menu items provided by the menu service.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+function defineCustomContext() {
+    var options = {
+        includeContextItems: [blackberry.ui.contextmenu.CONTEXT_IMAGE],//Includes custom items added for CONTEXT_IMAGE
+        includePlatformItems: true,
+        includeMenuServiceItems: true
+    };
+
+    blackberry.ui.contextmenu.defineCustomContext("myContext", options)
+}
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".removeItem"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.ui.contextmenu.removeItem
+                                            
+                                                
+                                                    (contexts : String[], actionId : String)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Allows the developer to remove previously added custom items from the context menu.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>contexts</b></td>
+                                            <td>
+                                                
+                                                An array of constants defining which contexts this new item should appear.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>actionId</b></td>
+                                            <td>
+                                                
+                                                An id that uniquely defines the action to be removed from the context menu.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+function addMyItem() {
+    var myItem = {actionId: 'MyItem', label: 'My Item', icon:'http://mysite.com/icon.png'},
+        contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
+    blackberry.ui.contextmenu.addItem(contexts, myItem);
+}
+
+function removeMyItem() {
+    var myItem = {actionId: 'MyItem', label: 'My Item', icon:'http://mysite.com/icon.png'},
+        contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
+    blackberry.ui.contextmenu.removeItem(contexts, myItem.actionId);
+}
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Properties</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="">
+                        <h3>
+                            <a name=".enabled"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        boolean
+                                        
+                                        
+                                            enabled
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Context Menu enabled allows the developer to enabled and disable crosscut context menus for their application.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>enabled</b></td>
+                                            <td>
+                                                
+                                                property that sets the contextmenu to enabled or disabled                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+function disabledContextMenu() {
+    blackberry.ui.contextmenu.enabled = false;
+}
+
+if(!blackberry.ui.contextmenu.enabled){
+    console.log("context menu is currently disabled");
+}
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Constants</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".CONTEXT_ALL"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            CONTEXT_ALL
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting all contexts.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".CONTEXT_LINK"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            CONTEXT_LINK
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the context of links.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".CONTEXT_IMAGE"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            CONTEXT_IMAGE
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the context of images.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".CONTEXT_IMAGE_LINK"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            CONTEXT_IMAGE_LINK
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the context of image links.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".CONTEXT_INPUT"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            CONTEXT_INPUT
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the context of input fields.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".CONTEXT_TEXT"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            CONTEXT_TEXT
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the context of text.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".ACTION_CANCEL"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            ACTION_CANCEL
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the actionId of cancel</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".ACTION_CLEAR_FIELD"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            ACTION_CLEAR_FIELD
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the actionId of clear field.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".ACTION_COPY"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            ACTION_COPY
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the actionId of copy.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".ACTION_COPY_IMAGE_LINK"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            ACTION_COPY_IMAGE_LINK
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the actionId of copy image link.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".ACTION_COPY_LINK"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            ACTION_COPY_LINK
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the actionId of copy link.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".ACTION_CUT"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            ACTION_CUT
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the actionId of cut.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".INSPECT_ELEMENT"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            INSPECT_ELEMENT
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the actionId of inspect element</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".ACTION_PASTE"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            ACTION_PASTE
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the actionId of paste.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".ACTIONE_SAVE_IMAGE"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            ACTIONE_SAVE_IMAGE
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the actionId of save image.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".ACTION_SAVE_LINK_AS"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            ACTION_SAVE_LINK_AS
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the actionId of save link as.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".ACTION_SELECT"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            ACTION_SELECT
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the actionId of select.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu|ripple">
+                        <h3>
+                            <a name=".ACTION_VIEW_IMAGE"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        String
+                                        
+                                        
+                                            ACTION_VIEW_IMAGE
+                                            
+                                                
+                                                    
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Constant denoting the actionId of view image.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- Ripple Emulator
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+
+
+
+
+        <div >
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 10 2013 16:02:09 GMT-0500 (EST)
+        </div>
+
+    </div>
+</section>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+
+
+<script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/pageend.min.js"></script>
+<script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/jquery.carouFredSel-4.4.1-packed.js"></script>
+<script type="text/javascript" src="https://client.akamai.com/dlm/dlm.js"></js>
+<script> 
+    global.init('/html5/', 'apis', 'index', '', '/html5/webroot/');
+</script>
+<script>
+	var menu, menu_id_str, selected, siblings;
+	menu = null;
+	menu_id_str = $('.side-nav-content').attr('id');
+	if (menu_id_str !== 'none') {
+		menu = menu_id_str;
+	}
+	$(document).ready(function () {
+		stage.initiate();
+		sticky.initiate();
+		sizer.initiate(); /* Initiates resizing of menu on pages where it is relevant */
+
+		selected = $('.no_children.item_active').first();
+		selected.siblings().addClass('active_sibling');
+		$("#main a").each(function () {
+			$(this).bind('click', function () {
+				sticky.scrollEvent();
+			});
+		});
+		
+	});
+	$(window).load(function () {
+		var container, scrollTo;
+		renderMenu(window.location.pathname, menu);
+		reset_size_and_scroll();
+		$(function () {
+			container = $('#side-nav-children');
+			scrollTo = $('.active', container);
+			if (scrollTo.length > 0) {
+				container.scrollTop(scrollTo.offset().top - container.offset().top + container.scrollTop() - 80);
+			}
+		});
+	});
+
+	$(window).resize(function (e) {
+		if (e) { e.stopPropagation(); }
+		reset_size_and_scroll();
+	});
+	$(window).scroll(function (e) {
+		if (e) { e.stopPropagation(); }
+		reset_size_and_scroll();
+	});
+</script>
+<script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/pageload.min.js"></script>
+<script type="text/javascript" src="nav.js"></script>
+
+
+
+</body>
+</html>
+
