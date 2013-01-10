@@ -282,6 +282,7 @@ blackberry.payment = {
     * at this time.
     * <p>
     * A user can cancel a subscription, and it will remain active until the subscription period has passed.
+    * @param {String} The sku or id of the digital good.
     * @callback {function} callbackOnSuccess Function to be called on success.
     * @callback {Boolean} callbackOnSuccess.data.subscriptionExists Whether the subscription digital good is currently active.
     * @callback {function} callbackOnFailure Function to be called when an error occurs.
@@ -306,7 +307,7 @@ blackberry.payment = {
     *  }
     * &lt;/script&gt;
     */
-    checkExisting : function(sku, callbackOnSuccess, callbackOnFailure) {
+    checkExisting : function(sku/id, callbackOnSuccess, callbackOnFailure) {
     },
     /**
     * @function
@@ -476,6 +477,7 @@ PaymentError = { };
  * @type Number
  * @description The reference number associated with the specific error in corresponding to the following values.
  * <ul>
+ * <li> Unexpected Application Error = -1</li>
  * <li> User Cancelled = 1</li>
  * <li> Payment System Busy = 2</li>
  * <li> General Payment System Error  = 3</li>
