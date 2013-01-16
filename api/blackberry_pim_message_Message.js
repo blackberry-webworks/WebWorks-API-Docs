@@ -39,7 +39,7 @@ blackberry.pim.message.Message.prototype.id = "";
 blackberry.pim.message.Message.prototype.addresses = "";
 
 /**
- * @description The addresses used in the email.
+ * @description The attachments used in the email.
  * @type blackberry.pim.message.MessageAttachments[]
  * @BB10X
  */
