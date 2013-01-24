@@ -1,0 +1,2271 @@
+
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>
+        Other Users - BlackBerry WebWorks
+    </title>
+
+    <script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/pagehead.min.js"></script>
+    <link href="https://bdsc.webapps.blackberry.com/html5/webroot/css/main.min.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="site_container clearfix guide-container">
+    
+
+<section  class="page_container references">
+	<div class="row">
+        <nav class="column grid_4 side-navigation" id="side-nav-api" role="navigation">
+            <div id="sticky-anchor"> </div>
+            <div class="side-nav-wrapper" id="sticky">
+                <div class="side-nav-content clearfix" id="none">
+                    <div class="side-nav-section clearfix" id="side-nav-title">
+                        <h3>API Reference</h3>
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-parents"> 
+                    </div>
+                    <div class="side-nav-section clearfix" id="side-nav-filter"> 
+                    </div>
+                    <div class="side-nav-section loading clearfix" id="side-nav-children"> 
+                    </div>
+                </div>
+            </div>
+            <div class="side-navspacer-bottom"> </div>
+        </nav>
+
+        <div class="column grid_8">
+                <div class="row">
+                    <article id="main" class="column grid_8" role="main">
+                        
+
+<section>
+
+    <script type="text/javascript">
+        (function() {
+            function getDesiredElements(element, attributeName) {
+                var results = new Array();
+                if (element.hasAttribute(attributeName))
+                    results.push(element);
+
+                //Check child nodes
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    var child = element.childNodes[i];
+                    if (child.nodeType == 1) {
+                        results = results.concat(getDesiredElements(child, attributeName));
+                    }
+                }
+                return results;
+            }
+
+            function runFilter() {
+                var ACCEPTABLE_FILTERS = ["bb_menu", "pb_menu", "bb10_menu"],
+                    filter = localStorage.getItem('selectedmenu'),
+                    elements,
+                    target,
+                    x_ww_support,
+                    i;
+
+                if (ACCEPTABLE_FILTERS.indexOf(filter) !== -1) {
+                    elements = getDesiredElements(document.body, 'x-ww-support');
+                    for (i = 0; i < elements.length; i++) {
+                        target = elements[i];
+                        x_ww_support = target.getAttribute('x-ww-support').split('|');
+                        if (x_ww_support.indexOf(filter) < 0) {
+                            target.style.display = 'none';
+                        }
+                    }
+                }
+            }
+
+            if(window.attachEvent) {
+                window.attachEvent('onload', runFilter);
+            } else {
+                if(window.onload) {
+                    var curronload = window.onload,
+                        newonload = function() {
+                        curronload();
+                        runFilter();
+                    };
+                    window.onload = newonload;
+                } else {
+                    window.onload = runFilter;
+                }
+            }
+        })();
+    </script>
+
+    <script type="text/javascript">
+
+        function viewSupportedTable() {
+            var table = document.getElementById('APISupportTable');
+            if (table != null && table.style.display != 'inline') {
+                table.style.display = 'inline';
+            }
+            else {
+                table.style.display = 'none';
+            }
+        }
+
+    </script>
+    
+    <style type="text/css">
+
+        .apiYes {
+            background-color: #D1F8FB;
+        }
+        
+        .tdNoWrap {
+            white-space:nowrap;
+        }
+        
+        .APISupportTable {
+            display:none;
+        }
+    </style>
+
+    <div>
+
+
+        <h1>
+            
+                Other Users
+            
+        </h1>
+
+
+        
+            <p>
+                Provides access to and interaction with other users. For the current user, see
+<a href="blackberry.bbm.platform.self.html">blackberry.bbm.platform.self</a>.
+
+<h3>Picking Users</h3>
+<p>The application can display a Contact Picker to the user with <a href="blackberry.bbm.platform.users.html#.pickUsers">blackberry.bbm.platform.users.pickUsers</a>.
+This is generally part of a larger use case. For example, <code>pickUsers()</code> might be used
+so that the current user can select players to remove from a connection.
+
+<p><b>The Contact Picker will be displayed for all methods in this namespace.</b> The Contact Picker can be
+avoided in <a href="blackberry.bbm.platform.users.html#.sendFile">blackberry.bbm.platform.users.sendFile</a> and <a href="blackberry.bbm.platform.users.html#.startBBMChat">blackberry.bbm.platform.users.startBBMChat</a>
+by providing a <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a> in the method call.
+
+<h3>File transfer, invite to download, start a BBM chat, and share content</h3>
+<p>The current user can send files, invite others to download the
+application, start a chat in BBM, and share content using the following methods:
+<ul>
+<li><a href="blackberry.bbm.platform.users.html#.sendFile">blackberry.bbm.platform.users.sendFile</a>
+<li><a href="blackberry.bbm.platform.users.html#.inviteToDownload">blackberry.bbm.platform.users.inviteToDownload</a>
+<li><a href="blackberry.bbm.platform.users.html#.startBBMChat">blackberry.bbm.platform.users.startBBMChat</a>
+<li><a href="blackberry.bbm.platform.users.html#.shareContent">blackberry.bbm.platform.users.shareContent</a>
+</ul>
+</p>
+
+<h3>Inviting users to BBM contact list</h3>
+<p>Inviting users to the current user's contact list is supported. You can invite anonymous
+users by PIN using <a href="blackberry.bbm.platform.users.html#.inviteToBBM">blackberry.bbm.platform.users.inviteToBBM</a>. Alternatively you can invite
+users from open connection(s) using <a href="blackberry.bbm.platform.users.html#.inviteToBBMFromConnections">blackberry.bbm.platform.users.inviteToBBMFromConnections</a>.
+
+<h3>BBM social graph</h3>
+<p>Applications can obtain access to the user's social graph.
+<a href="blackberry.bbm.platform.users.html#.contactsWithApp">contactsWithApp</a> is a complete list of the current user's BBM
+contacts who have the application installed.
+
+<p>Applications can listen for changes in the social graph by assigning a callback to
+<a href="blackberry.bbm.platform.users.html#.event:onupdate">blackberry.bbm.platform.users.onupdate</a>. Events are fired for both the current user
+and their contacts who have the application installed. You can listen for user profile property
+changes, such as display name and display picture, and also when a user installs/uninstalls your
+application.
+
+
+                
+                    <div x-ww-support="bb_menu|bb10_menu">
+                    
+                
+  
+
+                    </div>
+                
+            </p>
+        
+
+
+        
+            
+            <br />
+        
+
+
+        
+
+
+        
+
+
+        
+            <div class="ref-sect ref-index">
+                <div class="ref-sect-title">
+                    <h2>Supported Platform(s)</h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table>
+                            <tbody>
+                            
+                                <tr><td>- BlackBerry OS 5.0+</td></tr>
+                            
+                                <tr><td>- BlackBerry 10</td></tr>
+                            
+                            </tbody>
+                        </table>
+                    
+                    <a href="javascript:viewSupportedTable()">View Supported Platform Table</a>
+                    <div class="APISupportTable" id="APISupportTable">
+                        <table class="apiTable">
+                            <thead><tr><th>API</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                            
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.inviteToBBM">blackberry.bbm.platform.users.inviteToBBM</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.inviteToBBMFromConnections">blackberry.bbm.platform.users.inviteToBBMFromConnections</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.inviteToDownload">blackberry.bbm.platform.users.inviteToDownload</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.inviteToDownload^2">blackberry.bbm.platform.users.inviteToDownload</a>
+                                        <td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.pickUsers">blackberry.bbm.platform.users.pickUsers</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.sendFile">blackberry.bbm.platform.users.sendFile</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.shareContent">blackberry.bbm.platform.users.shareContent</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.startBBMChat">blackberry.bbm.platform.users.startBBMChat</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.contactsWithApp">contactsWithApp</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.event:onsharecontent">blackberry.bbm.platform.users.onsharecontent</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.event:onupdate">blackberry.bbm.platform.users.onupdate</a>
+                                        <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td><td class="apiNo">&nbsp;</td>
+                                    </td>
+                                </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+
+
+        <div class="ref-sect ref-index">
+            <div class="ref-sect-title">
+                <h2>Configuration Document Settings</h2>
+            </div>
+            <div class="ref-sect-content">
+                <table><tbody>
+                    <tr><td>
+                        <p>To use <u>all</u> of the API described for this object, you must ensure the following settings are in your configuration document:</p>
+                    </td></tr>
+                    
+                        <tr><td>
+                            <p>You must declare the feature element(s) below in your configuration document:</p>
+                        </td></tr></tbody></table>
+                    <table>
+                        <thead><tr><th>Feature ID</th><th>BB5.0</th><th>BB6.0</th><th>BB7.0</th><th>PB1.0</th><th>PB2.0</th><th>BB10</th><th>Ripple</th></tr></thead>
+                        
+                            
+                            
+                                
+                            
+                            <tr x-ww-support="bb_menu|bb10_menu"><td>
+                                &lt;feature id="blackberry.bbm.platform" /&gt;
+                                <td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiYes">Y</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiNo">&nbsp;</td>
+<td class="apiYes">Y</td><td class="apiNo">&nbsp;</td>
+                            </td></tr>
+                        
+                    </table>
+                
+
+                <div x-ww-support="pb_menu|bb10_menu">
+                    
+                        
+                    
+                    <table>
+                        <tr>
+                            <th>Permission Elements (PlayBook and BlackBerry 10+)</th>
+                        </tr>
+                        
+                            
+                                <tr><td><i>
+                                    You must declare the permission element(s) below in your configuration document:
+                                </i></td></tr>
+                                
+                                    <tr><td>
+                                        - &lt;rim:permit&gt;bbm_connect&lt;/rim:permit&gt;
+                                        <br />
+                                        BBM APIs require this permission to be set
+                                        <br />
+                                    </td></tr>
+                                
+                            
+
+                            
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        
+        
+
+
+<div>
+    
+        
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu|bb10_menu">
+                <div class="ref-sect-title">
+                    <h2> Functions </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.inviteToBBM">blackberry.bbm.platform.users.inviteToBBM</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.inviteToBBMFromConnections">blackberry.bbm.platform.users.inviteToBBMFromConnections</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.inviteToDownload">blackberry.bbm.platform.users.inviteToDownload</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb10_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.inviteToDownload^2">blackberry.bbm.platform.users.inviteToDownload</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.pickUsers">blackberry.bbm.platform.users.pickUsers</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.sendFile">blackberry.bbm.platform.users.sendFile</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.shareContent">blackberry.bbm.platform.users.shareContent</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.startBBMChat">blackberry.bbm.platform.users.startBBMChat</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
+                <div class="ref-sect-title">
+                    <h2> Events </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.event:onsharecontent">blackberry.bbm.platform.users.onsharecontent</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            void
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.event:onupdate">blackberry.bbm.platform.users.onupdate</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+            <br />
+            <div class="ref-sect ref-index" x-ww-support="bb_menu">
+                <div class="ref-sect-title">
+                    <h2> Properties </h2>
+                </div>
+                <div class="ref-sect-content">
+                    
+                        <table><tbody>
+                            
+                                <tr x-ww-support="bb_menu">
+                                    <td class="first_column">
+                                        
+                                            <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>[]
+                                        
+                                    </td>
+                                    <td>
+                                        <a href="blackberry.bbm.platform.users.html#.contactsWithApp">contactsWithApp</a>
+                                        
+                                    </td>
+                                </tr>
+                            
+                        </tbody></table>
+                    
+                    
+                </div>
+            </div>
+        
+    
+        
+        
+    
+        
+        
+    
+
+    
+</div>
+
+
+
+        
+        
+
+    
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Functions</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".inviteToBBM"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.users.inviteToBBM
+                                            
+                                                
+                                                    (onComplete : Function, invitations : Object[])
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Allows the user to invite users to their BBM contact list. A dialog appears, allowing the
+user to select users to invite. Users already in the current user's contact list are not
+shown in the dialog.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onComplete</b></td>
+                                            <td>
+                                                
+                                                Invoked when the user has finished selecting contacts to invite.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>invitations</b></td>
+                                            <td>
+                                                
+                                                The pin-name pairs of the users to invite to the BBM Social Platform.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                           Throws
+                                    </th></tr></thead>
+                                    
+                                        <tr>
+                                            <td>
+                                                IllegalArgumentException                                                
+                                            </td>
+                                            <td>
+                                                If <code>PIN</code> is invalid for any invitation.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                IllegalArgumentException                                                
+                                            </td>
+                                            <td>
+                                                If <code>name</code> is null or empty for any invitation.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                IllegalArgumentException                                                
+                                            </td>
+                                            <td>
+                                                If <code>invitations.length > 24</code>.
+                                            </td>
+                                        </tr>
+                                    
+                                </table>
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+// Invite to BBM by PIN
+var onComplete = function() {
+    // Continue...
+}
+var users = blackberry.bbm.platform.users;
+var invitations = [
+        { pin:"2100000A", name:"John Doe" },
+        { pin:"2100000B", name:"Jane Doe" }
+];
+blackberry.bbm.platform.users.inviteToBBM(onComplete, invitations);
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".inviteToBBMFromConnections"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.users.inviteToBBMFromConnections
+                                            
+                                                
+                                                    (onComplete : Function, <i>[connection : <a href="blackberry.bbm.platform.io.Connection.html">blackberry.bbm.platform.io.Connection</a>]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Allows the user to invite users to their BBM contact list. A dialog appears, allowing the
+user to select users to invite. Users already in the current user's contact list are not 
+shown in the dialog.
+<p>Users from <code>connection</code> (who are not in the user's contact list) will be shown
+in the dialog.
+<p>If <code>connection</code> is not provided, users from all connections that the application
+has open (who are not in the user's contact list) are shown in the dialog.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onComplete</b></td>
+                                            <td>
+                                                
+                                                Invoked when the user has finished selecting contacts to invite.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>connection</b></td>
+                                            <td>
+                                                
+                                                The connection to invite users from.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+// Invite to BBM from a specific connection
+blackberry.bbm.platform.users.inviteToBBMFromConnections(function () {
+    // Continue...
+}, connection);
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+// Invite to BBM from all open connections in the application
+blackberry.bbm.platform.users.inviteToBBMFromConnections(function () {
+    // Continue...
+});
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".inviteToDownload"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.users.inviteToDownload
+                                            
+                                                
+                                                    (onComplete: function(result : String))
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Allows the user to invite contacts to download the application. A Contact Picker
+dialog appears, allowing the user to select contacts to invite.
+<p><b>Only contacts who do not have the application installed can be invited to download it.</b></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onComplete</b></td>
+                                            <td>
+                                                
+                                                Invoked when the user is finished inviting contacts to download the application.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>result:</b> <code>"limitreached"</code> if the download invitation limit has been reached;<code>undefined</code> otherwise. A 
+maximum of 10 download invitations per minute is allowed.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>blackberry.bbm.platform.users.inviteToDownload(function(result) {
+    if(result == "limitreached") {
+        // Download invitation limit reached
+    } else {
+        // User is finished inviting
+    }
+});</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb10_menu">
+                        <h3>
+                            <a name=".inviteToDownload^2"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.users.inviteToDownload
+                                            
+                                                
+                                                    ()
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Allows the user to invite contacts to download the application. An invitation
+card appears, allowing the user to select contacts to invite.
+<p><b>Only contacts who do not have the application installed can be invited to download.</b></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry 10
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>blackberry.bbm.platform.users.inviteToDownload();</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".pickUsers"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.users.pickUsers
+                                            
+                                                
+                                                    (options : Object, onComplete: function(users : <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>[]))
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Shows Contact Picker dialog which allows the user to select users.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                Object containing Contact Picker options.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>title:</b> Title of the Contact Picker dialog.
+                                                    
+                                                        <br />
+                                                        <b>type:</b> Type of users to include in the dialog. May be "contactswithapp".
+                                                    
+                                                        <br />
+                                                        <b>users:</b> Users shown in the
+dialog.
+                                                    
+                                                        <br />
+                                                        <b>multiSelect:</b> <code>true</code> to allow the user to select
+multiple users; <code>false</code> to allow only 1.
+                                                    
+                                                        <br />
+                                                        <b>showSelectAll:</b> <code>true</code> to show the Select All option;
+<code>false</code> otherwise. Ignored if <code>options.multiSelect == false</code>.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onComplete</b></td>
+                                            <td>
+                                                
+                                                Function called when user is finished.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>users:</b> The picked
+users. <code>users.length == 0</code> if no users were selected.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+blackberry.bbm.platform.users.pickUsers( {
+    title : "Who would you like to chat with?",
+    type : "contactswithapp"
+}, function(users) {
+    if (users.length == 0) {
+        // No users picked
+    } else {
+        // One or more users picked
+    }
+});
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".sendFile"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.users.sendFile
+                                            
+                                                
+                                                    (fileURI : String, comment : String, onFailure: function(reason : String), <i>[contact : <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Sends a file to a contact. The user will be prompted to edit the comment and
+choose to send or cancel the file transfer.
+<p>If <code>contact</code> is not provided, the Contact Picker dialog appears,
+allowing the user to pick someone in their contact list to send the file to. Otherwise,
+the Contact Picker dialog is not shown.</p>
+<p><b>Files can be sent to any contact.</b>
+<p>If the contact cannot receive the specific file type, the file will not be sent.</p>
+<p>The application is notified of any errors that occur through the <code>onFailure(reason)</code>
+callback. The reasons are:</p>
+<ul>
+<li><code>"filenotfound"</code>: The file transfer failed because the file does not exist.
+<li><code>"filetoolarge"</code>: The file transfer failed because the file size exceeds the limit permitted by the BBM Social Platform.
+<li><code>"fileempty"</code>: The file transfer failed because the file is empty.
+<li><code>"fileforwardlocked"</code>: The file transfer failed because the file is forward-locked.
+<li><code>"filebadtype"</code>: The file transfer failed because the recipient is not permitted to receive files of the file type.
+<li><code>"usercanceled"</code>: The file transfer failed because the current user canceled the file transfer.
+<li><code>"noncontact"</code>: The file transfer failed because the recipient is not one of the user's BBM contacts.
+</ul></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>fileURI</b></td>
+                                            <td>
+                                                
+                                                The fully qualified path of the file to send.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>comment</b></td>
+                                            <td>
+                                                
+                                                The default comment on the file. The user may edit this comment before sending.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onFailure</b></td>
+                                            <td>
+                                                
+                                                Invoked if the file transfer fails.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>reason:</b> The reason why the transfer failed.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>contact</b></td>
+                                            <td>
+                                                
+                                                The recipient of the file. The recipient
+must be in the current user's contact list.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+var onFailure = function(reason) {
+    var message = getFileFailureString(reason);
+    if(message) {
+        alert(message);
+    }
+};    
+blackberry.bbm.platform.users.sendFile("file:///SDCard/smiley.jpg", "Check out this file.", onFailure);
+
+function getFileFailureString(reason) {
+    if(reason == "filenotfound") {
+        return "The file does not exist.";
+    } else if(reason == "filetoolarge") {
+        return "The file is too large.";
+    } else if(reason == "fileforwardlocked") {
+        return "The file is DRM protected.";
+    } else if(reason == "filebadtype") {
+        return "The user is unable to receive files of this type.";
+    } else if(reason == "fileempty") {
+        return "The file is empty and cannot be sent.";
+    } else if(reason == "usercanceled") {
+        return "You canceled the file transfer.";
+    } else if(reason == "noncontact") {
+        return "You may only send files to your BBM contacts.";
+    }
+};
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".shareContent"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.users.shareContent
+                                            
+                                                
+                                                    (content : String, description : String, onComplete : Function, <i>[options : Object]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Shares content with a one or more contacts. A Contact Picker dialog appears, allowing
+the user to select contacts to send the content to.
+
+<p>The content does not appear in BBM; the recipient's application receives the content. The
+application does not need to be running in order to receive shared content. Once
+the application is launched and registered with the BBM Social Platform, the callback
+<a href="blackberry.bbm.platform.users.html#.event:onsharecontent">blackberry.bbm.platform.users.onsharecontent</a> is invoked for the
+application to handle the content.
+
+<h3>Users who do not have BBM 6.1.0 or the application installed</h3>
+<p>Recipients do not need to have BBM 6.1.0 (or later) or the application installed:
+<ul>
+<li>Recipients who do not have BBM 6.1.0 will be prompted to download the latest version of BBM.
+<li>Recipients who do not have the application installed will receive an invitation to download
+the application from App World.
+</ul>
+After a recipient has both BBM 6.1.0 and the application installed, and the application registers
+with the BBM Social Platform, the content is sent to the application.
+
+<h3>Adding the new notification symbol to your app's icon when shared content is received</h3>
+<p>To notify users about new content, you can enable your app's icon to show the new notification 
+symbol when shared content is received. To enable the notification symbol, add the property 
+<code>shareContentSplat: true</code> to the options object passed into <a href="blackberry.bbm.platform.html#.register">blackberry.bbm.platform.register</a>.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>content</b></td>
+                                            <td>
+                                                
+                                                The content to be shared.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>description</b></td>
+                                            <td>
+                                                
+                                                A short description of the content.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onComplete</b></td>
+                                            <td>
+                                                
+                                                Invoked when the user has finished selecting content recipients.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>options</b></td>
+                                            <td>
+                                                
+                                                Object containing options for sharing content.                         
+                                                
+                                                    <br />
+                                                    
+                                                        <br />
+                                                        <b>title:</b> Title of the Contact Picker dialog. If not provided, the default title is used.
+                                                    
+                                                        <br />
+                                                        <b>users:</b> Users shown in the
+dialog. If not provided, all contacts are shown in the dialog.
+                                                    
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                           Throws
+                                    </th></tr></thead>
+                                    
+                                        <tr>
+                                            <td>
+                                                Exception                                                
+                                            </td>
+                                            <td>
+                                                if <code>description</code> is <code>null</code> or greater than 128 characters.
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                                Exception                                                
+                                            </td>
+                                            <td>
+                                                if <code>content</code> is greater than 61440 characters.
+                                            </td>
+                                        </tr>
+                                    
+                                </table>
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+// Share content
+blackberry.bbm.platform.users.shareContent("A spoon full of sugar", "Mary's Recipe", function() {
+				// User finished sharing...
+}, { title: "Choose Recipe Recipients" });
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+// Enable adding the notification symbol to the app's icon when shared content is received
+blackberry.bbm.platform.register({
+    uuid: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", // Randomly generated UUID
+    
+    shareContentSplat: true
+});
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".startBBMChat"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.users.startBBMChat
+                                            
+                                                
+                                                    (onComplete : Function, message : String, <i>[users : <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>[]]</i>)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Starts a chat within BBM, bringing the chat screen to the foreground and entering
+a message in the reply field.
+<p>If <code>users</code> is provided, the chat screen is opened immediately; otherwise a Contact
+Picker dialog is displayed instead.
+<p><b>Chats can be started with any contact.</b></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>onComplete</b></td>
+                                            <td>
+                                                
+                                                Invoked when the chat has been started or canceled.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>message</b></td>
+                                            <td>
+                                                
+                                                The initial message in the reply field of the chat screen.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>users</b></td>
+                                            <td>
+                                                
+                                                The users to chat with.
+Must not contain <a href="blackberry.bbm.platform.self.html">blackberry.bbm.platform.self</a>.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+// Start chat with Contact Picker dialog
+blackberry.bbm.platform.users.startBBMChat(function() {
+    // Continue with application...
+}, "Did you see the game?");
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Events</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".event:onsharecontent"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.users.onsharecontent
+                                            
+                                                
+                                                    (sender : <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>, content : String, description : String, timestamp : Date)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invoked when the recipient receives shared content. If the application is not
+running when content is received, this will be invoked after the application starts and
+is registers with the BBM Social Platform.
+<p>This callback must be assigned <b>before</b> the call to <a href="blackberry.bbm.platform.html#.register">blackberry.bbm.platform.register</a>.
+<p>See <a href="blackberry.bbm.platform.users.html#.shareContent">blackberry.bbm.platform.users.shareContent</a></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>sender</b></td>
+                                            <td>
+                                                
+                                                The user who shared the content.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>content</b></td>
+                                            <td>
+                                                
+                                                The content data.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>description</b></td>
+                                            <td>
+                                                
+                                                The content description.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>timestamp</b></td>
+                                            <td>
+                                                
+                                                Time stamp when the content was received.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".event:onupdate"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        
+                                        
+                                            void
+                                        
+                                        
+                                            blackberry.bbm.platform.users.onupdate
+                                            
+                                                
+                                                    (user : <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>, event : String)
+                                                
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Invoked when a user's information is updated. Assign a function to receive user updates.
+<p>User updates can be captured such as profile information and application installation changes.
+Updates can be received from the current user, contacts who have the application, and non-contacts
+who have joined in an application connection with the current user.</p>
+<ul>
+<li><code>"displayname"</code>: Display name update.
+<li><code>"displaypicture"</code>: Display picture update.
+<li><code>"personalmessage"</code>: Personal message update.
+<li><code>"status"</code>: Status and/or status message update.
+<li><code>"install"</code>: User installed or unblocked an application.
+<li><code>"uninstall"</code>: User uninstalled or blocked an application.
+<li><code>"invited"</code>: The current user received an invitation to join the application in BBM. <i>This only applies to the current user.</i>
+</ul></p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                            
+                                <br />
+                                <table>
+                                    <thead><tr><th colspan="2">
+                                        Parameters
+                                    </th></tr></thead>
+                                                   
+                                    
+                                        
+                                        <tr>
+                                            <td><b>user</b></td>
+                                            <td>
+                                                
+                                                The user whose information was updated.                         
+                                                
+                                            </td>
+                                        </tr>
+                                    
+                                        
+                                        <tr>
+                                            <td><b>event</b></td>
+                                            <td>
+                                                
+                                                The type of update.                         
+                                                
+                                            </td>
+                                        </tr>
+                                                  
+                                </table>
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+
+    <br />
+    <b>Code Example:</b>
+    
+        <table><tbody><td class="code"><code><pre>&lt;script type="text/javascript"&gt;
+
+blackberry.bbm.platform.users.onupdate = function(user, event) {
+    // Handle events for the current user
+    if(user.handle == blackberry.platform.self.handle) {
+        if (event == "displaypicture") {
+            var displayPicImg = document.getElementById("myPicture"); // Must have img element with id="myPicture"
+            displayPicImg.src = user.displayPicture;
+        }
+        // Handle other events for the current user...
+    }
+    // Handle events for other users...
+};
+
+&lt;/script&gt;</pre></code></td></tbody></table>
+    
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+        <div class="ref-sect">
+            <div class="ref-sect-title clearfix">
+                <h2>Properties</h2>
+            </div>
+            <div class="ref-sect-content">
+                
+                    <div class="detailed_item function" x-ww-support="bb_menu">
+                        <h3>
+                            <a name=".contactsWithApp"></a>
+                 
+                            
+                            
+                                
+                                    
+                                        static              
+                                        readonly
+                                        <a href="blackberry.bbm.platform.users.BBMPlatformUser.html">blackberry.bbm.platform.users.BBMPlatformUser</a>[]
+                                        
+                                        
+                                            contactsWithApp
+                                            
+                                                                  
+                                    
+                                
+                            
+                            <br />
+                        </h3>
+                        <div class="detailed description">
+                            
+                            
+                                
+                                <br />
+                            
+                    
+                            
+                                       
+                            
+                            
+                            <p>Contacts who have the application installed.</p>
+                            <br />
+                            
+                            
+                            
+                                <table>              
+                                    <thead><tr><th colspan="2">
+                                        Supported Platforms
+                                    </th></tr></thead>
+                                    
+                                        <tr><td></td><td>
+                                            &nbsp;- BlackBerry OS 5.0+
+                                        </td></tr>
+                                    
+                                </table>              
+                                               
+                            <br />
+                            
+                            
+                                               
+
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                
+  
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    
+    
+
+    
+    
+
+
+
+
+
+        <div >
+            
+            Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 24 2013 01:26:49 GMT-0500 (EST)
+        </div>
+
+    </div>
+</section>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+
+
+<script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/pageend.min.js"></script>
+<script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/jquery.carouFredSel-4.4.1-packed.js"></script>
+<script type="text/javascript" src="https://client.akamai.com/dlm/dlm.js"></js>
+<script> 
+    global.init('/html5/', 'apis', 'index', '', '/html5/webroot/');
+</script>
+<script>
+	var menu, menu_id_str, selected, siblings;
+	menu = null;
+	menu_id_str = $('.side-nav-content').attr('id');
+	if (menu_id_str !== 'none') {
+		menu = menu_id_str;
+	}
+	$(document).ready(function () {
+		stage.initiate();
+		sticky.initiate();
+		sizer.initiate(); /* Initiates resizing of menu on pages where it is relevant */
+
+		selected = $('.no_children.item_active').first();
+		selected.siblings().addClass('active_sibling');
+		$("#main a").each(function () {
+			$(this).bind('click', function () {
+				sticky.scrollEvent();
+			});
+		});
+		
+	});
+	$(window).load(function () {
+		var container, scrollTo;
+		renderMenu(window.location.pathname, menu);
+		reset_size_and_scroll();
+		$(function () {
+			container = $('#side-nav-children');
+			scrollTo = $('.active', container);
+			if (scrollTo.length > 0) {
+				container.scrollTop(scrollTo.offset().top - container.offset().top + container.scrollTop() - 80);
+			}
+		});
+	});
+
+	$(window).resize(function (e) {
+		if (e) { e.stopPropagation(); }
+		reset_size_and_scroll();
+	});
+	$(window).scroll(function (e) {
+		if (e) { e.stopPropagation(); }
+		reset_size_and_scroll();
+	});
+</script>
+<script type="text/javascript" src="https://bdsc.webapps.blackberry.com/html5/webroot/js/pageload.min.js"></script>
+<script type="text/javascript" src="nav.js"></script>
+
+
+
+</body>
+</html>
+
