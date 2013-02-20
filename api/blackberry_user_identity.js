@@ -129,11 +129,6 @@
 * asynchronously process that request, and call the success/failure callback provided.
 *
 * @featureID blackberry.user.identity
-* @permission access_bbid_pii Permits your app to access user identity information including
-* tokens, core user properties, and the ability to store secondary user properties.
-* @permission _sys_access_identity_services_second_party Permits your app to access user
-* identity information including core user properties and the ability to store secondary
-* user properties.
 * @permission _sys_access_identity_services_third_party Permits your app to access user
 * identity information including the ability to store secondary user properties.
 */
