@@ -75,7 +75,9 @@
 * <p>The APIs provided in this SDK enable apps to do the following:
 * - retrieve the account information of the user who is signed in with their
 * BlackBerry ID on the BB10 device. The API <b>getProperties()</b> can be
-* used to retrieve the user's first name, last name, username, and screenname.
+* used to retrieve the user's first name, last name, username, and screenname.  The
+* <b>createProperty</b>, <b>setProperty</b>, and <b>deleteProperty</b> are used to
+* store and manage data that an application would like to store about a user.
 *
 * <p>- retrieve tokens that prove the user's identity for off-device services
 * <i>(known as 'relying parties', because they are <b>relying</b> on BlackBerry ID
@@ -127,8 +129,15 @@
 * asynchronously process that request, and call the success/failure callback provided.
 *
 * @featureID blackberry.user.identity
-* @permission access_bbid_pii Permits your app to access user identity information.
+* @permission access_bbid_pii Permits your app to access user identity information including
+* tokens, core user properties, and the ability to store secondary user properties.
+* @permission _sys_access_identity_services_second_party Permits your app to access user
+* identity information including core user properties and the ability to store secondary
+* user properties.
+* @permission _sys_access_identity_services_third_party Permits your app to access user
+* identity information including the ability to store secondary user properties.
 */
+
 blackberry.user.identity = {
 
 /**
@@ -319,6 +328,9 @@ clearToken : function(idsProvider, tokenType, appliesTo, successCallback, failur
  * Issue a request for a property.
  *
  * @param {String} provider The identity provider to send this request to.
+ * @param type The type of properties contained in the @c propertyList
+ * parameter. Each provider may have a unique set of types that it is able to
+ * handle.  See the documentation for the provider for details on valid values.
  * @param {String} propertyList A comma separated string listing each of the properties
  * requested
  * @callback {Function} successCallback Function which is invoked upon successful operation of this
@@ -367,9 +379,160 @@ clearToken : function(idsProvider, tokenType, appliesTo, successCallback, failur
 	}
 
 	blackberry.user.identity.registerProvider("ids:rim:bbid");
-	blackberry.user.identity.getProperties("ids:rim:bbid", "urn:bbid:firstname,urn:bbid:lastname", getPropertiesSuccess, getPropertiesFailure);
+	blackberry.user.identity.getProperties("ids:rim:bbid", 0, "urn:bbid:firstname,urn:bbid:lastname", getPropertiesSuccess, getPropertiesFailure);
  * &lt;&sol;script&gt;
 */
-getProperties : function(idsProvider, userProperties, successCallback, failureCallback) { };
+getProperties : function(idsProvider, 0, userProperties, successCallback, failureCallback) { };
 
+/**
+ * Issue a request to set a property
+ *
+ * @param {String} provider The identity provider to send this request to.
+ * @param {int} type The type of property contained in  @c property
+ * parameter. Each provider may have a unique set of types that it is able to
+ * handle.  See the documentation for the provider for details on valid values.
+ * @param {String} propertyName The property identifier
+ * @param {String} propertyValue The content of the property
+ * @callback {Function} successCallback Function which is invoked upon successful operation of this
+ * method.
+ * @callback {Function} failureCallback Function which is invoked when this method fails. This
+ * callback contains an errorCode parameter to specify the failure condition.
+ * @callback {JSON} failureCallback.result A JSON object containing details of the failure in the form below:
+	*<pre>{
+	* "result":"50004",
+	* "errorDescription":"The user could not be authenticated."
+	* }</pre>
+ * <p><b>Error Handling:</b><br>
+ * Requests that do not complete successfully will result in the failure
+ * callback being called with one of the following result codes:
+ * <p>- 49999: An internal error has occurred attempting to process
+ * the request.
+ * <p>- 50010: There are not enough resources available to
+ * process the request.
+ * <p>- 50003: The account is currently locked, token
+ * access is unavailable while locked.
+ * <p>- 50004: The user could not be authenticated.
+ * <p>- 50107: The value of the propertyName must not be empty
+ * <p>- 50002: The length of a property name in the list exceeds
+ * the maximum name length (32).
+ * <p>- 50017: The application does not have access to the
+ * requested property.
+ * @returns {void}
+ * @BB10X
+ * @example
+ * &lt;script type=&quot;text&sol;javascript&quot;&gt;
+	function setPropertySuccess() {
+		alert("Set property was successful");
+	}
+
+	function setPropertyFailure(result) {
+		alert("Failed to set user property: " + result.result + " details: " + result.failureInfo);
+	}
+
+	blackberry.user.identity.registerProvider("ids:rim:bbid");
+	blackberry.user.identity.setProperty("ids:rim:bbid", 1, "urn:myapp:usershandle", "johndoe123", setPropertySuccess, setPropertyFailure);
+ * &lt;&sol;script&gt;
+*/
+setProperty : function(idsProvider, 0, propertyName, propertyValue, successCallback, failureCallback) { };
+
+/**
+ * Issue a request to create a property
+ *
+ * @param {String} provider The identity provider to send this request to.
+ * @param {int} type The type of property contained in  @c property
+ * parameter. Each provider may have a unique set of types that it is able to
+ * handle.  See the documentation for the provider for details on valid values.
+ * @param {String} propertyName The property identifier
+ * @param {String} propertyValue The content of the property
+ * @callback {Function} successCallback Function which is invoked upon successful operation of this
+ * method.
+ * @callback {Function} failureCallback Function which is invoked when this method fails. This
+ * callback contains an errorCode parameter to specify the failure condition.
+ * @callback {JSON} failureCallback.result A JSON object containing details of the failure in the form below:
+	*<pre>{
+	* "result":"50004",
+	* "errorDescription":"The user could not be authenticated."
+	* }</pre>
+ * <p><b>Error Handling:</b><br>
+ * Requests that do not complete successfully will result in the failure
+ * callback being called with one of the following result codes:
+ * <p>- 49999: An internal error has occurred attempting to process
+ * the request.
+ * <p>- 50010: There are not enough resources available to
+ * process the request.
+ * <p>- 50003: The account is currently locked, token
+ * access is unavailable while locked.
+ * <p>- 50004: The user could not be authenticated.
+ * <p>- 50107: The value of the propertyName must not be empty
+ * <p>- 50002: The length of a property name in the list exceeds
+ * the maximum name length (32).
+ * <p>- 50017: The application does not have access to the
+ * requested property.
+ * @returns {void}
+ * @BB10X
+ * @example
+ * &lt;script type=&quot;text&sol;javascript&quot;&gt;
+	function createPropertySuccess() {
+		alert("Create property was successful");
+	}
+
+	function createPropertyFailure(result) {
+		alert("Failed to create user property: " + result.result + " details: " + result.failureInfo);
+	}
+
+	blackberry.user.identity.registerProvider("ids:rim:bbid");
+	blackberry.user.identity.createProperty("ids:rim:bbid", 1, "urn:myapp:usershandle", "johndoe123", createPropertySuccess, createPropertyFailure);
+ * &lt;&sol;script&gt;
+*/
+createProperty : function(idsProvider, 0, propertyName, propertyValue, successCallback, failureCallback) { };
+
+/**
+ * Issue a request to delete a property
+ *
+ * @param {String} provider The identity provider to send this request to.
+ * @param {int} type The type of property contained in  @c property
+ * parameter. Each provider may have a unique set of types that it is able to
+ * handle.  See the documentation for the provider for details on valid values.
+ * @param {String} propertyName The property identifier
+ * @callback {Function} successCallback Function which is invoked upon successful operation of this
+ * method.
+ * @callback {Function} failureCallback Function which is invoked when this method fails. This
+ * callback contains an errorCode parameter to specify the failure condition.
+ * @callback {JSON} failureCallback.result A JSON object containing details of the failure in the form below:
+	*<pre>{
+	* "result":"50004",
+	* "errorDescription":"The user could not be authenticated."
+	* }</pre>
+ * <p><b>Error Handling:</b><br>
+ * Requests that do not complete successfully will result in the failure
+ * callback being called with one of the following result codes:
+ * <p>- 49999: An internal error has occurred attempting to process
+ * the request.
+ * <p>- 50010: There are not enough resources available to
+ * process the request.
+ * <p>- 50003: The account is currently locked, token
+ * access is unavailable while locked.
+ * <p>- 50004: The user could not be authenticated.
+ * <p>- 50107: The value of the propertyName must not be empty
+ * <p>- 50002: The length of a property name in the list exceeds
+ * the maximum name length (32).
+ * <p>- 50017: The application does not have access to the
+ * requested property.
+ * @returns {void}
+ * @BB10X
+ * @example
+ * &lt;script type=&quot;text&sol;javascript&quot;&gt;
+	function deletePropertySuccess() {
+		alert("Delete property was successful");
+	}
+
+	function deletePropertyFailure(result) {
+		alert("Failed to delete user property: " + result.result + " details: " + result.failureInfo);
+	}
+
+	blackberry.user.identity.registerProvider("ids:rim:bbid");
+	blackberry.user.identity.deleteProperty("ids:rim:bbid", 1, "urn:myapp:usershandle", deletePropertySuccess, deletePropertyFailure);
+ * &lt;&sol;script&gt;
+*/
+deleteProperty : function(idsProvider, 0, propertyName, successCallback, failureCallback) { };
 };
