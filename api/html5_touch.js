@@ -345,7 +345,7 @@ ctrlKey,altKey,shiftKey,metaKey,touches,targetTouches,changedTouches) {
 * var img = document.createElement('img');
 * img.ontouchstart=function(e) { 
 * 
-* for(var i = 0; I < e. touches.length; i++)
+* for(var i = 0; i < e.touches.length; i++)
 * {
 *    var touch = touches[i];
 *
@@ -356,7 +356,7 @@ ctrlKey,altKey,shiftKey,metaKey,touches,targetTouches,changedTouches) {
 * }
 * @example
 * preventMove = function(e) {
-*    evt.preventDefault();
+*    e.preventDefault();
 *    window.scroll(0, 0);
 *    return false;
 * };
