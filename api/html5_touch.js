@@ -354,6 +354,7 @@ ctrlKey,altKey,shiftKey,metaKey,touches,targetTouches,changedTouches) {
 * 
 *    // do something
 * }
+*};	
 * @example
 * preventMove = function(e) {
 *    e.preventDefault();
