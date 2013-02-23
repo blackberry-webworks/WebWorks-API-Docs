@@ -52,7 +52,7 @@
  *     var srcElement = contextEvent.srcElement;
  *     blackberry.invoke.interrupter = function (request) {
  *         // Check if this is an image we wish to translate
- *         if (srcElement && srcElement.src {
+ *         if (srcElement && srcElement.src) {
  *             request.uri = translateIcontoFullImage(srcElement.src);
  *         }
  *
@@ -78,7 +78,7 @@
  *     blackberry.ui.contextmenu.addItem(contexts, myItem);
  * }
  *
- * function addAdditionalItemsFromCustomContext) {
+ * function addAdditionalItemsFromCustomContext() {
  *     var options = {
  *         includeContextItems: [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_IMAGE_LINK],
  *         includePlatformItems: true,
@@ -87,7 +87,7 @@
  *     blackberry.ui.contextmenu.defineCustomContext("myContext", options);
  * }
  *
- * function removeAdditionalItemsFromCustomContext) {
+ * function removeAdditionalItemsFromCustomContext() {
  *     var options = {
  *         includeContextItems: [],
  *         includePlatformItems: false,
@@ -382,7 +382,7 @@ defineCustomContext: function (){},
  * @BB10X
  * @RIPPLE
  */
- ACTIONE_SAVE_IMAGE: "SaveImage",
+ ACTION_SAVE_IMAGE: "SaveImage",
 
  /**
  * Constant denoting the actionId of save link as.
