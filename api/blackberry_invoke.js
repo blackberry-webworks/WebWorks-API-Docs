@@ -180,7 +180,7 @@ blackberry.invoke = {
          *     // view picture
          *     blackberry.invoke.invoke({
          *         uri: &lt;path to jpg file&gt;,
-         *         action: bb.action.VIEW
+         *         action: "bb.action.VIEW"
          *     }, onInvokeSuccess, onInvokeError);
          * }
          *
