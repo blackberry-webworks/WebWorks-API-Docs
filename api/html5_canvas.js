@@ -23,6 +23,8 @@
  * Any text inside the between <strong>&#60canvas&#62</strong> tags will be displayed in browsers that do not support the canvas element.
  * @BB60+
  * @PB10+
+ * @RIPPLE
+ * @BB10X
  */
 
  canvas ={
@@ -40,6 +42,7 @@
 		 * @BB60+
 		 * @PB10+
 		 * @RIPPLE
+		 * @BB10X
 		 * @example
 		 * &#60canvas id="myCanvas" width="200" height="100"&#62&#60/canvas&#62
 		 */
@@ -58,6 +61,7 @@
 		 * @BB60+
 		 * @PB10+
 		 * @RIPPLE
+		 * @BB10X
 		 */
 		width :,
 		
@@ -71,6 +75,7 @@
 		 * @BB60+
 		 * @PB10+
 		 * @RIPPLE
+		 * @BB10X
 		 * @example
 		 * &#60script type="text/javascript"&#62
 		 *   var c=document.getElementById("myCanvas");
@@ -93,6 +98,7 @@
 		 * @BB60+
 		 * @PB10+
 		 * @RIPPLE
+		 * @BB10X
 		 * @example
 		 * &#60script&#62
 		 *   var img1=new Image();
