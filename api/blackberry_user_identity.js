@@ -352,12 +352,23 @@ clearToken : function(idsProvider, tokenType, appliesTo, successCallback, failur
  * <p>- 50003: The account is currently locked, token
  * access is unavailable while locked.
  * <p>- 50004: The user could not be authenticated.
- * <p>- 50011: The service is currently offline and
- * and cannot retreive the requested token.
+ * <p>- 50107: The value of @c count must be greater than 1 and
+ * match the number of properties in the @c propertyList.
+ * <p>- 50005: Too many properties were requested. See @c
+ * IDS_MAX_PROPERTY_COUNT.
  * <p>- 50002: The length of a property name in the list exceeds
- * the maximum name length (32).
+ * the maximum name length @c IDS_MAX_PROPERTY_NAME_LEN.
  * <p>- 50017: The application does not have access to
  * one of the requested properties.
+ * <p>- 50007: Property does not exist.
+ * <p>- 50100: Invalid property name.
+ * <p>- 50015: Null or invalid parameter.
+ * <p>- 50160: Property does not exist.
+ * <p>- 50158: Server error.
+ * <p>- 50107: Property value is too large.
+ * <p>- 50153: Get failed.
+ 
+
  * @returns {void}
  * @BB10X
  * @example
@@ -407,11 +418,15 @@ getProperties : function(idsProvider, 0, userProperties, successCallback, failur
  * <p>- 50003: The account is currently locked, token
  * access is unavailable while locked.
  * <p>- 50004: The user could not be authenticated.
- * <p>- 50107: The value of the propertyName must not be empty
- * <p>- 50002: The length of a property name in the list exceeds
- * the maximum name length (32).
- * <p>- 50017: The application does not have access to the
- * requested property.
+ * <p>- 50017: The application does not have access to set
+ * the requested property.
+ * <p>- 50100: Invalid property name.
+ * <p>- 50015: Null or invalid parameter.
+ * <p>- 50160: Property does not exist.
+ * <p>- 50158: Server error.
+ * <p>- 50162: Set failed.
+ * <p>- 50154: Set failed.
+ * <p>- 50159: Property exists but cannot be overwritten.
  * @returns {void}
  * @BB10X
  * @example
@@ -457,12 +472,14 @@ setProperty : function(idsProvider, 0, propertyName, propertyValue, successCallb
  * process the request.
  * <p>- 50003: The account is currently locked, token
  * access is unavailable while locked.
- * <p>- 50004: The user could not be authenticated.
- * <p>- 50107: The value of the propertyName must not be empty
- * <p>- 50002: The length of a property name in the list exceeds
- * the maximum name length (32).
- * <p>- 50017: The application does not have access to the
- * requested property.
+ * <p>- 50004: The user could not be
+ * authenticated.
+ * <p>- 50017: The application does not have access to set
+ * the requested property.
+ * <p>- 50015: Null or invalid parameter.
+ * <p>- 50158: Server error.
+ * <p>- 50152: Create failed.
+ * <p>- 50159: Property already exists.
  * @returns {void}
  * @BB10X
  * @example
@@ -508,11 +525,13 @@ createProperty : function(idsProvider, 0, propertyName, propertyValue, successCa
  * <p>- 50003: The account is currently locked, token
  * access is unavailable while locked.
  * <p>- 50004: The user could not be authenticated.
- * <p>- 50107: The value of the propertyName must not be empty
- * <p>- 50002: The length of a property name in the list exceeds
- * the maximum name length (32).
- * <p>- 50017: The application does not have access to the
- * requested property.
+ * <p>- 50017: The application does not have access to set
+ * the requested property.
+ * <p>- 50015: Null or invalid parameter.
+ * <p>- 50158: Server error.
+ * <p>- 50155: Delete failed.
+ * <p>- 50160: Property does not exist.
+ * <p>- 50100: Invalid property name.
  * @returns {void}
  * @BB10X
  * @example
@@ -530,4 +549,57 @@ createProperty : function(idsProvider, 0, propertyName, propertyValue, successCa
  * &lt;&sol;script&gt;
 */
 deleteProperty : function(idsProvider, 0, propertyName, successCallback, failureCallback) { };
+
+/**
+ * Issue a request to delete a property locally only (device only)
+ *
+ * @param {String} provider The identity provider to send this request to.
+ * @param {int} type The type of property contained in  @c property
+ * parameter. Each provider may have a unique set of types that it is able to
+ * handle.  See the documentation for the provider for details on valid values.
+ * @param {String} propertyName The property identifier
+ * @callback {Function} successCallback Function which is invoked upon successful operation of this
+ * method.
+ * @callback {Function} failureCallback Function which is invoked when this method fails. This
+ * callback contains an errorCode parameter to specify the failure condition.
+ * @callback {JSON} failureCallback.result A JSON object containing details of the failure in the form below:
+	*<pre>{
+	* "result":"50004",
+	* "errorDescription":"The user could not be authenticated."
+	* }</pre>
+ * <p><b>Error Handling:</b><br>
+ * Requests that do not complete successfully will result in the failure
+ * callback being called with one of the following result codes:
+ * <p>- 49999: An internal error has occurred attempting to process
+ * the request.
+ * <p>- 50010: There are not enough resources available to
+ * process the request.
+ * <p>- 50003: The account is currently locked, token
+ * access is unavailable while locked.
+ * <p>- 50004: The user could not be authenticated.
+ * <p>- 50017: The application does not have access to set
+ * the requested property.
+ * <p>- 50015: Null or invalid parameter.
+ * <p>- 50158: Server error.
+ * <p>- 50155: Delete failed.
+ * <p>- 50160: Property does not exist.
+ * <p>- 50100: Invalid property name.
+ * @returns {void}
+ * @BB10X
+ * @example
+ * &lt;script type=&quot;text&sol;javascript&quot;&gt;
+	function deletePropertySuccess() {
+		alert("Delete property was successful");
+	}
+
+	function deletePropertyFailure(result) {
+		alert("Failed to delete user property: " + result.result + " details: " + result.failureInfo);
+	}
+
+	blackberry.user.identity.registerProvider("ids:rim:bbid");
+	blackberry.user.identity.deleteLocalProperty("ids:rim:bbid", 1, "urn:myapp:usershandle", deletePropertySuccess, deletePropertyFailure);
+ * &lt;&sol;script&gt;
+*/
+deleteLocalProperty : function(idsProvider, 0, propertyName, successCallback, failureCallback) { };
+
 };
