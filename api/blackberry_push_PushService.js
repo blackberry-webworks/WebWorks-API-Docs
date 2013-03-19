@@ -42,7 +42,7 @@ blackberry.push.PushService = {};
 * @param {Object} options Object literal that allows the user to specify various options.
 * @param {String} options.invokeTargetId Your application's unique invoke target ID, as set in your config.xml, related to when a new push notification 
 * is received and the application needs to be invoked.
-* @param {String} [options.appId] The provider application ID. If writing a consumer application, this corresponds to the application ID you received after registering 
+* @param {String} [options.appId] The provider application ID.  If writing a consumer application, this corresponds to the application ID you received after registering 
 * to use the public/BIS PPG push service.  If writing an enterprise application, you have the choice of not specifying <code>appId</code> 
 * (in which case a unique one will be generated for you under the covers) or specifying a unique value of your choosing (this second option is useful if you plan
 * to subscribe with the Push Initiator in your application).  
@@ -53,16 +53,21 @@ blackberry.push.PushService = {};
 * @callback {function} successCallback The callback that is invoked when the <code>create</code> operation is successful.
 * @callback {PushService} successCallback.pushService The <code>PushService</code> object that can be used on a successful <code>create</code> operation.
 * @callback {function} failCallback The callback that is invoked when the <code>create</code> operation has failed.
-* @callback {Number} failCallback.result The reason for the failure. See the constants provided to see what result codes apply for this operation.
+* @callback {Number} failCallback.result The reason for the failure.  See the constants provided to see what result codes apply for this operation.
 * @callback {function} simChangeCallback The callback that is invoked when a SIM card change has occurred.  This callback only applies on a successful create.  
 * When a SIM card change occurs, the channel will automatically be destroyed since this scenario may indicate the possibility of a new user using the device. 
-* Care should be taken by the application to handle this situation as well. For example, the application may wish to re-authenticate the user with the Push Initiator 
+* Care should be taken by the application to handle this situation as well.  For example, the application may wish to re-authenticate the user with the Push Initiator 
 * (if your Push Initiator implementation supports subscription) and then re-create the channel using <code>createChannel</code>. 
-* @callback {function} pushTransportReadyCallback The callback that is invoked after a create channel or destroy operation has failed with a result error code of
+* @callback {function} pushTransportReadyCallback The callback that is invoked after a create channel or destroy channel operation has failed with a result error code of
 * either <code>PUSH_TRANSPORT_UNAVAILABLE</code> or <code>PPG_SERVER_ERROR</code> and the network/push transport/PPG is now available again.
 * @callback {Number} pushTransportReadyCallback.lastFailedOperation The last operation that was performed that failed with a result error code of 
-* either <code>PUSH_TRANSPORT_UNAVAILABLE</code> or <code>PPG_SERVER_ERROR</code>. It should be one of <code>CREATE_CHANNEL_OPERATION</code> or 
+* either <code>PUSH_TRANSPORT_UNAVAILABLE</code> or <code>PPG_SERVER_ERROR</code>.  It should be one of <code>CREATE_CHANNEL_OPERATION</code> or 
 * <code>DESTROY_CHANNEL_OPERATION</code>.  Use this value to determine which operation should be tried again.
+* @callback {function} pushServiceConnectionReadyCallback The callback that is invoked after a create, create channel, destroy channel, or launch application on 
+* push operation has failed with a result error code of <code>PUSH_SERVICE_CONNECTION_CLOSED</code> and the underlying connection is now available again.
+* @callback {Number} pushServiceConnectionReadyCallback.lastFailedOperation The last operation that was performed that failed with a result error code of 
+* <code>PUSH_SERVICE_CONNECTION_CLOSED</code>.  It should be one of <code>CREATE_OPERATION</code>, <code>CREATE_CHANNEL_OPERATION</code>, 
+* <code>DESTROY_CHANNEL_OPERATION</code>, or <code>LAUNCH_APP_ON_PUSH_OPERATION</code>.  Use this value to determine which operation should be tried again.
 * @throws {String} An exception is thrown if <code>create</code> is called more than once with different values for <code>options.invokeTargetId</code> and/or 
 * <code>options.appId</code>.
 * @BB10X
@@ -76,7 +81,7 @@ blackberry.push.PushService = {};
 * // For an enterprise application (using the enterprise/BES PPG)
 * // var ops = { invokeTargetId : 'com.sample.pushtest.target' }; 
 * 
-* // Or, for an enterprise application with an application ID: 
+* // Or, for an enterprise application with an application ID 
 * // var ops = { invokeTargetId : 'com.sample.pushtest.target', 
 * //             appId : 'appId1' };
 * 
@@ -85,7 +90,8 @@ blackberry.push.PushService = {};
 *         successCallback, 
 *         failCallback, 
 *         simChangeCallback, 
-*         pushTransportReadyCallback);
+*         pushTransportReadyCallback,
+*         pushServiceConnectionReadyCallback);
 * } catch (err) {
 *     console.log("Create was called more than once with different " 
 *         + "values for options.invokeTargetId or options.appId.");
@@ -97,7 +103,8 @@ blackberry.push.PushService = {};
 *     // Save the pushService object to a global variable
 *     // Now, use the pushService object to now perform a 
 *     // launchApplicationOnPush, createChannel, destroyChannel, etc.
-*     pushService.createChannel(createChannelCallback);
+*     pushService.launchApplicationOnPush(true,
+*         launchApplicationCallback);
 * }
 *
 * function failCallback(result) {
@@ -138,13 +145,42 @@ blackberry.push.PushService = {};
 *        pushService.destroyChannel(destroyChannelCallback);
 *     }
 * }
+*
+* function pushServiceConnectionReadyCallback(lastFailedOperation) {
+*     // This callback will be called when a create, create channel,
+*     // destroy channel, or launch application on push was 
+*     // previously attempted and it failed with a 
+*     // PUSH_SERVICE_CONNECTION_CLOSED error code and now the 
+*     // underlying push service connection is available again. 
+*     // The operation indicated by lastFailedOperation should 
+*     // be retried again.
+*     if (lastFailedOperation === 
+*         blackberry.push.PushService.CREATE_OPERATION) {
+*         blackberry.push.PushService.create(ops, 
+*             successCallback, 
+*             failCallback, 
+*             simChangeCallback, 
+*             pushTransportReadyCallback,
+*             pushServiceConnectionReadyCallback);
+*     } else if (lastFailedOperation === 
+*         blackberry.push.PushService.CREATE_CHANNEL_OPERATION) {
+*         pushService.createChannel(createChannelCallback);
+*     } else if (lastFailedOperation === 
+*        blackberry.push.PushService.DESTROY_CHANNEL_OPERATION) {
+*        pushService.destroyChannel(destroyChannelCallback);
+*     } else if (lastFailedOperation === 
+*        blackberry.push.PushService.LAUNCH_APP_ON_PUSH_OPERATION) {
+*        pushService.launchApplicationOnPush(true, 
+*            launchApplicationCallback);
+*     }
+* }
 */
-blackberry.push.PushService.create = function(options, successCallback, failCallback, simChangeCallback, pushTransportReadyCallback) { };
+blackberry.push.PushService.create = function(options, successCallback, failCallback, simChangeCallback, pushTransportReadyCallback, pushServiceConnectionReadyCallback) { };
 
 /**
 * <p>
-* Creates a push channel for the given application. Once a channel is created, it will survive application restarts and therefore
-* does not necessarily need to be called on every application start up. 
+* Creates a push channel for the given application. <b>Once a channel is created, it will survive application restarts and therefore
+* does not necessarily need to be called on every application start up.</b> 
 * </p>
 * <p>
 * However, for a consumer application, since it is possible for the public/BIS PPG to destroy a channel under certain circumstances it 
@@ -350,6 +386,36 @@ blackberry.push.PushService.SUCCESS : 0;
 blackberry.push.PushService.INTERNAL_ERROR : 500;
 
 /**
+* This result error code should not typically be encountered.  It would only occur if the underlying connection to the push service has been lost (i.e. closed).
+* <br/><br/> 
+* Operations this error can occur on: create, createChannel, destroyChannel, launchApplicationOnPush
+* <br/><br/>
+* Recommended action: Wait until <code>pushServiceConnectionReadyCallback</code> (one of the arguments in the static <code>create</code> function) 
+* is called before retrying.
+* @type Number
+* @constant
+* @static
+* @BB10X
+* @default 501
+*/
+blackberry.push.PushService.PUSH_SERVICE_CONNECTION_CLOSED : 501;
+
+/**
+* Result error code when your application does not have the required permissions to connect to the underlying push service.
+* <br/><br/> 
+* Operations this error can occur on: create, createChannel, destroyChannel, launchApplicationOnPush
+* <br/><br/>
+* Recommended action: If writing a consumer (public) application, make sure you specify the <code>_sys_use_consumer_push</code> system permission in your config.xml.  
+* If writing an enterprise application, make sure your application is installed in the Work perimeter.
+* @type Number
+* @constant
+* @static
+* @BB10X
+* @default 502
+*/
+blackberry.push.PushService.PUSH_SERVICE_CONNECTION_PERMISSION_ERROR : 502;
+
+/**
 * Result error code for an invalid device PIN as determined by the PPG.
 * <br/><br/>
 * Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)
@@ -414,7 +480,7 @@ blackberry.push.PushService.CHANNEL_ALREADY_DESTROYED_BY_PROVIDER : 10005;
 * <br/><br/>
 * Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)
 * <br/><br/>
-* Recommended action: If this error occurs, it should be logged and reported to the RIM support team.
+* Recommended action: If this error occurs, it should be logged and reported to the BlackBerry support team.
 * @type Number
 * @constant
 * @static
@@ -458,7 +524,7 @@ blackberry.push.PushService.EXPIRED_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG : 10008
 * <br/><br/>
 * Operations this error can occur on: createChannel, destroyChannel (only if using public/BIS PPG)
 * <br/><br/>
-* Recommended action: If this error occurs, it should be logged and reported to the RIM support team.
+* Recommended action: If this error occurs, it should be logged and reported to the BlackBerry support team.
 * @type Number
 * @constant
 * @static
@@ -474,7 +540,7 @@ blackberry.push.PushService.INVALID_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG : 10009
 * Operations this error can occur on: createChannel (only if using public/BIS PPG)
 * <br/><br/>
 * Recommended action: No action can be taken by the application for this error, but it should somehow be communicated  
-* back to the content provider and then to RIM to try to increase the allowed subscription limit.  
+* back to the content provider and then to BlackBerry to try to increase the allowed subscription limit.  
 * @type Number
 * @constant
 * @static
@@ -673,10 +739,28 @@ blackberry.push.PushService.SESSION_ALREADY_EXISTS : 10112;
 blackberry.push.PushService.INVALID_PPG_URL : 10114;
 
 /**
+* Constant associated with the static create operation.
+* <br/><br/>
+* Compare this constant against <code>pushServiceConnectionReadyCallback.lastFailedOperation</code> to determine
+* which failed operation should be tried again.
+* @type Number
+* @constant
+* @static
+* @BB10X
+* @default 0
+*/
+blackberry.push.PushService.CREATE_OPERATION : 0;
+
+/**
 * Constant associated with the createChannel operation.
 * <br/><br/>
-* Compare this constant against <code>pushTransportReadyCallback.lastFailedOperation</code> to determine
-* which failed operation should be tried again.
+* If you received a <code>PUSH_TRANSPORT_UNAVAILABLE</code> or <code>PPG_SERVER_ERROR</code> error on your
+* operation, then compare this constant against <code>pushTransportReadyCallback.lastFailedOperation</code>
+* to determine which failed operation should be tried again.
+* <br/>
+* If you received a <code>PUSH_SERVICE_CONNECTION_CLOSED</code> error on your operation, then compare this
+* constant against <code>pushServiceConnectionReadyCallback.lastFailedOperation</code> to determine which 
+* failed operation should be tried again.
 * @type Number
 * @constant
 * @static
@@ -688,12 +772,30 @@ blackberry.push.PushService.CREATE_CHANNEL_OPERATION : 1;
 /**
 * Constant associated with the destroyChannel operation.
 * <br/><br/>
-* Compare this constant against <code>pushTransportReadyCallback.lastFailedOperation</code> to determine
-* which failed operation should be tried again.
+* If you received a <code>PUSH_TRANSPORT_UNAVAILABLE</code> or <code>PPG_SERVER_ERROR</code> error on your
+* operation, then compare this constant against <code>pushTransportReadyCallback.lastFailedOperation</code>
+* to determine which failed operation should be tried again.
+* <br/>
+* If you received a <code>PUSH_SERVICE_CONNECTION_CLOSED</code> error on your operation, then compare this
+* constant against <code>pushServiceConnectionReadyCallback.lastFailedOperation</code> to determine which 
+* failed operation should be tried again.
 * @type Number
 * @constant
 * @static
 * @BB10X
 * @default 2
 */
-blackberry.push.PushService.DESTROY_CHANNEL_OPERATION : 2; 
+blackberry.push.PushService.DESTROY_CHANNEL_OPERATION : 2;
+
+/**
+* Constant associated with the static create operation.
+* <br/><br/>
+* Compare this constant against <code>pushServiceConnectionReadyCallback.lastFailedOperation</code> to determine
+* which failed operation should be tried again.
+* @type Number
+* @constant
+* @static
+* @BB10X
+* @default 3
+*/
+blackberry.push.PushService.LAUNCH_APP_ON_PUSH_OPERATION : 3;
