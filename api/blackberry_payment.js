@@ -60,7 +60,7 @@ blackberry.payment = {
      *  }
      *
      *  function onFailure(err) {
-     *      alert("Error occurred: " + err.errorText + ", " + err.errorID);
+     *      alert("Error occurred: " + err.errorText + ", " + err.errorCode + ", " + err.errorInfo);
      *  }
      * &lt;/script&gt;
      */
@@ -156,7 +156,7 @@ blackberry.payment = {
      *   }
      *
      *   function onFailure(error) {
-     *       alert("Error occurred: " + error.errorText + ", " + error.errorID);
+     *       alert("Error occurred: " + error.errorText + ", " + error.errorCode + ", " + err.errorInfo);
      *   }
      * &lt;/script&gt;
      */
@@ -263,7 +263,7 @@ blackberry.payment = {
     *   }
     *
     *   function onFailure(err) {
-    *       alert("Error occurred: " + err.errorText + ", " + err.errorID);
+    *       alert("Error occurred: " + err.errorText + ", " + err.errorCode + ", " + err.errorInfo);
     *   }
     * &lt;/script&gt;
     */
@@ -295,7 +295,7 @@ blackberry.payment = {
     *  }
     *
     *  function onFailure(error) {
-    *      alert("Error occurred: " + error.errorText + ", " + error.errorID);
+    *      alert("Error occurred: " + error.errorText + ", " + error.errorCode + ", " + err.errorInfo);
     *  }
     * &lt;/script&gt;
     */
@@ -332,7 +332,7 @@ blackberry.payment = {
     *  }
     *
     *  function onFailure(error) {
-    *      alert("Error occurred: " + error.errorText + ", " + error.errorID);
+    *      alert("Error occurred: " + error.errorText + ", " + error.errorCode + ", " + err.errorInfo);
     *  }
     * &lt;/script&gt;
     */
@@ -366,7 +366,7 @@ blackberry.payment = {
     *  }
     *
     *  function onFailure(error) {
-    *      alert("Error occurred: " + error.errorText + ", " + error.errorID);
+    *      alert("Error occurred: " + error.errorText + ", " + error.errorCode + ", " + err.errorInfo);
     *  }
     * &lt;/script&gt;
     */
@@ -477,24 +477,43 @@ Purchase.prototype.extraParameters = null;
 PaymentError = { };
 
 /**
- * @type Number
- * @description The reference number associated with the specific error in corresponding to the following values.
- * <ul>
- * <li> Unexpected Application Error = -1</li>
- * <li> User Cancelled = 1</li>
- * <li> Payment System Busy = 2</li>
- * <li> General Payment System Error  = 3</li>
- * <li> Digital Good not Found = 4</li>
- * <li> Illegal Application Error = 5 [BlackBerry OS 5.0+ only]</li>
- * </ul>
+ * @deprecated See {@link blackberry.payment.PaymentError.errorCode} instead.
+ * 
  * @BB10X
  *
  */
 PaymentError.prototype.errorID = null;
 
 /**
+ * @type Number
+ * @description The error code indicating the nature of the failure. In some cases, the
+ * {@link PaymentError.errorInfo} will also be populated, providing more detailed information on the
+ * particular error that occurred.
+ * <table>
+ * <tr><td> Unexpected Application Error</td><td>-1</td><td>{@link PaymentError.errorInfo} will not be populated.</td></tr>
+ * <tr><td> User Cancelled</td><td>1</td><td>{@link PaymentError.errorInfo} will not be populated.</td></tr>
+ * <tr><td> Payment Service Busy</td><td>2</td><td>Payment Service is busy, only one transaction can occur at a time. {@link PaymentError.errorInfo} will not be populated.</td></tr>
+ * <tr><td> Payment Service Failed</td><td>3</td><td>See {@link PaymentError.errorInfo} for more detail.</td></tr>
+ * <tr><td> No Network Connectivity</td><td>8</td><td>User could be directed to Network Connections in Settings to potentially fix the problem. {@link PaymentError.errorInfo} will not be populated.</td></tr>
+ * </table>
+ * @BB10X
+ *
+ */
+PaymentError.prototype.errorCode = null;
+
+/*
+ * @type String
+ * @description Depending on the {@link PaymentError.errorCode} value, errorInfo may be populated, providing further detail
+ * on the error that occurred.
+ * @BB10X
+ *
+ */
+PaymentError.prototype.errorInfo = null;
+
+/**
  * @type String
  * @description The message for the particular error. In addition to descriptive text, error code may appear at the end of the message.
  * @BB10X
+ *
  */
 PaymentError.prototype.errorText = null;
