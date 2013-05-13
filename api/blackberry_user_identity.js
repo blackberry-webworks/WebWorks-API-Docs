@@ -1,5 +1,5 @@
 /*
-* Copyright 2010-2011 Research In Motion Limited.
+* Copyright 2013 Research In Motion Limited.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -17,120 +17,98 @@
 /**
 * @toc {User Identity} User Identity 
 * @BB10X
-* @namespace The User Identity object contains information regarding the user&apos;s identity and accounts on a BlackBerry smartphone.
+* @namespace Identity Service library SDK - The Identity Service library offers
+* a framework for data storage and retrieval, access to the user's personal
+* information stored in the Identity Provider's account system, and user
+* authentication/authorization to access the Identity Provider's apps and
+* services.
+
 *
-* <h3>Identity Service SDK Overview - interfaces for using Identity
-* Services from 3rd Party applications</h3><br />
+* <h3>Identity Service library</h3><br />
 *
-* <p><b>What functionality does this Identity Service SDK provide to apps?</b>
+* <p>Developers can make use of the Identity Service library APIs to enhance their app in several ways:
+* - Data storage and retrieval
+* - User authentication and authorization to access apps and off-device services offered by the Identity Provider (without prompting for credentials)
+* - Access to the user's personal information stored in the Identity Provider's account system
+* 
+* <p>These capabilities are described further in the sections below, and the specific implementation will vary for each Identity Provider. For example, the data storage and retrieval APIs might
+* provide off-device data storage, or on-device data storage - that could differ between one Identity Provider and another. Similarly, the personal information that can be retrieved with the 
+* getProperties() API call will differ based on what information each Identity Provider stores in their account system.
 *
-* <p>This SDK provides a series of functions that enable an application to choose an
-* identity provider(s) for their application, and to request authentication tokens
-* from that provider, as well as information about the user.
+* <p>As such, this document gives an overview of the Identity Service library APIs that are available, and this information must be used in conjunction with the Identity Provider's specific Identity
+* Service API overview to confirm the specifics of their implementation of each of these APIs.
 *
-* <p>At present, the only Identity Provider available is BlackBerry ID. As more
-* identity providers become available, this SDK will provide access to those
-* providers.
+* <p><b> DataStorage_section  Data storage and retrieval APIs</b>
+* 
+* <p>Applications can make use of APIs in the IDS library to store and retrieve data.
+* <p> APIs are provided for:
+* - initial storage of the data (createData())
+* - retrieving the data (getData())
+* - updating the data (setData())
+* - removing the data (deleteData())
+* - listing the stored data (istData())
+
+* <p><b>UserAuth_Section   User authentication without prompting for credentials</b>
+* 
+* <p> Developers can use the Identity Services user authentication APIs in this library to avoid the need to implement user name and password management for their app. With these APIs, once the user is signed in using their account with the Identity Provider on the device, the user is automatically signed in to the app as well.
+* - Users won't need to create or remember a username and password for the app.
+* - Users won't need to specifically log in to the app, thus improving the ease of use of the app.
+* 
 *
-*
-* <p><b>Why integrate with Identity Service?</b>
-*
-* <p>If your app needs to interact with an off-device service that requires user
-* authentication, you can integrate with Identity Service to provide seamless
-* access to the off-device service. The interaction from the app to the off-device
-* service is 'seamless' because the user is not prompted within the app for the
-* username and password required by the off-device service. Instead, BlackBerry ID
-* can pass back a 'token' that authenticates the user's identity, and that token
-* can be read and understood by the off-service device, thus allowing the user
-* access to that off-device content WITHOUT requiring user interaction for
-* authentication.
-*
-* <p><b>Fictitious Example</b>: Imagine an app called 'MyPics' that has a user's
-* photo content stored off-device, and the content is accessible from the web and
-* from BlackBerry devices. If 'MyPics' is integrated with BlackBerry ID
-* (i.e. we've created a token specifically for them), the app can request a token
-* from BlackBerry ID to confirm the user's identity. The app can send that token
-* to the off-device content service for 'MyPics', as a way of 'signing in' that
-* user to their MyPics account WITHOUT requiring the user to enter a username and
-* password within the 'MyPics' app. The result is a seamless user experience for
-* the app; the user will get their photos on the device without having to sign in
-* to the 'MyPics' service. Since they are already signed in to their device with
-* their BlackBerry ID, and since the app is integrated with BlackBerry ID to use
-* tokens, it all happens without any user annoyance of being prompted to 'sign in'
-* to MyPics.
-*
-* <p>Even if your app doesn't need to communicate with off-device services using
-* tokens, there are other useful APIs in this SDK that provide access the user's
-* account information (first name, last name, screen name, or username).
-*
-* <p>The next section provides a more detailed technical overview of the APIs that
-* provide this functionality.<br />
-*
-*
-* <p><b>Identity Service SDK functionality - API overview</b>
-*
-* <p>This Identity Service WebWorks SDK provides an interface for applications to make
-* use of BlackBerry ID functionality from within their app.
-*
-* <p>The APIs provided in this SDK enable apps to do the following:
-* - retrieve the account information of the user who is signed in with their
-* BlackBerry ID on the BB10 device. The API <b>getProperties()</b> can be
-* used to retrieve the user's first name, last name, username, and screenname.  The
-* <b>createProperty</b>, <b>setProperty</b>, and <b>deleteProperty</b> are used to
-* store and manage data that an application would like to store about a user.
-*
-* <p>- retrieve tokens that prove the user's identity for off-device services
-* <i>(known as 'relying parties', because they are <b>relying</b> on BlackBerry ID
-* to confirm the user's identity)</i>, so that the user can have seamless access
-* to that off-device service without being required to enter their username and
-* password. These tokens are used by the off-device service (relying party) to
-* confirm the identity of the user. <b>NOTE: The APIs <b>getToken()</b> and
-* <b>clearToken()</b> can only be used if the relying party has gone through
-* integration process with RIM to have tokens defined for that relying party.</b>
-*
-* <p>- for background services where it doesn't make sense to show any screens to the
-* user (i.e. background services that do not have any UI), suppress the ability
-* for the Identity Service to pop up an authentication/password confirmation
-* dialog box. The API <b>setOption()</b> is provided to ensure that the
-* Identity Service does not present a pop up screen for authentication/password
-* verification within background services where that wouldn't make sense.
-*
-* <p><b>Important</b>: There is never a need for an application to present a
-* "sign in" screen to the user. All the IDS APIs listed above will check to see if
-* their is a BlackBerry ID associated with the device, and if there isn't one,
-* they will pop an authentication (sign in) screen on the device (unless the
-* calling app runs in the background and has 'set_GUI_allowed = False' to
-* specifically prevent this from happening.)
-*
-* <p><b>About Callback functions</b>
-*
-* <p>Several IDS APIs have the following 2 parameters:
-* -    Success callback function
-* -    Failure callback function
-*
-* <p>The Identity Service responds asynchronously to API calls made by an
-* application. Upon detection of a response, the IDS library will parse the
-* response (which will either be success or failure), and invoke the corresponding
-* callback function that the app has provided for the success or failure case.
-*
-* <p>So the callback functions are a mechanism for IDS library to pass the parsed
-* response from the daemon back to the calling application. The callback functions
-* cannot be NULL; the app must specify what to do in both the success and failure
-* scenarios.
-*
-* <p><b>Integrating an application with IDS APIs</b>
+* <p><b>OffDeviceAuth_Section   User authorization to access apps and off-device services offered by the Identity Provider</b>
+* 
+* <p>If your app interacts with an off-device service that requires user authentication (for example, a web site that requires the user to sign in with a username and password),
+* you can use the Identity Service APIs to perform the off-device authentication/authorization using tokens, instead of prompting the user for credentials. Your app and the off-device service interact seamlessly.
+* 
+* 
+* <p><b>PII_Section   Access to the user's personal information associated with their account</b>
+* 
+* <p>The user's personal information that is available to the app will depend on what information is available from the Identity Provider's account system.
+* 
+* <p>For example, if the app uses BlackBerry ID as the Identity Provider, the app can access the following personal information (provided that the user gives the app their consent):
+* - first name
+* - last name
+* - screen name
+* - username
+* 
+* <p>For other Identity Providers, the personal information available will depend on what that provider stores in their identity account system.
+* 
+* <p><b>ids_callback_sec About Callback functions</b>
+* 
+* <p>Many of the IDS APIs have the following three parameters:
+* - Success callback function
+* - Failure callback function
+* 
+* <p>When your app sends API calls using the IDS APIs, the Identity Provider
+* service responds asynchronously. When an app receives a response, the 
+* corresponding callback function that your application had provided for the
+* success or failure case is executed.
+* 
+* <p>The Identity Provider service uses callback functions to pass the parsed response
+* back to your app. Callback functions cannot be NULL. Your app must specify what
+* to do in both the success and failure scenarios.
+* 
+* 
+* <p><b>bbid_modes_sec Registering your app to use the IDS APIs</b>
+* 
+* <p>To register your app so that it can use the IDS APIs, call
+* registerProvider() from your app for at least one identity provider.
+* 
+* <p>After your app sends a request, the Identity Provider service will process the
+* request asynchronously, and call the corresponding success/failure callback function.
+* 
+* <p>For example, your app can call getProperties() and pass a success
+* callback of myAppSuccessCallback and a failure callback of
+* myAppFailureCallback. When a response is ready from the identity provider, the
+* success or failure callback will execute based on the results of the call.
 *
 *
-* <p>The calling app uses the function <b>registerProvider()</b> which will
-* connect the app to an Identity Service. This step must be done
-* <i>before</i> the app calls any of the IDS APIs described above
-* (getToken(), clearToken(), etc). After the app makes an API call to
-* one of the IDS APIs listed above (i.e. getToken), the IDS library will
-* asynchronously process that request, and call the success/failure callback provided.
 *
 * @featureID blackberry.user.identity
-* @permission _sys_access_identity_services_third_party Permits your app to access user
+* @permission read_personally_identifiable_information Permits your app to access user
 * identity information including the ability to store secondary user properties.
+* @permission access_internet Permits your app to use the internet to access user data
+* in remote storage.
 */
 
 blackberry.user.identity = {
@@ -229,19 +207,20 @@ setOption : function(option, value) { },
  * <p><b>Error Handling:</b><br>
  * Requests that do not complete successfully will result in the failure
  * callback being called with one of the following result codes:
- * <p>- 49999: An internal error has occurred attempting to process
+ * <p>- IDS_DEFAULT_ERROR: An internal error has occurred attempting to process
  * the request.
- * <p>- 50009: The appliesTo value is not valid.
- * <p>- 50008: The tokenType value is not valid.
- * <p>- 50010: There are not enough resources available to
+ * <p>- IDS_UNKNOWN_APPLIES_TO: The appliesTo value is not valid.
+ * <p>- IDS_UNKNOWN_TOKEN_TYPE: The tokenType value is not valid.
+ * <p>- IDS_NOT_ENOUGH_RESOURCES: There are not enough resources available to
  * process the request.
- * <p>- 50003: The account is currently locked, token
+ * <p>- IDS_ACCOUNT_LOCALLY_LOCKED_OUT: The account is currently locked, token
  * access is unavailable while locked.
- * <p>- 50004: The user could not be authenticated.
- * <p>- 50011: The service is currently offline and
- * and cannot retreive the requested token.
- * <p>- 50012: An error occurred communicating with
- * the service.
+ * <p>- IDS_USER_COULD_NOT_BE_AUTHENTICATED: The user could not be
+ * authenticated.
+ * <p>- IDS_CANNOT_GET_TOKEN_WHILE_OFFLINE: The service is currently offline
+ * and cannot retrieve the requested token.
+ * <p>- IDS_ERROR_WHILE_CONTACTING_SERVICE: An error occurred communicating
+ * with the service.
  * @returns {void}
  * @BB10X
  * @example
@@ -291,15 +270,15 @@ getToken : function(idsProvider, tokenType, appliesTo, successCallback, failureC
  * <p><b>Error Handling:</b><br>
  * Requests that do not complete successfully will result in the failure
  * callback being called with one of the following result codes:
- * <p>- 49999: An internal error has occurred attempting to process
+ * <p>- IDS_DEFAULT_ERROR: An internal error has occurred attempting to process
  * the request.
- * <p>- 50009: The appliesTo value is not valid.
- * <p>- 50008: The tokenType value is not valid.
- * <p>- 50010: There are not enough resources available to
+ * <p>- IDS_UNKNOWN_APPLIES_TO: The @c applies_to value is not valid.
+ * <p>- IDS_UNKNOWN_TOKEN_TYPE: The @c token_type value is not valid.
+ * <p>- IDS_NOT_ENOUGH_RESOURCES: There are not enough resources available to
  * process the request.
- * <p>- 50003: The account is currently locked, token
+ * <p>- IDS_ACCOUNT_LOCALLY_LOCKED_OUT: The account is currently locked, token
  * access is unavailable while locked.
- * <p>- 50004: The user could not be
+ * <p>- IDS_USER_COULD_NOT_BE_AUTHENTICATED: The user could not be
  * authenticated.
  * @returns {void}
  * @BB10X
@@ -345,30 +324,28 @@ clearToken : function(idsProvider, tokenType, appliesTo, successCallback, failur
  * <p><b>Error Handling:</b><br>
  * Requests that do not complete successfully will result in the failure
  * callback being called with one of the following result codes:
- * <p>- 49999: An internal error has occurred attempting to process
+ * <p>- IDS_DEFAULT_ERROR: An internal error has occurred attempting to process
  * the request.
- * <p>- 50010: There are not enough resources available to
+ * <p>- IDS_NOT_ENOUGH_RESOURCES: There are not enough resources available to
  * process the request.
- * <p>- 50003: The account is currently locked, token
+ * <p>- IDS_ACCOUNT_LOCALLY_LOCKED_OUT: The account is currently locked, token
  * access is unavailable while locked.
- * <p>- 50004: The user could not be authenticated.
- * <p>- 50107: The value of @c count must be greater than 1 and
- * match the number of properties in the @c propertyList.
- * <p>- 50005: Too many properties were requested. See @c
+ * <p>- IDS_USER_COULD_NOT_BE_AUTHENTICATED: The user could not be
+ * authenticated.
+ * <p>- IDS_TOO_MANY_NAMES_PASSED: Too many properties were requested. See
  * IDS_MAX_PROPERTY_COUNT.
- * <p>- 50002: The length of a property name in the list exceeds
- * the maximum name length @c IDS_MAX_PROPERTY_NAME_LEN.
- * <p>- 50017: The application does not have access to
+ * <p>- IDS_NAME_TOO_LONG: The length of a property name in the list exceeds
+ * the maximum name length IDS_MAX_PROPERTY_NAME_LEN.
+ * <p>- IDS_PROPERTY_NOT_AUTHORIZED: The application does not have access to
  * one of the requested properties.
- * <p>- 50007: Property does not exist.
- * <p>- 50100: Invalid property name.
- * <p>- 50015: Null or invalid parameter.
- * <p>- 50160: Property does not exist.
- * <p>- 50158: Server error.
- * <p>- 50107: Property value is too large.
- * <p>- 50153: Get failed.
- 
-
+ * <p>- IDS_PROPERTY_DOES_NOT_EXIST: Property does not exist.
+ * <p>- IDS_BAD_PROPERTY_NAME: Invalid property name.
+ * <p>- IDS_NULL_OR_UNKNOWN_PARAMETERS: Null or invalid parameter.
+ * <p>- IDS_NON_EXISTING_PROPERTY: Property does not exist.
+ * <p>- IDS_PROFILE_SERVER_ERROR: Server error.
+ * <p>- IDS_PROPERTY_VALUE_TOO_LARGE: Property value is too large.
+ * <p>- IDS_GET_FAIL: Get failed.
+ *
  * @returns {void}
  * @BB10X
  * @example
@@ -391,14 +368,16 @@ clearToken : function(idsProvider, tokenType, appliesTo, successCallback, failur
 getProperties : function(idsProvider, 0, userProperties, successCallback, failureCallback) { };
 
 /**
- * Issue a request to set a property
+ * Issue a request to set data
  *
  * @param {String} provider The identity provider to send this request to.
- * @param {int} type The type of property contained in  @c property
- * parameter. Each provider may have a unique set of types that it is able to
+ * @param {int} type The type of data. Each provider may have a unique set of types that it is able to
  * handle.  See the documentation for the provider for details on valid values.
- * @param {String} propertyName The property identifier
- * @param {String} propertyValue The content of the property
+ * @param flags Special flags for the operation. Each provider may have a unique
+ * set of flags that it supports.  See the documentation for the provider for
+ * details on valid values and their behaviour for this operation.
+ * @param {String} dataName The data identifier
+ * @param {String} dataValue The content of the data
  * @callback {Function} successCallback Function which is invoked upon successful operation of this
  * method.
  * @callback {Function} failureCallback Function which is invoked when this method fails. This
@@ -411,49 +390,51 @@ getProperties : function(idsProvider, 0, userProperties, successCallback, failur
  * <p><b>Error Handling:</b><br>
  * Requests that do not complete successfully will result in the failure
  * callback being called with one of the following result codes:
- * <p>- 49999: An internal error has occurred attempting to process
+ * <p>- IDS_DEFAULT_ERROR: An internal error has occurred attempting to process
  * the request.
- * <p>- 50010: There are not enough resources available to
+ * <p>- IDS_NOT_ENOUGH_RESOURCES: There are not enough resources available to
  * process the request.
- * <p>- 50003: The account is currently locked, token
+ * <p>- IDS_ACCOUNT_LOCALLY_LOCKED_OUT: The account is currently locked, token
  * access is unavailable while locked.
- * <p>- 50004: The user could not be authenticated.
- * <p>- 50017: The application does not have access to set
- * the requested property.
- * <p>- 50100: Invalid property name.
- * <p>- 50015: Null or invalid parameter.
- * <p>- 50160: Property does not exist.
- * <p>- 50158: Server error.
- * <p>- 50162: Set failed.
- * <p>- 50154: Set failed.
- * <p>- 50159: Property exists but cannot be overwritten.
+ * <p>- IDS_USER_COULD_NOT_BE_AUTHENTICATED: The user could not be
+ * authenticated.
+ * <p>- IDS_NULL_OR_UNKNOWN_PARAMETERS: Null or invalid parameter.
+ * <p>- IDS_DOES_NOT_EXIST: Entry with the given name does not exist.
+ * <p>- IDS_NOT_ALLOWED: Application is not allowed to perform this operation.
+ * <p>- IDS_ERROR_WHILE_CONTACTING_SERVICE: The provider was unable to
+ * communicate with it's service to perform operation.
+ * <p>- USER_RESOURCE_NAME_TOO_LONG: The name is longer than the maximum length
+ *  allowed by the provider
  * @returns {void}
  * @BB10X
  * @example
  * &lt;script type=&quot;text&sol;javascript&quot;&gt;
-	function setPropertySuccess() {
+	function setDataSuccess() {
 		alert("Set property was successful");
 	}
 
-	function setPropertyFailure(result) {
-		alert("Failed to set user property: " + result.result + " details: " + result.failureInfo);
+	function setDataFailure(result) {
+		alert("Failed to set data: " + result.result + " details: " + result.failureInfo);
 	}
 
-	blackberry.user.identity.registerProvider("ids:rim:bbid");
-	blackberry.user.identity.setProperty("ids:rim:bbid", 1, "urn:myapp:usershandle", "johndoe123", setPropertySuccess, setPropertyFailure);
+	blackberry.user.identity.registerProvider("ids:rim:profile");
+	blackberry.user.identity.setData("ids:rim:profile", 1, "usershandle", "johndoe123", setDataSuccess, setDataFailure);
  * &lt;&sol;script&gt;
 */
-setProperty : function(idsProvider, 0, propertyName, propertyValue, successCallback, failureCallback) { };
+setData : function(idsProvider, 0, 0, dataName, dataValue, successCallback, failureCallback) { };
 
 /**
- * Issue a request to create a property
+ * Issue a request to create data
  *
  * @param {String} provider The identity provider to send this request to.
- * @param {int} type The type of property contained in  @c property
- * parameter. Each provider may have a unique set of types that it is able to
+ * @param {int} type The type of data. Each provider may have a unique set of types that it is able to
  * handle.  See the documentation for the provider for details on valid values.
- * @param {String} propertyName The property identifier
- * @param {String} propertyValue The content of the property
+ * @param flags Special flags for the operation. Each provider may have a unique
+ * set of flags that it supports.  See the documentation for the provider for
+ * details on valid values and their behaviour for this operation.
+ *
+ * @param {String} dataName The property identifier
+ * @param {String} dataValue The content of the property
  * @callback {Function} successCallback Function which is invoked upon successful operation of this
  * method.
  * @callback {Function} failureCallback Function which is invoked when this method fails. This
@@ -466,46 +447,50 @@ setProperty : function(idsProvider, 0, propertyName, propertyValue, successCallb
  * <p><b>Error Handling:</b><br>
  * Requests that do not complete successfully will result in the failure
  * callback being called with one of the following result codes:
- * <p>- 49999: An internal error has occurred attempting to process
+ * <p>- IDS_DEFAULT_ERROR: An internal error has occurred attempting to process
  * the request.
- * <p>- 50010: There are not enough resources available to
+ * <p>- IDS_NOT_ENOUGH_RESOURCES: There are not enough resources available to
  * process the request.
- * <p>- 50003: The account is currently locked, token
+ * <p>- IDS_ACCOUNT_LOCALLY_LOCKED_OUT: The account is currently locked, token
  * access is unavailable while locked.
- * <p>- 50004: The user could not be
+ * <p>- IDS_USER_COULD_NOT_BE_AUTHENTICATED: The user could not be
  * authenticated.
- * <p>- 50017: The application does not have access to set
- * the requested property.
- * <p>- 50015: Null or invalid parameter.
- * <p>- 50158: Server error.
- * <p>- 50152: Create failed.
- * <p>- 50159: Property already exists.
+ * <p>- IDS_NULL_OR_UNKNOWN_PARAMETERS: Null or invalid parameter.
+ * <p>- IDS_ERROR_WHILE_CONTACTING_SERVICE: The provider was unable to
+ * communicate with it's service to perform operation.
+ * <p>- IDS_ALREADY_EXISTS: Entry with name already exists.
+ * <p>- IDS_NOT_ALLOWED: Application is not allowed to perform this operation.
+ * <p>- USER_RESOURCE_NAME_TOO_LONG: The name is longer than the maximum length
+ *  allowed by the provider
+ *
  * @returns {void}
  * @BB10X
  * @example
  * &lt;script type=&quot;text&sol;javascript&quot;&gt;
-	function createPropertySuccess() {
-		alert("Create property was successful");
+	function createDataSuccess() {
+		alert("Create Data was successful");
 	}
 
-	function createPropertyFailure(result) {
-		alert("Failed to create user property: " + result.result + " details: " + result.failureInfo);
+	function createDataFailure(result) {
+		alert("Failed to create data: " + result.result + " details: " + result.failureInfo);
 	}
 
-	blackberry.user.identity.registerProvider("ids:rim:bbid");
-	blackberry.user.identity.createProperty("ids:rim:bbid", 1, "urn:myapp:usershandle", "johndoe123", createPropertySuccess, createPropertyFailure);
+	blackberry.user.identity.registerProvider("ids:rim:profile");
+	blackberry.user.identity.createData("ids:rim:profile", 1, "usershandle", "johndoe123", createDataSuccess, createDataFailure);
  * &lt;&sol;script&gt;
 */
-createProperty : function(idsProvider, 0, propertyName, propertyValue, successCallback, failureCallback) { };
+createData : function(idsProvider, 0, 0, dataName, dataValue, successCallback, failureCallback) { };
 
 /**
- * Issue a request to delete a property
+ * Issue a request to data
  *
  * @param {String} provider The identity provider to send this request to.
- * @param {int} type The type of property contained in  @c property
- * parameter. Each provider may have a unique set of types that it is able to
+ * @param {int} type The type of data.Each provider may have a unique set of types that it is able to
  * handle.  See the documentation for the provider for details on valid values.
- * @param {String} propertyName The property identifier
+ * @param flags Special flags for the operation. Each provider may have a unique
+ * set of flags that it supports.  See the documentation for the provider for
+ * details on valid values and their behaviour for this operation.
+ * @param {String} dataName The property identifier
  * @callback {Function} successCallback Function which is invoked upon successful operation of this
  * method.
  * @callback {Function} failureCallback Function which is invoked when this method fails. This
@@ -518,46 +503,48 @@ createProperty : function(idsProvider, 0, propertyName, propertyValue, successCa
  * <p><b>Error Handling:</b><br>
  * Requests that do not complete successfully will result in the failure
  * callback being called with one of the following result codes:
- * <p>- 49999: An internal error has occurred attempting to process
+ * <p>- IDS_DEFAULT_ERROR: An internal error has occurred attempting to process
  * the request.
- * <p>- 50010: There are not enough resources available to
+ * <p>- IDS_NOT_ENOUGH_RESOURCES: There are not enough resources available to
  * process the request.
- * <p>- 50003: The account is currently locked, token
+ * <p>- IDS_ACCOUNT_LOCALLY_LOCKED_OUT: The account is currently locked,
  * access is unavailable while locked.
- * <p>- 50004: The user could not be authenticated.
- * <p>- 50017: The application does not have access to set
- * the requested property.
- * <p>- 50015: Null or invalid parameter.
- * <p>- 50158: Server error.
- * <p>- 50155: Delete failed.
- * <p>- 50160: Property does not exist.
- * <p>- 50100: Invalid property name.
+ * <p>- IDS_USER_COULD_NOT_BE_AUTHENTICATED: The user could not be
+ * authenticated.
+ * <p>- IDS_NOT_ALLOWED: The application does not have access to delete
+ * the requested value.
+ * <p>- IDS_NULL_OR_UNKNOWN_PARAMETERS: Null or invalid parameter.
+ * <p>- IDS_DOES_NOT_EXIST: Name specified does not exist.
+ * <p>- IDS_ERROR_WHILE_CONTACTING_SERVICE: The provider was unable to
+ * communicate with it's service to perform operation.
+ * <p>- USER_RESOURCE_NAME_TOO_LONG: The name is longer than the maximum length
+ *  allowed by the provider
  * @returns {void}
  * @BB10X
  * @example
  * &lt;script type=&quot;text&sol;javascript&quot;&gt;
-	function deletePropertySuccess() {
-		alert("Delete property was successful");
+	function deleteDataSuccess() {
+		alert("Delete data was successful");
 	}
 
-	function deletePropertyFailure(result) {
-		alert("Failed to delete user property: " + result.result + " details: " + result.failureInfo);
+	function deleteDataFailure(result) {
+		alert("Failed to delete data: " + result.result + " details: " + result.failureInfo);
 	}
 
-	blackberry.user.identity.registerProvider("ids:rim:bbid");
-	blackberry.user.identity.deleteProperty("ids:rim:bbid", 1, "urn:myapp:usershandle", deletePropertySuccess, deletePropertyFailure);
+	blackberry.user.identity.registerProvider("ids:rim:profile");
+	blackberry.user.identity.deleteData("ids:rim:profile", 1, 0, "usershandle", deleteDataSuccess, deleteDataFailure);
  * &lt;&sol;script&gt;
 */
-deleteProperty : function(idsProvider, 0, propertyName, successCallback, failureCallback) { };
+deleteData : function(idsProvider, 0, 0, dataName, successCallback, failureCallback) { };
+
 
 /**
- * Issue a request to delete a property locally only (device only)
+ * Issue a request to challenge for identity
  *
  * @param {String} provider The identity provider to send this request to.
- * @param {int} type The type of property contained in  @c property
- * parameter. Each provider may have a unique set of types that it is able to
- * handle.  See the documentation for the provider for details on valid values.
- * @param {String} propertyName The property identifier
+ * @param flags Special flags for the operation. Each provider may have a unique
+ * set of flags that it supports.  See the documentation for the provider for
+ * details on valid values and their behaviour for this operation.
  * @callback {Function} successCallback Function which is invoked upon successful operation of this
  * method.
  * @callback {Function} failureCallback Function which is invoked when this method fails. This
@@ -570,36 +557,56 @@ deleteProperty : function(idsProvider, 0, propertyName, successCallback, failure
  * <p><b>Error Handling:</b><br>
  * Requests that do not complete successfully will result in the failure
  * callback being called with one of the following result codes:
- * <p>- 49999: An internal error has occurred attempting to process
+ * - @c IDS_DEFAULT_ERROR: An internal error has occurred attempting to process
  * the request.
- * <p>- 50010: There are not enough resources available to
+ * - @c IDS_NOT_ENOUGH_RESOURCES: There are not enough resources available to
  * process the request.
- * <p>- 50003: The account is currently locked, token
+ * - @c IDS_ACCOUNT_LOCALLY_LOCKED_OUT: The account is currently locked,
  * access is unavailable while locked.
- * <p>- 50004: The user could not be authenticated.
- * <p>- 50017: The application does not have access to set
- * the requested property.
- * <p>- 50015: Null or invalid parameter.
- * <p>- 50158: Server error.
- * <p>- 50155: Delete failed.
- * <p>- 50160: Property does not exist.
- * <p>- 50100: Invalid property name.
+ * - @c IDS_USER_COULD_NOT_BE_AUTHENTICATED: The user could not be
+ * authenticated.
  * @returns {void}
  * @BB10X
  * @example
  * &lt;script type=&quot;text&sol;javascript&quot;&gt;
-	function deletePropertySuccess() {
-		alert("Delete property was successful");
+	function challengeSuccess(level) {
+		alert("Challenge was successful: " + level);
 	}
 
-	function deletePropertyFailure(result) {
-		alert("Failed to delete user property: " + result.result + " details: " + result.failureInfo);
+	function challengeFailure(result) {
+		alert("Challenge failed: " + result.result + " details: " + result.failureInfo);
 	}
 
 	blackberry.user.identity.registerProvider("ids:rim:bbid");
-	blackberry.user.identity.deleteLocalProperty("ids:rim:bbid", 1, "urn:myapp:usershandle", deletePropertySuccess, deletePropertyFailure);
+	blackberry.user.identity.challenge("ids:rim:bbid", 0, challengeSuccess, challengeFailure);
  * &lt;&sol;script&gt;
 */
-deleteLocalProperty : function(idsProvider, 0, propertyName, successCallback, failureCallback) { };
+challenge : function(idsProvider, 0, successCallback, failureCallback) { };
+
+
+/**
+ * Register a callback function to be called when the named entry
+ * changes
+ * @param {String} provider The identity provider to send this request to.
+ * @param type The type of data referred to by name.
+ * @param flags Special flags for the operation. Each provider may have a unique
+ * set of flags that it supports.  See the documentation for the provider for
+ * details on valid values and their behaviour for this operation.
+ * @param name The name of the entry to receive notifications for.
+ * @callback {Function} onChangeCallback The function that is invoked when a change is detected.
+ * @returns {void}
+ * @BB10X
+ * @example
+ * &lt;script type=&quot;text&sol;javascript&quot;&gt;
+	function onChangeCb(type, name, notification) {
+		alert("Notification received: " + name + " with notification: " + notification);
+	}
+
+	blackberry.user.identity.registerProvider("ids:rim:bbid");
+	blackberry.user.identity.registerNotifier("ids:rim:bbid", 0, propertyName, onChangeCb);
+ * &lt;&sol;script&gt;
+*/
+registerNotifier : function(idsProvider, 0, name, onChangeCallback) { };
+
 
 };
