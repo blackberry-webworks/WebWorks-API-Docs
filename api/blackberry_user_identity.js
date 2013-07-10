@@ -542,6 +542,9 @@ deleteData : function(idsProvider, 0, 0, dataName, successCallback, failureCallb
  * Issue a request to challenge for identity
  *
  * @param {String} provider The identity provider to send this request to.
+ * @param type The type of challenge requested. Each identity provider may
+ * have a unique set of types that it supports. See the identity provider's
+ * documentation for details on valid types and their behavior.
  * @param flags Special flags for the operation. Each provider may have a unique
  * set of flags that it supports.  See the documentation for the provider for
  * details on valid values and their behaviour for this operation.
@@ -578,10 +581,10 @@ deleteData : function(idsProvider, 0, 0, dataName, successCallback, failureCallb
 	}
 
 	blackberry.user.identity.registerProvider("ids:rim:bbid");
-	blackberry.user.identity.challenge("ids:rim:bbid", 0, challengeSuccess, challengeFailure);
+	blackberry.user.identity.challenge("ids:rim:bbid", 0, 0, challengeSuccess, challengeFailure);
  * &lt;&sol;script&gt;
 */
-challenge : function(idsProvider, 0, successCallback, failureCallback) { };
+challenge : function(idsProvider, 0, 0, successCallback, failureCallback) { };
 
 
 /**
