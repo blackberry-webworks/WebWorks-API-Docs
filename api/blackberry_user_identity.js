@@ -302,7 +302,7 @@ clearToken : function(idsProvider, tokenType, appliesTo, successCallback, failur
  * Issue a request for a property.
  *
  * @param {String} provider The identity provider to send this request to.
- * @param type The type of properties contained in the @c propertyList
+ * @param {int} type The type of properties contained in the @c propertyList
  * parameter. Each provider may have a unique set of types that it is able to
  * handle.  See the documentation for the provider for details on valid values.
  * @param {String} propertyList A comma separated string listing each of the properties
@@ -373,7 +373,7 @@ getProperties : function(idsProvider, 0, userProperties, successCallback, failur
  * @param {String} provider The identity provider to send this request to.
  * @param {int} type The type of data. Each provider may have a unique set of types that it is able to
  * handle.  See the documentation for the provider for details on valid values.
- * @param flags Special flags for the operation. Each provider may have a unique
+ * @param {int} flags Special flags for the operation. Each provider may have a unique
  * set of flags that it supports.  See the documentation for the provider for
  * details on valid values and their behaviour for this operation.
  * @param {String} dataName The data identifier
@@ -429,7 +429,7 @@ setData : function(idsProvider, 0, 0, dataName, dataValue, successCallback, fail
  * @param {String} provider The identity provider to send this request to.
  * @param {int} type The type of data. Each provider may have a unique set of types that it is able to
  * handle.  See the documentation for the provider for details on valid values.
- * @param flags Special flags for the operation. Each provider may have a unique
+ * @param {int} flags Special flags for the operation. Each provider may have a unique
  * set of flags that it supports.  See the documentation for the provider for
  * details on valid values and their behaviour for this operation.
  *
@@ -487,7 +487,7 @@ createData : function(idsProvider, 0, 0, dataName, dataValue, successCallback, f
  * @param {String} provider The identity provider to send this request to.
  * @param {int} type The type of data.Each provider may have a unique set of types that it is able to
  * handle.  See the documentation for the provider for details on valid values.
- * @param flags Special flags for the operation. Each provider may have a unique
+ * @param {int} flags Special flags for the operation. Each provider may have a unique
  * set of flags that it supports.  See the documentation for the provider for
  * details on valid values and their behaviour for this operation.
  * @param {String} dataName The property identifier
@@ -542,10 +542,10 @@ deleteData : function(idsProvider, 0, 0, dataName, successCallback, failureCallb
  * Issue a request to challenge for identity
  *
  * @param {String} provider The identity provider to send this request to.
- * @param type The type of challenge requested. Each identity provider may
+ * @param {int} type The type of challenge requested. Each identity provider may
  * have a unique set of types that it supports. See the identity provider's
  * documentation for details on valid types and their behavior.
- * @param flags Special flags for the operation. Each provider may have a unique
+ * @param {int}flags Special flags for the operation. Each provider may have a unique
  * set of flags that it supports.  See the documentation for the provider for
  * details on valid values and their behaviour for this operation.
  * @callback {Function} successCallback Function which is invoked upon successful operation of this
@@ -591,11 +591,11 @@ challenge : function(idsProvider, 0, 0, successCallback, failureCallback) { };
  * Register a callback function to be called when the named entry
  * changes
  * @param {String} provider The identity provider to send this request to.
- * @param type The type of data referred to by name.
- * @param flags Special flags for the operation. Each provider may have a unique
+ * @param {int} type The type of data referred to by name.
+ * @param {int} flags Special flags for the operation. Each provider may have a unique
  * set of flags that it supports.  See the documentation for the provider for
  * details on valid values and their behaviour for this operation.
- * @param name The name of the entry to receive notifications for.
+ * @param {String} name The name of the entry to receive notifications for.
  * @callback {Function} onChangeCallback The function that is invoked when a change is detected.
  * @returns {void}
  * @BB10X
