@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_app_resume" xml:lang="en-us">
+    <title><apiname>resume()</apiname></title>
+    <shortdesc><i>This event is fired by the system. If you want to listen to the event you can do so using the document.addEventListener function and remove the listener using the document.removeEventListener function. The <b>resume</b> event is triggered whenever the application is retrieved from the background.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Supported Platform(s):</title>
+            <pre scale="80">BlackBerry 10</pre>
+        </section>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">&lt;feature id="blackberry.app" required="true" version="1.0.0.0" /&gt;</pre>
+            <pre scale="80">resume()</pre>
+        </section>
+        <section>
+            <title>Arguments:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>yourCallbackFunction</varname> {Function}</dt>
+                    <dd><p>The callback function that will be invoked on the resume event.</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                function onResume() {
+                    alert("The app is resumed.");
+                }
+
+                document.addEventListener("resume", onResume);
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
