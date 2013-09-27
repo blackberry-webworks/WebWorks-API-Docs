@@ -24,6 +24,11 @@ I. INTRODUCTION
     Note: All examples will use the blackberry_audio.js file which can be found here:
     https://github.com/blackberry/WebWorks-API-Docs/blob/master/api/blackberry_audio.js
 
+    To validate your own documentation, please run the test script located on on
+    WebWorks-API-Docs/api/. This is on the webworks2 branch.
+    https://github.com/blackberry-webworks/WebWorks-API-Docs/tree/webworks2
+
+
 II. NAMING
     For each API, there will be a .xml file for each method and/or property it contains. For example,
     in blackberry_audio.js, there are two functions contained in the blackberry.audio object and therefore there
@@ -46,7 +51,7 @@ III. HEADER TAGS
 
 
 IV. REFERENCE
-    The following should be placed into your .xml after the header tags from C.
+    The following should be placed into your .xml after the header tags from III.
 
         <reference id="FILENAME_GOES_HERE" xml:lang="en-us">
             <title><apiname>PROPERTY GOES HERE</apiname></title>
@@ -110,25 +115,18 @@ VI. SECTION AND EXAMPLE
         (closing tags)
 
     Note that there is a title for each section tag. The type of sections are:
-        A) Supported Platforms. This section should be the same for every api. It should look like:
-
-            <section>
-                <title>Supported Platform(s):</title>
-                <pre scale="80">Blackberry 10</pre>
-            </section>
-
-        B) Synopsis. This section follows the supported platforms and should look like:
+        A) Synopsis. This section follows the supported platforms and should look like:
 
             <section>
                 <title>Synopsis:</title>
-                <pre scale="80">&lt;feature id="blackberry.app" required="true" version="1.0.0.0" /&gt;</pre>
+                <pre scale="80">&lt;feature id="blackberry.YOURAPIHERE" required="true" version="1.0.0.0" /&gt;</pre>
                 <pre scale="80">THE METHOD/PROPERTY HERE</pre>
             </section>
 
         Note that if the property is read-only, mention if it a String, Object etc.
 
-        C) Parameters and Returns. These two seperate sections are divided into lists seen in VII.
-        E) Example. The section where sample code is placed. This should be the last section of your document.
+        B) Parameters and Returns. These two seperate sections are divided into lists seen in VII.
+        C) Example. The section where sample code is placed. This should be the last section of your document.
 
             <example>
                 <title>Example:</title>
@@ -167,12 +165,8 @@ VIII. COMPLETE EXAMPLE FOR BLACKBERRY.AUDIO
             <shortdesc><i>Request the list of supported content types for a specified protocol.</i></shortdesc>
             <refbody>
                 <section>
-                    <title>Supported Platform(s):</title>
-                    <pre scale="80">Blackberry 10</pre>
-                </section>
-                <section>
                     <title>Synopsis:</title>
-                    <pre scale="80">&lt;feature id="blackberry.app" required="true" version="1.0.0.0" /&gt;</pre>
+                    <pre scale="80">&lt;feature id="blackberry.audio" required="true" version="1.0.0.0" /&gt;</pre>
                     <pre scale="80">supportedContentTypes(protocol)</pre>
                 </section>
                 <section>
@@ -213,3 +207,14 @@ VIII. COMPLETE EXAMPLE FOR BLACKBERRY.AUDIO
                 </example>
             </refbody>
         </reference>
+
+
+IX. ADDING YOUR .XML FILE TO THE DITAMAP
+    In the main.ditamap file, add the following line,
+
+        <topicref href=FILE_NAME_HERE" />
+
+    FILE_NAME_HERE is replaced with the filename from II with the file extension. For the blackberry
+    audio example, it should look like the following:
+
+        <topicref href="blackberry_audio_supportedContentTypes" />
