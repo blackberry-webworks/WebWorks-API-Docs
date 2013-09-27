@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_connection_connectionchange" xml:lang="en-us">
+    <title><apiname>connectionchange</apiname></title>
+    <shortdesc><i>This event is fired by the system. If you want to listen to the event you can do so using the document.addEventListener function and remove the listener using the document.removeEventListener function. The <b>connectionchange</b> event is triggered whenever the network connection type changes.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">connectionchange: function(){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>yourCallbackFunction</varname> {Function}</dt>
+                    <dd><p>The callback function that will be invoked on the connectionchange event.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>yourCallbackFunction.info</varname> {Object}</dt>
+                                <dd><p>An object with the pertinent information.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>yourCallbackFunction.info.oldType</varname> {Number}</dt>
+                                <dd><p>The network connection type prior to the event.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>yourCallbackFunction.info.newType</varname> {Number}</dt>
+                                <dd><p>The new network connection type.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    function onChange(info) {
+                        alert("The network connection type used to be: " + info.oldType + " and is now: " + info.newType);
+                    }
+
+                    document.addEventListener("connectionchange", onChange);
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
