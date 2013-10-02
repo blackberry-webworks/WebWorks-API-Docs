@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackbery_ui_toast_show" xml:lang="en-us">
+    <title><apiname>show()</apiname></title>
+    <shortdesc><i>Displays a toast notification.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">show(message,options)</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>message</varname> {String}</dt>
+                    <dd><p>Message to be displayed in the toast.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>options</varname> {Object}</dt>
+                    <dd><p>The options object that specifies the buttonText, and callback handlers that should be used by the toast. </p></dd>
+                    <dl>
+                    	<dlentry>
+                    		<dt><varname>options.buttonText</varname> {String}</dt>
+                    		<dd><p>The parameter that specifies the label for the button within the toast.</p></dd>
+                    	</dlentry>
+                        <dlentry>
+                            <dt><varname>options.buttonCallback</varname> {Function}</dt>
+                            <dd><p>The callback for receiving the button event when the user selects the toast button.</p></dd>
+                        </dlentry>
+                        <dlentry>
+                            <dt><varname>options.dismissCallback</varname> {Function}</dt>
+                            <dd><p>The callback for receiving an event when the toast dismisses either through the toast's timeout or when the button is selected.</p></dd>
+                        </dlentry>
+                        <dlentry>
+                            <dt><varname>options.timeout</varname> {Number}</dt>
+                            <dd><p>The timeout value that can be used to extend the toast for as long as the user desires. The value specified is parsed in milliseconds.</p></dd>
+                        </dlentry>
+                    </dl>
+                </dlentry>
+            </dl>
+        </section>
+        <section>
+            <title>Returns:</title>
+            <dl>
+                <dlentry>
+                    <dt>{Number}</dt>
+                    <dd><p>A numeric ID to reference this toast by.</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                function showCustomToast() {
+                    var message = "This is my toast!",
+                        buttonText = "Click Me",
+                        toastId,
+                        onButtonSelected = function () {
+                            console.log('Button was clicked for toast: ' + toastId);
+                        },
+                        onToastDismissed = function () {
+                            console.log('Toast disappeared: ' + toastId);
+                        },
+                        options = {
+                            buttonText : buttonText,
+                            dismissCallback : onToastDismissed,
+                            buttonCallback : onButtonSelected
+                    };
+
+                    toastId = blackberry.ui.toast.show(message, options);
+                }
+
+                function showCustomToastWithTimeout() {
+                    var message = "This is my toast!",
+                        buttonText = "Click Me",
+                        toastId,
+                        onButtonSelected = function () {
+                            console.log('Button was clicked for toast: ' + toastId);
+                        },
+                        onToastDismissed = function () {
+                            console.log('Toast disappeared: ' + toastId);
+                        },
+                        options = {
+                            buttonText : buttonText,
+                            dissmissCallback : onToastDismissed,
+                            buttonCallback : onButtonSelected,
+                            timeout : 10000
+                    };
+
+                    toastId = blackberry.ui.toast.show(message, options);
+                }
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
