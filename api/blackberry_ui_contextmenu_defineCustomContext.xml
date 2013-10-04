@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackbery_ui_contextmenu_defineCustomContext" xml:lang="en-us">
+    <title><apiname>defineCustomContext()</apiname></title>
+    <shortdesc><i>Allows the developer to define a custom context.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">defineCustomContext()</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>context</varname> {String}</dt>
+                    <dd><p>A String representing the custom context.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>options</varname> {Object}</dt>
+                    <dd><p>An Object that contains the various options to set for the custom context.</p></dd>
+                    <dl>
+                        <dlentry>
+                            <dt><varname>options.includeContextItems</varname> {Array}</dt>
+                            <dd><p>An Array that defines a list of contexts to which custom items will be used from when applicable.</p></dd>
+                        </dlentry>
+                        <dlentry>
+                            <dt><varname>options.includePlatformItems</varname> {Boolean}</dt>
+                            <dd><p>An boolean indicating whether to include the default platform items.</p></dd>
+                        </dlentry>
+                        <dlentry>
+                            <dt><varname>options.includeMenuServiceItems</varname> {Boolean}</dt>
+                            <dd><p>An boolean indicating whether to add menu items provided by the menu service.</p></dd>
+                        </dlentry>
+                    </dl>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+            &lt;script type="text/javascript"&gt;
+
+            function defineCustomContext() {
+                var options = {
+                    includeContextItems: [blackberry.ui.contextmenu.CONTEXT_IMAGE],//Includes custom items added for CONTEXT_IMAGE
+                    includePlatformItems: true,
+                    includeMenuServiceItems: true
+                };
+
+                blackberry.ui.contextmenu.defineCustomContext("myContext", options)
+            }
+            &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
