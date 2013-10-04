@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackbery_ui_contextmenu_removeItem" xml:lang="en-us">
+    <title><apiname>removeItem()</apiname></title>
+    <shortdesc><i>Allows the developer to remove previously added custom items from the context menu.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">removeItem()</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>contexts</varname> {String[]}</dt>
+                    <dd><p>An array of constants defining which contexts this new item should appear.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>actionId</varname> {Object}</dt>
+                    <dd><p>An id that uniquely defines the action to be removed from the context menu.</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+            &lt;script type="text/javascript"&gt;
+
+            function addMyItem() {
+                var myItem = {actionId: 'MyItem', label: 'My Item', icon:'http://mysite.com/icon.png'},
+                    contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
+                blackberry.ui.contextmenu.addItem(contexts, myItem);
+            }
+
+            function removeMyItem() {
+                var myItem = {actionId: 'MyItem', label: 'My Item', icon:'http://mysite.com/icon.png'},
+                    contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
+                blackberry.ui.contextmenu.removeItem(contexts, myItem.actionId);
+            }
+            &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<concept id="blackbery_ui_contextmenu" xml:lang="en-us">
+  <title>Context Menu</title>
+  <shortdesc><i>The contextmenu namespace provides the facility to interact with the context menu api to control whether context menus are enabled, listen to events, add items to appear based on the context, and set the theme of the context menu.</i></shortdesc>
+  <conbody>
+    <section>
+      <title>Context Menu</title>
+      <p>Webworks applications can choose to use an in app contextmenu as opposed to the default operating system menu. The
+        contextmenu provides several facilities to developers to allow them to control the elements that appear in the menu, as
+        well as listen to specific events related to the context menu being triggered and displayed.</p>
+    </section>
+    <section>
+      <title>Enabling</title>
+      <p>The contextmenu can be enabled by calling the blackberry.ui.contextmenu.enabled property. When set to true, the
+            contextmenu will capture the context menu events, and pass any events that the user has registered for. When set to false
+            the contextmenu will default to the system, and the developer will have no access to the events described below.</p>
+    </section>
+    <section>
+      <title>Context Information</title>
+      <p>Context information is available from the window object through a contextmenu event "window.oncontextmenu". This event is triggered whenever there is a context menu request from the client. This event provides all the contextual information needed to store the context yourself and save what element the context menu was triggered on. This allows you to perform a multitude of different actions once a context menu has been requested.</p>
+    </section>
+    <example>
+      <title>Example:</title>
+        <p><pre scale="80">
+        &lt;script type="text/javascript"&gt;
+
+        // Update the path from a small icon to a full image
+        function translateIcontoFullImage (path) {
+          if (path &amp;&amp; path.indexOf('.ico') !== -1) {
+            return path.replace('.ico', '.jpeg');
+          }
+        }
+
+        function onContextMenu (contextEvent) {
+          var srcElement = contextEvent.srcElement;
+          console.log(srcElement);
+        }
+
+        window.addEventListener('oncontextmenu', onContextMenu);
+        &lt;/script&gt;
+        </pre></p>
+    </example>
+    <section>
+      <title>Custom Context Menu</title>
+      <p>Webworks applications can give Dom elements custom context by using the data-webworks-context xml attribute. When a Dom element contains this attribute, custom context menus will be activated when the element is long pressed. Once you have created a custom context using the data-webworks-context attribute, you can then use addItem to add items to the custom context. You can also optionally use defineCustomContext to further define the items shown.</p>
+    </section>
+    <example>
+      <title>Example:</title>
+        <p><pre scale="80">
+        &lt;script type="text/javascript"&gt;
+        function addMenuItemToCustomContext() {
+          var myItem = {actionId: '7', label: 'itemForCustom',  icon:'local:///img/myIcon.png'},
+          contexts = ["myContext"];
+          blackberry.ui.contextmenu.addItem(contexts, myItem);
+        }
+
+        function addAdditionalItemsFromCustomContext() {
+          var options = {
+            includeContextItems: [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_IMAGE_LINK],
+            includePlatformItems: true,
+            includeMenuService: true
+          };
+          blackberry.ui.contextmenu.defineCustomContext("myContext", options);
+        }
+
+        function removeAdditionalItemsFromCustomContext() {
+          var options = {
+            includeContextItems: [],
+            includePlatformItems: false,
+            includeMenuService: false
+          };
+          blackberry.ui.contextmenu.defineCustomContext("myContext", options);
+        }
+        &lt;/script&gt;
+        &lt;div data-webworks-context="myContext"&gt;I am a custom context!&lt;/div&gt;
+        </pre></p>
+    </example>
+  </conbody>
+  <related-links>
+    <link format="html" href="https://github.com/blackberry/BB10-WebWorks-Samples/tree/master/CustomContext" scope="external">
+      <linktext>Sample that demonstrates how to use the BlackBerry Custom Context API [BlackBerry on GitHub].</linktext>
+    </link>
+  </related-links>
+</concept>

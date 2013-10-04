@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackbery_ui_contextmenu_addItem" xml:lang="en-us">
+    <title><apiname>addItem()</apiname></title>
+    <shortdesc><i>Allows the developer to add custom items to the context menu. The items will be appended to the end of the list of operating system defined functions. Developers must provide the following parameters to successfully add items to the context menu.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">addItem()</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>contexts</varname> {String[]}</dt>
+                    <dd><p>An array of constants defining which contexts this new item should appear.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>action</varname> {Object}</dt>
+                    <dd><p>An object which defines the menu item to be added.</p></dd>
+                    <dl>
+                        <dlentry>
+                            <dt><varname>action.actionId</varname> {String}</dt>
+                            <dd><p>Desired title of the dialog.</p></dd>
+                        </dlentry>
+                        <dlentry>
+                            <dt><varname>action.label</varname> {String}</dt>
+                            <dd><p>A string that will be displayed to the user describing the custom context to be performed. ie: Edit</p></dd>
+                        </dlentry>
+                        <dlentry>
+                            <dt><varname>action.icon</varname> {String}</dt>
+                            <dd><p>A path to the an image to display in the context menu.</p></dd>
+                        </dlentry>
+                    </dl>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>callback</varname> {Function}</dt>
+                    <dd><p>A function which runs when the menu item action is executed.</p></dd>
+                    <dl>
+                    	<dlentry>
+                    		<dt><varname>callback.sourceId</varname> {String}</dt>
+                    		<dd><p>The returned sourceId from the element which defined the custom context and the context was invoked on.</p></dd>
+                    	</dlentry>
+                    </dl>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+            &lt;script type="text/javascript"&gt;
+
+            function addMyItem() {
+                var myItem = {actionId: 'MyItem', label: 'My Item', icon:'http://mysite.com/icon.png'},
+                    contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
+                blackberry.ui.contextmenu.addItem(contexts, myItem, function() { console.log('hi') });
+            }
+
+            //Perform an action on custom context, with a custom item
+            function deleteItem(sourceId) {
+                var element = document.getElementById(sourceId);
+                element.parentNode.removeChild(element);
+            }
+
+            function greyOutItem(sourceId) {
+                var element = document.getElementById(sourceId);
+                element.className = "greyed-out";
+            }
+
+            var options = {
+                    includeContextItems: [blackberry.ui.contextmenu.CONTEXT_ALL],
+                    includePlatformItems: true,
+                    includeMenuServiceItems: true
+                },
+                item,
+                contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
+
+            // Define the custom context with the options that we want used
+            blackberry.ui.contextmenu.defineCustomContext("PrincessContext", options);
+
+            // Create a menu item and add it to the context
+            item = {actionId: '1', label: 'Delete Item', icon:'local:///images/icon.png'};
+            blackberry.ui.contextmenu.addItem(contexts, item, deleteItem);
+
+            // And another
+            item = {actionId: '2', label: 'Grey Out', icon:'local:///images/icon.png'};
+            blackberry.ui.contextmenu.addItem(contexts, item, greyOutItem);
+
+                //Override the system Copy action by actionId using the ACTION_COPY constant
+            function overridePlatformWithIcon() {
+                var myItem = {actionId: blackberry.ui.contextmenu.ACTION_COPY, label: 'Custom Copy!',
+                    icon:'local:///icon.png'},
+                    contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
+
+                blackberry.ui.contextmenu.addItem(contexts, myItem, function() {
+                    alert("Wow you succesfully overrode the platform menu item Copy");
+                });
+            }
+                //Override the system Copy action by actionId using the ACTION_SAVE_IMAGE constant
+                // this example does not provide a icon, and uses the system default
+            function overridePlatformNoIcon() {
+                var myItem = {actionId: blackberry.ui.contextmenu.ACTION_SAVE_IMAGE, label: 'Save Image'},
+                    contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
+
+                blackberry.ui.contextmenu.addItem(contexts, myItem, function() {
+                    alert("Custom Save using system icon");
+                });
+            }
+            &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
