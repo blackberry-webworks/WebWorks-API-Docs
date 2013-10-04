@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_payment_getExistingPurchases" xml:lang="en-us">
+    <title><apiname>getExistingPurchases</apiname></title>
+    <shortdesc><i>Retrieves the previous successful purchases made by the user from within the calling application.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">void blackberry.payment.getExistingPurchase(refresh, onSuccess, onFailure}</pre>
+        </section>
+        <section>
+            <title>Arguments:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>refresh</varname> {Boolean}</dt>
+                    <dd><p>if the BlackBerry should be allowed to refresh the list of purchases from the Payment Service server. False if the current list of cached purchases should be returned immediately.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onSuccess</varname> {Function}</dt>
+                    <dd><p>Function to be invoked on successful call.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>data</varname> {<xref format="html" href="blackberry.payment.purchaseObj.html" scope="peer">Purchase</xref>}</dt>
+                               <dd><p>An array of <xref format="html" href="blackberry.payment.purchaseObj.html" scope="peer">Purchase</xref> items.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onFailure</varname> {Function}</dt>
+                    <dd><p>Function to be invoked when an error occurs.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {<xref format="html" href="blackberry.payment.PaymentError.html" scope="peer">PaymentError</xref>}</dt>
+                                <dd><p>A <xref format="html" href="blackberry.payment.PaymentError.html" scope="peer">PaymentError</xref> object containing details about the error.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+	    <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+&lt;script type="text/javascript"&gt;
+
+    function getExistingPurchases() {
+        try {
+            blackberry.payment.getExistingPurchases(true, onSuccess, onFailure);
+        } catch (e) {
+            alert ("Error" + e);
+        }
+    }
+
+    function onSuccess(purchases) {
+        for (var i = 0; i &lt; purchases.length; i++) {
+            var transId = purchases[i].transactionID;
+            var sku = purchases[i].digitalGoodSKU;
+            var dgId = purchases[i].digitalGoodID;
+            alert("Purchased Item " + i + ": " + transId + "," + sku + "," + dgId);
+        }
+    }
+
+    function onFailure(err) {
+        alert("Error occurred: " + err.errorText + ", " + err.errorID);
+    }
+
+&lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_payment_purchase" xml:lang="en-us">
+    <title><apiname>purchase</apiname></title>
+    <shortdesc><i>Initiates the purchase of a digital good. Purchases can be initiated using either the ID or the SKU of the digital good to be purchased, but it is not necessary to provide both. To customize the name and icon that are displayed on the purchase dialog banners, provide the purchaseAppName and/or purchaseAppIcon arguments. If not provided, the name and icon that were registered with App World will be used.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">void blackberry.payment.purchase(args, onSuccess, onFailure)</pre>
+        </section>
+        <section>
+            <title>Arguments:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>args</varname> {Object}</dt>
+                    <dd><p>Contains information that describes the digital good. One of ID or SKU needs to be specified, and if both are specified, the ID takes precedence and SKU will be ignored.</p>
+                        <dl>
+                            <dlEntry>
+                                <dt><varname>args,digitalGoodID</varname> {String}</dt>
+                                <dd><p>ID of the digital good being purchased</p></dd>
+                            </dlEntry>
+                            <dlEntry>
+                                <dt><varname>args.digitalGoodSKU</varname> {String}</dt>
+                                <dd><p>SKU of the digital good being purchased.</p></dd>
+                            </dlEntry>
+                            <dlentry>
+                                <dt><varname>args.digitalGoodName</varname> {String}</dt>
+                                <dd><p>Name of the digital good being purchased</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>args.metaData</varname> {Object}</dt>
+                                <dd><p>Metadata associated with the digital good. Metadata offers the application developer a way to store information about each purchase on the Payment Service server.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>args.purchaseAppName</varname> {String}</dt>
+                                <dd><p>Name of the application requesting the purchase.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>args.purchaseAppIcon</varname> {String}</dt>
+                                <dd><p>Icon of the application requesting the purchase.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>args.extraParameters</varname> {Object}</dt>
+                                <dd><p>Set of extra parameters, in the form of key/value pairs, to associate with the purchase.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onSuccess</varname> {function}</dt>
+                    <dd><p>Function to be invoked on successful call</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>onSuccess.data</varname> {Boolean}</dt>
+                                <dd><p>A <xref format="html" href="blackberry.payment.PurchaseObj.html" scope="peer">Purchase</xref> object containing the details of the successful purchase.</p></dd>
+                            </dlentry>
+
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onFailure</varname> {function}</dt>
+                    <dd><p>Function to be invoked when an error occurs</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>onFailure.error</varname> {PaymentError}</dt>
+                                <dd><p>A <xref format="html" href="blackberry.purchase.PaymentError.html" scope="peer">PaymentError</xref> object containing details about the error</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+	    <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+&lt;script type="text/javascript"&gt;
+function purchase() {
+    try {
+        blackberry.payment.purchase({
+		    "digitalGoodID":"123",
+		    "digitalGoodSKU":"someSKU",
+		    "digitalGoodName":"SomeName",
+		    "metaData":"metadata",
+		    "purchaseAppName":"WebWorks APP",
+		    "purchaseAppIcon":null,
+		    "extraParameters": {
+			    "key1": "value1",
+			    "key2": "value2"
+		    }
+		},
+		onSuccess, onFailure);
+	} catch (e) {
+		alert ("Error" + e);
+	}
+}
+
+function onSuccess(purchasedItem) {
+    var transId = purchasedItem.transactionID;
+	var sku = purchasedItem.digitalGoodSKU;
+	var dgId = purchasedItem.digitalGoodID;
+	alert("Purchased Item: " + transId + "," + sku +  "," + dgId);
+}
+
+function onFailure(error) {
+    alert("Error occurred: " + error.errorText + ", " + error.errorID);
+}
+&lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
+
+

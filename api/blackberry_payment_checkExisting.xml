@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_payment_checkExisting" xml:lang="en-us">
+    <title><apiname>checkExisting</apiname></title>
+    <shortdesc><i>Initiates a call to check whether the currently logged in BBID user has rights to the provided digital good subscription at this time.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">void blackberry.payment.checkExisting(args, onSuccess, onFailure)</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>args</varname> {Object}</dt>
+                    <dd><p>Contains information that describes the digital good. One of ID or SKU needs to be specified, and if both are specified, the ID takes precedence and SKU will be ignored.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>id</varname> {String}</dt>
+                                <dd><p>ID of the digital good</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>sku</varname></dt>
+                                <dd><p>SKU of the digital good</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onSuccess</varname> {Function}</dt>
+                    <dd><p>Function to be invoked on successful call</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>data.subscriptionExists</varname> {Boolean}</dt>
+                                <dd><p>True if the cancellation was successful.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onFailure</varname> {Function}</dt>
+                    <dd><p>Function to be called when an error occurs.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {<xref format="html" href="blackberry.purchase.PaymentError.html" scope="peer">PaymentError</xref>}</dt>
+                                <dd><p>A <xref format="html" href="blackberry.purchase.PaymentError.html" scope="peer">PaymentError</xref> object containing details about the error.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+	    <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+&lt;script type="text/javascript"&gt;
+
+    function checkSubscription() {
+        try {
+            blackberry.payment.checkExisting({
+                id": 12345"
+            }, onSuccess, onFailure);
+        } catch (e) {
+            alert ("Error" + e);
+        }
+    }
+
+    function onSuccess(data) {
+        alert("User is " + (data.subscriptionExists ? "" : "not ") + "subscribed to the item.");
+    }
+
+    function onFailure(error) {
+        alert("Error occurred: " + error.errorText + ", " + error.errorID);
+    }
+
+&lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
+
+
