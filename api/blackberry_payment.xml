@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<concept id="blackberry_payment" xml:lang="en-us">
+    <title>Payment</title>
+    <shortdesc><i>Entry point for purchasing digital goods.</i></shortdesc>
+    <conbody>
+        <section>
+            <p>API that permits BlackBerry device users to initiate the purchase of digital goods from within your application. For example, this API can be used to allow users to purchase additional levels in a gaming application, music from a radio application, or any other digital good registered on the Vendor Portal for BlackBerry World. The digital good being purchased must be associated with the calling application in the Vendor Portal for BlackBerry World.</p>
+            <p>Purchases are initiated via the purchase method. The amount of time that elapses before a response is returned depends on how quickly the user completes the purchase process (which may include steps such as signing in to their BlackBerry ID account and setting up their preferred billing method). The purchase method dispatches a callbackOnSuccess on success, or dispatches a callbackOnFailure on failure.</p>
+            <p>When calling the purchase method only the ID or SKU of the digital good to be purchased is required; it is not necessary to provide both, and all other arguments are optional. If both the ID and SKU are provided, then the ID takes precedence; the SKU is only used if the digital good could not be located on the Payment Service server based on the ID.</p>
+            <p>If an application requires a list of its digital goods that have already been purchased by the user (for example, to avoid offering for sale a digital good the user already owns), such a list can be obtained with the <xref format="html" href="blackberry_payment_getExistingPurchases.html" scope="peer">blackberry.payment.getExistingPurchases</xref> method. This method requires the same user interaction as the purchase method, so it can also be a long-running method.</p>
+        </section>
+        <section>
+            <simpletable relcolwidth="1* 2*">
+                <sthead>
+                    <stentry>Functions:</stentry>
+                </sthead>
+                <strow>
+                    <stentry>void</stentry>
+                    <stentry><xref format="html" href="blackberry_payment_cancelSubscription.html" scope="peer">cancelSubscription</xref></stentry>
+                </strow>
+                <strow>
+                    <stentry>void</stentry>
+                    <stentry><xref format="html" href="blackberry_payment_checkAppSubscription.html" scope="peer">checkAppSubscription</xref></stentry>
+                </strow>
+                <strow>
+                    <stentry>void</stentry>
+                    <stentry><xref format="html" href="blackberry_payment_checkExisting.html" scope="peer">checkExisting</xref></stentry>
+                </strow>
+                <strow>
+                    <stentry>void</stentry>
+                    <stentry><xref format="html" href="blackberry_payment_getExistingPurchases.html" scope="peer">getExistingPurchases</xref></stentry>
+                </strow>
+                <strow>
+                    <stentry>void</stentry>
+                    <stentry><xref format="html" href="blackberry_payment_getPrice.html" scope="peer">getPrice</xref></stentry>
+                </strow>
+                <strow>
+                    <stentry>void</stentry>
+                    <stentry><xref format="html" href="blackberry_payment_purchase.html" scope="peer">purchase</xref></stentry>
+                </strow>
+            </simpletable>
+        </section>
+        <section>
+            <simpletable relcolwidth="1* 2*">
+                <sthead>
+                    <stentry>Properties:</stentry>
+                </sthead>
+                <strow>
+                    <stentry>Boolean</stentry>
+                    <stentry><xref format="html" href="blackberry_payment_developmentMode.html" scope="peer">developmentMode</xref></stentry>
+                </strow>
+            </simpletable>
+        </section>
+    </conbody>
+</concept>

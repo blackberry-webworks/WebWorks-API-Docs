@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_payment_checkAppSubscription" xml:lang="en-us">
+    <title><apiname>checkAppSubscription</apiname></title>
+    <shortdesc><i>Initiates a call to check whether the currently logged in BBID user has rights to the current app-level subscription. If the calling application is not a subscription app, this will return false. </i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">void blackberry.payment.checkAppSubscription(onSuccess, onFailure)</pre>
+        </section>
+        <section>
+            <title>Arguments:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>onSuccess</varname> {Function}</dt>
+                    <dd><p>Function to be called on success.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>subscriptionExists</varname> {Boolean}</dt>
+                                <dd><p>Whether the subscription to the application is currently active.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+
+                <dlentry>
+                    <dt><varname>onFailure</varname> {Function}</dt>
+                    <dd><p>Function to be called when an error occurs.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {<xref format="html" href="blackberry.payment.PaymentError.html" scope="peer">PaymentError</xref>}</dt>
+                                <dd><p>A <xref format="html" href="blackberry.payment.PaymentError.html" scope="peer">PaymentError</xref> object containing details about the error.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+	    <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+&lt;script type="text/javascript"&gt;
+
+    function checkAppSubscription() {
+        try {
+            blackberry.payment.checkAppSubscription(onSuccess, onFailure);
+        } catch (e){
+            alert("Error" + e);
+        }
+    }
+
+    function onSuccess(data) {
+        alert("User is " + (data.subscriptionExists ? "" : "not ") + "subscribed to the app.");
+    }
+
+    function onFailure(error) {
+        alert("Error occurred: " + error.errorText + ", " + error.errorID);
+    }
+
+&lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
+
+

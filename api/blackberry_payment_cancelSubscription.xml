@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_payment_cancelSubscription" xml:lang="en-us">
+    <title><apiname>cancelSubscription</apiname></title>
+    <shortdesc><i>Initiates a request to cancel a subscription for a digital good.</i></shortdesc>
+    <refbody>
+        <section>
+            <p>If successful the subscription becomes canceled and will not be renewed at the end of the current subscription period. The subscription will remain valid until the end of the current subscription period. The subscription to cancel is identified by a purchase ID that is returned at the time of purchase or queried by calling getExistingPurchases. The cancelation of a non-subscription digital good is not permitted.</p>
+        </section>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">void blackberry.payment.cancelSubscription(purchaseID, onSuccess, onFailure)</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>purchaseID</varname> {String}</dt>
+                    <dd><p>purchaseID The purchase ID when the subscription was purchased.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onSuccess</varname> {Function}</dt>
+                    <dd><p>Function to be balled on success.</p>
+			            <dl>
+			                <dlentry>
+				                <dt><varname>data.cancelSubscription</varname> {Boolean}</dt>
+				                <dd><p>True if the cancellation was successful.</p></dd>
+			                </dlentry>
+			            </dl>
+		            </dd>
+		        </dlentry>
+		        <dlentry>
+                    <dt><varname>onFailure</varname> {Function}</dt>
+                    <dd><p>Function to be invoked when an error occurs.</p>
+			            <dl>
+			                <dlentry>
+				            <dt><varname>error</varname> {<xref format="html" href="blackberry.payment.PaymentError.html" scope="peer">PaymentError</xref>}</dt>
+				            <dd><p>A <xref format="html" href="blackberry.payment.PaymentError.html" scope="peer">PaymentError</xref> object containing details about the error.</p></dd>
+			                </dlentry>
+			            </dl>
+		            </dd>
+		        </dlentry>
+            </dl>
+        </section>
+	    <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+&lt;script type="text/javascript"&gt;
+
+    function cancelSubscription() {
+        try {
+            blackberry.payment.cancelSubscription("12345", onSuccess, onFailure);
+        } catch (e) {
+            alert ("Error" + e);
+        }
+    }
+
+    function onSuccess(data) {
+        alert("Cancellation " + (data.subscriptionCancelled ? "" : "NOT ") + "successful");
+    }
+
+    function onFailure(error) {
+        alert("Error occurred: " + error.errorText + ", " + error.errorID);
+    }
+
+&lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
+
+

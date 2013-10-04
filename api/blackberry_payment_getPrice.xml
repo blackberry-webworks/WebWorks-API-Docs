@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_payment_getPrice" xml:lang="en-us">
+    <title><apiname>getPrice</apiname></title>
+    <shortdesc><i>Initiates a request for the price of a digital good. The request can be initiated using either the ID or the SKU of the digital good to be purchased.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">void blackberry.payment.getPrice(args, onSuccess, onFailure)</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>args</varname> {Object}</dt>
+                    <dd><p>Contains information that describes the digital good. One of ID or SKU needs to be specified, and if both are specified, the ID takes precedence and SKU will be ignored.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>id</varname> {String}</dt>
+                                <dd><p>ID of the digital good.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>sku</varname></dt>
+                                <dd><p>SKU of the digital good</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+
+                <dlentry>
+                    <dt><varname>onSuccess</varname> {Function}</dt>
+                    <dd><p>Function to be called on success.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>data</varname> {Object}</dt>
+                                <dd><p>The data object of the success callback.</p>
+                                    <dl>
+                                        <dlentry>
+                                            <dt><varname>price</varname> {String}</dt>
+                                            <dd><p>The cost of the digital good.</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>initialPeriod</varname> {String}</dt>
+                                            <dd><p>The number of days in the subscriptions initial period. This will only be present if the digital good represents a subscription item.</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>renewalPrice</varname> {String}</dt>
+                                            <dd><p>The subscription renewal price. This will only be present if the digital good represents a subscription item.</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>renewalPeriod</varname> {String}</dt>
+                                            <dd><p>The number of days in the subscription renewal period. This will only be present if the digital good represents a subscription item.</p></dd>
+                                        </dlentry>
+                                    </dl>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onFailure</varname> {Function}</dt>
+                    <dd><p>Function to be invoked when an error occurs</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {<xref format="html" href="blackberry.payment.PaymentError.html" scope="peer">PaymentError</xref>}</dt>
+                                <dd><p>A <xref format="html" href="blackberry.payment.PaymentError.html" scope="peer">PaymentError</xref> object containing details about the error</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+           </dl>
+        </section>
+	    <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+&lt;script type="text/javascript"&gt;
+
+    function getPrice() {
+        try {
+            blackberry.payment.getPrice({
+                "id:" "123"
+            }, onSuccess, onFailure);
+        } catch (e) {
+            alert ("Error" + e);
+        }
+    }
+
+    function onSuccess(data) {
+        var price = data.price;
+
+        alert("Digital good price: " + price);
+
+        if (data.initialPeriod) {
+            var initialPeriod = data.initialPeriod;
+            var renewalPrice = data.renewalPrice;
+            var renewalPeriod = data.renewalPeriod;
+            alert("Subscription Info: " + initialPeriod + "," + renewalPrice + "," + renewalPeriod);
+        }
+    }
+
+
+    function onFailure(err) {
+        alert("Error occurred: " + err.errorText + ", " + err.errorID);
+    }
+
+&lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
+
+
