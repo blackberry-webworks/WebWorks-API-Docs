@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackbery_system_languagechanged" xml:lang="en-us">
+    <title><apiname>languagechanged</apiname></title>
+    <shortdesc><i><p>This event is fired by the system. If you want to listen to the event you can do so using the document.addEventListener function and remove the listener using the document.removeEventListener function.</p>
+    <p>The <b>languagechanged</b> event is triggered whenever the language setting of the device is changed.</p></i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">languagechanged</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>yourCallbackFunction</varname> {Function}</dt>
+                    <dd><p> The callback function that will be triggered on the languagechange event.</p></dd>
+                    <dl>
+                        <dlentry>
+                            <dt><varname>youCallbackFunction.newLanguage</varname> {String}</dt>
+                            <dd><p>The new language setting of the device. Its format conforms to <a href="http://tools.ietf.org/html/bcp47">BCP47</a>.</p></dd>
+                        </dlentry>
+                    </dl>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+            &lt;script type="text/javascript"&gt;
+
+            function onLanguageChange(newLanguage) {
+                alert("The laguage has changed to " + newLanguage);
+            }
+
+            document.addEventListener("languagechanged", onLanguageChange);
+
+            &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
