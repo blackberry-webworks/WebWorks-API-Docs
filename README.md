@@ -119,7 +119,6 @@ VI. SECTION AND EXAMPLE
 
             <section>
                 <title>Synopsis:</title>
-                <pre scale="80">&lt;feature id="blackberry.YOURAPIHERE" required="true" version="1.0.0.0" /&gt;</pre>
                 <pre scale="80">THE METHOD/PROPERTY HERE</pre>
             </section>
 
@@ -166,8 +165,7 @@ VIII. COMPLETE EXAMPLE FOR BLACKBERRY.AUDIO
             <refbody>
                 <section>
                     <title>Synopsis:</title>
-                    <pre scale="80">&lt;feature id="blackberry.audio" required="true" version="1.0.0.0" /&gt;</pre>
-                    <pre scale="80">supportedContentTypes(protocol)</pre>
+                    <pre scale="80">supportedContentTypes: function(protocol){}</pre>
                 </section>
                 <section>
                     <title>Parameters:</title>
