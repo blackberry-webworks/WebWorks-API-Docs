@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackbery_system_regionchanged" xml:lang="en-us">
+    <title><apiname>regionchanged</apiname></title>
+    <shortdesc><i><p>This event is fired by the system. If you want to listen to the event you can do so using the document.addEventListener function and remove the listener using the document.removeEventListener function.</p>
+    <p>The <b>regionChanged</b> event is triggered whenever the regional setting of the device is changed.</p></i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">regionchanged</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>yourCallbackFunction</varname> {Function}</dt>
+                    <dd><p> The callback function that will be triggered on the regionchange event.</p></dd>
+                    <dl>
+                        <dlentry>
+                            <dt><varname>youCallbackFunction.newRegion</varname> {String}</dt>
+                            <dd><p>The new regional setting of the device. Its format conforms to <a href="http://tools.ietf.org/html/bcp47">BCP47</a>.</p></dd>
+                        </dlentry>
+                    </dl>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+            &lt;script type="text/javascript"&gt;
+
+            function onRegionChange(newRegion) {
+                alert("The current region has changed to " + newRegion);
+            }
+
+            document.addEventListener("regionchanged", onRegionChange);
+            &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

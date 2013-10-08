@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackbery_system_batterylow" xml:lang="en-us">
+    <title><apiname>batterylow</apiname></title>
+    <shortdesc><i><p>This event is fired by the system. If you want to listen to the event you can do so using the document.addEventListener function and remove the listener using the document.removeEventListener function.</p>
+    <p>The <b>batterylow</b> event is triggered whenever the battery level changes to the value lower than 15%.</p></i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">batterylow</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>yourCallbackFunction</varname> {Function}</dt>
+                    <dd><p>The callback function that will be invoked on the batterylow event.</p></dd>
+                    <dl>
+                        <dlentry>
+                            <dt><varname>youCallbackFunction.info</varname> {JSON}</dt>
+                            <dd><p>An object with the pertinent information.</p></dd>
+                            <dl>
+                                <dlentry>
+                                    <dt><varname>youCallbackFunction.info.level</varname> {Number}</dt>
+                                    <dd><p>The percentage of the battery charge (0-100).</p></dd>
+                                </dlentry>
+                                <dlentry>
+                                    <dt><varname>youCallbackFunction.info.isPlugged</varname> {Boolean}</dt>
+                                    <dd><p>A boolean that represents whether or not the device is receiving a charge.</p></dd>
+                                </dlentry>
+                            </dl>
+                        </dlentry>
+                    </dl>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+            &lt;script type="text/javascript"&gt;
+
+            function onBatteryLow(info) {
+                alert("The battery level is low: " + info.level + (info.isPlugged?".":". Consider connecting your device to a charging source."));
+            }
+
+            document.addEventListener("batterylow", onBatteryLow);
+
+            &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackbery_system_fontchanged" xml:lang="en-us">
+    <title><apiname>fontchanged</apiname></title>
+    <shortdesc><i><p>This event is fired by the system. If you want to listen to the event you can do so using the document.addEventListener function and remove the listener using the document.removeEventListener function.</p>
+    <p>The <b>fontchanged</b> event is triggered whenever the font setting of the system is changed.</p></i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">fontchanged</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>yourCallbackFunction</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered on the fontchange event.</p></dd>
+                    <dl>
+                        <dlentry>
+                            <dt><varname>youCallbackFunction.fontInfo</varname> {JSON}</dt>
+                            <dd><p>The Object that contains the information of the new system font.</p></dd>
+                            <dl>
+                                <dlentry>
+                                    <dt><varname>youCallbackFunction.fontInfo.fontFamily</varname> {String}</dt>
+                                    <dd><p>The font family of the new system font.</p></dd>
+                                </dlentry>
+                                <dlentry>
+                                    <dt><varname>youCallbackFunction.fontInfo.fontSize</varname> {String}</dt>
+                                    <dd><p>The font size of the new system font.</p></dd>
+                                </dlentry>
+                            </dl>
+                        </dlentry>
+                    </dl>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+            &lt;script type="text/javascript"&gt;
+
+            function onFontChange(fontInfo) {
+                alert("The system font has changed to " + fontInfo.fontFamily + " size " + fontInfo.fontSize);
+            }
+
+            document.addEventListener("fontchanged", onFontChange);
+            &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
