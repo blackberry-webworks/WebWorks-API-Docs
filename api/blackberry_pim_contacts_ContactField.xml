@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<concept id="blackberry_pim_contacts_ContactField" xml:lang="en-us">
+  <title>ContactField</title>
+  <shortdesc><i>The ContactField object provides a generic field in a Contact object.  Properties that are stored as ContactField objects include email addresses and phone numbers.</i></shortdesc>
+  <conbody>
+    <example>
+      <title>Example:</title>
+      <p><pre scale="80">
+      function createContact() {
+        var contacts = blackberry.pim.contacts;
+
+        var homeEmail = {
+          type: contacts.ContactField.HOME,
+          value: "xyz@person.com"
+        };
+        var workEmail = {
+          type: contacts.ContactField.WORK,
+          value: "abc@rim.com"
+        };
+
+        var newContact = contacts.create();
+        newContact.name = {
+          givenName: "Marge",
+          familyName: "Simpson"
+        };
+        newContact.emails = [homeEmail, workEmail];
+
+        newContact.save(onSaveSuccess, onSaveError);
+
+        alert("Home email: " + homeEmail.value);
+      }
+
+      function onSaveSuccess(contact) {
+        alert("Contact saved: " + contact.name.givenName);
+      }
+
+      function onSaveError(error) {
+        alert("Contact save failed: " + error.code);
+      }
+      </pre></p>
+    </example>
+  </conbody>
+</concept>

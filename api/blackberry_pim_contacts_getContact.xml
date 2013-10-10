@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_pim_contacts_getContact" xml:lang="en-us">
+    <title><apiname>getContact()</apiname></title>
+    <shortdesc><i>Retrieves the contact with specified contactId. This function is especially useful if you have previously obtained an contact object, and you want to get a fresh copy from the backend to make sure all its properties are up-to-date.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">getContact()</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>contactId</varname> {String}</dt>
+                    <dd><p>The identifier of the contact</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section>
+            <title>Returns:</title>
+            <dl>
+                <dlentry>
+                    <dt>{blackberry.pim.contacts.Contact}</dt>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+            &lt;script type="text/javascript"&gt;
+
+            var contacts = blackberry.pim.contacts;
+
+            function getContactById(contactId) {
+                var contact = contacts.getContact(contactId);
+                if (contact) {
+                    alert("Contact id #" + contactId + " corresponds to '" + contact.name.givenName + " " + contact.name.familyName +"'.");
+                } else {
+                    alert("There is no contact with id: " + contactId);
+                }
+            }
+            &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

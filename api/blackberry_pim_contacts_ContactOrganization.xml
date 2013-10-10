@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<concept id="blackberry_pim_contacts_ContactOrganization" xml:lang="en-us">
+  <title>ContactOrganization</title>
+  <shortdesc><i>The ContactOrganization object contains the organization information of a Contact object.</i></shortdesc>
+  <conbody>
+    <example>
+      <title>Example:</title>
+      <p><pre scale="80">
+      function createContact() {
+        var contacts = blackberry.pim.contacts;
+
+        var workOrg = {
+          "name": "Research in Motion",
+          "department": "BlackBerry WebWorks",
+          "title": "Developer"
+        };
+
+        var newContact = contacts.create();
+        newContact.name = {
+          "givenName": "Homer",
+          "familyName": "Simpson"
+        };
+        newContact.organizations = [workOrg];
+
+        newContact.save(onSaveSuccess, onSaveError);
+
+        alert("Work organization: " + workOrg.name);
+      }
+
+      function onSaveSuccess(contact) {
+        alert("Contact saved: " + contact.organizations[0].name);
+      }
+
+      function onSaveError(error) {
+        alert("Contact save failed: " + error.code);
+      }
+      &lt;/script&gt;
+      </pre></p>
+    </example>
+  </conbody>
+</concept>

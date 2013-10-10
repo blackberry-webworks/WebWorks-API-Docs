@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_pim_contacts_create" xml:lang="en-us">
+    <title><apiname>create()</apiname></title>
+    <shortdesc><i>Returns a new Contact object. This method does not persist the Contact object to the device contacts database. To persist the Contact object to the device, invoke the Contact.save method.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">create()</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>properties</varname> {Object}</dt>
+                    <dd><p> Optional object literal that specifies the field values for the Contact object.</p>
+                    <p> The object should be in the following form (with any number of properties):</p>
+                    {
+                        displayName: &lt;display name - String&gt;,
+                        name: &lt;name - ContactName&gt;,
+                        nickname: &lt;nickname - String&gt;,
+                        phoneNumbers: &lt;phone numbers - ContactField[]&gt;,
+                        emails: &lt;email addresses - ContactField[]&gt;,
+                        addresses: &lt;addresses - ContactAddress[]&gt;,
+                        ims: &lt;IM addresses - ContactField[]&gt;,
+                        organizations: &lt;organization - ContactOrganization[]&gt;,
+                        birthday: &lt;birthday - Date&gt;,
+                        note: &lt;note - String&gt;,
+                        photos: &lt;photos - ContactField[]&gt;,
+                        categories: &lt;user defined categories - ContactField[]&gt;,
+                        urls: &lt;web pages - ContactField[]&gt;
+                    }
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section>
+            <title>Returns:</title>
+            <dl>
+                <dlentry>
+                    <dt>{blackberry.pim.contacts.Contact}</dt>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+            &lt;script type="text/javascript"&gt;
+
+            function onSaveSuccess(contact) {
+                console.log("Contact with id=" + contact.id + " is saved!");
+            }
+
+            function onSaveError(error) {
+                console.log("Error saving contact: " + error.code);
+            }
+
+            function createContact() {
+                var contacts = blackberry.pim.contacts,
+                    ContactField = contacts.ContactField,
+                    name = {},
+                    workPhone = { type: ContactField.WORK, value: "123-456-789" },
+                    workEmail = { type: ContactField.WORK, value: "abc@blah.com" },
+                    homeEmail = { type: ContactField.HOME, value: "hello@me.com" },
+                    contact;
+
+                name.familyName = "Smith";
+                name.givenName = "Joe";
+                contact = contacts.create({
+                    "displayName": "Batman",
+                    "name": name,
+                    "phoneNumbers": [workPhone],
+                    "emails": [workEmail, homeEmail]
+                });
+                contact.save(onSaveSuccess, onSaveError);
+            }
+            &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<concept id="blackberry_pim_contacts_ContactPhoto" xml:lang="en-us">
+  <title>ContactPhoto</title>
+  <shortdesc><i>The ContactPhoto object contains the address information of a Contact object.</i></shortdesc>
+  <conbody>
+    <example>
+      <title>Example:</title>
+      <p><pre scale="80">
+      function createContact() {
+        var contacts = blackberry.pim.contacts;
+
+        // access_shared permission is needed to access shared folder
+        var primaryPhoto = {
+              originalFilePath: blackberry.io.sharedFolder + "/photos/contact.jpg",
+              pref: true
+        };
+        var secondaryPhoto = {
+              originalFilePath: blackberry.io.sharedFolder + "/photos/other.jpg",
+              pref: false
+        };
+
+        var newContact = contacts.create();
+        newContact.name = {
+          "givenName": "Lisa",
+          "familyName": "Simpson"
+        };
+        newContact.photos = [primaryPhoto, secondaryPhoto];
+
+        newContact.save(onSaveSuccess, onSaveError);
+      }
+
+      function onSaveSuccess(contact) {
+        alert("Contact saved: " + contact.name.givenName);
+        alert("Small primary photo: " + contact.photos[0].smallFilePath);
+      }
+
+      function onSaveError(error) {
+        alert("Contact save failed: " + error.code);
+      }
+      &lt;/script&gt;
+      </pre></p>
+    </example>
+  </conbody>
+</concept>

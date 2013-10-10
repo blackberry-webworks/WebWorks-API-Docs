@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_pim_contacts_Contact_remove" xml:lang="en-us">
+    <title><apiname>remove()</apiname></title>
+    <shortdesc><i>Removes the contact from the device contacts database. An error callback is called with a <xref href="blackberry_pim_contacts_ContactError.xml" scope="local">blackberry.pim.contacts.ContactError</xref> object if the removal is unsuccessful.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">remove()</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>onRemoveSuccess</varname> {Function}</dt>
+                    <dd><p>The callback function that will be invoked when the contact is removed successfully.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onRemoveError</varname> {function}</dt>
+                    <dd><p>The callback function that will be invoked when the contact cannot be removed.</p>
+                    <dl>
+                        <dlentry>
+                            <dt><varname>onRemoveError.error</varname> {blackberry.pim.contacts.ContactError}</dt>
+                            <dd><p>The <xref href="blackberry_pim_contacts_ContactError.xml" scope="local">blackberry.pim.contacts.ContactError</xref>object which contains the error code. Possible errors are: permission denied error (if access_pimdomain_contacts is not specified) or illegal arguments error (if mandatory parameters are missing or invalid).</p></dd>
+                        </dlentry>
+                    </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section>
+            <title>Returns:</title>
+            <dl>
+                <dlentry>
+                    <dt>{void}</dt>
+                </dlentry>
+            </dl>
+        </section>
+    </refbody>
+</reference>

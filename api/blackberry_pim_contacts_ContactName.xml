@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<concept id="blackberry_pim_contacts_ContactName" xml:lang="en-us">
+  <title>ContactName</title>
+  <shortdesc><i>The ContactName object contains name properties of a <link href="blackberry_pim_contacts_Contact"/> object.</i></shortdesc>
+  <conbody>
+    <example>
+      <title>Example:</title>
+      <p><pre scale="80">
+      function createContact() {
+        var contacts = blackberry.pim.contacts;
+
+        var name = {
+          "givenName": "John",
+          "familyName": "Smith"
+        };
+
+        var newContact = contacts.create();
+        newContact.name = name;
+
+        newContact.save(onSaveSuccess, onSaveError);
+
+        alert("Contact first name: " + newContact.name.givenName);
+      }
+
+      function onSaveSuccess(contact) {
+        alert("Contact saved: " + contact.name.givenName);
+      }
+
+      function onSaveError(error) {
+        alert("Contact save failed: " + error.code);
+      }
+      </pre></p>
+    </example>
+  </conbody>
+</concept>
