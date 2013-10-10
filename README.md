@@ -19,14 +19,13 @@ I. INTRODUCTION
     http://docs.oasis-open.org/dita/v1.2/spec/DITA1.2-spec.html
 
     The original WebWorks API documentation can be found in the following repo:
-    https://github.com/blackberry/WebWorks-API-Docs/tree/master/api
+    https://github.com/blackberry/WebWorks-API-Docs/tree/cordova
 
     Note: All examples will use the blackberry_audio.js file which can be found here:
-    https://github.com/blackberry/WebWorks-API-Docs/blob/master/api/blackberry_audio.js
+    https://github.com/blackberry/WebWorks-API-Docs/blob/cordova/api/blackberry_audio.js
 
-    To validate your own documentation, please run the test script located on on
-    WebWorks-API-Docs/api/. This is on the webworks2 branch.
-    https://github.com/blackberry-webworks/WebWorks-API-Docs/tree/webworks2
+    To validate your own documentation, please run the test script
+    /PATH TO WebWorks-API-Docs/test/
 
 
 II. NAMING
@@ -152,10 +151,11 @@ VII. DL, DLENTRY, DT, DD
             </dl>
         (closing tags)
 
+    If you have parameters such as functions or objects that have child arguments, document them
+    by nesting another DL/DLENTRY/DT/DD.
 
 VIII. COMPLETE EXAMPLE FOR BLACKBERRY.AUDIO
     The blackberry_audio_supportedContentTypes.xml api should look like the following:
-    (data taken from: https://github.com/blackberry/WebWorks-API-Docs/blob/master/api/blackberry_audio.js)
 
         <?xml version="1.0" encoding="utf-8"?>
         <!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
