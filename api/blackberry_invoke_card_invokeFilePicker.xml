@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoke_card_invokeFilePicker" xml:lang="en-us">
+    <title><apiname>invokeFilePicker()</apiname></title>
+    <shortdesc><i>Invokes the FilePicker Card.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">invokeFilePicker : function(options, onDone, onCancel, onInvoke){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>options</varname> {blackberry.invoke.card.FilePickerOptions}</dt>
+                    <dd><p>An object to type {@link blackberry.invoke.card.FilePickerOptions} describe all the options available for FilePicker.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onDone</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered if the user selects file(s) or folder(s).</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>pathArray</varname> {[String]}</dt>
+                                <dd><p>An Array that describes the path of each of the files saved.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onCancel</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered if the user does not select file(s) or folder(s) and simply cancels.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>reason</varname> {String}</dt>
+                                <dd><p>A String that describes the reason the FilePicker was cancelled.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onInvoke</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered when the FilePicker card is invoked.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {String}</dt>
+                                <dd><p>A String that describes if there was an error. No error will be returned on success.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    //invoke the filePicker Card
+                    function invokeFilePicker(details) {
+                         blackberry.invoke.card.invokeFilePicker(details, function (path) {
+                                  alert("saved "+ path);
+                              },
+                              function (reason) {
+                                  alert("cancelled " + reason);
+                              },
+                              function (error) {
+                                  if (error) {
+                                      alert("invoke error "+ error);
+                                  } else {
+                                      console.log("invoke success " );
+                                  }
+                              }
+                          );
+                    }
+
+                    //pick a file of picture or music type
+                    function invokeFileInPickerMode0() {
+                     var details = {
+                              mode: blackberry.invoke.card.FILEPICKER_MODE_PICKER,
+                              type: [blackberry.invoke.card.FILEPICKER_TYPE_PICTURE, blackberry.invoke.card.FILEPICKER_TYPE_MUSIC]
+                          };
+                      invokeFilePicker(details);
+                    }
+
+                    //pick a file of picture with image crop enabled
+                    function invokeFileInPickerMode1() {
+                      var details = {
+                              mode: blackberry.invoke.card.FILEPICKER_MODE_PICKER,
+                              type: [blackberry.invoke.card.FILEPICKER_TYPE_PICTURE],
+                              imageCropEnabled: true
+                          };
+                      invokeFilePicker(details);
+                    }
+
+                    //pick a file using a filter, of only jpg and mp4
+                    function invokeFileInPickerMode2() {
+                      var details = {
+                              mode: blackberry.invoke.card.FILEPICKER_MODE_PICKER,
+                              filter: ["*.jpg", "*.mp4"]
+                          };
+                      invokeFilePicker(details);
+                    }
+
+                    //open file picker in GridView and sort by descending name
+                    function invokeFileInPickerMode3() {
+                      var details = {
+                              mode: blackberry.invoke.card.FILEPICKER_MODE_PICKER,
+                              viewMode: blackberry.invoke.card.FILEPICKER_VIEWER_MODE_GRID,
+                              sortBy: blackberry.invoke.card.FILEPICKER_SORT_BY_NAME,
+                              sortOrder: blackberry.invoke.card.FILEPICKER_SORT_ORDER_DESCENDING
+                          };
+                      invokeFilePicker(details);
+                    }
+
+                    //open file picker in multiple mode with a title in viewMode list
+                    function invokeFileInPickerMode4() {
+                      var details = {
+                              mode: blackberry.invoke.card.FILEPICKER_MODE_PICKER,
+                              viewMode: blackberry.invoke.card.FILEPICKER_VIEWER_MODE_LIST,
+                              title: "Some Custom Title"
+                          };
+                      invokeFilePicker(details);
+                    }
+
+                    //open file picker in multiple mode at SHARED FOLDER
+                    function invokeFileInPickerMode5() {
+                      var details = {
+                              mode: blackberry.invoke.card.FILEPICKER_MODE_PICKER,
+                              directory: [blackberry.io.sharedFolder]
+                          };
+                      invokeFilePicker(details);
+                    }
+
+                    //open file picker in saver mode at SHARED FOLDER
+                    function invokeFileInPickerMode6() {
+                      var details = {
+                              mode: blackberry.invoke.card.FILEPICKER_MODE_PICKER_MULTIPLE,
+                              directory: [blackberry.io.sharedFolder]
+                          };
+                      invokeFilePicker(details);
+                    }
+
+                    //open file picker in saver mode at SHARED FOLDER.
+                    function invokeFileInPickerMode7() {
+                      var details = {
+                              mode: blackberry.invoke.card.FILEPICKER_MODE_SAVER,
+                              directory: [blackberry.io.sharedFolder]
+                          };
+                      invokeFilePicker(details);
+                    }
+
+                    //open file picker in saver mode and allow overwrite - try to save already saved file
+                    function invokeFileInPickerMode8() {
+                      var details = {
+                              mode: blackberry.invoke.card.FILEPICKER_MODE_SAVER,
+                              directory: [blackberry.io.sharedFolder],
+                              allowOverwrite: true
+                          };
+                      invokeFilePicker(details);
+                    }
+
+                    //open file picker in multiple saver mode to save a folder path
+                    function invokeFileInPickerMode9() {
+                      var details = {
+                              mode: blackberry.invoke.card.FILEPICKER_MODE_SAVER_MULTIPLE,
+
+                          };
+                      invokeFilePicker(details);
+                    }
+
+                    //open file picker in  saver mode with single file name
+                    function invokeFileInPickerMode10() {
+                      var details = {
+                              mode: blackberry.invoke.card.FILEPICKER_MODE_SAVER,
+                              defaultSaveFileNames: ["file1.jpg"]
+                          };
+                      invokeFilePicker(details);
+                    }
+
+                    //open file picker in multiple saver mode with file names and file types
+                    function invokeFileInPickerMode11() {
+                      var details = {
+                              mode: blackberry.invoke.card.FILEPICKER_MODE_SAVER_MULTIPLE,
+                              defaultSaveFileNames: ["file1.jpg", "file2.jpg"]
+                          };
+                      invokeFilePicker(details);
+                    }
+
+                    //open file picker in single  mode with a type and defaultType
+                    function invokeFileInPickerMode12() {
+                      var details = {
+                              mode: blackberry.invoke.card.FILEPICKER_MODE_PICKER,
+                              type: [blackberry.invoke.card.FILEPICKER_TYPE_PICTURE,
+                                     blackberry.invoke.card.FILEPICKER_TYPE_DOCUMENT],
+                              defaultType: blackberry.invoke.card.FILEPICKER_TYPE_DOCUMENT
+                          };
+                      invokeFilePicker(details);
+                    }
+
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

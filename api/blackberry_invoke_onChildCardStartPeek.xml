@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoke_onChildCardStartPeek" xml:lang="en-us">
+    <title><apiname>onChildCardStartPeek</apiname></title>
+    <shortdesc><i>This event is fired by the system. If you want to listen to the event you can do so using the document.addEventListener function and remove the listener using the document.addEventListener function. The <b>onChildCardStartPeek</b> event is fired by the navigator to notify the parent that it is being peeked at and describe the type of peek being performed.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">onChildCardStartPeek : function(){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>yourCallbackFunction</varname></dt>
+                    <dd><p>The callback function that will be invoked on the onChildCardStartPeek event.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>yourCallbackFunction.peekType</varname> {String}</dt>
+                                <dd><p>Describes the type of peek to be performed as a peek to the content of the parent or a peek to the content of the root. The value is either "content" or "root".</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    function onChildCardStartPeekHandler(peekType) {
+                        // The Card started peeking
+                        console.log("The card started peeking.");
+                        if (peekType == "root") {
+                            updateContent(true);
+                        }
+                    }
+
+                    document.addEventListener("onChildCardStartPeek", onChildCardStartPeekHandler);
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoke_onChildCardClosed" xml:lang="en-us">
+    <title><apiname>onChildCardClosed</apiname></title>
+    <shortdesc><i>This event is fired by the system. If you want to listen to the event you can do so using the document.addEventListener function and remove the listener using the document.addEventListener function. The <b>onChildCardClosed</b> event is fired by the navigator to notify the parent that a card is closed. The event includes any response data sent by the card (if the card requested its own closure).</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">onChildCardClosed : function(){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>yourCallbackFunction</varname></dt>
+                    <dd><p>The callback function that will be invoked on the onChildCardClosed event.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>yourCallbackFunction.request</varname> {Object}</dt>
+                                <dd><p>An object that includes any response data sent by the card (if the card requested closure).</p>
+                                <dl>
+                                    <dlentry>
+                                        <dt><varname>yourCallbackFunction.request.reason</varname> {String}</dt>
+                                        <dd><p>Describes application level description of why the card was closed. In the case that the close was due to a navigation Navigator will insert the value "navigation".</p></dd>
+                                    </dlentry>
+                                    <dlentry>
+                                        <dt><varname>yourCallbackFunction.request.type</varname> {String}</dt>
+                                        <dd><p>Describes the type and encoding of the value in the data attributes.</p></dd>
+                                    </dlentry>
+                                    <dlentry>
+                                        <dt><varname>yourCallbackFunction.request.data</varname> {String}</dt>
+                                        <dd><p>Describes the data that will be returned to the parent.</p></dd>
+                                    </dlentry>
+                                </dl>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    function onChildCardClosedHandler(request) {
+                        // The child Card is closed and reason is "OK", process the closure data;
+                        // otherwise do nothing.
+                        if (request.reason == "OK") {
+                            processCardClosureData(request.type, request.data);
+                        }
+                    }
+
+                    document.addEventListener("onChildCardClosed", onChildCardClosedHandler);
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

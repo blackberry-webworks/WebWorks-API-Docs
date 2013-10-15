@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoke_onChildCardEndPeek" xml:lang="en-us">
+    <title><apiname>onChildCardEndPeek</apiname></title>
+    <shortdesc><i>This event is fired by the system. If you want to listen to the event you can do so using the document.addEventListener function and remove the listener using the document.addEventListener function. The <b>onChildCardEndPeek</b> event is fired by the navigator to notify the parent that it is no longer being peeked at.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">onChildCardEndPeek : function(){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>yourCallbackFunction</varname></dt>
+                    <dd><p>The callback function that will be invoked on the onChildCardEndPeek event.</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    function onChildCardEndPeekHandler() {
+                        // The Card stopped peeking
+                        console.log("I am no longer being peeked at.");
+                    }
+
+                    document.addEventListener("onChildCardEndPeek", onChildCardEndPeekHandler);
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoked_invoked" xml:lang="en-us">
+    <title><apiname>invoked</apiname></title>
+    <shortdesc><i>This event is fired by the system. If you want to listen to the event you can do so using the document.addEventListener function and remove the listener using the document.removeEventListener function. The <b>invoked</b> event is triggered by the system when the application is invoked by another application.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">invoked : function(){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>yourCallbackFunction</varname> {Function}</dt>
+                    <dd><p>The callback function that will be invoked on the invoked event.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>info</varname> {Object}</dt>
+                                <dd><p>An object the pertinent information.</p>
+                                    <dl>
+                                        <dlentry>
+                                            <dt><varname>source</varname> {String}</dt>
+                                            <dd><p>Identifier of invocation target (as stated in its BAR manifest) to which the receiver can send results. Omitting the source attribute implies that the sender does NOT support results.</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>target</varname> {String}</dt>
+                                            <dd><p>Identifier of target (as stated in its BAR manifest) to which invocation should be delivered. If the target is supplied then brokering is bypassed and attempt is made to invoke the specified target.</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>action</varname> {String}</dt>
+                                            <dd><p>Identifier of action to be performed by target. Omitting action implies brokering should apply to any action supported for the specified type or that the target should infer the action.</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>type</varname> {String}</dt>
+                                            <dd><p>MIME type of data to be acted on. If the mime type is not specified then Invocation Framework would attempt to infer the mime type from the given URI. If the mime type can not be inferred or URI field is empty then invocation will be rejected.</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>uri</varname> {String}</dt>
+                                            <dd><p>URI pointing to invocation data. If no URI is provided then this implies the data://local URI indicating that the invocation data is provided in-band in the data field of the invocation message.</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>data</varname> {String}</dt>
+                                            <dd><p>Data passed to target. Omitting the data implies that the action-type are sufficient to carry out the invocation. Note that target invocation allows passing arbitrary binary data that will be encoded into Base64 encoded string.</p></dd>
+                                        </dlentry>
+                                    </dl>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    function onInvoked(onInvokedInfo) {
+                       if(onInvokedInfo.source) {
+                           console.log("Source: " + onInvokedInfo.source);
+                       }
+                       if(onInvokedInfo.target) {
+                           console.log("Target(me): " + onInvokedInfo.target);
+                       }
+                       if(onInvokedInfo.action) {
+                           console.log("Action: " + onInvokedInfo.action);
+                       }
+                       if(onInvokedInfo.data) {
+                           console.log("Data: " + onInvokedInfo.data);
+                           //the data comes in as a base64 string you can convert it using atob(...)
+                           //note that atob will fail if you are being passed unicode strings
+                           console.log("Data: " + atob(onInvokedInfo.data));
+                       }
+                    }
+
+                    document.addEventListener("invoked", onInvoked);
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

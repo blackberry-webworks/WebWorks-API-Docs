@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoke_interrupter" xml:lang="en-us">
+    <title><apiname>interrupter()</apiname></title>
+    <shortdesc><i>Registers a function that is triggered during invocation as an interrupter. Allows developers to interrupt the invocation, and perform any action they please. Developers are passed the invocation object, and can perform any modifications to it they like. The modifications should be returned from the function. NOTE: This function cannot be used to interrupt the Share Card. </i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">interrupter : function(onInvoke){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>onInvoke</varname> {Function}</dt>
+                    <dd><p>A function that is triggered on invoke.</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section>
+            <title>Returns:</title>
+            <dl>
+                <dt>{Object}</dt>
+                <dd><p>A modified request from the user to the system to be run on invocation.</p></dd>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    function registerForInvokeInterrupter() {
+                        blackberry.invoke.interrupter = function (request) {
+                            if(confirm("System would like to invoke: " + request + " would you like to continue?")) {
+                                return request;
+                            } else {
+                                alert("User canceled invocation");
+                            }
+                        };
+                    }
+
+                    function clearInterrupter () {
+                        blackberry.invoke.interrupter = null;
+                    }
+
+                    registerForInvokeInterrupter();
+                    clearInterrupter();
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
