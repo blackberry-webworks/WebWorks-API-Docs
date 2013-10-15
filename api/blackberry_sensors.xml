@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<concept id="blackbery_sensors" xml:lang="en-us">
+    <title>Sensors</title>
+    <shortdesc><i>The Sensors object allows you to get access to system level sensors and attributes of the BlackBerry device.</i></shortdesc>
+    <conbody>
+        <p>The sensors object has various event listeners for sensors on the device.</p>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                function compassCallback(sensor, data) {
+                     alert("Current azimuth: " + data.value);
+                }
+
+                blackberry.sensors.setOptions("devicecompass", { delay: 1000 });
+                blackberry.event.addEventListener("devicecompass", compassCallback);
+                blackberry.sensors.setOptions("devicecompass", { background: true, batching: true });
+               &lt;/script&gt;
+            </pre></p>
+        </example>
+    </conbody>
+    <related-links>
+    <link format="html" href="https://github.com/blackberry/BB10-WebWorks-Samples/tree/master/Sensors" scope="external">
+      <linktext>Sample that demonstrates how to use the BlackBerry Sensors API [BlackBerry on GitHub].</linktext>
+    </link>
+  </related-links>
+</concept>
