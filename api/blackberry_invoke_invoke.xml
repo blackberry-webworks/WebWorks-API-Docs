@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoke_invoke" xml:lang="en-us">
+    <title><apiname>invoke()</apiname></title>
+    <shortdesc><i>Invokes another application.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">invoke: function(request, onSuccess, onError){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>request</varname> {Object}</dt>
+                    <dd><p>Object literal that specifies what to invoke. None of the fields are required. Refer to the example code for more information.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>request.target</varname> {String}</dt>
+                                <dd><p>The id that identifies the component to invoke. If target is omitted, the invocation framework would perform brokering based on the specified action, type, URI or data to locate an appropriate target to invoke.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>request.action</varname> {String}</dt>
+                                <dd><p>The action to be performed by the target.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>request.type</varname> {String}</dt>
+                                <dd><p>MIME type of data to be acted on. If the MIME type is not specified then the mime type would be inferred from the given URI. If the MIME type cannot be inferred or URI field is empty then invocation will be rejected.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>request.uri</varname> {String}</dt>
+                                <dd><p>URI pointing to invocation data. If no URI is provided then this implies that the invocation data is provided in-band in the data field of the invocation request.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>request.data</varname> {String|Blob}</dt>
+                                <dd><p>Data (String or Blob) to be acted upon encoded based on the specified type. NOTE: If a String is passed, make sure that it does not contain unicode characters or invocation will fail.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>request.file_transfer_mode</varname> {String}</dt>
+                                <dd><p>An optional string that represents the file transfer mode that can be one of {@link blackberry.invoke.FILE_TRANSFER_PRESERVE}, {@link blackberry.invoke.FILE_TRANSFER_COPY_RO}, {@link blackberry.invoke.FILE_TRANSFER_COPY_RW}, {@link blackberry.invoke.FILE_TRANSFER_LINK}. If omitted, it a sensible default of {@link blackberry.invoke.FILE_TRANSFER_COPY_RO} will be used.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onSuccess(response) {}</varname> {Function}</dt>
+                    <dd><p>Callback function that will be triggered when the invocation is successful. Expected signature: function onSuccess().</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onError(error) {}</varname></dt>
+                    <dd><p>Callback function that will be triggered when invocation is not successful, or if request's data field cannot be encoded (e.g. when it contains unicode characters). Expected signature: function onError(error).</p>
+                        <dl>
+                            <dt><varname>error</varname> {String}</dt>
+                            <dd><p>A String that describes the error.</p></dd>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                function onInvokeSuccess() {
+                    alert("Invocation successful!");
+                }
+
+                function onInvokeError(error) {
+                   alert("Invocation failed, error: " + error);
+                }
+
+                function openWebLink() {
+                    // open web link - allows the system to choose an appropriate target that handles http://
+                    blackberry.invoke.invoke({
+                        uri: "http://www.blackberry.com"
+                    }, onInvokeSuccess, onInvokeError);
+                }
+
+                function openWebLinkInBrowser() {
+                    // open web link in browser
+                    blackberry.invoke.invoke({
+                        target: "sys.browser",
+                        uri: "http://www.blackberry.com"
+                    }, onInvokeSuccess, onInvokeError);
+                }
+
+                function openMP3File() {
+                    // open mp3 file - allows the system to choose an appropriate target that handles audio/mpeg3
+                    blackberry.invoke.invoke({
+                        type: "audio/mpeg3",
+                        uri: &lt;path to mp3 file&gt;
+                    }, onInvokeSuccess, onInvokeError);
+                }
+
+                function viewPicture() {
+                    // view picture
+                    blackberry.invoke.invoke({
+                        uri: &lt;path to jpg file&gt;,
+                        action: bb.action.VIEW
+                    }, onInvokeSuccess, onInvokeError);
+                }
+
+                function openAnotherApp() {
+                    // open another application that understands custom data
+                    blackberry.invoke.invoke({
+                        target: "another.app.that.handles.custom.json.data",
+                        type: "text/plain",
+                        data: "{'myData': 'A string I pass to another app'}"
+                    }, onInvokeSuccess, onInvokeError);
+                }
+
+                function openAnotherAppWithUnicodeData(unicodeStr) {
+                    // convert unicode string before calling invoke, the receiver app will have to
+                    // call decodeURIComponent(escape(str)) to get the unicode string back
+                    var convertedStr = unescape(encodeURIComponent(unicodeStr));
+
+                    // open another application that understands custom data
+                    blackberry.invoke.invoke({
+                        target: "another.app.that.handles.unicode.data",
+                        data: convertedStr
+                    }, onInvokeSuccess, onInvokeError);
+                }
+
+                function invokeCard() {
+                    // invoking Card is the same as invoking an application, except the target specified should point to the "Card" target entry point
+                    blackberry.invoke.invoke({
+                        target: "an.app.that.supports.card", // The target should point to the "Card" target entry point of an application
+                        type: "text/plain",
+                        data: "{'myData': 'Some data'}"
+                    }, onInvokeSuccess, onInvokeError);
+                }
+
+                function invokePictureViewer() {
+                    // invoking Card is the same as invoking an application, except the target specified should point to the "Card" target entry point
+                    blackberry.invoke.invoke({
+                        action: "bb.action.VIEW",
+                        uri : "local:///img/image.jpg",
+                        file_transfer_mode : blackberry.invoke.FILE_TRANSFER_COPY_RO
+                    }, onInvokeSuccess, onInvokeError);
+                }
+
+                function invokeAudoPlayer() {
+                    blackberry.invoke.invoke({
+                        action: "bb.action.VIEW",
+                        uri : "local:///audio/test.mp3",
+                        file_transfer_mode : blackberry.invoke.FILE_TRANSFER_COPY_RO
+                    }, onInvokeSuccess, onInvokeError);
+                }
+
+                function invokeAudioWithoutTrasnsfer() {
+                    blackberry.invoke.invoke({
+                        action: "bb.action.VIEW",
+                        uri : "local:///audio/test.mp3",
+                    }, onInvokeSuccess, onInvokeError);
+                }
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoke_query" xml:lang="en-us">
+    <title><apiname>query()</apiname></title>
+    <shortdesc><i>Queries device for list of invokable applications.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">query: function(request, onSuccess, onError){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>request</varname> {Object}</dt>
+                    <dd><p>An object containing a query to be performed on applications on the device.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>request.action</varname> {String}</dt>
+                                <dd><p>An identifier of the action to be performed by the target. Omitting action implies the query should apply to any action supported for the specified type or that the target should infer the action.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>request.type</varname> {String}</dt>
+                                <dd><p>The MIME type of data to be acted on. It must be provided if the uri attribute is not provided.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>request.uri</varname> {String}</dt>
+                                <dd><p>Used to infer the MIME type of the data. It must be provided if type is not specified.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>request.target_type</varname> Mandatory {String[]}</dt>
+                                <dd><p>An array that contains a set of target types that the query should return. Possible target types are "VIEWER" or "APPLICATION".</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>request.action_type</varname> {String}</dt>
+                                <dd><p>Indicates the type of actions to be returned. Possible values are "MENU" or "ALL". Menu actions specify addtional icon and label properties.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>request.receiver_capabilities</varname> {String}</dt>
+                                <dd><p>The list of capabilities that must be granted to the target in order for it to be considered a candidate.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onSuccess(response) {}</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggerd if the query is successful.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>response</varname> {QueryResponse[]}</dt>
+                                <dd><p>An array which contains the result of the query.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onError(error) {}</varname></dt>
+                    <dd><p>The callback function that will be triggered if there was an error processing the query.</p>
+                        <dl>
+                            <dt><varname>error</varname> {String}</dt>
+                            <dd><p>A String that contains an error message.</p></dd>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    function onSuccess(response) {
+                        alert("response: " + JSON.stringify(response, null, 2));
+                    }
+
+                    function onError(error) {
+                        alert("error: " + error);
+                    }
+
+                    function findAllTargetsThatCanOpenJPEGImages() {
+                        var request = {
+                            "action": "bb.action.OPEN",
+                            "type": "image/jpeg",
+                            "uri": "file://",
+                            "target_type": ["APPLICATION", "VIEWER"],
+                            "action_type": "ALL"
+                        };
+
+                        blackberry.invoke.query(request, onSuccess, onError);
+                    }
+
+                    function findViewersThatCanViewPDFDocs() {
+                        var request = {
+                            "action": "bb.action.VIEW",
+                            "type": "application/pdf",
+                            "uri": "file://",
+                            "target_type": ["VIEWERS"],
+                            "action_type": "ALL"
+                        };
+
+                        blackberry.invoke.query(request, onSuccess, onError);
+                    }
+
+                    function findApplicationsThatCanOpenAudioFiles() {
+                        var request = {
+                            "action": "bb.action.OPEN",
+                            "type": "audio/*",
+                            "uri": "file://",
+                            "target_type": ["APPLICATION"],
+                            "action_type": "ALL"
+                        };
+
+                        blackberry.invoke.query(request, onSuccess, onError);
+                    }
+
+                    function findAllTargetsThatCanHandleAllVideoFiles() {
+                        var request = {
+                            "type": "video/*",
+                            "uri": "file://",
+                            "target_type": ["APPLICATION", "VIEWER"],
+                            "action_type": "ALL"
+                        };
+
+                        blackberry.invoke.query(request, onSuccess, onError);
+                    }
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
