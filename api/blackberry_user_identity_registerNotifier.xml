@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_user_identity_registerNotifier" xml:lang="en-us">
+    <title><apiname>registerNotifier()</apiname></title>
+    <shortdesc><i>Register a callback function to be called when the named entry changes</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">registerNotifier(idsProvider, 0, name, onChangeCallback)</pre>
+        </section>
+        <section>
+            <title>Arguments:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>idsProvider</varname> {String}</dt>
+                    <dd><p>The identity provider to send this request to.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>type</varname> {int}</dt>
+                    <dd><p>The type of data referred to by name</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>name</varname> {String}</dt>
+                    <dd><p>The name of the entry to receive notifications for.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onChangeCallback</varname> {Function}</dt>
+                    <dd><p>The function that is invoked when a change is detected.</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+            &lt;script type="text/javascript"&gt;
+            function onChangeCb(type, name, notification) {
+                alert("Notification received: " + name + " with notification: " + notification);
+            }
+
+            blackberry.user.identity.registerProvider("ids:rim:bbid");
+            blackberry.user.identity.registerNotifier("ids:rim:bbid", 0, propertyName, onChangeCb);
+            &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

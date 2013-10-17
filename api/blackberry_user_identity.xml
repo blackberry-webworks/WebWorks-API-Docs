@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<concept id="blackbery_user_identity" xml:lang="en-us">
+  <title>User Identity</title>
+  <shortdesc><i>Identity Service library SDK - The Identity Service library offers a framework for data storage and retrieval, access to the user's personal information stored in the Identity Provider's account system, and user authentication/authorization to access the Identity Provider's apps and services.</i></shortdesc>
+  <conbody>
+    <section>
+      <title>Identity Service library</title>
+      <p>Developers can make use of the Identity Service library APIs to enhance their app in several ways:
+* - Data storage and retrieval
+* - User authentication and authorization to access apps and off-device services offered by the Identity Provider (without prompting for credentials)
+* - Access to the user's personal information stored in the Identity Provider's account system</p>
+      <p>These capabilities are described further in the sections below, and the specific implementation will vary for each Identity Provider. For example, the data storage and retrieval APIs might
+* provide off-device data storage, or on-device data storage - that could differ between one Identity Provider and another. Similarly, the personal information that can be retrieved with the 
+* getProperties() API call will differ based on what information each Identity Provider stores in their account system.
+      </p>
+      <p>As such, this document gives an overview of the Identity Service library APIs that are available, and this information must be used in conjunction with the Identity Provider's specific Identity
+* Service API overview to confirm the specifics of their implementation of each of these APIs.</p>
+    </section>
+    
+    <section>
+      <title>DataStorage_section  Data storage and retrieval APIs</title>  
+      <p>Applications can make use of APIs in the IDS library to store and retrieve data.</p>
+      <p>APIs are provided for:
+      <ul>
+        <li>initial storage of the data (createData())</li>
+        <li>retrieving the data (getData())</li>
+        <li>updating the data (setData())</li>
+        <li>removing the data (deleteData())</li>
+        <li>listing the stored data (istData())</li>
+      </ul></p>
+    </section>
+    
+    <section>
+      <title>UserAuth_Section   User authentication without prompting for credentials</title>
+      <p>Developers can use the Identity Services user authentication APIs in this library to avoid the need to implement user name and password management for their app. With these APIs, once the user is signed in using their account with the Identity Provider on the device, the user is automatically signed in to the app as well.      
+        <ul>
+          <li>Users won't need to create or remember a username and password for the app.</li>
+          <li>Users won't need to specifically log in to the app, thus improving the ease of use of the app.</li>
+        </ul>
+      </p>
+    </section>
+    <section>
+      <title>OffDeviceAuth_Section   User authorization to access apps and off-device services offered by the Identity Provider</title>
+      <p>If your app interacts with an off-device service that requires user authentication (for example, a web site that requires the user to sign in with a username and password),
+* you can use the Identity Service APIs to perform the off-device authentication/authorization using tokens, instead of prompting the user for credentials. Your app and the off-device service interact seamlessly.</p>
+    </section>
+    <section>
+      <title>PII_Section   Access to the user's personal information associated with their account</title>
+      <p>The user's personal information that is available to the app will depend on what information is available from the Identity Provider's account system.
+      </p>
+      <p>For example, if the app uses BlackBerry ID as the Identity Provider, the app can access the following personal information (provided that the user gives the app their consent):
+      <ul>
+        <li>First name</li>
+        <li>Last name</li>
+        <li>Screen name</li>
+        <li>username</li>
+      </ul>
+      </p>
+      <p>For other Identity Providers, the personal information available will depend on what that provider stores in their identity account system.</p>
+    </section>
+    <section>
+      <title>ids_callback_sec About Callback functions</title>
+      <p>Many of the IDS APIs have the following three parameters:
+      <ul>
+        <li>Success callback function</li>
+        <li>Failure callback function</li>
+      </ul></p>
+      
+      <p>When your app sends API calls using the IDS APIs, the Identity Provider service responds asynchronously. When an app receives a response, the corresponding callback function that your application had provided for the success or failure case is executed.</p>
+      
+      <p>The Identity Provider service uses callback functions to pass the parsed response back to your app. Callback functions cannot be NULL. Your app must specify what to do in both the success and failure scenarios.</p>
+    </section>
+    <section>
+      <title>bbid_modes_sec Registering your app to use the IDS APIs</title>
+      <p>To register your app so that it can use the IDS APIs, call registerProvider() from your app for at least one identity provider.</p>
+      
+      <p>After your app sends a request, the Identity Provider service will process the request asynchronously, and call the corresponding success/failure callback function.</p>
+      
+      <p>For example, your app can call getProperties() and pass a success callback of myAppSuccessCallback and a failure callback of myAppFailureCallback. When a response is ready from the identity provider, the success or failure callback will execute based on the results of the call.</p>
+    </section>
+    <example>
+      <title>Example:</title>
+        <p><pre scale="80">
+        &lt;script type="text/javascript"&gt;
+
+        // Update the path from a small icon to a full image
+        function translateIcontoFullImage (path) {
+          if (path &amp;&amp; path.indexOf('.ico') !== -1) {
+            return path.replace('.ico', '.jpeg');
+          }
+        }
+
+        function onContextMenu (contextEvent) {
+          var srcElement = contextEvent.srcElement;
+          console.log(srcElement);
+        }
+
+        window.addEventListener('oncontextmenu', onContextMenu);
+        &lt;/script&gt;
+        </pre></p>
+    </example>
+    <section>
+      <title>Custom Context Menu</title>
+      <p>Webworks applications can give Dom elements custom context by using the data-webworks-context xml attribute. When a Dom element contains this attribute, custom context menus will be activated when the element is long pressed. Once you have created a custom context using the data-webworks-context attribute, you can then use addItem to add items to the custom context. You can also optionally use defineCustomContext to further define the items shown.</p>
+    </section>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">getVersion {Integer}</pre>
+            <pre scale="80">registerProvider {String}</pre>
+            <pre scale="80">setOption {Integer, String}</pre>
+            <pre scale="80">getToken {idsProvider, tokenType, appliesTo, successCallback, failureCallback}</pre>
+            <pre scale="80">clearToken {idsProvider, tokenType, appliesTo, successCallback, failureCallback}</pre>
+            <pre scale="80">getProperties {idsProvider, 0, userProperties, successCallback, failureCallback}</pre>
+            <pre scale="80">setData {idsProvider, 0, 0, dataName, dataValue, successCallback, failureCallback}</pre>
+            <pre scale="80">createData {idsProvider, 0, 0, dataName, dataValue, successCallback, failureCallback}</pre>
+            <pre scale="80">deleteData {idsProvider, 0, 0, dataName, successCallback, failureCallback}</pre>
+            <pre scale="80">challenge {idsProvider, 0, 0, successCallback, failureCallback}</pre>
+            <pre scale="80">registerNotifier {idsProvider, 0, name, onChangeCallback}</pre>
+            <pre scale="80">setOption {Integer, String}</pre>
+        </section>
+  </conbody>
+
+</concept>

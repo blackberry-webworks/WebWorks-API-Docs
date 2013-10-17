@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_user_identity_getToken" xml:lang="en-us">
+    <title><apiname>getToken()</apiname></title>
+    <shortdesc><i>Issues a get token request.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">getToken(idsProvider, tokenType, appliesTo, successCallback, successCallback.result, failureCallback, failureCallback.result)</pre>
+        </section>
+        <section>
+            <title>Arguments:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>idsProvider</varname> {String}</dt>
+                    <dd><p>The identity provider to send this request to.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>tokenType</varname> {String}</dt>
+                    <dd><p>A token type. It must be NOT NULL and 32 characters &gt;= tokenType &gt; 0 character</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>appliesTo</varname> {String}</dt>
+                    <dd><p>The application or service to which the token applies. It must be NOT NULL and 96 characters &gt;= applies_to &gt; 0 character</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>successCallback</varname> {Function}</dt>
+                    <dd><p>Function which is invoked upon successful operation of this method.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>successCallback.tokenResult</varname> {JSON object}</dt>
+                    <dd><p>A JSON object containing a token and it's information in the form below:
+                    <pre>{
+                        "token": "ghdaj23i8rghaepeghk;a",
+                        "params": ["name":"TOKEN_SECRET","value":"oguireqhge"]
+                    }
+                    </pre></p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>failureCallback</varname> {Function}</dt>
+                    <dd><p>Function which is invoked when this method fails. This callback contains an errorCode parameter to specify the failure condition.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>failureCallback.result</varname> {JSON object}</dt>
+                    <dd><p>A JSON object containing details of the failure in the form below:
+                        <pre>{
+                            "result":"50009",
+                            "errorDescription":"The appliesTo value is not valid"
+                        }</pre></p></dd>
+                    <dt>Error Handling:</dt>
+                    <dd><p>Requests that do not complete successfully will result in the failure callback being called with one of the following result codes:</p>
+                    <p><ul>
+                        <li>IDS_DEFAULT_ERROR: An internal error has occurred attempting to process the request.</li>
+                        <li>IDS_UNKNOWN_APPLIES_TO: The appliesTo value is not valid.</li>
+                        <li>IDS_UNKNOWN_TOKEN_TYPE: The tokenType value is not valid</li>
+                        <li>IDS_NOT_ENOUGH_RESOURCES: There are not enough resources available to process the request.</li>
+                        <li>IDS_ACCOUNT_LOCALLY_LOCKED_OUT: The account is currently locked, token access is unavailable while locked.</li>
+                        <li>IDS_USER_COULD_NOT_BE_AUTHENTICATED: The user could not be authenticated.</li>
+                        <li>IDS_CANNOT_GET_TOKEN_WHILE_OFFLINE: The service is currently offline and cannot retrieve the requested token.</li>
+                        <li>IDS_ERROR_WHILE_CONTACTING_SERVICE: An error occurred communicating with the service.</li>
+                    </ul></p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+            &lt;script type="text/javascript"&gt;
+            function getTokenSuccess(tokenResult) {
+                alert("Received token: " + tokenResult.token);
+                for( param in tokenResult.tokenParams ) {
+                        alert("Token param: " + tokenResult.tokenParams[param].name + " and value: " + tokenResult.tokenParams[param].value);
+                }
+            }
+                        
+            function getTokenFailure(result) {
+                alert("Failed to retrieve token - result is: " + result.result + " with description: " + result.errorDescription);
+            }
+
+            blackberry.user.identity.registerProvider("ids:rim:bbid");
+            blackberry.user.identity.getToken("ids:rim:bbid", "MyTokenType", "urn:token:myapplication", getTokenSuccess, getTokenFailure);
+            &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
