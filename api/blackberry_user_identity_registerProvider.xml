@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_user_identity_registerProvider" xml:lang="en-us">
+    <title><apiname>registerProvider</apiname></title>
+    <shortdesc><i>Applications use this function to register which Identity Provider(s) that they want to use.  Once the application has initialized the library, it can register for each of the identity providers it is interested in.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">registerProvider()</pre>
+        </section>
+        <section>
+            <title>Arguments:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>registerProvider</varname> {String}</dt>
+                    <dd><p>The name of the identity provider that the application wants to use for retrieving user identity information (only BlackBerry ID is supported at this time).</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+            &lt;script type="text/javascript"&gt;
+        	var registerResult = blackberry.user.identity.registerProvider("ids:rim:bbid");
+        	if( registerResult.errorDescription ) {
+        		alert("IDS register provider error: " + registerResult.result + " with description: " + registerResult.errorDescription);
+        	}
+            &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_user_identity_createData" xml:lang="en-us">
+    <title><apiname>createData()</apiname></title>
+    <shortdesc><i>Issue a request to create data</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">createData(idsProvider, 0, 0, dataName, dataValue, successCallback,  failureCallback, failureCallback.result)</pre>
+        </section>
+        <section>
+            <title>Arguments:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>idsProvider</varname> {String}</dt>
+                    <dd><p>The identity provider to send this request to.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>type</varname> {int}</dt>
+                    <dd><p>The type of data. Each provider may have a unique set of types that it is able to
+ handle.  See the documentation for the provider for details on valid values.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>flags</varname> {int}</dt>
+                    <dd><p>Special flags for the operation. Each provider may have a unique set of flags that it supports.  See the documentation for the provider for details on valid values and their behaviour for this operation.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>dataName</varname> {String}</dt>
+                    <dd>The property identifier</dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>dataValue</varname> {String}</dt>
+                    <dd>The content of the property</dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>successCallback</varname> {Function}</dt>
+                    <dd><p>Function which is invoked upon successful operation of this method.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>failureCallback</varname> {Function}</dt>
+                    <dd><p>Function which is invoked when this method fails. This callback contains an errorCode parameter to specify the failure condition.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>failureCallback.result</varname> {JSON object}</dt>
+                    <dd><p>A JSON object containing details of the failure in the form below:
+                        <pre>{
+                            "result":"50004",
+                            "errorDescription":"The user could not be authenticated."
+                        * }</pre></p></dd>
+                    <dt>Error Handling:</dt>
+                    <dd><p>Requests that do not complete successfully will result in the failure callback being called with one of the following result codes:</p>
+                    <p><ul>
+                        <li>IDS_DEFAULT_ERROR: An internal error has occurred attempting to process the request.</li>
+                        <li>IDS_NOT_ENOUGH_RESOURCES: There are not enough resources available to process the request.</li>
+                        <li>IDS_ACCOUNT_LOCALLY_LOCKED_OUT: The account is currently locked, token access is unavailable while locked.</li>
+                        <li>IDS_USER_COULD_NOT_BE_AUTHENTICATED: The user could not be authenticated.</li>
+                        <li>IDS_NULL_OR_UNKNOWN_PARAMETERS: Null or invalid parameter.</li>
+                        <li>IDS_ERROR_WHILE_CONTACTING_SERVICE: The provider was unable to communicate with it's service to perform operation.</li>
+                        <li>IDS_ALREADY_EXISTS: Entry with name already exists.</li>
+                        <li>IDS_NOT_ALLOWED: Application is not allowed to perform this operation.</li>
+                        <li>USER_RESOURCE_NAME_TOO_LONG: The name is longer than the maximum length allowed by the provider</li>
+                    </ul></p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+            &lt;script type="text/javascript"&gt;
+            function createDataSuccess() {
+                alert("Create Data was successful");
+            }
+
+            function createDataFailure(result) {
+                alert("Failed to create data: " + result.result + " details: " + result.failureInfo);
+            }
+
+            blackberry.user.identity.registerProvider("ids:rim:profile");
+            blackberry.user.identity.createData("ids:rim:profile", 1, "usershandle", "johndoe123", createDataSuccess, createDataFailure);
+            &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

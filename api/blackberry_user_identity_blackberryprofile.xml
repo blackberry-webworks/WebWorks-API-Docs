@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<concept id="blackbery_user_identity_blackberryprofile" xml:lang="en-us">
+  <title>BlackBerry Profile</title>
+  <shortdesc><i>Use BlackBerry profile as an identity provider, and provide off-device data storage.</i></shortdesc>
+  <conbody>
+    <section>
+      <title>BlackBerry Profile</title>
+      <p>BlackBerry profile is an identity provider that allows access to off-device, encrypted storage space. The storage space is bound to the BlackBerry ID user that is currently logged in. The storage is accessible remotely from all devices logged in with the same BlackBerry ID user, allowing applications installed on multiple devices access to the same information.
+      </p>
+    </section>
+    <section>
+      <title>User Identity API support</title>
+      <p>BlackBerry profile supports the following Identity Service functions. Using BlackBerry profile with other functions will result in errors.</p>
+      <ul>
+        <li>createData()</li>
+        <li>getData()</li>
+        <li>setData()</li>
+        <li>deleteData()</li>
+        <li>listData()</li>
+        <li>registerNotifier()</li>
+      </ul>
+    </section>
+    <section>
+      <title>Off-device data storage and retrieval APIs</title>
+      <p>
+        Applications can use the APIs to securely store data in, and retrieve data from, the BlackBerry ecosystem. APIs are provided for storing data initially (createData()), retrieving the data (getData()), updating the data (setData()), and removing the data (deleteData()).
+      </p>
+    </section>
+    <section>
+      <title>Permissions</title>
+      <p>In order to store and retrieve data off of the device, wireless data is consumed. Applications using storage from BlackBerry profile must have the access_internet permission included in their bar descriptor file.</p>
+    </section>
+    <section>
+      <title>Limits to storage capacity</title>
+      <p>There's a limit to the amount of off-device storage that is available to each of your users. Storage limits are set according to user and app vendor, and apply to all of the apps that a user might have with a single vendor. For example, if you have multiple apps that require off-device storage, and you have a user who makes use of three of those apps, that user's storage limit applies to the total amount of storage space that those three apps require. Users can have multiple storage allocations, one for each app vendor.</p>
+    </section>
+    <section>
+      <title>Caching</title>
+      <p>In cases where the application may need data stored locally for quick or repeated access, the value can be cached securely on the device and retrieved on demand, even when not connected to the remote storage copy. The cache is synchronized with the remote copy so that the cache is always up to date while the device has appropriate data coverage.
+      </p>
+    </section>
+    <section>
+      <title>Using profile storage</title>
+      <p>Create - Store a new entry</p>
+      <p>Call createData() to store new profile entries.
+        <ul>
+          <li>Call createData() to store new profile entries.</li>
+          <li>flags are one of CREATE_DATA_ constants.</li>
+        </ul>
+      </p>
+      <p>Set - Update an entry</p>
+      <p>Call setData() to update profile entries</p>
+      <p>
+        <ul>
+          <li>type is one of the "profile types".</li>
+          <li>flags are one of SET_DATA_ constants.</li>
+        </ul>
+      </p>
+      <p>Get - Retrieve an entry</p>
+      <p>Call getData() to retrieve profile entries.</p>
+      <p>
+        <ul>
+          <li>type is one of the "profile types".</li>
+          <li>flags are one of GET_DATA_ constants.</li>
+        </ul>
+      </p>
+      <p>Delete - Remove an entry</p>
+      <p>Call deleteData() to remove profile entries.</p>
+      <p>
+        <ul>
+          <li>type is one of the "profile types".</li>
+          <li>flags are one of DELETE_DATA_ constants.</li>
+        </ul>
+      </p>
+      <p>ListData - List available entries</p>
+      <p>Call listData() to list profile entries.</p>
+      <p>
+        <ul>
+          <li>type is one of the "profile types".</li>
+          <li>flags are one of LIST_DATA_ constants.</li>
+        </ul>
+      </p>
+    </section>
+    <section>
+      <title>Notifications</title>
+      <p>Notifications can be registered for entries either before or after they have been created. In cases where the registration is done after creation, the application is notified each time the value changes so that it can perform any necessary operations. If registration is done before an entry is created, the application is notified upon creation of the value as if it were an update. Additionally, registered applications receive a change notification when an entry is deleted.
+      </p>
+      <p>To register for profile entry change notifications, call registerNotifier().
+      <ul>
+        <li>type is one of the "profile types".</li>
+        <li>flags are one of NOTIFY_ constants.</li>
+      </ul>
+      </p>
+      <p>Each time a registered entry changes, the registered callback function is executed and the corresponding NOTIFICATION_ indicates the kind of change that occurred.</p>
+    </section>
+    <section>
+       <title>Synopsis:</title>
+        <pre scale="80">blackberryprofile {Object}</pre>
+    </section>
+  </conbody>
+</concept>

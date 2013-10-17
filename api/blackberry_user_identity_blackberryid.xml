@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<concept id="blackbery_user_identity_blackberryid" xml:lang="en-us">
+  <title>User Identity</title>
+  <shortdesc><i>Use BlackBerry ID as an identity provider for your application</i></shortdesc>
+  <conbody>
+    <section>
+      <title>User Identity - BlackBerry ID</title>
+      <p>Using the BlackBerry ID service as an identity provider, you can enhance your app in several ways:
+      <ul>
+        <li>Provide secure, off-device data storage and retrieval within the BlackBerry ecosystem.</li>
+        <li>Provide user authentication within your app, without prompting for user credentials.</li>
+        <li>Provide user authorization to access other BlackBerry apps and off-device services without prompting for user credentials.</li>
+        <li>Provide access to users' personal information that is stored in the BlackBerry ID account system. User permission to access this information is required. </li>
+      </ul>
+      </p>
+    </section>
+    <section>
+      <title>DataStorage_section  Data storage and retrieval APIs</title>  
+      <p>Applications can make use of APIs in the IDS library to store and retrieve data.</p>
+      <p>APIs are provided for:
+      <ul>
+        <li>initial storage of the data (createData())</li>
+        <li>retrieving the data (getData())</li>
+        <li>updating the data (setData())</li>
+        <li>removing the data (deleteData())</li>
+        <li>listing the stored data (istData())</li>
+      </ul></p>
+    </section>
+    <section>
+      <title>UserAuth_Section   User authentication without prompting for credentials</title>
+      <p>Benefits of implementing BlackBerry ID user authentication:    
+        <ul>
+          <li>Eliminate the need to build your own username and password management.</li>
+          <li>Automatically sign users in to your app after they sign in with their BlackBerry ID account on their devices. This makes your app easier to use.</li>
+          <li>Eliminate the need for users to create and remember a username and password for your app.</li>
+        </ul>
+      </p>
+    </section>
+    <section>
+      <title>User authorization to access other BlackBerry apps and off-device services</title>
+      <p>If your app interacts with an off-device service that requires user authentication (for example, a website that requires the user to sign in with a username and password), you can use BlackBerry ID APIs to perform the off-device authentication/authorization using tokens, instead of prompting the user for credentials. Your app and the off-device service interact seamlessly.</p>
+    </section>
+    <section>
+      <title>Access personal information associated with BlackBerry ID accounts</title>
+      <p>You can personalize the user experience of your app by incorporating your users' personal information in your app. Users must allow your app to access the information associated with their BlackBerry ID accounts before you can access it. The application must have the read_personally_identifiable_information permission included in their bar descriptor. The information that is available includes:
+      <ul>
+        <li>first name</li>
+        <li>last name</li>
+        <li>screen name </li>
+        <li>username (an email address)</li>
+      </ul>
+      </p>
+      <p>The getProperties() function can be used to retrieve personal information stored in the BlackBerry ID account system, with CORE_PROPERTY_TYPE passed as the type parameter.</p>
+      <pre scale="80">
+        @featureID blackberry.user.identity
+        @permission read_personally_identifiable_information Permits your app to access user identity information including the ability to store secondary user properties.
+        @permission access_internet Permits your app to use the internet to access user data in remote storage.
+      </pre>
+    </section>
+    <section>
+       <title>Synopsis:</title>
+        <pre scale="80">blackberryid {Object}</pre>
+    </section>
+  </conbody>
+</concept>
