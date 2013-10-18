@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoke_card_invokeCalendarPicker" xml:lang="en-us">
+    <title><apiname>invokeCalendarPicker()</apiname></title>
+    <shortdesc><i>Invokes calendar event picker card. Note: Filepaths using the local:/// protocol are not supported for this card.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">invokeCalendarPicker : function(options, onDone, onCancel, onInvoke){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>options</varname> {blackberry.invoke.card.CalendarPickerOptions}</dt>
+                    <dd><p>An object of type {@link blackberry.invoke.card.CalendarPickerOptions} which describes all options available to the event picker.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onDone</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered when the user finished with the event picker.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>data</varname> {String}</dt>
+                                <dd><p>The data string back from the event picker.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onCancel</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered if the user cancel the event picker.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>reason</varname> {String}</dt>
+                                <dd><p>A String that describes the reason the event picker was cancelled.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onInvoke</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered when the event picker is invoked.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {String}</dt>
+                                <dd><p>A String that describes if there was an error. No error will be returned on success.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    //simply invoke calendar picker, with no options and callbacks
+                    blackberry.invoke.card.invokeCalendarPicker();
+
+                    //invoke calendar event picker with filepath option
+                    blackberry.invoke.card.invokeCalendarPicker({filepath: "/path/to/file.vcs"}, function (done) {
+                        console.log(done);
+                    }, function (cancel) {
+                        console.log(cancel)
+                    }, function (invokeError) {
+                        console.log(invokeError);
+                    });
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

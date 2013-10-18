@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoke_card_invokeEmailComposer" xml:lang="en-us">
+    <title><apiname>invokeEmailComposer()</apiname></title>
+    <shortdesc><i>Invokes the email composer card. Note: Filepaths using the local:/// prototcol are supported for this card.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">invokeEmailComposer : function(options, onDone, onCancel, onInvoke){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>options</varname> {blackberry.invoke.card.EmailComposerOptions}</dt>
+                    <dd><p>An object of type {@link blackberry.invoke.card.EmailComposerOptions} which describes all options available to the email composer.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onDone</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered when the user finished with the email composer.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>data</varname> {String}</dt>
+                                <dd><p>The data string back from the email composer.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onCancel</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered if the user cancels the email composer.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>reason</varname> {String}</dt>
+                                <dd><p>A String that describes the reason the email composer was cancelled.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onInvoke</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered when the email composer is invoked.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {String}</dt>
+                                <dd><p>A String that describes if there was an error. No error will be returned on success.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    //simply invoke email composer, with no options and callbacks
+                    blackberry.invoke.card.invokeEmailComposer();
+
+                    //invoke email composer with subject, body, to, cc and attachment options
+                    blackberry.invoke.card.invokeEmailComposer({
+                        subject: "Email subject",
+                        body: "Email body",
+                        to: ["a@a.ca", "b@b.com"],
+                        cc: ["c@c.ca, d@d.com"],
+                        attachment: ["/path/to/an/attachment.txt", "path/to/another/attachment.txt"]
+                    }, function (done) {
+                        console.log(done);
+                    }, function (cancel) {
+                        console.log(cancel)
+                    }, function (invokeError) {
+                        console.log(invokeError);
+                    });
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

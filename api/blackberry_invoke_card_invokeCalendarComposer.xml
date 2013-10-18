@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoke_card_invokeCalendarComposer" xml:lang="en-us">
+    <title><apiname>invokeCalendarComposer()</apiname></title>
+    <shortdesc><i>Invokes calendar event composer card.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">invokeCalendarComposer : function(options, onDone, onCancel, onInvoke){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>options</varname> {blackberry.invoke.card.CalendarComposerOptions}</dt>
+                    <dd><p>An object of type {@link blackberry.invoke.card.CalendarComposerOptions} which describes all options available to the event composer.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onDone</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered when the user finished with the event composer.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>data</varname> {String}</dt>
+                                <dd><p>The data string back from the event composer.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onCancel</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered if the user cancels the event composer.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>reason</varname> {String}</dt>
+                                <dd><p>A String that describes the reason the event composer was cancelled.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onInvoke</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered when the event composer is invoked.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {String}</dt>
+                                <dd><p>A String that describes if there was an error. No error will be returned on success.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    //simply invoke calendar composer, with no options and callbacks
+                    blackberry.invoke.card.invokeCalendarComposer();
+
+                    //invoke calendar event composer with subject, body, participants, startTime and duration options
+                    blackberry.invoke.card.invokeCalendarComposer({
+                        subject: "Event Name",
+                        body: "Notes about this event",
+                        participants: ["a@a.ca", "b@b.com"],
+                        startTime: "Wed Jun 25 11:00:00 2012",
+                        duration: 30
+                    }, function (done) {
+                        console.log(done);
+                    }, function (cancel) {
+                        console.log(cancel)
+                    }, function (invokeError) {
+                        console.log(invokeError);
+                    });
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

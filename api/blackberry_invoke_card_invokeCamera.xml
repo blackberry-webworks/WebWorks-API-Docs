@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoke_card_invokeCamera" xml:lang="en-us">
+    <title><apiname>invokeCamera()</apiname></title>
+    <shortdesc><i>Invokes the Camera Card.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">invokeCamera : function(mode, onSave, onCancel, onInvoke){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>mode</varname> {String}</dt>
+                    <dd><p>A string to specify the photo video or full mode.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onSave</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered if the user saves a picture or video.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>path</varname> {String}</dt>
+                                <dd><p>A String that describes the path of the file saved.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onCancel</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered if the user does not save and simply quits the camera.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>reason</varname> {String}</dt>
+                                <dd><p>A String that describes the reason the camera was cancelled.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onInvoke</varname> {Function}</dt>
+                    <dd><p>The callback function that will be triggered when the camera is invoked.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {String}</dt>
+                                <dd><p>A String that describes if there was an error. No error will be returned on success.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    function invokeCameraCard() {
+                        var mode = blackberry.invoke.card.CAMERA_MODE_PHOTO;
+                        blackberry.invoke.card.invokeCamera(mode, function (path) {
+                            alert("saved "+ path);
+                            },
+                            function (reason) {
+                                alert("cancelled " + reason);
+                            },
+                            function (error) {
+                                if (error) {
+                                    alert("invoke error "+ error);
+                                } else {
+                                    console.log("invoke success " );
+                                }
+                        });
+                    }
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

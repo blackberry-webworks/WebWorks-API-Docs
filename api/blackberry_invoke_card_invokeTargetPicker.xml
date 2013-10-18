@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoke_card_invokeTargetPicker" xml:lang="en-us">
+    <title><apiname>invokeTargetPicker()</apiname></title>
+    <shortdesc><i>Invokes the Target Picker Card</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">invokeTargetPicker : function(request, title, onSuccess, onError){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>request</varname> {Object}</dt>
+                    <dd><p>Object literal that specifies what to invoke. None of the fields are required. Refer to the example code for more information.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>action</varname> {String}</dt>
+                                <dd><p>The action to be performed by the target.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>mime</varname> {String}</dt>
+                                <dd><p>MIME type of data to be acted on. If the MIME type is not specified then the mime type would be inferred from the given URI. If the MIME type cannot be inferred or URI field is empty then invocation will be rejected.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>uri</varname> {String}</dt>
+                                <dd><p>URI pointing to invocation data. If no URI is provided then this implies that the invocation data is provided in-band in the data field of the invocation request.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>data</varname> {String|Blob}</dt>
+                                <dd><p>Data (String or Blob) to be acted upon encoded based on the specified type. NOTE: If a String is passed, make sure that it does not contain unicode characters or invocation will fail.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>title</varname> {String}</dt>
+                    <dd><p>The title string that should appear at the top of the target picker card.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onSuccess</varname> {Function}</dt>
+                    <dd><p>A callback that is called on successfull invocation of a target.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onError</varname> {Function}</dt>
+                    <dd><p>A callback function that will be triggered on error during the invocation process.</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    function onInvokeSuccess (msg) {
+                        console.log("Invocation Success" + msg);
+                    }
+
+                    function onInvokeError (msg) {
+                        console.log("Invocation Error: " + msg);
+                     }
+
+                    function shareCardPNG() {
+                        var request = {
+                                action : 'bb.action.SHARE',
+                                uri : 'local:///test_image.png',
+                                target_type: ["CARD"]
+                            };
+
+                         blackberry.invoke.card.invokeTargetPicker(request, "Share Card JPEG", onInvokeSuccess, onInvokeError);
+                    }
+
+                    function shareCardFilePNG() {
+                        var request = {
+                            action : 'bb.action.SHARE',
+                            uri : 'file://' + blackberry.io.sharedFolder  + '/../app/native/manual/InvocationTest/test_image.png',
+                            target_type: ["CARD"]
+                        };
+
+                        blackberry.invoke.card.invokeTargetPicker(request, "Share JPEGS Card", onInvokeSuccess, onInvokeError);
+                    }
+
+                    function sharePNG() {
+                        var request = {
+                            action : 'bb.action.SHARE',
+                            uri : 'local:///test_image.png',
+                            target_type: ["APPLICATION", "VIEWER", "CARD"]
+                        };
+
+                        blackberry.invoke.card.invokeTargetPicker(request, "Shared PNG", onInvokeSuccess, onInvokeError);
+                    }
+
+                    function sharePDFURI() {
+                        var request = {
+                            action : 'bb.action.SHARE',
+                            uri : 'local:///test.pdf',
+                            target_type: ["APPLICATION", "VIEWER"]
+                        };
+
+                        blackberry.invoke.card.invokeTargetPicker(request, "Shared PDF", onInvokeSuccess, onInvokeError);
+                    }
+
+                    function shareDocURI() {
+                        var request = {
+                            action : 'bb.action.SHARE',
+                            uri : 'local:///test.docx',
+                            target_type: ["APPLICATION", "VIEWER", "CARD"]
+                        };
+
+                        blackberry.invoke.card.invokeTargetPicker(request, "Share Word Document", onInvokeSuccess, onInvokeError);
+                    }
+
+                    function shareRemoteURL() {
+                        var request = {
+                            action : 'bb.action.SHARE',
+                            uri : 'http://google.com',
+                            target_type: ["APPLICATION", "VIEWER", "CARD"]
+                        };
+
+                        blackberry.invoke.card.invokeTargetPicker(request, "Shared Remote URL", onInvokeSuccess, onInvokeError);
+                    }
+
+                    function shareTextMockingSelection() {
+                        var request = {
+                            action : 'bb.action.SHARE',
+                            mime : 'text/plain',
+                            data : 'Some awesome text',
+                            target_type: ["VIEWER", "CARD"]
+                        };
+
+                        blackberry.invoke.card.invokeTargetPicker(request, "Sharing Text", onInvokeSuccess, onInvokeError);
+                    }
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
