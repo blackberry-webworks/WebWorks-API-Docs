@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoked_cardStartPeek" xml:lang="en-us">
+    <title><apiname>cardStartPeek()</apiname></title>
+    <shortdesc><i>As a Card, request the navigator to perform a peek on the deck.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">cardStartPeek : function(peekType){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>peekType</varname> {String}</dt>
+                    <dd><p>Describes the type of peek to perform as a peek to the content of the parent or a peek to the content of the root. The value should be either "content" or "root".</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    function peekParent() {
+                        // Request the navigator to perform a peek to the content of the parent
+                        document.addEventListener('touchstart', function(event) {
+                            blackberry.invoked.cardStartPeek("content");
+                        }, false);
+                    }
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

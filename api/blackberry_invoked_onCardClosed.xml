@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_invoked_onCardClosed" xml:lang="en-us">
+    <title><apiname>onCardClosed</apiname></title>
+    <shortdesc><i>This event is fired by the system. If you want to listen to the event you can do so using the document.addEventListener function and remove the listener using the document.removeEventListener function. As a Card, the <b>onCardClosed</b> event is fired by the navigator to it to indicate that it should clean-up its state and wait for invocation as it is pooled. When a card receives a cardClosed event it should assume that its child card is also closed (if one exists). When a card is dismissed by the Parent or navigator the reason value is "closed".</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">onCardClosed : function(){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>yourCallbackFunction</varname> {Function}</dt>
+                    <dd><p>The callback function that will be invoked on the onCardClosed event.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>request</varname> {Object}</dt>
+                                <dd><p>An object that includes any response data sent by the card (if the card requested closure).</p>
+                                    <dl>
+                                        <dlentry>
+                                            <dt><varname>reason</varname> {String}</dt>
+                                            <dd><p>Describes application level description of why the card was closed. In the case that the close was due to a navigation Navigator will insert the value "navigation".</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>type</varname> {String}</dt>
+                                            <dd><p>Describes the type and encoding of the value in the data attributes.</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>data</varname> {String}</dt>
+                                            <dd><p>Describes the data that will be returned to the parent.</p></dd>
+                                        </dlentry>
+                                    </dl>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+                    function onCardClosedHandler(request) {
+                           // If it was closed by the navigator, do the clean-up
+                              if (request.reason == "navigation") {
+                                         cleanup();
+                                            }
+                    }
+
+                    document.addEventListener("onCardClosed", onCardClosedHandler);
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
