@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackbery_bbm_platform_register" xml:lang="en-us">
+    <title><apiname>register</apiname></title>
+    <shortdesc><i>Registers your app to allow it to access the BBM Social Platform.</i></shortdesc>
+    <refbody>
+        <section>
+            <p>The application must assign a callback to blackberry.bbm.platform.onaccesschanged before registering. During registration, a dialog opens and guides the user through the registration process. The application should wait until blackberry.bbm.platform.onaccesschanged is invoked before continuing.</p>
+            <p><b>Application in Test Environment</b>Applications must provide a UUID used to identify the application in the test environment. If the application is in App World, the UUID will not be used. The same UUID should be used for future releases of the same application; otherwise communication between them will not be possible. The UUID must be a randomly generated 36-character UUID. Any UUID generator can be used.</p>
+        </section>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">void blackberry.bbm.platformregister(options)</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>options</varname> {Object}</dt>
+                    <dd><p>Options.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>uuid</varname> {String}</dt>
+                                <dd><p>ID used to identify the application in the test environment.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+&lt;script type="text/javascript"&gt;
+
+    // Create callback invoked when access changes
+    document.addEventListener("onaccesschanged", accessChangedCallback);
+
+    function accessChangedCallback(accessible, status) {
+        if (status == "unregistered") {
+            // App is unregistered, proceed to register
+            registerApp();
+        } else if (status == "allowed") {
+            // Access allowed
+        }
+        // Listen for other status...
+    };
+
+    function registerApp() {
+    // Register with the platform
+         blackberry.bbm.platform.register({
+             uuid: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" // Randomly generated UUID
+         });
+    }
+
+&lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
