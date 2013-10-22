@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_pim_calendar_CalendarEvent_createExceptionEvent" xml:lang="en-us">
+    <title><apiname>createExceptionEvent</apiname></title>
+    <shortdesc><i>Creates a new CalendarEvent object for a recurrence exception of the calling event. This is a deep copy of the object, with the id property set to null, the parentId property set to the id of the calling event, and the originalStartTime property set to the parameter value.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80"><xref format="html" href="blackberry_pim_calendar_CalendarEvent.html" scope="peer">CalendarEvent</xref> blackberry.pim.calendar.findEvents(originalStartTime)</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>originalStartTime</varname> {Date}</dt>
+                    <dd><p>The date of the original recurrence instance that this event replaces. This date will be added to the calling event's exceptionDates array within the recurrence field.</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+         <section>
+            <title>Returns:</title>
+            <dl>
+                <dlentry>
+                    <dt><xref format="html" href="blackberry_pim_calendar_CalendarEvent.html" scope="peer">blackberry.pim.calendar.CalendarEvent</xref></dt>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+var evt,
+    exceptionEvt,
+    calendar = blackberry.pim.calendar,
+    CalendarRepeatRule = calendar.CalendarRepeatRule;
+
+function onExceptionSaveSuccess(exceptionEvtCreated) {
+    // Exception event created successcully, now the recurring event
+    // has the following occurences:
+    // Jan 22, 2013, 12:00
+    // Jan 25, 2013, 12:00
+    // Jan 29, 2013, 12:00
+    // Feb  1, 2013, 12:00
+    // Feb  5, 2013, 12:00
+    // Feb  8, 2013, 12:00
+    // Feb 12, 2013, 12:00
+    // Feb 16, 2013, 12:00
+    exceptionEvt = exceptionEvtCreated;
+    // exception event has a different id than the original event
+    alert("Exception event created successfully: " + exceptionEvt.id);
+
+    // get a fresh copy of the recurring event which contains the
+    // updated recurrence
+    evt = calendar.getEvent(evt.id, evt.folder);
+}
+
+function onSaveSuccess(created) {
+    // Recurring event created successcully, with the following occurences:
+    // Jan 22, 2013, 12:00
+    // Jan 25, 2013, 12:00
+    // Jan 29, 2013, 12:00
+    // Feb  1, 2013, 12:00
+    // Feb  5, 2013, 12:00
+    // Feb  8, 2013, 12:00
+    // Feb 12, 2013, 12:00
+    // Feb 15, 2013, 12:00
+    evt = created;
+
+    // The following code replaces the last occurence with an exception
+    // occurence on the day after
+    exceptionEvt = evt.createExceptionEvent(new Date("Feb 15, 2013, 12:00"));
+    exceptionEvt.start = new Date("Feb 16, 2013, 12:00");
+    exceptionEvt.end = new Date("Feb 16, 2013, 12:30");
+    exceptionEvt.save(onExceptionSaveSuccess, onSaveError);
+}
+
+function onSaveError(error) {
+    alert("Error saving event to device: " + error.code);
+}
+
+function createRecurringEvent() {
+    var start = new Date("Jan 21, 2013, 12:00");
+    var end = new Date("Jan 21, 2013, 12:30");
+    var location = "some location";
+    var summary = "My recurring event";
+    var repeatRule = new CalendarRepeatRule({
+        "frequency": CalendarRepeatRule.FREQUENCY_WEEKLY,
+        "expires": new Date("Feb 18, 2013, 12:00"),
+        "dayInWeek": CalendarRepeatRule.TUESDAY | CalendarRepeatRule.FRIDAY
+    });
+    evt = calendar.createEvent({
+        "summary": summary,
+        "location": location,
+        "start": start,
+        "end": end,
+        "recurrence": repeatRule
+    });
+    evt.save(onSaveSuccess, onSaveError);
+}
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

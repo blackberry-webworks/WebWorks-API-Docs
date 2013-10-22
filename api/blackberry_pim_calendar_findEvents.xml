@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_pim_calendar_findEvents" xml:lang="en-us">
+    <title><apiname>findEvents</apiname></title>
+    <shortdesc><i>Find calendar event(s) in the calendar based on some criteria. This function can be used to look up events based on start/end time, location, or summary.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">void blackberry.pim.calendar.findEvents(findOptions, onFindSuccess, onFindError)</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>findOptions</varname> {<xref format="html" href="blackberry_pim_calendar_CalendarFindOptions.html" scope="peer">CalendarFindOptions</xref>}</dt>
+                    <dd><p>Options to be applied to the search.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onFindSuccess</varname> {Function}</dt>
+                    <dd><p>Success callback function that is invoked with the events returned from the calendar.</p>
+                        <dl>
+                            <dlEntry>
+                                <dt><varname>onFindSuccess.events</varname> {<xref format="html" href="blackberry_pim_calendar_CalendarEvent.html" scope="peer">CalendarEvent</xref>[]}</dt>
+                                <dd><p>The array of CalendarEvent objects from the search.</p></dd>
+                            </dlEntry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onFindError</varname> {Function} optional</dt>
+                    <dd><p>error callback function. Invoked when error occurs.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {<xref format="html" href="blackberry_pim_calendar_CalendarError.html" scope="peer">CalendarError</xref>}</dt>
+                                <dd><p>The CalendarError object which contains the error code.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+    var calendar = blackberry.pim.calendar,
+    CalendarFindOptions = calendar.CalendarFindOptions;
+
+    function onFindSuccess(events) {
+        alert("Found " + events.length + " events!");
+        events.forEach(function (evt) {
+            alert("Event summary: " + evt.summary);
+            alert("Event location: " + evt.location);
+        );
+    }
+
+    function onFindError(error) {
+        alert("Error: " + error.code);
+    }
+
+    // Find any events by keyword in any of the following fields:
+    // -location
+    // -summary
+    // -attendees' names or emails
+    function findEventsByKeyword(keyword) {
+        var filter = { "substring" : keyword };
+        var findOptions = {
+            "filter" : filter,
+            "detail" : CalendarFindOptions.DETAIL_FULL
+        };
+
+        // Find all events that has the specified keyword in summary,
+        // location or attendees' name/email
+        calendar.findEvents(findOptions, onFindSuccess, onFindError);
+    }
+
+    function findEventsSortSummaryDescending(keyword) {
+        var filter = { "substring" : keyword };
+        var findOptions = {
+            "filter" : filter,
+            "sort": [{
+                "fieldName": CalendarFindOptions.SORT_FIELD_SUMMARY,
+                "desc": true
+            }],
+            "detail" : CalendarFindOptions.DETAIL_FULL
+        };
+
+        calendar.findEvents(findOptions, onFindSuccess, onFindError);
+    }
+
+    // Only events in the specified folder will be returned in search results
+    function findEventsInCalendarFolder(keyword, folder, limit) {
+        var filter = {
+            "substring": keyword,
+            "folders": [folder]
+        };
+
+        var findOptions = {
+            "filter": filter,
+            "sort": [{
+                "fieldName": CalendarFindOptions.SORT_FIELD_SUMMARY,
+                "desc": false
+            }],
+            "detail": CalendarFindOptions.DETAIL_AGENDA,
+            "limit": limit
+        };
+
+        calendar.findEvents(findOptions, onFindSuccess, onFindError);
+    }
+
+    // Filter is optional in search
+    function listAllEvents(limit) {
+        var findOptions = {
+            "sort": [{
+                "fieldName": CalendarFindOptions.SORT_FIELD_SUMMARY,
+                "desc": false
+            }],
+            "detail": CalendarFindOptions.DETAIL_AGENDA,
+            "limit": limit
+        };
+
+        calendar.findEvents(findOptions, onFindSuccess, onFindError);
+    }
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

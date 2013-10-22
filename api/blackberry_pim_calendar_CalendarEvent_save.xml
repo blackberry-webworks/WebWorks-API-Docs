@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_pim_calendar_CalendarEvent_save" xml:lang="en-us">
+    <title><apiname>save()</apiname></title>
+    <shortdesc><i>Saves a new event to the calendar, or updates an existing event if an event with the same id already exists.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">void CalendarEvent.save(onSaveSuccess, onSaveError)</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>onSaveSuccess</varname> {Function}</dt>
+                    <dd><p>The callback function that will be invoked when the event is saved successfully.</p>
+                        <dl>
+                            <dlEntry>
+                                <dt><varname>events</varname> {<xref format="html" href="blackberry_pim_calendar_CalendarEvent.html" scope="peer">CalendarEvent</xref>}</dt>
+                                <dd><p>The <xref format="html" href="blackberry_pim_calendar_CalendarEvent.html" scope="peer">CalendarEvent</xref> object. You should save this object for further operations on the event and use it to replace the original event object prior to save.</p></dd>
+                            </dlEntry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onSaveError</varname> {Function} optional</dt>
+                    <dd><p>The callback function that will be invoked when the event cannot be saved.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {<xref format="html" href="blackberry_pim_calendar_CalendarError.html" scope="peer">CalendarError</xref>}</dt>
+                                <dd><p>The <xref format="html" href="blackberry_pim_calendar_CalendarError.html" scope="peer">CalendarError</xref> object which contains the error code. Possible errors:
+                                <ul>
+                                    <li><xref format="html" href="blackberry_pim_calendar_CalendarEvent_start.html" scope="peer">CalendarEvent.start</xref> or <xref format="html" href="blackberry_pim_calendar_CalendarEvent_end.html" scope="peer">CalendarEvent.end</xref> date time is missing, result in <xref format="html" href="blackberry_pim_calendar_CalendarError_INVALID_ARGUMENT_ERROR.html" scope="peer">CalendarError.INVALID_ARGUMENT_ERROR</xref>.</li>
+                                    <li>end date time is before start date time, result in <xref format="html" href="blackberry_pim_calendar_CalendarError_INVALID_ARGUMENT_ERROR.html" scope="peer">CalendarError.INVALID_ARGUMENT_ERROR</xref></li>
+                                    <li><xref format="html" href="blackberry_pim_calendar_CalendarRepeatRule_frequency.html" scope="peer">CalendarRepeatRule.frequency</xref> is not set correctly for recurring event, result in <xref format="html" href="blackberry_pim_calendar_CalendarError_INVALID_ARGUMENT_ERROR.html" scope="peer">CalendarError.INVALID_ARGUMENT_ERROR</xref></li>
+                                    <li>trying to save the event to a calendar folder which the app does not have access to (e.g. if the default calendar folder is set to an enterprise account, but the app is not running in work perimeter), result in <xref format="html" href="blackberry_pim_calendar_CalendarError_INVALID_ARGUMENT_ERROR.html" scope="peer">CalendarError.PERMISSION_DENIED_ERROR</xref></li>
+                                    <li>other errors in the backend, result in <xref format="html" href="blackberry_pim_calendar_CalendarError_INVALID_ARGUMENT_ERROR.html" scope="peer">CalendarError.UNKNOWN_ERROR</xref>}.</li>
+                                </ul></p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+var calendar = blackberry.pim.calendar,
+// omitting optional folder parameter in createEvent(), calling save() will
+// save event to default calendar folder
+evt = calendar.createEvent({
+    "summary": "Picnic",
+    "location": "South Park",
+    "start": new Date("Jan 1, 2013, 13:00"),
+    "end": new Date("Jan 1, 2013, 16:00"),
+    "transparency": calendar.CalendarEvent.SENSITIVITY_PERSONAL,
+    "reminder": 2 * 24 * 60 // 2 days before start
+});
+
+// save event to default calendar folder
+evt.save(function (saved) {
+    evt = saved; // replace original evt object
+    alert("Event saved: " + evt.id);
+}, function (error) {
+    alert("Error saving event, error code: " + error.code);
+});
+
+// edit event description
+evt.description = "This is going to be fun!";
+// save changes to event
+evt.save(function (saved) {
+    evt = saved; // replace original evt object
+    alert("Event description: " + evt.description);
+}, function (error) {
+    alert("Error saving event, error code: " + error.code);
+});
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
