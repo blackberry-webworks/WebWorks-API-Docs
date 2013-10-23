@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_bbm_platform_self_profilebox_addItem" xml:lang="en-us">
+    <title><apiname>addItem</apiname></title>
+    <shortdesc><i>Adds an item to the top of the user's profile box. Icons are optional and must be registered before an item is added.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">addItem : function(options, onSuccess, onError){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>options</varname> {Object}</dt>
+                    <dd><p>The options.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>text</varname> {String}</dt>
+                                <dd><p>The text of the item.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>cookie</varname> {String}</dt>
+                                <dd><p>The customizable cookie string.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>iconID</varname> Optional {Number}</dt>
+                                <dd><p>The icon ID of a previously registered icon.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onSuccess</varname> {Function}</dt>
+                    <dd><p>Invoked when the item has been added.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>item</varname> {blackberry.bbm.platform.profilebox.ProfileBoxItem}</dt>
+                                <dd><p>The new item.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onError</varname> {Function}</dt>
+                    <dd><p>Invoked when there was an error adding the item.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {String}</dt>
+                                <dd><p>Contains the error message.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <pre scale="80"><p>
+                &lt;script type="text/javascript"&gt;
+
+                    // Add an item with icon, text, and a cookie
+                    var options = {text: "Planted an apple orchard on 10 acres!", icon: "local:///smiley.jpg", cookie: "10acres"};
+                    blackberry.bbm.platform.self.profilebox.addItem(options, function (item) {
+                               // do something with the item
+                           }), function (error) {
+                               alert(error);
+                           });
+
+                &lt;/script&gt;
+            </p></pre>
+        </example>
+    </refbody>
+</reference>
