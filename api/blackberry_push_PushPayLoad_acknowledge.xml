@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_push_PushPayload_acknowledge" xml:lang="en-us">
+    <title><apiname>acknowledge</apiname></title>
+    <shortdesc><i>Sends an acknowledgement to the PPG indicating whether a push should be accepted or rejected. It is up to the application to determine whether to accept or reject a push message based on it own business rules. It is strongly recommended to accept or reject the push message as soon as possible otherwise the push message will automatically be considered rejected. Use the <code>isAckRequired</code> property to determine whether or not calling acknowledge is required.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">acknowledge = function(shouldAcceptPush){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>shouldAcceptPush</varname> {Boolean}</dt>
+                    <dd><p>True if the push should be accepted; false if the push should be rejected.</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+if (pushPayload.isAcknowledgeRequired) {
+   // Accept push
+   pushPayload.acknowledge(true);
+
+   // To reject the push, you would call:
+   // pushPayload.acknowledge(false);
+}
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

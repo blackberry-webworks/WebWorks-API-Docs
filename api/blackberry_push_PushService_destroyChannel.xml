@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_push_PushService_destroyChannel" xml:lang="en-us">
+    <title><apiname>destroyChannel</apiname></title>
+    <shortdesc><i>Destroys a push channel for the given application. A successful <code>create</code> must have been done and a channel must have been created using <code>createChannel</code> before calling this function. This function should be called in order for an application to stop receiving pushes. No pushes will be received after a <code>destroyChannel</code> call until a <code>createChannel</code> call is made after that.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">destroyChannel = function(destroyChannelCallback){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>destroyChannelCallback</varname> {Function}</dt>
+                    <dd><p>The callback that is invoked when the result of the destroy channel operation is received.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>result</varname> {Number}</dt>
+                                <dd><p>The destroy channel operation result. See the constants provided to see what result codes apply for this operation.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+pushService.destroyChannel(destroyChannelCallback);
+
+function destroyChannelCallback(result) {
+    if (result === blackberry.push.PushService.INTERNAL_ERROR) {
+        // Retry the destroyChannel up to a certain number
+        // of attempts and then display an error to the user
+    } else if ... (handle all the error codes possible for
+                   destroyChannel - see the error constants
+                   in this PushService class)
+}
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

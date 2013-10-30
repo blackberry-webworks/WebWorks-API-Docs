@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_push_PushService_createChannel" xml:lang="en-us">
+    <title><apiname>createChannel</apiname></title>
+    <shortdesc><i>Creates a push channel for the given application. Once a channel is created, it will survive application restarts and therefore does not necessarily need to be called on every application start up. However, for a consumer application, since it is possible for the public/BIS PPG to destroy a channel under certain circumstances it may be advisable to periodicially re-create the channel (e.g. once a month). A successful <code>create</code> must have been done before calling this function. This function should be called in order for an application to be able to start receiving pushes. If a <code>destroyChannel</code> call is then made, no pushes will be able to be received until a <code>createChannel</code> call is made again.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">createChannel = function(createChannelCallback){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>createChannelCallback</varname> {Function}</dt>
+                    <dd><p>The callback that is invoked when the result of the create channel operation is received.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>result</varname> {Number}</dt>
+                                <dd><p>The create channel operation result. See the constants provided to see what result codes apply for this operation.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>token</varname> {String}</dt>
+                                <dd><p>On a successful create channel operation (result of<code>SUCCESS</code>), a token is returned. This token must then be communicated back to the content provider's server-side application (the Push Initiator). This token is then used by the content provider as the means to address the application on the device when initiating a push request to the PPG.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+pushService.createChannel(createChannelCallback);
+
+function createChannelCallback(result, token) {
+    if (result === blackberry.push.PushService.SUCCESS) {
+        // Success, so a token should be available
+        // Subscribe with the Push Initiator using this
+        // token (if your Push Initiator supports subscription)
+        // so that you can push to this user using this token
+    } else if (result ===
+        blackberry.push.PushService.INTERNAL_ERROR) {
+        // Retry the createChannel up to a certain number of
+        // attempts and then display an error to the user
+    } else if ... (handle all the error codes possible for
+                   createChannel - see the error constants
+                   in this PushService class)
+}
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
