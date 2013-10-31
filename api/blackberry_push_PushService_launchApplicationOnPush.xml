@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_push_PushService_launchApplicationOnPush" xml:lang="en-us">
+    <title><apiname>launchApplicationOnPush</apiname></title>
+    <shortdesc><i>Indicates whether or not the application should be launched (started up) if it is currently closed (not running) and a new push is received. The default system behaviour is to not launch the application. A successful <code>create</code> must have been done before calling this function. It is important to note that the <code>shouldLaunch</code> flag is only persisted once a channel has been created using the <code>createChannel</code> function. In other words, once the create channel function has been called the state of the <code>shouldLaunch</code> flag is persisted between application and device restarts. The flag is only removed once the destroy channel function is called. This flag can be toggled at any time using this function but, again, its value is only persisted once the create channel function has been called at least once for the lifetime of the application.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">launchApplicationonPush = function(shouldLaunch, launchApplicationCallback){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>shouldLaunch</varname> {Boolean}</dt>
+                    <dd><p>True if the application should be launched on a new push; false if the application should not be launched when a new push comes in.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>launchApplicationCallback</varname> {Function}</dt>
+                    <dd><p>The callback that is invoked when the result of the launch application operation is received.</p>
+                        <dlentry>
+                            <dt><varname>result</varname> {Number}</dt>
+                            <dd><p>The launch application operation result. See the constants provided to see what result codes apply for this operation.</p></dd>
+                        </dlentry>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+// Indicate that you want the application to launch on a new push
+pushService.launchApplicationOnPush(true,
+    launchApplicationCallback);
+
+// To indicate that you do not want to launch on a new push,
+// either leave the default behaviour or call:
+// pushService.launchApplicationOnPush(false,
+//     launchApplicationCallback);
+
+function launchApplicationOnPush(result) {
+   if (result === blackberry.push.PushService.INTERNAL_ERROR) {
+     // Retry the launchApplicationOnPush up to a certain number
+     // of attempts and then display an error to the user
+   } else if ... (handle all the error codes possible for
+                  launchApplicationOnPush - see the error
+                  constants in this PushService class)
+}
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

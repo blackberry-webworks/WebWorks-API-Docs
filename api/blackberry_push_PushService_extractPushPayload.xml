@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_push_PushService_extractPushPayload" xml:lang="en-us">
+    <title><apiname>extractPushPayload</apiname></title>
+    <shortdesc><i>Extracts the <code>PushPayload</code> from the passed in invoke request. A successful <code>create</code> must have been done before calling this function.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">extractPushPayload = function(invokeRequest){}</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>invokeRequest</varname> {JSON}</dt>
+                    <dd><p>The invoke request to parse.</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section>
+            <title>Returns:</title>
+            <dl>
+                <dlentry>
+                    <dt>{PushPayload}</dt>
+                    <dd><p>Returns the parsed out <code>PushPayload</code> object.</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section>
+            <title>Throws:</title>
+            <dl>
+                <dlentry>
+                    <dt>{String}</dt>
+                    <dd><p>An exception is thrown if the <code>invokeRequest</code> passed in is not valid and cannot be parsed.</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+                &lt;script type="text/javascript"&gt;
+
+try {
+    var pushPayload =
+        pushService.extractPushPayload(invokeRequest);
+
+    // pushPayload.data is of type Blob
+    // If the Blob is known to contain text,
+    // then do something like this:
+    blobToText(pushPayload.data, "UTF-8", textConversionCallback);
+
+    // If the Blob is known to contain binary, then do
+    // something like this to get an ArrayBuffer:
+    // blobToArrayBuffer(pushPayload.data,
+    //     binaryConversionCallback);
+} catch (err) {
+    console.log("Was unable to parse the invoke request.");
+    console.log(err);
+}
+
+function blobToText(blob, encoding, callback) {
+    var reader = new FileReader();
+
+    reader.onload = function(evt) {
+        // No errors, get the result and call the callback
+        callback(evt.target.result);
+    };
+
+    reader.onerror = function(evt) {
+        console.log("Error converting Blob to string: " +
+            evt.target.error);
+    };
+
+    reader.readAsText(blob, encoding);
+}
+
+function textConversionCallback(str) {
+    console.log("Data received: " + str);
+}
+
+function blobToArrayBuffer(blob, callback) {
+    var reader = new FileReader();
+
+    reader.onload = function(evt) {
+        // No errors, get the result and call the callback
+        callback(evt.target.result);
+    };
+
+    reader.onerror = function(evt) {
+        console.log("Error converting Blob to ArrayBuffer: " +
+            evt.target.error);
+    };
+
+    reader.readAsArrayBuffer(blob);
+}
+
+function binaryConversionCallback(arrayBuffer) {
+    // Process the ArrayBuffer containing
+    // binary content as needed
+}
+
+                &lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
