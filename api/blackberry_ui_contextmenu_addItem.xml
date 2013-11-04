@@ -50,65 +50,65 @@
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-            &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-            function addMyItem() {
-                var myItem = {actionId: 'MyItem', label: 'My Item', icon:'http://mysite.com/icon.png'},
-                    contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
-                blackberry.ui.contextmenu.addItem(contexts, myItem, function() { console.log('hi') });
-            }
+function addMyItem() {
+    var myItem = {actionId: 'MyItem', label: 'My Item', icon:'http://mysite.com/icon.png'},
+        contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
+    blackberry.ui.contextmenu.addItem(contexts, myItem, function() { console.log('hi') });
+}
 
-            //Perform an action on custom context, with a custom item
-            function deleteItem(sourceId) {
-                var element = document.getElementById(sourceId);
-                element.parentNode.removeChild(element);
-            }
+//Perform an action on custom context, with a custom item
+function deleteItem(sourceId) {
+    var element = document.getElementById(sourceId);
+    element.parentNode.removeChild(element);
+}
 
-            function greyOutItem(sourceId) {
-                var element = document.getElementById(sourceId);
-                element.className = "greyed-out";
-            }
+function greyOutItem(sourceId) {
+    var element = document.getElementById(sourceId);
+    element.className = "greyed-out";
+}
 
-            var options = {
-                    includeContextItems: [blackberry.ui.contextmenu.CONTEXT_ALL],
-                    includePlatformItems: true,
-                    includeMenuServiceItems: true
-                },
-                item,
-                contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
+var options = {
+        includeContextItems: [blackberry.ui.contextmenu.CONTEXT_ALL],
+        includePlatformItems: true,
+        includeMenuServiceItems: true
+    },
+    item,
+    contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
 
-            // Define the custom context with the options that we want used
-            blackberry.ui.contextmenu.defineCustomContext("PrincessContext", options);
+// Define the custom context with the options that we want used
+blackberry.ui.contextmenu.defineCustomContext("PrincessContext", options);
 
-            // Create a menu item and add it to the context
-            item = {actionId: '1', label: 'Delete Item', icon:'local:///images/icon.png'};
-            blackberry.ui.contextmenu.addItem(contexts, item, deleteItem);
+// Create a menu item and add it to the context
+item = {actionId: '1', label: 'Delete Item', icon:'local:///images/icon.png'};
+blackberry.ui.contextmenu.addItem(contexts, item, deleteItem);
 
-            // And another
-            item = {actionId: '2', label: 'Grey Out', icon:'local:///images/icon.png'};
-            blackberry.ui.contextmenu.addItem(contexts, item, greyOutItem);
+// And another
+item = {actionId: '2', label: 'Grey Out', icon:'local:///images/icon.png'};
+blackberry.ui.contextmenu.addItem(contexts, item, greyOutItem);
 
-                //Override the system Copy action by actionId using the ACTION_COPY constant
-            function overridePlatformWithIcon() {
-                var myItem = {actionId: blackberry.ui.contextmenu.ACTION_COPY, label: 'Custom Copy!',
-                    icon:'local:///icon.png'},
-                    contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
+    //Override the system Copy action by actionId using the ACTION_COPY constant
+function overridePlatformWithIcon() {
+    var myItem = {actionId: blackberry.ui.contextmenu.ACTION_COPY, label: 'Custom Copy!',
+        icon:'local:///icon.png'},
+        contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
 
-                blackberry.ui.contextmenu.addItem(contexts, myItem, function() {
-                    alert("Wow you succesfully overrode the platform menu item Copy");
-                });
-            }
-                //Override the system Copy action by actionId using the ACTION_SAVE_IMAGE constant
-                // this example does not provide a icon, and uses the system default
-            function overridePlatformNoIcon() {
-                var myItem = {actionId: blackberry.ui.contextmenu.ACTION_SAVE_IMAGE, label: 'Save Image'},
-                    contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
+    blackberry.ui.contextmenu.addItem(contexts, myItem, function() {
+        alert("Wow you succesfully overrode the platform menu item Copy");
+    });
+}
+    //Override the system Copy action by actionId using the ACTION_SAVE_IMAGE constant
+    // this example does not provide a icon, and uses the system default
+function overridePlatformNoIcon() {
+    var myItem = {actionId: blackberry.ui.contextmenu.ACTION_SAVE_IMAGE, label: 'Save Image'},
+        contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
 
-                blackberry.ui.contextmenu.addItem(contexts, myItem, function() {
-                    alert("Custom Save using system icon");
-                });
-            }
-            &lt;/script&gt;
+    blackberry.ui.contextmenu.addItem(contexts, myItem, function() {
+        alert("Custom Save using system icon");
+    });
+}
+&lt;/script&gt;
             </pre></p>
         </example>
     </refbody>

@@ -53,47 +53,47 @@
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-                &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-                    //invoke the IcsViewer Card
-                    function invokeIcsViewer(options) {
-                      blackberry.invoke.card.invokeIcsViewer(options, function (data) {
-                            alert("Card is done");
-                          },
-                          function (reason) {
-                            alert("cancelled " + reason);
-                          },
-                          function (error) {
-                            if (error) {
-                              alert("invoke error "+ error);
-                            } else {
-                              console.log("invoke success " );
-                            }
-                          }
-                      );
-                    }
+    //invoke the IcsViewer Card
+    function invokeIcsViewer(options) {
+      blackberry.invoke.card.invokeIcsViewer(options, function (data) {
+            alert("Card is done");
+          },
+          function (reason) {
+            alert("cancelled " + reason);
+          },
+          function (error) {
+            if (error) {
+              alert("invoke error "+ error);
+            } else {
+              console.log("invoke success " );
+            }
+          }
+      );
+    }
 
 
-                    //invoke IcsViewer with no account id provided
-                    function invokeIcsViewerNoAccountId() {
-                      var options = {
-                        uri: "file:///accounts/1000/shared/documents/test.ics"
-                      };
+    //invoke IcsViewer with no account id provided
+    function invokeIcsViewerNoAccountId() {
+      var options = {
+        uri: "file:///accounts/1000/shared/documents/test.ics"
+      };
 
-                      invokeIcsViewer(options);
-                    }
+      invokeIcsViewer(options);
+    }
 
-                    //invoke IcsViewer with an account id provided
-                    function invokeIcsViewerWithAccountId() {
-                      var options = {
-                        uri: "file:///accounts/1000/shared/documents/test.ics",
-                        accountId: 1
-                      };
+    //invoke IcsViewer with an account id provided
+    function invokeIcsViewerWithAccountId() {
+      var options = {
+        uri: "file:///accounts/1000/shared/documents/test.ics",
+        accountId: 1
+      };
 
-                      invokeIcsViewer(options);
-                    }
+      invokeIcsViewer(options);
+    }
 
-                &lt;/script&gt;
+&lt;/script&gt;
             </pre></p>
         </example>
     </refbody>

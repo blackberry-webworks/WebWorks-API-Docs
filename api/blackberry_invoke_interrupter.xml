@@ -29,26 +29,26 @@
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-                &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-                    function registerForInvokeInterrupter() {
-                        blackberry.invoke.interrupter = function (request) {
-                            if(confirm("System would like to invoke: " + request + " would you like to continue?")) {
-                                return request;
-                            } else {
-                                alert("User canceled invocation");
-                            }
-                        };
-                    }
+    function registerForInvokeInterrupter() {
+        blackberry.invoke.interrupter = function (request) {
+            if(confirm("System would like to invoke: " + request + " would you like to continue?")) {
+                return request;
+            } else {
+                alert("User canceled invocation");
+            }
+        };
+    }
 
-                    function clearInterrupter () {
-                        blackberry.invoke.interrupter = null;
-                    }
+    function clearInterrupter () {
+        blackberry.invoke.interrupter = null;
+    }
 
-                    registerForInvokeInterrupter();
-                    clearInterrupter();
+    registerForInvokeInterrupter();
+    clearInterrupter();
 
-                &lt;/script&gt;
+&lt;/script&gt;
             </pre></p>
         </example>
     </refbody>

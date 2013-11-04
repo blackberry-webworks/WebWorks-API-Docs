@@ -67,21 +67,21 @@
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-            &lt;script type="text/javascript"&gt;
-            function getTokenSuccess(tokenResult) {
-                alert("Received token: " + tokenResult.token);
-                for( param in tokenResult.tokenParams ) {
-                        alert("Token param: " + tokenResult.tokenParams[param].name + " and value: " + tokenResult.tokenParams[param].value);
-                }
-            }
+&lt;script type="text/javascript"&gt;
+function getTokenSuccess(tokenResult) {
+    alert("Received token: " + tokenResult.token);
+    for( param in tokenResult.tokenParams ) {
+            alert("Token param: " + tokenResult.tokenParams[param].name + " and value: " + tokenResult.tokenParams[param].value);
+    }
+}
 
-            function getTokenFailure(result) {
-                alert("Failed to retrieve token - result is: " + result.result + " with description: " + result.errorDescription);
-            }
+function getTokenFailure(result) {
+    alert("Failed to retrieve token - result is: " + result.result + " with description: " + result.errorDescription);
+}
 
-            blackberry.user.identity.registerProvider("ids:rim:bbid");
-            blackberry.user.identity.getToken("ids:rim:bbid", "MyTokenType", "urn:token:myapplication", getTokenSuccess, getTokenFailure);
-            &lt;/script&gt;
+blackberry.user.identity.registerProvider("ids:rim:bbid");
+blackberry.user.identity.getToken("ids:rim:bbid", "MyTokenType", "urn:token:myapplication", getTokenSuccess, getTokenFailure);
+&lt;/script&gt;
             </pre></p>
         </example>
     </refbody>

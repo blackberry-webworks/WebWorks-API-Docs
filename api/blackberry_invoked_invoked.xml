@@ -54,29 +54,29 @@
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-                &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-                    function onInvoked(onInvokedInfo) {
-                       if(onInvokedInfo.source) {
-                           console.log("Source: " + onInvokedInfo.source);
-                       }
-                       if(onInvokedInfo.target) {
-                           console.log("Target(me): " + onInvokedInfo.target);
-                       }
-                       if(onInvokedInfo.action) {
-                           console.log("Action: " + onInvokedInfo.action);
-                       }
-                       if(onInvokedInfo.data) {
-                           console.log("Data: " + onInvokedInfo.data);
-                           //the data comes in as a base64 string you can convert it using atob(...)
-                           //note that atob will fail if you are being passed unicode strings
-                           console.log("Data: " + atob(onInvokedInfo.data));
-                       }
-                    }
+    function onInvoked(onInvokedInfo) {
+       if(onInvokedInfo.source) {
+           console.log("Source: " + onInvokedInfo.source);
+       }
+       if(onInvokedInfo.target) {
+           console.log("Target(me): " + onInvokedInfo.target);
+       }
+       if(onInvokedInfo.action) {
+           console.log("Action: " + onInvokedInfo.action);
+       }
+       if(onInvokedInfo.data) {
+           console.log("Data: " + onInvokedInfo.data);
+           //the data comes in as a base64 string you can convert it using atob(...)
+           //note that atob will fail if you are being passed unicode strings
+           console.log("Data: " + atob(onInvokedInfo.data));
+       }
+    }
 
-                    document.addEventListener("invoked", onInvoked);
+    document.addEventListener("invoked", onInvoked);
 
-                &lt;/script&gt;
+&lt;/script&gt;
             </pre></p>
         </example>
     </refbody>

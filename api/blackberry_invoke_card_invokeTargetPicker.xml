@@ -51,88 +51,88 @@
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-                &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-                    function onInvokeSuccess (msg) {
-                        console.log("Invocation Success" + msg);
-                    }
+    function onInvokeSuccess (msg) {
+        console.log("Invocation Success" + msg);
+    }
 
-                    function onInvokeError (msg) {
-                        console.log("Invocation Error: " + msg);
-                     }
+    function onInvokeError (msg) {
+        console.log("Invocation Error: " + msg);
+     }
 
-                    function shareCardPNG() {
-                        var request = {
-                                action : 'bb.action.SHARE',
-                                uri : 'local:///test_image.png',
-                                target_type: ["CARD"]
-                            };
+    function shareCardPNG() {
+        var request = {
+                action : 'bb.action.SHARE',
+                uri : 'local:///test_image.png',
+                target_type: ["CARD"]
+            };
 
-                         blackberry.invoke.card.invokeTargetPicker(request, "Share Card JPEG", onInvokeSuccess, onInvokeError);
-                    }
+         blackberry.invoke.card.invokeTargetPicker(request, "Share Card JPEG", onInvokeSuccess, onInvokeError);
+    }
 
-                    function shareCardFilePNG() {
-                        var request = {
-                            action : 'bb.action.SHARE',
-                            uri : 'file://' + blackberry.io.sharedFolder  + '/../app/native/manual/InvocationTest/test_image.png',
-                            target_type: ["CARD"]
-                        };
+    function shareCardFilePNG() {
+        var request = {
+            action : 'bb.action.SHARE',
+            uri : 'file://' + blackberry.io.sharedFolder  + '/../app/native/manual/InvocationTest/test_image.png',
+            target_type: ["CARD"]
+        };
 
-                        blackberry.invoke.card.invokeTargetPicker(request, "Share JPEGS Card", onInvokeSuccess, onInvokeError);
-                    }
+        blackberry.invoke.card.invokeTargetPicker(request, "Share JPEGS Card", onInvokeSuccess, onInvokeError);
+    }
 
-                    function sharePNG() {
-                        var request = {
-                            action : 'bb.action.SHARE',
-                            uri : 'local:///test_image.png',
-                            target_type: ["APPLICATION", "VIEWER", "CARD"]
-                        };
+    function sharePNG() {
+        var request = {
+            action : 'bb.action.SHARE',
+            uri : 'local:///test_image.png',
+            target_type: ["APPLICATION", "VIEWER", "CARD"]
+        };
 
-                        blackberry.invoke.card.invokeTargetPicker(request, "Shared PNG", onInvokeSuccess, onInvokeError);
-                    }
+        blackberry.invoke.card.invokeTargetPicker(request, "Shared PNG", onInvokeSuccess, onInvokeError);
+    }
 
-                    function sharePDFURI() {
-                        var request = {
-                            action : 'bb.action.SHARE',
-                            uri : 'local:///test.pdf',
-                            target_type: ["APPLICATION", "VIEWER"]
-                        };
+    function sharePDFURI() {
+        var request = {
+            action : 'bb.action.SHARE',
+            uri : 'local:///test.pdf',
+            target_type: ["APPLICATION", "VIEWER"]
+        };
 
-                        blackberry.invoke.card.invokeTargetPicker(request, "Shared PDF", onInvokeSuccess, onInvokeError);
-                    }
+        blackberry.invoke.card.invokeTargetPicker(request, "Shared PDF", onInvokeSuccess, onInvokeError);
+    }
 
-                    function shareDocURI() {
-                        var request = {
-                            action : 'bb.action.SHARE',
-                            uri : 'local:///test.docx',
-                            target_type: ["APPLICATION", "VIEWER", "CARD"]
-                        };
+    function shareDocURI() {
+        var request = {
+            action : 'bb.action.SHARE',
+            uri : 'local:///test.docx',
+            target_type: ["APPLICATION", "VIEWER", "CARD"]
+        };
 
-                        blackberry.invoke.card.invokeTargetPicker(request, "Share Word Document", onInvokeSuccess, onInvokeError);
-                    }
+        blackberry.invoke.card.invokeTargetPicker(request, "Share Word Document", onInvokeSuccess, onInvokeError);
+    }
 
-                    function shareRemoteURL() {
-                        var request = {
-                            action : 'bb.action.SHARE',
-                            uri : 'http://google.com',
-                            target_type: ["APPLICATION", "VIEWER", "CARD"]
-                        };
+    function shareRemoteURL() {
+        var request = {
+            action : 'bb.action.SHARE',
+            uri : 'http://google.com',
+            target_type: ["APPLICATION", "VIEWER", "CARD"]
+        };
 
-                        blackberry.invoke.card.invokeTargetPicker(request, "Shared Remote URL", onInvokeSuccess, onInvokeError);
-                    }
+        blackberry.invoke.card.invokeTargetPicker(request, "Shared Remote URL", onInvokeSuccess, onInvokeError);
+    }
 
-                    function shareTextMockingSelection() {
-                        var request = {
-                            action : 'bb.action.SHARE',
-                            mime : 'text/plain',
-                            data : 'Some awesome text',
-                            target_type: ["VIEWER", "CARD"]
-                        };
+    function shareTextMockingSelection() {
+        var request = {
+            action : 'bb.action.SHARE',
+            mime : 'text/plain',
+            data : 'Some awesome text',
+            target_type: ["VIEWER", "CARD"]
+        };
 
-                        blackberry.invoke.card.invokeTargetPicker(request, "Sharing Text", onInvokeSuccess, onInvokeError);
-                    }
+        blackberry.invoke.card.invokeTargetPicker(request, "Sharing Text", onInvokeSuccess, onInvokeError);
+    }
 
-                &lt;/script&gt;
+&lt;/script&gt;
             </pre></p>
         </example>
     </refbody>
