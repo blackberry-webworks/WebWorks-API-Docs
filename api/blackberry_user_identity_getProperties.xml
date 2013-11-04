@@ -73,21 +73,21 @@
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-            &lt;script type="text/javascript"&gt;
-            function getPropertiesSuccess(properties) {
-                alert("Get properties returned the following user properties:");
-                for( prop in properties ) {
-                        alert("Property: " + properties[prop].uri + " value: " + properties[prop].value);
-                }
-            }
+&lt;script type="text/javascript"&gt;
+function getPropertiesSuccess(properties) {
+    alert("Get properties returned the following user properties:");
+    for( prop in properties ) {
+            alert("Property: " + properties[prop].uri + " value: " + properties[prop].value);
+    }
+}
 
-            function getPropertiesFailure(result) {
-                alert("Failed to retrieve user properties: " + result.result + " details: " + result.failureInfo);
-            }
+function getPropertiesFailure(result) {
+    alert("Failed to retrieve user properties: " + result.result + " details: " + result.failureInfo);
+}
 
-            blackberry.user.identity.registerProvider("ids:rim:bbid");
-            blackberry.user.identity.getProperties("ids:rim:bbid", 0, "urn:bbid:firstname,urn:bbid:lastname", getPropertiesSuccess, getPropertiesFailure);
-            &lt;/script&gt;
+blackberry.user.identity.registerProvider("ids:rim:bbid");
+blackberry.user.identity.getProperties("ids:rim:bbid", 0, "urn:bbid:firstname,urn:bbid:lastname", getPropertiesSuccess, getPropertiesFailure);
+&lt;/script&gt;
             </pre></p>
         </example>
     </refbody>

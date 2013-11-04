@@ -69,64 +69,64 @@
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-                &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-                    function onSuccess(response) {
-                        alert("response: " + JSON.stringify(response, null, 2));
-                    }
+    function onSuccess(response) {
+        alert("response: " + JSON.stringify(response, null, 2));
+    }
 
-                    function onError(error) {
-                        alert("error: " + error);
-                    }
+    function onError(error) {
+        alert("error: " + error);
+    }
 
-                    function findAllTargetsThatCanOpenJPEGImages() {
-                        var request = {
-                            "action": "bb.action.OPEN",
-                            "type": "image/jpeg",
-                            "uri": "file://",
-                            "target_type": ["APPLICATION", "VIEWER"],
-                            "action_type": "ALL"
-                        };
+    function findAllTargetsThatCanOpenJPEGImages() {
+        var request = {
+            "action": "bb.action.OPEN",
+            "type": "image/jpeg",
+            "uri": "file://",
+            "target_type": ["APPLICATION", "VIEWER"],
+            "action_type": "ALL"
+        };
 
-                        blackberry.invoke.query(request, onSuccess, onError);
-                    }
+        blackberry.invoke.query(request, onSuccess, onError);
+    }
 
-                    function findViewersThatCanViewPDFDocs() {
-                        var request = {
-                            "action": "bb.action.VIEW",
-                            "type": "application/pdf",
-                            "uri": "file://",
-                            "target_type": ["VIEWER"],
-                            "action_type": "ALL"
-                        };
+    function findViewersThatCanViewPDFDocs() {
+        var request = {
+            "action": "bb.action.VIEW",
+            "type": "application/pdf",
+            "uri": "file://",
+            "target_type": ["VIEWER"],
+            "action_type": "ALL"
+        };
 
-                        blackberry.invoke.query(request, onSuccess, onError);
-                    }
+        blackberry.invoke.query(request, onSuccess, onError);
+    }
 
-                    function findApplicationsThatCanOpenAudioFiles() {
-                        var request = {
-                            "action": "bb.action.OPEN",
-                            "type": "audio/mp3",
-                            "uri": "file://",
-                            "target_type": ["APPLICATION"],
-                            "action_type": "ALL"
-                        };
+    function findApplicationsThatCanOpenAudioFiles() {
+        var request = {
+            "action": "bb.action.OPEN",
+            "type": "audio/mp3",
+            "uri": "file://",
+            "target_type": ["APPLICATION"],
+            "action_type": "ALL"
+        };
 
-                        blackberry.invoke.query(request, onSuccess, onError);
-                    }
+        blackberry.invoke.query(request, onSuccess, onError);
+    }
 
-                    function findAllTargetsThatCanHandleAllVideoFiles() {
-                        var request = {
-                            "type": "video/mp4",
-                            "uri": "file://",
-                            "target_type": ["APPLICATION", "VIEWER"],
-                            "action_type": "ALL"
-                        };
+    function findAllTargetsThatCanHandleAllVideoFiles() {
+        var request = {
+            "type": "video/mp4",
+            "uri": "file://",
+            "target_type": ["APPLICATION", "VIEWER"],
+            "action_type": "ALL"
+        };
 
-                        blackberry.invoke.query(request, onSuccess, onError);
-                    }
+        blackberry.invoke.query(request, onSuccess, onError);
+    }
 
-                &lt;/script&gt;
+&lt;/script&gt;
             </pre></p>
         </example>
     </refbody>

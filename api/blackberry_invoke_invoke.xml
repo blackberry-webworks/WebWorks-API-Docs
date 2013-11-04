@@ -62,102 +62,102 @@
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-                &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-                function onInvokeSuccess() {
-                    alert("Invocation successful!");
-                }
+function onInvokeSuccess() {
+    alert("Invocation successful!");
+}
 
-                function onInvokeError(error) {
-                   alert("Invocation failed, error: " + error);
-                }
+function onInvokeError(error) {
+   alert("Invocation failed, error: " + error);
+}
 
-                function openWebLink() {
-                    // open web link - allows the system to choose an appropriate target that handles http://
-                    blackberry.invoke.invoke({
-                        uri: "http://www.blackberry.com"
-                    }, onInvokeSuccess, onInvokeError);
-                }
+function openWebLink() {
+    // open web link - allows the system to choose an appropriate target that handles http://
+    blackberry.invoke.invoke({
+        uri: "http://www.blackberry.com"
+    }, onInvokeSuccess, onInvokeError);
+}
 
-                function openWebLinkInBrowser() {
-                    // open web link in browser
-                    blackberry.invoke.invoke({
-                        target: "sys.browser",
-                        uri: "http://www.blackberry.com"
-                    }, onInvokeSuccess, onInvokeError);
-                }
+function openWebLinkInBrowser() {
+    // open web link in browser
+    blackberry.invoke.invoke({
+        target: "sys.browser",
+        uri: "http://www.blackberry.com"
+    }, onInvokeSuccess, onInvokeError);
+}
 
-                function openMP3File() {
-                    // open mp3 file - allows the system to choose an appropriate target that handles audio/mpeg3
-                    blackberry.invoke.invoke({
-                        type: "audio/mpeg3",
-                        uri: &lt;path to mp3 file&gt;
-                    }, onInvokeSuccess, onInvokeError);
-                }
+function openMP3File() {
+    // open mp3 file - allows the system to choose an appropriate target that handles audio/mpeg3
+    blackberry.invoke.invoke({
+        type: "audio/mpeg3",
+        uri: &lt;path to mp3 file&gt;
+    }, onInvokeSuccess, onInvokeError);
+}
 
-                function viewPicture() {
-                    // view picture
-                    blackberry.invoke.invoke({
-                        uri: &lt;path to jpg file&gt;,
-                        action: "bb.action.VIEW"
-                    }, onInvokeSuccess, onInvokeError);
-                }
+function viewPicture() {
+    // view picture
+    blackberry.invoke.invoke({
+        uri: &lt;path to jpg file&gt;,
+        action: "bb.action.VIEW"
+    }, onInvokeSuccess, onInvokeError);
+}
 
-                function openAnotherApp() {
-                    // open another application that understands custom data
-                    blackberry.invoke.invoke({
-                        target: "another.app.that.handles.custom.json.data",
-                        type: "text/plain",
-                        data: "{'myData': 'A string I pass to another app'}"
-                    }, onInvokeSuccess, onInvokeError);
-                }
+function openAnotherApp() {
+    // open another application that understands custom data
+    blackberry.invoke.invoke({
+        target: "another.app.that.handles.custom.json.data",
+        type: "text/plain",
+        data: "{'myData': 'A string I pass to another app'}"
+    }, onInvokeSuccess, onInvokeError);
+}
 
-                function openAnotherAppWithUnicodeData(unicodeStr) {
-                    // convert unicode string before calling invoke, the receiver app will have to
-                    // call decodeURIComponent(escape(str)) to get the unicode string back
-                    var convertedStr = unescape(encodeURIComponent(unicodeStr));
+function openAnotherAppWithUnicodeData(unicodeStr) {
+    // convert unicode string before calling invoke, the receiver app will have to
+    // call decodeURIComponent(escape(str)) to get the unicode string back
+    var convertedStr = unescape(encodeURIComponent(unicodeStr));
 
-                    // open another application that understands custom data
-                    blackberry.invoke.invoke({
-                        target: "another.app.that.handles.unicode.data",
-                        data: convertedStr
-                    }, onInvokeSuccess, onInvokeError);
-                }
+    // open another application that understands custom data
+    blackberry.invoke.invoke({
+        target: "another.app.that.handles.unicode.data",
+        data: convertedStr
+    }, onInvokeSuccess, onInvokeError);
+}
 
-                function invokeCard() {
-                    // invoking Card is the same as invoking an application, except the target specified should point to the "Card" target entry point
-                    blackberry.invoke.invoke({
-                        target: "an.app.that.supports.card", // The target should point to the "Card" target entry point of an application
-                        type: "text/plain",
-                        data: "{'myData': 'Some data'}"
-                    }, onInvokeSuccess, onInvokeError);
-                }
+function invokeCard() {
+    // invoking Card is the same as invoking an application, except the target specified should point to the "Card" target entry point
+    blackberry.invoke.invoke({
+        target: "an.app.that.supports.card", // The target should point to the "Card" target entry point of an application
+        type: "text/plain",
+        data: "{'myData': 'Some data'}"
+    }, onInvokeSuccess, onInvokeError);
+}
 
-                function invokePictureViewer() {
-                    // invoking Card is the same as invoking an application, except the target specified should point to the "Card" target entry point
-                    blackberry.invoke.invoke({
-                        action: "bb.action.VIEW",
-                        uri : "local:///img/image.jpg",
-                        file_transfer_mode : blackberry.invoke.FILE_TRANSFER_COPY_RO
-                    }, onInvokeSuccess, onInvokeError);
-                }
+function invokePictureViewer() {
+    // invoking Card is the same as invoking an application, except the target specified should point to the "Card" target entry point
+    blackberry.invoke.invoke({
+        action: "bb.action.VIEW",
+        uri : "local:///img/image.jpg",
+        file_transfer_mode : blackberry.invoke.FILE_TRANSFER_COPY_RO
+    }, onInvokeSuccess, onInvokeError);
+}
 
-                function invokeAudoPlayer() {
-                    blackberry.invoke.invoke({
-                        action: "bb.action.VIEW",
-                        uri : "local:///audio/test.mp3",
-                        file_transfer_mode : blackberry.invoke.FILE_TRANSFER_COPY_RO
-                    }, onInvokeSuccess, onInvokeError);
-                }
+function invokeAudoPlayer() {
+    blackberry.invoke.invoke({
+        action: "bb.action.VIEW",
+        uri : "local:///audio/test.mp3",
+        file_transfer_mode : blackberry.invoke.FILE_TRANSFER_COPY_RO
+    }, onInvokeSuccess, onInvokeError);
+}
 
-                function invokeAudioWithoutTrasnsfer() {
-                    blackberry.invoke.invoke({
-                        action: "bb.action.VIEW",
-                        uri : "local:///audio/test.mp3",
-                    }, onInvokeSuccess, onInvokeError);
-                }
+function invokeAudioWithoutTrasnsfer() {
+    blackberry.invoke.invoke({
+        action: "bb.action.VIEW",
+        uri : "local:///audio/test.mp3",
+    }, onInvokeSuccess, onInvokeError);
+}
 
-                &lt;/script&gt;
+&lt;/script&gt;
             </pre></p>
         </example>
     </refbody>
