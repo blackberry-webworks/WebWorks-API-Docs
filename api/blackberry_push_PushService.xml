@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<concept id="blackberry_push_PushService" xml:lang="en-us">
+	<title>PushService</title>
+	<shortdesc><i>The <code>PushService</code> object allows you to leverage the BlackBerry push architecture to receive push data in your application.</i></shortdesc>
+	<conbody>
+		<section>
+			<p>The push solution includes a push-enabled application on a BlackBerry device and a content provider's server-side application (also known as the Push Initiator). The Push Initiator can deliver up to 8 kB of content (images, text, etc.) and headers (metadata name-value pairs) using a Push Proxy Gateway (PPG).</p>
+			<p>Two PPGs are available: the public/BlackBerry Internet Service (BIS) PPG and the enterprise/Blackberry Enterprise Server (BES) PPG. The PushService object will allow your application to receive push messages sent through either of these PPGs.</p>
+			<p>To work with a PushService object, you must first call the static create function.  On a successful create, you will then be able to perform operations using the PushService object you receive in the success callback.</p>
+ 		</section>
+ 		<section>
+	        <title>Installation:</title>
+	        <p>To use this API in your project, add the push plugin:</p>
+	        <p><pre scale="80">webworks plugin add com.blackberry.push</pre></p>
+	    </section>
+		<section>
+            <title>Learning Resources:</title>
+            <p><xref format="html" href="https://github.com/blackberry/BB10-WebWorks-Samples/tree/WebWorks-2.0/pushCapturet" scope="external">Sample - Push Capture</xref>Sample that demonstrates how to use the BlackBerry Push API [BlackBerry on GitHub].</p>
+            <p><xref format="html" href="https://developer.blackberry.com/html5/documentation/push_service.html" scope="external">Developer Guide</xref>Guide for creating a Push Capture sample app [BlackBerry Developer Documentation].</p>
+        </section>
+        <section>
+			<simpletable relcolwidth="1* 2*">
+				<sthead>
+					<stentry>Functions: </stentry>
+				</sthead>
+				<strow>
+					<stentry>void</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_create.html" scope="peer">create</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>void</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_createChannel.html" scope="peer">createChannel</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>void</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_destroyChannel.html" scope="peer">destroyChannel</xref></stentry>
+				</strow>
+				<strow>
+					<stentry><xref format="html" href="blackberry_push_PushPayload.html" scope="peer">blackberry.push.PushPayload</xref></stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_extractPushPayload.html" scope="peer">extractPushPayload</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>void</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_launchApplicationOnPush.html" scope="peer">launchApplicationOnPush</xref></stentry>
+				</strow>
+			</simpletable>
+		</section>
+		<section>
+			<simpletable relcolwidth="1* 2*">
+				<sthead>
+					<stentry>Constants: </stentry>
+				</sthead>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_CHANNEL_ALREADY_DESTROYED.html" scope="peer">CHANNEL_ALREADY_DESTROYED</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_CHANNEL_ALREADY_DESTROYED_BY_PROVIDER.html" scope="peer">CHANNEL_ALREADY_DESTROYED_BY_PROVIDER</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_CHANNEL_SUSPENDED_BY_PROVIDER.html" scope="peer">CHANNEL_SUSPENDED_BY_PROVIDER</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_CREATE_CHANNEL_NOT_DONE.html" scope="peer">CREATE_CHANNEL_NOT_DONE</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_CREATE_CHANNEL_OPERATION.html" scope="peer">CREATE_CHANNEL_OPERATION</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_CREATE_SESSION_NOT_DONE.html" scope="peer">CREATE_SESSION_NOT_DONE</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_DESTROY_CHANNEL_OPERATION.html" scope="peer">DESTROY_CHANNEL_OPERATION</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_EXPIRED_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG.html" scope="peer">EXPIRED_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_INTERNAL_ERROR.html" scope="peer">INTERNAL_ERROR</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_INVALID_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG.html" scope="peer">INVALID_AUTHENTICATION_TOKEN_PROVIDED_TO_PPG</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_INVALID_DEVICE_PIN.html" scope="peer">INVALID_DEVICE_PIN</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_INVALID_OS_VERSION_OR_DEVICE_MODEL_NUMBER.html" scope="peer">INVALID_OS_VERSION_OR_DEVICE_MODEL_NUMBER</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_INVALID_PPG_SUBSCRIBER_STATE.html" scope="peer">INVALID_PPG_SUBSCRIBER_STATE</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_INVALID_PPG_URL.html" scope="peer">INVALID_PPG_URL</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_INVALID_PROVIDER_APPLICATION_ID.html" scope="peer">INVALID_PROVIDER_APPLICATION_ID</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_MISSING_INVOKE_TARGET_ID.html" scope="peer">MISSING_INVOKE_TARGET_ID</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_MISSING_PORT_FROM_PPG.html" scope="peer">MISSING_PORT_FROM_PPG</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_MISSING_PPG_URL.html" scope="peer">MISSING_PPG_URL</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_MISSING_SUBSCRIPTION_RETURN_CODE_FROM_PPG.html" scope="peer">MISSING_SUBSCRIPTION_RETURN_CODE_FROM_PPG</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_OPERATION_NOT_SUPPORTED.html" scope="peer">OPERATION_NOT_SUPPORTED</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_PPG_SERVER_ERROR.html" scope="peer">PPG_SERVER_ERROR</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_PPG_SUBSCRIBER_LIMIT_REACHED.html" scope="peer">PPG_SUBSCRIBER_LIMIT_REACHED</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_PPG_SUBSCRIBER_NOT_FOUND.html" scope="peer">PPG_SUBSCRIBER_NOT_FOUND</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_PUSH_TRANSPORT_UNAVAILABLE.html" scope="peer">PUSH_TRANSPORT_UNAVAILABLE</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_SESSION_ALREADY_EXISTS.html" scope="peer">SESSION_ALREADY_EXISTS</xref></stentry>
+				</strow>
+				<strow>
+					<stentry>Number</stentry>
+					<stentry><xref format="html" href="blackberry_push_PushService_SUCCESS.html" scope="peer">SUCCESS</xref></stentry>
+				</strow>
+			</simpletable>
+		</section>
+	</conbody>
+</concept>

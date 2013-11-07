@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
 <reference id="blackberry_push_PushService_createChannel" xml:lang="en-us">
     <title><apiname>createChannel()</apiname></title>
-    <shortdesc><i>Creates a push channel for the given application. Once a channel is created, it will survive application restarts and therefore does not necessarily need to be called on every application start up. However, for a consumer application, since it is possible for the public/BIS PPG to destroy a channel under certain circumstances it may be advisable to periodicially re-create the channel (e.g. once a month). A successful <code>create</code> must have been done before calling this function. This function should be called in order for an application to be able to start receiving pushes. If a <code>destroyChannel</code> call is then made, no pushes will be able to be received until a <code>createChannel</code> call is made again.</i></shortdesc>
+    <shortdesc><i>Creates a push channel for the given application. Once a channel is created, it will survive application restarts and therefore does not necessarily need to be called on every application start up. However, for a consumer application, since it is possible for the public/BIS PPG to destroy a channel under certain circumstances it may be advisable to periodicially re-create the channel (e.g. once a month). A successful create must have been done before calling this function. This function should be called in order for an application to be able to start receiving pushes. If a destroyChannel call is then made, no pushes will be able to be received until a createChannel call is made again.</i></shortdesc>
     <refbody>
         <section>
             <title>Synopsis:</title>
@@ -21,7 +21,7 @@
                             </dlentry>
                             <dlentry>
                                 <dt><varname>token</varname> {String}</dt>
-                                <dd><p>On a successful create channel operation (result of<code>SUCCESS</code>), a token is returned. This token must then be communicated back to the content provider's server-side application (the Push Initiator). This token is then used by the content provider as the means to address the application on the device when initiating a push request to the PPG.</p></dd>
+                                <dd><p>On a successful create channel operation (result ofSUCCESS), a token is returned. This token must then be communicated back to the content provider's server-side application (the Push Initiator). This token is then used by the content provider as the means to address the application on the device when initiating a push request to the PPG.</p></dd>
                             </dlentry>
                         </dl>
                     </dd>

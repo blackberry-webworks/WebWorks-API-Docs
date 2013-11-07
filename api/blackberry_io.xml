@@ -1,72 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<!DOCTYPE concept PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
 <concept id="blackbery_io" xml:lang="en-us">
     <title>IO</title>
     <shortdesc><i>The IO Object contains several properties that can be used to more easily navigate the filesystem.</i></shortdesc>
     <conbody>
         <p>The functionality in this object allows you to easily access folders on your device like the SDCard, home or sharedFolder. It also allows you to control whether the filesystem is sandboxed or not.</p>
+        <section>
+            <title>Installation:</title>
+            <p>To use this API in your project, add the io plugin:</p>
+            <p><pre scale="80">webworks plugin add com.blackberry.io</pre></p>
+        </section>
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-                &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-                function readFile() {
-                    // un-sandbox file system to access shared folder
-                    blackberry.io.sandbox = false;
+function readFile() {
+    // un-sandbox file system to access shared folder
+    blackberry.io.sandbox = false;
 
-                    window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+    window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
 
-                    window.requestFileSystem(window.TEMPORARY, 1024 * 1024,
-                        function (fs) {
-                             // in order to access the shared folder,
-                             // config.xml must declare the "access_shared" permission
-                             // reference file by absolute path since file system is un-sandboxed
-                             fs.root.getFile(blackberry.io.sharedFolder + '/Documents/log.txt', {create: true},
-                                 function (fileEntry) {
-                                     fileEntry.file(function (file) {
-                                         var reader = new FileReader();
+    window.requestFileSystem(window.TEMPORARY, 1024 * 1024,
+        function (fs) {
+             // in order to access the shared folder,
+             // config.xml must declare the "access_shared" permission
+             // reference file by absolute path since file system is un-sandboxed
+             fs.root.getFile(blackberry.io.sharedFolder + '/Documents/log.txt', {create: true},
+                 function (fileEntry) {
+                     fileEntry.file(function (file) {
+                         var reader = new FileReader();
 
-                                         reader.onloadend = function (e) {
-                                             var txtArea = document.createElement('textarea');
-                                             txtArea.value = this.result;
-                                             document.body.appendChild(txtArea);
-                                         };
+                         reader.onloadend = function (e) {
+                             var txtArea = document.createElement('textarea');
+                             txtArea.value = this.result;
+                             document.body.appendChild(txtArea);
+                         };
 
-                                         reader.readAsText(file);
-                                    }, errorHandler);
-                                 }, errorHandler);
-                        });
-                }
+                         reader.readAsText(file);
+                    }, errorHandler);
+                 }, errorHandler);
+        });
+}
 
-                function errorHandler(e) {
-                    var msg = '';
+function errorHandler(e) {
+    var msg = '';
 
-                    switch (e.code) {
-                    case FileError.QUOTA_EXCEEDED_ERR:
-                        msg = 'QUOTA_EXCEEDED_ERR';
-                        break;
-                    case FileError.NOT_FOUND_ERR:
-                        msg = 'NOT_FOUND_ERR';
-                        break;
-                    case FileError.SECURITY_ERR:
-                         msg = 'SECURITY_ERR';
-                         break;
-                    case FileError.INVALID_MODIFICATION_ERR:
-                         msg = 'INVALID_MODIFICATION_ERR';
-                         break;
-                    case FileError.INVALID_STATE_ERR:
-                         msg = 'INVALID_STATE_ERR';
-                         break;
-                    default:
-                         msg = 'Unknown Error';
-                        break;
-                    };
+    switch (e.code) {
+    case FileError.QUOTA_EXCEEDED_ERR:
+        msg = 'QUOTA_EXCEEDED_ERR';
+        break;
+    case FileError.NOT_FOUND_ERR:
+        msg = 'NOT_FOUND_ERR';
+        break;
+    case FileError.SECURITY_ERR:
+         msg = 'SECURITY_ERR';
+         break;
+    case FileError.INVALID_MODIFICATION_ERR:
+         msg = 'INVALID_MODIFICATION_ERR';
+         break;
+    case FileError.INVALID_STATE_ERR:
+         msg = 'INVALID_STATE_ERR';
+         break;
+    default:
+         msg = 'Unknown Error';
+        break;
+    };
 
-                    console.log('Error: ' + msg);
-                }
+    console.log('Error: ' + msg);
+}
 
-                &lt;/script&gt;
+&lt;/script&gt;
             </pre></p>
         </example>
+        <section>
+            <simpletable relcolwidth="1* 2*">
+                <sthead>
+                    <stentry>Properties: </stentry>
+                </sthead>
+                <strow>
+                    <stentry>String</stentry>
+                    <stentry><xref format="html" href="blackberry_io_SDCard.html" scope="peer">SDCard</xref></stentry>
+                </strow>
+                <strow>
+                    <stentry>String</stentry>
+                    <stentry><xref format="html" href="blackberry_io_home.html" scope="peer">home</xref></stentry>
+                </strow>
+                <strow>
+                    <stentry>Boolean</stentry>
+                    <stentry><xref format="html" href="blackberry_io_sandbox.html" scope="peer">show</xref></stentry>
+                </strow>
+                <strow>
+                    <stentry>String</stentry>
+                    <stentry><xref format="html" href="blackberry_io_sharedFolder.html" scope="peer">sharedFolder</xref></stentry>
+                </strow>
+            </simpletable>
+        </section>
     </conbody>
 </concept>

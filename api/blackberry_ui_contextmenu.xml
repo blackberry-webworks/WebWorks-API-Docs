@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
-<concept id="blackbery_ui_contextmenu" xml:lang="en-us">
+<!DOCTYPE concept PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<concept id="blackberry_ui_contextmenu" xml:lang="en-us">
   <title>Context Menu</title>
   <shortdesc><i>The contextmenu namespace provides the facility to interact with the context menu api to control whether context menus are enabled, listen to events, add items to appear based on the context, and set the theme of the context menu.</i></shortdesc>
   <conbody>
+    <example>
+      <fig>
+        <title>Device showing a context menu.</title>
+        <image href="images/context_menu.png" align="left">
+          <alt>Device showing a context menu.</alt>
+        </image>
+      </fig>
+    </example>
     <section>
-      <title>Context Menu</title>
+      <title>Installation:</title>
+      <p>To use this API in your project, add the contextmenu plugin:</p>
+      <p><pre scale="80">webworks plugin add com.blackberry.ui.contextmenu</pre></p>
+    </section>
+    <section>
       <p>Webworks applications can choose to use an in app contextmenu as opposed to the default operating system menu. The
         contextmenu provides several facilities to developers to allow them to control the elements that appear in the menu, as
         well as listen to specific events related to the context menu being triggered and displayed.</p>
@@ -23,22 +35,55 @@
     <example>
       <title>Example:</title>
         <p><pre scale="80">
-        &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-        // Update the path from a small icon to a full image
-        function translateIcontoFullImage (path) {
-          if (path &amp;&amp; path.indexOf('.ico') !== -1) {
-            return path.replace('.ico', '.jpeg');
-          }
-        }
+// Update the path from a small icon to a full image
+function translateIcontoFullImage (path) {
+  if (path &amp;&amp; path.indexOf('.ico') !== -1) {
+    return path.replace('.ico', '.jpeg');
+  }
+}
 
-        function onContextMenu (contextEvent) {
-          var srcElement = contextEvent.srcElement;
-          console.log(srcElement);
-        }
+function onContextMenu (contextEvent) {
+  var srcElement = contextEvent.srcElement;
+  console.log(srcElement);
+}
 
-        window.addEventListener('oncontextmenu', onContextMenu);
-        &lt;/script&gt;
+window.addEventListener('oncontextmenu', onContextMenu);
+&lt;/script&gt;
+        </pre></p>
+    </example>
+    <section>
+        <title>Learning Resources:</title>
+        <p><xref format="html" href="https://github.com/blackberry/BB10-WebWorks-Samples/tree/WebWorks-2.0/CustomContext" scope="external">Sample - Using Custom Context</xref>Sample that demonstrates how to use the BlackBerry Custom Context API [BlackBerry on GitHub].</p>
+    </section>
+    <example>
+      <title>Example:</title>
+        <p><pre scale="80">
+&lt;script type="text/javascript"&gt;
+
+// Update the path from a small icon to a full image
+function translateIcontoFullImage (path) {
+  if (path &amp;&amp; path.indexOf('.ico') !== -1) {
+    return path.replace('.ico', '.jpeg');
+  }
+}
+
+function onContextMenu (contextEvent) {
+  var srcElement = contextEvent.srcElement;
+  blackberry.invoke.interrupter = function (request) {
+    // Check if this is an image we wish to translate
+    if (srcElement &amp;&amp; srcElement.src) {
+      request.uri = translateIcontoFullImage(srcElement.src);
+    }
+
+    // Return the updated request object
+    return request;
+  };
+}
+window.addEventListener('oncontextmenu', onContextMenu);
+
+&lt;/script&gt;
         </pre></p>
     </example>
     <section>
@@ -48,38 +93,142 @@
     <example>
       <title>Example:</title>
         <p><pre scale="80">
-        &lt;script type="text/javascript"&gt;
-        function addMenuItemToCustomContext() {
-          var myItem = {actionId: '7', label: 'itemForCustom',  icon:'local:///img/myIcon.png'},
-          contexts = ["myContext"];
-          blackberry.ui.contextmenu.addItem(contexts, myItem);
-        }
+&lt;script type="text/javascript"&gt;
+function addMenuItemToCustomContext() {
+  var myItem = {actionId: '7', label: 'itemForCustom',  icon:'local:///img/myIcon.png'},
+  contexts = ["myContext"];
+  blackberry.ui.contextmenu.addItem(contexts, myItem);
+}
 
-        function addAdditionalItemsFromCustomContext() {
-          var options = {
-            includeContextItems: [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_IMAGE_LINK],
-            includePlatformItems: true,
-            includeMenuService: true
-          };
-          blackberry.ui.contextmenu.defineCustomContext("myContext", options);
-        }
+function addAdditionalItemsFromCustomContext() {
+  var options = {
+    includeContextItems: [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_IMAGE_LINK],
+    includePlatformItems: true,
+    includeMenuService: true
+  };
+  blackberry.ui.contextmenu.defineCustomContext("myContext", options);
+}
 
-        function removeAdditionalItemsFromCustomContext() {
-          var options = {
-            includeContextItems: [],
-            includePlatformItems: false,
-            includeMenuService: false
-          };
-          blackberry.ui.contextmenu.defineCustomContext("myContext", options);
-        }
-        &lt;/script&gt;
-        &lt;div data-webworks-context="myContext"&gt;I am a custom context!&lt;/div&gt;
+function removeAdditionalItemsFromCustomContext() {
+  var options = {
+    includeContextItems: [],
+    includePlatformItems: false,
+    includeMenuService: false
+  };
+  blackberry.ui.contextmenu.defineCustomContext("myContext", options);
+}
+&lt;/script&gt;
+&lt;div data-webworks-context="myContext"&gt;I am a custom context!&lt;/div&gt;
         </pre></p>
     </example>
+    <section>
+      <simpletable relcolwidth="1* 2*">
+        <sthead>
+          <stentry>Functions: </stentry>
+        </sthead>
+        <strow>
+          <stentry>void</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_addItem.html" scope="peer">addItem</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>void</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_defineCustomContext.html" scope="peer">defineCustomContext</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>void</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_removeItem.html" scope="peer">removeItem</xref></stentry>
+        </strow>
+      </simpletable>
+    </section>
+    <section>
+      <simpletable relcolwidth="1* 2*">
+        <sthead>
+          <stentry>Properties: </stentry>
+        </sthead>
+        <strow>
+          <stentry>Boolean</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_enabled.html" scope="peer">enabled</xref></stentry>
+        </strow>
+      </simpletable>
+    </section>
+    <section>
+      <simpletable relcolwidth="1* 2*">
+        <sthead>
+          <stentry>Constants: </stentry>
+        </sthead>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_ACTION_CANCEL.html" scope="peer">ACTION_CANCEL</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_ACTION_CLEAR_FIELD.html" scope="peer">ACTION_CLEAR_FIELD</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_ACTION_COPY.html" scope="peer">ACTION_COPY</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_ACTION_COPY_IMAGE_LINK.html" scope="peer">ACTION_COPY_IMAGE_LINK</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_ACTION_COPY_LINK.html" scope="peer">ACTION_COPY_LINK</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_ACTION_CUT.html" scope="peer">ACTION_CUT</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_ACTION_PASTE.html" scope="peer">ACTION_PASTE</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_ACTION_SAVE_IMAGE.html" scope="peer">ACTION_SAVE_IMAGE</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_ACTION_SAVE_LINK_AS.html" scope="peer">ACTION_SAVE_LINK_AS</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_ACTION_SELECT.html" scope="peer">ACTION_SELECT</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_ACTION_VIEW_IMAGE.html" scope="peer">ACTION_VIEW_IMAGE</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_CONTEXT_ALL.html" scope="peer">CONTEXT_ALL</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_CONTEXT_IMAGE.html" scope="peer">CONTEXT_IMAGE</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_CONTEXT_IMAGE_LINK.html" scope="peer">CONTEXT_IMAGE_LINK</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_CONTEXT_INPUT.html" scope="peer">CONTEXT_INPUT</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_CONTEXT_LINK.html" scope="peer">CONTEXT_LINK</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_CONTEXT_TEXT.html" scope="peer">CONTEXT_TEXT</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_ui_contextmenu_INSPECT_ELEMENT.html" scope="peer">INSPECT_ELEMENT</xref></stentry>
+        </strow>
+      </simpletable>
+    </section>
   </conbody>
-  <related-links>
-    <link format="html" href="https://github.com/blackberry/BB10-WebWorks-Samples/tree/master/CustomContext" scope="external">
-      <linktext>Sample that demonstrates how to use the BlackBerry Custom Context API [BlackBerry on GitHub].</linktext>
-    </link>
-  </related-links>
 </concept>

@@ -1,27 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE concept PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
-<concept id="blackbery_system" xml:lang="en-us">
+<concept id="blackberry_system" xml:lang="en-us">
   <title>System</title>
   <shortdesc><i>The System object allows you to get access to system level functions and attributes of the BlackBerry Device.</i></shortdesc>
   <conbody>
     <p>The System object is static; all of its functions and properties are used directly from the object.</p>
+    <section>
+      <title>Installation:</title>
+      <p>To use this API in your project, add the system plugin:</p>
+      <p><pre scale="80">webworks plugin add com.blackberry.system</pre></p>
+    </section>
     <example>
       <title>Example:</title>
         <p><pre scale="80">
-        &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
+// See if we are in coverage
+if (!blackberry.system.hasDataCoverage()) {
+  alert("You are not in coverage, we will attempt to send later");
+}
 
-            // See if we are in coverage
-            if (!blackberry.system.hasDataCoverage()) {
-              alert("You are not in coverage, we will attempt to send later");
-            }
-
-            // Check if we have GPS capability
-            if (blackberry.system.hasCapability("location.gps")) {
-              alert("This Device has a GPS.");
-            }
-
-        &lt;/script&gt;
+// Check if we have GPS capability
+if (blackberry.system.hasCapability("location.gps")) {
+  alert("This Device has a GPS.");
+}
+&lt;/script&gt;
         </pre></p>
     </example>
+    <section>
+      <title>Learning Resources:</title>
+      <p><xref format="html" href="https://github.com/blackberry/BB10-WebWorks-Samples/tree/WebWorks-2.0/SetWallpaper" scope="external">Sample - Setting the Wallpaper</xref>Sample that demonstrates how to use the BlackBerry system.setWallpaper API [BlackBerry on GitHub].</p>
+      <p><xref format="html" href="https://github.com/blackberry/BB10-WebWorks-Samples/tree/WebWorks-2.0/Localization" scope="external">Sample - Recognizing System Language Changes</xref>Sample that demonstrates how to work with device region and language changes [BlackBerry on GitHub].</p>
+    </section>
+    <section>
+      <simpletable relcolwidth="1* 2*">
+        <sthead>
+          <stentry>Functions: </stentry>
+        </sthead>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_system_getCurrentTimezone.html" scope="peer">getCurrentTimezone</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Object</stentry>
+          <stentry><xref format="html" href="blackberry_system_getFontInfo.html" scope="peer">getFontInfo</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String[]</stentry>
+          <stentry><xref format="html" href="blackberry_system_getTimezones.html" scope="peer">getTimezones</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Boolean</stentry>
+          <stentry><xref format="html" href="blackberry_system_hasCapability.html" scope="peer">hasCapability</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Number</stentry>
+          <stentry><xref format="html" href="blackberry_system_hasPermission.html" scope="peer">hasPermission</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>void</stentry>
+          <stentry><xref format="html" href="blackberry_system_setWallpaper.html" scope="peer">setWallpaper</xref></stentry>
+        </strow>
+      </simpletable>
+    </section>
+    <section>
+      <simpletable relcolwidth="1* 2*">
+        <sthead>
+          <stentry>Events: </stentry>
+        </sthead>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_system_batterycritical.html" scope="peer">batterycritical</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Object</stentry>
+          <stentry><xref format="html" href="blackberry_system_batterylow.html" scope="peer">batterylow</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String[]</stentry>
+          <stentry><xref format="html" href="blackberry_system_batterystatus.html" scope="peer">batterystatus</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Boolean</stentry>
+          <stentry><xref format="html" href="blackberry_system_fontchanged.html" scope="peer">fontchanged</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Number</stentry>
+          <stentry><xref format="html" href="blackberry_system_languagechanged.html" scope="peer">languagechanged</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>void</stentry>
+          <stentry><xref format="html" href="blackberry_system_perimeterlocked.html" scope="peer">perimeterlocked</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>void</stentry>
+          <stentry><xref format="html" href="blackberry_system_perimeterunlocked.html" scope="peer">perimeterunlocked</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>void</stentry>
+          <stentry><xref format="html" href="blackberry_system_regionchanged.html" scope="peer">regionchanged</xref></stentry>
+        </strow>
+      </simpletable>
+    </section>
+    <section>
+      <simpletable relcolwidth="1* 2*">
+        <sthead>
+          <stentry>Properties: </stentry>
+        </sthead>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_system_deviceLockedStatus.html" scope="peer">deviceLockedStatus</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_system_hardwareId.html" scope="peer">hardwareId</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_system_language.html" scope="peer">language</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_system_name.html" scope="peer">name</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_system_languagechanged.html" scope="peer">languagechanged</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_system_region.html" scope="peer">region</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_system_softwareVersion.html" scope="peer">softwareVersion</xref></stentry>
+        </strow>
+      </simpletable>
+    </section>
+    <section>
+      <simpletable relcolwidth="1* 2*">
+        <sthead>
+          <stentry>Constants: </stentry>
+        </sthead>
+        <strow>
+          <stentry>Number</stentry>
+          <stentry><xref format="html" href="blackberry_system_ALLOW.html" scope="peer">ALLOW</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Number</stentry>
+          <stentry><xref format="html" href="blackberry_system_DENY.html" scope="peer">DENY</xref></stentry>
+        </strow>
+      </simpletable>
+    </section>
+
   </conbody>
 </concept>
