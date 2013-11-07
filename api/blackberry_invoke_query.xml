@@ -6,7 +6,7 @@
     <refbody>
         <section>
             <title>Synopsis:</title>
-                <pre scale="80">query: function(request, onSuccess, onError){}</pre>
+                <pre scale="80">blackberry.invoke.query(request, onSuccess, onError)</pre>
         </section>
         <section>
             <title>Parameters:</title>
@@ -16,27 +16,27 @@
                     <dd><p>An object containing a query to be performed on applications on the device.</p>
                         <dl>
                             <dlentry>
-                                <dt><varname>request.action</varname> {String}</dt>
+                                <dt><varname>action</varname> {String}</dt>
                                 <dd><p>An identifier of the action to be performed by the target. Omitting action implies the query should apply to any action supported for the specified type or that the target should infer the action.</p></dd>
                             </dlentry>
                             <dlentry>
-                                <dt><varname>request.type</varname> {String}</dt>
+                                <dt><varname>type</varname> {String}</dt>
                                 <dd><p>The MIME type of data to be acted on. It must be provided if the uri attribute is not provided.</p></dd>
                             </dlentry>
                             <dlentry>
-                                <dt><varname>request.uri</varname> {String}</dt>
+                                <dt><varname>uri</varname> {String}</dt>
                                 <dd><p>Used to infer the MIME type of the data. It must be provided if type is not specified.</p></dd>
                             </dlentry>
                             <dlentry>
-                                <dt><varname>request.target_type</varname> Mandatory {String[]}</dt>
+                                <dt><varname>target_type</varname> Mandatory {String[]}</dt>
                                 <dd><p>An array that contains a set of target types that the query should return. Possible target types are "VIEWER" or "APPLICATION".</p></dd>
                             </dlentry>
                             <dlentry>
-                                <dt><varname>request.action_type</varname> {String}</dt>
+                                <dt><varname>action_type</varname> {String}</dt>
                                 <dd><p>Indicates the type of actions to be returned. Possible values are "MENU" or "ALL". Menu actions specify addtional icon and label properties.</p></dd>
                             </dlentry>
                             <dlentry>
-                                <dt><varname>request.receiver_capabilities</varname> {String}</dt>
+                                <dt><varname>receiver_capabilities</varname> {String}</dt>
                                 <dd><p>The list of capabilities that must be granted to the target in order for it to be considered a candidate.</p></dd>
                             </dlentry>
                         </dl>
