@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_pim_contacts_find" xml:lang="en-us">
+    <title><apiname>find()</apiname></title>
+    <shortdesc><i>Queries the device contacts database. The search results are passed to the onFindSuccess callback function specified by the onFindSuccess parameter.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">void blackberry.pim.contacts.find(contactFields, findOptions, onFindSuccess, onFindError)</pre>
+        </section>
+         <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>contactFields</varname> {String[]}</dt>
+                    <dd><p>A String array of contact fields to be used as search qualifier. Only these fields will have values in the resulting Contact objects.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>findOptions</varname> {blackberry.pim.contacts.ContactFindOptions}</dt>
+                    <dd><p>Options to be applied to the search.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onFindSuccess</varname> {function}</dt>
+                    <dd><p>Success callback function that is invoked with the contacts returned from the contacts database.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>contacts</varname> {blackberry.pim.contacts.Contact[]}</dt>
+                                <dd><p>The array of Contact objects from the search.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onFindError</varname> {function}</dt>
+                    <dd><p>Optional error callback function. Invoked when error occurs. Possible errors are: permission denied error (if access_pimdomain_contacts is not specified) or illegal arguments error (if mandatory parameters are missing or invalid).</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {blackberry.pim.contacts.ContactError}</dt>
+                                <dd><p>The <xref format="html" href="blackberry_pim_contacts_ContactError.html" scope="peer">blackberry_pim_contacts_ContactError</xref> object which contains the error code.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+&lt;script type="text/javascript"&gt;
+
+var contacts = blackberry.pim.contacts,
+    ContactFindOptions = contacts.ContactFindOptions;
+
+function onFindSuccess(results) {
+    console.log("Found " + results.length + " contacts in total");
+}
+
+function onFindError(error) {
+    console.log("Error: " + error.code);
+}
+
+function searchContactsByName() {
+    var searchFirstName = {
+            "fieldName" : ContactFindOptions.SEARCH_FIELD_GIVEN_NAME,
+            "fieldValue" : "John"
+        },
+        searchLastName = {
+            "fieldName" : ContactFindOptions.SEARCH_FIELD_FAMILY_NAME,
+            "fieldValue" : "Smith"
+        },
+        sortOrg = {
+            "fieldName" : ContactFindOptions.SORT_FIELD_ORGANIZATION_NAME,
+            "desc" : false
+        },
+        findOptions = {
+            filter: [searchFirstName, searchLastName], // filter
+            sort: [sortOrg],                           // sort
+            limit: 20                                  // limit
+        };
+    // The first 20 contacts (based on specified sort specs) with given name "John"
+    // and family name "Smith" will be returned
+    contacts.find(["name"], findOptions, onFindSuccess, onFindError);
+}
+
+function listAllContacts() {
+    var sort = [{
+            "fieldName": ContactFindOptions.SORT_FIELD_FAMILY_NAME,
+            "desc": false
+        }, {
+            "fieldName": ContactFindOptions.SORT_FIELD_GIVEN_NAME,
+            "desc": true
+        }],
+    // no filter - return all contacts
+    findOptions = {
+        // sort contacts first by family name (desc), then by given name (asc)
+        sort: sort,
+        limit: 20     // limit - return up to 20 contacts
+    };
+    // The first 20 contacts (based on specified sort specs) will be returned
+    contacts.find(["name"], findOptions, onFindSuccess, onFindError);
+}
+
+function listAllContactsWithEmptyFindOptions() {
+    var findOptions = {};
+
+    //Will return all contacts with no particular sort order
+    contacts.find(["name"], findOptions, onFindSuccess, onFindError);
+}
+
+function findContactErrorMissingFilterValue() {
+    var findOptions = {
+            filter: [{
+                "fieldName": ContactFindOptions.SEARCH_FIELD_GIVEN_NAME,
+                "fieldValue": ""
+            }, {
+                "fieldName": ContactFindOptions.SEARCH_FIELD_FAMILY_NAME,
+                "fieldValue": "Smith"
+            }],
+            sort: [{
+                "fieldName": ContactFindOptions.SORT_FIELD_FAMILY_NAME,
+                "desc": false
+            }, {
+                "fieldName": ContactFindOptions.SORT_FIELD_GIVEN_NAME,
+                "desc": true
+            }],
+            limit: 2
+        };
+    // Error - illegal argument (reason: fieldValue = "" for first search field)
+    contacts.find(["name"], findOptions, onFindSuccess, onFindError);
+}
+&lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
