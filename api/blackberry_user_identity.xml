@@ -17,9 +17,9 @@
       </p>
       <p>As such, this document gives an overview of the Identity Service library APIs that are available, and this information must be used in conjunction with the Identity Provider's specific Identity Service API overview to confirm the specifics of their implementation of each of these APIs.</p>
     </section>
-    
+
     <section>
-      <title>DataStorage_section  Data storage and retrieval APIs</title>  
+      <title>DataStorage_section  Data storage and retrieval APIs</title>
       <p>Applications can make use of APIs in the IDS library to store and retrieve data.</p>
       <p>APIs are provided for:
       <ul>
@@ -30,10 +30,10 @@
         <li>listing the stored data (istData())</li>
       </ul></p>
     </section>
-    
+
     <section>
       <title>UserAuth_Section   User authentication without prompting for credentials</title>
-      <p>Developers can use the Identity Services user authentication APIs in this library to avoid the need to implement user name and password management for their app. With these APIs, once the user is signed in using their account with the Identity Provider on the device, the user is automatically signed in to the app as well.      
+      <p>Developers can use the Identity Services user authentication APIs in this library to avoid the need to implement user name and password management for their app. With these APIs, once the user is signed in using their account with the Identity Provider on the device, the user is automatically signed in to the app as well.
         <ul>
           <li>Users won't need to create or remember a username and password for the app.</li>
           <li>Users won't need to specifically log in to the app, thus improving the ease of use of the app.</li>
@@ -65,59 +65,94 @@
         <li>Success callback function</li>
         <li>Failure callback function</li>
       </ul></p>
-      
+
       <p>When your app sends API calls using the IDS APIs, the Identity Provider service responds asynchronously. When an app receives a response, the corresponding callback function that your application had provided for the success or failure case is executed.</p>
-      
+
       <p>The Identity Provider service uses callback functions to pass the parsed response back to your app. Callback functions cannot be NULL. Your app must specify what to do in both the success and failure scenarios.</p>
     </section>
     <section>
       <title>bbid_modes_sec Registering your app to use the IDS APIs</title>
       <p>To register your app so that it can use the IDS APIs, call registerProvider() from your app for at least one identity provider.</p>
-      
+
       <p>After your app sends a request, the Identity Provider service will process the request asynchronously, and call the corresponding success/failure callback function.</p>
-      
+
       <p>For example, your app can call getProperties() and pass a success callback of myAppSuccessCallback and a failure callback of myAppFailureCallback. When a response is ready from the identity provider, the success or failure callback will execute based on the results of the call.</p>
     </section>
     <example>
       <title>Example:</title>
         <p><pre scale="80">
-        &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-        // Update the path from a small icon to a full image
-        function translateIcontoFullImage (path) {
-          if (path &amp;&amp; path.indexOf('.ico') !== -1) {
-            return path.replace('.ico', '.jpeg');
-          }
-        }
+// Update the path from a small icon to a full image
+function translateIcontoFullImage (path) {
+  if (path &amp;&amp; path.indexOf('.ico') !== -1) {
+    return path.replace('.ico', '.jpeg');
+  }
+}
 
-        function onContextMenu (contextEvent) {
-          var srcElement = contextEvent.srcElement;
-          console.log(srcElement);
-        }
+function onContextMenu (contextEvent) {
+  var srcElement = contextEvent.srcElement;
+  console.log(srcElement);
+}
 
-        window.addEventListener('oncontextmenu', onContextMenu);
-        &lt;/script&gt;
+window.addEventListener('oncontextmenu', onContextMenu);
+&lt;/script&gt;
         </pre></p>
     </example>
     <section>
       <title>Custom Context Menu</title>
       <p>Webworks applications can give Dom elements custom context by using the data-webworks-context xml attribute. When a Dom element contains this attribute, custom context menus will be activated when the element is long pressed. Once you have created a custom context using the data-webworks-context attribute, you can then use addItem to add items to the custom context. You can also optionally use defineCustomContext to further define the items shown.</p>
     </section>
-        <section>
-            <title>Synopsis:</title>
-            <pre scale="80">getVersion {Integer}</pre>
-            <pre scale="80">registerProvider {String}</pre>
-            <pre scale="80">setOption {Integer, String}</pre>
-            <pre scale="80">getToken {idsProvider, tokenType, appliesTo, successCallback, failureCallback}</pre>
-            <pre scale="80">clearToken {idsProvider, tokenType, appliesTo, successCallback, failureCallback}</pre>
-            <pre scale="80">getProperties {idsProvider, 0, userProperties, successCallback, failureCallback}</pre>
-            <pre scale="80">setData {idsProvider, 0, 0, dataName, dataValue, successCallback, failureCallback}</pre>
-            <pre scale="80">createData {idsProvider, 0, 0, dataName, dataValue, successCallback, failureCallback}</pre>
-            <pre scale="80">deleteData {idsProvider, 0, 0, dataName, successCallback, failureCallback}</pre>
-            <pre scale="80">challenge {idsProvider, 0, 0, successCallback, failureCallback}</pre>
-            <pre scale="80">registerNotifier {idsProvider, 0, name, onChangeCallback}</pre>
-            <pre scale="80">setOption {Integer, String}</pre>
-        </section>
+    <section>
+        <simpletable relcolwidth="1* 2* 3*">
+            <sthead>
+                <stentry>Functions: </stentry>
+            </sthead>
+            <strow>
+                <stentry>Void</stentry>
+                <stentry><xref format="html" href="blackberry_user_identity_clearToken.html" scope="peer">clearToken</xref></stentry>
+            </strow>
+            <strow>
+                <stentry>Void</stentry>
+                <stentry><xref format="html" href="blackberry_user_identity_getProperties.html" scope="peer">getProperties</xref></stentry>
+            </strow>
+            <strow>
+                <stentry>Void</stentry>
+                <stentry><xref format="html" href="blackberry_user_identity_getToken" scope="peer">getToken</xref></stentry>
+            </strow>
+            <strow>
+                <stentry>Number</stentry>
+                <stentry><xref format="html" href="blackberry_user_identity_getVersion.html" scope="peer">getVersion</xref></stentry>
+            </strow>
+            <strow>
+                <stentry>Number</stentry>
+                <stentry><xref format="html" href="blackberry_user_identity_registerProvider.html" scope="peer">registerProvider</xref></stentry>
+            </strow>
+            <strow>
+                <stentry>Number</stentry>
+                <stentry><xref format="html" href="blackberry_user_identity_setOption.html" scope="peer">setOption</xref></stentry>
+            </strow>
+            <strow>
+                <stentry>Void</stentry>
+                <stentry><xref format="html" href="blackberry_user_identity_setData.html" scope="peer">setData</xref></stentry>
+            </strow>
+            <strow>
+                <stentry>Void</stentry>
+                <stentry><xref format="html" href="blackberry_user_identity_registerNotifier.html" scope="peer">registerNotifier</xref></stentry>
+            </strow>
+            <strow>
+                <stentry>Void</stentry>
+                <stentry><xref format="html" href="blackberry_user_identity_deleteData.html" scope="peer">deleteData</xref></stentry>
+            </strow>
+            <strow>
+                <stentry>Void</stentry>
+                <stentry><xref format="html" href="blackberry_user_identity_createData.html" scope="peer">createData</xref></stentry>
+            </strow>
+            <strow>
+                <stentry>Void</stentry>
+                <stentry><xref format="html" href="blackberry_user_identity_challenge.html" scope="peer">challenge</xref></stentry>
+            </strow>
+        </simpletable>
+    </section>
   </conbody>
-
 </concept>
