@@ -7,43 +7,97 @@
     <example>
       <title>Example:</title>
       <p><pre scale="80">
-      function createContact() {
-        var contacts = blackberry.pim.contacts,
-            ContactAddress = contacts.ContactAddress;
+function createContact() {
+  var contacts = blackberry.pim.contacts,
+      ContactAddress = contacts.ContactAddress;
 
-        var homeAddress = {
-                 "type": ContactAddress.HOME,
-                 "streetAddress": "123 Abc Rd",
-                 "locality": "Waterloo",
-                 "region": "Ontario",
-                 "country": "Canada"
-           };
-        var workAddress = {
-                 "type": ContactAddress.WORK,
-                 "streetAddress": "456 Industry St",
-                 "locality": "Waterloo",
-                 "region": "Ontario",
-                 "country": "Canada"
-            };
+  var homeAddress = {
+           "type": ContactAddress.HOME,
+           "streetAddress": "123 Abc Rd",
+           "locality": "Waterloo",
+           "region": "Ontario",
+           "country": "Canada"
+     };
+  var workAddress = {
+           "type": ContactAddress.WORK,
+           "streetAddress": "456 Industry St",
+           "locality": "Waterloo",
+           "region": "Ontario",
+           "country": "Canada"
+      };
 
-        var newContact = contacts.create();
-        newContact.name = {
-            "givenName": "Bart",
-            "familyName": "Simpson"
-        };
-        newContact.addresses = [homeAddress, workAddress];
+  var newContact = contacts.create();
+  newContact.name = {
+      "givenName": "Bart",
+      "familyName": "Simpson"
+  };
+  newContact.addresses = [homeAddress, workAddress];
 
-        newContact.save(onSaveSuccess, onSaveError);
-      }
+  newContact.save(onSaveSuccess, onSaveError);
+}
 
-      function onSaveSuccess(contact) {
-          alert("Contact saved: " + contact.name.givenName);
-      }
+function onSaveSuccess(contact) {
+    alert("Contact saved: " + contact.name.givenName);
+}
 
-      function onSaveError(error) {
-          alert("Contact save failed: " + error.code);
-      }
+function onSaveError(error) {
+    alert("Contact save failed: " + error.code);
+}
       </pre></p>
     </example>
+    <section>
+      <simpletable relcolwidth="1* 2*">
+        <sthead>
+          <stentry>Constants: </stentry>
+        </sthead>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_pim_contacts_ContactAddress_country.html" scope="peer">country</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_pim_contacts_ContactAddress_locality.html" scope="peer">locality</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_pim_contacts_ContactAddress_postalCode.html" scope="peer">postalCode</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_pim_contacts_ContactAddress_region.html" scope="peer">region</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_pim_contacts_ContactAddress_streetAddress.html" scope="peer">streetAddress</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_pim_contacts_ContactAddress_streetOther.html" scope="peer">streetOther</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_pim_contacts_ContactAddress_type.html" scope="peer">type</xref></stentry>
+        </strow>
+      </simpletable>
+    </section>
+    <section>
+      <simpletable relcolwidth="1* 2*">
+        <sthead>
+          <stentry>Constants: </stentry>
+        </sthead>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_pim_contacts_ContactAddress_HOME.html" scope="peer">HOME</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_pim_contacts_ContactAddress_OTHER.html" scope="peer">OTHER</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_pim_contacts_ContactAddress_WORK.html" scope="peer">WORK</xref></stentry>
+        </strow>
+      </simpletable>
+    </section>
   </conbody>
 </concept>

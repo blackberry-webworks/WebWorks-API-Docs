@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<concept id="blackberry_app" xml:lang="en-us">
+  <title>Application</title>
+  <shortdesc><i>The Application object provides functions and properties for the currently running application.</i></shortdesc>
+  <conbody>
+    <section>
+        <title>Learning Resources:</title>
+        <p><xref format="html" href="https://github.com/blackberry/BB10-WebWorks-Samples/tree/master/Orientation" scope="external">Sample - Using Orientation</xref>Sample that demonstrates how to use the Orientation API [BlackBerry on GitHub].</p>
+    </section>
+    <example>
+      <title>Example:</title>
+        <p><pre scale="80">
+function makeTable() {
+  try {
+    var details = document.getElementById("details");
+    if (details) {
+      var output = "&lt;table&gt;";
+      output += "&lt;tr&gt;&lt;td&gt;&lt;b&gt;Author&lt;/td&gt;&lt;td&gt;" + blackberry.app.author + "&lt;/td&gt;&lt;/tr&gt;";
+      output += "&lt;tr&gt;&lt;td&gt;&lt;b&gt;Author Email&lt;/b&gt;&lt;/td&gt;&lt;td&gt;" + blackberry.app.authorEmail + "&lt;/td&gt;&lt;/tr&gt;";
+      output += "&lt;tr&gt;&lt;td&gt;&lt;b&gt;Author URL&lt;/b&gt;&lt;/td&gt;&lt;td&gt;" + blackberry.app.authorURL + "&lt;/td&gt;&lt;/tr&gt;";
+      output += "&lt;tr&gt;&lt;td&gt;&lt;b&gt;Copyright&lt;/b&gt;&lt;/td&gt;&lt;td&gt;" + blackberry.app.copyright + "&lt;/td&gt;&lt;/tr&gt;";
+      output += "&lt;tr&gt;&lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;&lt;td&gt;" + blackberry.app.description + "&lt;&lt;/tr&gt;";
+      output += "&lt;tr&gt;&lt;td&gt;&lt;b&gt;ID&lt;/b&gt;&lt;/td&gt;&lt;td&gt;" + blackberry.app.id + "&lt;/td&gt;&lt;/tr&gt;";
+      output += "&lt;tr&gt;&lt;td&gt;&lt;b&gt;License&lt;/b&gt;&lt;/td&gt;&lt;td&gt;" + blackberry.app.license + "&lt;/td&gt;&lt;/tr&gt;";
+      output += "&lt;tr&gt;&lt;td&gt;&lt;b&gt;License URL&lt;/b&gt;&lt;/td&gt;&lt;td&gt;" + blackberry.app.licenseURL + "&lt;/td&gt;&lt;/tr&gt;";
+      output += "&lt;tr&gt;&lt;td&gt;&lt;b&gt;Name&lt;/b&gt;&lt;/td&gt;&lt;td&gt;" + blackberry.app.name + "&lt;/td&gt;&lt;/tr&gt;";
+      output += "&lt;tr&gt;&lt;td&gt;&lt;Version&lt;/b&gt;&lt;/td&gt;&lt;td&gt;" + blackberry.app.version + "&lt;/td&gt;&lt;/tr&gt;";
+      output += "&lt;tr&gt;&lt;td&gt;&lt;Orientation&lt;/b&gt;&lt;/td&gt;&lt;td&gt;" + blackberry.app.orientation + "&lt;/td&gt;&lt;/tr&gt;";
+      output += "&lt;tr&gt;&lt;td&gt;&lt;Window State&lt;/b&gt;&lt;/td&gt;&lt;td&gt;" + blackberry.app.windowState + "&lt;/td&gt;&lt;/tr&gt;";
+
+      details.innerHTML = output;
+    }
+  } catch(e) {
+    alert("Exception in displayDetails: " + e);
+  }
+}
+&lt;/script&gt;
+        </pre></p>
+    </example>
+    <section>
+      <simpletable relcolwidth="1* 2*">
+        <sthead>
+          <stentry>Functions: </stentry>
+        </sthead>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_exit.html" scope="peer">exit</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_lockOrientation.html" scope="peer">lockOrientation</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_minimize.html" scope="peer">minimize</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_rotate.html" scope="peer">rotate</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_unlockOrientation.html" scope="peer">unlockOrientation</xref></stentry>
+        </strow>
+      </simpletable>
+    </section>
+    <section>
+      <simpletable relcolwidth="1* 2*">
+        <sthead>
+          <stentry>Events: </stentry>
+        </sthead>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_keyboardClosed.html" scope="peer">keyboardClosed</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_keyboardClosing.html" scope="peer">keyboardClosing</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_keyboardOpened.html" scope="peer">keyboardOpened</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_keyboardOpening.html" scope="peer">keyboardOpening</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_keyboardPosition.html" scope="peer">keyboardPosition</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_orientationchange.html" scope="peer">orientationchange</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_pause.html" scope="peer">pause</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_resume.html" scope="peer">resume</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_swipedown.html" scope="peer">swipedown</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>Void</stentry>
+          <stentry><xref format="html" href="blackberry_app_windowstatechanged.html" scope="peer">windowstatechanged</xref></stentry>
+        </strow>
+      </simpletable>
+    </section>
+    <section>
+      <simpletable relcolwidth="1* 2*">
+        <sthead>
+          <stentry>Properties: </stentry>
+        </sthead>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_app_author.html" scope="peer">author</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_app_authorEmail.html" scope="peer">authorEmail</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_app_authorURL.html" scope="peer">authorURL</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_app_copyright.html" scope="peer">copyright</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_app_description.html" scope="peer">description</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_app_id.html" scope="peer">id</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_app_license.html" scope="peer">license</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_app_licenseURL.html" scope="peer">licenseURL</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_app_name.html" scope="peer">name</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_app_orientation.html" scope="peer">orientation</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_app_version.html" scope="peer">version</xref></stentry>
+        </strow>
+        <strow>
+          <stentry>String</stentry>
+          <stentry><xref format="html" href="blackberry_app_windowState.html" scope="peer">windowState</xref></stentry>
+        </strow>
+      </simpletable>
+    </section>
+  </conbody>
+</concept>
