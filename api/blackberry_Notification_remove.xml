@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_Notification_remove" xml:lang="en-us">
+    <title><apiname>remove</apiname></title>
+    <shortdesc><i>This static method will delete the notification from the UIB notifications area automatically. UIB notifications will also be removed manually if the user clicks it.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">void Notification.remove(tag)</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>tag</varname> {String}</dt>
+                    <dd><p>Mandatory. Used as the Id of the notification for deleting it. tag is optional property of options object that is passed to Notification constructor; if it is omitted, the user won't be able to use this static function "remove" to delete the notification.</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <pre scale="80"><p>
+&lt;script type="text/javascript"&gt;
+
+new Notification("You have a tagged notification", { tag: 'tagged_notification' });
+
+// Even the application is closed and the above object is destroyed,
+// you can still remove the notification
+Notification.remove('tagged_notification');
+
+&lt;/script&gt;
+            </p></pre>
+        </example>
+    </refbody>
+</reference>
