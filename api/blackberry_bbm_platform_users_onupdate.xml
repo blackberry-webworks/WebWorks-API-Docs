@@ -2,24 +2,25 @@
 <!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
 <reference id="blackberry_bbm_platform_users_onupdate" xml:lang="en-us">
     <title><apiname>onupdate</apiname></title>
-    <shortdesc><i>Event listener when a user's information is updated. Assign a function to receive user updates. <p>User updates can be captured such as profile information and application installation changes. Updates can be received from the current user, contacts who have the application, and non-contacts who have joined in an application connection with the current user.</p>
-        <ul>
-            <li><code>"displayname"</code>: Display name update.</li>
-            <li><code>"personalmessage"</code>: Personal message update.</li>
-        <li><code>"status"</code>: Status and/or status message update.</li>
-        </ul>
-    </i></shortdesc>
+    <shortdesc><i>Event listener when a user's information is updated. Assign a function to receive user updates.</i></shortdesc>
     <refbody>
         <section>
+            <p>User updates can be captured such as profile information and application installation changes. Updates can be received from the current user, contacts who have the application, and non-contacts who have joined in an application connection with the current user.</p>
+            <p><ul>
+                <li><code>"displayname"</code>: Display name update.</li>
+                <li><code>"personalmessage"</code>: Personal message update.</li>
+            <li><code>"status"</code>: Status and/or status message update.</li>
+            </ul></p>
+        </section>
+        <section>
             <title>Synopsis:</title>
-                <pre sclae="80">event</pre>
-                <pre scale="80">onupdate: function(user, event){}</pre>
+                <pre sclae="80">Event</pre>
         </section>
         <section>
             <title>Parameters:</title>
             <dl>
                 <dlentry>
-                    <dt><varname>user</varname> {blackberry.bbm.platform.users.BBMPlatformUser}</dt>
+                    <dt><varname>user</varname> {<xref format="html" href="blackberry_bbm_platform_users_BBMPlatformUser.html" scope="peer">BBMPlatformUser</xref>}</dt>
                     <dd><p>The user whose information was updated.</p></dd>
                 </dlentry>
                 <dlentry>
@@ -31,16 +32,16 @@
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-                &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-                    document.addEventListener("onupdate", function(user, event) {
-                        // Handle events for other user
-                        if (event == "personalmessage") {
-                            alert("Personal message update: " + user.personalmessage);
-                        }
-                    };
+    document.addEventListener("onupdate", function(user, event) {
+        // Handle events for other user
+        if (event == "personalmessage") {
+            alert("Personal message update: " + user.personalmessage);
+        }
+    };
 
-                &lt;/script&gt;
+&lt;/script&gt;
             </pre></p>
         </example>
     </refbody>

@@ -2,16 +2,18 @@
 <!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
 <reference id="blackberry_bbm_platform_self_profilebox_registerIcon" xml:lang="en-us">
     <title><apiname>registerIcon</apiname></title>
-    <shortdesc><i>Registers an icon for use with user's profile box.<p>Icons are provided via a fully-qualified URI. Non-local URIs must be whitelisted in the application's configuration file. Examples:</p>
-        <ul>
-            <li>Locally from within the widget package (e.g. "local:///smiley.jpg")</li>
-            <li>From the file system of the device (e.g. "file:///SDCard/BlackBerry/pictures/smiley.jpg")</li>
-        </ul>
-    </i></shortdesc>
+    <shortdesc><i>Registers an icon for use with user's profile box.</i></shortdesc>
     <refbody>
         <section>
+            <p>Icons are provided via a fully-qualified URI. Non-local URIs must be whitelisted in the application's configuration file. Examples:</p>
+            <p><ul>
+                <li>Locally from within the widget package (e.g. "local:///smiley.jpg")</li>
+                <li>From the file system of the device (e.g. "file:///SDCard/BlackBerry/pictures/smiley.jpg")</li>
+            </ul></p>
+        </section>
+        <section>
             <title>Synopsis:</title>
-                <pre scale="80">registerIcon : function(options, onSuccess, onError){}</pre>
+                <pre scale="80">void registerIcon(options, onSuccess, onError)</pre>
         </section>
         <section>
             <title>Parameters:</title>
@@ -58,18 +60,18 @@
         <example>
             <title>Example:</title>
             <pre scale="80"><p>
-                &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-                    // Register an icon
-                    var options = {icon: "local:///smiley.jpg", iconId: 1337};
-                    blackberry.bbm.platform.self.profilebox.registerIcon(options, function (icon) {
-                               // do something
-                               alert("Registered " + icon.iconId)
-                           }), function (error) {
-                               alert(error);
-                           });
+    // Register an icon
+    var options = {icon: "local:///smiley.jpg", iconId: 1337};
+    blackberry.bbm.platform.self.profilebox.registerIcon(options, function (icon) {
+               // do something
+               alert("Registered " + icon.iconId)
+           }), function (error) {
+               alert(error);
+           });
 
-                &lt;/script&gt;
+&lt;/script&gt;
             </p></pre>
         </example>
     </refbody>

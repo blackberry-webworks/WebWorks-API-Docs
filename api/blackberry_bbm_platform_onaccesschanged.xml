@@ -2,11 +2,11 @@
 <!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
 <reference id="blackbery_bbm_platform_onaccesschanged" xml:lang="en-us">
     <title><apiname>onaccesschanged</apiname></title>
-    <shortdesc><i>This event is fired by the system. If you want to listen to the event, you can use the {@link document.addEventListener} function and remove the listener using the {@link document.removeEventListener} function. Registers for access to the BBM Social Platform.</i></shortdesc>
+    <shortdesc><i>This event is fired by the system. If you want to listen to the event, you can use the document.addEventListener function and remove the listener using the document.removeEventListener function. Registers for access to the BBM Social Platform.</i></shortdesc>
     <refbody>
         <section>
             <title>Synopsis:</title>
-            <pre scale="80">onaccesschanged : function(accessible, status){}</pre>
+            <pre scale="80">Event</pre>
         </section>
         <section>
             <title>Parameters:</title>
@@ -27,7 +27,7 @@
                             <li>"nodata": Access is blocked because the device is out of data coverage. A data connection is required to register the application.</li>
                             <li>"unexpectederror": Access is blocked because an unexpected error has occured.</li>
                             <li>"invaliduuid": Access is blocked because an invalid UUID was provided when registering.</li>
-                            <li>"temperror": Access is blocked because of a temporary error. The application should try to call {@link blackberry.bbm.platform.register} in 30 minutes, or the next time the application starts.</li>
+                            <li>"temperror": Access is blocked because of a temporary error. The application should try to call {<xref format="html" href="blackberry_bbm_platform_register.html" scope="peer">blackberry.bbm.platform.register</xref>} in 30 minutes, or the next time the application starts.</li>
                         </ul>
                     </dd>
                 </dlentry>
@@ -36,23 +36,23 @@
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-                &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-                    // Create callback invoked when access changes
-                    blackberry.event.addEventListener("onaccesschanged", accessChangedCallback);
+// Create callback invoked when access changes
+document.addEventListener("onaccesschanged", accessChangedCallback);
 
-                    function accessChangedCallback(accessible, status) {
-                        if  (status == "allowed") {
-                            // Access allowed
-                        } else if (status == "user") {
-                            // Access blocked by user
-                        } else if (status == "rim") {
-                            // Access blocked by RIM
-                        }
-                        // Listen for other status...
-                        };
+function accessChangedCallback(accessible, status) {
+    if  (status == "allowed") {
+        // Access allowed
+    } else if (status == "user") {
+        // Access blocked by user
+    } else if (status == "rim") {
+        // Access blocked by RIM
+    }
+    // Listen for other status...
+    };
 
-                &lt;/script&gt;
+&lt;/script&gt;
             </pre></p>
         </example>
     </refbody>
