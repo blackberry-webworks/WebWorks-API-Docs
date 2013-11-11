@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackbery_bbm_platform_self_setDisplayPicture" xml:lang="en-us">
+    <title><apiname>setDisplayPicture</apiname></title>
+    <shortdesc><i>Sets the user's display picture from a URI. A dialog appears and allows the user to accept or cancel the change. Note that the display picture cannot exceed 32KB.</i></shortdesc>
+    <refbody>
+        <section>
+            <p>The URI must be fully qualified. Non-local URIs must be whitelisted in the application's configuration file. Examples:</p>
+            <p><ul>
+                <li>Locally from within the widget package (e.g. "local:///smiley.jpg")</li>
+                <li>From the filesystem of a BB10 device (e.g. "file:///accounts/1000/shared/photos/smiley.jpg")</li>
+            </ul></p>
+        <section>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">void setDisplayPicture(displayPictureURI, onSuccess, onError)</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>displayPictureURI</varname> {String}</dt>
+                    <dd><p>The fully qualified URI.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onSuccess</varname> {Function}</dt>
+                    <dd><p>Invoked when the request to change the display picture is shown to the user.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>success</varname> {Boolean}</dt>
+                                <dd><p>True if the image was found</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onError</varname> {Function}</dt>
+                    <dd><p>Invoked when there was an error setting the picture.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {String}</dt>
+                                <dd><p>Contains the error message</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+&lt;script type="text/javascript"&gt;
+
+    // Set the user's display picture
+    blackberry.bbm.platform.self.setDisplayPicture("local:///smiley.jpg", function (success) {
+        alert("Image found");
+    }), function (error) {
+        alert(error);
+    });
+
+&lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_bbm_platform_self_profilebox_registerIcon" xml:lang="en-us">
+    <title><apiname>registerIcon</apiname></title>
+    <shortdesc><i>Registers an icon for use with user's profile box.</i></shortdesc>
+    <refbody>
+        <section>
+            <p>Icons are provided via a fully-qualified URI. Non-local URIs must be whitelisted in the application's configuration file. Examples:</p>
+            <p><ul>
+                <li>Locally from within the widget package (e.g. "local:///smiley.jpg")</li>
+                <li>From the file system of the device (e.g. "file:///SDCard/BlackBerry/pictures/smiley.jpg")</li>
+            </ul></p>
+        </section>
+        <section>
+            <title>Synopsis:</title>
+                <pre scale="80">void registerIcon(options, onSuccess, onError)</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>options</varname> {Object}</dt>
+                    <dd><p>The options.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>icon</varname> {String}</dt>
+                                <dd><p>The URI of the icon to register.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>iconID</varname> {Number}</dt>
+                                <dd><p>An icon ID for the icon, this number must be unique.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onSuccess</varname> {Function}</dt>
+                    <dd><p>Invoked when the icon has been registered.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>iconID</varname> {Object}</dt>
+                                <dd><p>The icon ID of the registered icon.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onError</varname> {Function}</dt>
+                    <dd><p>Invoked when there was an error registering the icon.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {String}</dt>
+                                <dd><p>Contains the error message.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <pre scale="80"><p>
+&lt;script type="text/javascript"&gt;
+
+    // Register an icon
+    var options = {icon: "local:///smiley.jpg", iconId: 1337};
+    blackberry.bbm.platform.self.profilebox.registerIcon(options, function (icon) {
+               // do something
+               alert("Registered " + icon.iconId)
+           }), function (error) {
+               alert(error);
+           });
+
+&lt;/script&gt;
+            </p></pre>
+        </example>
+    </refbody>
+</reference>

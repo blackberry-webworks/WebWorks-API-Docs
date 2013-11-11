@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackbery_bbm_platform_onaccesschanged" xml:lang="en-us">
+    <title><apiname>onaccesschanged</apiname></title>
+    <shortdesc><i>This event is fired by the system. If you want to listen to the event, you can use the document.addEventListener function and remove the listener using the document.removeEventListener function. Registers for access to the BBM Social Platform.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">Event</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>accessible</varname> {Boolean}</dt>
+                    <dd><p>Flag if the BBM Social Platform access is allowed.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>status</varname> {String}</dt>
+                    <dd><p>Status message of current BBMSP access.</p>
+                        <ul>
+                            <li>"allowed": Access is allowed.</li>
+                            <li>"unregistered": Access is blocked because the application is currently not registered.</li>
+                            <li>"pending": Access is pending and being processed.</li>
+                            <li>"user": Access is blocked by the user.</li>
+                            <li>"rim": Access is blocked by RIM (the application has most likely violated the terms of use).</li>
+                            <li>"nodata": Access is blocked because the device is out of data coverage. A data connection is required to register the application.</li>
+                            <li>"unexpectederror": Access is blocked because an unexpected error has occured.</li>
+                            <li>"invaliduuid": Access is blocked because an invalid UUID was provided when registering.</li>
+                            <li>"temperror": Access is blocked because of a temporary error. The application should try to call {<xref format="html" href="blackberry_bbm_platform_register.html" scope="peer">blackberry.bbm.platform.register</xref>} in 30 minutes, or the next time the application starts.</li>
+                        </ul>
+                    </dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+&lt;script type="text/javascript"&gt;
+
+// Create callback invoked when access changes
+document.addEventListener("onaccesschanged", accessChangedCallback);
+
+function accessChangedCallback(accessible, status) {
+    if  (status == "allowed") {
+        // Access allowed
+    } else if (status == "user") {
+        // Access blocked by user
+    } else if (status == "rim") {
+        // Access blocked by RIM
+    }
+    // Listen for other status...
+    };
+
+&lt;/script&gt;
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
