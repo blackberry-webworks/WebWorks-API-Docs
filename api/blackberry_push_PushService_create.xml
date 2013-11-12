@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
 <reference id="blackberry_push_PushService_create" xml:lang="en-us">
-    <title><apiname>create</apiname></title>
+    <title><apiname>create()</apiname></title>
     <shortdesc><i>Creates a PushService object. The PushService object will only be available if the successCallback function is called. It will not be available if the failCallback function is called instead.</i></shortdesc>
     <refbody>
         <section>
             <title>Synopsis:</title>
-                <pre scale="80">create: function(options, successCallback, failCallback, simChangeCallback, pushTransportReadyCallback){}</pre>
+                <pre scale="80">void PushService.create(options, successCallback, failCallback, simChangeCallback, pushTransportReadyCallback)</pre>
         </section>
         <section>
             <title>Parameters:</title>
@@ -77,80 +77,80 @@
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-                &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-// For a consumer application (using the public/BIS PPG)
-var ops = { invokeTargetId : 'com.sample.pushtest.target',
-            appId : 'appId1',
-            ppgUrl : 'http://cp123.pushapi.na.blackberry.com' };
+    // For a consumer application (using the public/BIS PPG)
+    var ops = { invokeTargetId : 'com.sample.pushtest.target',
+                appId : 'appId1',
+                ppgUrl : 'http://cp123.pushapi.na.blackberry.com' };
 
-// For an enterprise application (using the enterprise/BES PPG)
-// var ops = { invokeTargetId : 'com.sample.pushtest.target' };
+    // For an enterprise application (using the enterprise/BES PPG)
+    // var ops = { invokeTargetId : 'com.sample.pushtest.target' };
 
-// Or, for an enterprise application with an application ID:
-// var ops = { invokeTargetId : 'com.sample.pushtest.target',
-//             appId : 'appId1' };
+    // Or, for an enterprise application with an application ID:
+    // var ops = { invokeTargetId : 'com.sample.pushtest.target',
+    //             appId : 'appId1' };
 
-try {
-    blackberry.push.PushService.create(ops,
-        successCallback,
-        failCallback,
-        simChangeCallback,
-        pushTransportReadyCallback);
-} catch (err) {
-    console.log("Create was called more than once with different "
-        + "values for options.invokeTargetId or options.appId.");
-    console.log(err);
-}
-
-function successCallback(pushService) {
-    // The create operation was a success
-    // Save the pushService object to a global variable
-    // Now, use the pushService object to now perform a
-    // launchApplicationOnPush, createChannel, destroyChannel, etc.
-    pushService.createChannel(createChannelCallback);
-}
-
-function failCallback(result) {
-    // The create operation failed
-    // You should compare the result code against the error
-    // constants in this PushService class that apply for
-    // create and take the recommended action for that constant
-    if (result === blackberry.push.PushService.INTERNAL_ERROR) {
-        // Retry the create up to a certain number of attempts
-        // and then display an error to the user
+    try {
+        blackberry.push.PushService.create(ops,
+            successCallback,
+            failCallback,
+            simChangeCallback,
+            pushTransportReadyCallback);
+    } catch (err) {
+        console.log("Create was called more than once with different "
+            + "values for options.invokeTargetId or options.appId.");
+        console.log(err);
     }
-    // ... handle the other possible error constants
-    // from the PushService class
-}
 
-function simChangeCallback() {
-    // The SIM card was changed and the channel has been
-    // destroyed since a new user might be using the device.
-    // It is recommended that the user of this application be
-    // re-authenticated with the Push Initiator (if your
-    // Push Initiator implementation supports subscription)
-    // followed by a call to createChannel.
-}
-
-function pushTransportReadyCallback(lastFailedOperation) {
-    // This callback will be called when a create channel
-    // or destroy channel was previously attempted and it
-    // failed with a PUSH_TRANSPORT_UNAVAILABLE or a
-      // PPG_SERVER_ERROR error code and now the
-    // network/push transport/PPG is available again.
-    // The operation indicated by lastFailedOperation should
-    // be retried again.
-    if (lastFailedOperation ===
-        blackberry.push.PushService.CREATE_CHANNEL_OPERATION) {
+    function successCallback(pushService) {
+        // The create operation was a success
+        // Save the pushService object to a global variable
+        // Now, use the pushService object to now perform a
+        // launchApplicationOnPush, createChannel, destroyChannel, etc.
         pushService.createChannel(createChannelCallback);
-    } else if (lastFailedOperation ===
-       blackberry.push.PushService.DESTROY_CHANNEL_OPERATION) {
-       pushService.destroyChannel(destroyChannelCallback);
     }
-}
 
-                &lt;/script&gt;
+    function failCallback(result) {
+        // The create operation failed
+        // You should compare the result code against the error
+        // constants in this PushService class that apply for
+        // create and take the recommended action for that constant
+        if (result === blackberry.push.PushService.INTERNAL_ERROR) {
+            // Retry the create up to a certain number of attempts
+            // and then display an error to the user
+        }
+        // ... handle the other possible error constants
+        // from the PushService class
+    }
+
+    function simChangeCallback() {
+        // The SIM card was changed and the channel has been
+        // destroyed since a new user might be using the device.
+        // It is recommended that the user of this application be
+        // re-authenticated with the Push Initiator (if your
+        // Push Initiator implementation supports subscription)
+        // followed by a call to createChannel.
+    }
+
+    function pushTransportReadyCallback(lastFailedOperation) {
+        // This callback will be called when a create channel
+        // or destroy channel was previously attempted and it
+        // failed with a PUSH_TRANSPORT_UNAVAILABLE or a
+          // PPG_SERVER_ERROR error code and now the
+        // network/push transport/PPG is available again.
+        // The operation indicated by lastFailedOperation should
+        // be retried again.
+        if (lastFailedOperation ===
+            blackberry.push.PushService.CREATE_CHANNEL_OPERATION) {
+            pushService.createChannel(createChannelCallback);
+        } else if (lastFailedOperation ===
+           blackberry.push.PushService.DESTROY_CHANNEL_OPERATION) {
+           pushService.destroyChannel(destroyChannelCallback);
+        }
+    }
+
+&lt;/script&gt;
             </pre></p>
         </example>
     </refbody>
