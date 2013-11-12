@@ -6,7 +6,7 @@
     <refbody>
         <section>
             <title>Synopsis:</title>
-            <pre scale="80">upload(filePath, server, successCallback, errorCallback, options)</pre>
+            <pre scale="80">void upload(filePath, server, successCallback, errorCallback, options)</pre>
         </section>
         <section>
             <title>Parameters:</title>
@@ -19,154 +19,154 @@
                     <dt><varname>server</varname> {String}</dt>
                     <dd><p>URL of the remote server that will receive the file.</p></dd>
                 </dlentry>
-
                 <dlentry>
-                    <dt><varname>successCallback</varname> {function}</dt>
-                    <dd><p>Callback function that will be invoked if the file upload is successful. </p></dd>
-                    <dl>
-                    	<dlentry>
-                    		<dt><varname>successCallback.info</varname> {Object}</dt>
-                    		<dd><p>Object containing information about the upload.</p></dd>
-
-                            <dl>
-                                <dlentry>
-                                    <dt><varname>successCallback.info.bytesSent</varname>{Number}</dt>
-                                    <dd><p>Total number of bytes sent to the server.</p></dd>
-                                </dlentry>
-                                <dlentry>
-                                    <dt><varname>successCallback.info.responseCode</varname>{Number}</dt>
-                                    <dd><p>HTTP response code returned by the server.</p></dd>
-                                </dlentry>
-                                <dlentry>
-                                    <dt><varname>successCallback.info.response</varname>{String}</dt>
-                                    <dd><p>Response returned by the server.</p></dd>
-                                </dlentry>
-                             </dl>
-                    	</dlentry>
-                    </dl>
+                    <dt><varname>successCallback</varname> {Function}</dt>
+                    <dd><p>Callback function that will be invoked if the file upload is successful.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>info</varname> {Object}</dt>
+                                <dd><p>Object containing information about the upload.</p>
+                                    <dl>
+                                        <dlentry>
+                                            <dt><varname>bytesSent</varname> {Number}</dt>
+                                            <dd><p>Total number of bytes sent to the server.</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>responseCode</varname> {Number}</dt>
+                                            <dd><p>HTTP response code returned by the server.</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>response</varname> {String}</dt>
+                                            <dd><p>Response returned by the server.</p></dd>
+                                        </dlentry>
+                                     </dl>
+                                 </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
                 </dlentry>
-
                 <dlentry>
-                    <dt><varname>errorCallback</varname> {function}</dt>
-                    <dd><p>Callback function that will be invoked if the file upload fails.</p></dd>
-                    <dl>
-                        <dlentry>
-                            <dt><varname>errorCallback.info</varname> {Object}</dt>
-                            <dd><p>Object containing information about the failed upload request.</p></dd>
-
-                            <dl>
-                                <dlentry>
-                                    <dt><varname>errorCallback.info.code</varname>{Number}</dt>
-                                    <dd><p>Error code indicating the type of error that occurred.</p></dd>
-                                </dlentry>
-                                <dlentry>
-                                    <dt><varname>errorCallback.info.source</varname>{String}</dt>
-                                    <dd><p>Path of the original file.</p></dd>
-                                </dlentry>
-                                <dlentry>
-                                    <dt><varname>errorCallback.info.target</varname>{String}</dt>
-                                    <dd><p>URL of the remote server.</p></dd>
-                                </dlentry>
-                                <dlentry>
-                                    <dt><varname>errorCallback.info.http_status</varname>{Number}</dt>
-                                    <dd><p>HTTP status code. This attribute is only available when a response code is received from the HTTP connection.</p></dd>
-                                </dlentry>
-                             </dl>
-                        </dlentry>
-                    </dl>
+                    <dt><varname>errorCallback</varname> {Function}</dt>
+                    <dd><p>Callback function that will be invoked if the file upload fails.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>info</varname> {Object}</dt>
+                                <dd><p>Object containing information about the failed upload request.</p>
+                                    <dl>
+                                        <dlentry>
+                                            <dt><varname>code</varname> {Number}</dt>
+                                            <dd><p>Error code indicating the type of error that occurred.</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>source</varname> {String}</dt>
+                                            <dd><p>Path of the original file.</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>target</varname> {String}</dt>
+                                            <dd><p>URL of the remote server.</p></dd>
+                                        </dlentry>
+                                        <dlentry>
+                                            <dt><varname>http_status</varname> {Number}</dt>
+                                            <dd><p>HTTP status code. This attribute is only available when a response code is received from the HTTP connection.</p></dd>
+                                        </dlentry>
+                                     </dl>
+                                 </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
                 </dlentry>
-
                 <dlentry>
-                    <dt><varname>options</varname>{Object}</dt>
-                    <dd><p>Optional Object literal that allows the user to customize the file key, file name, MIME type, parameters, and chunked mode of the upload request. It is not required to provide all parameters, and these do not have to be specified in any particular order.</p></dd>
-                    <dl>
-                        <dlentry>
-                            <dt><varname>options.fileKey</varname>{String}</dt>
-                            <dd><p>Name of the form element. If not set, this defaults to "file".</p></dd>
-                        </dlentry>
-                        <dlentry>
-                            <dt><varname>options.fileName</varname>{String}</dt>
-                            <dd><p>Name that the file will be saved as on the remote server. If not set, this defaults to "image.jpg".</p></dd>
-                        </dlentry>
-                        <dlentry>
-                            <dt><varname>options.mimeType</varname>{String}</dt>
-                            <dd><p>MIME type of the data being uploaded. If not set, this defaults to "image/jpeg".</p></dd>
-                        </dlentry>
-                        <dlentry>
-                            <dt><varname>options.params</varname>{Object}</dt>
-                            <dd><p>A set of optional key/value pairs to be passed along in the HTTP request.</p></dd>
-                        </dlentry>
-                        <dlentry>
-                            <dt><varname>options.chunkedMode</varname>{Boolean}</dt>
-                            <dd><p>Specifies whether the data should be uploaded in chunked streaming mode.  If not set, this defaults to true.</p></dd>
-                        </dlentry>
-                        <dlentry>
-                            <dt><varname>options.chunkSize</varname>{Number}</dt>
-                            <dd><p>Specifies the size of each chunk when chunkedMode is true.  If not set, this defaults to 1024 bytes.</p></dd>
-                        </dlentry>
-                    </dl>
+                    <dt><varname>options</varname> {Object}</dt>
+                    <dd><p>Optional Object literal that allows the user to customize the file key, file name, MIME type, parameters, and chunked mode of the upload request. It is not required to provide all parameters, and these do not have to be specified in any particular order.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>fileKey</varname> {String}</dt>
+                                <dd><p>Name of the form element. If not set, this defaults to "file".</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>fileName</varname> {String}</dt>
+                                <dd><p>Name that the file will be saved as on the remote server. If not set, this defaults to "image.jpg".</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>mimeType</varname> {String}</dt>
+                                <dd><p>MIME type of the data being uploaded. If not set, this defaults to "image/jpeg".</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>params</varname> {Object}</dt>
+                                <dd><p>A set of optional key/value pairs to be passed along in the HTTP request.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>chunkedMode</varname> {Boolean}</dt>
+                                <dd><p>Specifies whether the data should be uploaded in chunked streaming mode.  If not set, this defaults to true.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>chunkSize</varname> {Number}</dt>
+                                <dd><p>Specifies the size of each chunk when chunkedMode is true.  If not set, this defaults to 1024 bytes.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
                 </dlentry>
             </dl>
         </section>
-
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-                &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-               function uploadSuccess(result) {
-                 alert("Upload was successful");
-                   console.log("Bytes sent: " + result.bytesSent);
-                    console.log("Response code: " + result.responseCode);
-                    console.log("Response: " + result.response);
-               }
+    function uploadSuccess(result) {
+        alert("Upload was successful");
+        console.log("Bytes sent: " + result.bytesSent);
+        console.log("Response code: " + result.responseCode);
+        console.log("Response: " + result.response);
+    }
 
-             function uploadError(result) {
-               alert("Upload failed");
-               console.log("Error code: " + result.code);
-               console.log("Source: " + result.source);
-               console.log("Target: " + result.target);
-               console.log("HTTP Status: " + result.https_status);
-            }
+    function uploadError(result) {
+        alert("Upload failed");
+        console.log("Error code: " + result.code);
+        console.log("Source: " + result.source);
+        console.log("Target: " + result.target);
+        console.log("HTTP Status: " + result.https_status);
+    }
 
-             function fileUpload() {
-               var parameters, options;
-               try {
-                 parameters = { app : "webworks" };
-                 options = {
-                    fileKey : "file",
-                    fileName : "blackberry.jpg",
-                    mimeType : "image/jpeg",
-                    params : parameters,
-                    chunkedMode : true,
-                    chunkSize : 1024
-                 };
-                  blackberry.io.filetransfer.upload("/accounts/1000/shared/camera/image_123.jpg", "http://www.blackberry.com/upload", uploadSuccess, uploadError, options);
-                } catch(e) {
-                  alert("Exception in fileUpload: " + e);
-               }
-              }
-                &lt;/script&gt;
+    function fileUpload() {
+        var parameters, options;
+        try {
+            parameters = { app : "webworks" };
+            options = {
+                fileKey : "file",
+                fileName : "blackberry.jpg",
+                mimeType : "image/jpeg",
+                params : parameters,
+                chunkedMode : true,
+                chunkSize : 1024
+            };
+            blackberry.io.filetransfer.upload("/accounts/1000/shared/camera/image_123.jpg", "http://www.blackberry.com/upload", uploadSuccess, uploadError, options);
+        } catch(e) {
+        alert("Exception in fileUpload: " + e);
+        }
+    }
+
+&lt;/script&gt;
             </pre></p>
         </example>
-
-
         <example>
             <title>Example:</title>
-            <p><pre scale="80">
-        /*
-        FILENAME: upload.php
-         A sample PHP upload server script which will save files into an "upload" directory. Make sure to create and set 777 permissions for the "upload" folder in the same directory as upload.php.
-         */
-         &lt;?php
-          if (move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"])) {
-            echo "Success";
-         } else {
-           echo "Error";
-          }
-         ?&gt;
+<p><pre scale="80">
+
+    /*
+    FILENAME: upload.php
+    A sample PHP upload server script which will save files into an "upload" directory. Make sure to create and set 777 permissions for the "upload" folder in the same directory as upload.php.
+    */
+    &lt;?php
+
+    if (move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"])) {
+        echo "Success";
+    } else {
+        echo "Error";
+    }
+
+?&gt;
             </pre></p>
         </example>
-
     </refbody>
 </reference>
