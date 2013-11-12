@@ -1,32 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
 <reference id="blackberry_user_identity_setOption" xml:lang="en-us">
-    <title><apiname>setOption</apiname></title>
+    <title><apiname>setOption()</apiname></title>
     <shortdesc><i>This function configures an option in the Identity Services Library</i></shortdesc>
     <refbody>
-	<section>
-	    <title>Setting an option in the Identity Services Library</title>
-	    <p>These options allow an application to modify the default behavior of the IDS library as well as configure the way the library and application integrate together.</p>
-	    <p>Available options are:
-	    <ul>
-		<li>Set GUI Allowed (option = 0, value = true/false)</li>
-		<li>Option to set whether or not GUI allowed flag is set.  Value is "true" or "false".  By default, in cases where user input is required, the Identity Service performs the user interaction on behalf of the calling application.  If this has been set to false, and user input is required, the API will return an error.  If no user interaction is required to complete the API, this setting has no effect.</li>
-		<li>Set Group ID (option = 1, value = groupId)</li>
-		<li>Set the group ID of the calling application for UI dialogs.  String version of UI group id.  This is required in cases where the Identity Service requires user input from the user and must open an interface in the context of the calling application.</li>
-		<li>Set Verbosity (option = 2, value = {"Silent", "Normal", "Verbose")</li>
-		<li>Set the library logging verbosity level.  Useful during application development to allow developers to be able to increase logging for diagnostics. Note that IDS logs are generated on stderr, and so should be captured in the application's log file.</li>
-	    </ul></p>
-	</section>
+    	<section>
+    	    <title>Setting an option in the Identity Services Library</title>
+    	    <p>These options allow an application to modify the default behavior of the IDS library as well as configure the way the library and application integrate together.</p>
+    	    <p>Available options are:
+    	    <ul>
+    		<li>Set GUI Allowed (option = 0, value = true/false)</li>
+    		<li>Option to set whether or not GUI allowed flag is set.  Value is "true" or "false".  By default, in cases where user input is required, the Identity Service performs the user interaction on behalf of the calling application.  If this has been set to false, and user input is required, the API will return an error.  If no user interaction is required to complete the API, this setting has no effect.</li>
+    		<li>Set Group ID (option = 1, value = groupId)</li>
+    		<li>Set the group ID of the calling application for UI dialogs.  String version of UI group id.  This is required in cases where the Identity Service requires user input from the user and must open an interface in the context of the calling application.</li>
+    		<li>Set Verbosity (option = 2, value = {"Silent", "Normal", "Verbose")</li>
+    		<li>Set the library logging verbosity level.  Useful during application development to allow developers to be able to increase logging for diagnostics. Note that IDS logs are generated on stderr, and so should be captured in the application's log file.</li>
+    	    </ul></p>
+    	</section>
         <section>
             <title>Synopsis:</title>
-            <pre scale="80">setOption()</pre>
+            <pre scale="80">int blackberry.user.identity.setOption(option, value)</pre>
         </section>
         <section>
-            <title>Arguments:</title>
+            <title>Parameters:</title>
             <dl>
                 <dlentry>
-                    <dt><varname>setOption</varname> {int, String}</dt>
-                    <dd><p>Modifies the default behaviour of the IDS Library as well as configure the way the library and application integrate together.</p></dd>
+                    <dt><varname>option</varname> {Number}</dt>
+                    <dd><p>The option to be modified.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>value</varname> {String}</dt>
+                    <dd><p>The new string value to set</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section>
+            <title>Returns:</title>
+            <dl>
+                <dlentry>
+                    <dt>{Number}</dt>
                 </dlentry>
             </dl>
         </section>
@@ -34,10 +46,10 @@
             <title>Example:</title>
             <p><pre scale="80">
 &lt;script type="text/javascript"&gt;
-var setOptionResult = blackberry.user.identity.setOption(0, true);
-    if( setOptionResult.errorDescription ) {
-alert("IDS set option error: " + setOptionResult.result + " with description: " + setOptionResult.errorDescription);
-}
+    var setOptionResult = blackberry.user.identity.setOption(0, true);
+        if( setOptionResult.errorDescription ) {
+            alert("IDS set option error: " + setOptionResult.result + " with description: " + setOptionResult.errorDescription);
+        }
 &lt;script&gt;
 	    </pre></p>
         </example>

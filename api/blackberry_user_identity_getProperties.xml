@@ -6,7 +6,7 @@
     <refbody>
         <section>
             <title>Synopsis:</title>
-            <pre scale="80">getToken(provider, type, propertyList, successCallback, successCallback.result, failureCallback, failureCallback.result)</pre>
+            <pre scale="80">void blackberry.user.identity.getToken(provider, type, propertyList, successCallback, failureCallback)</pre>
         </section>
         <section>
             <title>Arguments:</title>
@@ -25,28 +25,34 @@
                 </dlentry>
                 <dlentry>
                     <dt><varname>successCallback</varname> {Function}</dt>
-                    <dd><p>Function which is invoked upon successful operation of this method.</p></dd>
-                </dlentry>
-                <dlentry>
-                    <dt><varname>successCallback.tokenResult</varname> {JSON object}</dt>
-                    <dd><p>A JSON object containing the in the form below:
-                    <pre>{
-                            {"uri":"urn:bbid:firstname":"value":"john"},
-                            {"uri":"urn:bbid:lastname":"value":"doe"}
-                        }
-                    </pre></p></dd>
+                    <dd><p>Function which is invoked upon successful operation of this method.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>tokenResult</varname> {JSON}</dt>
+                                <dd><p>A JSON object containing the in the form below:
+                                <pre>{
+                                        {"uri":"urn:bbid:firstname":"value":"john"},
+                                        {"uri":"urn:bbid:lastname":"value":"doe"}
+                                    }
+                                </pre></p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
                 </dlentry>
                 <dlentry>
                     <dt><varname>failureCallback</varname> {Function}</dt>
-                    <dd><p>Function which is invoked when this method fails. This callback contains an errorCode parameter to specify the failure condition.</p></dd>
-                </dlentry>
-                <dlentry>
-                    <dt><varname>failureCallback.result</varname> {JSON object}</dt>
-                    <dd><p>A JSON object containing details of the failure in the form below:
-                        <pre>{
-                            "result":"50004",
-                            "errorDescription":"The user could not be authenticated."
-                        * }</pre></p></dd>
+                    <dd><p>Function which is invoked when this method fails. This callback contains an errorCode parameter to specify the failure condition.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>result</varname> {JSON}</dt>
+                                <dd><p>A JSON object containing details of the failure in the form below:
+                                    <pre>{
+                                        "result":"50004",
+                                        "errorDescription":"The user could not be authenticated."
+                                    }</pre></p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
                 </dlentry>
                 <dlentry>
                     <dt>Error Handling:</dt>
@@ -74,19 +80,19 @@
             <title>Example:</title>
             <p><pre scale="80">
 &lt;script type="text/javascript"&gt;
-function getPropertiesSuccess(properties) {
-    alert("Get properties returned the following user properties:");
-    for( prop in properties ) {
-            alert("Property: " + properties[prop].uri + " value: " + properties[prop].value);
+    function getPropertiesSuccess(properties) {
+        alert("Get properties returned the following user properties:");
+        for( prop in properties ) {
+                alert("Property: " + properties[prop].uri + " value: " + properties[prop].value);
+        }
     }
-}
 
-function getPropertiesFailure(result) {
-    alert("Failed to retrieve user properties: " + result.result + " details: " + result.failureInfo);
-}
+    function getPropertiesFailure(result) {
+        alert("Failed to retrieve user properties: " + result.result + " details: " + result.failureInfo);
+    }
 
-blackberry.user.identity.registerProvider("ids:rim:bbid");
-blackberry.user.identity.getProperties("ids:rim:bbid", 0, "urn:bbid:firstname,urn:bbid:lastname", getPropertiesSuccess, getPropertiesFailure);
+    blackberry.user.identity.registerProvider("ids:rim:bbid");
+    blackberry.user.identity.getProperties("ids:rim:bbid", 0, "urn:bbid:firstname,urn:bbid:lastname", getPropertiesSuccess, getPropertiesFailure);
 &lt;/script&gt;
             </pre></p>
         </example>
