@@ -6,7 +6,7 @@
     <refbody>
         <section>
             <title>Synopsis:</title>
-                <pre scale="80">launchApplicationonPush = function(shouldLaunch, launchApplicationCallback){}</pre>
+                <pre scale="80">void PushService.launchApplicationonPush(shouldLaunch, launchApplicationCallback)</pre>
         </section>
         <section>
             <title>Parameters:</title>
@@ -29,27 +29,27 @@
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-                &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-// Indicate that you want the application to launch on a new push
-pushService.launchApplicationOnPush(true,
-    launchApplicationCallback);
+    // Indicate that you want the application to launch on a new push
+    pushService.launchApplicationOnPush(true,
+        launchApplicationCallback);
 
-// To indicate that you do not want to launch on a new push,
-// either leave the default behaviour or call:
-// pushService.launchApplicationOnPush(false,
-//     launchApplicationCallback);
+    // To indicate that you do not want to launch on a new push,
+    // either leave the default behaviour or call:
+    // pushService.launchApplicationOnPush(false,
+    //     launchApplicationCallback);
 
-function launchApplicationOnPush(result) {
-   if (result === blackberry.push.PushService.INTERNAL_ERROR) {
-     // Retry the launchApplicationOnPush up to a certain number
-     // of attempts and then display an error to the user
-   } else if ... (handle all the error codes possible for
-                  launchApplicationOnPush - see the error
-                  constants in this PushService class)
-}
+    function launchApplicationOnPush(result) {
+       if (result === blackberry.push.PushService.INTERNAL_ERROR) {
+         // Retry the launchApplicationOnPush up to a certain number
+         // of attempts and then display an error to the user
+       } else if ... (handle all the error codes possible for
+                      launchApplicationOnPush - see the error
+                      constants in this PushService class)
+    }
 
-                &lt;/script&gt;
+&lt;/script&gt;
             </pre></p>
         </example>
     </refbody>
