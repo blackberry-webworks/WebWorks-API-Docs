@@ -2,11 +2,13 @@
 <!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
 <reference id="blackbery_system_perimeterunlocked" xml:lang="en-us">
     <title><apiname>perimeterunlocked</apiname></title>
-    <shortdesc>This event is fired by the system. If you want to listen to the event you can do so using the document.addEventListener function and remove the listener using the document.removeEventListener function.
-    The <b>perimeterunlocked</b> event is triggered whenever the corporate or enterprise application is unlocked.
-	Note 1: When the corporate application is first launched, it is considered unlocked. No message is sent on startup of the application.
-	Note 2: This event is not fired for non-corporate apps.</shortdesc>
+    <shortdesc><i>This event is fired by the system. If you want to listen to the event you can do so using the document.addEventListener function and remove the listener using the document.removeEventListener function.</i></shortdesc>
     <refbody>
+        <section>
+            <p> The <b>perimeterunlocked</b> event is triggered whenever the corporate or enterprise application is unlocked.
+            Note 1: When the corporate application is first launched, it is considered unlocked. No message is sent on startup of the application.
+            Note 2: This event is not fired for non-corporate apps.</p>
+        </section>
         <section>
             <title>Synopsis:</title>
             <pre scale="80">Event</pre>
@@ -25,11 +27,11 @@
             <p><pre scale="80">
 &lt;script type="text/javascript"&gt;
 
-function onPerimeterUnlocked() {
-    alert("The corporate app is unlocked!");
-}
+    function onPerimeterUnlocked() {
+        alert("The corporate app is unlocked!");
+    }
 
-document.addEventListener("perimeterunlocked", onPerimeterUnlocked);
+    document.addEventListener("perimeterunlocked", onPerimeterUnlocked);
 &lt;/script&gt;
             </pre></p>
         </example>
