@@ -6,7 +6,7 @@
     <refbody>
         <section>
             <title>Synopsis:</title>
-            <pre scale="80">addItem()</pre>
+            <pre scale="80">void blackbery.ui.contextmenu.addItem(contexts,actuin,callback)</pre>
         </section>
         <section>
             <title>Parameters:</title>
@@ -20,15 +20,15 @@
                     <dd><p>An object which defines the menu item to be added.</p>
                         <dl>
                             <dlentry>
-                                <dt><varname>action.actionId</varname> {String}</dt>
+                                <dt><varname>actionId</varname> {String}</dt>
                                 <dd><p>Desired title of the dialog.</p></dd>
                             </dlentry>
                             <dlentry>
-                                <dt><varname>action.label</varname> {String}</dt>
+                                <dt><varname>label</varname> {String}</dt>
                                 <dd><p>A string that will be displayed to the user describing the custom context to be performed. ie: Edit</p></dd>
                             </dlentry>
                             <dlentry>
-                                <dt><varname>action.icon</varname> {String}</dt>
+                                <dt><varname>icon</varname> {String}</dt>
                                 <dd><p>A path to the an image to display in the context menu.</p></dd>
                             </dlentry>
                         </dl>
@@ -39,7 +39,7 @@
                     <dd><p>A function which runs when the menu item action is executed.</p>
                         <dl>
                     	    <dlentry>
-                    		    <dt><varname>callback.sourceId</varname> {String}</dt>
+                    		    <dt><varname>sourceId</varname> {String}</dt>
                     		    <dd><p>The returned sourceId from the element which defined the custom context and the context was invoked on.</p></dd>
                     	    </dlentry>
                         </dl>
@@ -52,62 +52,62 @@
             <p><pre scale="80">
 &lt;script type="text/javascript"&gt;
 
-function addMyItem() {
-    var myItem = {actionId: 'MyItem', label: 'My Item', icon:'http://mysite.com/icon.png'},
-        contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
-    blackberry.ui.contextmenu.addItem(contexts, myItem, function() { console.log('hi') });
-}
+    function addMyItem() {
+        var myItem = {actionId: 'MyItem', label: 'My Item', icon:'http://mysite.com/icon.png'},
+            contexts = [blackberry.ui.contextmenu.CONTEXT_IMAGE, blackberry.ui.contextmenu.CONTEXT_INPUT];
+        blackberry.ui.contextmenu.addItem(contexts, myItem, function() { console.log('hi') });
+    }
 
-//Perform an action on custom context, with a custom item
-function deleteItem(sourceId) {
-    var element = document.getElementById(sourceId);
-    element.parentNode.removeChild(element);
-}
+    //Perform an action on custom context, with a custom item
+    function deleteItem(sourceId) {
+        var element = document.getElementById(sourceId);
+        element.parentNode.removeChild(element);
+    }
 
-function greyOutItem(sourceId) {
-    var element = document.getElementById(sourceId);
-    element.className = "greyed-out";
-}
+    function greyOutItem(sourceId) {
+        var element = document.getElementById(sourceId);
+        element.className = "greyed-out";
+    }
 
-var options = {
-        includeContextItems: [blackberry.ui.contextmenu.CONTEXT_ALL],
-        includePlatformItems: true,
-        includeMenuServiceItems: true
-    },
-    item,
-    contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
-
-// Define the custom context with the options that we want used
-blackberry.ui.contextmenu.defineCustomContext("PrincessContext", options);
-
-// Create a menu item and add it to the context
-item = {actionId: '1', label: 'Delete Item', icon:'local:///images/icon.png'};
-blackberry.ui.contextmenu.addItem(contexts, item, deleteItem);
-
-// And another
-item = {actionId: '2', label: 'Grey Out', icon:'local:///images/icon.png'};
-blackberry.ui.contextmenu.addItem(contexts, item, greyOutItem);
-
-    //Override the system Copy action by actionId using the ACTION_COPY constant
-function overridePlatformWithIcon() {
-    var myItem = {actionId: blackberry.ui.contextmenu.ACTION_COPY, label: 'Custom Copy!',
-        icon:'local:///icon.png'},
+    var options = {
+            includeContextItems: [blackberry.ui.contextmenu.CONTEXT_ALL],
+            includePlatformItems: true,
+            includeMenuServiceItems: true
+        },
+        item,
         contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
 
-    blackberry.ui.contextmenu.addItem(contexts, myItem, function() {
-        alert("Wow you succesfully overrode the platform menu item Copy");
-    });
-}
-    //Override the system Copy action by actionId using the ACTION_SAVE_IMAGE constant
-    // this example does not provide a icon, and uses the system default
-function overridePlatformNoIcon() {
-    var myItem = {actionId: blackberry.ui.contextmenu.ACTION_SAVE_IMAGE, label: 'Save Image'},
-        contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
+    // Define the custom context with the options that we want used
+    blackberry.ui.contextmenu.defineCustomContext("PrincessContext", options);
 
-    blackberry.ui.contextmenu.addItem(contexts, myItem, function() {
-        alert("Custom Save using system icon");
-    });
-}
+    // Create a menu item and add it to the context
+    item = {actionId: '1', label: 'Delete Item', icon:'local:///images/icon.png'};
+    blackberry.ui.contextmenu.addItem(contexts, item, deleteItem);
+
+    // And another
+    item = {actionId: '2', label: 'Grey Out', icon:'local:///images/icon.png'};
+    blackberry.ui.contextmenu.addItem(contexts, item, greyOutItem);
+
+        //Override the system Copy action by actionId using the ACTION_COPY constant
+    function overridePlatformWithIcon() {
+        var myItem = {actionId: blackberry.ui.contextmenu.ACTION_COPY, label: 'Custom Copy!',
+            icon:'local:///icon.png'},
+            contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
+
+        blackberry.ui.contextmenu.addItem(contexts, myItem, function() {
+            alert("Wow you succesfully overrode the platform menu item Copy");
+        });
+    }
+        //Override the system Copy action by actionId using the ACTION_SAVE_IMAGE constant
+        // this example does not provide a icon, and uses the system default
+    function overridePlatformNoIcon() {
+        var myItem = {actionId: blackberry.ui.contextmenu.ACTION_SAVE_IMAGE, label: 'Save Image'},
+            contexts = [blackberry.ui.contextmenu.CONTEXT_ALL];
+
+        blackberry.ui.contextmenu.addItem(contexts, myItem, function() {
+            alert("Custom Save using system icon");
+        });
+    }
 &lt;/script&gt;
             </pre></p>
         </example>
