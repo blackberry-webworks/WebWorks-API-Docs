@@ -6,7 +6,7 @@
     <refbody>
         <section>
             <title>Synopsis:</title>
-            <pre scale="80">setData(provider, type, flags, dataName, dataValue, successCallback,  failureCallback, failureCallback.result)</pre>
+            <pre scale="80">void blackberry.user.identity.setData(provider, type, flags, dataName, dataValue, successCallback,  failureCallback)</pre>
         </section>
         <section>
             <title>Arguments:</title>
@@ -16,12 +16,11 @@
                     <dd><p>The identity provider to send this request to.</p></dd>
                 </dlentry>
                 <dlentry>
-                    <dt><varname>type</varname> {int}</dt>
-                    <dd><p>The type of data. Each provider may have a unique set of types that it is able to
- handle.  See the documentation for the provider for details on valid values.</p></dd>
+                    <dt><varname>type</varname> {Number}</dt>
+                    <dd><p>The type of data. Each provider may have a unique set of types that it is able to handle. See the documentation for the provider for details on valid values.</p></dd>
                 </dlentry>
                 <dlentry>
-                    <dt><varname>flags</varname> {int}</dt>
+                    <dt><varname>flags</varname> {Number}</dt>
                     <dd><p>Special flags for the operation. Each provider may have a unique set of flags that it supports.  See the documentation for the provider for details on valid values and their behaviour for this operation.</p></dd>
                 </dlentry>
                 <dlentry>
@@ -38,15 +37,18 @@
                 </dlentry>
                 <dlentry>
                     <dt><varname>failureCallback</varname> {Function}</dt>
-                    <dd><p>Function which is invoked when this method fails. This callback contains an errorCode parameter to specify the failure condition.</p></dd>
-                </dlentry>
-                <dlentry>
-                    <dt><varname>failureCallback.result</varname> {JSON object}</dt>
-                    <dd><p>A JSON object containing details of the failure in the form below:
-                        <pre>{
-                            "result":"50004",
-                            "errorDescription":"The user could not be authenticated."
-                        * }</pre></p></dd>
+                    <dd><p>Function which is invoked when this method fails. This callback contains an errorCode parameter to specify the failure condition.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>result</varname> {JSON}</dt>
+                                <dd><p>A JSON object containing details of the failure in the form below:
+                                    <pre>{
+                                            "result":"50004",
+                                            "errorDescription":"The user could not be authenticated."
+                                        }</pre></p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
                 </dlentry>
                 <dlentry>
                     <dt>Error Handling:</dt>
@@ -69,16 +71,16 @@
             <title>Example:</title>
             <p><pre scale="80">
 &lt;script type="text/javascript"&gt;
-function setDataSuccess() {
-    alert("Set property was successful");
-}
+    function setDataSuccess() {
+        alert("Set property was successful");
+    }
 
-function setDataFailure(result) {
-    alert("Failed to set data: " + result.result + " details: " + result.failureInfo);
-}
+    function setDataFailure(result) {
+        alert("Failed to set data: " + result.result + " details: " + result.failureInfo);
+    }
 
-blackberry.user.identity.registerProvider("ids:rim:profile");
-blackberry.user.identity.setData("ids:rim:profile", 1, "usershandle", "johndoe123", setDataSuccess, setDataFailure);
+    blackberry.user.identity.registerProvider("ids:rim:profile");
+    blackberry.user.identity.setData("ids:rim:profile", 1, "usershandle", "johndoe123", setDataSuccess, setDataFailure);
 
 &lt;/script&gt;
             </pre></p>

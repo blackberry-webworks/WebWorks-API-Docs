@@ -6,7 +6,7 @@
     <refbody>
         <section>
             <title>Synopsis:</title>
-            <pre scale="80">registerNotifier(idsProvider, 0, name, onChangeCallback)</pre>
+            <pre scale="80">void blackberry.user.identity.registerNotifier(idsProvider, type, name, onChangeCallback)</pre>
         </section>
         <section>
             <title>Arguments:</title>
@@ -16,7 +16,7 @@
                     <dd><p>The identity provider to send this request to.</p></dd>
                 </dlentry>
                 <dlentry>
-                    <dt><varname>type</varname> {int}</dt>
+                    <dt><varname>type</varname> {Number}</dt>
                     <dd><p>The type of data referred to by name</p></dd>
                 </dlentry>
                 <dlentry>
@@ -33,12 +33,12 @@
             <title>Example:</title>
             <p><pre scale="80">
 &lt;script type="text/javascript"&gt;
-function onChangeCb(type, name, notification) {
-    alert("Notification received: " + name + " with notification: " + notification);
-}
+    function onChangeCb(type, name, notification) {
+        alert("Notification received: " + name + " with notification: " + notification);
+    }
 
-blackberry.user.identity.registerProvider("ids:rim:bbid");
-blackberry.user.identity.registerNotifier("ids:rim:bbid", 0, propertyName, onChangeCb);
+    blackberry.user.identity.registerProvider("ids:rim:bbid");
+    blackberry.user.identity.registerNotifier("ids:rim:bbid", 0, propertyName, onChangeCb);
 &lt;/script&gt;
             </pre></p>
         </example>

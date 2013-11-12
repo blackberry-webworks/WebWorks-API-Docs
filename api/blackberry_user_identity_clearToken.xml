@@ -6,7 +6,7 @@
     <refbody>
         <section>
             <title>Synopsis:</title>
-            <pre scale="80">clearToken(idsProvider, tokenType, appliesTo, successCallback, successCallback.result, failureCallback, failureCallback.result)</pre>
+            <pre scale="80">void blackberry.user.identity.clearToken(idsProvider, tokenType, appliesTo, successCallback, failureCallback)</pre>
         </section>
         <section>
             <title>Arguments:</title>
@@ -25,27 +25,33 @@
                 </dlentry>
                 <dlentry>
                     <dt><varname>successCallback</varname> {Function}</dt>
-                    <dd><p>Function which is invoked upon successful operation of this method.</p></dd>
-                </dlentry>
-                <dlentry>
-                    <dt><varname>successCallback.result</varname> {JSON object}</dt>
-                    <dd><p>A JSON object containing a token and it's information in the form below:
-                    <pre>{
-                        "result": true
-                    }</pre>
-                    </p></dd>
+                    <dd><p>Function which is invoked upon successful operation of this method.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>result</varname> {JSON}</dt>
+                                <dd><p>A JSON object containing a token and it's information in the form below:
+                                <pre>{
+                                    "result": true
+                                }</pre>
+                                </p></dd>
+                            </dlentry>
+                        </dl>
+                    <dd>
                 </dlentry>
                 <dlentry>
                     <dt><varname>failureCallback</varname> {Function}</dt>
-                    <dd><p>Function which is invoked when this method fails. This callback contains an errorCode parameter to specify the failure condition.</p></dd>
-                </dlentry>
-                <dlentry>
-                    <dt><varname>failureCallback.result</varname> {JSON object}</dt>
-                    <dd><p>A JSON object containing details of the failure in the form below:
-                        <pre>{
-                            "result":"50009",
-                            "errorDescription":"The appliesTo value is not valid"
-                        }</pre></p></dd>
+                    <dd><p>Function which is invoked when this method fails. This callback contains an errorCode parameter to specify the failure condition.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>result</varname> {JSON object}</dt>
+                                <dd><p>A JSON object containing details of the failure in the form below:
+                                    <pre>{
+                                        "result":"50009",
+                                        "errorDescription":"The appliesTo value is not valid"
+                                    }</pre></p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
                 </dlentry>
                 <dlentry>
                     <dt>Error Handling:</dt>
@@ -65,16 +71,16 @@
             <title>Example:</title>
             <p><pre scale="80">
 &lt;script type="text/javascript"&gt;
-function clearTokenSuccess(clearTokenResult) {
-    alert("Token cleared: " + clearTokenResult.cleared);
-}
+    function clearTokenSuccess(clearTokenResult) {
+        alert("Token cleared: " + clearTokenResult.cleared);
+    }
 
-function clearTokenFailure(result) {
-    alert("Failed to clear token - result is: " + result.result + " with description: " + result.errorDescription);
-}
+    function clearTokenFailure(result) {
+        alert("Failed to clear token - result is: " + result.result + " with description: " + result.errorDescription);
+    }
 
-blackberry.user.identity.registerProvider("ids:rim:bbid");
-blackberry.user.identity.clearToken("ids:rim:bbid", "MyTokenType", "urn:token:myapplication", clearTokenSuccess, clearTokenFailure);
+    blackberry.user.identity.registerProvider("ids:rim:bbid");
+    blackberry.user.identity.clearToken("ids:rim:bbid", "MyTokenType", "urn:token:myapplication", clearTokenSuccess, clearTokenFailure);
 
 &lt;/script&gt;
             </pre></p>
