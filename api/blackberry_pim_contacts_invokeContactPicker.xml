@@ -6,50 +6,52 @@
     <refbody>
         <section>
             <title>Synopsis:</title>
-            <pre scale="80">invokeContactPicker()</pre>
+            <pre scale="80">void blackberry.pim.contacts.invokeContactPicker(options,onDone,onCancel,onInvoke)</pre>
         </section>
         <section>
             <title>Parametercs:</title>
             <dl>
                 <dlentry>
                     <dt><varname>options</varname> {blackberry.pim.contacts.ContactPickerOptions}</dt>
-                    <dd><p> An object of type <link href="blackberry_pim_contacts_ContactPickerOptions"/> which describes all options available to the contact picker.</p></dd>
+                    <dd><p> An object of type <xref format="html" href="blackberry_pim_contacts_ContactPickerOptions" scope="peer">blackberry.pim.contacts.ContactPickerOptions</xref> which describes all options available to the contact picker.</p></dd>
                 </dlentry>
                 <dlentry>
                     <dt><varname>onDone</varname> {function}</dt>
-                    <dd><p>The callback function that will be triggered when the user is finished with the contact picker.</p></dd>
-                    <dl>
-                        <dlentry>
-                            <dt><varname>onDone.data</varname> {Object}</dt>
-                            <dd><p>The data returned by the contact picker. The returned data varies depends on the picker mode.</p></dd>
-                            <ol>
-                                <li>If mode = <link href="blackberry_pim_contacts_ContactPickerOptions_MODE_SINGLE"/>:<pre>
-                                    {
-                                        // id of the selected contact
-                                        contactId: "123"
-                                    }</pre>
-                                </li>
-                                <li>If mode = <link href="blackberry_pim_contacts_ContactPickerOptions_MODE_MULTIPLE"/>:<pre>
-                                    {
-                                        // ids of the selected contacts
-                                        contactIds: ["123", "456", "789"]
-                                    }</pre>
-                                </li>
-                                <li>If mode = <link href="blackberry_pim_contacts_ContactPickerOptions_MODE_ATTRIBUTE"/>:<pre>
-                                    {
-                                        // id of the contact
-                                        contactId: "193",
-                                        // value of the selected attribute
-                                        value: "1234567890",
-                                        // field name of the selected attribute
-                                        field: "phoneNumbers",
-                                        // field type of the selected attribute
-                                        type: "work"
-                                    }</pre>
-                                </li>
-                            </ol>
-                        </dlentry>
-                    </dl>
+                    <dd><p>The callback function that will be triggered when the user is finished with the contact picker.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>data</varname> {Object}</dt>
+                                <dd><p>The data returned by the contact picker. The returned data varies depends on the picker mode.</p></dd>
+                                <ol>
+                                    <li>If mode = <xref format="html" href="blackberry_pim_contacts_ContactPickerOptions_MODE_SINGLE" scope="peer">blackberry.pim.contacts.ContactPickerOptions.MODE_SINGLE</xref>:<pre>
+                                        {
+                                            // id of the selected contact
+                                            contactId: "123"
+                                        }</pre>
+                                    </li>
+                                    <li>If mode = <xref format="html" href="blackberry_pim_contacts_ContactPickerOptions_MODE_MULTIPLE" scope="peer">blackberry.pim.contacts.ContactPickerOptions.MODE_MULTIPLE</xref>:<pre>
+                                        {
+                                            // ids of the selected contacts
+                                            contactIds: ["123", "456", "789"]
+                                        }</pre>
+                                    </li>
+                                    <li>If mode = <xref format="html" href="blackberry_pim_contacts_ContactPickerOptions_MODE_ATTRIBUTE" scope="peer">blackberry.pim.contacts.ContactPickerOptions.MODE_ATTRIBUTE</xref>:<pre>
+{
+    // id of the contact
+    contactId: "193",
+    // value of the selected attribute
+    value: "1234567890",
+    // field name of the selected attribute
+    field: "phoneNumbers",
+    // field type of the selected attribute
+    type: "work"
+}
+                                        </pre>
+                                    </li>
+                                </ol>
+                            </dlentry>
+                        </dl>
+                    </dd>
                 </dlentry>
                 <dlentry>
                     <dt><varname>onCancel</varname> {function}</dt>
@@ -60,8 +62,8 @@
                     <dd><p>The callback function that will be triggered when the contact picker is invoked.</p></dd>
                     <dl>
                         <dlentry>
-                            <dt><varname>onInvoke.error</varname> {blackberry.pim.contacts.ContactError}</dt>
-                            <dd><p>The <link href="blackberry_pim_contacts_ContactError"/> object which contains the error code. If the contact picker is invoked successfully, the error object will be undefined.</p></dd>
+                            <dt><varname>onInvoke.error</varname> {<xref format="html" href="blackberry_pim_contacts_ContactError.html" scope="peer">blackberry.pim.contacts.ContactError</xref>}</dt>
+                            <dd><p>The <xref format="html" href="blackberry_pim_contacts_ContactError.html" scope="peer">blackberry.pim.contacts.ContactError</xref> object which contains the error code. If the contact picker is invoked successfully, the error object will be undefined.</p></dd>
                         </dlentry>
                     </dl>
                 </dlentry>
@@ -70,56 +72,57 @@
         <example>
             <title>Example:</title>
             <p><pre scale="80">
-            &lt;script type="text/javascript"&gt;
+&lt;script type="text/javascript"&gt;
 
-            var contacts = blackberry.pim.contacts,
-                ContactPickerOptions = contacts.ContactPickerOptions;
+    var contacts = blackberry.pim.contacts,
+        ContactPickerOptions = contacts.ContactPickerOptions;
 
-            function onCancel() {
-                alert("User pressed cancel in contact picker.");
-            }
+    function onCancel() {
+        alert("User pressed cancel in contact picker.");
+    }
 
-            function onInvoke(error) {
-                if (error) {
-                    alert("Error invoking contact picker: " + error.code);
-                } else {
-                    alert("Contact picker invoked!");
-                }
-            }
+    function onInvoke(error) {
+        if (error) {
+            alert("Error invoking contact picker: " + error.code);
+        } else {
+            alert("Contact picker invoked!");
+        }
+    }
 
-            function onContactSelected(data) {
-                alert("Id of selected contact: " + data.contactId);
-            }
+    function onContactSelected(data) {
+        alert("Id of selected contact: " + data.contactId);
+    }
 
-            function onContactsSelected(data) {
-                alert("Total # contacts selected: " + data.contactIds.length);
-            }
+    function onContactsSelected(data) {
+        alert("Total # contacts selected: " + data.contactIds.length);
+    }
 
-            function onContactAttributeSelected(data) {
-                alert("The selected field '" + data.field + "(" + data.type + ")' has value '" + data.value + "' belongs to contact with id: " + data.contactId);
-            }
+    function onContactAttributeSelected(data) {
+        alert("The selected field '" + data.field + "(" + data.type + ")' has value '" + data.value + "' belongs to contact with id: " + data.contactId);
+    }
 
-            function invokeContactPickerSingle() {
-                contacts.invokeContactPicker({
-                    mode: ContactPickerOptions.MODE_SINGLE,
-                    fields: ["phoneNumbers"]
-                }, onContactSelected, onCancel, onInvoke);
-            }
+    function invokeContactPickerSingle() {
+        contacts.invokeContactPicker({
+            mode: ContactPickerOptions.MODE_SINGLE,
+            fields: ["phoneNumbers"]
+        }, onContactSelected, onCancel, onInvoke);
+    }
 
-            function invokeContactPickerMultiple() {
-                contacts.invokeContactPicker({
-                    mode: ContactPickerOptions.MODE_MULTIPLE,
-                    fields: ["phoneNumbers"]
-                }, onContactsSelected, onCancel, onInvoke);
-            }
+    function invokeContactPickerMultiple() {
+        contacts.invokeContactPicker({
+            mode: ContactPickerOptions.MODE_MULTIPLE,
+            fields: ["phoneNumbers"]
+        }, onContactsSelected, onCancel, onInvoke);
+    }
 
-            function invokeContactPickerAttribute() {
-                contacts.invokeContactPicker({
-                    mode: ContactPickerOptions.MODE_ATTRIBUTE,
-                    fields: ["phoneNumbers", "emails"]
-                }, onContactAttributeSelected, onCancel, onInvoke);
-            }
-            &lt;/script&gt;
+    function invokeContactPickerAttribute() {
+        contacts.invokeContactPicker({
+            mode: ContactPickerOptions.MODE_ATTRIBUTE,
+            fields: ["phoneNumbers", "emails"]
+        }, onContactAttributeSelected, onCancel, onInvoke);
+    }
+
+&lt;/script&gt;
             </pre></p>
         </example>
     </refbody>
