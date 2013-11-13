@@ -6,35 +6,36 @@
     <refbody>
         <section>
             <title>Synopsis:</title>
-                <pre scale="80">read-only {Number}</pre>
+                <pre scale="80">read-only</pre>
+                <pre scale="80">Number ContactError.code</pre>
         </section>
         <example>
         	<title>Example:</title>
         	<p><pre scale="80">
-        	function findContacts() {
-      			var contacts = blackberry.pim.contacts;
-      			contacts.find(["name"], null, onFindSuccess, onFindError);
-  			}
+function findContacts() {
+		var contacts = blackberry.pim.contacts;
+		contacts.find(["name"], null, onFindSuccess, onFindError);
+}
 
-  			function onFindSuccess(contacts) {
-      			alert("Contact find succeeded");
-  			}
+function onFindSuccess(contacts) {
+		alert("Contact find succeeded");
+}
 
-  			function onFindError(error) {
-      			switch (error.code) {
-      				case error.UNKNOWN_ERROR:
-           			alert("Contact find error: An unknown error occurred");
-           			break;
-      			case error.INVALID_ARGUMENT_ERROR:
-           			alert("Contact find error: Invalid argument");
-           			break;
-      			case error.PERMISSION_DENIED_ERROR:
-           			alert("Contact find error: Permission denied error");
-           			break;
-      			default:
-           			alert("Contact find error: other error, code=" + error.code);
-      			}
-  			}
+function onFindError(error) {
+		switch (error.code) {
+			case error.UNKNOWN_ERROR:
+   			alert("Contact find error: An unknown error occurred");
+   			break;
+		case error.INVALID_ARGUMENT_ERROR:
+   			alert("Contact find error: Invalid argument");
+   			break;
+		case error.PERMISSION_DENIED_ERROR:
+   			alert("Contact find error: Permission denied error");
+   			break;
+		default:
+   			alert("Contact find error: other error, code=" + error.code);
+		}
+}
         	</pre></p>
         </example>
     </refbody>
