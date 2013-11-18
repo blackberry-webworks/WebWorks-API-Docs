@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_pim_calendar_createEvent" xml:lang="en-us">
+    <title><apiname>createEvent</apiname></title>
+    <shortdesc><i>Returns a new <xref format="html" href="blackberry_pim_calendar_CalendarEvent.html" scope="peer">CalendarEvent</xref> object. This method does not persist the CalendarEvent object to the device. To persist the CalendarEvent object to the device, invoke <xref format="html" href="blackberry_pim_calendar_CalendarEvent.html" scope="peer">CalendarEvent.save()</xref></i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80"><xref format="html" href="blackberry_pim_calendar_CalendarEvent.html" scope="peer">CalendarEvent</xref> blackberry.pim.calendar.createEvent(properties, folder)</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>properties</varname> {Object} optional</dt>
+                    <dd><p>Optional object literal that specifies the field values for the CalendarEvent object. The object should be in the following form (with any number of properties):</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>folder</varname>{Object[]}</dt>
+                    <dd>Optional CalendarFolder object that contains the event. If no folder is specified, the event will be created in the default calendar.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+&lt;script type="text/javascript"&gt;
+
+    var evt,
+    calendar = blackberry.pim.calendar;
+
+    function onSaveSuccess(created) {
+        // set evt to the object returned in save success callback, which
+        // contains the persisted event id
+        evt = created;
+        alert("Event saved to device: " + evt.id);
+    }
+
+    function onSaveError(error) {
+        alert("Error saving event to device: " + error.code);
+    }
+
+    function createEventInDefaultCalendarFolder(summary, location) {
+         evt = calendar.createEvent({
+            "summary": summary,
+            "location": location,
+            "start": new Date("Jan 01, 2015, 12:00"),
+            "end": new Date("Jan 01, 2015, 12:30"),
+            // if timezone is specified explicitly, then the times will be
+            // for that particular timezone; otherwise, the times will be
+            // for the current device timezone
+            "timezone": "America/New_York"
+         });
+         evt.save(onSaveSuccess, onSaveError);
+    }
+
+&lt;/script&gt;
+        </pre></p>
+        </example>
+    </refbody>
+</reference>

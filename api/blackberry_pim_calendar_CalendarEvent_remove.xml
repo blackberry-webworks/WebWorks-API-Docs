@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_pim_calendar_CalendarEvent_remove" xml:lang="en-us">
+    <title><apiname>remove()</apiname></title>
+    <shortdesc><i>Removes the event from the calendar. An error callback is called with a <xref format="html" href="blackberry_pim_calendar_CalendarError.html" scope="peer">CalendarError</xref> object if the removal is unsuccessful.</i></shortdesc>
+    <refbody>
+        <section>
+            <title>Synopsis:</title>
+            <pre scale="80">void CalendarEvent.remove(onRemoveSuccess, onRemoveError, [removeAll])</pre>
+        </section>
+        <section>
+            <title>Parameters:</title>
+            <dl>
+                <dlentry>
+                    <dt><varname>onRemoveSuccess</varname> {Function}</dt>
+                    <dd><p>The callback function that will be invoked when the event is removed successfully.</p></dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>onRemoveError</varname> {Function} optional</dt>
+                    <dd><p>The callback function that will be invoked when the event cannot be removed.</p>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>error</varname> {<xref format="html" href="blackberry_pim_calendar_CalendarError.html" scope="peer">CalendarError</xref>}</dt>
+                                <dd><p>The <xref format="html" href="blackberry_pim_calendar_CalendarError.html" scope="peer">CalendarError</xref> object which contains the error code. A possible error is to remove an event before it was saved, this would result in <xref format="html" href="blackberry_pim_calendar_CalendarError_INVALID_ARGUMENT_ERROR.html" scope="peer">INVALID_ARGUMENT_ERROR</xref>.</p></dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+                <dlentry>
+                    <dt><varname>removeAll</varname> {Boolean}</dt>
+                    <dd><p>Optional flag that only applies to recurring events. If removeAll is set to true, all occurrences of the recurring event will be removed; otherwise, only the single occurrence represented by this event object will be removed. This parameter defaults to true if not specified.</p></dd>
+                </dlentry>
+            </dl>
+        </section>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+var calendar = blackberry.pim.calendar,
+    evt;
+
+function testRemove() {
+    // omitting optional folder parameter in createEvent(), calling save()
+    // will save event to default calendar folder
+    evt = calendar.createEvent({
+        "summary": "Picnic",
+        "location": "South Park",
+        "start": new Date("Jan 1, 2013, 13:00"),
+        "end": new Date("Jan 1, 2013, 16:00"),
+        "transparency": calendar.CalendarEvent.SENSITIVITY_PERSONAL,
+        "reminder": 2 24 60 // 2 days before start
+    });
+
+    // will result in error, since the event has not been saved to the
+    // calendar folder yet
+    evt.remove(onSuccess, onError);
+
+    // save event to default calendar folder
+    evt.save(function (saved) {
+       evt = saved; // replace original evt object
+       alert("Event saved: " + evt.id);
+    }, function (error) {
+       alert("Error saving event, error code: " + error.code);
+    });
+
+    // this will remove the event from the calendar folder
+    setTimeout("evt.remove(onSuccess, onError)", 1000);
+}
+
+function onSuccess() {
+    alert("Event removed!");
+}
+
+function onError(error) {
+    alert("Failed to remove event, error code: " + error.code);
+}
+
+function removeSingleOccurrence(keyword, dateToRemove) {
+    // find all instances of the recurring event
+    calendar.findEvents({
+        "filter": {
+            "substring": keyword,
+            "expandRecurring": true
+        }
+    }, function (events) {
+        alert("Found " + events.length + " events that matches filter!");
+        events.forEach(function (evt) {
+            if (evt.start.toISOString() === dateToRemove.toISOString()) {
+                evt.remove(function () {
+                    alert(dateToRemove + " instance removed successfully!");
+                }, function (error) {
+                    alert(dateToRemove + " instance not removed, error code: " + error.code);
+                },
+                false); // pass false to remove only this single occurrence
+            }
+        });
+    }, function (error) {
+        alert("Failed to find events, error code: " + error.code);
+    });
+}
+            </pre></p>
+        </example>
+    </refbody>
+</reference>

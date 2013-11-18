@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
+<reference id="blackberry_pim_calendar_CalendarError_code" xml:lang="en-us">
+    <title><apiname>code</apiname></title>
+    <shortdesc><i>A code specifying the type of error that occurred.</i></shortdesc>
+    <refbody>
+        <example>
+            <title>Example:</title>
+            <p><pre scale="80">
+var calendar = blackberry.pim.calendar,
+    evt;
+
+function saveEvent() {
+   // Not providing the end date will cause
+   // INVALID_ARGUMENT_ERROR
+   evt = calendar.createEvent({
+       "summary": "A test Event",
+       "location": "Waterloo",
+       "start": new Date("Jan 01, 2015, 12:00"),
+       "timezone": "America/New_York"
+    });
+    evt.save(onSaveSuccess, onSaveError);
+}
+
+function onSaveSuccess(created) {
+   // set evt to the object returned in save success callback, which
+   // contains the persisted event id
+   evt = created;
+   alert("Event saved to device: " + evt.id);
+}
+
+function onSaveError(error) {
+    switch (error.code) {
+        case error.UNKNOWN_ERROR:
+            alert("Save event error: An unknown error occurred");
+            break;
+        case error.INVALID_ARGUMENT_ERROR:
+            alert("Save event error: Invalid argument");
+            break;
+        case error.PERMISSION_DENIED_ERROR:
+            alert("Save event error: Permission denied error");
+            break;
+        default:
+            alert("Save event error: other error, code=" + error.code);
+    }
+}
+            </pre></p>
+        </example>
+    </refbody>
+</reference>
