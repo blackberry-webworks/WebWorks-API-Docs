@@ -9,38 +9,38 @@
             <pre scale="80">void blackberry.payment.purchase(args, onSuccess, onFailure)</pre>
         </section>
         <section>
-            <title>Arguments:</title>
+            <title>Parameters:</title>
             <dl>
                 <dlentry>
                     <dt><varname>args</varname> {Object}</dt>
                     <dd><p>Contains information that describes the digital good. One of ID or SKU needs to be specified, and if both are specified, the ID takes precedence and SKU will be ignored.</p>
                         <dl>
-                            <dlEntry>
-                                <dt><varname>args,digitalGoodID</varname> {String}</dt>
-                                <dd><p>ID of the digital good being purchased</p></dd>
-                            </dlEntry>
-                            <dlEntry>
-                                <dt><varname>args.digitalGoodSKU</varname> {String}</dt>
-                                <dd><p>SKU of the digital good being purchased.</p></dd>
-                            </dlEntry>
                             <dlentry>
-                                <dt><varname>args.digitalGoodName</varname> {String}</dt>
+                                <dt><varname>digitalGoodID</varname> {String}</dt>
+                                <dd><p>ID of the digital good being purchased</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>digitalGoodSKU</varname> {String}</dt>
+                                <dd><p>SKU of the digital good being purchased.</p></dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt><varname>digitalGoodName</varname> {String}</dt>
                                 <dd><p>Name of the digital good being purchased</p></dd>
                             </dlentry>
                             <dlentry>
-                                <dt><varname>args.metaData</varname> {Object}</dt>
+                                <dt><varname>metaData</varname> {Object}</dt>
                                 <dd><p>Metadata associated with the digital good. Metadata offers the application developer a way to store information about each purchase on the Payment Service server.</p></dd>
                             </dlentry>
                             <dlentry>
-                                <dt><varname>args.purchaseAppName</varname> {String}</dt>
+                                <dt><varname>purchaseAppName</varname> {String}</dt>
                                 <dd><p>Name of the application requesting the purchase.</p></dd>
                             </dlentry>
                             <dlentry>
-                                <dt><varname>args.purchaseAppIcon</varname> {String}</dt>
+                                <dt><varname>purchaseAppIcon</varname> {String}</dt>
                                 <dd><p>Icon of the application requesting the purchase.</p></dd>
                             </dlentry>
                             <dlentry>
-                                <dt><varname>args.extraParameters</varname> {Object}</dt>
+                                <dt><varname>extraParameters</varname> {Object}</dt>
                                 <dd><p>Set of extra parameters, in the form of key/value pairs, to associate with the purchase.</p></dd>
                             </dlentry>
                         </dl>
@@ -51,7 +51,7 @@
                     <dd><p>Function to be invoked on successful call</p>
                         <dl>
                             <dlentry>
-                                <dt><varname>onSuccess.data</varname> {Boolean}</dt>
+                                <dt><varname>data</varname> {Boolean}</dt>
                                 <dd><p>A <xref format="html" href="blackberry.payment.PurchaseObj.html" scope="peer">Purchase</xref> object containing the details of the successful purchase.</p></dd>
                             </dlentry>
 
@@ -63,7 +63,7 @@
                     <dd><p>Function to be invoked when an error occurs</p>
                         <dl>
                             <dlentry>
-                                <dt><varname>onFailure.error</varname> {PaymentError}</dt>
+                                <dt><varname>error</varname> {PaymentError}</dt>
                                 <dd><p>A <xref format="html" href="blackberry.purchase.PaymentError.html" scope="peer">PaymentError</xref> object containing details about the error</p></dd>
                             </dlentry>
                         </dl>

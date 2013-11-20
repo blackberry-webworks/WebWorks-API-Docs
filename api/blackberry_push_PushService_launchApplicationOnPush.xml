@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//IXIA//DTD IXIA DITA Composite//EN" "../../system/dtd/ixia/IxiaDitabase.dtd">
 <reference id="blackberry_push_PushService_launchApplicationOnPush" xml:lang="en-us">
     <title><apiname>launchApplicationOnPush</apiname></title>
-    <shortdesc><i>Indicates whether or not the application should be launched (started up) if it is currently closed (not running) and a new push is received. The default system behaviour is to not launch the application. A successful <code>create</code> must have been done before calling this function. It is important to note that the <code>shouldLaunch</code> flag is only persisted once a channel has been created using the <code>createChannel</code> function. In other words, once the create channel function has been called the state of the <code>shouldLaunch</code> flag is persisted between application and device restarts. The flag is only removed once the destroy channel function is called. This flag can be toggled at any time using this function but, again, its value is only persisted once the create channel function has been called at least once for the lifetime of the application.</i></shortdesc>
+    <shortdesc><i>Indicates whether or not the application should be launched (started up) if it is currently closed (not running) and a new push is received. The default system behaviour is to not launch the application. A successful create must have been done before calling this function. It is important to note that the shouldLaunch flag is only persisted once a channel has been created using the createChannel function. In other words, once the create channel function has been called the state of the shouldLaunch flag is persisted between application and device restarts. The flag is only removed once the destroy channel function is called. This flag can be toggled at any time using this function but, again, its value is only persisted once the create channel function has been called at least once for the lifetime of the application.</i></shortdesc>
     <refbody>
         <section>
             <title>Synopsis:</title>
@@ -18,10 +18,12 @@
                 <dlentry>
                     <dt><varname>launchApplicationCallback</varname> {Function}</dt>
                     <dd><p>The callback that is invoked when the result of the launch application operation is received.</p>
-                        <dlentry>
-                            <dt><varname>result</varname> {Number}</dt>
-                            <dd><p>The launch application operation result. See the constants provided to see what result codes apply for this operation.</p></dd>
-                        </dlentry>
+                        <dl>
+                            <dlentry>
+                                <dt><varname>result</varname> {Number}</dt>
+                                <dd><p>The launch application operation result. See the constants provided to see what result codes apply for this operation.</p></dd>
+                            </dlentry>
+                        </dl>
                     </dd>
                 </dlentry>
             </dl>
