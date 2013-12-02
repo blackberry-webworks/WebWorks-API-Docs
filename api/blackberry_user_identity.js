@@ -138,7 +138,7 @@ getVersion : function(){},
  * &lt;script type=&quot;text&sol;javascript&quot;&gt;
 	var registerResult = blackberry.user.identity.registerProvider("ids:rim:bbid");
 	if( registerResult.errorDescription ) {
-		alert("IDS register provider error: " + registerResult.result + " with description: " + registerResult.errorDescription);
+		alert("IDS register provider error: " + registerResult.result);
 	}
  * &lt;&sol;script&gt;
 */
@@ -175,7 +175,7 @@ registerProvider : function(name) { },
  * &lt;script type=&quot;text&sol;javascript&quot;&gt;
 	var setOptionResult = blackberry.user.identity.setOption(0, true);
 	if( setOptionResult.errorDescription ) {
-		alert("IDS set option error: " + setOptionResult.result + " with description: " + setOptionResult.errorDescription);
+		alert("IDS set option error: " + setOptionResult.result);
 	}
  * &lt;&sol;script&gt;
  */
@@ -285,7 +285,7 @@ getToken : function(idsProvider, tokenType, appliesTo, successCallback, failureC
  * @example
  * &lt;script type=&quot;text&sol;javascript&quot;&gt;
 	function clearTokenSuccess(clearTokenResult) {
-		alert("Token cleared: " + clearTokenResult.cleared);
+		alert("Token cleared: " + clearTokenResult.clear);
 	}
 			
 	function clearTokenFailure(result) {
@@ -476,7 +476,7 @@ setData : function(idsProvider, 0, 0, dataName, dataValue, successCallback, fail
 	}
 
 	blackberry.user.identity.registerProvider("ids:rim:profile");
-	blackberry.user.identity.createData("ids:rim:profile", 1, "usershandle", "johndoe123", createDataSuccess, createDataFailure);
+	blackberry.user.identity.createData("ids:rim:profile", 1, 0, "usershandle", "johndoe123", createDataSuccess, createDataFailure);
  * &lt;&sol;script&gt;
 */
 createData : function(idsProvider, 0, 0, dataName, dataValue, successCallback, failureCallback) { };
@@ -601,12 +601,12 @@ challenge : function(idsProvider, 0, 0, successCallback, failureCallback) { };
  * @BB10X
  * @example
  * &lt;script type=&quot;text&sol;javascript&quot;&gt;
-	function onChangeCb(type, name, notification) {
+	function onChangeCb(tyfpe, name, notification) {
 		alert("Notification received: " + name + " with notification: " + notification);
 	}
 
 	blackberry.user.identity.registerProvider("ids:rim:bbid");
-	blackberry.user.identity.registerNotifier("ids:rim:bbid", 0, propertyName, onChangeCb);
+	blackberry.user.identity.registerNotifier("ids:rim:bbid", 0, "propertyName", onChangeCb);
  * &lt;&sol;script&gt;
 */
 registerNotifier : function(idsProvider, 0, name, onChangeCallback) { };
