@@ -137,8 +137,8 @@ getVersion : function(){},
  * @example 
  * &lt;script type=&quot;text&sol;javascript&quot;&gt;
 	var registerResult = blackberry.user.identity.registerProvider("ids:rim:bbid");
-	if( registerResult.errorDescription ) {
-		alert("IDS register provider error: " + registerResult.result);
+	if( registerResult.result ) {
+		alert("IDS register provider error: " + registerResult.result + " errno: " + registerResult.errno);
 	}
  * &lt;&sol;script&gt;
 */
@@ -174,8 +174,8 @@ registerProvider : function(name) { },
  * @example
  * &lt;script type=&quot;text&sol;javascript&quot;&gt;
 	var setOptionResult = blackberry.user.identity.setOption(0, true);
-	if( setOptionResult.errorDescription ) {
-		alert("IDS set option error: " + setOptionResult.result);
+	if( setOptionResult.result ) {
+		alert("IDS set option error: " + setOptionResult.result + " errno: " + setOptionResult.errno);
 	}
  * &lt;&sol;script&gt;
  */
@@ -351,10 +351,7 @@ clearToken : function(idsProvider, tokenType, appliesTo, successCallback, failur
  * @example
  * &lt;script type=&quot;text&sol;javascript&quot;&gt;
 	function getPropertiesSuccess(properties) {
-		alert("Get properties returned the following user properties:");
-		for( prop in properties ) {
-			alert("Property: " + properties[prop].uri + " value: " + properties[prop].value);
-		}
+		alert("Get properties returned the following user properties:" + JSON.stringify(properties));
 	}
 
 	function getPropertiesFailure(result) {
